@@ -1,0 +1,183 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "nexara-ui",
+  "homepage": ".",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "cn and motion helpers",
+      "description": "Class merging, reduced-motion detection, and one-time keyframe injection used by every Nexara component.",
+      "categories": ["Utilities"],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [{ "path": "src/lib/utils.ts", "type": "registry:lib" }],
+      "usage": "import { cn, usePrefersReducedMotion } from '@/lib/utils'"
+    },
+    {
+      "name": "draggable-card",
+      "type": "registry:ui",
+      "title": "Draggable Card",
+      "description": "A movable card with spring tilt, optional snap-back, a drag handle, and keyboard nudging. Also called a draggable or movable card.",
+      "categories": ["Cards"],
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "src/components/ui/draggable-card.tsx", "type": "registry:ui" }],
+      "usage": "import { DraggableCard } from '@/components/ui/draggable-card'\n\n<DraggableCard bounds={stageRef} variant=\"elevated\" snapBack={false}>\n  Drag me\n</DraggableCard>"
+    },
+    {
+      "name": "spotlight-card",
+      "type": "registry:ui",
+      "title": "Spotlight Card",
+      "description": "A card whose highlight and hairline follow the pointer.",
+      "categories": ["Cards"],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "src/components/ui/spotlight-card.tsx", "type": "registry:ui" }],
+      "usage": "import { SpotlightCard } from '@/components/ui/spotlight-card'\n\n<SpotlightCard className=\"p-6\" spotlightColor=\"rgba(255, 106, 61, 0.45)\">\n  Follow the light\n</SpotlightCard>"
+    },
+    {
+      "name": "flip-card",
+      "type": "registry:ui",
+      "title": "Flip Card",
+      "description": "A two-sided card that turns on hover or click.",
+      "categories": ["Cards"],
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "src/components/ui/flip-card.tsx", "type": "registry:ui" }],
+      "usage": "import { FlipCard } from '@/components/ui/flip-card'\n\n<FlipCard flipOn=\"hover\" front={<p>Front</p>} back={<p>Back</p>} />"
+    },
+    {
+      "name": "bento-grid",
+      "type": "registry:ui",
+      "title": "Bento Grid",
+      "description": "A responsive mosaic of spotlight tiles.",
+      "categories": ["Cards"],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "src/components/ui/bento-grid.tsx", "type": "registry:ui" }],
+      "usage": "import { BentoGrid, BentoItem } from '@/components/ui/bento-grid'\n\n<BentoGrid columns={3}>\n  <BentoItem colSpan={2} title=\"Wide\" description=\"Two columns.\" />\n</BentoGrid>"
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Solid, outline, ghost, gradient, and shimmer buttons with loading and link modes.",
+      "categories": ["Buttons"],
+      "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "src/components/ui/button.tsx", "type": "registry:ui" }],
+      "usage": "import { Button } from '@/components/ui/button'\n\n<Button variant=\"gradient\" size=\"lg\">Continue</Button>"
+    },
+    {
+      "name": "magnetic-button",
+      "type": "registry:ui",
+      "title": "Magnetic Button",
+      "description": "A button that leans toward a fine pointer.",
+      "categories": ["Buttons"],
+      "dependencies": ["framer-motion", "class-variance-authority", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils", "button"],
+      "files": [{ "path": "src/components/ui/magnetic-button.tsx", "type": "registry:ui" }],
+      "usage": "import { MagneticButton } from '@/components/ui/magnetic-button'\n\n<MagneticButton variant=\"outline\" strength={20}>Come closer</MagneticButton>"
+    },
+    {
+      "name": "aurora-background",
+      "type": "registry:ui",
+      "title": "Aurora Background",
+      "description": "Drifting color fields with optional film grain.",
+      "categories": ["Backgrounds"],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "src/components/ui/aurora-background.tsx", "type": "registry:ui" }],
+      "usage": "import { AuroraBackground } from '@/components/ui/aurora-background'\n\n<AuroraBackground className=\"min-h-80 rounded-3xl\">{children}</AuroraBackground>"
+    },
+    {
+      "name": "grid-background",
+      "type": "registry:ui",
+      "title": "Grid Background",
+      "description": "A dotted or ruled surface with an optional pointer-following fade.",
+      "categories": ["Backgrounds"],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "src/components/ui/grid-background.tsx", "type": "registry:ui" }],
+      "usage": "import { GridBackground } from '@/components/ui/grid-background'\n\n<GridBackground variant=\"dots\" fade interactive className=\"min-h-64\">{children}</GridBackground>"
+    },
+    {
+      "name": "gradient-text",
+      "type": "registry:ui",
+      "title": "Gradient Text",
+      "description": "Lettering clipped to an optional animated gradient.",
+      "categories": ["Text"],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "src/components/ui/gradient-text.tsx", "type": "registry:ui" }],
+      "usage": "import { GradientText } from '@/components/ui/gradient-text'\n\n<GradientText>Night, gold, and iris.</GradientText>"
+    },
+    {
+      "name": "typewriter",
+      "type": "registry:ui",
+      "title": "Typewriter",
+      "description": "Types and deletes a list of phrases.",
+      "categories": ["Text"],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "src/components/ui/typewriter.tsx", "type": "registry:ui" }],
+      "usage": "import { Typewriter } from '@/components/ui/typewriter'\n\n<Typewriter phrases={['cards.', 'heroes.', 'tools.']} />"
+    },
+    {
+      "name": "text-reveal",
+      "type": "registry:ui",
+      "title": "Text Reveal",
+      "description": "Staggers words or characters into place when they enter the viewport.",
+      "categories": ["Text"],
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "src/components/ui/text-reveal.tsx", "type": "registry:ui" }],
+      "usage": "import { TextReveal } from '@/components/ui/text-reveal'\n\n<TextReveal as=\"h2\" text=\"Arrive one word at a time.\" />"
+    },
+    {
+      "name": "floating-navbar",
+      "type": "registry:ui",
+      "title": "Floating Navbar",
+      "description": "A pill navigation bar that compacts on scroll and collapses into a menu.",
+      "categories": ["Navigation"],
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "src/components/ui/floating-navbar.tsx", "type": "registry:ui" }],
+      "usage": "import { FloatingNavbar } from '@/components/ui/floating-navbar'\n\n<FloatingNavbar logo=\"Nexara\" items={[{ label: 'Work', href: '/work', active: true }]} />"
+    },
+    {
+      "name": "modal",
+      "type": "registry:ui",
+      "title": "Modal",
+      "description": "An accessible dialog with a focus trap, escape to close, and scroll locking.",
+      "categories": ["Overlays"],
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "src/components/ui/modal.tsx", "type": "registry:ui" }],
+      "usage": "import { Modal, ModalContent, ModalClose } from '@/components/ui/modal'\n\n<Modal open={open} onOpenChange={setOpen}>\n  <ModalContent title=\"Edit name\">\n    <ModalClose>Close</ModalClose>\n  </ModalContent>\n</Modal>"
+    },
+    {
+      "name": "hero",
+      "type": "registry:ui",
+      "title": "Hero",
+      "description": "A centered or split marketing intro with staggered entrance and slots for actions and media.",
+      "categories": ["Sections"],
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "src/components/ui/hero.tsx", "type": "registry:ui" }],
+      "usage": "import { Hero } from '@/components/ui/hero'\n\n<Hero align=\"split\" eyebrow=\"New\" title=\"A room with movable parts\" description=\"Compose this freely.\" />"
+    },
+    {
+      "name": "marquee",
+      "type": "registry:ui",
+      "title": "Marquee",
+      "description": "An infinite horizontal loop with edge fade and a pause control.",
+      "categories": ["Sections"],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "src/components/ui/marquee.tsx", "type": "registry:ui" }],
+      "usage": "import { Marquee } from '@/components/ui/marquee'\n\n<Marquee duration={24}><span>One</span><span>Two</span></Marquee>"
+    }
+  ]
+}
