@@ -1,29 +1,20 @@
-# grid-background
+# Grid background — structural audit
 
-Surveyed 21st.dev Aceternity (Background Boxes, Dot patterns via Retro Grid style galleries) and Magic UI grid/dot/retro-grid. Added plus, dashed, isometric, blueprint, hex, rings, and scatter so the set is not two recolours of one rule.
+Plus, hatch, diagonal, rings, and scatter were removed. They were the same repeating stroke with a different mark. Graph and dots stay because published libraries ship them as different components, not as hover states.
 
-Sources: [21st.dev](https://21st.dev), [Aceternity on 21st](https://21st.dev/@manuarora700/library/aceternity-ui), [Motion Primitives](https://docs.21st.dev/@ibelick/library/motion-primitives), [Spectrum UI](https://docs.21st.dev/@arihantcodes_1f7b8c4d/library/spectrum-ui), plus public catalogues from shadcn/ui, HeroUI, Magic UI, Park UI, and Uiverse. Ideas were reimplemented. No source was copied.
+| Variant | Reference | What is structurally different |
+| --- | --- | --- |
+| graph | [Aceternity Grid and Dot Backgrounds](https://ui.aceternity.com/components/grid-and-dot-backgrounds) and [Magic UI Grid Pattern](https://magicui.design/docs/components/grid-pattern) | Ruled engineering cells. |
+| dots | [Magic UI Dot Pattern](https://magicui.design/docs/components/dot-pattern) | A dot at each intersection. No rules. |
+| isometric | Isometric grids on [21st.dev](https://21st.dev/) | A diamond lattice. |
+| hex | Honeycomb backgrounds | Pointy hexes. |
+| circuit | Circuit patterns | Traces and a pad. |
+| blueprint | Blueprint sheets | A blue ground, white rules, and a title block. |
+| notebook | Ruled paper | Horizontal rules and a red margin. |
+| perspective | [Magic UI Retro Grid](https://magicui.design/docs/components/retro-grid) | A floor in perspective, not a flat tile. |
+| topography | Contour maps | Organic curves, not a lattice. |
+| herringbone | Parquet floors | A zigzag tile. Replaces crosshatch, which was another diagonal hatch. |
+| pixel | Pixel mosaics | Filled cells, not strokes. |
+| brick | Masonry | Running-bond rectangles. |
 
-## Selected
-
-- `grid` (Grid): Even ruled cells.
-- `dots` (Dots): A dot at each cell.
-- `cross` (Cross): Full crosshairs in every cell.
-- `plus` (Plus): Short plus marks, not full rules.
-- `dashed` (Dashed): Broken rules.
-- `diagonal` (Diagonal): 45-degree stripes.
-- `isometric` (Isometric): Repeating triangular lattice.
-- `blueprint` (Blueprint): Fine grid plus a heavier major grid.
-- `hex` (Hex): Outlined hex cells.
-- `graph` (Graph): Minor lines with a stronger fourth cell.
-- `rings` (Rings): Concentric circles from the center.
-- `scatter` (Scatter): An uneven star field tile.
-
-## Rejected
-
-- Extra colour swaps of an existing treatment.
-- Variants that only changed duration or opacity.
-
-## Round 2
-
-Round 2 replaced cross, dashed, blueprint, and graph with brick, hatch, circuit, and topography. Hex is a two-row honeycomb tile. Isometric is a diamond that shares edges with its neighbors. Kept grid, dots, plus, diagonal, rings, and scatter.
+Ideas were reimplemented. No source was copied.

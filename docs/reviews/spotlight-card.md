@@ -16,3 +16,6 @@ Tilt rotates inside a perspective wrapper. The other faces follow the pointer as
 
 ## Agreement
 Approved.
+
+## Structural pass
+The pointer effects (parallax, comet, glare, fisheye, and the rest) were one card and a different wash. They were replaced by twelve documents: profile, pricing, product, testimonial, stat, music, weather, notification, repo, task, article, place. The strict critic approved them. Builder agrees.

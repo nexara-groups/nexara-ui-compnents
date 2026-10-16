@@ -1,252 +1,215 @@
 'use client'
 
-import { animate, motion, useMotionValue, useSpring } from 'framer-motion'
-import { useEffect, useRef, type PointerEvent, type ReactNode } from 'react'
-import { Button, type ButtonProps } from '@/components/ui/button.tsx'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { useRef, type PointerEvent, type ReactNode } from 'react'
 import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
 
-/** How the control responds to a fine pointer. The button skin stays on `variant`. */
+/** Visual object. Every style still pulls toward a fine pointer. */
 const MAGNET_STYLES = [
-  'attract',
-  'tilt',
-  'repel',
-  'stretch',
-  'sling',
-  'snap',
-  'orbit',
-  'lift',
-  'glow',
-  'wobble',
-  'peel',
-  'press',
+  'pill',
+  'keycap',
+  'bulb',
+  'dock',
+  'sticker',
+  'medal',
+  'stamp',
+  'badge',
+  'shutter',
+  'ticket',
+  'tag',
+  'wax',
 ] as const
 
 export type MagnetStyle = (typeof MAGNET_STYLES)[number]
 
-export interface MagneticButtonProps extends ButtonProps {
-  /** Pointer response. Separate from the visual `variant` inherited from Button. */
+export interface MagneticButtonProps {
   magnet?: MagnetStyle
-  /** Maximum translation in pixels at the edge of the control. */
   strength?: number
-  /** Extra pointer padding, in pixels, cancelled out of the layout. */
   proximity?: number
-  /** How far the label shifts relative to the shell. 0–1. */
-  innerShift?: number
+  className?: string
+  children?: ReactNode
+  disabled?: boolean
+  onClick?: () => void
 }
 
 /**
  * MagneticButton
- * Twelve pointer responses, from a straight pull to a press field.
- * Coarse pointers, loading, and reduced motion keep it still.
- * Copy this file, `button.tsx`, and `src/lib/utils.ts`.
+ * Twelve objects that share one pull: a pill, a keycap, a bulb, a dock icon,
+ * a taped sticker, a medal, a postage stamp, a count badge, a shutter, a ticket,
+ * a price tag, and a wax seal.
+ * Copy this file plus `src/lib/utils.ts`.
  */
 export function MagneticButton({
-  magnet = 'attract',
-  strength = 16,
-  proximity = 22,
-  innerShift = 0.35,
+  magnet = 'pill',
+  strength = 18,
+  proximity = 28,
   className,
   children,
   disabled,
-  loading,
-  leftIcon,
-  rightIcon,
-  ...props
+  onClick,
 }: MagneticButtonProps) {
   const reduced = usePrefersReducedMotion()
-  const boundsRef = useRef<HTMLSpanElement>(null)
-  const coarseRef = useRef(false)
+  const ref = useRef<HTMLButtonElement>(null)
   const x = useMotionValue(0)
   const y = useMotionValue(0)
-  const shiftX = useMotionValue(0)
-  const shiftY = useMotionValue(0)
-  const rotate = useMotionValue(0)
-  const scaleX = useMotionValue(1)
-  const scaleY = useMotionValue(1)
-  const glow = useMotionValue(0)
-  const shear = useMotionValue(0)
-  const spring =
-    magnet === 'sling'
-      ? { stiffness: 90, damping: 16, mass: 1.2 }
-      : magnet === 'wobble'
-        ? { stiffness: 220, damping: 7, mass: 0.6 }
-        : magnet === 'snap'
-          ? { stiffness: 520, damping: 22, mass: 0.35 }
-          : { stiffness: 260, damping: 22, mass: 0.4 }
-  const springX = useSpring(x, spring)
-  const springY = useSpring(y, spring)
-  const labelX = useSpring(shiftX, spring)
-  const labelY = useSpring(shiftY, spring)
-  const springRotate = useSpring(rotate, spring)
-  const springScaleX = useSpring(scaleX, spring)
-  const springScaleY = useSpring(scaleY, spring)
-  const springGlow = useSpring(glow, spring)
-  const springShear = useSpring(shear, spring)
-  const ghostLabelX = useSpring(shiftX, { stiffness: 70, damping: 16, mass: 1.1 })
-  const ghostLabelY = useSpring(shiftY, { stiffness: 70, damping: 16, mass: 1.1 })
-  const frozen = Boolean(reduced || disabled || loading)
+  const springX = useSpring(x, { stiffness: 260, damping: 22, mass: 0.4 })
+  const springY = useSpring(y, { stiffness: 260, damping: 22, mass: 0.4 })
 
   function reset() {
     x.set(0)
     y.set(0)
-    shiftX.set(0)
-    shiftY.set(0)
-    shear.set(0)
-    rotate.set(0)
-    scaleX.set(1)
-    scaleY.set(1)
-    glow.set(0)
   }
 
-  useEffect(() => {
-    coarseRef.current = window.matchMedia('(pointer: coarse)').matches
-  }, [])
-
-  useEffect(() => {
-    if (!frozen) return
-    x.set(0)
-    y.set(0)
-    shiftX.set(0)
-    shiftY.set(0)
-    shear.set(0)
-    rotate.set(0)
-    scaleX.set(1)
-    scaleY.set(1)
-    glow.set(0)
-  }, [frozen, glow, rotate, scaleX, scaleY, shear, shiftX, shiftY, x, y])
-
-  const velocity = useRef({ x: 0, y: 0 })
-
-  function onPointerMove(event: PointerEvent<HTMLSpanElement>) {
-    velocity.current = { x: event.movementX, y: event.movementY }
-    if (frozen || coarseRef.current) return
-    const bounds = boundsRef.current?.getBoundingClientRect()
-    if (!bounds) return
-    const relX = event.clientX - (bounds.left + bounds.width / 2)
-    const relY = event.clientY - (bounds.top + bounds.height / 2)
-    const halfW = Math.max(bounds.width / 2 + proximity, 1)
-    const halfH = Math.max(bounds.height / 2 + proximity, 1)
-    const nx = Math.max(-1, Math.min(1, relX / halfW))
-    const ny = Math.max(-1, Math.min(1, relY / halfH))
-    const distance = Math.min(1, Math.hypot(nx, ny))
-    const angle = Math.atan2(ny, nx)
-
-    let nextX = nx * strength
-    let nextY = ny * strength
-    let nextRotate = 0
-    let nextScaleX = 1
-    let nextScaleY = 1
-    let nextGlow = distance
-    let label = innerShift
-
-    if (magnet === 'tilt') {
-      nextX = nx * strength * 0.2
-      nextY = ny * strength * 0.2
-      nextRotate = nx * 8
-    } else if (magnet === 'wobble') {
-      nextX = nx * strength * 0.35
-      nextY = ny * strength * 0.35
-      nextRotate = event.movementX * 1.6
-    } else if (magnet === 'repel') {
-      nextX = -nx * strength
-      nextY = -ny * strength
-    } else if (magnet === 'stretch') {
-      nextX = nx * strength * 0.35
-      nextY = ny * strength * 0.35
-      nextScaleX = 1 + Math.abs(nx) * 0.18
-      nextScaleY = 1 + Math.abs(ny) * 0.12
-    } else if (magnet === 'snap') {
-      const engaged = distance > 0.35
-      nextX = engaged ? Math.sign(nx) * strength : 0
-      nextY = engaged ? Math.sign(ny) * strength : 0
-    } else if (magnet === 'orbit') {
-      const orbitAngle = distance < 0.08 ? 0 : angle
-      nextX = distance < 0.08 ? 0 : Math.cos(orbitAngle) * strength * 0.85
-      nextY = distance < 0.08 ? 0 : Math.sin(orbitAngle) * strength * 0.85
-    } else if (magnet === 'lift') {
-      nextX = nx * strength * 0.2
-      nextY = -Math.abs(distance) * strength
-    } else if (magnet === 'glow') {
-      nextX = 0
-      nextY = 0
-      nextGlow = distance
-    } else if (magnet === 'peel') {
-      nextX = 0
-      nextY = 0
-      shear.set(nx * 16)
-    } else if (magnet === 'press') {
-      const squash = Math.min(0.2, distance * 0.01 * strength)
-      nextX = 0
-      nextY = distance * strength * 0.15
-      nextScaleX = 1 + squash
-      nextScaleY = 1 - squash
+  function onMove(event: PointerEvent<HTMLButtonElement>) {
+    if (reduced || disabled || event.pointerType !== 'mouse') return
+    const rect = event.currentTarget.getBoundingClientRect()
+    const dx = event.clientX - (rect.left + rect.width / 2)
+    const dy = event.clientY - (rect.top + rect.height / 2)
+    const dist = Math.hypot(dx, dy) || 1
+    const reach = Math.max(rect.width, rect.height) / 2 + proximity
+    if (dist > reach) {
+      reset()
+      return
     }
-
-    x.set(nextX)
-    y.set(nextY)
-    shiftX.set(magnet === 'peel' || magnet === 'glow' ? nx * strength : nextX * label)
-    shiftY.set(magnet === 'peel' || magnet === 'glow' ? ny * strength : nextY * label)
-    if (magnet !== 'peel') shear.set(0)
-    rotate.set(nextRotate)
-    scaleX.set(nextScaleX)
-    scaleY.set(nextScaleY)
-    glow.set(nextGlow)
+    const pull = (1 - dist / reach) * strength
+    x.set((dx / dist) * pull)
+    y.set((dy / dist) * pull)
   }
 
   return (
-    <span
-      ref={boundsRef}
-      className="relative inline-flex"
-      onPointerMove={onPointerMove}
-      onPointerLeave={() => {
-        if (magnet === 'sling' && !frozen) {
-          const flingX = velocity.current.x * 2.2
-          const flingY = velocity.current.y * 2.2
-          x.set(flingX)
-          y.set(flingY)
-          void animate(x, 0, { type: 'spring', stiffness: 140, damping: 9, mass: 0.7 })
-          void animate(y, 0, { type: 'spring', stiffness: 140, damping: 9, mass: 0.7 })
-          return
-        }
-        reset()
-      }}
+    <motion.button
+      ref={ref}
+      type="button"
+      disabled={disabled}
       data-nexara="magnetic-button"
-      data-magnet={magnet}
+      data-variant={magnet}
+      style={{ x: reduced ? 0 : springX, y: reduced ? 0 : springY }}
+      className={cn(
+        'inline-flex items-center justify-center text-sm font-medium text-[#f6f3ec] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff] disabled:opacity-45',
+        className,
+      )}
+      onPointerMove={onMove}
+      onPointerLeave={reset}
+      onClick={() => onClick?.()}
     >
-      <motion.span
+      <Shell magnet={magnet}>{children}</Shell>
+    </motion.button>
+  )
+}
+
+function Shell({ magnet, children }: { magnet: MagnetStyle; children?: ReactNode }) {
+  if (magnet === 'keycap') {
+    return (
+      <span className="relative inline-flex h-14 min-w-14 items-center justify-center rounded-lg border-b-[7px] border-[#3a342c] bg-[linear-gradient(180deg,#f6f3ec,#d9d0c3)] px-3 text-[#1c1915] shadow-[inset_0_1px_0_#fff]">
+        <span className="absolute top-1 left-1.5 text-[9px] text-[#8a8175]">A</span>
+        {children}
+      </span>
+    )
+  }
+  if (magnet === 'bulb') {
+    return (
+      <span className="inline-flex flex-col items-center">
+        <span className="inline-flex size-12 items-center justify-center rounded-full border border-[#f5c16c]/40 bg-[#f5c16c]/20">
+          <span className="h-5 w-px bg-[#f5c16c]" />
+        </span>
+        <span className="h-3 w-6 rounded-b bg-[#cfc4b4] shadow-[inset_0_-4px_0_#8d8478]" />
+        {children ? <span className="sr-only">{children}</span> : null}
+      </span>
+    )
+  }
+  if (magnet === 'dock') {
+    return (
+      <span className="inline-flex size-14 flex-col items-center justify-center gap-1 rounded-2xl bg-[linear-gradient(180deg,#8b7cff,#3ddec4)] text-[10px] text-[#09090f] shadow-[0_10px_20px_-12px_rgba(0,0,0,0.8)]">
+        <span className="size-3 rounded-sm bg-[#09090f]/80" aria-hidden="true" />
+        {children}
+      </span>
+    )
+  }
+  if (magnet === 'sticker') {
+    return (
+      <span className="relative inline-flex h-12 rotate-[-6deg] items-center bg-[#f6f3ec] px-4 text-[#1c1915] shadow-[0_10px_18px_-12px_rgba(0,0,0,0.8)]">
+        <span aria-hidden="true" className="absolute -top-2 left-1/2 h-3 w-10 -translate-x-1/2 bg-[#f5c16c]/80" />
+        {children}
+      </span>
+    )
+  }
+  if (magnet === 'medal') {
+    return (
+      <span className="inline-flex flex-col items-center">
+        <span className="flex h-4 w-8 overflow-hidden">
+          <span className="h-full flex-1 bg-[#ff6a3d]" />
+          <span className="h-full flex-1 bg-[#f6f3ec]" />
+        </span>
+        <span className="inline-flex size-12 items-center justify-center rounded-full border-4 border-[#f5c16c] bg-[#fff6d8] text-xs text-[#3a2508]">
+          {children}
+        </span>
+      </span>
+    )
+  }
+  if (magnet === 'stamp') {
+    return (
+      <span
+        className="inline-flex items-center justify-center p-2"
         style={{
-          x: springX,
-          y: springY,
-          rotate: magnet === 'tilt' ? 0 : springRotate,
-          rotateX: magnet === 'tilt' ? springY : 0,
-          rotateY: magnet === 'tilt' ? springX : 0,
-          scaleX: springScaleX,
-          scaleY: springScaleY,
-          transformPerspective: magnet === 'tilt' ? 600 : undefined,
-          ['--magnet-glow' as string]: springGlow,
+          backgroundImage: 'radial-gradient(circle, #09090f 3.5px, transparent 4px)',
+          backgroundSize: '10px 10px',
+          backgroundPosition: '-5px -5px',
         }}
-        className={cn('relative', magnet === 'tilt' && '[transform-style:preserve-3d]', magnet === 'glow' && 'drop-shadow-[0_0_calc(var(--magnet-glow)*18px)_rgba(139,124,255,0.9)]')}
       >
-        <Button className={cn(magnet === 'peel' && 'overflow-visible', className)} disabled={disabled} loading={loading} {...props}>
-          <motion.span
-            style={{
-              x: magnet === 'glow' ? 0 : labelX,
-              y: magnet === 'glow' ? 0 : labelY,
-              skewX: magnet === 'peel' ? springShear : 0,
-            }}
-            className="relative inline-flex items-center gap-2"
-          >
-            {magnet === 'glow' ? (
-              <motion.span aria-hidden="true" style={{ x: ghostLabelX, y: ghostLabelY }} className="pointer-events-none absolute inset-0 flex items-center justify-center text-[#c4b5fd]/80">
-                {children as ReactNode}
-              </motion.span>
-            ) : null}
-            {leftIcon ? <span className="inline-flex shrink-0">{leftIcon}</span> : null}
-            <span>{children as ReactNode}</span>
-            {rightIcon ? <span className="inline-flex shrink-0">{rightIcon}</span> : null}
-          </motion.span>
-        </Button>
-      </motion.span>
-    </span>
+        <span className="inline-flex h-12 min-w-16 items-center justify-center border border-dashed border-[#1c1915] bg-[#f6f3ec] px-3 text-xs text-[#1c1915]">
+          {children}
+        </span>
+      </span>
+    )
+  }
+  if (magnet === 'badge') {
+    return (
+      <span className="relative inline-flex h-11 items-center rounded-2xl bg-[#16141c] px-4 ring-1 ring-white/10">
+        {children}
+        <span className="absolute -top-2 -right-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-[#ff6a3d] px-1 text-[10px] text-[#1a100c]">
+          3
+        </span>
+      </span>
+    )
+  }
+  if (magnet === 'shutter') {
+    return (
+      <span className="inline-flex size-14 items-center justify-center rounded-full border-4 border-[#3a342c] bg-[#111]">
+        <span className="inline-flex size-6 items-center justify-center rounded-full bg-[#1c1915] text-[10px] text-[#f6f3ec]">{children ?? '•'}</span>
+      </span>
+    )
+  }
+  if (magnet === 'ticket') {
+    return (
+      <span className="inline-flex h-12 items-stretch overflow-hidden rounded-lg bg-[#17151f] ring-1 ring-white/15">
+        <span className="flex items-center border-r border-dashed border-white/30 px-3 text-[10px] tracking-[0.16em] uppercase">
+          Admit
+        </span>
+        <span className="flex items-center px-3">{children}</span>
+      </span>
+    )
+  }
+  if (magnet === 'tag') {
+    return (
+      <span className="inline-flex items-center">
+        <span aria-hidden="true" className="h-px w-4 bg-[#cfc4b4]" />
+        <span className="relative inline-flex h-11 items-center bg-[#f5c16c] pr-5 pl-6 text-[#1c1915] [clip-path:polygon(0_0,calc(100%-14px)_0,100%_50%,calc(100%-14px)_100%,0_100%)]">
+          <span aria-hidden="true" className="absolute left-2 size-2.5 rounded-full bg-[#09090f]" />
+          <span className="pl-2">{children}</span>
+        </span>
+      </span>
+    )
+  }
+  if (magnet === 'wax') {
+    return (
+      <span className="relative inline-flex size-16 items-center justify-center">
+        <span className="absolute inset-0 rounded-full bg-[#7f1d1d] [clip-path:polygon(50%_0,62%_12%,80%_8%,84%_28%,100%_38%,88%_52%,96%_72%,76%_74%,68%_96%,50%_84%,32%_96%,24%_74%,4%_72%,12%_52%,0_38%,16%_28%,20%_8%,38%_12%)]" />
+        <span className="relative text-[10px] tracking-[0.14em] text-[#fecaca] uppercase">{children}</span>
+        <span className="absolute bottom-0 h-3 w-4 rounded-b-full bg-[#7f1d1d]" />
+      </span>
+    )
+  }
+  return (
+    <span className="inline-flex h-11 items-center rounded-full bg-[#f6f3ec] px-5 text-[#16140f]">{children}</span>
   )
 }

@@ -19,3 +19,6 @@ Round 1 of the variant critique asked to replace liquid and neon-glow and to fix
 
 ## Agreement
 Approved. The critic signed off after the flood label was stacked above the live type.
+
+## Structural pass
+The motion set (swap, flood, shimmer, liquid, spotlight, hold, underline, neon-glow) was the same control with a different hover. It was replaced by thirteen constructions: solid, gradient, glass, neumorphic, pressable, glow-outline, split, avatar-pill, border-beam, brutalist, skeuomorphic, social, segment. A strict critic compared each one to the research reference and approved the set. Builder agrees.

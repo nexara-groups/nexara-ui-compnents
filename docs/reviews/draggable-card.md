@@ -19,3 +19,6 @@ Film has sprockets, sticker is taped paper, window drags from the title bar, sna
 
 ## Agreement
 Approved.
+
+## Structural pass
+Snap-grid, carbon, and stack were the same card with a snap, a ghost, or extra sheets. They were removed. The strict critic then rejected boarding because it was a recolored ticket with a barcode. It is now a paper flight itinerary (origin, flight, destination, gate, seat). Final set: glass, film, sticker, window, ticket, polaroid, dossier, receipt, comic, playing, boarding, postcard. Critic approved. Builder agrees.

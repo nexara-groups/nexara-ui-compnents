@@ -57,18 +57,18 @@ export function BentoGrid({ children, className, columns = 3, gap = 'md' }: Bent
 }
 
 const itemVariants = {
-  spotlight: 'rounded-3xl border-white/10 bg-[#12131b] hover:border-white/20',
   chart: 'rounded-3xl border-white/10 bg-[#10141c]',
   quote: 'rounded-none border-0 bg-transparent',
   editorial: 'rounded-none border-x-0 border-t-0 border-b border-white/20 bg-transparent',
   terminal: 'rounded-lg border-[#3ddec4]/40 bg-[#07110f] font-mono',
   schedule: 'rounded-2xl border-white/15 bg-[#14151f]',
-  poster: 'rounded-none border-0 bg-[#140e0c] text-[#f6f3ec]',
+  scoreboard: 'rounded-3xl border-white/10 bg-[#10241f] font-mono',
   stat: 'rounded-3xl border-white/10 bg-[#10131c]',
-  status: 'rounded-2xl border-[#3ddec4]/40 bg-[#071410]',
   compare: 'rounded-3xl border-white/10 bg-[#12141c]',
   media: 'rounded-[2rem] border-transparent bg-[#1a1420] p-0',
-  brutal: 'rounded-md border-2 border-[#f6f3ec] bg-[#14151f] shadow-[6px_6px_0_0_#f6f3ec]',
+  calendar: 'rounded-3xl border-white/10 bg-[#f6f3ec] text-[#1c1915]',
+  kanban: 'rounded-2xl border-white/10 bg-[#16141c]',
+  invoice: 'rounded-none border border-dashed border-white/25 bg-[#12110e] font-mono',
 } as const
 
 export type BentoVariant = keyof typeof itemVariants
@@ -98,8 +98,8 @@ export function BentoItem({
   href,
   colSpan = 1,
   rowSpan = 1,
-  variant = 'spotlight',
-  spotlight = true,
+  variant = 'chart',
+  spotlight = false,
   spotlightColor = 'rgba(255, 106, 61, 0.35)',
   spotlightSize = 280,
   className,
@@ -131,7 +131,7 @@ export function BentoItem({
 
   const titleClass = cn(
     'font-serif text-xl leading-tight text-[#f6f3ec]',
-    variant === 'poster' && 'text-3xl',
+    variant === 'scoreboard' && 'font-mono text-4xl',
     variant === 'stat' && 'text-4xl tracking-tight',
     variant === 'terminal' && 'font-mono text-base text-[#3ddec4]',
     variant === 'editorial' && 'text-3xl',
@@ -140,7 +140,7 @@ export function BentoItem({
   )
   const descriptionClass = cn(
     'relative z-10 mt-3 block text-sm leading-6 text-zinc-300',
-    variant === 'poster' && 'text-zinc-200',
+    variant === 'scoreboard' && 'text-[#b7fff0]',
     variant === 'terminal' && 'text-[#b7fff0]',
     descriptionClassName,
   )
@@ -149,8 +149,8 @@ export function BentoItem({
       aria-hidden="true"
       className={cn(
         'inline-flex size-10 shrink-0 items-center justify-center border border-white/10 bg-white/5 text-[#f6f3ec]',
-        variant === 'brutal' ? 'rounded-sm' : 'rounded-2xl',
-        variant === 'poster' && 'border-white/20 bg-black/30 text-[#f6f3ec]',
+        'rounded-2xl',
+        variant === 'scoreboard' && 'border-[#3ddec4]/30 bg-[#06241d]',
       )}
     >
       {icon}
@@ -159,7 +159,7 @@ export function BentoItem({
 
   const body = (
     <>
-      {showSpot && variant === 'spotlight' ? (
+      {showSpot ? (
         <span
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -168,7 +168,19 @@ export function BentoItem({
           }}
         />
       ) : null}
-      {variant === 'poster' ? <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 to-transparent" /> : null}
+      {variant === 'scoreboard' ? (
+        <span className="relative z-10 grid flex-1 grid-cols-[1fr_auto_1fr] items-center gap-3">
+          <span>
+            <span className="block text-[10px] tracking-[0.16em] text-zinc-400 uppercase">Home</span>
+            <span className="font-mono text-4xl text-[#f6f3ec]">2</span>
+          </span>
+          <span className="text-zinc-500">:</span>
+          <span className="text-right">
+            <span className="block text-[10px] tracking-[0.16em] text-zinc-400 uppercase">Away</span>
+            <span className="font-mono text-4xl text-[#3ddec4]">{title}</span>
+          </span>
+        </span>
+      ) : null}
       {variant === 'chart' ? (
         <span className="relative z-10 mt-auto block">
           <span className="mb-3 flex items-center gap-3">
@@ -200,15 +212,50 @@ export function BentoItem({
           </span>
         </span>
       ) : null}
-      {variant === 'status' ? (
-        <span className="relative z-10 flex items-start gap-3">
-          <span className="relative mt-1 inline-flex size-3">
-            <span className="absolute inline-flex size-3 animate-ping rounded-full bg-[#3ddec4] opacity-60 motion-reduce:animate-none" />
-            <span className="relative inline-flex size-3 rounded-full bg-[#3ddec4]" />
+      {variant === 'calendar' ? (
+        <span className="relative z-10 block text-[#1c1915]">
+          <span className="flex items-center justify-between text-xs tracking-[0.16em] uppercase">
+            <span>March</span>
+            <span>{title}</span>
           </span>
-          <span>
-            <h3 className={titleClass}>{title}</h3>
-            {description ? <span className={descriptionClass}>{description}</span> : null}
+          <span className="mt-3 grid grid-cols-7 gap-1 text-center text-[10px]">
+            {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((day, index) => (
+              <span key={`${day}-${index}`} className="text-[#8a8175]">{day}</span>
+            ))}
+            {Array.from({ length: 14 }, (_, index) => (
+              <span key={index} className={cn('rounded-md py-1', index === 9 && 'bg-[#ff6a3d] text-[#1a100c]')}>
+                {index + 1}
+              </span>
+            ))}
+          </span>
+        </span>
+      ) : null}
+      {variant === 'kanban' ? (
+        <span className="relative z-10 flex h-full flex-col gap-2">
+          <span className="text-xs tracking-[0.16em] text-zinc-400 uppercase">Doing</span>
+          <span className="rounded-xl bg-white/5 p-3">
+            <h3 className={cn(titleClass, 'text-base')}>{title}</h3>
+          </span>
+          <span className="rounded-xl bg-white/5 p-3 text-sm text-zinc-300">{description ?? 'Next pass'}</span>
+        </span>
+      ) : null}
+      {variant === 'invoice' ? (
+        <span className="relative z-10 block text-xs">
+          <span className="flex justify-between border-b border-dashed border-white/20 pb-2">
+            <span>Invoice</span>
+            <span>04</span>
+          </span>
+          <span className="mt-3 flex justify-between">
+            <span>{title}</span>
+            <span>$48</span>
+          </span>
+          <span className="mt-2 flex justify-between text-zinc-400">
+            <span>{description ?? 'Export'}</span>
+            <span>$12</span>
+          </span>
+          <span className="mt-3 flex justify-between border-t border-white/15 pt-2 text-[#f5c16c]">
+            <span>Due</span>
+            <span>$60</span>
           </span>
         </span>
       ) : null}
@@ -250,7 +297,7 @@ export function BentoItem({
           {icon ? <span className="mt-3 inline-flex text-sm text-[#3ddec4]">{icon}</span> : null}
         </span>
       ) : null}
-      {variant !== 'chart' && variant !== 'quote' && variant !== 'compare' && variant !== 'status' && variant !== 'schedule' && variant !== 'media' && variant !== 'terminal' && variant !== 'stat' ? (
+      {variant !== 'chart' && variant !== 'quote' && variant !== 'compare' && variant !== 'calendar' && variant !== 'kanban' && variant !== 'invoice' && variant !== 'schedule' && variant !== 'media' && variant !== 'terminal' && variant !== 'stat' ? (
         <>
           <span className="relative z-10 mt-auto flex items-start gap-3">
             {variant === 'editorial' ? null : iconChip}

@@ -1,29 +1,20 @@
-# typewriter
+# Typewriter — structural audit
 
-Surveyed 21st.dev Aceternity (Typewriter Effect, Encrypted Text, Flip Words) and Motion Primitives (Text Scramble, Text Loop, Text Morph). Scramble, word bursts, fade, ghost, and stream are different mechanisms, not recolored carets.
+Caret, reverse, slot, scramble, fade, word, strike, overwrite, blur, morph, complete, and cut were removed. They were one line and a different typing algorithm. The line still types. The device around it changes.
 
-Sources: [21st.dev](https://21st.dev), [Aceternity on 21st](https://21st.dev/@manuarora700/library/aceternity-ui), [Motion Primitives](https://docs.21st.dev/@ibelick/library/motion-primitives), [Spectrum UI](https://docs.21st.dev/@arihantcodes_1f7b8c4d/library/spectrum-ui), plus public catalogues from shadcn/ui, HeroUI, Magic UI, Park UI, and Uiverse. Ideas were reimplemented. No source was copied.
+| Variant | Reference | What is structurally different |
+| --- | --- | --- |
+| terminal | Terminal cards on [21st.dev](https://21st.dev/) and [Aceternity](https://ui.aceternity.com/components/terminal) | Window chrome, traffic lights, and a prompt. |
+| chat | Chat bubbles | An incoming bubble. |
+| search | Search fields in [shadcn command](https://ui.shadcn.com/docs/components/command) | A field with a search mark. |
+| editor | Code blocks | A line number and monospace code. |
+| split-flap | Solari boards, echoed by flap text on [21st.dev](https://21st.dev/) | One tile per glyph. |
+| news | Newspaper nameplates | A mast line and a headline rule. |
+| lower-third | Broadcast lower thirds | A color bar, the line, and a role under it. Replaces subtitle, which was only a dark plate. |
+| dispatch | Wire-service slips | To and from rules, then the line. Replaces sms, which repeated the chat bubble. |
+| shipping | Parcel labels | A barcode beside the line. Replaces command, which repeated the search row. |
+| redaction | Redacted documents | A restricted stamp and a black bar over the line. Replaces password, which was the same field with bullets. |
+| script | Handwritten lines | Italic script, no chrome. |
+| teletype | Paper rolls | Type on a paper strip with a torn shadow. |
 
-## Selected
-
-- `caret` (Caret): Types and deletes with a thin caret.
-- `block` (Block): Types in bursts of three characters under a block cursor.
-- `underscore` (Underscore): A baseline cursor instead of a bar.
-- `scramble` (Scramble): Random glyphs lock in from the left.
-- `fade` (Fade): Whole phrases crossfade. Nothing deletes.
-- `word` (Word): Appears a word at a time.
-- `terminal` (Terminal): A prompt sits in front of the phrase.
-- `highlight` (Highlight): Typed text sits on a marker.
-- `blur` (Blur): The newest letters stay soft.
-- `instant` (Instant): Phrases swap whole, on a timer.
-- `ghost` (Ghost): The next phrase sits faintly behind the caret.
-- `stream` (Stream): Phrases join into one line, then clear.
-
-## Rejected
-
-- Extra colour swaps of an existing treatment.
-- Variants that only changed duration or opacity.
-
-## Round 2
-
-Round 2 replaced block, underscore, terminal, highlight, instant, ghost, and stream with reverse, slot, strike, overwrite, morph, complete, and cut. Slot renders locking columns. Kept caret, scramble, fade, word, and blur.
+Ideas were reimplemented. No source was copied.

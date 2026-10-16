@@ -18,9 +18,8 @@ for (const item of registry.items) {
     usage: variant.usage,
   }))
   const names = docs.map((variant) => variant.id).join(', ')
-  if (!String(item.description).includes('Variants:')) {
-    item.description = `${item.description} Variants: ${names}.`
-  }
+  const base = String(item.description).replace(/\s*Variants:.*$/, '')
+  item.description = `${base} Variants: ${names}.`
 }
 
 writeFileSync(registryPath, `${JSON.stringify(registry, null, 2)}\n`)

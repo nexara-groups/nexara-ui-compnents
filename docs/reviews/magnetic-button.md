@@ -19,3 +19,6 @@ Round 1 asked to replace lag and chase. Sling flings on the exit velocity and sp
 
 ## Agreement
 Approved with the button set.
+
+## Structural pass
+The spring set (attract, tilt, repel, stretch, sling, snap, orbit, lift, glow, wobble, peel, press) was one pill. It was replaced by different objects. The strict critic then rejected chip (a recolored pill) and tube (a flat label that was not a neon tube). Those became a perforated stamp and a notched price tag. Final set: pill, keycap, bulb, dock, sticker, medal, stamp, badge, shutter, ticket, tag, wax. Critic approved. Builder agrees.

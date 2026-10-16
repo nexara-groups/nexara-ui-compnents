@@ -19,3 +19,6 @@ Chart draws a sparkline, quote hangs a mark, compare is two cells, media is a fu
 
 ## Agreement
 Approved.
+
+## Structural pass
+Status, brutal, and the old poster were the same tile with a different wash. Poster was replaced by a scoreboard (home, away, colon) because it repeated the editorial tile. Final set: chart, quote, editorial, terminal, schedule, scoreboard, stat, compare, media, calendar, kanban, invoice. The strict critic approved them. Builder agrees.

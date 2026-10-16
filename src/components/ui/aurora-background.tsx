@@ -1,84 +1,49 @@
 'use client'
 
-import { useMemo, type CSSProperties, type ReactNode } from 'react'
+import { type CSSProperties, type ReactNode } from 'react'
 import { cn, useKeyframes, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const AURORA_CSS = `
 @keyframes nexara-aurora-a {
-  0% { transform: translate3d(-6%, 2%, 0) scale(1); }
-  100% { transform: translate3d(10%, -8%, 0) scale(1.12); }
-}
-@keyframes nexara-aurora-b {
-  0% { transform: translate3d(8%, -4%, 0) scale(1.08); }
-  100% { transform: translate3d(-10%, 8%, 0) scale(0.94); }
-}
-@keyframes nexara-spin {
-  to { transform: rotate(1turn); }
-}
-@keyframes nexara-meteor {
-  0% { transform: translate3d(20%, -30%, 0) rotate(18deg); opacity: 0; }
-  12% { opacity: 1; }
-  100% { transform: translate3d(-40%, 80%, 0) rotate(18deg); opacity: 0; }
+  0% { transform: translate3d(-8%, 0, 0); }
+  100% { transform: translate3d(8%, -6%, 0); }
 }
 @keyframes nexara-twinkle {
-  0%, 100% { opacity: 0.2; }
+  0%, 100% { opacity: 0.25; }
   50% { opacity: 1; }
 }
-@keyframes nexara-pan {
-  from { background-position: 0% 50%; }
-  to { background-position: 100% 50%; }
-}
-@keyframes nexara-spot {
-  0% { transform: translate3d(-10%, -20%, 0); }
-  50% { transform: translate3d(30%, 10%, 0); }
-  100% { transform: translate3d(-10%, -20%, 0); }
-}
-@keyframes nexara-ripple {
-  0% { transform: scale(0.2); opacity: 0.7; }
-  100% { transform: scale(1.6); opacity: 0; }
+@keyframes nexara-meteor {
+  0% { transform: translate3d(30%, -20%, 0); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translate3d(-50%, 90%, 0); opacity: 0; }
 }
 @keyframes nexara-rise {
-  0% { transform: translateY(30%); opacity: 0; }
+  0% { transform: translateY(20%); opacity: 0; }
   20% { opacity: 1; }
-  100% { transform: translateY(-120%); opacity: 0; }
+  100% { transform: translateY(-140%); opacity: 0; }
 }
-@keyframes nexara-scan {
-  0% { transform: translateY(-10%); }
-  100% { transform: translateY(110vh); }
+@keyframes nexara-rain {
+  from { background-position: 0 0; }
+  to { background-position: 0 180px; }
 }
 `
 
-const BLUR = {
-  sm: 'blur-2xl',
-  md: 'blur-3xl',
-  lg: 'blur-[88px]',
-  xl: 'blur-[120px]',
-} as const
-
 const VARIANTS = [
-  'drift',
-  'beams',
-  'stars',
-  'waves',
-  'ripple',
-  'vortex',
+  'aurora',
+  'starfield',
   'meteors',
-  'embers',
-  'spotlight',
-  'horizon',
-  'ribbons',
-  'scan',
+  'mesh',
+  'radar',
+  'sunset',
+  'clouds',
+  'rain',
+  'constellation',
+  'mountains',
+  'city',
+  'lightning',
 ] as const
 
 export type AuroraVariant = (typeof VARIANTS)[number]
-
-const SLOTS: Array<CSSProperties> = [
-  { top: '-28%', left: '-8%', width: '58%', height: '70%' },
-  { top: '8%', left: '38%', width: '52%', height: '62%' },
-  { bottom: '-30%', left: '8%', width: '48%', height: '64%' },
-  { top: '18%', right: '-12%', width: '46%', height: '58%' },
-  { bottom: '-10%', right: '12%', width: '36%', height: '46%' },
-]
 
 const DEFAULT_COLORS = ['#ff6a3d', '#8b7cff', '#3ddec4', '#f5c16c']
 
@@ -86,14 +51,10 @@ export interface AuroraBackgroundProps {
   children?: ReactNode
   className?: string
   contentClassName?: string
-  /** Field treatment. `drift` is the original soft aurora. */
   variant?: AuroraVariant
-  /** Up to five CSS colors. Extra colors are ignored. */
   colors?: string[]
-  /** Base loop length in seconds. Each blob is slightly slower. */
   duration?: number
-  blur?: keyof typeof BLUR
-  /** Blob opacity, 0–1. */
+  blur?: 'sm' | 'md' | 'lg' | 'xl'
   intensity?: number
   pause?: boolean
   noise?: boolean
@@ -101,295 +62,183 @@ export interface AuroraBackgroundProps {
 
 /**
  * AuroraBackground
- * Twelve decorative fields. Content sits above the effect.
+ * Twelve scenes: curtains, starfield, meteors, mesh, radar, sunset,
+ * clouds, rain, constellation, mountains, city lights, lightning.
  * Copy this file plus `src/lib/utils.ts`.
  */
 export function AuroraBackground({
   children,
   className,
   contentClassName,
-  variant = 'drift',
+  variant = 'aurora',
   colors = DEFAULT_COLORS,
   duration = 18,
-  blur = 'md',
-  intensity = 0.7,
+  intensity = 0.75,
   pause = false,
   noise = true,
 }: AuroraBackgroundProps) {
   const reduced = usePrefersReducedMotion()
   useKeyframes('nexara-aurora-keyframes', AURORA_CSS)
-  const palette = colors.slice(0, SLOTS.length)
   const still = reduced || pause
-  const stars = useMemo(
-    () =>
-      Array.from({ length: 36 }, (_, index) => ({
-        left: `${(index * 37) % 100}%`,
-        top: `${(index * 53) % 100}%`,
-        delay: `${(index % 7) * 0.35}s`,
-        size: index % 4 === 0 ? 2.5 : 1.25,
-      })),
-    [],
-  )
 
   return (
-    <div data-nexara="aurora-background" data-variant={variant} className={cn('relative isolate overflow-hidden bg-[#09090f]', className)}>
+    <div data-nexara="aurora-background" data-variant={variant} className={cn('relative isolate overflow-hidden bg-[#07070d]', className)}>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <Field
-          variant={variant}
-          palette={palette}
-          duration={duration}
-          blur={blur}
-          intensity={intensity}
-          still={still}
-          stars={stars}
-        />
-        {noise ? (
-          <span
-            className="absolute inset-0 opacity-[0.07] mix-blend-overlay"
-            style={{
-              backgroundImage:
-                "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.55'/></svg>\")",
-            }}
-          />
-        ) : null}
+        <Scene variant={variant} colors={colors} duration={duration} intensity={intensity} still={still} />
+        {noise ? <span className="absolute inset-0 opacity-[0.08] mix-blend-overlay" style={noiseStyle} /> : null}
       </div>
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(9,9,15,0.35)_78%)]"
-      />
       <div className={cn('relative z-10', contentClassName)}>{children}</div>
     </div>
   )
 }
 
-function Field({
+const noiseStyle: CSSProperties = {
+  backgroundImage:
+    "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.55'/></svg>\")",
+}
+
+function Scene({
   variant,
-  palette,
+  colors,
   duration,
-  blur,
   intensity,
   still,
-  stars,
 }: {
   variant: AuroraVariant
-  palette: string[]
+  colors: string[]
   duration: number
-  blur: keyof typeof BLUR
   intensity: number
   still: boolean
-  stars: Array<{ left: string; top: string; delay: string; size: number }>
 }) {
-  if (variant === 'stars') {
+  const [a = '#3ddec4', b = '#8b7cff', c = '#ff6a3d', d = '#f5c16c'] = colors
+  if (variant === 'starfield') {
     return (
       <>
-        {stars.map((star, index) => (
+        {Array.from({ length: 40 }, (_, index) => (
           <span
             key={index}
-            className="absolute rounded-full"
+            className="absolute rounded-full bg-white"
             style={{
-              left: star.left,
-              top: star.top,
-              width: star.size,
-              height: star.size,
-              background: palette[index % palette.length],
+              left: `${(index * 37) % 100}%`,
+              top: `${(index * 53) % 100}%`,
+              width: index % 5 === 0 ? 2.5 : 1,
+              height: index % 5 === 0 ? 2.5 : 1,
               opacity: intensity,
-              animation: still ? undefined : `nexara-twinkle ${2.4 + (index % 5)}s ease-in-out ${star.delay} infinite`,
+              animation: still ? undefined : `nexara-twinkle ${2 + (index % 4)}s ease-in-out ${(index % 6) * 0.2}s infinite`,
             }}
           />
         ))}
       </>
     )
   }
-
   if (variant === 'meteors') {
     return (
       <>
-        {palette.map((color, index) => (
-          <span
-            key={color + index}
-            className="absolute h-px w-40"
-            style={{
-              top: `${8 + index * 16}%`,
-              left: `${10 + index * 14}%`,
-              background: `linear-gradient(90deg, transparent, ${color})`,
-              opacity: intensity,
-              animation: still ? undefined : `nexara-meteor ${3.2 + index}s linear ${index * 0.7}s infinite`,
-            }}
-          />
+        {[0, 1, 2, 3, 4].map((index) => (
+          <span key={index} className="absolute h-0.5 w-28 rounded-full" style={{ top: `${10 + index * 14}%`, left: `${20 + index * 10}%`, background: `linear-gradient(90deg, transparent, ${index % 2 ? d : c})`, animation: still ? undefined : `nexara-meteor ${3 + index * 0.4}s linear ${index * 0.5}s infinite` }} />
         ))}
       </>
     )
   }
-
-  if (variant === 'beams') {
-    return (
-      <>
-        {palette.map((color, index) => (
-          <span
-            key={color + index}
-            className="absolute top-[-20%] h-[140%] w-16 origin-center"
-            style={{
-              left: `${8 + index * 22}%`,
-              background: `linear-gradient(180deg, transparent, ${color}, transparent)`,
-              opacity: intensity * 0.55,
-              rotate: `${18 + index * 6}deg`,
-              animation: still ? undefined : `nexara-aurora-a ${duration + index * 3}s ease-in-out ${index * -2}s infinite alternate`,
-              animationPlayState: still ? 'paused' : 'running',
-            }}
-          />
-        ))}
-      </>
-    )
-  }
-
-  if (variant === 'vortex') {
+  if (variant === 'mesh') {
     return (
       <span
-        className="absolute top-1/2 left-1/2 h-[140%] w-[140%] -translate-x-1/2 -translate-y-1/2"
+        className="absolute inset-[-10%]"
         style={{
-          background: `conic-gradient(from 0deg, ${palette.concat(palette[0] ?? '#8b7cff').join(', ')})`,
-          opacity: intensity * 0.45,
-          filter: 'blur(40px)',
-          animation: still ? undefined : `nexara-spin ${duration * 2}s linear infinite`,
-        }}
-      />
-    )
-  }
-
-  if (variant === 'ripple') {
-    return (
-      <>
-        {palette.slice(0, 3).map((color, index) => (
-          <span
-            key={color + index}
-            className="absolute top-1/2 left-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full border"
-            style={{
-              borderColor: color,
-              opacity: intensity,
-              animation: still ? undefined : `nexara-ripple ${3.2 + index}s ease-out ${index * 0.8}s infinite`,
-            }}
-          />
-        ))}
-      </>
-    )
-  }
-
-  if (variant === 'embers') {
-    return (
-      <>
-        {stars.slice(0, 18).map((star, index) => (
-          <span
-            key={index}
-            className="absolute rounded-full"
-            style={{
-              left: star.left,
-              bottom: '8%',
-              width: star.size + 1,
-              height: star.size + 1,
-              background: palette[index % palette.length],
-              animation: still ? undefined : `nexara-rise ${4 + (index % 4)}s linear ${star.delay} infinite`,
-            }}
-          />
-        ))}
-      </>
-    )
-  }
-
-  if (variant === 'scan') {
-    return (
-      <span
-        className="absolute inset-x-0 top-0 h-8"
-        style={{
-          background: `linear-gradient(180deg, transparent, ${palette[0] ?? '#3ddec4'}, transparent)`,
-          opacity: intensity,
-          animation: still ? undefined : `nexara-scan ${duration / 2}s linear infinite`,
-        }}
-      />
-    )
-  }
-
-  if (variant === 'ribbons') {
-    return (
-      <>
-        {palette.slice(0, 3).map((color, index) => (
-          <span
-            key={color + index}
-            className="absolute left-[-10%] h-16 w-[120%] rounded-full"
-            style={{
-              top: `${18 + index * 22}%`,
-              background: `linear-gradient(90deg, transparent, ${color}, transparent)`,
-              opacity: intensity * 0.8,
-              filter: 'blur(8px)',
-              animation: still ? undefined : `nexara-aurora-${index % 2 === 0 ? 'a' : 'b'} ${duration}s ease-in-out ${index * -2}s infinite alternate`,
-            }}
-          />
-        ))}
-      </>
-    )
-  }
-
-  if (variant === 'waves') {
-    return (
-      <span
-        className="absolute inset-[-20%]"
-        style={{
-          backgroundImage: `repeating-linear-gradient(180deg, transparent 0 18px, ${palette[0] ?? '#8b7cff'}22 18px 19px), linear-gradient(100deg, ${palette.join(', ')})`,
-          backgroundSize: '180% 180%',
+          background: `radial-gradient(40% 40% at 20% 30%, ${c}, transparent 70%), radial-gradient(35% 45% at 80% 20%, ${b}, transparent 70%), radial-gradient(40% 40% at 60% 80%, ${a}, transparent 70%)`,
           opacity: intensity,
           filter: 'blur(8px)',
-          animation: still ? undefined : `nexara-pan ${duration}s ease-in-out infinite alternate`,
         }}
       />
     )
   }
-
-  if (variant === 'spotlight') {
+  if (variant === 'radar') {
+    return (
+      <span className="absolute inset-0 flex items-center justify-center">
+        <span className="relative size-56 rounded-full border border-[#3ddec4]/50">
+          <span className="absolute inset-6 rounded-full border border-[#3ddec4]/40" />
+          <span className="absolute inset-12 rounded-full border border-[#3ddec4]/30" />
+          <span className="absolute top-1/2 left-1/2 h-px w-1/2 origin-left bg-[#3ddec4]" />
+        </span>
+      </span>
+    )
+  }
+  if (variant === 'sunset') {
+    return (
+      <>
+        <span className="absolute inset-0" style={{ background: `linear-gradient(180deg, #120818 0%, #3b1630 42%, ${c} 78%, ${d} 100%)`, opacity: intensity }} />
+        <span className="absolute bottom-[28%] left-1/2 size-24 -translate-x-1/2 rounded-full" style={{ background: d, boxShadow: `0 0 40px ${d}` }} />
+      </>
+    )
+  }
+  if (variant === 'clouds') {
+    return (
+      <span className="absolute inset-x-0 bottom-0 h-1/2">
+        {[0, 1, 2].map((index) => (
+          <span key={index} className="absolute h-16 rounded-[999px] bg-[#d9d6e6]" style={{ left: `${index * 28}%`, bottom: `${index * 12}px`, width: `${42 + index * 8}%`, borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }} />
+        ))}
+      </span>
+    )
+  }
+  if (variant === 'rain') {
     return (
       <span
-        className="absolute top-[-10%] left-[10%] h-[80%] w-[55%] rounded-full"
+        className="absolute inset-0"
         style={{
-          background: `radial-gradient(circle, ${palette[0] ?? '#f5c16c'}, transparent 68%)`,
+          backgroundImage: `repeating-linear-gradient(180deg, transparent 0 10px, ${a}55 10px 11px)`,
           opacity: intensity,
-          filter: 'blur(24px)',
-          animation: still ? undefined : `nexara-spot ${duration}s ease-in-out infinite`,
+          animation: still ? undefined : 'nexara-rain 1.2s linear infinite',
         }}
       />
     )
   }
-
-  if (variant === 'horizon') {
+  if (variant === 'constellation') {
     return (
-      <span
-        className="absolute inset-x-[-10%] bottom-[-20%] h-[55%]"
-        style={{
-          background: `linear-gradient(180deg, transparent, ${palette[0] ?? '#ff6a3d'} 40%, ${palette[1] ?? '#8b7cff'})`,
-          opacity: intensity,
-          filter: 'blur(18px)',
-          animation: still ? undefined : `nexara-aurora-b ${duration}s ease-in-out infinite alternate`,
-        }}
-      />
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 200 120" aria-hidden="true">
+        <path d="M20 80 L50 40 L90 60 L130 24 L170 70 L150 96" stroke={d} strokeWidth="0.6" fill="none" opacity={intensity} />
+        {[[20, 80], [50, 40], [90, 60], [130, 24], [170, 70], [150, 96]].map(([x, y]) => (
+          <circle key={`${x}-${y}`} cx={x} cy={y} r="1.6" fill="#fff" />
+        ))}
+      </svg>
     )
   }
-
-  const blobBlur = BLUR[blur]
-
+  if (variant === 'mountains') {
+    return (
+      <svg className="absolute inset-x-0 bottom-0 h-2/3 w-full" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 80 L0 50 L30 28 L55 46 L90 12 L130 40 L160 18 L200 48 L200 80 Z" fill="#1c3a34" />
+        <path d="M0 80 L20 58 L60 70 L100 36 L150 64 L200 42 L200 80 Z" fill="#0e2420" />
+      </svg>
+    )
+  }
+  if (variant === 'city') {
+    return (
+      <span className="absolute inset-x-0 bottom-0 flex h-2/3 items-end gap-1 px-2">
+        {Array.from({ length: 18 }, (_, index) => (
+          <span key={index} className="flex-1 bg-[#10131c]" style={{ height: `${30 + ((index * 37) % 70)}%`, boxShadow: `inset 0 0 0 1px ${index % 3 ? d : a}33, inset 4px 8px 0 ${index % 2 ? '#f5c16c22' : '#3ddec422'}` }} />
+        ))}
+      </span>
+    )
+  }
+  if (variant === 'lightning') {
+    return (
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 200 120" aria-hidden="true">
+        <path d="M118 4 L78 58 H104 L70 116 L150 48 H118 L146 4 Z" fill={d} />
+        <path d="M104 58 L86 90" stroke="#fff" strokeWidth="2" />
+      </svg>
+    )
+  }
   return (
     <>
-      {palette.map((color, index) => (
+      {[a, b, c].map((color, index) => (
         <span
-          key={`${color}-${index}`}
-          className={cn('absolute rounded-full mix-blend-screen', blobBlur)}
+          key={color}
+          className="absolute inset-y-[-10%] w-1/3 rounded-[40%]"
           style={{
-            ...SLOTS[index],
-            background: `radial-gradient(circle, ${color}, transparent 68%)`,
+            left: `${index * 28}%`,
+            background: `linear-gradient(180deg, transparent, ${color}, transparent)`,
+            filter: 'blur(18px)',
             opacity: intensity,
-            animationName: index % 2 === 0 ? 'nexara-aurora-a' : 'nexara-aurora-b',
-            animationDuration: `${duration + index * 4}s`,
-            animationTimingFunction: 'ease-in-out',
-            animationDelay: `${index * -3}s`,
-            animationIterationCount: 'infinite',
-            animationDirection: 'alternate',
-            animationPlayState: still ? 'paused' : 'running',
+            animation: still ? undefined : `nexara-aurora-a ${duration + index * 4}s ease-in-out ${index * -2}s infinite alternate`,
           }}
         />
       ))}

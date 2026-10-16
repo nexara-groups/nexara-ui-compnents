@@ -128,17 +128,17 @@ const sizeClass = {
 
 const modalVariants = [
   'dialog',
-  'sheet',
-  'drawer',
-  'fullscreen',
-  'alert',
+  'otp',
   'command',
-  'banner',
-  'split',
   'lightbox',
-  'action-sheet',
   'wizard',
-  'document',
+  'invoice',
+  'drawer',
+  'share',
+  'action-sheet',
+  'banner',
+  'ticket',
+  'auth',
 ] as const
 
 export type ModalVariant = (typeof modalVariants)[number]
@@ -152,27 +152,27 @@ const modalFrame: Record<ModalVariant, { container: string; panel: string; initi
     initial: { opacity: 0, y: 24, scale: 0.98 },
     exit: { opacity: 0, y: 16, scale: 0.98 },
   },
-  sheet: {
+  share: {
     container: 'items-end justify-center p-0',
-    panel: 'max-h-[85dvh] w-full max-w-none rounded-t-3xl rounded-b-none border border-b-0 border-white/12 bg-[#14151f]',
+    panel: 'max-h-[70dvh] w-full max-w-lg rounded-t-3xl border border-b-0 border-white/12 bg-[#16151c]',
     initial: { y: '40%' },
     exit: { y: '100%' },
   },
   drawer: {
     container: 'items-stretch justify-end p-0',
-    panel: 'ml-auto h-dvh max-h-dvh w-full max-w-md rounded-none border-y-0 border-r-0 border-white/12 bg-[#14151f]',
+    panel: 'ml-auto h-dvh max-h-dvh w-full max-w-xs rounded-none border-y-0 border-r-0 border-white/12 bg-[#10131a]',
     initial: { x: '40%' },
     exit: { x: '100%' },
   },
-  fullscreen: {
-    container: 'items-stretch p-0',
-    panel: 'h-dvh max-h-none w-full max-w-none rounded-none border-0 bg-[#09090f]',
-    initial: { opacity: 0 },
-    exit: { opacity: 0 },
-  },
-  alert: {
+  auth: {
     container: 'items-center justify-center p-4',
-    panel: 'max-h-[min(28rem,calc(100dvh-2rem))] rounded-3xl border border-[#f5c16c]/40 bg-[#14151f] text-center',
+    panel: 'max-h-[min(40rem,calc(100dvh-2rem))] overflow-hidden rounded-3xl border border-white/12 bg-[#12131c] md:grid md:grid-cols-2',
+    initial: { opacity: 0, y: 16 },
+    exit: { opacity: 0, y: 12 },
+  },
+  otp: {
+    container: 'items-center justify-center p-4',
+    panel: 'max-h-[min(28rem,calc(100dvh-2rem))] rounded-3xl border border-white/12 bg-[#14151f] text-center',
     initial: { opacity: 0, scale: 0.92 },
     exit: { opacity: 0, scale: 0.96 },
   },
@@ -188,7 +188,7 @@ const modalFrame: Record<ModalVariant, { container: string; panel: string; initi
     initial: { y: '-100%' },
     exit: { y: '-100%' },
   },
-  split: {
+  ticket: {
     container: 'items-end justify-center p-4 sm:items-center',
     panel: 'max-h-[min(40rem,calc(100dvh-2rem))] overflow-hidden rounded-3xl border border-white/12 bg-[#14151f]',
     initial: { opacity: 0, x: -20 },
@@ -212,7 +212,7 @@ const modalFrame: Record<ModalVariant, { container: string; panel: string; initi
     initial: { opacity: 0, x: 28 },
     exit: { opacity: 0, x: -24 },
   },
-  document: {
+  invoice: {
     container: 'items-end justify-center p-4 sm:items-center',
     panel: 'max-h-[min(44rem,calc(100dvh-2rem))] rounded-sm border border-[#d9d1c3] bg-[#f6f3ec] text-[#1c1915] shadow-[0_30px_80px_-36px_rgba(0,0,0,0.85)]',
     initial: { opacity: 0, y: 28 },
@@ -358,17 +358,17 @@ export function ModalContent({
           />
           <motion.div
             ref={panelRef}
-            role={variant === 'alert' ? 'alertdialog' : 'dialog'}
+            role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
             aria-describedby={description ? descriptionId : undefined}
             tabIndex={-1}
             className={cn(
               'relative z-10 flex w-full flex-col text-[#f6f3ec] outline-none',
-              variant === 'split' && 'md:grid md:grid-cols-[13rem_minmax(0,1fr)]',
+              variant === 'ticket' && 'overflow-hidden',
               modalFrame[variant].panel,
-              variant === 'document' && 'text-[#1c1915]',
-              !['sheet', 'drawer', 'fullscreen', 'banner', 'action-sheet', 'lightbox'].includes(variant) && sizeClass[size],
+              variant === 'invoice' && 'text-[#1c1915]',
+              !['share', 'drawer', 'banner', 'action-sheet', 'lightbox', 'auth'].includes(variant) && sizeClass[size],
               className,
             )}
             initial={reduced ? false : modalFrame[variant].initial}
@@ -376,9 +376,28 @@ export function ModalContent({
             exit={reduced ? { opacity: 0 } : modalFrame[variant].exit}
             transition={reduced ? { duration: 0 } : { type: 'spring', stiffness: 380, damping: 32 }}
           >
+            {variant === 'auth' ? <div className="hidden min-h-full bg-[linear-gradient(160deg,#ff6a3d,#8b7cff)] md:block" /> : null}
+            {variant === 'share' ? (
+              <div className="px-6 pt-5">
+                <p className="text-xs tracking-[0.16em] text-zinc-400 uppercase">Share</p>
+                <div className="mt-3 grid grid-cols-4 gap-3 text-center text-xs">
+                  {['Copy', 'Mail', 'Notes', 'Save'].map((target) => (
+                    <div key={target}>
+                      <div className="mx-auto mb-1 size-12 rounded-2xl bg-white/10" />
+                      {target}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
             {variant === 'action-sheet' ? (
-              <div className="flex justify-center pt-3" aria-hidden="true">
-                <span className="h-1.5 w-10 rounded-full bg-white/25" />
+              <div className="flex flex-col gap-2 px-4 pt-4">
+                <span className="mx-auto h-1.5 w-10 rounded-full bg-white/25" />
+                {['Copy link', 'Duplicate', 'Archive'].map((action) => (
+                  <button key={action} type="button" className="h-12 rounded-2xl bg-white/5 text-left px-4">
+                    {action}
+                  </button>
+                ))}
               </div>
             ) : null}
             {variant === 'wizard' ? (
@@ -391,19 +410,19 @@ export function ModalContent({
             <div
               className={cn(
                 'z-10 flex items-start gap-4 px-6 pt-6 pb-4',
+                variant === 'banner' && 'hidden',
                 variant !== 'lightbox' && 'sticky top-0 bg-inherit',
-                variant === 'alert' && 'flex-col items-center',
-                variant === 'split' && 'md:row-span-2 md:flex-col md:border-r md:border-white/10 md:bg-[#101118]',
+                variant === 'otp' && 'flex-col items-center',
                 variant === 'lightbox' && 'order-2 border-t border-white/10',
-                variant === 'document' && 'border-b border-[#1c1915]/10',
+                variant === 'invoice' && 'border-b border-[#1c1915]/15',
               )}
             >
-              <div className={cn('min-w-0 flex-1', variant === 'alert' && 'text-center', variant === 'document' && 'font-serif')}>
+              <div className={cn('min-w-0 flex-1', variant === 'otp' && 'text-center', variant === 'invoice' && 'font-mono')}>
                 <h2 id={titleId} className={cn('font-serif text-2xl leading-tight', variant === 'lightbox' && 'text-lg', titleClassName)}>
                   {title}
                 </h2>
                 {description ? (
-                  <p id={descriptionId} className={cn('mt-2 text-sm leading-6', variant === 'document' ? 'text-[#5c564c]' : 'text-zinc-300')}>
+                  <p id={descriptionId} className={cn('mt-2 text-sm leading-6', variant === 'invoice' ? 'text-[#5c564c]' : 'text-zinc-300')}>
                     {description}
                   </p>
                 ) : null}
@@ -414,7 +433,7 @@ export function ModalContent({
                   type="button"
                   className={cn(
                     'inline-flex size-11 shrink-0 items-center justify-center rounded-full border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]',
-                    variant === 'document' ? 'border-[#1c1915]/20 text-[#1c1915] hover:bg-black/5' : 'border-white/15 text-zinc-100 hover:bg-white/10',
+                    variant === 'invoice' ? 'border-[#1c1915]/20 text-[#1c1915] hover:bg-black/5' : 'border-white/15 text-zinc-100 hover:bg-white/10',
                     variant === 'lightbox' && 'absolute top-3 right-3 border-white/20 bg-black/50',
                   )}
                   aria-label={closeLabel}
@@ -424,9 +443,69 @@ export function ModalContent({
                 </button>
               )}
             </div>
-            <div ref={bodyRef} className={cn('min-h-0 flex-1 overflow-y-auto px-6 pt-1 pb-6', variant === 'lightbox' && 'min-h-48', variant === 'action-sheet' && 'flex flex-col gap-2')}>
+            <div ref={bodyRef} className={cn('min-h-0 flex-1 overflow-y-auto px-6 pt-1 pb-6', variant === 'lightbox' && 'min-h-48', variant === 'action-sheet' && 'flex flex-col gap-2', variant === 'banner' && 'hidden')}>
+              {variant === 'command' ? (
+                <label className="mb-3 flex h-11 items-center rounded-xl border border-white/10 bg-black/30 px-3 text-sm text-zinc-400">
+                  <span className="sr-only">Command</span>
+                  <input className="w-full bg-transparent text-[#f6f3ec] outline-none" placeholder="Type a command" />
+                </label>
+              ) : null}
+              {variant === 'otp' ? (
+                <div className="mb-4 flex flex-col items-center gap-3">
+                  <div className="flex justify-center gap-2">
+                    {['4', '1', '8', ''].map((digit, index) => (
+                      <span key={index} className="inline-flex size-12 items-center justify-center rounded-xl border border-white/20 font-mono text-xl">
+                        {digit}
+                      </span>
+                    ))}
+                  </div>
+                  <button type="button" className="text-sm text-[#f5c16c]">Resend code</button>
+                </div>
+              ) : null}
+              {variant === 'ticket' ? (
+                <div className="mb-4 flex items-stretch gap-4 border-y border-dashed border-white/25 py-4">
+                  <div className="h-16 w-28 bg-[repeating-linear-gradient(90deg,#f6f3ec_0_2px,transparent_2px_4px)]" />
+                  <div className="text-left">
+                    <p className="text-xs tracking-[0.16em] text-zinc-400 uppercase">Code</p>
+                    <p className="font-mono text-2xl">NX-1881</p>
+                  </div>
+                </div>
+              ) : null}
+              {variant === 'invoice' ? (
+                <div className="mb-4 space-y-2 font-mono text-sm">
+                  <p className="flex justify-between border-b border-dashed border-[#1c1915]/20 pb-2"><span>Studio</span><span>$48</span></p>
+                  <p className="flex justify-between"><span>Export</span><span>$12</span></p>
+                  <p className="flex justify-between border-t border-[#1c1915]/20 pt-2"><span>Due</span><span>$60</span></p>
+                </div>
+              ) : null}
+              {variant === 'drawer' ? (
+                <ul className="mb-4 space-y-1 text-sm">
+                  {['Overview', 'Rooms', 'Library', 'Settings'].map((item) => (
+                    <li key={item} className="rounded-xl px-3 py-2 hover:bg-white/5">{item}</li>
+                  ))}
+                </ul>
+              ) : null}
+              {variant === 'auth' ? (
+                <form className="space-y-3" onSubmit={(event) => event.preventDefault()}>
+                  <label className="block text-xs text-zinc-400">Email
+                    <input type="email" className="mt-1 h-11 w-full rounded-xl border border-white/15 bg-transparent px-3 text-[#f6f3ec]" placeholder="you@studio.com" />
+                  </label>
+                  <button type="submit" className="h-11 w-full rounded-full bg-[#f6f3ec] text-sm text-[#16140f]">Continue</button>
+                  <p className="text-center text-xs text-zinc-500">or</p>
+                  <button type="button" className="h-11 w-full rounded-xl border border-white/15">Continue with Atlas</button>
+                </form>
+              ) : null}
+              {variant === 'lightbox' ? <div className="mb-4 min-h-40 rounded-xl bg-[linear-gradient(135deg,#1c1428,#3d1d16)]" /> : null}
               {children}
             </div>
+            {variant === 'banner' ? (
+              <div className="flex items-center justify-between gap-4 px-4 py-3">
+                <p className="text-sm">{title}</p>
+                <button type="button" className="h-9 rounded-full bg-[#f6f3ec] px-3 text-sm text-[#16140f]" onClick={() => setOpen(false)}>
+                  Dismiss
+                </button>
+              </div>
+            ) : null}
           </motion.div>
         </div>
       ) : null}

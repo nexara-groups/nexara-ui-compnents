@@ -19,3 +19,6 @@ Uncover rises inside a clip, drop enters from above, wipe opens across the line,
 
 ## Agreement
 Approved with the text set.
+
+## Structural pass
+Rise, blur, uncover, skew, wipe, and pop were one line and a different entrance. Caption, stat, stack, and kicker were the same line with a label, a size, or a position change. They became a registered figure, a medallion, two columns, and a running head. Final set: editorial, headline, marker, outline, split, figure, quote, medallion, columns, annotation, index, running-head. The strict critic approved them. Builder agrees.

@@ -16,3 +16,6 @@ Overlap shares columns 6–7. Rail gives the eyebrow its own cell. Mast is a nam
 
 ## Agreement
 Approved.
+
+## Structural pass
+Center, split, mast, cinematic, statement, overlap, and rail were one headline block with a different column arrangement. They were replaced by twelve pages: saas, download, video, logos, pricing, agency, commerce, event, search, dashboard, editorial, waitlist. The strict critic approved them. Builder agrees.

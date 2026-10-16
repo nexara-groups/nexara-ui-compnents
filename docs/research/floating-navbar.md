@@ -1,29 +1,20 @@
-# floating-navbar
+# Floating navbar — structural audit
 
-Surveyed 21st.dev Aceternity (Floating Navbar, Navbar Menu, Floating Dock, Resizable Navbar) and Spectrum UI (Tab Navbar, Sidebar Navbar). Dock, command capsule, tabs, underline, and rail change the link treatment.
+Underline, bottom, split, double, islands, tabs, and spy were removed. They were one bar with a different link decoration or a different edge. Dock, sidebar, overlay, and command stayed because they are different products, and they were rebuilt where the chrome was still a pill.
 
-Sources: [21st.dev](https://21st.dev), [Aceternity on 21st](https://21st.dev/@manuarora700/library/aceternity-ui), [Motion Primitives](https://docs.21st.dev/@ibelick/library/motion-primitives), [Spectrum UI](https://docs.21st.dev/@arihantcodes_1f7b8c4d/library/spectrum-ui), plus public catalogues from shadcn/ui, HeroUI, Magic UI, Park UI, and Uiverse. Ideas were reimplemented. No source was copied.
+| Variant | Reference | What is structurally different |
+| --- | --- | --- |
+| floating | [Aceternity Floating Navbar](https://ui.aceternity.com/components/floating-navbar) | A pill that compacts on scroll. |
+| dock | [Magic UI Dock](https://magicui.design/docs/components/dock) | Icons over captions, magnified from the bottom. |
+| sidebar | App sidebars in [shadcn dashboard](https://ui.shadcn.com/examples/dashboard) | A column with a section label. |
+| overlay | Full-screen menus on [21st.dev](https://21st.dev/) | A button that opens a viewport dialog. |
+| command | [shadcn Command](https://ui.shadcn.com/docs/components/command) | A jump field and a shortcut, not a row of links. |
+| transport | Playback bars (artwork, title, scrubber, skip) | A now-playing strip. Replaces tab-bar, which repeated the dock. |
+| mega | Mega menus | A full-width bar that opens three columns. |
+| app-bar | Product top bars in [shadcn dashboard](https://ui.shadcn.com/examples/dashboard) | A dense bar with a search field. |
+| announcement | Banner plus nav in [shadcn blocks](https://ui.shadcn.com/blocks) | A notice strip above a separate link row. |
+| breadcrumb | [shadcn Breadcrumb](https://ui.shadcn.com/docs/components/breadcrumb) | A path of separators. |
+| segmented | [HeroUI Tabs](https://www.heroui.com/docs/components/tabs) | Links inside one segmented control. |
+| wordmark | Studio headers | A large mark and an index disclosure. No link row. |
 
-## Selected
-
-- `floating` (Floating): Blurred pill that compacts on scroll.
-- `solid` (Solid): Opaque bar with softer corners.
-- `transparent` (Transparent): No fill until a link is current.
-- `underline` (Underline): Current link is a gold rule.
-- `pills` (Pills): Each link is its own chip.
-- `dock` (Dock): Links stack like a compact dock.
-- `command` (Command): Links sit in a centered command capsule.
-- `split` (Split): Links centered between brand and actions.
-- `glass` (Glass): Heavier blur and a bright rim.
-- `brutal` (Brutal): Square bar with an offset shadow.
-- `tabs` (Tabs): Segmented control. The current tab inverts.
-- `rail` (Rail): A flare rule marks the leading edge.
-
-## Rejected
-
-- Extra colour swaps of an existing treatment.
-- Variants that only changed duration or opacity.
-
-## Round 2
-
-Round 2 removed solid, transparent, pills, glass, brutal, and rail. Added bottom, dock (magnify), double (two rows), islands (three pills), sidebar, overlay (focus-trapped menu), and spy (IntersectionObserver). Kept floating, underline, command, split, and tabs.
+Ideas were reimplemented. No source was copied.

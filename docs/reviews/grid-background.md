@@ -16,3 +16,6 @@ Hex is a pointy honeycomb whose neighbors meet. Isometric is a diamond lattice. 
 
 ## Agreement
 Approved.
+
+## Structural pass
+Plus, hatch, diagonal, rings, and scatter were another line pattern. Crosshatch was replaced by herringbone, a zigzag parquet tile. Final set: graph, dots, isometric, hex, circuit, blueprint, notebook, perspective, topography, herringbone, pixel, brick. The strict critic approved them. Builder agrees.

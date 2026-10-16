@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react'
-import { Face, ModalPreview, NavPreview } from '@/docs/preview-frames.tsx'
+import { ModalPreview, NavPreview } from '@/docs/preview-frames.tsx'
 import { AuroraBackground } from '@/components/ui/aurora-background.tsx'
 import { BentoItem } from '@/components/ui/bento-grid.tsx'
 import { Button } from '@/components/ui/button.tsx'
@@ -51,8 +51,6 @@ export function renderVariantPreview(slug: string, id: string): ReactNode {
         variant={id as FlipCardProps['variant']}
         className="h-52 max-w-sm"
         label={id}
-        front={<Face title="Front" />}
-        back={<Face title="Back" />}
       />
     )
   }
@@ -63,16 +61,14 @@ export function renderVariantPreview(slug: string, id: string): ReactNode {
   }
   if (slug === 'button') {
     return (
-      <Button variant={id as ButtonProps['variant']} radius={id === 'brutal' ? 'md' : 'full'}>
-        {id === 'hold' ? 'Hold to confirm' : 'Continue'}
+      <Button variant={id as ButtonProps['variant']} radius={id === 'brutalist' || id === 'pressable' ? 'md' : 'full'}>
+        {id === 'social' ? 'Atlas' : 'Continue'}
       </Button>
     )
   }
   if (slug === 'magnetic-button') {
     return (
-      <MagneticButton magnet={id as MagnetStyle} variant="outline">
-        {id}
-      </MagneticButton>
+      <MagneticButton magnet={id as MagnetStyle}>{id}</MagneticButton>
     )
   }
   if (slug === 'aurora-background') {
@@ -85,7 +81,7 @@ export function renderVariantPreview(slug: string, id: string): ReactNode {
   if (slug === 'grid-background') {
     return (
       <GridBackground variant={id as GridBackgroundProps['variant']} className="min-h-40 rounded-2xl" contentClassName="flex min-h-40 items-end p-5">
-        <p className="text-sm text-zinc-200">{id}</p>
+        <p className="text-sm">{id}</p>
       </GridBackground>
     )
   }
@@ -129,13 +125,7 @@ export function renderVariantPreview(slug: string, id: string): ReactNode {
   }
   if (slug === 'marquee') {
     return (
-      <Marquee variant={id as MarqueeVariant} duration={18} showControls={false}>
-        {['Draggable', 'Spotlight', 'Aurora', 'Shimmer', 'Modal'].map((item) => (
-          <span key={item} className="inline-flex h-10 items-center rounded-full border border-white/12 bg-white/[0.04] px-4 text-sm">
-            {item}
-          </span>
-        ))}
-      </Marquee>
+      <Marquee variant={id as MarqueeVariant} duration={18} showControls={false} />
     )
   }
   return null

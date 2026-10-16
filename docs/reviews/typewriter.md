@@ -19,3 +19,6 @@ Slot locks columns. Scramble and slot both commit the full phrase before the pau
 
 ## Agreement
 Approved.
+
+## Structural pass
+Caret, reverse, scramble, fade, strike, overwrite, and morph were one line and a different typing trick. Subtitle, SMS, command, and password repeated the chat bubble, the search row, or a masked field. They became a lower third, a dispatch slip, a shipping label, and a redaction. Final set: terminal, chat, search, editor, split-flap, news, lower-third, dispatch, shipping, redaction, script, teletype. The strict critic approved them. Builder agrees.

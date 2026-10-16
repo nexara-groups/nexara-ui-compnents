@@ -1,29 +1,20 @@
-# text-reveal
+# Text reveal — structural audit
 
-Surveyed 21st.dev Aceternity (Text Generate, Text Reveal Card, Hero Highlight) and Motion Primitives (Text Effect, In View). Blur, clip, wipe, tracking, and pop change the motion, not the palette.
+Rise, blur, uncover, fade, skew, rotate, highlight, tracking, slide, wipe, pop, and drop were removed. They were one line and a different entrance. The compositions below are different typographic objects. The string is the copy.
 
-Sources: [21st.dev](https://21st.dev), [Aceternity on 21st](https://21st.dev/@manuarora700/library/aceternity-ui), [Motion Primitives](https://docs.21st.dev/@ibelick/library/motion-primitives), [Spectrum UI](https://docs.21st.dev/@arihantcodes_1f7b8c4d/library/spectrum-ui), plus public catalogues from shadcn/ui, HeroUI, Magic UI, Park UI, and Uiverse. Ideas were reimplemented. No source was copied.
+| Variant | Reference | What is structurally different |
+| --- | --- | --- |
+| editorial | Magazine openings | A drop cap and a paragraph. |
+| headline | Display headlines on [21st.dev](https://21st.dev/) | A chapter label over a huge line. |
+| marker | Highlighter text, related to [Magic UI](https://magicui.design/docs/components/text-animate) treatments | The line sits on a marker bar. |
+| outline | Outline display type | Stroke only. |
+| split | Split headlines | A heavy first word beside a lighter rest. |
+| figure | Plate captions in books | A corner-registered frame, then the caption. Replaces caption, which was only a label. |
+| quote | Pull quotes | A quotation and a gold rule. |
+| medallion | Award medallions | The first word inside a ring, the rest beside it. Replaces stat, which was only a big number. |
+| columns | Newspaper columns | The words split into two columns under a rule. Replaces stack, which repeated the same line at three sizes. |
+| annotation | Marginal notes | A handwritten note off the line. |
+| index | Contents pages | A numbered list of the words. |
+| running-head | Book running heads | A folio, a rule, and the title in the margin. Replaces kicker, which was only a side label. |
 
-## Selected
-
-- `rise` (Rise): Units rise and brighten.
-- `blur` (Blur): Units sharpen out of blur.
-- `clip` (Clip): Each unit uncovers from the bottom.
-- `fade` (Fade): Opacity only.
-- `scale` (Scale): Units grow into place.
-- `rotate` (Rotate): Units tip up from a flat angle.
-- `highlight` (Highlight): A marker fills each unit.
-- `tracking` (Tracking): Letter-spacing collapses to normal.
-- `slide` (Slide): Units enter from the right.
-- `wipe` (Wipe): A left-to-right mask.
-- `pop` (Pop): Units spring up from a small scale.
-- `mask` (Mask): Units drop in from above their box.
-
-## Rejected
-
-- Extra colour swaps of an existing treatment.
-- Variants that only changed duration or opacity.
-
-## Round 2
-
-Round 2 replaced clip, scale, and mask with uncover, skew, and drop. Kept rise, blur, fade, rotate, highlight, tracking, slide, wipe, and pop.
+Ideas were reimplemented. No source was copied.

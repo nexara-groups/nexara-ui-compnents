@@ -16,3 +16,6 @@ Kinetic letter-spacing is no longer overwritten by the sweep animation. Flicker 
 
 ## Agreement
 Approved.
+
+## Structural pass
+Sweep, flicker, shimmer, wave, kinetic, and flip were the same glyphs with a different motion. Foil and chrome were another metal fill, and extrude was the same glyphs offset. They became ribbon, stencil, and seal. The first stencil painted a bar under the letters. A blend-mode band stayed opaque in Chrome. The shipped stencil is two clipped copies with a gap through the middle, and the seal sets the word on a circular path. The strict critic approved both. Builder agrees.

@@ -16,3 +16,6 @@ Alert is an alertdialog. Drawer, sheet, and banner leave on the axis they entere
 
 ## Agreement
 Approved on the first variant pass.
+
+## Structural pass
+Sheet, fullscreen, and the old split were the same dialog entering from a different edge or split into columns. Alert was the same dialog with a warning mark, and document was the same paper sheet. They became an OTP code, an invoice, and a ticket. Final set: dialog, otp, command, lightbox, wizard, invoice, drawer, share, action-sheet, banner, ticket, auth. The strict critic approved them. Builder agrees.

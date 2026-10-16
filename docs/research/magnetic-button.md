@@ -1,29 +1,20 @@
-# magnetic-button
+# Magnetic button — structural audit
 
-Surveyed 21st.dev Motion Primitives (Magnetic) and Aceternity hover buttons. One magnet behaviour is not enough, so the set adds repel, orbit, lag, snap, stretch, lift, glow, wobble, chase, and press as separate pointer responses. The button skin stays on the Button variant prop.
+The previous set (attract, tilt, repel, stretch, sling, snap, orbit, lift, glow, wobble, peel, press) was one pill with a different spring. Those were removed. Every object below still pulls toward a fine pointer. The designs are different objects.
 
-Sources: [21st.dev](https://21st.dev), [Aceternity on 21st](https://21st.dev/@manuarora700/library/aceternity-ui), [Motion Primitives](https://docs.21st.dev/@ibelick/library/motion-primitives), [Spectrum UI](https://docs.21st.dev/@arihantcodes_1f7b8c4d/library/spectrum-ui), plus public catalogues from shadcn/ui, HeroUI, Magic UI, Park UI, and Uiverse. Ideas were reimplemented. No source was copied.
+| Variant | Reference | What is structurally different |
+| --- | --- | --- |
+| pill | [Aceternity floating elements](https://ui.aceternity.com/components/floating-navbar) as a magnetic capsule | A single capsule. |
+| keycap | Keyboard-key buttons on [Uiverse](https://uiverse.io/) | A legend, a top face, and a lip. |
+| bulb | Light-bulb buttons on [Uiverse](https://uiverse.io/) | A glass envelope, a filament, and a screw base. The label is not the face. |
+| dock | macOS dock icons, echoed by [Magic UI Dock](https://magicui.design/docs/components/dock) | A rounded app tile with a glyph over a caption. |
+| sticker | Taped notes on [21st.dev](https://21st.dev/) card collections | Paper, a tilt, and a tape strip. |
+| medal | Prize medals (ribbon plus a rimmed disc), as on award strips | A two-color ribbon sits above a gold-rimmed disc. |
+| stamp | [Postage stamp button](https://codefronts.com/components/css-buttons/postage-stamp/) | Perforations on all four edges and a dashed inner frame. Replaces chip, which was a recolored pill. |
+| badge | Notification badges beside [shadcn Button](https://ui.shadcn.com/docs/components/button) | A label with a count sitting on the corner. |
+| shutter | Camera shutter buttons | An outer ring, a recessed well, and a center mark. |
+| ticket | Admit stubs on [21st.dev](https://21st.dev/) | Two cells split by a perforation. |
+| tag | [Price tag](https://css3shapes.com/building-a-price-tag-element-for-an-e-commerce-site/) | A notched tag, a punched hole, and a string. Replaces tube, which was a flat label between two bars. |
+| wax | Wax seals in editorial stationery | A scalloped seal and a drip, not a circular button. |
 
-## Selected
-
-- `attract` (Attract): Pulls toward the pointer.
-- `tilt` (Tilt): Rotates toward the pointer with little travel.
-- `repel` (Repel): Moves away from the pointer.
-- `stretch` (Stretch): Scales along the pointer axis.
-- `lag` (Lag): Heavy spring that trails the pointer.
-- `snap` (Snap): Stays put, then jumps once the pointer is close.
-- `orbit` (Orbit): Circles the resting point around the pointer angle.
-- `lift` (Lift): Rises as the pointer approaches.
-- `glow` (Glow): Proximity drives a bloom more than motion.
-- `wobble` (Wobble): Loose spring that overshoots.
-- `chase` (Chase): The label chases farther than the shell.
-- `press` (Press): Squashes as the pointer enters the field.
-
-## Rejected
-
-- Extra colour swaps of an existing treatment.
-- Variants that only changed duration or opacity.
-
-## Round 2
-
-Round 2 replaced lag with sling (exit velocity flings the control) and chase with peel (the shell stays, the label shears). Kept attract, tilt, repel, stretch, snap, orbit, lift, glow, wobble, and press. Ideas from Motion Primitives magnetic buttons and Uiverse tilt/press controls, rewritten.
+Ideas were reimplemented. No source was copied.

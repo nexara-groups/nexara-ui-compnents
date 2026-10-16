@@ -16,3 +16,6 @@ Beams keep their angle while they drift, because the rotation is the CSS rotate 
 
 ## Agreement
 Approved.
+
+## Structural pass
+Drift, waves, ripple, vortex, spotlight, ribbons, and scan were the same field with a different motion. Beams, embers, caustics, and nebula repeated curtains, particles, or the mesh. They became radar, clouds, mountains, and lightning. Final set: aurora, starfield, meteors, mesh, radar, sunset, clouds, rain, constellation, mountains, city, lightning. The strict critic approved them. Builder agrees.

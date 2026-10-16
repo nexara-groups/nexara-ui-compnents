@@ -16,3 +16,6 @@ The face that is leaving is inert. Fold hinges on the bottom edge. Box carries a
 
 ## Agreement
 Approved.
+
+## Structural pass
+Yaw, pitch, hinge, fade, slide, iris, peel, and fold were one card and a different turn. They were replaced by twelve objects that share one Y-turn: credit, badge, playing, product, flashcard, ticket, profile, pricing, passport, vinyl, book, postcard. The strict critic approved them. Builder agrees.

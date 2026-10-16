@@ -124,7 +124,7 @@ export function DraggableCardDemo() {
           <p className="text-xs tracking-[0.18em] text-[#8b7cff] uppercase">Handle</p>
           <p className="mt-2 font-serif text-2xl text-[#f6f3ec]">Drag from the grip</p>
           <p className="mt-2 text-sm leading-6 text-zinc-300">{note}</p>
-          <Button className="mt-4" size="sm" variant="outline" onClick={() => setNote('Click registered. The card did not swallow it.')}>
+          <Button className="mt-4" size="sm" variant="glow-outline" onClick={() => setNote('Click registered. The card did not swallow it.')}>
             Ping button
           </Button>
         </DraggableCard>
@@ -135,9 +135,9 @@ export function DraggableCardDemo() {
 
 export function SpotlightCardDemo() {
   const cards = [
-    { title: 'Iris', copy: 'A cool wash that follows the pointer across the glass.', color: 'rgba(139, 124, 255, 0.55)', variant: 'glass' as const },
-    { title: 'Flare', copy: 'Swap the color prop and the same card feels like another material.', color: 'rgba(255, 106, 61, 0.5)', variant: 'parallax' as const },
-    { title: 'Tide', copy: 'A clipped wash opens only where the pointer is.', color: 'rgba(61, 222, 196, 0.45)', variant: 'reveal' as const },
+    { title: 'Ada Klein', copy: 'A profile card with an avatar and a follow control.', color: 'rgba(139, 124, 255, 0.55)', variant: 'profile' as const },
+    { title: 'Studio', copy: 'A pricing card with a figure and a choice.', color: 'rgba(255, 106, 61, 0.5)', variant: 'pricing' as const },
+    { title: 'Lamp 04', copy: 'A product card with a stage and a price.', color: 'rgba(61, 222, 196, 0.45)', variant: 'product' as const },
   ]
   return (
     <div className="grid gap-4 md:grid-cols-3">
@@ -160,13 +160,13 @@ export function ButtonDemo() {
       <Segmented label="Corner radius" value={radius} options={['md', 'lg', 'full'] as const} onChange={setRadius} />
       <div className="flex flex-wrap items-center gap-3">
         <Button radius={radius}>Solid</Button>
-        <Button radius={radius} variant="outline">Outline</Button>
-        <Button radius={radius} variant="swap">Swap</Button>
-        <Button radius={radius} variant="flood" rightIcon={<ArrowIcon />}>
-          Flood
+        <Button radius={radius} variant="gradient">Gradient</Button>
+        <Button radius={radius} variant="glass">Glass</Button>
+        <Button radius={radius} variant="pressable">
+          Press
         </Button>
-        <Button radius={radius} variant="shimmer">
-          Shimmer
+        <Button radius={radius} variant="brutalist">
+          Brutal
         </Button>
         <Button
           radius={radius}
@@ -179,8 +179,8 @@ export function ButtonDemo() {
         >
           Save view
         </Button>
-        <Button radius={radius} href="#button" variant="outline">
-          Link style
+        <Button radius={radius} href="#button" variant="glow-outline">
+          Glow
         </Button>
       </div>
     </div>
@@ -190,14 +190,14 @@ export function ButtonDemo() {
 export function MagneticButtonDemo() {
   return (
     <div className="flex flex-wrap items-center justify-center gap-8 py-8">
-      <MagneticButton variant="flood" strength={14} proximity={12}>
+      <MagneticButton magnet="pill" strength={14} proximity={12}>
         Pull me closer
       </MagneticButton>
-      <MagneticButton variant="outline" strength={10} proximity={12}>
-        Softer magnet
+      <MagneticButton magnet="keycap" strength={10} proximity={12}>
+        Key
       </MagneticButton>
-      <MagneticButton variant="shimmer" size="lg" strength={14} proximity={14} rightIcon={<ArrowIcon />}>
-        Launch
+      <MagneticButton magnet="bulb" strength={14} proximity={14}>
+        Bulb
       </MagneticButton>
     </div>
   )
@@ -215,10 +215,10 @@ export function AuroraBackgroundDemo() {
 }
 
 export function GridBackgroundDemo() {
-  const [variant, setVariant] = useState<'grid' | 'dots'>('dots')
+  const [variant, setVariant] = useState<'graph' | 'dots'>('dots')
   return (
     <div>
-      <Segmented label="Pattern" value={variant} options={['dots', 'grid'] as const} onChange={setVariant} />
+      <Segmented label="Pattern" value={variant} options={['dots', 'graph'] as const} onChange={setVariant} />
       <GridBackground variant={variant} className="min-h-72 rounded-3xl" contentClassName="flex min-h-72 items-end p-8">
         <p className="max-w-sm text-sm leading-6 text-zinc-200">
           Move the pointer. The mask follows, so the pattern lights up where you are.
@@ -366,7 +366,7 @@ export function ModalDemo() {
               <ModalClose className="inline-flex h-11 items-center rounded-full border border-white/15 px-4 text-sm hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]">
                 Cancel
               </ModalClose>
-              <Button type="submit" variant="flood">
+              <Button type="submit" variant="solid">
                 Save
               </Button>
             </div>
@@ -398,10 +398,10 @@ export function HeroDemo() {
           description="A hero is a layout, not a locked illustration. Swap the title, the actions, and the media without rewriting the section."
           actions={
             <>
-              <Button variant="flood" rightIcon={<ArrowIcon />}>
+              <Button variant="gradient" rightIcon={<ArrowIcon />}>
                 Browse the registry
               </Button>
-              <Button variant="outline" href="#draggable-card">
+              <Button variant="glow-outline" href="#draggable-card">
                 Draggable card
               </Button>
             </>

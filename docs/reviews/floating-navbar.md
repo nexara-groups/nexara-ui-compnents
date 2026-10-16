@@ -16,3 +16,6 @@ Bottom is a full-bleed edge bar. Dock is a centered pill that magnifies. Double 
 
 ## Agreement
 Approved.
+
+## Structural pass
+Underline, bottom, split, double, islands, tabs, and spy were the same link row in a different place. Tab-bar repeated the dock, so it became a transport bar (artwork, title, scrubber, skip). Final set: floating, dock, sidebar, overlay, command, transport, mega, app-bar, announcement, breadcrumb, segmented, wordmark. The strict critic approved them. Builder agrees.

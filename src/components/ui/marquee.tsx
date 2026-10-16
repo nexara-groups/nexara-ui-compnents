@@ -1,6 +1,6 @@
 'use client'
 
-import { Children, useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import { useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { cn, useKeyframes, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const MARQUEE_CSS = `
@@ -8,59 +8,54 @@ const MARQUEE_CSS = `
   from { transform: translate3d(0, 0, 0); }
   to { transform: translate3d(-50%, 0, 0); }
 }
-@keyframes nexara-marquee-y {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(0, -50%, 0); }
-}
-@keyframes nexara-marquee-dwell {
-  0%, 22% { transform: translate3d(0, 0, 0); }
-  45%, 72% { transform: translate3d(-25%, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
-}
-@keyframes nexara-cascade {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
 `
 
-const VARIANTS = ['fade', 'pingpong', 'cylinder', 'vertical', 'spotlight', 'stepped', 'parallax', 'overlap', 'velocity', 'dwell', 'reverse-hover', 'cascade'] as const
+const VARIANTS = [
+  'logos',
+  'quotes',
+  'ticker',
+  'stubs',
+  'filmstrip',
+  'pills',
+  'stats',
+  'hazard',
+  'profiles',
+  'log',
+  'tiles',
+  'medals',
+] as const
 
 export type MarqueeVariant = (typeof VARIANTS)[number]
 
 export interface MarqueeProps {
-  children: ReactNode
+  children?: ReactNode
   className?: string
   controlClassName?: string
-  /** Track treatment. `fade` is the default edge-masked loop. */
   variant?: MarqueeVariant
-  /** Seconds for one full loop. Ignored when speed is set. */
   duration?: number
-  /** Pixels per second. Overrides duration when set. */
   speed?: number
   pauseOnHover?: boolean
   direction?: 'left' | 'right'
-  /** Gap between items, in pixels. */
   gap?: number
-  /** Minimum copies of the children inside each half of the loop. */
   repeat?: number
   fade?: boolean
   showControls?: boolean
   style?: CSSProperties
-  /** When set, the pause control reports here instead of keeping its own state. */
   paused?: boolean
   onPausedChange?: (paused: boolean) => void
 }
 
 /**
  * Marquee
- * Infinite horizontal loop. Copies are added until each half covers the frame.
- * The pause control sits outside the moving track.
+ * Twelve tracks: logos, quotes, news ticker, ticket stubs, filmstrip, pills,
+ * stats, hazard tape, profiles, log, app tiles, and medals.
+ * Copy this file plus `src/lib/utils.ts`.
  */
 export function Marquee({
   children,
   className,
   controlClassName,
-  variant = 'fade',
+  variant = 'logos',
   duration = 28,
   speed,
   pauseOnHover = true,
@@ -82,144 +77,66 @@ export function Marquee({
   const [manualPause, setManualPause] = useState(false)
   const [hovered, setHovered] = useState(false)
   const trackId = useId()
-  const vertical = variant === 'vertical'
-  const resolvedGap = variant === 'overlap' ? -12 : gap
-  const resolvedFade = variant === 'spotlight' ? false : fade
-  const resolvedDirection = direction
-  const travel = variant === 'reverse-hover' && hovered ? (resolvedDirection === 'left' ? 'right' : 'left') : resolvedDirection
-  const [speedScale, setSpeedScale] = useState(1)
   const pauseHeld = paused ?? manualPause
-  const itemCount = Math.max(1, Children.count(children))
-  const motionPaused = pauseHeld || (pauseOnHover && hovered && variant !== 'reverse-hover' && variant !== 'velocity')
+  const content = children ?? samples(variant)
 
   useLayoutEffect(() => {
     const frame = frameRef.current
     const sample = sampleRef.current
     if (!frame || !sample) return
-
     const measure = () => {
-      const sampleSize = vertical ? sample.scrollHeight : sample.scrollWidth
-      const frameSize = vertical ? frame.clientHeight : frame.clientWidth
+      const sampleSize = sample.scrollWidth
+      const frameSize = frame.clientWidth
       const nextCopies = Math.max(repeat, sampleSize > 0 ? Math.ceil(frameSize / sampleSize) : 1)
       setCopies((current) => (current === nextCopies ? current : nextCopies))
       if (speed && sampleSize > 0) {
-        const half = sampleSize * nextCopies
-        const seconds = Math.max(4, half / speed)
-        setLoopSeconds((current) => (Math.abs(current - seconds) < 0.05 ? current : seconds))
+        setLoopSeconds(Math.max(4, (sampleSize * nextCopies) / speed))
       } else {
         setLoopSeconds(duration)
       }
     }
-
     measure()
     const observer = new ResizeObserver(measure)
     observer.observe(frame)
     observer.observe(sample)
     return () => observer.disconnect()
-  }, [duration, repeat, speed, children, variant, vertical])
-
-  if (variant === 'parallax') {
-    return (
-      <div data-nexara="marquee" data-variant="parallax" className={cn('space-y-3', className)} style={style}>
-        <Marquee variant="fade" duration={duration} speed={speed} pauseOnHover={pauseOnHover} gap={gap} repeat={repeat} fade={fade} showControls={showControls} controlClassName={controlClassName} paused={pauseHeld} onPausedChange={onPausedChange ?? setManualPause}>
-          {children}
-        </Marquee>
-        <Marquee variant="fade" duration={duration * 1.8} direction="right" pauseOnHover={false} gap={gap} repeat={repeat} fade={fade} showControls={false} paused={pauseHeld}>
-          {children}
-        </Marquee>
-      </div>
-    )
-  }
-
-  const decorated = variant === 'cascade'
-    ? Children.toArray(children).map((child, index) => (
-        <span key={index} className="inline-flex" style={{ animation: reduced ? undefined : `nexara-cascade 1.8s ease-in-out ${index * 0.14}s infinite` }}>
-          {child}
-        </span>
-      ))
-    : children
+  }, [children, duration, repeat, speed, variant])
 
   const group = (hidden: boolean) => (
-    <div
-      className={cn('flex shrink-0', vertical ? 'flex-col' : 'items-center')}
-      style={vertical ? { gap: resolvedGap, paddingBottom: resolvedGap } : { gap: resolvedGap, paddingRight: resolvedGap }}
-      aria-hidden={hidden || undefined}
-      inert={hidden ? true : undefined}
-    >
+    <div className="flex shrink-0 items-center" style={{ gap, paddingRight: gap }} aria-hidden={hidden || undefined} inert={hidden ? true : undefined}>
       {Array.from({ length: copies }, (_, index) => (
-        <div
-          key={index}
-          className={cn('flex shrink-0', vertical ? 'flex-col' : 'items-center')}
-          style={{ gap: resolvedGap }}
-          inert={index > 0 ? true : undefined}
-          aria-hidden={index > 0 || undefined}
-        >
-          {decorated}
+        <div key={index} className="flex shrink-0 items-center" style={{ gap }} inert={index > 0 ? true : undefined} aria-hidden={index > 0 || undefined}>
+          {content}
         </div>
       ))}
     </div>
   )
 
   return (
-    <div
-      data-nexara="marquee"
-      data-variant={variant}
-      className={cn('relative', variant === 'cylinder' && '[perspective:800px]', className)}
-      style={style}
-    >
-      <div
-        ref={sampleRef}
-        aria-hidden="true"
-        inert
-        className={cn('pointer-events-none absolute flex opacity-0', vertical ? 'flex-col -translate-x-full' : '-translate-y-full')}
-        style={{ gap: resolvedGap }}
-      >
-        {decorated}
+    <div data-nexara="marquee" data-variant={variant} className={cn('relative', frameClass(variant), className)} style={style}>
+      <FrameLabel variant={variant} />
+      <div ref={sampleRef} aria-hidden="true" inert className="pointer-events-none absolute flex -translate-y-full opacity-0" style={{ gap }}>
+        {content}
       </div>
       <div
         ref={frameRef}
         id={trackId}
-        onPointerEnter={
-          pauseOnHover
-            ? (event) => {
-                if (event.pointerType !== 'mouse') return
-                setHovered(true)
-              }
-            : undefined
-        }
-        onPointerMove={
-          variant === 'velocity'
-            ? (event) => {
-                const rect = event.currentTarget.getBoundingClientRect()
-                const ratio = (event.clientX - rect.left) / Math.max(rect.width, 1)
-                setSpeedScale(0.45 + ratio * 1.8)
-              }
-            : undefined
-        }
+        onPointerEnter={pauseOnHover ? () => setHovered(true) : undefined}
         onPointerLeave={pauseOnHover ? () => setHovered(false) : undefined}
-        className={cn(
-          reduced ? (vertical ? 'h-64 overflow-y-auto' : 'overflow-x-auto') : 'overflow-hidden',
-          vertical && 'h-64',
-          variant === 'cylinder' && '[transform:rotateX(18deg)]',
-          resolvedFade && !reduced && !vertical && '[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]',
-          variant === 'spotlight' && !reduced && '[mask-image:radial-gradient(circle_at_center,black_40%,transparent_78%)]',
-          vertical && resolvedFade && !reduced && '[mask-image:linear-gradient(to_bottom,transparent,black_12%,black_88%,transparent)]',
-        )}
+        className={cn('overflow-hidden', fade && !reduced && '[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]')}
       >
         {reduced ? (
-          <div className={cn('flex w-max', vertical ? 'flex-col' : 'items-center')} style={{ gap: resolvedGap }}>
-            {decorated}
-          </div>
+          <div className="flex w-max items-center" style={{ gap }}>{content}</div>
         ) : (
           <div
-            className={cn('flex w-max', vertical ? 'flex-col' : 'items-center')}
+            className="flex w-max items-center"
             style={{
-              animationName: variant === 'dwell' ? 'nexara-marquee-dwell' : vertical ? 'nexara-marquee-y' : 'nexara-marquee',
-              animationDuration: `${(speed ? loopSeconds : duration) / (variant === 'velocity' ? speedScale : 1)}s`,
-              animationTimingFunction: variant === 'stepped' ? `steps(${Math.max(itemCount * copies, 2)}, end)` : 'linear',
+              animationName: 'nexara-marquee',
+              animationDuration: `${speed ? loopSeconds : duration}s`,
+              animationTimingFunction: 'linear',
               animationIterationCount: 'infinite',
-              animationDirection: variant === 'pingpong' ? 'alternate' : travel === 'right' ? 'reverse' : 'normal',
-              animationPlayState: motionPaused ? 'paused' : 'running',
+              animationDirection: direction === 'right' ? 'reverse' : 'normal',
+              animationPlayState: pauseHeld || (pauseOnHover && hovered) ? 'paused' : 'running',
             }}
           >
             {group(false)}
@@ -230,10 +147,7 @@ export function Marquee({
       {showControls && !reduced ? (
         <button
           type="button"
-          className={cn(
-            'mt-3 inline-flex h-9 items-center rounded-full border border-current/25 px-3 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]',
-            controlClassName,
-          )}
+          className={cn('mt-3 inline-flex h-9 items-center rounded-full border border-current/25 px-3 text-xs', controlClassName)}
           aria-pressed={pauseHeld}
           aria-controls={trackId}
           onClick={() => {
@@ -247,4 +161,98 @@ export function Marquee({
       ) : null}
     </div>
   )
+}
+
+function frameClass(variant: MarqueeVariant) {
+  if (variant === 'ticker') return 'bg-[#111] py-2 font-mono text-xs text-[#f5c16c]'
+  if (variant === 'hazard') return 'bg-[#111] py-3'
+  if (variant === 'log') return 'rounded-xl bg-[#07110f] py-3 font-mono text-xs text-[#3ddec4]'
+  if (variant === 'filmstrip') return 'bg-[#14110e] py-3'
+  return ''
+}
+
+function FrameLabel({ variant }: { variant: MarqueeVariant }) {
+  if (variant === 'ticker') return <p className="px-3 pb-1 text-[10px] tracking-[0.18em] text-[#ff6a3d]">LIVE · 18:04</p>
+  if (variant === 'hazard') return null
+  if (variant === 'log') return <p className="px-3 pb-1 text-zinc-500">~/nexara</p>
+  return null
+}
+
+function samples(variant: MarqueeVariant): ReactNode {
+  if (variant === 'quotes') {
+    return ['Quiet room.', 'Ship the lamp.', 'Stay late.'].map((line) => (
+      <span key={line} className="w-56 rounded-2xl border border-white/10 bg-[#14151f] p-4 text-sm">“{line}”</span>
+    ))
+  }
+  if (variant === 'ticker') {
+    return ['Harbor opens', 'Export ready', 'Issue 18'].map((line) => (
+      <span key={line} className="px-4">{line} —</span>
+    ))
+  }
+  if (variant === 'stubs') {
+    return ['C12', 'C13', 'C14'].map((serial) => (
+      <span key={serial} className="inline-flex items-stretch overflow-hidden bg-[#f6f3ec] text-[#1c1915]">
+        <span className="border-r border-dashed border-[#1c1915]/30 px-3 py-2 font-mono text-xs">{serial}</span>
+        <span className="px-3 py-2 text-xs">ADMIT</span>
+      </span>
+    ))
+  }
+  if (variant === 'filmstrip') {
+    return ['01', '02', '03', '04'].map((frame) => (
+      <span key={frame} className="inline-flex h-16 w-24 items-end border-x-8 border-[#09090f] bg-[#3ddec4] p-1 text-xs text-[#06241d]">{frame}</span>
+    ))
+  }
+  if (variant === 'pills') {
+    return ['Draggable', 'Aurora', 'Modal'].map((item) => (
+      <span key={item} className="inline-flex h-9 items-center rounded-full border border-white/15 px-4 text-sm">{item}</span>
+    ))
+  }
+  if (variant === 'stats') {
+    return [
+      ['128', 'Rooms'],
+      ['24', 'Open'],
+      ['4', 'Studios'],
+    ].map(([value, label]) => (
+      <span key={label} className="px-4 text-center"><span className="block font-serif text-2xl">{value}</span><span className="text-xs text-zinc-400">{label}</span></span>
+    ))
+  }
+  if (variant === 'hazard') {
+    return (
+      <span
+        className="px-8 py-2 text-sm font-semibold text-[#1a100c]"
+        style={{ backgroundImage: 'repeating-linear-gradient(135deg, #f5c16c 0 12px, #111 12px 24px)' }}
+      >
+        WET FLOOR
+      </span>
+    )
+  }
+  if (variant === 'profiles') {
+    return ['AK', 'NR', 'JL'].map((initials) => (
+      <span key={initials} className="inline-flex items-center gap-2 rounded-full bg-[#16141c] pr-3">
+        <span className="inline-flex size-8 items-center justify-center rounded-full bg-[#8b7cff] text-xs text-[#09090f]">{initials}</span>
+        {initials}
+      </span>
+    ))
+  }
+  if (variant === 'log') {
+    return ['build ok', 'lint ok', 'preview up'].map((line) => <span key={line} className="px-3">› {line}</span>)
+  }
+  if (variant === 'tiles') {
+    return ['#ff6a3d', '#8b7cff', '#3ddec4', '#f5c16c'].map((tone) => (
+      <span key={tone} className="inline-flex size-14 items-center justify-center rounded-[1.1rem]" style={{ background: tone }}>
+        <span className="size-4 rounded-sm bg-[#09090f]" />
+      </span>
+    ))
+  }
+  if (variant === 'medals') {
+    return ['Gold', 'Press', 'Type'].map((name) => (
+      <span key={name} className="inline-flex flex-col items-center px-3">
+        <span className="h-3 w-4 bg-[#ff6a3d]" />
+        <span className="inline-flex size-10 items-center justify-center rounded-full border-2 border-[#f5c16c] text-[10px] text-[#f5c16c]">{name}</span>
+      </span>
+    ))
+  }
+  return ['North', 'Kite', 'Field', 'Harbor', 'Lumen'].map((name) => (
+    <span key={name} className="px-4 text-sm tracking-[0.22em] text-zinc-300 uppercase">{name}</span>
+  ))
 }

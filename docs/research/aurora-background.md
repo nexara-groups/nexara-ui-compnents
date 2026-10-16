@@ -1,29 +1,20 @@
-# aurora-background
+# Aurora background — structural audit
 
-Surveyed 21st.dev Aceternity backgrounds: Aurora, Beams, Beams With Collision, Boxes, Gradient, Gradient Animation, Ripple, Meteors, Sparkles, Stars, Vortex, Wavy, Spotlight, Lamp. Selected twelve field types and left ripple and boxes for a later pass.
+Drift, waves, ripple, vortex, ribbons, scan, spotlight, and horizon were removed where they were the same blobs with a different motion. Stars, meteors, beams, and embers stayed only where the drawing is a different scene, and they were rebuilt.
 
-Sources: [21st.dev](https://21st.dev), [Aceternity on 21st](https://21st.dev/@manuarora700/library/aceternity-ui), [Motion Primitives](https://docs.21st.dev/@ibelick/library/motion-primitives), [Spectrum UI](https://docs.21st.dev/@arihantcodes_1f7b8c4d/library/spectrum-ui), plus public catalogues from shadcn/ui, HeroUI, Magic UI, Park UI, and Uiverse. Ideas were reimplemented. No source was copied.
+| Variant | Reference | What is structurally different |
+| --- | --- | --- |
+| aurora | [Aceternity Aurora Background](https://ui.aceternity.com/components/aurora-background) | Vertical color curtains. |
+| starfield | [Aceternity Sparkles](https://ui.aceternity.com/components/sparkles) | Points of different sizes. |
+| meteors | [Aceternity Meteors](https://ui.aceternity.com/components/meteors) | Diagonal streaks with heads. |
+| mesh | [Aceternity Background Gradient](https://ui.aceternity.com/components/background-gradient) | Large soft color fields. No particles. |
+| radar | Radar scopes | Concentric range rings and a sweep tick. Replaces beams, which repeated the curtain language. |
+| sunset | Sunset gradients used as page backgrounds on [21st.dev](https://21st.dev/) | A horizon gradient and a sun disc. |
+| clouds | Flat-bottom cloud illustrations | Three cloud masses with a flat foot. Replaces embers, which were another particle field. |
+| rain | Rain overlays | Vertical streaks covering the frame. |
+| constellation | Connected-star graphics | Stars joined by lines. |
+| mountains | Landscape silhouettes | Two filled ridgelines. Replaces caustics, which repeated the mesh pools. |
+| city | Skyline backgrounds on [21st.dev](https://21st.dev/) | A row of building blocks. |
+| lightning | Storm skies | A forked bolt. Replaces nebula, which repeated the mesh. |
 
-## Selected
-
-- `drift` (Drift): Soft color fields that wander.
-- `beams` (Beams): Diagonal shafts of color.
-- `mesh` (Mesh): Tighter blobs with less blur.
-- `stars` (Stars): Twinkling points on ink.
-- `waves` (Waves): Banded gradient that pans.
-- `silk` (Silk): One wide blurred gradient in motion.
-- `vortex` (Vortex): A spinning conic field.
-- `meteors` (Meteors): Streaks that fall across the frame.
-- `fog` (Fog): Large slow blooms.
-- `spotlight` (Spotlight): A single pool that travels.
-- `horizon` (Horizon): Glow seated on the bottom edge.
-- `pulse` (Pulse): Fields that breathe in scale.
-
-## Rejected
-
-- Extra colour swaps of an existing treatment.
-- Variants that only changed duration or opacity.
-
-## Round 2
-
-Round 2 removed silk, mesh, fog, and pulse. Added ripple, embers, ribbons, and scan. Stars take their color from the palette. Kept drift, beams, waves, vortex, meteors, spotlight, and horizon.
+Ideas were reimplemented. No source was copied.

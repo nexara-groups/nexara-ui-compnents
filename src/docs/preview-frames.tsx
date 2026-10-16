@@ -16,7 +16,7 @@ export function ModalPreview({ variant }: { variant: ModalVariant }) {
   const [open, setOpen] = useState(false)
   return (
     <div>
-      <Button size="sm" variant="outline" onClick={() => setOpen(true)}>
+      <Button size="sm" variant="glow-outline" onClick={() => setOpen(true)}>
         Open {variant}
       </Button>
       <Modal open={open} onOpenChange={setOpen}>
@@ -30,7 +30,7 @@ export function ModalPreview({ variant }: { variant: ModalVariant }) {
 
 function navFrame(variant: NonNullable<FloatingNavbarProps['variant']>) {
   if (variant === 'sidebar') return 'relative h-[22rem] overflow-hidden rounded-2xl border border-white/10 bg-[#09090f]'
-  if (variant === 'overlay' || variant === 'double') return 'relative h-56 overflow-hidden rounded-2xl border border-white/10 bg-[#09090f]'
+  if (variant === 'overlay' || variant === 'announcement' || variant === 'mega') return 'relative h-56 overflow-hidden rounded-2xl border border-white/10 bg-[#09090f]'
   return 'relative h-40 overflow-hidden rounded-2xl border border-white/10 bg-[#09090f]'
 }
 
@@ -51,7 +51,7 @@ export function NavPreview({ variant }: { variant: NonNullable<FloatingNavbarPro
         contained
         shrinkOnScroll={false}
         variant={variant}
-        className={variant === 'bottom' || variant === 'dock' || variant === 'sidebar' ? undefined : 'top-2 mx-2'}
+        className={variant === 'dock' || variant === 'transport' || variant === 'sidebar' || variant === 'mega' || variant === 'app-bar' || variant === 'announcement' ? undefined : 'top-2 mx-2'}
         logo={<span>Nexara</span>}
         items={items}
         actions={<Button size="sm">Start</Button>}

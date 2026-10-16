@@ -29,11 +29,11 @@ const variants = {
   ticket: 'rounded-2xl border border-dashed border-white/30 bg-[#17151f]',
   polaroid: 'rounded-md border border-[#efeae2] bg-[#f6f3ec] text-[#1c1915] shadow-[0_18px_40px_-24px_rgba(0,0,0,0.8)]',
   dossier: 'rounded-sm border border-[#d8c7a2]/40 bg-[#1a1712]',
-  'snap-grid': 'border border-[#3ddec4]/50 bg-[#0d1414]',
-  carbon: 'border border-white/10 bg-[#16141c]',
   receipt: 'rounded-none border border-white/15 bg-[#12110e] font-mono shadow-none',
-  stack: 'border border-white/10 bg-[#14151f]',
   comic: 'rounded-md border-[3px] border-[#f6f3ec] bg-[#24180f] shadow-[6px_6px_0_0_#ff6a3d]',
+  playing: 'rounded-xl border border-[#efeae2] bg-[#f6f3ec] text-[#7f1d1d]',
+  boarding: 'rounded-none bg-[#f4efe4] font-mono text-[#1c1915]',
+  postcard: 'rounded-md border border-[#efeae2] bg-[#f6f3ec] text-[#1c1915]',
 } as const
 
 export type DraggableCardVariant = keyof typeof variants
@@ -135,12 +135,37 @@ function CardChrome({ variant }: { variant: DraggableCardVariant }) {
       />
     )
   }
-  if (variant === 'stack') {
+  if (variant === 'playing') {
     return (
-      <>
-        <span aria-hidden="true" className="pointer-events-none absolute inset-0 translate-x-3 translate-y-3 rounded-[inherit] border border-white/10 bg-[#1c1d28]" />
-        <span aria-hidden="true" className="pointer-events-none absolute inset-0 translate-x-1.5 translate-y-1.5 rounded-[inherit] border border-white/10 bg-[#181924]" />
-      </>
+      <span aria-hidden="true" className="pointer-events-none absolute top-3 left-3 font-serif text-xl text-[#7f1d1d]">
+        A♥
+      </span>
+    )
+  }
+  if (variant === 'boarding') {
+    return (
+      <span aria-hidden="true" className="mb-3 block border-b border-[#1c1915]/20 pb-3 text-[#1c1915]">
+        <span className="grid grid-cols-[1fr_auto_1fr] items-end gap-2">
+          <span>
+            <span className="block text-[10px] tracking-[0.16em] uppercase">From</span>
+            <span className="font-serif text-2xl">SFO</span>
+          </span>
+          <span className="pb-1 text-[10px] tracking-[0.14em]">NX 18</span>
+          <span className="text-right">
+            <span className="block text-[10px] tracking-[0.16em] uppercase">To</span>
+            <span className="font-serif text-2xl">LHR</span>
+          </span>
+        </span>
+        <span className="mt-2 flex justify-between text-[10px] tracking-[0.14em] uppercase">
+          <span>Gate C4</span>
+          <span>Seat 14A</span>
+        </span>
+      </span>
+    )
+  }
+  if (variant === 'postcard') {
+    return (
+      <span aria-hidden="true" className="pointer-events-none absolute top-3 right-3 size-8 border border-dashed border-[#1c1915]/40" />
     )
   }
   if (variant === 'comic') {
@@ -212,8 +237,6 @@ export function DraggableCard({
   const tiltY = useMotionValue(0)
   const rotateX = useSpring(tiltX, { stiffness: 280, damping: 22 })
   const rotateY = useSpring(tiltY, { stiffness: 280, damping: 22 })
-  const ghostX = useSpring(x, { stiffness: 70, damping: 14, mass: 1.15 })
-  const ghostY = useSpring(y, { stiffness: 70, damping: 14, mass: 1.15 })
   const [stack, setStack] = useState(10)
   const [live, setLive] = useState('')
   const [viewportBox, setViewportBox] = useState<
@@ -269,19 +292,6 @@ export function DraggableCard({
   function finishDrag(_event: PointerEvent | MouseEvent | TouchEvent, _info: PanInfo) {
     tiltX.set(0)
     tiltY.set(0)
-    if (variant === 'snap-grid') {
-      const nextX = Math.round(x.get() / 24) * 24
-      const nextY = Math.round(y.get() / 24) * 24
-      const spring = { type: 'spring' as const, stiffness: 420, damping: 32 }
-      if (reduced) {
-        x.set(nextX)
-        y.set(nextY)
-      } else {
-        void Promise.all([animate(x, nextX, spring), animate(y, nextY, spring)])
-      }
-      publish(nextX, nextY, false)
-      return
-    }
     if (!snapBack) {
       publish(x.get(), y.get(), false)
       return
@@ -348,20 +358,13 @@ export function DraggableCard({
     bounds === 'viewport' ? viewportBox : bounds === 'parent' ? stageRef : bounds
 
   const placed = bounds === 'parent' ? 'absolute top-4 left-4 w-72' : 'w-72'
-  const paper = variant === 'polaroid' || variant === 'receipt' || variant === 'sticker' || variant === 'comic'
+  const paper = variant === 'polaroid' || variant === 'receipt' || variant === 'sticker' || variant === 'comic' || variant === 'playing' || variant === 'postcard' || variant === 'boarding'
 
   const card = (
     <div
       className={cn('relative', bounds === 'viewport' ? 'inline-flex max-w-full' : 'pointer-events-none absolute inset-0')}
       style={{ zIndex: stack }}
     >
-      {variant === 'carbon' && !reduced ? (
-        <motion.div
-          aria-hidden="true"
-          className={cn('pointer-events-none min-h-48 rounded-3xl border border-dashed border-white/35 bg-white/5', placed)}
-          style={{ x: ghostX, y: ghostY }}
-        />
-      ) : null}
       <motion.div
         ref={cardRef}
         role="group"
@@ -402,7 +405,6 @@ export function DraggableCard({
         onKeyDown={onKeyDown}
         onKeyUp={onKeyUp}
       >
-        {variant === 'stack' ? <CardChrome variant="stack" /> : null}
         <motion.div
           className={cn('relative rounded-3xl p-5', variants[variant], className)}
           style={{
@@ -411,7 +413,7 @@ export function DraggableCard({
             transformPerspective: tilt ? 1000 : undefined,
           }}
         >
-          {variant === 'stack' ? null : <CardChrome variant={variant} />}
+          <CardChrome variant={variant} />
           {glow && !paper ? (
             <span
               aria-hidden="true"

@@ -19,3 +19,6 @@ Parallax is two speeds with one shared pause. Dwell holds mid-loop. Cascade bobs
 
 ## Agreement
 Approved.
+
+## Structural pass
+Fade, ping-pong, cylinder, vertical, and the other motion modes were one row and a different loop. Reviews, announcement, wordmark, and awards repeated quotes, the ticker, or a chip. They became ticket stubs, hazard tape, app tiles, and medals. Final set: logos, quotes, ticker, stubs, filmstrip, pills, stats, hazard, profiles, log, tiles, medals. The strict critic approved them. Builder agrees.

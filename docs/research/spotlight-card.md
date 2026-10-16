@@ -1,29 +1,20 @@
-# spotlight-card
+# Spotlight card — structural audit
 
-Surveyed 21st.dev Aceternity (Card Spotlight, Glare Card, Evervault Card, 3D Card, Hover Border Gradient) and Motion Primitives (Spotlight, Tilt, Glow, Border Trail).
+The previous set (glass, parallax, reveal, comet, border-beam, tilt, glare, fisheye, magnifier, ripple, holographic, scan) was one card and a different pointer effect. Those were removed. A pointer wash remains on every card. The product underneath changes.
 
-Sources: [21st.dev](https://21st.dev), [Aceternity on 21st](https://21st.dev/@manuarora700/library/aceternity-ui), [Motion Primitives](https://docs.21st.dev/@ibelick/library/motion-primitives), [Spectrum UI](https://docs.21st.dev/@arihantcodes_1f7b8c4d/library/spectrum-ui), plus public catalogues from shadcn/ui, HeroUI, Magic UI, Park UI, and Uiverse. Ideas were reimplemented. No source was copied.
+| Variant | Reference | What is structurally different |
+| --- | --- | --- |
+| profile | People cards on [21st.dev](https://21st.dev/) | Avatar, name, role, follow. |
+| pricing | [shadcn pricing](https://ui.shadcn.com/blocks) | Plan, price, features, choice. |
+| product | Product cards on [21st.dev](https://21st.dev/) | Image stage, name, price. |
+| testimonial | [Aceternity infinite moving cards](https://ui.aceternity.com/components/infinite-moving-cards) | Stars, quote, attribution. |
+| stat | Metric tiles in [shadcn dashboard](https://ui.shadcn.com/examples/dashboard) | Figure, delta, sparkline. |
+| music | Player cards on [21st.dev](https://21st.dev/) | Cover, title, progress. |
+| weather | Weather cards on [21st.dev](https://21st.dev/) | City, temperature, range. |
+| notification | [shadcn](https://ui.shadcn.com/docs/components) notification patterns | App mark, time, message. |
+| repo | GitHub-style repo rows, as in community cards on [21st.dev](https://21st.dev/) | Name, summary, language dot, stars. |
+| task | Task rows in [shadcn](https://ui.shadcn.com/examples/tasks) | Checkbox, title, tags. |
+| article | Editorial cards on [21st.dev](https://21st.dev/) | Kicker, headline, byline. |
+| place | Map cards | A map field, a name, a distance. |
 
-## Selected
-
-- `glass` (Glass): Frosted card with a pointer-following wash.
-- `solid` (Solid): Opaque face, same traveling light.
-- `outline` (Outline): Open face until the hairline lights up.
-- `ink` (Ink): Near-black field so the wash reads as a lamp.
-- `border-beam` (Border beam): A light travels the perimeter while the pointer glows inside.
-- `tilt` (Tilt): The card leans in 3D toward the pointer.
-- `glare` (Glare): A diagonal sheen slides across the face.
-- `lens` (Lens): Tighter glow and a slight content zoom.
-- `aurora-rim` (Aurora rim): The edge cycles flare into iris under the pointer.
-- `inset` (Inset): Recessed well with an inner shadow.
-- `holographic` (Holographic): Iridescent cone that turns with the pointer.
-- `noise` (Noise): Film grain over a warm dark face.
-
-## Rejected
-
-- Extra colour swaps of an existing treatment.
-- Variants that only changed duration or opacity.
-
-## Round 2
-
-Round 2 replaced solid with parallax orbs, outline with a clipped reveal, ink with a comet, lens with fisheye, aurora-rim with a magnifier disc, inset with a ripple ring, and noise with a scan line. Tilt now rotates inside a perspective wrapper. Kept glass, border-beam, glare, and holographic.
+Ideas were reimplemented. No source was copied.

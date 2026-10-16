@@ -1,29 +1,20 @@
-# modal
+# Modal — structural audit
 
-Surveyed 21st.dev Aceternity (Animated Modal), Motion Primitives (Morphing Dialog), and shadcn/ui (dialog, sheet, drawer, alert dialog). Sheet, drawer, command palette, banner, and stack are placement changes, not tints.
+Sheet and fullscreen were removed. They were the dialog moved to an edge or stretched to the viewport. Share and auth replaced them. Drawer, banner, and action sheet stayed only because their contents are different products, not because of the edge they use.
 
-Sources: [21st.dev](https://21st.dev), [Aceternity on 21st](https://21st.dev/@manuarora700/library/aceternity-ui), [Motion Primitives](https://docs.21st.dev/@ibelick/library/motion-primitives), [Spectrum UI](https://docs.21st.dev/@arihantcodes_1f7b8c4d/library/spectrum-ui), plus public catalogues from shadcn/ui, HeroUI, Magic UI, Park UI, and Uiverse. Ideas were reimplemented. No source was copied.
+| Variant | Reference | What is structurally different |
+| --- | --- | --- |
+| dialog | [shadcn Dialog](https://ui.shadcn.com/docs/components/dialog) | Title, description, and body in a centered card. |
+| otp | One-time-code dialogs | Four digit boxes and a resend control. Replaces alert, which was the same dialog with a warning mark. |
+| command | [shadcn Command](https://ui.shadcn.com/docs/components/command) | A command field above the results. |
+| lightbox | Lightbox patterns on [21st.dev](https://21st.dev/) | A media well, then a caption. |
+| wizard | Multi-step dialogs | A step track. |
+| invoice | Invoice sheets | Line items and a total on paper. Replaces document, which was the same paper sheet. |
+| drawer | [shadcn Drawer](https://ui.shadcn.com/docs/components/drawer) used as navigation | A list of destinations, not a relocated dialog. |
+| share | iOS share sheets | A grid of targets. |
+| action-sheet | Action sheets | Stacked full-width actions. |
+| banner | Announcement bars | A single inline notice and a dismiss. |
+| ticket | Admit tickets | A barcode and a code. Replaces split, which was the same dialog in two columns. |
+| auth | Login dialogs in [shadcn blocks](https://ui.shadcn.com/blocks) | A color panel beside an email form and a provider row. |
 
-## Selected
-
-- `dialog` (Dialog): Centered panel.
-- `sheet` (Sheet): Rises from the bottom edge.
-- `drawer` (Drawer): Full-height panel on the right.
-- `fullscreen` (Fullscreen): Covers the viewport.
-- `glass` (Glass): Blurred translucent panel.
-- `brutal` (Brutal): Hard border and offset shadow.
-- `alert` (Alert): Compact centered message.
-- `command` (Command): Drops in near the top, like a palette.
-- `neon` (Neon): Iris edge and bloom.
-- `stack` (Stack): Extra cards peek out behind the panel.
-- `inset` (Inset): Recessed inner shadow.
-- `banner` (Banner): Full-width bar across the top.
-
-## Rejected
-
-- Extra colour swaps of an existing treatment.
-- Variants that only changed duration or opacity.
-
-## Round 2
-
-Round 2 removed glass, brutal, neon, stack, and inset. Alert is an alertdialog. Added split, lightbox, action-sheet, wizard, and document. Drawer, sheet, and banner leave on the axis they entered. Kept dialog, fullscreen, command, and banner.
+Ideas were reimplemented. No source was copied.
