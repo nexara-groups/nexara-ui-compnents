@@ -8,3 +8,11 @@ The panel scrolls inside a max height. The app root is `inert` while open. Scrol
 
 ## Agreement
 Approved. The dialog holds background focus and scrolls its own content.
+
+## Variants
+dialog, sheet, drawer, fullscreen, alert, command, banner, split, lightbox, action-sheet, wizard, document.
+
+Alert is an alertdialog. Drawer, sheet, and banner leave on the axis they entered. Split is two columns. Lightbox captions the body. Wizard shows step ticks. Document is a paper sheet.
+
+## Agreement
+Approved on the first variant pass.

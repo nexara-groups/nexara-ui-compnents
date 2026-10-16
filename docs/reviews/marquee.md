@@ -11,3 +11,11 @@ Hover pause listens only on the track, and only for a mouse. The measurement sam
 
 ## Agreement
 Approved. Play starts the loop from the control, and hidden copies are not focusable.
+
+## Variants
+fade, pingpong, cylinder, vertical, spotlight, stepped, parallax, overlap, velocity, dwell, reverse-hover, cascade.
+
+Parallax is two speeds with one shared pause. Dwell holds mid-loop. Cascade bobs each item. Stepped jumps by a count that includes the repeated copies.
+
+## Agreement
+Approved.

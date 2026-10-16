@@ -11,3 +11,11 @@ The demo uses a wider gap, and each control’s travel stays inside its own hit 
 
 ## Agreement
 Approved. The buttons lean toward the pointer without covering each other.
+
+## Variants
+attract, tilt, repel, stretch, sling, snap, orbit, lift, glow, wobble, peel, press.
+
+Round 1 asked to replace lag and chase. Sling flings on the exit velocity and springs home. Peel shears the label. Glow keeps the shell still and trails a slower copy of the label. Wobble rotates from pointer speed. Tilt leans on X and Y. The proximity padding no longer expands the click target.
+
+## Agreement
+Approved with the button set.

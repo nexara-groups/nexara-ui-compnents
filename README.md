@@ -15,6 +15,7 @@ When someone says “use the draggable card from nexara-ui” (or any other comp
 5. The components import `@/lib/utils` and `@/components/ui/...`. Map `@` to `src`, or rewrite those imports.
 6. Tailwind CSS needs to scan the copied files. No extra plugin is required.
 7. Use the `usage` string in the registry, or the live example on the docs site, as the starting point. Then restyle with the documented props and `className`.
+8. Variants live on each item as `variants[]`. Look up `button / neon-glow` by finding the `button` item, then the variant whose `name` is `neon-glow`. Copy that variant’s `usage`.
 
 Do not rewrite the component from scratch if it already exists here.
 
@@ -39,7 +40,7 @@ Do not rewrite the component from scratch if it already exists here.
 | Hero | `hero` | `src/components/ui/hero.tsx` | framer-motion |
 | Marquee | `marquee` | `src/components/ui/marquee.tsx` | — |
 
-Every component also needs `clsx` and `tailwind-merge` through `src/lib/utils.ts`. Critique notes for each component live in `docs/reviews/`.
+Every component also needs `clsx` and `tailwind-merge` through `src/lib/utils.ts`. Each component has at least ten variants. The names are on the registry item (`variants[].name`) and on the docs page as `component / variant`, for example `button / neon-glow`. Research notes are in `docs/research/`. Critique notes are in `docs/reviews/`.
 
 ## Docs site
 

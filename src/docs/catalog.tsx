@@ -57,14 +57,14 @@ export function Example() {
   const stageRef = useRef<HTMLDivElement>(null)
   return (
     <div ref={stageRef} className="relative h-96">
-      <DraggableCard bounds={stageRef} variant="elevated" snapBack={false}>
+      <DraggableCard bounds={stageRef} variant="window" snapBack={false}>
         <p>Drag me</p>
       </DraggableCard>
     </div>
   )
 }`,
     props: [
-      { name: 'variant', type: "'glass' | 'solid' | 'outline' | 'elevated'", defaultValue: 'glass', description: 'Surface treatment.' },
+      { name: 'variant', type: 'glass | film | sticker | window | ticket | polaroid | dossier | snap-grid | carbon | receipt | stack | comic', defaultValue: 'glass', description: 'Surface. See the variant list for a live demo of each.' },
       { name: 'bounds', type: "'parent' | 'viewport' | RefObject", defaultValue: 'parent', description: 'Play area. parent creates one; a ref shares an external frame.' },
       { name: 'snapBack', type: 'boolean', defaultValue: 'false', description: 'Spring back to the start on release.' },
       { name: 'dragElastic', type: 'number', defaultValue: '0.16', description: 'Rubber-band past the edges, from 0 to 1.' },
@@ -101,7 +101,7 @@ export function Example() {
   )
 }`,
     props: [
-      { name: 'variant', type: "'glass' | 'solid' | 'outline' | 'ink'", defaultValue: 'glass', description: 'Surface treatment.' },
+      { name: 'variant', type: 'glass | parallax | reveal | comet | border-beam | tilt | glare | fisheye | magnifier | ripple | holographic | scan', defaultValue: 'glass', description: 'Surface and pointer behavior.' },
       { name: 'spotlightColor', type: 'string', defaultValue: 'rgba(139, 124, 255, 0.45)', description: 'CSS color of the radial wash.' },
       { name: 'spotlightSize', type: 'number', defaultValue: '280', description: 'Glow diameter in pixels.' },
       { name: 'borderGlow', type: 'boolean', defaultValue: 'true', description: 'Brightens a 1px edge under the pointer.' },
@@ -131,6 +131,7 @@ export function Example() {
   )
 }`,
     props: [
+      { name: 'variant', type: 'yaw | pitch | hinge-left | shuffle | fade | slide | split | iris | peel | box | shutter | fold', defaultValue: 'yaw', description: 'How the card turns.' },
       { name: 'front / back', type: 'ReactNode', description: 'The two faces.' },
       { name: 'flipOn', type: "'hover' | 'click'", defaultValue: 'hover', description: 'Hover also flips while focus is inside.' },
       { name: 'flipped', type: 'boolean', description: 'Controlled face. Pair with onFlippedChange.' },
@@ -162,6 +163,7 @@ export function Example() {
     props: [
       { name: 'columns', type: '2 | 3 | 4', defaultValue: '3', description: 'Column count from the md breakpoint up. BentoGrid.' },
       { name: 'gap', type: "'sm' | 'md' | 'lg'", defaultValue: 'md', description: 'Grid gap. BentoGrid.' },
+      { name: 'variant', type: 'spotlight | chart | quote | editorial | terminal | schedule | poster | stat | status | compare | media | brutal', defaultValue: 'spotlight', description: 'Tile treatment. BentoItem.' },
       { name: 'colSpan', type: '1 | 2 | 3 | 4', defaultValue: '1', description: 'How many columns a tile spans. BentoItem.' },
       { name: 'rowSpan', type: '1 | 2', defaultValue: '1', description: 'How many rows a tile spans. BentoItem.' },
       { name: 'title / description / icon', type: 'ReactNode', description: 'Tile content. Title renders as a heading.' },
@@ -176,7 +178,7 @@ export function Example() {
     slug: 'button',
     name: 'Button',
     category: 'Buttons',
-    description: 'Solid, outline, ghost, gradient, and shimmer actions, including a loading state and link mode.',
+    description: 'Fourteen button treatments, from a paper fill to press-and-hold, swap, and flood.',
     path: 'src/components/ui/button.tsx',
     dependencies: ['class-variance-authority', ...styleDeps],
     registryDependencies: ['utils'],
@@ -184,13 +186,13 @@ export function Example() {
 
 export function Example() {
   return (
-    <Button variant="gradient" size="lg" radius="full" rightIcon={<span aria-hidden>→</span>}>
+    <Button variant="flood" size="lg" radius="full" rightIcon={<span aria-hidden>→</span>}>
       Continue
     </Button>
   )
 }`,
     props: [
-      { name: 'variant', type: "'solid' | 'outline' | 'ghost' | 'gradient' | 'shimmer'", defaultValue: 'solid', description: 'Visual style.' },
+      { name: 'variant', type: 'solid | outline | swap | flood | shimmer | neon-glow | metal | brutal | underline | liquid | spotlight | border-beam | split | hold', defaultValue: 'solid', description: 'Visual and interaction style. hold confirms on a long press. swap trades the label. flood fills from the pointer.' },
       { name: 'size', type: "'sm' | 'md' | 'lg'", defaultValue: 'md', description: 'Height and padding. md is 44px tall.' },
       { name: 'radius', type: "'md' | 'lg' | 'full'", defaultValue: 'full', description: 'Corner radius.' },
       { name: 'shimmer', type: 'boolean', defaultValue: 'false', description: 'Adds the light sweep on hover to any variant.' },
@@ -219,6 +221,7 @@ export function Example() {
   )
 }`,
     props: [
+      { name: 'magnet', type: 'attract | tilt | repel | stretch | sling | snap | orbit | lift | glow | wobble | peel | press', defaultValue: 'attract', description: 'Pointer response. The button skin stays on variant.' },
       { name: 'strength', type: 'number', defaultValue: '18', description: 'Maximum travel in pixels.' },
       { name: 'proximity', type: 'number', defaultValue: '28', description: 'Extra hit padding that still attracts the control.' },
       { name: 'innerShift', type: 'number', defaultValue: '0.35', description: 'How far the label shifts relative to the shell, from 0 to 1.' },
@@ -245,6 +248,7 @@ export function Example() {
   )
 }`,
     props: [
+      { name: 'variant', type: 'drift | beams | stars | waves | ripple | vortex | meteors | embers | spotlight | horizon | ribbons | scan', defaultValue: 'drift', description: 'Field treatment.' },
       { name: 'colors', type: 'string[]', defaultValue: 'flare, iris, tide, gold', description: 'Up to five CSS colors.' },
       { name: 'duration', type: 'number', defaultValue: '14', description: 'Base loop length in seconds.' },
       { name: 'blur', type: "'sm' | 'md' | 'lg' | 'xl'", defaultValue: 'lg', description: 'How soft the fields are.' },
@@ -273,7 +277,7 @@ export function Example() {
   )
 }`,
     props: [
-      { name: 'variant', type: "'grid' | 'dots'", defaultValue: 'grid', description: 'Ruled lines or dots.' },
+      { name: 'variant', type: 'grid | dots | brick | plus | hatch | diagonal | isometric | circuit | hex | topography | rings | scatter', defaultValue: 'grid', description: 'Pattern tile.' },
       { name: 'size', type: 'number', defaultValue: '28', description: 'Cell size in pixels.' },
       { name: 'color', type: 'string', defaultValue: 'rgba(246, 243, 236, 0.16)', description: 'Pattern color.' },
       { name: 'fade', type: 'boolean', defaultValue: 'true', description: 'Masks the pattern with a radial falloff.' },
@@ -300,6 +304,7 @@ export function Example() {
   )
 }`,
     props: [
+      { name: 'variant', type: 'sweep | flicker | shimmer | stroke | marker | spark | glitch | wave | clip | kinetic | underline | flip', defaultValue: 'sweep', description: 'Lettering treatment.' },
       { name: 'as', type: "'span' | 'p' | 'h1' | 'h2' | 'h3' | 'div'", defaultValue: 'span', description: 'Element to render.' },
       { name: 'from / via / to', type: 'string', description: 'CSS colors for the gradient stops.' },
       { name: 'animate', type: 'boolean', defaultValue: 'true', description: 'Pans the gradient. Off when reduced motion is requested.' },
@@ -326,6 +331,7 @@ export function Example() {
   )
 }`,
     props: [
+      { name: 'variant', type: 'caret | reverse | slot | scramble | fade | word | strike | overwrite | blur | morph | complete | cut', defaultValue: 'caret', description: 'Typing behavior.' },
       { name: 'phrases', type: 'string[]', description: 'Lines to cycle. Memoize or keep the array stable if you can.' },
       { name: 'typeSpeed', type: 'number', defaultValue: '48', description: 'Milliseconds per typed character.' },
       { name: 'deleteSpeed', type: 'number', defaultValue: '28', description: 'Milliseconds per deleted character.' },
@@ -358,6 +364,7 @@ export function Example() {
   )
 }`,
     props: [
+      { name: 'variant', type: 'rise | blur | uncover | fade | skew | rotate | highlight | tracking | slide | wipe | pop | drop', defaultValue: 'rise', description: 'Scroll-linked entrance.' },
       { name: 'text', type: 'string', description: 'The copy to split. Do not pass children.' },
       { name: 'by', type: "'word' | 'char'", defaultValue: 'word', description: 'Split unit. Prefer word for paragraphs.' },
       { name: 'as', type: "'p' | 'h1' | 'h2' | 'h3' | 'span' | 'div'", defaultValue: 'p', description: 'Element to render.' },
@@ -392,7 +399,7 @@ export function Example() {
       { name: 'logo', type: 'ReactNode', description: 'Brand slot at the leading edge.' },
       { name: 'items', type: '{ label, href, active? }[]', description: 'Links. active sets aria-current="page".' },
       { name: 'actions', type: 'ReactNode', description: 'Trailing slot, usually a button.' },
-      { name: 'variant', type: "'floating' | 'solid' | 'transparent'", defaultValue: 'floating', description: 'Surface of the bar.' },
+      { name: 'variant', type: 'floating | underline | bottom | dock | command | split | double | islands | tabs | sidebar | overlay | spy', defaultValue: 'floating', description: 'Bar chrome and link treatment.' },
       { name: 'shrinkOnScroll', type: 'boolean', defaultValue: 'true', description: 'Reduces padding after the page moves.' },
       { name: 'contained', type: 'boolean', defaultValue: 'false', description: 'Stick inside a parent instead of fixing to the viewport.' },
       { name: 'blur', type: 'boolean', defaultValue: 'true', description: 'Backdrop blur behind floating and solid bars.' },
@@ -428,6 +435,7 @@ export function Example() {
       { name: 'open / defaultOpen / onOpenChange', type: 'boolean / (open: boolean) => void', description: 'Controlled or uncontrolled open state. Modal.' },
       { name: 'title', type: 'ReactNode', description: 'Required name of the dialog. ModalContent.' },
       { name: 'description', type: 'ReactNode', description: 'Optional supporting line, wired to aria-describedby.' },
+      { name: 'variant', type: 'dialog | sheet | drawer | fullscreen | alert | command | banner | split | lightbox | action-sheet | wizard | document', defaultValue: 'dialog', description: 'Where the panel sits and how it is drawn.' },
       { name: 'size', type: "'sm' | 'md' | 'lg'", defaultValue: 'md', description: 'Max width of the panel.' },
       { name: 'dismissible', type: 'boolean', defaultValue: 'true', description: 'Backdrop click and Escape close the dialog.' },
       { name: 'hideClose', type: 'boolean', defaultValue: 'false', description: 'Hides the icon close button.' },
@@ -460,7 +468,8 @@ export function Example() {
   )
 }`,
     props: [
-      { name: 'align', type: "'center' | 'split'", defaultValue: 'center', description: 'Centered stack, or copy beside media from the md breakpoint.' },
+      { name: 'variant', type: 'center | split | mast | cinematic | statement | bento | overlap | index | band | asymmetric | stacked | rail', description: 'Layout. When omitted, align still selects center or split.' },
+      { name: 'align', type: "'center' | 'split'", defaultValue: 'center', description: 'Used when variant is omitted.' },
       { name: 'eyebrow', type: 'ReactNode', description: 'Small label above the title.' },
       { name: 'title', type: 'ReactNode', description: 'Rendered in an h2. Pass text or a gradient span.' },
       { name: 'description', type: 'ReactNode', description: 'Supporting paragraph.' },
@@ -491,6 +500,7 @@ export function Example() {
   )
 }`,
     props: [
+      { name: 'variant', type: 'fade | pingpong | cylinder | vertical | spotlight | stepped | parallax | overlap | velocity | dwell | reverse-hover | cascade', defaultValue: 'fade', description: 'Track treatment.' },
       { name: 'duration', type: 'number', defaultValue: '28', description: 'Seconds for one full loop. Larger is slower.' },
       { name: 'direction', type: "'left' | 'right'", defaultValue: 'left', description: 'Travel direction.' },
       { name: 'pauseOnHover', type: 'boolean', defaultValue: 'true', description: 'Pauses while the pointer is over the track.' },

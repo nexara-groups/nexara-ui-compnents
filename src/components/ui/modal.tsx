@@ -126,6 +126,100 @@ const sizeClass = {
   lg: 'max-w-2xl',
 } as const
 
+const modalVariants = [
+  'dialog',
+  'sheet',
+  'drawer',
+  'fullscreen',
+  'alert',
+  'command',
+  'banner',
+  'split',
+  'lightbox',
+  'action-sheet',
+  'wizard',
+  'document',
+] as const
+
+export type ModalVariant = (typeof modalVariants)[number]
+
+type ModalMotion = { opacity?: number; y?: number | string; x?: number | string; scale?: number }
+
+const modalFrame: Record<ModalVariant, { container: string; panel: string; initial: ModalMotion; exit: ModalMotion }> = {
+  dialog: {
+    container: 'items-end justify-center p-4 sm:items-center',
+    panel: 'max-h-[min(40rem,calc(100dvh-2rem))] rounded-3xl border border-white/12 bg-[#14151f] shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]',
+    initial: { opacity: 0, y: 24, scale: 0.98 },
+    exit: { opacity: 0, y: 16, scale: 0.98 },
+  },
+  sheet: {
+    container: 'items-end justify-center p-0',
+    panel: 'max-h-[85dvh] w-full max-w-none rounded-t-3xl rounded-b-none border border-b-0 border-white/12 bg-[#14151f]',
+    initial: { y: '40%' },
+    exit: { y: '100%' },
+  },
+  drawer: {
+    container: 'items-stretch justify-end p-0',
+    panel: 'ml-auto h-dvh max-h-dvh w-full max-w-md rounded-none border-y-0 border-r-0 border-white/12 bg-[#14151f]',
+    initial: { x: '40%' },
+    exit: { x: '100%' },
+  },
+  fullscreen: {
+    container: 'items-stretch p-0',
+    panel: 'h-dvh max-h-none w-full max-w-none rounded-none border-0 bg-[#09090f]',
+    initial: { opacity: 0 },
+    exit: { opacity: 0 },
+  },
+  alert: {
+    container: 'items-center justify-center p-4',
+    panel: 'max-h-[min(28rem,calc(100dvh-2rem))] rounded-3xl border border-[#f5c16c]/40 bg-[#14151f] text-center',
+    initial: { opacity: 0, scale: 0.92 },
+    exit: { opacity: 0, scale: 0.96 },
+  },
+  command: {
+    container: 'items-start justify-center p-4 pt-[12vh]',
+    panel: 'max-h-[min(32rem,70dvh)] rounded-2xl border border-white/15 bg-[#101118] shadow-2xl',
+    initial: { opacity: 0, y: -16 },
+    exit: { opacity: 0, y: -20 },
+  },
+  banner: {
+    container: 'items-start justify-center p-0',
+    panel: 'w-full max-w-none rounded-none border-x-0 border-t-0 border-white/12 bg-[#14151f]',
+    initial: { y: '-100%' },
+    exit: { y: '-100%' },
+  },
+  split: {
+    container: 'items-end justify-center p-4 sm:items-center',
+    panel: 'max-h-[min(40rem,calc(100dvh-2rem))] overflow-hidden rounded-3xl border border-white/12 bg-[#14151f]',
+    initial: { opacity: 0, x: -20 },
+    exit: { opacity: 0, x: -16 },
+  },
+  lightbox: {
+    container: 'items-center justify-center bg-black/40 p-3 sm:p-8',
+    panel: 'max-h-[min(44rem,calc(100dvh-1.5rem))] max-w-4xl rounded-2xl border border-white/10 bg-black',
+    initial: { opacity: 0, scale: 0.94 },
+    exit: { opacity: 0, scale: 1.02 },
+  },
+  'action-sheet': {
+    container: 'items-end justify-center p-0 sm:p-4',
+    panel: 'max-h-[70dvh] w-full max-w-lg rounded-t-[1.6rem] border border-b-0 border-white/12 bg-[#16151c] sm:rounded-3xl sm:border-b',
+    initial: { y: '100%' },
+    exit: { y: '100%' },
+  },
+  wizard: {
+    container: 'items-end justify-center p-4 sm:items-center',
+    panel: 'max-h-[min(40rem,calc(100dvh-2rem))] rounded-3xl border border-white/12 bg-[#14151f]',
+    initial: { opacity: 0, x: 28 },
+    exit: { opacity: 0, x: -24 },
+  },
+  document: {
+    container: 'items-end justify-center p-4 sm:items-center',
+    panel: 'max-h-[min(44rem,calc(100dvh-2rem))] rounded-sm border border-[#d9d1c3] bg-[#f6f3ec] text-[#1c1915] shadow-[0_30px_80px_-36px_rgba(0,0,0,0.85)]',
+    initial: { opacity: 0, y: 28 },
+    exit: { opacity: 0, y: 20 },
+  },
+}
+
 export interface ModalContentProps {
   children?: ReactNode
   title: ReactNode
@@ -133,6 +227,8 @@ export interface ModalContentProps {
   className?: string
   overlayClassName?: string
   size?: keyof typeof sizeClass
+  /** Where the panel sits and how it is drawn. */
+  variant?: ModalVariant
   /** Clicking the backdrop or pressing Escape closes the dialog. */
   dismissible?: boolean
   hideClose?: boolean
@@ -142,6 +238,10 @@ export interface ModalContentProps {
   titleClassName?: string
   /** Classes for the fixed viewport layer, including z-index. */
   containerClassName?: string
+  /** Current step for the wizard variant. */
+  step?: number
+  /** Total steps for the wizard variant. */
+  steps?: number
 }
 
 export function ModalContent({
@@ -151,12 +251,15 @@ export function ModalContent({
   className,
   overlayClassName,
   size = 'md',
+  variant = 'dialog',
   dismissible = true,
   hideClose = false,
   initialFocus = 'auto',
   closeLabel = 'Close',
   titleClassName,
   containerClassName,
+  step = 2,
+  steps = 3,
 }: ModalContentProps) {
   const { open, setOpen, titleId, descriptionId } = useModalContext()
   const reduced = usePrefersReducedMotion()
@@ -241,7 +344,7 @@ export function ModalContent({
   return createPortal(
     <AnimatePresence>
       {open ? (
-        <div className={cn('fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center', containerClassName)} data-nexara="modal">
+        <div className={cn('fixed inset-0 z-50 flex', modalFrame[variant].container, containerClassName)} data-nexara="modal" data-variant={variant}>
           <motion.div
             aria-hidden="true"
             className={cn('absolute inset-0 bg-black/70 backdrop-blur-[2px]', overlayClassName)}
@@ -255,28 +358,52 @@ export function ModalContent({
           />
           <motion.div
             ref={panelRef}
-            role="dialog"
+            role={variant === 'alert' ? 'alertdialog' : 'dialog'}
             aria-modal="true"
             aria-labelledby={titleId}
             aria-describedby={description ? descriptionId : undefined}
             tabIndex={-1}
             className={cn(
-              'relative z-10 flex max-h-[min(40rem,calc(100dvh-2rem))] w-full flex-col rounded-3xl border border-white/12 bg-[#14151f] text-[#f6f3ec] shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)] outline-none',
-              sizeClass[size],
+              'relative z-10 flex w-full flex-col text-[#f6f3ec] outline-none',
+              variant === 'split' && 'md:grid md:grid-cols-[13rem_minmax(0,1fr)]',
+              modalFrame[variant].panel,
+              variant === 'document' && 'text-[#1c1915]',
+              !['sheet', 'drawer', 'fullscreen', 'banner', 'action-sheet', 'lightbox'].includes(variant) && sizeClass[size],
               className,
             )}
-            initial={reduced ? false : { opacity: 0, y: 24, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={reduced ? { opacity: 0 } : { opacity: 0, y: 16, scale: 0.98 }}
+            initial={reduced ? false : modalFrame[variant].initial}
+            animate={{ opacity: 1, y: 0, x: 0, scale: 1 }}
+            exit={reduced ? { opacity: 0 } : modalFrame[variant].exit}
             transition={reduced ? { duration: 0 } : { type: 'spring', stiffness: 380, damping: 32 }}
           >
-            <div className="sticky top-0 z-10 flex items-start gap-4 rounded-t-3xl bg-[#14151f] px-6 pt-6 pb-4">
-              <div className="min-w-0 flex-1">
-                <h2 id={titleId} className={cn('font-serif text-2xl leading-tight', titleClassName)}>
+            {variant === 'action-sheet' ? (
+              <div className="flex justify-center pt-3" aria-hidden="true">
+                <span className="h-1.5 w-10 rounded-full bg-white/25" />
+              </div>
+            ) : null}
+            {variant === 'wizard' ? (
+              <div className="flex gap-1 px-6 pt-5" aria-label={`Step ${Math.min(step, steps)} of ${steps}`}>
+                {Array.from({ length: Math.max(steps, 1) }, (_, index) => (
+                  <span key={index} className={cn('h-1 flex-1 rounded-full', index < step ? 'bg-[#f5c16c]' : 'bg-white/15')} />
+                ))}
+              </div>
+            ) : null}
+            <div
+              className={cn(
+                'z-10 flex items-start gap-4 px-6 pt-6 pb-4',
+                variant !== 'lightbox' && 'sticky top-0 bg-inherit',
+                variant === 'alert' && 'flex-col items-center',
+                variant === 'split' && 'md:row-span-2 md:flex-col md:border-r md:border-white/10 md:bg-[#101118]',
+                variant === 'lightbox' && 'order-2 border-t border-white/10',
+                variant === 'document' && 'border-b border-[#1c1915]/10',
+              )}
+            >
+              <div className={cn('min-w-0 flex-1', variant === 'alert' && 'text-center', variant === 'document' && 'font-serif')}>
+                <h2 id={titleId} className={cn('font-serif text-2xl leading-tight', variant === 'lightbox' && 'text-lg', titleClassName)}>
                   {title}
                 </h2>
                 {description ? (
-                  <p id={descriptionId} className="mt-2 text-sm leading-6 text-zinc-300">
+                  <p id={descriptionId} className={cn('mt-2 text-sm leading-6', variant === 'document' ? 'text-[#5c564c]' : 'text-zinc-300')}>
                     {description}
                   </p>
                 ) : null}
@@ -285,7 +412,11 @@ export function ModalContent({
                 <button
                   ref={closeRef}
                   type="button"
-                  className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-white/15 text-zinc-100 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]"
+                  className={cn(
+                    'inline-flex size-11 shrink-0 items-center justify-center rounded-full border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]',
+                    variant === 'document' ? 'border-[#1c1915]/20 text-[#1c1915] hover:bg-black/5' : 'border-white/15 text-zinc-100 hover:bg-white/10',
+                    variant === 'lightbox' && 'absolute top-3 right-3 border-white/20 bg-black/50',
+                  )}
                   aria-label={closeLabel}
                   onClick={() => setOpen(false)}
                 >
@@ -293,7 +424,7 @@ export function ModalContent({
                 </button>
               )}
             </div>
-            <div ref={bodyRef} className="min-h-0 flex-1 overflow-y-auto px-6 pt-1 pb-6">
+            <div ref={bodyRef} className={cn('min-h-0 flex-1 overflow-y-auto px-6 pt-1 pb-6', variant === 'lightbox' && 'min-h-48', variant === 'action-sheet' && 'flex flex-col gap-2')}>
               {children}
             </div>
           </motion.div>

@@ -11,3 +11,11 @@ Pause waits inside the same timer. The demo’s control sits under the sentence.
 
 ## Agreement
 Approved. Pause holds the current phrase, and Play continues it.
+
+## Variants
+caret, reverse, slot, scramble, fade, word, strike, overwrite, blur, morph, complete, cut.
+
+Slot locks columns. Scramble and slot both commit the full phrase before the pause. Overwrite keeps the tail of the current phrase when the next one is shorter.
+
+## Agreement
+Approved.

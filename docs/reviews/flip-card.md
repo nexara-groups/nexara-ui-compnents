@@ -8,3 +8,11 @@ The hidden face is inert. A Show back / Show front control is the keyboard path 
 
 ## Agreement
 Approved. The turn is a real perspective flip, and the control is keyboard-reachable.
+
+## Variants
+yaw, pitch, hinge-left, shuffle, fade, slide, split, iris, peel, box, shutter, fold.
+
+The face that is leaving is inert. Fold hinges on the bottom edge. Box carries a side wall. Iris and shutter are wipes. Peel pulls the front from the corner.
+
+## Agreement
+Approved.

@@ -46,6 +46,33 @@ if (!registered.has('src/lib/utils.ts')) {
   errors.push('src/lib/utils.ts is not in the registry')
 }
 
+for (const item of registry.items ?? []) {
+  if (item.type !== 'registry:ui') continue
+  if (!Array.isArray(item.variants) || item.variants.length < 10) {
+    errors.push(`${item.name} needs at least 10 variants`)
+    continue
+  }
+  const sourcePath = item.files?.[0]?.path
+  const source = sourcePath ? readFileSync(path.join(root, sourcePath), 'utf8') : ''
+  const seen = new Set()
+  for (const variant of item.variants) {
+    if (!variant.name || !variant.title || !variant.description || !variant.usage) {
+      errors.push(`${item.name} variant is missing name, title, description, or usage`)
+      continue
+    }
+    if (seen.has(variant.name)) errors.push(`${item.name} has a duplicate variant ${variant.name}`)
+    seen.add(variant.name)
+    if (!variant.usage.includes(variant.name)) {
+      errors.push(`${item.name} usage for ${variant.name} does not mention that id`)
+    }
+    const quoted = source.includes(`'${variant.name}'`) || source.includes(`"${variant.name}"`)
+    const key = new RegExp(`(?:^|\\n)\\s*${variant.name}\\s*:`).test(source)
+    if (!quoted && !key) {
+      errors.push(`${item.name} source is missing variant '${variant.name}'`)
+    }
+  }
+}
+
 if (errors.length > 0) {
   console.error(errors.join('\n'))
   process.exit(1)

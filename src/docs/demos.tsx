@@ -116,7 +116,7 @@ export function DraggableCardDemo() {
           bounds={stageRef}
           handle
           snapBack={snapBack}
-          variant="elevated"
+          variant="window"
           glowColor="rgba(255, 106, 61, 0.5)"
           aria-label="Card with a drag handle"
           className="absolute right-4 bottom-4 max-w-[calc(100%-2rem)]"
@@ -136,8 +136,8 @@ export function DraggableCardDemo() {
 export function SpotlightCardDemo() {
   const cards = [
     { title: 'Iris', copy: 'A cool wash that follows the pointer across the glass.', color: 'rgba(139, 124, 255, 0.55)', variant: 'glass' as const },
-    { title: 'Flare', copy: 'Swap the color prop and the same card feels like another material.', color: 'rgba(255, 106, 61, 0.5)', variant: 'solid' as const },
-    { title: 'Tide', copy: 'Outline keeps the surface quiet until the light arrives.', color: 'rgba(61, 222, 196, 0.45)', variant: 'outline' as const },
+    { title: 'Flare', copy: 'Swap the color prop and the same card feels like another material.', color: 'rgba(255, 106, 61, 0.5)', variant: 'parallax' as const },
+    { title: 'Tide', copy: 'A clipped wash opens only where the pointer is.', color: 'rgba(61, 222, 196, 0.45)', variant: 'reveal' as const },
   ]
   return (
     <div className="grid gap-4 md:grid-cols-3">
@@ -161,9 +161,9 @@ export function ButtonDemo() {
       <div className="flex flex-wrap items-center gap-3">
         <Button radius={radius}>Solid</Button>
         <Button radius={radius} variant="outline">Outline</Button>
-        <Button radius={radius} variant="ghost">Ghost</Button>
-        <Button radius={radius} variant="gradient" rightIcon={<ArrowIcon />}>
-          Gradient
+        <Button radius={radius} variant="swap">Swap</Button>
+        <Button radius={radius} variant="flood" rightIcon={<ArrowIcon />}>
+          Flood
         </Button>
         <Button radius={radius} variant="shimmer">
           Shimmer
@@ -190,7 +190,7 @@ export function ButtonDemo() {
 export function MagneticButtonDemo() {
   return (
     <div className="flex flex-wrap items-center justify-center gap-8 py-8">
-      <MagneticButton variant="gradient" strength={14} proximity={12}>
+      <MagneticButton variant="flood" strength={14} proximity={12}>
         Pull me closer
       </MagneticButton>
       <MagneticButton variant="outline" strength={10} proximity={12}>
@@ -366,7 +366,7 @@ export function ModalDemo() {
               <ModalClose className="inline-flex h-11 items-center rounded-full border border-white/15 px-4 text-sm hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]">
                 Cancel
               </ModalClose>
-              <Button type="submit" variant="gradient">
+              <Button type="submit" variant="flood">
                 Save
               </Button>
             </div>
@@ -398,7 +398,7 @@ export function HeroDemo() {
           description="A hero is a layout, not a locked illustration. Swap the title, the actions, and the media without rewriting the section."
           actions={
             <>
-              <Button variant="gradient" rightIcon={<ArrowIcon />}>
+              <Button variant="flood" rightIcon={<ArrowIcon />}>
                 Browse the registry
               </Button>
               <Button variant="outline" href="#draggable-card">

@@ -8,176 +8,1498 @@
       "type": "registry:lib",
       "title": "cn and motion helpers",
       "description": "Class merging, reduced-motion detection, and one-time keyframe injection used by every Nexara component.",
-      "categories": ["Utilities"],
-      "dependencies": ["clsx", "tailwind-merge"],
+      "categories": [
+        "Utilities"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "registryDependencies": [],
-      "files": [{ "path": "src/lib/utils.ts", "type": "registry:lib" }],
+      "files": [
+        {
+          "path": "src/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
       "usage": "import { cn, usePrefersReducedMotion } from '@/lib/utils'"
     },
     {
       "name": "draggable-card",
       "type": "registry:ui",
       "title": "Draggable Card",
-      "description": "A movable card with spring tilt, optional snap-back, a drag handle, and keyboard nudging. Also called a draggable or movable card.",
-      "categories": ["Cards"],
-      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "src/components/ui/draggable-card.tsx", "type": "registry:ui" }],
-      "usage": "import { DraggableCard } from '@/components/ui/draggable-card'\n\n<DraggableCard bounds={stageRef} variant=\"elevated\" snapBack={false}>\n  Drag me\n</DraggableCard>"
+      "description": "A movable card with spring tilt, optional snap-back, a drag handle, and keyboard nudging. Also called a draggable or movable card. Variants: glass, solid, outline, elevated, ticket, polaroid, dossier, neon-slab, folded, receipt, stack, comic.",
+      "categories": [
+        "Cards"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/draggable-card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { DraggableCard } from '@/components/ui/draggable-card'\n\n<DraggableCard bounds={stageRef} variant=\"elevated\" snapBack={false}>\n  Drag me\n</DraggableCard>",
+      "variants": [
+        {
+          "name": "glass",
+          "title": "Glass",
+          "description": "Frosted panel that stays readable over a busy stage.",
+          "usage": "<DraggableCard variant=\"glass\" bounds={stageRef}>Drag</DraggableCard>"
+        },
+        {
+          "name": "film",
+          "title": "Film",
+          "description": "Sprocket holes down both edges, like a film frame.",
+          "usage": "<DraggableCard variant=\"film\" bounds={stageRef}>Frame</DraggableCard>"
+        },
+        {
+          "name": "sticker",
+          "title": "Sticker",
+          "description": "Paper card tilted under a strip of tape.",
+          "usage": "<DraggableCard variant=\"sticker\" bounds={stageRef}>Peel</DraggableCard>"
+        },
+        {
+          "name": "window",
+          "title": "Window",
+          "description": "Drag only from the title bar.",
+          "usage": "<DraggableCard variant=\"window\" bounds={stageRef}>Window</DraggableCard>"
+        },
+        {
+          "name": "ticket",
+          "title": "Ticket",
+          "description": "Dashed perforation down the leading edge.",
+          "usage": "<DraggableCard variant=\"ticket\" bounds={stageRef}>Admit</DraggableCard>"
+        },
+        {
+          "name": "polaroid",
+          "title": "Polaroid",
+          "description": "Paper print with a thick caption band.",
+          "usage": "<DraggableCard variant=\"polaroid\" bounds={stageRef}>Print</DraggableCard>"
+        },
+        {
+          "name": "dossier",
+          "title": "Dossier",
+          "description": "Ruled file card with a corner stamp.",
+          "usage": "<DraggableCard variant=\"dossier\" bounds={stageRef}>File</DraggableCard>"
+        },
+        {
+          "name": "snap-grid",
+          "title": "Snap grid",
+          "description": "On release, the card springs to a 24px grid.",
+          "usage": "<DraggableCard variant=\"snap-grid\" bounds={stageRef}>Snap</DraggableCard>"
+        },
+        {
+          "name": "carbon",
+          "title": "Carbon",
+          "description": "A dashed copy lags behind the card you drag.",
+          "usage": "<DraggableCard variant=\"carbon\" bounds={stageRef}>Copy</DraggableCard>"
+        },
+        {
+          "name": "receipt",
+          "title": "Receipt",
+          "description": "Monospace slip with a torn bottom edge.",
+          "usage": "<DraggableCard variant=\"receipt\" bounds={stageRef}>Slip</DraggableCard>"
+        },
+        {
+          "name": "stack",
+          "title": "Stack",
+          "description": "Offset sheets sit behind the card you drag.",
+          "usage": "<DraggableCard variant=\"stack\" bounds={stageRef}>Pile</DraggableCard>"
+        },
+        {
+          "name": "comic",
+          "title": "Comic",
+          "description": "Ink border, halftone, and a hard flare shadow.",
+          "usage": "<DraggableCard variant=\"comic\" bounds={stageRef}>Panel</DraggableCard>"
+        }
+      ]
     },
     {
       "name": "spotlight-card",
       "type": "registry:ui",
       "title": "Spotlight Card",
-      "description": "A card whose highlight and hairline follow the pointer.",
-      "categories": ["Cards"],
-      "dependencies": ["clsx", "tailwind-merge"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "src/components/ui/spotlight-card.tsx", "type": "registry:ui" }],
-      "usage": "import { SpotlightCard } from '@/components/ui/spotlight-card'\n\n<SpotlightCard className=\"p-6\" spotlightColor=\"rgba(255, 106, 61, 0.45)\">\n  Follow the light\n</SpotlightCard>"
+      "description": "A card whose highlight and hairline follow the pointer. Variants: glass, solid, outline, ink, border-beam, tilt, glare, lens, aurora-rim, inset, holographic, noise.",
+      "categories": [
+        "Cards"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/spotlight-card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { SpotlightCard } from '@/components/ui/spotlight-card'\n\n<SpotlightCard className=\"p-6\" spotlightColor=\"rgba(255, 106, 61, 0.45)\">\n  Follow the light\n</SpotlightCard>",
+      "variants": [
+        {
+          "name": "glass",
+          "title": "Glass",
+          "description": "Frosted card with a pointer-following wash.",
+          "usage": "<SpotlightCard variant=\"glass\">Iris</SpotlightCard>"
+        },
+        {
+          "name": "parallax",
+          "title": "Parallax",
+          "description": "Two orbs drift at different rates from the pointer.",
+          "usage": "<SpotlightCard variant=\"parallax\">Depth</SpotlightCard>"
+        },
+        {
+          "name": "reveal",
+          "title": "Reveal",
+          "description": "A colored disc is clipped to the pointer.",
+          "usage": "<SpotlightCard variant=\"reveal\">Reveal</SpotlightCard>"
+        },
+        {
+          "name": "comet",
+          "title": "Comet",
+          "description": "A gold orb tracks the pointer, with a colored rim.",
+          "usage": "<SpotlightCard variant=\"comet\">Comet</SpotlightCard>"
+        },
+        {
+          "name": "border-beam",
+          "title": "Border beam",
+          "description": "A light travels the perimeter while the pointer glows inside.",
+          "usage": "<SpotlightCard variant=\"border-beam\">Beam</SpotlightCard>"
+        },
+        {
+          "name": "tilt",
+          "title": "Tilt",
+          "description": "The face leans in 3D inside a perspective frame.",
+          "usage": "<SpotlightCard variant=\"tilt\">Tilt</SpotlightCard>"
+        },
+        {
+          "name": "glare",
+          "title": "Glare",
+          "description": "A diagonal sheen slides across the face.",
+          "usage": "<SpotlightCard variant=\"glare\">Glare</SpotlightCard>"
+        },
+        {
+          "name": "fisheye",
+          "title": "Fisheye",
+          "description": "The content scales up under a tight pointer pool.",
+          "usage": "<SpotlightCard variant=\"fisheye\">Lens</SpotlightCard>"
+        },
+        {
+          "name": "magnifier",
+          "title": "Magnifier",
+          "description": "A blurred disc follows the pointer.",
+          "usage": "<SpotlightCard variant=\"magnifier\">Glass</SpotlightCard>"
+        },
+        {
+          "name": "ripple",
+          "title": "Ripple",
+          "description": "A ring sits on the pointer.",
+          "usage": "<SpotlightCard variant=\"ripple\">Ring</SpotlightCard>"
+        },
+        {
+          "name": "holographic",
+          "title": "Holographic",
+          "description": "An iridescent cone turns with the pointer.",
+          "usage": "<SpotlightCard variant=\"holographic\">Holo</SpotlightCard>"
+        },
+        {
+          "name": "scan",
+          "title": "Scan",
+          "description": "A gold scan line locks to the pointer height.",
+          "usage": "<SpotlightCard variant=\"scan\">Scan</SpotlightCard>"
+        }
+      ]
     },
     {
       "name": "flip-card",
       "type": "registry:ui",
       "title": "Flip Card",
-      "description": "A two-sided card that turns on hover or click.",
-      "categories": ["Cards"],
-      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "src/components/ui/flip-card.tsx", "type": "registry:ui" }],
-      "usage": "import { FlipCard } from '@/components/ui/flip-card'\n\n<FlipCard flipOn=\"hover\" front={<p>Front</p>} back={<p>Back</p>} />"
+      "description": "A two-sided card that turns on hover or click. Variants: yaw, pitch, hinge-left, hinge-top, fade, slide, rise, zoom, peel, cube, shutter, tilt.",
+      "categories": [
+        "Cards"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/flip-card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { FlipCard } from '@/components/ui/flip-card'\n\n<FlipCard flipOn=\"hover\" front={<p>Front</p>} back={<p>Back</p>} />",
+      "variants": [
+        {
+          "name": "yaw",
+          "title": "Yaw",
+          "description": "Classic horizontal turn.",
+          "usage": "<FlipCard variant=\"yaw\" front={<p>Front</p>} back={<p>Back</p>} />"
+        },
+        {
+          "name": "pitch",
+          "title": "Pitch",
+          "description": "Turns over the top edge.",
+          "usage": "<FlipCard variant=\"pitch\" front={<p>Front</p>} back={<p>Back</p>} />"
+        },
+        {
+          "name": "hinge-left",
+          "title": "Hinge left",
+          "description": "Opens like a book from the left edge.",
+          "usage": "<FlipCard variant=\"hinge-left\" front={<p>Front</p>} back={<p>Back</p>} />"
+        },
+        {
+          "name": "shuffle",
+          "title": "Shuffle",
+          "description": "The faces slide past each other with a slight turn.",
+          "usage": "<FlipCard variant=\"shuffle\" front={<p>Front</p>} back={<p>Back</p>} />"
+        },
+        {
+          "name": "fade",
+          "title": "Fade",
+          "description": "Crossfades. The hidden face cannot take clicks.",
+          "usage": "<FlipCard variant=\"fade\" front={<p>Front</p>} back={<p>Back</p>} />"
+        },
+        {
+          "name": "slide",
+          "title": "Slide",
+          "description": "The front slides off to the side.",
+          "usage": "<FlipCard variant=\"slide\" front={<p>Front</p>} back={<p>Back</p>} />"
+        },
+        {
+          "name": "split",
+          "title": "Split",
+          "description": "The faces part on both axes.",
+          "usage": "<FlipCard variant=\"split\" front={<p>Front</p>} back={<p>Back</p>} />"
+        },
+        {
+          "name": "iris",
+          "title": "Iris",
+          "description": "A circular wipe opens the back.",
+          "usage": "<FlipCard variant=\"iris\" front={<p>Front</p>} back={<p>Back</p>} />"
+        },
+        {
+          "name": "peel",
+          "title": "Peel",
+          "description": "The front peels from the top-right corner.",
+          "usage": "<FlipCard variant=\"peel\" front={<p>Front</p>} back={<p>Back</p>} />"
+        },
+        {
+          "name": "box",
+          "title": "Box",
+          "description": "Front and back sit on a shallow box with a side wall.",
+          "usage": "<FlipCard variant=\"box\" front={<p>Front</p>} back={<p>Back</p>} />"
+        },
+        {
+          "name": "shutter",
+          "title": "Shutter",
+          "description": "A vertical wipe reveals the back.",
+          "usage": "<FlipCard variant=\"shutter\" front={<p>Front</p>} back={<p>Back</p>} />"
+        },
+        {
+          "name": "fold",
+          "title": "Fold",
+          "description": "The front folds down from its bottom edge.",
+          "usage": "<FlipCard variant=\"fold\" front={<p>Front</p>} back={<p>Back</p>} />"
+        }
+      ]
     },
     {
       "name": "bento-grid",
       "type": "registry:ui",
       "title": "Bento Grid",
-      "description": "A responsive mosaic of spotlight tiles.",
-      "categories": ["Cards"],
-      "dependencies": ["clsx", "tailwind-merge"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "src/components/ui/bento-grid.tsx", "type": "registry:ui" }],
-      "usage": "import { BentoGrid, BentoItem } from '@/components/ui/bento-grid'\n\n<BentoGrid columns={3}>\n  <BentoItem colSpan={2} title=\"Wide\" description=\"Two columns.\" />\n</BentoGrid>"
+      "description": "A responsive mosaic of spotlight tiles. Variants: spotlight, glass, outline, editorial, terminal, ticket, poster, metric, neon, inset, soft, brutal.",
+      "categories": [
+        "Cards"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/bento-grid.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { BentoGrid, BentoItem } from '@/components/ui/bento-grid'\n\n<BentoGrid columns={3}>\n  <BentoItem colSpan={2} title=\"Wide\" description=\"Two columns.\" />\n</BentoGrid>",
+      "variants": [
+        {
+          "name": "spotlight",
+          "title": "Spotlight",
+          "description": "Pointer wash on a dark tile.",
+          "usage": "<BentoItem variant=\"spotlight\" title=\"Wide\" description=\"Two columns.\" />"
+        },
+        {
+          "name": "chart",
+          "title": "Chart",
+          "description": "Title plus a sparkline.",
+          "usage": "<BentoItem variant=\"chart\" title=\"Uptime\" description=\"Last hour.\" />"
+        },
+        {
+          "name": "quote",
+          "title": "Quote",
+          "description": "A hanging quote and an attribution.",
+          "usage": "<BentoItem variant=\"quote\" title=\"Stay in the room.\" description=\"Atlas\" />"
+        },
+        {
+          "name": "editorial",
+          "title": "Editorial",
+          "description": "Open tile closed by a baseline rule.",
+          "usage": "<BentoItem variant=\"editorial\" title=\"Essay\" description=\"No chrome.\" />"
+        },
+        {
+          "name": "terminal",
+          "title": "Terminal",
+          "description": "A prompt line and monospace output.",
+          "usage": "<BentoItem variant=\"terminal\" title=\"status\" description=\"ok\" />"
+        },
+        {
+          "name": "schedule",
+          "title": "Schedule",
+          "description": "A time gutter beside the title.",
+          "usage": "<BentoItem variant=\"schedule\" title=\"Standup\" description=\"Room 4.\" />"
+        },
+        {
+          "name": "poster",
+          "title": "Poster",
+          "description": "Dark field, paper type, and a bottom scrim.",
+          "usage": "<BentoItem variant=\"poster\" title=\"Live\" description=\"Tonight.\" />"
+        },
+        {
+          "name": "stat",
+          "title": "Stat",
+          "description": "The title is the figure.",
+          "usage": "<BentoItem variant=\"stat\" title=\"128\" description=\"Active rooms.\" />"
+        },
+        {
+          "name": "status",
+          "title": "Status",
+          "description": "A pulsing dot marks a live state.",
+          "usage": "<BentoItem variant=\"status\" title=\"Signal\" description=\"On.\" />"
+        },
+        {
+          "name": "compare",
+          "title": "Compare",
+          "description": "Before and after sit in two cells.",
+          "usage": "<BentoItem variant=\"compare\" title=\"Draft\" description=\"Shipped.\" />"
+        },
+        {
+          "name": "media",
+          "title": "Media",
+          "description": "Children fill the tile. The title sits on a scrim.",
+          "usage": "<BentoItem variant=\"media\" title=\"Reel\" description=\"Play.\" />"
+        },
+        {
+          "name": "brutal",
+          "title": "Brutal",
+          "description": "Offset paper shadow and a square icon chip.",
+          "usage": "<BentoItem variant=\"brutal\" title=\"Hard\" description=\"Stamp.\" />"
+        }
+      ]
     },
     {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Solid, outline, ghost, gradient, and shimmer buttons with loading and link modes.",
-      "categories": ["Buttons"],
-      "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "src/components/ui/button.tsx", "type": "registry:ui" }],
-      "usage": "import { Button } from '@/components/ui/button'\n\n<Button variant=\"gradient\" size=\"lg\">Continue</Button>"
+      "description": "Solid, outline, ghost, gradient, and shimmer buttons with loading and link modes. Variants: solid, outline, ghost, gradient, shimmer, neon-glow, metal, brutal, underline, liquid, spotlight, border-beam, split, hold.",
+      "categories": [
+        "Buttons"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { Button } from '@/components/ui/button'\n\n<Button variant=\"gradient\" size=\"lg\">Continue</Button>",
+      "variants": [
+        {
+          "name": "solid",
+          "title": "Solid",
+          "description": "Paper fill that presses in slightly.",
+          "usage": "<Button variant=\"solid\">Continue</Button>"
+        },
+        {
+          "name": "outline",
+          "title": "Outline",
+          "description": "Hairline that fills on hover.",
+          "usage": "<Button variant=\"outline\">Continue</Button>"
+        },
+        {
+          "name": "swap",
+          "title": "Swap",
+          "description": "The label leaves and a second word enters.",
+          "usage": "<Button variant=\"swap\" swapLabel=\"Ready\">Continue</Button>"
+        },
+        {
+          "name": "flood",
+          "title": "Flood",
+          "description": "A paper disc grows from the pointer and inverts the label.",
+          "usage": "<Button variant=\"flood\">Continue</Button>"
+        },
+        {
+          "name": "shimmer",
+          "title": "Shimmer",
+          "description": "Dark control with a hover sweep.",
+          "usage": "<Button variant=\"shimmer\">Continue</Button>"
+        },
+        {
+          "name": "neon-glow",
+          "title": "Neon glow",
+          "description": "Iris bloom plus a bright segment that sits on the nearest border point.",
+          "usage": "<Button variant=\"neon-glow\">Continue</Button>"
+        },
+        {
+          "name": "metal",
+          "title": "Metal",
+          "description": "Brushed face, inset highlight, sheen on hover.",
+          "usage": "<Button variant=\"metal\">Continue</Button>"
+        },
+        {
+          "name": "brutal",
+          "title": "Brutal",
+          "description": "Hard offset shadow that collapses on press.",
+          "usage": "<Button variant=\"brutal\">Continue</Button>"
+        },
+        {
+          "name": "underline",
+          "title": "Underline",
+          "description": "Text link whose rule draws in.",
+          "usage": "<Button variant=\"underline\">Continue</Button>"
+        },
+        {
+          "name": "liquid",
+          "title": "Liquid",
+          "description": "A tide fill pours up from the bottom edge on hover and focus.",
+          "usage": "<Button variant=\"liquid\">Continue</Button>"
+        },
+        {
+          "name": "spotlight",
+          "title": "Spotlight",
+          "description": "A gold pool follows the pointer, including keyboard focus.",
+          "usage": "<Button variant=\"spotlight\">Continue</Button>"
+        },
+        {
+          "name": "border-beam",
+          "title": "Border beam",
+          "description": "A light runs around the perimeter.",
+          "usage": "<Button variant=\"border-beam\">Continue</Button>"
+        },
+        {
+          "name": "split",
+          "title": "Split",
+          "description": "A flare well holds the icon apart from the label.",
+          "usage": "<Button variant=\"split\">Continue</Button>"
+        },
+        {
+          "name": "hold",
+          "title": "Hold",
+          "description": "Press and hold until the bar completes, then the click fires.",
+          "usage": "<Button variant=\"hold\">Confirm</Button>"
+        }
+      ]
     },
     {
       "name": "magnetic-button",
       "type": "registry:ui",
       "title": "Magnetic Button",
-      "description": "A button that leans toward a fine pointer.",
-      "categories": ["Buttons"],
-      "dependencies": ["framer-motion", "class-variance-authority", "clsx", "tailwind-merge"],
-      "registryDependencies": ["utils", "button"],
-      "files": [{ "path": "src/components/ui/magnetic-button.tsx", "type": "registry:ui" }],
-      "usage": "import { MagneticButton } from '@/components/ui/magnetic-button'\n\n<MagneticButton variant=\"outline\" strength={20}>Come closer</MagneticButton>"
+      "description": "A button that leans toward a fine pointer. Variants: attract, tilt, repel, stretch, lag, snap, orbit, lift, glow, wobble, chase, press.",
+      "categories": [
+        "Buttons"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/magnetic-button.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { MagneticButton } from '@/components/ui/magnetic-button'\n\n<MagneticButton variant=\"outline\" strength={20}>Come closer</MagneticButton>",
+      "variants": [
+        {
+          "name": "attract",
+          "title": "Attract",
+          "description": "Pulls toward the pointer.",
+          "usage": "<MagneticButton magnet=\"attract\">Come closer</MagneticButton>"
+        },
+        {
+          "name": "tilt",
+          "title": "Tilt",
+          "description": "Rotates toward the pointer with little travel.",
+          "usage": "<MagneticButton magnet=\"tilt\">Lean</MagneticButton>"
+        },
+        {
+          "name": "repel",
+          "title": "Repel",
+          "description": "Moves away from the pointer.",
+          "usage": "<MagneticButton magnet=\"repel\">Back</MagneticButton>"
+        },
+        {
+          "name": "stretch",
+          "title": "Stretch",
+          "description": "Scales along the pointer axis.",
+          "usage": "<MagneticButton magnet=\"stretch\">Stretch</MagneticButton>"
+        },
+        {
+          "name": "sling",
+          "title": "Sling",
+          "description": "On leave, the control flings with the exit velocity.",
+          "usage": "<MagneticButton magnet=\"sling\">Fling</MagneticButton>"
+        },
+        {
+          "name": "snap",
+          "title": "Snap",
+          "description": "Stays put, then jumps once the pointer is close.",
+          "usage": "<MagneticButton magnet=\"snap\">Snap</MagneticButton>"
+        },
+        {
+          "name": "orbit",
+          "title": "Orbit",
+          "description": "Circles the resting point around the pointer angle.",
+          "usage": "<MagneticButton magnet=\"orbit\">Orbit</MagneticButton>"
+        },
+        {
+          "name": "lift",
+          "title": "Lift",
+          "description": "Rises as the pointer approaches.",
+          "usage": "<MagneticButton magnet=\"lift\">Lift</MagneticButton>"
+        },
+        {
+          "name": "glow",
+          "title": "Glow",
+          "description": "Proximity drives a bloom more than motion.",
+          "usage": "<MagneticButton magnet=\"glow\">Glow</MagneticButton>"
+        },
+        {
+          "name": "wobble",
+          "title": "Wobble",
+          "description": "Loose spring that overshoots.",
+          "usage": "<MagneticButton magnet=\"wobble\">Wobble</MagneticButton>"
+        },
+        {
+          "name": "peel",
+          "title": "Peel",
+          "description": "The shell stays. The label shears toward the pointer.",
+          "usage": "<MagneticButton magnet=\"peel\">Peel</MagneticButton>"
+        },
+        {
+          "name": "press",
+          "title": "Press",
+          "description": "Squashes as the pointer enters the field.",
+          "usage": "<MagneticButton magnet=\"press\">Press</MagneticButton>"
+        }
+      ]
     },
     {
       "name": "aurora-background",
       "type": "registry:ui",
       "title": "Aurora Background",
-      "description": "Drifting color fields with optional film grain.",
-      "categories": ["Backgrounds"],
-      "dependencies": ["clsx", "tailwind-merge"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "src/components/ui/aurora-background.tsx", "type": "registry:ui" }],
-      "usage": "import { AuroraBackground } from '@/components/ui/aurora-background'\n\n<AuroraBackground className=\"min-h-80 rounded-3xl\">{children}</AuroraBackground>"
+      "description": "Drifting color fields with optional film grain. Variants: drift, beams, mesh, stars, waves, silk, vortex, meteors, fog, spotlight, horizon, pulse.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/aurora-background.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { AuroraBackground } from '@/components/ui/aurora-background'\n\n<AuroraBackground className=\"min-h-80 rounded-3xl\">{children}</AuroraBackground>",
+      "variants": [
+        {
+          "name": "drift",
+          "title": "Drift",
+          "description": "Soft color fields that wander.",
+          "usage": "<AuroraBackground variant=\"drift\" className=\"min-h-64\" />"
+        },
+        {
+          "name": "beams",
+          "title": "Beams",
+          "description": "Diagonal shafts of color.",
+          "usage": "<AuroraBackground variant=\"beams\" className=\"min-h-64\" />"
+        },
+        {
+          "name": "stars",
+          "title": "Stars",
+          "description": "Twinkling points tinted by the palette.",
+          "usage": "<AuroraBackground variant=\"stars\" className=\"min-h-64\" />"
+        },
+        {
+          "name": "waves",
+          "title": "Waves",
+          "description": "Banded gradient that pans.",
+          "usage": "<AuroraBackground variant=\"waves\" className=\"min-h-64\" />"
+        },
+        {
+          "name": "ripple",
+          "title": "Ripple",
+          "description": "Rings expand from the center.",
+          "usage": "<AuroraBackground variant=\"ripple\" className=\"min-h-64\" />"
+        },
+        {
+          "name": "vortex",
+          "title": "Vortex",
+          "description": "A spinning conic field.",
+          "usage": "<AuroraBackground variant=\"vortex\" className=\"min-h-64\" />"
+        },
+        {
+          "name": "meteors",
+          "title": "Meteors",
+          "description": "Streaks fall across the frame.",
+          "usage": "<AuroraBackground variant=\"meteors\" className=\"min-h-64\" />"
+        },
+        {
+          "name": "embers",
+          "title": "Embers",
+          "description": "Palette sparks rise from the bottom.",
+          "usage": "<AuroraBackground variant=\"embers\" className=\"min-h-64\" />"
+        },
+        {
+          "name": "spotlight",
+          "title": "Spotlight",
+          "description": "A single pool that travels.",
+          "usage": "<AuroraBackground variant=\"spotlight\" className=\"min-h-64\" />"
+        },
+        {
+          "name": "horizon",
+          "title": "Horizon",
+          "description": "Glow seated on the bottom edge.",
+          "usage": "<AuroraBackground variant=\"horizon\" className=\"min-h-64\" />"
+        },
+        {
+          "name": "ribbons",
+          "title": "Ribbons",
+          "description": "Three thick bands drift across the frame.",
+          "usage": "<AuroraBackground variant=\"ribbons\" className=\"min-h-64\" />"
+        },
+        {
+          "name": "scan",
+          "title": "Scan",
+          "description": "A bright bar sweeps from top to bottom.",
+          "usage": "<AuroraBackground variant=\"scan\" className=\"min-h-64\" />"
+        }
+      ]
     },
     {
       "name": "grid-background",
       "type": "registry:ui",
       "title": "Grid Background",
-      "description": "A dotted or ruled surface with an optional pointer-following fade.",
-      "categories": ["Backgrounds"],
-      "dependencies": ["clsx", "tailwind-merge"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "src/components/ui/grid-background.tsx", "type": "registry:ui" }],
-      "usage": "import { GridBackground } from '@/components/ui/grid-background'\n\n<GridBackground variant=\"dots\" fade interactive className=\"min-h-64\">{children}</GridBackground>"
+      "description": "A dotted or ruled surface with an optional pointer-following fade. Variants: grid, dots, cross, plus, dashed, diagonal, isometric, blueprint, hex, graph, rings, scatter.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/grid-background.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { GridBackground } from '@/components/ui/grid-background'\n\n<GridBackground variant=\"dots\" fade interactive className=\"min-h-64\">{children}</GridBackground>",
+      "variants": [
+        {
+          "name": "grid",
+          "title": "Grid",
+          "description": "Even ruled cells.",
+          "usage": "<GridBackground variant=\"grid\" className=\"min-h-48\" />"
+        },
+        {
+          "name": "dots",
+          "title": "Dots",
+          "description": "A dot at each cell.",
+          "usage": "<GridBackground variant=\"dots\" className=\"min-h-48\" />"
+        },
+        {
+          "name": "brick",
+          "title": "Brick",
+          "description": "Running-bond rectangles.",
+          "usage": "<GridBackground variant=\"brick\" className=\"min-h-48\" />"
+        },
+        {
+          "name": "plus",
+          "title": "Plus",
+          "description": "Short plus marks, not full rules.",
+          "usage": "<GridBackground variant=\"plus\" className=\"min-h-48\" />"
+        },
+        {
+          "name": "hatch",
+          "title": "Hatch",
+          "description": "Both diagonals, like a hatch fill.",
+          "usage": "<GridBackground variant=\"hatch\" className=\"min-h-48\" />"
+        },
+        {
+          "name": "diagonal",
+          "title": "Diagonal",
+          "description": "45-degree stripes.",
+          "usage": "<GridBackground variant=\"diagonal\" className=\"min-h-48\" />"
+        },
+        {
+          "name": "isometric",
+          "title": "Isometric",
+          "description": "A diamond lattice that tiles edge to edge.",
+          "usage": "<GridBackground variant=\"isometric\" className=\"min-h-48\" />"
+        },
+        {
+          "name": "circuit",
+          "title": "Circuit",
+          "description": "Traces and a pad in every cell.",
+          "usage": "<GridBackground variant=\"circuit\" className=\"min-h-48\" />"
+        },
+        {
+          "name": "hex",
+          "title": "Hex",
+          "description": "A honeycomb of pointy hexes.",
+          "usage": "<GridBackground variant=\"hex\" className=\"min-h-48\" />"
+        },
+        {
+          "name": "topography",
+          "title": "Topography",
+          "description": "One contour curve per tile.",
+          "usage": "<GridBackground variant=\"topography\" className=\"min-h-48\" />"
+        },
+        {
+          "name": "rings",
+          "title": "Rings",
+          "description": "Concentric circles from the center.",
+          "usage": "<GridBackground variant=\"rings\" className=\"min-h-48\" />"
+        },
+        {
+          "name": "scatter",
+          "title": "Scatter",
+          "description": "An uneven star field tile.",
+          "usage": "<GridBackground variant=\"scatter\" className=\"min-h-48\" />"
+        }
+      ]
     },
     {
       "name": "gradient-text",
       "type": "registry:ui",
       "title": "Gradient Text",
-      "description": "Lettering clipped to an optional animated gradient.",
-      "categories": ["Text"],
-      "dependencies": ["clsx", "tailwind-merge"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "src/components/ui/gradient-text.tsx", "type": "registry:ui" }],
-      "usage": "import { GradientText } from '@/components/ui/gradient-text'\n\n<GradientText>Night, gold, and iris.</GradientText>"
+      "description": "Lettering clipped to an optional animated gradient. Variants: sweep, static, shimmer, stroke, marker, neon, glitch, wave, clip, kinetic, underline, aurora.",
+      "categories": [
+        "Text"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/gradient-text.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { GradientText } from '@/components/ui/gradient-text'\n\n<GradientText>Night, gold, and iris.</GradientText>",
+      "variants": [
+        {
+          "name": "sweep",
+          "title": "Sweep",
+          "description": "Gradient pans across the glyphs.",
+          "usage": "<GradientText variant=\"sweep\">Night</GradientText>"
+        },
+        {
+          "name": "flicker",
+          "title": "Flicker",
+          "description": "The fill steps in and out of view.",
+          "usage": "<GradientText variant=\"flicker\">Night</GradientText>"
+        },
+        {
+          "name": "shimmer",
+          "title": "Shimmer",
+          "description": "A bright band runs through the word.",
+          "usage": "<GradientText variant=\"shimmer\">Night</GradientText>"
+        },
+        {
+          "name": "stroke",
+          "title": "Stroke",
+          "description": "Outline only, no fill.",
+          "usage": "<GradientText variant=\"stroke\">Night</GradientText>"
+        },
+        {
+          "name": "marker",
+          "title": "Marker",
+          "description": "A highlighter sits under the words.",
+          "usage": "<GradientText variant=\"marker\">Night</GradientText>"
+        },
+        {
+          "name": "spark",
+          "title": "Spark",
+          "description": "A white band sparks across the word.",
+          "usage": "<GradientText variant=\"spark\">Night</GradientText>"
+        },
+        {
+          "name": "glitch",
+          "title": "Glitch",
+          "description": "Offset color copies jitter behind the word.",
+          "usage": "<GradientText variant=\"glitch\">Night</GradientText>"
+        },
+        {
+          "name": "wave",
+          "title": "Wave",
+          "description": "Letters bob on a delay when the children are a string.",
+          "usage": "<GradientText variant=\"wave\">Night</GradientText>"
+        },
+        {
+          "name": "clip",
+          "title": "Clip",
+          "description": "Hard color blocks, no soft blend.",
+          "usage": "<GradientText variant=\"clip\">Night</GradientText>"
+        },
+        {
+          "name": "kinetic",
+          "title": "Kinetic",
+          "description": "Tracking breathes in and out.",
+          "usage": "<GradientText variant=\"kinetic\">Night</GradientText>"
+        },
+        {
+          "name": "underline",
+          "title": "Underline",
+          "description": "Solid type with a moving gradient rule.",
+          "usage": "<GradientText variant=\"underline\">Night</GradientText>"
+        },
+        {
+          "name": "flip",
+          "title": "Flip",
+          "description": "Each letter flips on X when the children are a string.",
+          "usage": "<GradientText variant=\"flip\">Night</GradientText>"
+        }
+      ]
     },
     {
       "name": "typewriter",
       "type": "registry:ui",
       "title": "Typewriter",
-      "description": "Types and deletes a list of phrases.",
-      "categories": ["Text"],
-      "dependencies": ["clsx", "tailwind-merge"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "src/components/ui/typewriter.tsx", "type": "registry:ui" }],
-      "usage": "import { Typewriter } from '@/components/ui/typewriter'\n\n<Typewriter phrases={['cards.', 'heroes.', 'tools.']} />"
+      "description": "Types and deletes a list of phrases. Variants: caret, block, underscore, scramble, fade, word, terminal, highlight, blur, instant, ghost, stream.",
+      "categories": [
+        "Text"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/typewriter.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { Typewriter } from '@/components/ui/typewriter'\n\n<Typewriter phrases={['cards.', 'heroes.', 'tools.']} />",
+      "variants": [
+        {
+          "name": "caret",
+          "title": "Caret",
+          "description": "Types and deletes with a thin caret.",
+          "usage": "<Typewriter variant=\"caret\" phrases={['cards.', 'heroes.']} />"
+        },
+        {
+          "name": "reverse",
+          "title": "Reverse",
+          "description": "Types from the end of the phrase.",
+          "usage": "<Typewriter variant=\"reverse\" phrases={['cards.', 'heroes.']} />"
+        },
+        {
+          "name": "slot",
+          "title": "Slot",
+          "description": "Each column locks like a split flap.",
+          "usage": "<Typewriter variant=\"slot\" phrases={['signal', 'atlas']} />"
+        },
+        {
+          "name": "scramble",
+          "title": "Scramble",
+          "description": "Random glyphs lock in from the left.",
+          "usage": "<Typewriter variant=\"scramble\" phrases={['signal', 'atlas']} />"
+        },
+        {
+          "name": "fade",
+          "title": "Fade",
+          "description": "Whole phrases crossfade. Nothing deletes.",
+          "usage": "<Typewriter variant=\"fade\" phrases={['soft', 'next']} />"
+        },
+        {
+          "name": "word",
+          "title": "Word",
+          "description": "Appears and deletes a word at a time.",
+          "usage": "<Typewriter variant=\"word\" phrases={['one quiet room']} />"
+        },
+        {
+          "name": "strike",
+          "title": "Strike",
+          "description": "Draws a line through the phrase, then deletes it.",
+          "usage": "<Typewriter variant=\"strike\" phrases={['old', 'new']} />"
+        },
+        {
+          "name": "overwrite",
+          "title": "Overwrite",
+          "description": "The next phrase replaces the current one in place.",
+          "usage": "<Typewriter variant=\"overwrite\" phrases={['first', 'second']} />"
+        },
+        {
+          "name": "blur",
+          "title": "Blur",
+          "description": "The newest letters stay soft.",
+          "usage": "<Typewriter variant=\"blur\" phrases={['focus', 'later']} />"
+        },
+        {
+          "name": "morph",
+          "title": "Morph",
+          "description": "The next phrase sits ghosted under the current one.",
+          "usage": "<Typewriter variant=\"morph\" phrases={['now', 'next']} />"
+        },
+        {
+          "name": "complete",
+          "title": "Complete",
+          "description": "The untyped remainder stays visible at low opacity.",
+          "usage": "<Typewriter variant=\"complete\" phrases={['finish the line']} />"
+        },
+        {
+          "name": "cut",
+          "title": "Cut",
+          "description": "Clears at once, then starts the next phrase.",
+          "usage": "<Typewriter variant=\"cut\" phrases={['one', 'two']} />"
+        }
+      ]
     },
     {
       "name": "text-reveal",
       "type": "registry:ui",
       "title": "Text Reveal",
-      "description": "Staggers words or characters into place when they enter the viewport.",
-      "categories": ["Text"],
-      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "src/components/ui/text-reveal.tsx", "type": "registry:ui" }],
-      "usage": "import { TextReveal } from '@/components/ui/text-reveal'\n\n<TextReveal as=\"h2\" text=\"Arrive one word at a time.\" />"
+      "description": "Staggers words or characters into place when they enter the viewport. Variants: rise, blur, clip, fade, scale, rotate, highlight, tracking, slide, wipe, pop, mask.",
+      "categories": [
+        "Text"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/text-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { TextReveal } from '@/components/ui/text-reveal'\n\n<TextReveal as=\"h2\" text=\"Arrive one word at a time.\" />",
+      "variants": [
+        {
+          "name": "rise",
+          "title": "Rise",
+          "description": "Units rise and brighten.",
+          "usage": "<TextReveal variant=\"rise\" text=\"Arrive in order.\" />"
+        },
+        {
+          "name": "blur",
+          "title": "Blur",
+          "description": "Units sharpen out of blur.",
+          "usage": "<TextReveal variant=\"blur\" text=\"Come into focus.\" />"
+        },
+        {
+          "name": "uncover",
+          "title": "Uncover",
+          "description": "Each unit rises from inside a clipped box.",
+          "usage": "<TextReveal variant=\"uncover\" text=\"Uncover the line.\" />"
+        },
+        {
+          "name": "fade",
+          "title": "Fade",
+          "description": "Opacity only.",
+          "usage": "<TextReveal variant=\"fade\" text=\"Simply appear.\" />"
+        },
+        {
+          "name": "skew",
+          "title": "Skew",
+          "description": "Units unskew into place.",
+          "usage": "<TextReveal variant=\"skew\" text=\"Straighten out.\" />"
+        },
+        {
+          "name": "rotate",
+          "title": "Rotate",
+          "description": "Units tip up in perspective.",
+          "usage": "<TextReveal variant=\"rotate\" text=\"Tip into view.\" />"
+        },
+        {
+          "name": "highlight",
+          "title": "Highlight",
+          "description": "A marker fills each unit.",
+          "usage": "<TextReveal variant=\"highlight\" text=\"Mark the words.\" />"
+        },
+        {
+          "name": "tracking",
+          "title": "Tracking",
+          "description": "Letter-spacing collapses to normal.",
+          "usage": "<TextReveal variant=\"tracking\" text=\"Pull together.\" />"
+        },
+        {
+          "name": "slide",
+          "title": "Slide",
+          "description": "Units enter from the right.",
+          "usage": "<TextReveal variant=\"slide\" text=\"Slide across.\" />"
+        },
+        {
+          "name": "wipe",
+          "title": "Wipe",
+          "description": "A mask opens from the right.",
+          "usage": "<TextReveal variant=\"wipe\" text=\"Wipe the line.\" />"
+        },
+        {
+          "name": "pop",
+          "title": "Pop",
+          "description": "Units spring up from a small scale.",
+          "usage": "<TextReveal variant=\"pop\" text=\"Pop in.\" />"
+        },
+        {
+          "name": "drop",
+          "title": "Drop",
+          "description": "Units drop in from above their box.",
+          "usage": "<TextReveal variant=\"drop\" text=\"Drop into place.\" />"
+        }
+      ]
     },
     {
       "name": "floating-navbar",
       "type": "registry:ui",
       "title": "Floating Navbar",
-      "description": "A pill navigation bar that compacts on scroll and collapses into a menu.",
-      "categories": ["Navigation"],
-      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "src/components/ui/floating-navbar.tsx", "type": "registry:ui" }],
-      "usage": "import { FloatingNavbar } from '@/components/ui/floating-navbar'\n\n<FloatingNavbar logo=\"Nexara\" items={[{ label: 'Work', href: '/work', active: true }]} />"
+      "description": "A pill navigation bar that compacts on scroll and collapses into a menu. Variants: floating, solid, transparent, underline, pills, dock, command, split, glass, brutal, tabs, rail.",
+      "categories": [
+        "Navigation"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/floating-navbar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { FloatingNavbar } from '@/components/ui/floating-navbar'\n\n<FloatingNavbar logo=\"Nexara\" items={[{ label: 'Work', href: '/work', active: true }]} />",
+      "variants": [
+        {
+          "name": "floating",
+          "title": "Floating",
+          "description": "Blurred pill that compacts on scroll.",
+          "usage": "<FloatingNavbar variant=\"floating\" items={items} logo=\"Nexara\" />"
+        },
+        {
+          "name": "underline",
+          "title": "Underline",
+          "description": "Current link is a gold rule.",
+          "usage": "<FloatingNavbar variant=\"underline\" items={items} logo=\"Nexara\" />"
+        },
+        {
+          "name": "bottom",
+          "title": "Bottom",
+          "description": "Full-width bar pinned to the bottom edge.",
+          "usage": "<FloatingNavbar variant=\"bottom\" items={items} logo=\"Nexara\" />"
+        },
+        {
+          "name": "dock",
+          "title": "Dock",
+          "description": "Bottom pill. Items magnify and stack a mark over the label.",
+          "usage": "<FloatingNavbar variant=\"dock\" items={items} logo=\"Nexara\" />"
+        },
+        {
+          "name": "command",
+          "title": "Command",
+          "description": "Links sit in a centered jump capsule.",
+          "usage": "<FloatingNavbar variant=\"command\" items={items} logo=\"Nexara\" />"
+        },
+        {
+          "name": "split",
+          "title": "Split",
+          "description": "Links centered between brand and actions.",
+          "usage": "<FloatingNavbar variant=\"split\" items={items} logo=\"Nexara\" />"
+        },
+        {
+          "name": "double",
+          "title": "Double",
+          "description": "Brand and actions on one row, links on the next.",
+          "usage": "<FloatingNavbar variant=\"double\" items={items} logo=\"Nexara\" />"
+        },
+        {
+          "name": "islands",
+          "title": "Islands",
+          "description": "Brand, links, and actions are three separate pills.",
+          "usage": "<FloatingNavbar variant=\"islands\" items={items} logo=\"Nexara\" />"
+        },
+        {
+          "name": "tabs",
+          "title": "Tabs",
+          "description": "Segmented control. The current tab inverts.",
+          "usage": "<FloatingNavbar variant=\"tabs\" items={items} logo=\"Nexara\" />"
+        },
+        {
+          "name": "sidebar",
+          "title": "Sidebar",
+          "description": "A narrow column of stacked links.",
+          "usage": "<FloatingNavbar variant=\"sidebar\" items={items} logo=\"Nexara\" />"
+        },
+        {
+          "name": "overlay",
+          "title": "Overlay",
+          "description": "A menu button opens a focus-trapped full-screen list.",
+          "usage": "<FloatingNavbar variant=\"overlay\" items={items} logo=\"Nexara\" />"
+        },
+        {
+          "name": "spy",
+          "title": "Spy",
+          "description": "Highlights the link whose section is in view.",
+          "usage": "<FloatingNavbar variant=\"spy\" items={items} logo=\"Nexara\" />"
+        }
+      ]
     },
     {
       "name": "modal",
       "type": "registry:ui",
       "title": "Modal",
-      "description": "An accessible dialog with a focus trap, escape to close, and scroll locking.",
-      "categories": ["Overlays"],
-      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "src/components/ui/modal.tsx", "type": "registry:ui" }],
-      "usage": "import { Modal, ModalContent, ModalClose } from '@/components/ui/modal'\n\n<Modal open={open} onOpenChange={setOpen}>\n  <ModalContent title=\"Edit name\">\n    <ModalClose>Close</ModalClose>\n  </ModalContent>\n</Modal>"
+      "description": "An accessible dialog with a focus trap, escape to close, and scroll locking. Variants: dialog, sheet, drawer, fullscreen, glass, brutal, alert, command, neon, stack, inset, banner.",
+      "categories": [
+        "Overlays"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/modal.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { Modal, ModalContent, ModalClose } from '@/components/ui/modal'\n\n<Modal open={open} onOpenChange={setOpen}>\n  <ModalContent title=\"Edit name\">\n    <ModalClose>Close</ModalClose>\n  </ModalContent>\n</Modal>",
+      "variants": [
+        {
+          "name": "dialog",
+          "title": "Dialog",
+          "description": "Centered panel.",
+          "usage": "<ModalContent variant=\"dialog\" title=\"Name\" />"
+        },
+        {
+          "name": "sheet",
+          "title": "Sheet",
+          "description": "Rises from the bottom edge and leaves the same way.",
+          "usage": "<ModalContent variant=\"sheet\" title=\"Name\" />"
+        },
+        {
+          "name": "drawer",
+          "title": "Drawer",
+          "description": "Full-height panel that enters and leaves on the x axis.",
+          "usage": "<ModalContent variant=\"drawer\" title=\"Name\" />"
+        },
+        {
+          "name": "fullscreen",
+          "title": "Fullscreen",
+          "description": "Covers the viewport.",
+          "usage": "<ModalContent variant=\"fullscreen\" title=\"Name\" />"
+        },
+        {
+          "name": "alert",
+          "title": "Alert",
+          "description": "alertdialog. Escape cancels. Focus lands on the first action.",
+          "usage": "<ModalContent variant=\"alert\" title=\"Leave?\" />"
+        },
+        {
+          "name": "command",
+          "title": "Command",
+          "description": "Drops in near the top, like a palette.",
+          "usage": "<ModalContent variant=\"command\" title=\"Jump\" />"
+        },
+        {
+          "name": "banner",
+          "title": "Banner",
+          "description": "Full-width bar that slides in from the top.",
+          "usage": "<ModalContent variant=\"banner\" title=\"Notice\" />"
+        },
+        {
+          "name": "split",
+          "title": "Split",
+          "description": "Title column beside the body.",
+          "usage": "<ModalContent variant=\"split\" title=\"Name\" />"
+        },
+        {
+          "name": "lightbox",
+          "title": "Lightbox",
+          "description": "Media first, caption underneath, close floats on the frame.",
+          "usage": "<ModalContent variant=\"lightbox\" title=\"Plate\" />"
+        },
+        {
+          "name": "action-sheet",
+          "title": "Action sheet",
+          "description": "Bottom sheet with a grabber. Stack actions in the body.",
+          "usage": "<ModalContent variant=\"action-sheet\" title=\"Choose\" />"
+        },
+        {
+          "name": "wizard",
+          "title": "Wizard",
+          "description": "Slides on x. A progress bar tracks step and steps.",
+          "usage": "<ModalContent variant=\"wizard\" step={2} steps={3} title=\"Plan\" />"
+        },
+        {
+          "name": "document",
+          "title": "Document",
+          "description": "Paper sheet with ink type.",
+          "usage": "<ModalContent variant=\"document\" title=\"Letter\" />"
+        }
+      ]
     },
     {
       "name": "hero",
       "type": "registry:ui",
       "title": "Hero",
-      "description": "A centered or split marketing intro with staggered entrance and slots for actions and media.",
-      "categories": ["Sections"],
-      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "src/components/ui/hero.tsx", "type": "registry:ui" }],
-      "usage": "import { Hero } from '@/components/ui/hero'\n\n<Hero align=\"split\" eyebrow=\"New\" title=\"A room with movable parts\" description=\"Compose this freely.\" />"
+      "description": "A centered or split marketing intro with staggered entrance and slots for actions and media. Variants: center, split, editorial, cinematic, poster, framed, overlap, quiet, band, asymmetric, stacked, rail.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/hero.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { Hero } from '@/components/ui/hero'\n\n<Hero align=\"split\" eyebrow=\"New\" title=\"A room with movable parts\" description=\"Compose this freely.\" />",
+      "variants": [
+        {
+          "name": "center",
+          "title": "Center",
+          "description": "Stacked, centered intro.",
+          "usage": "<Hero variant=\"center\" title=\"Move the furniture\" />"
+        },
+        {
+          "name": "split",
+          "title": "Split",
+          "description": "Copy beside a media slot.",
+          "usage": "<Hero variant=\"split\" title=\"Move the furniture\" media={<div />} />"
+        },
+        {
+          "name": "mast",
+          "title": "Mast",
+          "description": "A nameplate, a full-width title, and a rule that splits the lede from the actions.",
+          "usage": "<Hero variant=\"mast\" title=\"Move the furniture\" description=\"One room at a time.\" />"
+        },
+        {
+          "name": "cinematic",
+          "title": "Cinematic",
+          "description": "Copy sits low while media fills the back.",
+          "usage": "<Hero variant=\"cinematic\" title=\"Move the furniture\" media={<div />} />"
+        },
+        {
+          "name": "statement",
+          "title": "Statement",
+          "description": "The title takes seven columns. The description sits beside it.",
+          "usage": "<Hero variant=\"statement\" title=\"Move the furniture\" description=\"A quieter measure.\" />"
+        },
+        {
+          "name": "bento",
+          "title": "Bento",
+          "description": "Media sits in a mosaic with two color cells.",
+          "usage": "<Hero variant=\"bento\" title=\"Move the furniture\" media={<div />} />"
+        },
+        {
+          "name": "overlap",
+          "title": "Overlap",
+          "description": "Copy occupies columns 1–7. Media occupies columns 6–12.",
+          "usage": "<Hero variant=\"overlap\" title=\"Move the furniture\" media={<div />} />"
+        },
+        {
+          "name": "index",
+          "title": "Index",
+          "description": "A catalog row: number, title, description.",
+          "usage": "<Hero variant=\"index\" eyebrow=\"01\" title=\"Move the furniture\" description=\"Filed.\" />"
+        },
+        {
+          "name": "band",
+          "title": "Band",
+          "description": "Actions sit in a full-width strip.",
+          "usage": "<Hero variant=\"band\" title=\"Move the furniture\" actions={<Button>Begin</Button>} />"
+        },
+        {
+          "name": "asymmetric",
+          "title": "Asymmetric",
+          "description": "Wide copy column, narrow media.",
+          "usage": "<Hero variant=\"asymmetric\" title=\"Move the furniture\" media={<div />} />"
+        },
+        {
+          "name": "stacked",
+          "title": "Stacked",
+          "description": "Media first, then the title.",
+          "usage": "<Hero variant=\"stacked\" title=\"Move the furniture\" media={<div />} />"
+        },
+        {
+          "name": "rail",
+          "title": "Rail",
+          "description": "The eyebrow is its own column and turns vertical.",
+          "usage": "<Hero variant=\"rail\" eyebrow=\"Nexara\" title=\"Move the furniture\" />"
+        }
+      ]
     },
     {
       "name": "marquee",
       "type": "registry:ui",
       "title": "Marquee",
-      "description": "An infinite horizontal loop with edge fade and a pause control.",
-      "categories": ["Sections"],
-      "dependencies": ["clsx", "tailwind-merge"],
-      "registryDependencies": ["utils"],
-      "files": [{ "path": "src/components/ui/marquee.tsx", "type": "registry:ui" }],
-      "usage": "import { Marquee } from '@/components/ui/marquee'\n\n<Marquee duration={24}><span>One</span><span>Two</span></Marquee>"
+      "description": "An infinite horizontal loop with edge fade and a pause control. Variants: fade, hard, skew, vertical, reverse, stepped, double, outline, flush, cards, reverse-hover, mask-y.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/marquee.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { Marquee } from '@/components/ui/marquee'\n\n<Marquee duration={24}><span>One</span><span>Two</span></Marquee>",
+      "variants": [
+        {
+          "name": "fade",
+          "title": "Fade",
+          "description": "Edge mask and a linear loop.",
+          "usage": "<Marquee variant=\"fade\"><span>One</span><span>Two</span></Marquee>"
+        },
+        {
+          "name": "pingpong",
+          "title": "Ping pong",
+          "description": "The track reverses at each end.",
+          "usage": "<Marquee variant=\"pingpong\"><span>One</span><span>Two</span></Marquee>"
+        },
+        {
+          "name": "cylinder",
+          "title": "Cylinder",
+          "description": "The track tips back in perspective.",
+          "usage": "<Marquee variant=\"cylinder\"><span>One</span><span>Two</span></Marquee>"
+        },
+        {
+          "name": "vertical",
+          "title": "Vertical",
+          "description": "Items travel upward.",
+          "usage": "<Marquee variant=\"vertical\"><span>One</span><span>Two</span></Marquee>"
+        },
+        {
+          "name": "spotlight",
+          "title": "Spotlight",
+          "description": "A radial mask keeps the center and fades the edges.",
+          "usage": "<Marquee variant=\"spotlight\"><span>One</span><span>Two</span></Marquee>"
+        },
+        {
+          "name": "stepped",
+          "title": "Stepped",
+          "description": "Jumps one item at a time.",
+          "usage": "<Marquee variant=\"stepped\"><span>One</span><span>Two</span></Marquee>"
+        },
+        {
+          "name": "parallax",
+          "title": "Parallax",
+          "description": "Two rows at different speeds share one pause control.",
+          "usage": "<Marquee variant=\"parallax\"><span>One</span><span>Two</span></Marquee>"
+        },
+        {
+          "name": "overlap",
+          "title": "Overlap",
+          "description": "Items overlap with a negative gap.",
+          "usage": "<Marquee variant=\"overlap\"><span>One</span><span>Two</span></Marquee>"
+        },
+        {
+          "name": "velocity",
+          "title": "Velocity",
+          "description": "Pointer position along the track changes the speed.",
+          "usage": "<Marquee variant=\"velocity\"><span>One</span><span>Two</span></Marquee>"
+        },
+        {
+          "name": "dwell",
+          "title": "Dwell",
+          "description": "The loop holds, then advances, then holds again.",
+          "usage": "<Marquee variant=\"dwell\"><span>One</span><span>Two</span></Marquee>"
+        },
+        {
+          "name": "reverse-hover",
+          "title": "Reverse on hover",
+          "description": "Hover flips direction instead of pausing.",
+          "usage": "<Marquee variant=\"reverse-hover\"><span>One</span><span>Two</span></Marquee>"
+        },
+        {
+          "name": "cascade",
+          "title": "Cascade",
+          "description": "Each item bobs on its own delay.",
+          "usage": "<Marquee variant=\"cascade\"><span>One</span><span>Two</span></Marquee>"
+        }
+      ]
     }
   ]
 }

@@ -8,3 +8,11 @@ The sweep eases out and back. `-webkit-text-fill-color` is set, with a forced-co
 
 ## Agreement
 Approved. The gradient moves without a visible seam.
+
+## Variants
+sweep, flicker, shimmer, stroke, marker, spark, glitch, wave, clip, kinetic, underline, flip.
+
+Kinetic letter-spacing is no longer overwritten by the sweep animation. Flicker samples the opacity dip. Wave and flip run per letter when the children are a string.
+
+## Agreement
+Approved.

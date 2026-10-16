@@ -8,3 +8,11 @@ Fields are radial gradients on opposing paths. Pause uses `animation-play-state`
 
 ## Agreement
 Approved. The demo reads as a dark aurora behind the headline.
+
+## Variants
+drift, beams, stars, waves, ripple, vortex, meteors, embers, spotlight, horizon, ribbons, scan.
+
+Beams keep their angle while they drift, because the rotation is the CSS rotate property rather than a transform the keyframes overwrite. Stars use the palette.
+
+## Agreement
+Approved.

@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { catalog, categories, type CatalogEntry } from '@/docs/catalog.tsx'
+import { VariantGallery } from '@/docs/variant-gallery.tsx'
+import { variantDocs } from '@/docs/variant-meta.ts'
+import { renderVariantPreview } from '@/docs/previews.tsx'
 import { cn } from '@/lib/utils.ts'
 
 function readHash() {
@@ -211,6 +214,17 @@ function ComponentPage({ entry }: { entry: CatalogEntry }) {
         <h1 className="mt-2 font-serif text-4xl tracking-tight md:text-5xl">{entry.name}</h1>
         <p className="mt-3 text-base leading-7 text-zinc-300">{entry.description}</p>
       </header>
+      <section className="space-y-3">
+        <h2 className="font-serif text-2xl">Variants</h2>
+        <p className="text-sm leading-6 text-zinc-300">
+          Ask for <span className="text-[#f6f3ec]">{entry.slug} / {variantDocs[entry.slug as keyof typeof variantDocs]?.[0]?.id ?? 'variant'}</span> or
+          any id below. Each block is a live preview and a copyable usage line.
+        </p>
+        <VariantGallery
+          items={variantDocs[entry.slug as keyof typeof variantDocs] ?? []}
+          render={(id) => renderVariantPreview(entry.slug, id)}
+        />
+      </section>
       <Preview>
         <Demo />
       </Preview>

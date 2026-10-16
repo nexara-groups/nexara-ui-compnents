@@ -8,3 +8,11 @@ The spot size is a real diameter, coordinates are set on pointer enter, and the 
 
 ## Agreement
 Approved. The follow reads as a spotlight rather than a full-card wash.
+
+## Variants
+glass, parallax, reveal, comet, border-beam, tilt, glare, fisheye, magnifier, ripple, holographic, scan.
+
+Tilt rotates inside a perspective wrapper. The other faces follow the pointer as orbs, a clipped disc, a comet, a beam, a sheen, a lens scale, a blur disc, a ring, a turning cone, or a scan line.
+
+## Agreement
+Approved.

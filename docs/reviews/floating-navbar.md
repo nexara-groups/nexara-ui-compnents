@@ -8,3 +8,11 @@ The bar is a labelled `nav`. Compact mode narrows the pill. The menu stays mount
 
 ## Agreement
 Approved. The pill stays in the pane and tightens as that pane scrolls.
+
+## Variants
+floating, underline, bottom, dock, command, split, double, islands, tabs, sidebar, overlay, spy.
+
+Bottom is a full-bleed edge bar. Dock is a centered pill that magnifies. Double is two rows. Islands are three pills. Sidebar stacks links. Overlay is a viewport dialog portaled to the body, and choosing a link closes it. Spy watches sections.
+
+## Agreement
+Approved.

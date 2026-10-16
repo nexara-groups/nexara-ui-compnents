@@ -8,3 +8,11 @@ The heading level was fixed, centered media stretched full width, and the entran
 
 ## Agreement
 Approved. The section is a named intro whose entrance waits until it is on screen.
+
+## Variants
+center, split, mast, cinematic, statement, bento, overlap, index, band, asymmetric, stacked, rail.
+
+Overlap shares columns 6–7. Rail gives the eyebrow its own cell. Mast is a nameplate, a full-width title, and a rule between the lede and the actions. Cinematic keeps the media inside the section.
+
+## Agreement
+Approved.

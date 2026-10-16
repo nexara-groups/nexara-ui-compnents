@@ -11,3 +11,11 @@ The wrapper carries the z-index, and the second card is anchored to the bottom-r
 
 ## Agreement
 Approved. The active card paints above the other, and both cards stay inside the stage.
+
+## Variants
+glass, film, sticker, window, ticket, polaroid, dossier, snap-grid, carbon, receipt, stack, comic.
+
+Film has sprockets, sticker is taped paper, window drags from the title bar, snap-grid quantizes on release, and carbon lags a dashed copy. The second pass approved the set as distinct silhouettes and behaviors.
+
+## Agreement
+Approved.

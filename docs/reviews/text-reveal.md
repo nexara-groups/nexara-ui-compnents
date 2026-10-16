@@ -11,3 +11,11 @@ The demo spacer is a full frame, so the line starts below the fold.
 
 ## Agreement
 Approved. The line brightens as it is scrolled up through the frame.
+
+## Variants
+rise, blur, uncover, fade, skew, rotate, highlight, tracking, slide, wipe, pop, drop.
+
+Uncover rises inside a clip, drop enters from above, wipe opens across the line, and skew unskews. These replaced clip, scale, and mask.
+
+## Agreement
+Approved with the text set.

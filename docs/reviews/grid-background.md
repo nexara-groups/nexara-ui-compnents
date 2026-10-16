@@ -8,3 +8,11 @@ A dim field stays visible. A brighter centered mask tracks the pointer, returns 
 
 ## Agreement
 Approved. The field remains visible and the highlight follows the pointer.
+
+## Variants
+grid, dots, brick, plus, hatch, diagonal, isometric, circuit, hex, topography, rings, scatter.
+
+Hex is a pointy honeycomb whose neighbors meet. Isometric is a diamond lattice. Brick offsets the lower joint.
+
+## Agreement
+Approved.
