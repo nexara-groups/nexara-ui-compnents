@@ -42,11 +42,18 @@ Do not rewrite the component from scratch if it already exists here.
 
 Every component also needs `clsx` and `tailwind-merge` through `src/lib/utils.ts`. Each component has at least ten variants, and each variant is a different design, not a recolor or a different hover. The names are on the registry item (`variants[].name`) and on the docs page as `component / variant`, for example `button / social`. Research notes are in `docs/research/`. Critique notes are in `docs/reviews/`.
 
+## Live preview
+
+[Live preview](https://nexara-groups.github.io/nexara-ui-compnents/)
+
+That URL is the GitHub Pages site for this repo. Component pages are hash routes, for example [button](https://nexara-groups.github.io/nexara-ui-compnents/#button). The deploy workflow is [`.github/workflows/pages.yml`](./.github/workflows/pages.yml). It publishes on every push to `main`.
+
 ## Docs site
 
+One command installs dependencies and starts the catalogue:
+
 ```bash
-npm install
-npm run dev
+npm install && npm run dev
 ```
 
 The site opens on the draggable card. Each page has a live preview, a copyable usage snippet, and the prop table. `npm run build` typechecks and builds. `npm run lint` runs oxlint and checks that `registry.json` points at real files and that every component file is registered.
