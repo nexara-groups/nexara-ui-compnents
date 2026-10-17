@@ -69,10 +69,13 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
               </button>
             ))}
           </div>
-          <article className="mt-5 min-h-40 rounded-[1.6rem] bg-[#111113] p-8 text-white">
-            <p className="text-[11px] tracking-[0.18em] text-[#c8ff4d] uppercase">{current.sector}</p>
-            <h3 className="mt-3 font-serif text-4xl">{current.client}</h3>
-            <p className="mt-3 max-w-lg text-white/70">{current.line}</p>
+          <article className="mt-5 grid min-h-48 overflow-hidden rounded-[1.6rem] bg-[#111113] text-white md:grid-cols-[1.1fr_0.9fr]">
+            <div className="p-8">
+              <p className="text-[11px] tracking-[0.18em] text-[#c8ff4d] uppercase">{current.sector}</p>
+              <h3 className="mt-3 font-serif text-4xl">{current.client}</h3>
+              <p className="mt-3 max-w-lg text-white/70">{current.line}</p>
+            </div>
+            <div className="min-h-36 bg-[radial-gradient(circle_at_30%_30%,#3a3220,transparent_45%),linear-gradient(160deg,#1a1a14,#111113)]" />
           </article>
         </div>
       ) : null}

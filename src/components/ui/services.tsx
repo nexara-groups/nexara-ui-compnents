@@ -66,7 +66,8 @@ export function Services({ variant = 'checklist', className }: ServicesProps) {
         <div className="grid gap-4 md:grid-cols-2">
           {hvac.map((service) => (
             <article key={service.name} className="rounded-[1.4rem] border border-nx-border bg-nx-card p-5">
-              <h3 className="font-serif text-2xl">{service.name}</h3>
+              <span className="grid size-9 place-items-center rounded-lg bg-[#e8f3ec] text-sm text-[#1f7a4a]">❄</span>
+              <h3 className="mt-4 font-serif text-2xl">{service.name}</h3>
               <ul className="mt-4 space-y-2 text-sm text-nx-muted">
                 {service.items.map((item) => (
                   <li key={item} className="flex gap-2">

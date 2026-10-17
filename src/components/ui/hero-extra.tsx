@@ -74,10 +74,15 @@ export function ExtraHero({
   if (variant === 'wordmark') {
     return (
       <section data-nexara="hero" data-variant="wordmark" className={cn('relative overflow-hidden bg-[#07070a] px-6 py-24 text-center text-white', className)}>
-        <p className={cn('text-[11px] tracking-[0.28em] text-[#c8ff4d] uppercase', eyebrowClassName)}>{eyebrow ?? 'An engineering company'}</p>
-        <Title className={cn(titleClass, 'mt-6 text-[18vw] leading-[0.78] text-white md:text-[9rem]')}>{title}</Title>
-        <div className="mx-auto mt-6 max-w-xl text-white/70">{lede}</div>
-        <div className={cn('mt-8 flex justify-center gap-3', actionsClassName)}>{actions}</div>
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute top-1/2 left-1/2 size-[46rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/8" />
+          <div className="absolute top-1/2 left-1/2 size-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#c8ff4d]/20" />
+          <div className="absolute top-1/2 left-1/2 size-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10" />
+        </div>
+        <p className={cn('relative text-[11px] tracking-[0.28em] text-[#c8ff4d] uppercase', eyebrowClassName)}>{eyebrow ?? 'An engineering company'}</p>
+        <Title className={cn(titleClass, 'relative mt-6 text-[18vw] leading-[0.78] text-white md:text-[9rem]')}>{title}</Title>
+        <div className="relative mx-auto mt-6 max-w-xl text-white/70">{lede}</div>
+        <div className={cn('relative mt-8 flex justify-center gap-3', actionsClassName)}>{actions}</div>
       </section>
     )
   }
@@ -322,7 +327,9 @@ function AcRemote({
         <div className="mx-auto mt-4 max-w-xl">{lede}</div>
         <div className="mt-8 flex flex-wrap justify-center gap-3">{actions}</div>
       </div>
-      <div className="pointer-events-none mx-auto mt-10 h-40 max-w-lg rounded-[2rem] bg-[linear-gradient(180deg,#f7fffb,#cfe6d8)] shadow-[var(--nx-shadow)]" />
+      <div className="pointer-events-none mx-auto mt-10 max-w-lg">
+        <AcUnit />
+      </div>
       <div className="absolute inset-x-0 bottom-0 bg-[#111113] px-4 py-3 text-white">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2">
@@ -434,9 +441,33 @@ function FourDoors({
 
 function HeartMark() {
   return (
-    <svg width="160" height="160" viewBox="0 0 160 160" aria-hidden="true">
-      <circle cx="80" cy="80" r="70" fill="none" stroke="rgba(243,180,176,0.25)" />
-      <path d="M80 118c-22-16-40-32-40-52 0-14 10-24 24-24 8 0 14 4 16 10 2-6 8-10 16-10 14 0 24 10 24 24 0 20-18 36-40 52Z" fill="#f3b4b0" />
+    <svg width="200" height="200" viewBox="0 0 200 200" aria-hidden="true">
+      <circle cx="100" cy="100" r="86" fill="none" stroke="rgba(243,180,176,0.22)" />
+      <circle cx="100" cy="100" r="62" fill="none" stroke="rgba(243,180,176,0.12)" />
+      <path d="M100 148c-28-20-52-42-52-70 0-20 14-34 34-34 10 0 16 5 18 12 2-7 8-12 18-12 20 0 34 14 34 34 0 28-24 50-52 70Z" fill="#f3b4b0" />
+      <path d="M86 78c8 14 10 16 22 4" fill="none" stroke="#0b1220" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M78 96c6-18 20-28 34-10 8 10 4 22-6 28" fill="none" stroke="#d98986" strokeWidth="1.6" />
+    </svg>
+  )
+}
+
+function AcUnit() {
+  return (
+    <svg viewBox="0 0 420 170" className="w-full drop-shadow-[0_24px_40px_rgba(16,32,24,0.18)]" aria-hidden="true">
+      <rect x="24" y="28" width="372" height="96" rx="28" fill="#f7fffb" />
+      <rect x="24" y="28" width="372" height="96" rx="28" fill="url(#ac-face)" />
+      <rect x="24" y="28" width="372" height="96" rx="28" stroke="#c5d8cc" strokeWidth="1.2" fill="none" />
+      <rect x="48" y="78" width="324" height="28" rx="14" fill="#d7ebe0" />
+      <path d="M64 92h292" stroke="#9fbfad" strokeWidth="2" strokeDasharray="6 8" />
+      <circle cx="78" cy="52" r="5" fill="#1f7a4a" />
+      <rect x="92" y="48" width="46" height="8" rx="4" fill="#cfe6d8" />
+      <path d="M40 128c40 18 300 18 340 0" fill="none" stroke="#b7cfc2" strokeWidth="6" strokeLinecap="round" />
+      <defs>
+        <linearGradient id="ac-face" x1="24" y1="28" x2="396" y2="124">
+          <stop stopColor="#ffffff" />
+          <stop offset="1" stopColor="#dceee4" />
+        </linearGradient>
+      </defs>
     </svg>
   )
 }
