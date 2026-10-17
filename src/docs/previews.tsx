@@ -58,6 +58,24 @@ const faqItems = [
   { id: 'c', title: 'How do agents find a variant?', content: 'Ask for component / variant. Names are kebab-case.' },
 ]
 
+function heroCopy(id: string) {
+  const map: Record<string, { eyebrow: string; title: string; description: string; action: string }> = {
+    saas: { eyebrow: 'Component registry', title: 'Ship the interface your team already described', description: 'A product window beside the pitch. Swap the title, actions, and media.', action: 'Browse the registry' },
+    app: { eyebrow: 'iOS and Android', title: 'Take the room with you', description: 'Store badges and a pair of phones. The mast travels.', action: 'Get the app' },
+    cinema: { eyebrow: 'Watch', title: 'Harbor after dark', description: 'A still, a play mark, and a title that sits on the grade.', action: 'Play reel' },
+    logos: { eyebrow: 'Trusted in production', title: 'Studios already here', description: 'A logo row and a quote from Harbor.', action: 'See the list' },
+    pricing: { eyebrow: 'Pricing', title: 'One plan for the desk', description: 'The price card leads. $48, three includes, a start.', action: 'Start Studio' },
+    studio: { eyebrow: 'Studio index', title: 'Move the furniture', description: 'A typographic masthead. Folio on the right, rule under the title.', action: 'Open the index' },
+    shop: { eyebrow: 'In stock', title: 'Lamp 04', description: 'A stage, a price, and four finishes.', action: 'Add to bag' },
+    event: { eyebrow: '12 Nov · Harbor Hall', title: 'Harbor Hall', description: 'Date, place, and a countdown.', action: 'Reserve a seat' },
+    search: { eyebrow: 'Library', title: 'Find a component', description: 'Search is the primary action.', action: 'Search' },
+    product: { eyebrow: 'This week', title: 'Twenty-four rooms open', description: 'App chrome, a sidebar, and three metric tiles.', action: 'Open overview' },
+    journal: { eyebrow: 'The journal', title: 'Issue 18', description: 'A magazine cover beside the feature.', action: 'Read the issue' },
+    waitlist: { eyebrow: '2,400 already in', title: 'Ask for a seat', description: 'Avatars, a count, and an email field.', action: 'Join' },
+  }
+  return map[id] ?? map.saas!
+}
+
 export function renderVariantPreview(slug: string, id: string): ReactNode {
   if (slug === 'draggable-card') {
     return (
@@ -120,23 +138,16 @@ export function renderVariantPreview(slug: string, id: string): ReactNode {
   if (slug === 'floating-navbar') return <NavPreview variant={id as NonNullable<FloatingNavbarProps['variant']>} />
   if (slug === 'modal') return <ModalPreview variant={id as ModalVariant} />
   if (slug === 'hero') {
+    const copy = heroCopy(id)
     return (
       <div className="overflow-hidden rounded-2xl border border-nx-border bg-nx-bg">
         <Hero
           variant={id as HeroProps['variant']}
           titleAs="h3"
-          eyebrow="Nexara"
-          title={
-            id === 'shop'
-              ? 'Lamp 04'
-              : id === 'event'
-                ? 'Harbor Hall'
-                : id === 'journal'
-                  ? 'Issue 18'
-                  : 'Ship the interface your team already described'
-          }
-          description="Real product copy. No lorem. Swap the title, actions, and media."
-          actions={<Button size="sm">Begin</Button>}
+          eyebrow={copy.eyebrow}
+          title={copy.title}
+          description={copy.description}
+          actions={<Button size="sm">{copy.action}</Button>}
           className="px-4 py-8 md:py-10"
           titleClassName="text-3xl md:text-4xl"
         />

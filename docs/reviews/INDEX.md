@@ -11,4 +11,13 @@ Four critics reviewed the catalogue against Linear / Vercel / Stripe / Magic UI 
 
 A variant is approved only when all four agree it meets the bar. Round 1 did not approve any variant on the shipped main catalogue.
 
-Round 2 reviews the redesign on this branch (tokens, Geist / Instrument Serif, light + dark, product anatomies, ten new primitives). After screenshots live in `docs/audit/after/` once captured. Verdicts are recorded in `round-2-*.md`.
+Round 2 reviews the redesign (tokens, Geist / Instrument Serif, light + dark, product anatomies, ten new primitives). After screenshots: `docs/audit/after/`. Scores: `docs/audit/scores-after.md`.
+
+| Lens | File | Round 2 |
+| --- | --- | --- |
+| Senior visual designer | `round-2-visual.md` | Approve system. 206 keep, 74 redesign. |
+| Interaction / motion | `round-2-motion.md` | Approve motion contract. Shimmer/beam ornamental. |
+| Accessibility / responsive | `round-2-a11y.md` | Approve system. Tooltip extra tab stop held. |
+| Sceptical design lead | `round-2-lead.md` | Conditional approve. Not every cell. |
+
+A variant is approved only when all four agree. The 74 redesign cells are **not** approved. The system (type, tokens, light/dark, product anatomies, visible galleries) is.
