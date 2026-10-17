@@ -262,7 +262,6 @@ export function TypewriterDemo() {
         Ship interfaces that feel{' '}
         <Typewriter
           className="text-nx-accent"
-          showControls={false}
           paused={paused}
           phrases={['deliberate.', 'movable.', 'alive.', 'yours.']}
         />

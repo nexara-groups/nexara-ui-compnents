@@ -17,7 +17,7 @@ Round 2 reviews the redesign (tokens, Geist / Instrument Serif, light + dark, pr
 | --- | --- | --- |
 | Senior visual designer | `round-2-visual.md` | Approve system. 206 keep, 74 redesign. |
 | Interaction / motion | `round-2-motion.md` | Approve motion contract. Shimmer/beam ornamental. |
-| Accessibility / responsive | `round-2-a11y.md` | Approve system. Tooltip extra tab stop held. |
+| Accessibility / responsive | `round-2-a11y.md` | Approve system. OTP wiring still open. |
 | Sceptical design lead | `round-2-lead.md` | Conditional approve. Not every cell. |
 
 A variant is approved only when all four agree. The 74 redesign cells are **not** approved. The system (type, tokens, light/dark, product anatomies, visible galleries) is.

@@ -52,7 +52,7 @@ export function Tooltip({ content, children, variant = 'default', className, ope
         if (!defaultOpen) setOpen(false)
       }}
     >
-      <span tabIndex={0} aria-describedby={open ? id : undefined} className="inline-flex">
+      <span aria-describedby={open ? id : undefined} className="inline-flex">
         {children}
       </span>
       {open ? (

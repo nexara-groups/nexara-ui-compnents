@@ -58,7 +58,7 @@ export function Typewriter({
   loop = true,
   cursor = true,
   paused = false,
-  showControls = false,
+  showControls = true,
   onPhraseComplete,
   style,
 }: TypewriterProps) {

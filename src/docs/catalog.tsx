@@ -286,6 +286,7 @@ export function Example() {
       { name: 'variant', type: 'terminal | chat | search | editor | flap | headline | caption | prompt | label | redact | italic | tape', defaultValue: 'terminal', description: 'Device that types.' },
       { name: 'phrases', type: 'string[]', description: 'Lines to cycle.' },
       { name: 'paused', type: 'boolean', defaultValue: 'false', description: 'Holds the current phrase.' },
+      { name: 'showControls', type: 'boolean', defaultValue: 'true', description: 'Shows a pause control when the line loops.' },
     ],
     Demo: TypewriterDemo,
   },

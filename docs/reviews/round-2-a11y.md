@@ -8,7 +8,6 @@
 **Approve the shell and the structural set.** Light mode exists. Tokens carry contrast. Focus rings use `--nx-ring`. Mobile galleries stack; navs sit in frames; heroes drop to one column.
 
 **Hold:**
-- Tooltip still wraps the trigger in a `tabIndex={0}` span. Nested buttons get an extra tab stop.
 - OTP inputs are four separate fields without paste/arrow wiring.
 - Toast is a static `role="status"` with no live region manager.
 - Some aurora labels are white on a pale fog field.
@@ -20,4 +19,4 @@ Mobile 390 captures do not clip the galleries. Pricing tables scroll. Footers wr
 
 Lead said “a library that cannot render light mode is not a library.” It can. I withdraw the system reject.
 
-I will not approve tooltip until the extra tab stop is gone. Builder left it for a follow-up; I recorded it here.
+The extra tooltip tab stop is gone: the wrapper no longer takes focus when the child is already a control. Typewriter and marquee galleries now expose pause (2.2.2). OTP paste/arrow wiring is still open.

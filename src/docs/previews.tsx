@@ -154,7 +154,7 @@ export function renderVariantPreview(slug: string, id: string): ReactNode {
       </div>
     )
   }
-  if (slug === 'marquee') return <Marquee variant={id as MarqueeVariant} duration={18} showControls={false} />
+  if (slug === 'marquee') return <Marquee variant={id as MarqueeVariant} duration={18} />
   if (slug === 'input') return <Input variant={id as InputProps['variant']} placeholder="Harbor" label={id === 'floating' ? 'Studio' : undefined} />
   if (slug === 'tabs') return <Tabs variant={id as TabsProps['variant']} items={tabItems} />
   if (slug === 'accordion') return <Accordion variant={id as AccordionProps['variant']} items={faqItems} />
