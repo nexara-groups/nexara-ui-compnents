@@ -3,6 +3,7 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { type ComponentProps, type MouseEvent, type ReactNode } from 'react'
 import { cn, focusRing, useKeyframes } from '@/lib/utils.ts'
+import { EXTRA_BUTTON, ExtraButton, type ExtraButtonVariant } from './button-extra.tsx'
 
 const BUTTON_KEYFRAMES = `
 @keyframes nexara-shimmer {
@@ -74,8 +75,11 @@ const buttonVariants = cva(
 
 export type ButtonVariantProps = VariantProps<typeof buttonVariants>
 
-export type ButtonProps = ButtonVariantProps &
+export type ButtonVariant = NonNullable<ButtonVariantProps['variant']> | ExtraButtonVariant
+
+export type ButtonProps = Omit<ButtonVariantProps, 'variant'> &
   Omit<ComponentProps<'button'>, 'children'> & {
+    variant?: ButtonVariant
     href?: string
     target?: string
     rel?: string
@@ -84,6 +88,10 @@ export type ButtonProps = ButtonVariantProps &
     leftIcon?: ReactNode
     rightIcon?: ReactNode
     children?: ReactNode
+    pressed?: boolean
+    count?: number
+    progress?: number
+    state?: 'idle' | 'loading' | 'success'
   }
 
 function Spinner() {
@@ -103,11 +111,19 @@ function ArrowIcon() {
   )
 }
 
+function CheckIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+      <path d="M2.5 7.2 5.6 10.2 11.5 3.8" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
 /**
  * Button
- * Thirteen constructions: solid, soft tint, outline, ghost, glass, mesh
- * gradient, destructive, split well, social, icon, shimmer, border beam, link.
- * Copy this file plus `src/lib/utils.ts`.
+ * Twenty-four constructions: thirteen core surfaces plus toggle, theme,
+ * FAB, badge, store, letter-swap, progress, notify, success, group, and flow.
+ * Copy this file, `button-extra.tsx`, and `src/lib/utils.ts`.
  */
 export function Button({
   className,
@@ -125,19 +141,51 @@ export function Button({
   disabled,
   onClick,
   type = 'button',
+  pressed,
+  count,
+  progress,
+  state = 'idle',
   ...rest
 }: ButtonProps) {
   const kind = variant ?? 'solid'
-  const isInactive = Boolean(disabled || loading)
+  const busy = Boolean(loading || state === 'loading')
+  const isInactive = Boolean(disabled || busy)
   useKeyframes('nexara-button-keyframes', BUTTON_KEYFRAMES)
-  const classes = cn(buttonVariants({ variant: kind, size, radius }), className)
+  if ((EXTRA_BUTTON as readonly string[]).includes(kind)) {
+    return (
+      <ExtraButton
+        variant={kind as ExtraButtonVariant}
+        className={className}
+        size={size}
+        radius={radius}
+        loading={busy}
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        href={href}
+        target={target}
+        rel={rel}
+        download={download}
+        disabled={disabled}
+        onClick={onClick}
+        type={type}
+        pressed={pressed}
+        count={count}
+        progress={progress}
+        state={state}
+        {...rest}
+      >
+        {children}
+      </ExtraButton>
+    )
+  }
+  const classes = cn(buttonVariants({ variant: kind as ButtonVariantProps['variant'], size, radius }), className)
 
   const label = (
-    <span className={cn('relative z-10 inline-flex items-center gap-2', loading && 'invisible')}>
+    <span className={cn('relative z-10 inline-flex items-center gap-2', (busy || state === 'success') && 'invisible')}>
       {kind !== 'split' && kind !== 'social' && kind !== 'icon' && leftIcon ? (
         <span className="inline-flex shrink-0">{leftIcon}</span>
       ) : null}
-      {kind === 'icon' ? <span className="sr-only">{children}</span> : <span>{children}</span>}
+        {kind === 'icon' ? <span className="sr-only">{children}</span> : <span>{state === 'success' ? 'Saved' : children}</span>}
       {kind !== 'link' && rightIcon ? <span className="inline-flex shrink-0">{rightIcon}</span> : null}
     </span>
   )
@@ -193,8 +241,8 @@ export function Button({
           )}
         </span>
       ) : null}
-      {kind === 'icon' ? (
-        <span className={cn('relative z-10', loading && 'invisible')}>{leftIcon ?? <ArrowIcon />}</span>
+        {kind === 'icon' ? (
+        <span className={cn('relative z-10', (busy || state === 'success') && 'invisible')}>{leftIcon ?? <ArrowIcon />}</span>
       ) : null}
       {kind === 'link' ? (
         <span
@@ -210,7 +258,7 @@ export function Button({
         )}
       >
         {kind === 'social' ? (
-          <span className={cn('col-start-1 row-start-1 flex flex-col leading-tight', loading && 'invisible')}>
+          <span className={cn('col-start-1 row-start-1 flex flex-col leading-tight', (busy || state === 'success') && 'invisible')}>
             <span className="text-[10px] tracking-[0.14em] text-nx-muted uppercase">Continue with</span>
             <span className="text-sm text-nx-fg">{children}</span>
           </span>
@@ -219,10 +267,15 @@ export function Button({
         ) : (
           label
         )}
-        {loading ? (
+        {busy ? (
           <span className="col-start-1 row-start-1 inline-flex items-center gap-2">
             <Spinner />
             <span className="sr-only">Loading</span>
+          </span>
+        ) : state === 'success' ? (
+          <span className="col-start-1 row-start-1 inline-flex items-center gap-2">
+            <CheckIcon />
+            Saved
           </span>
         ) : null}
       </span>
@@ -240,7 +293,7 @@ export function Button({
         data-nexara="button"
         data-variant={kind}
         aria-disabled={isInactive || undefined}
-        aria-busy={loading || undefined}
+        aria-busy={busy || undefined}
         className={cn(classes, isInactive && 'pointer-events-none opacity-45')}
         onClick={(event) => {
           if (isInactive) {
@@ -264,7 +317,7 @@ export function Button({
       className={classes}
       disabled={disabled}
       aria-disabled={isInactive || undefined}
-      aria-busy={loading || undefined}
+      aria-busy={busy || undefined}
       onClick={(event) => {
         if (isInactive) {
           event.preventDefault()

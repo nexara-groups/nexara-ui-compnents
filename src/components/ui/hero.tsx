@@ -2,8 +2,9 @@
 
 import { type ReactNode } from 'react'
 import { cn } from '@/lib/utils.ts'
+import { EXTRA_HERO, ExtraHero, type ExtraHeroVariant } from './hero-extra.tsx'
 
-const VARIANTS = [
+const CORE_HERO = [
   'saas',
   'app',
   'cinema',
@@ -17,6 +18,8 @@ const VARIANTS = [
   'journal',
   'waitlist',
 ] as const
+
+const VARIANTS = [...CORE_HERO, ...EXTRA_HERO] as const
 
 export type HeroVariant = (typeof VARIANTS)[number]
 
@@ -39,7 +42,7 @@ export interface HeroProps {
 
 /**
  * Hero
- * Twelve marketing pages. Copy this file plus `src/lib/utils.ts`.
+ * Thirty marketing pages. Copy this file, `hero-extra.tsx`, and `src/lib/utils.ts`.
  */
 export function Hero({
   eyebrow,
@@ -58,6 +61,25 @@ export function Hero({
   titleAs = 'h2',
 }: HeroProps) {
   const layout: HeroVariant = variant ?? (align === 'split' ? 'product' : 'saas')
+  if ((EXTRA_HERO as readonly string[]).includes(layout)) {
+    return (
+      <ExtraHero
+        variant={layout as ExtraHeroVariant}
+        eyebrow={eyebrow}
+        title={title}
+        description={description}
+        actions={actions}
+        media={media}
+        className={className}
+        eyebrowClassName={eyebrowClassName}
+        titleClassName={titleClassName}
+        descriptionClassName={descriptionClassName}
+        actionsClassName={actionsClassName}
+        mediaClassName={mediaClassName}
+        titleAs={titleAs}
+      />
+    )
+  }
   const Title = titleAs
   const titleClass = cn('font-serif tracking-tight text-balance text-nx-fg', titleClassName)
   const lede = description ? (

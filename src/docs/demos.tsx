@@ -1,12 +1,22 @@
 import { useRef, useState } from 'react'
 import {
   Accordion,
+  Activity,
+  AppShell,
   AuroraBackground,
   Avatar,
   Badge,
   BentoGrid,
   BentoItem,
   Button,
+  CaseStudy,
+  Chapters,
+  ChartBlock,
+  CommandPalette,
+  Contact,
+  Countdown,
+  CtaBand,
+  DataTable,
   DraggableCard,
   FlipCard,
   FloatingNavbar,
@@ -15,14 +25,25 @@ import {
   GridBackground,
   Hero,
   Input,
+  KanbanBoard,
+  Kit,
+  Kpi,
+  Leaderboard,
+  LogoCloud,
   MagneticButton,
   Marquee,
   Modal,
   ModalClose,
   ModalContent,
+  News,
   Pricing,
+  Process,
+  Services,
+  SettingsPanel,
   SpotlightCard,
+  Stats,
   Tabs,
+  Team,
   Testimonials,
   TextReveal,
   Toast,
@@ -192,6 +213,10 @@ export function ButtonDemo() {
         <Button radius={radius} href="#button" variant="glass">
           Glass
         </Button>
+        <Button variant="toggle">Live view</Button>
+        <Button variant="group" />
+        <Button variant="swap">Start a brief</Button>
+        <Button variant="flow">Book a room</Button>
       </div>
     </div>
   )
@@ -647,4 +672,79 @@ export function TestimonialsDemo() {
 
 export function FooterDemo() {
   return <Footer variant="mega" />
+}
+
+export function StatsDemo() {
+  return <Stats variant="countup" />
+}
+export function CountdownDemo() {
+  return <Countdown variant="event" />
+}
+export function LeaderboardDemo() {
+  return <Leaderboard variant="medals" />
+}
+export function CaseStudyDemo() {
+  return <CaseStudy variant="tabs" />
+}
+export function ServicesDemo() {
+  return <Services variant="checklist" />
+}
+export function ProcessDemo() {
+  return <Process variant="written" />
+}
+export function TeamDemo() {
+  return <Team variant="doctors" />
+}
+export function ContactDemo() {
+  return <Contact variant="branches" />
+}
+export function CtaBandDemo() {
+  return <CtaBand variant="lime" />
+}
+export function ChaptersDemo() {
+  return <Chapters variant="cards" />
+}
+export function NewsDemo() {
+  return <News variant="cards" />
+}
+export function LogoCloudDemo() {
+  return <LogoCloud variant="dealers" />
+}
+export function AppShellDemo() {
+  return <AppShell variant="agency" />
+}
+export function KpiDemo() {
+  return (
+    <div className="grid gap-3 md:grid-cols-3">
+      <Kpi variant="metric" />
+      <Kpi variant="delta" />
+      <Kpi variant="spark" />
+    </div>
+  )
+}
+export function DataTableDemo() {
+  return <DataTable variant="filter" />
+}
+export function KanbanBoardDemo() {
+  return <KanbanBoard variant="agency" />
+}
+export function ChartBlockDemo() {
+  return (
+    <div className="grid gap-3 md:grid-cols-2">
+      <ChartBlock variant="area" />
+      <ChartBlock variant="bars" />
+    </div>
+  )
+}
+export function ActivityDemo() {
+  return <Activity variant="feed" />
+}
+export function CommandPaletteDemo() {
+  return <CommandPalette variant="default" />
+}
+export function SettingsPanelDemo() {
+  return <SettingsPanel variant="profile" />
+}
+export function KitDemo() {
+  return <Kit variant="healthcare" />
 }

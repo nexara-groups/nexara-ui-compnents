@@ -26,6 +26,7 @@ import {
   TooltipDemo,
   TypewriterDemo,
 } from '@/docs/demos.tsx'
+import { catalogMore } from '@/docs/catalog-more.tsx'
 
 export type PropRow = {
   name: string
@@ -369,7 +370,7 @@ export function Example() {
     slug: 'hero',
     name: 'Hero',
     category: 'Sections',
-    description: 'Twelve marketing pages: SaaS, app, cinema, logos, pricing, studio, shop, event, search, product, journal, waitlist.',
+    description: 'Thirty marketing pages, including AC remote, divisions, clinic, sports, and 21st.dev anatomies.',
     path: 'src/components/ui/hero.tsx',
     dependencies: motionDeps,
     registryDependencies: ['utils'],
@@ -386,7 +387,7 @@ export function Example() {
   )
 }`,
     props: [
-      { name: 'variant', type: 'saas | app | cinema | logos | pricing | studio | shop | event | search | product | journal | waitlist', description: 'Hero product. When omitted, align center selects saas and align split selects product.' },
+      { name: 'variant', type: 'saas | app | cinema | logos | pricing | studio | shop | event | search | product | journal | waitlist | ac-remote | divisions | four-doors | wordmark | clinic | sports | editorial | fan | glass-fold | split-cards | device | devtool | fashion | spiral | liquid | tilted | enterprise | featured', description: 'Hero product. Look up hero / ac-remote or hero / clinic.' },
       { name: 'title', type: 'ReactNode', description: 'Rendered in an h2 unless titleAs is set.' },
       { name: 'actions / media', type: 'ReactNode', description: 'Slots.' },
     ],
@@ -599,6 +600,7 @@ export function Example() {
     ],
     Demo: FooterDemo,
   },
+  ...catalogMore,
 ]
 
-export const categories = ['Cards', 'Buttons', 'Backgrounds', 'Text', 'Navigation', 'Overlays', 'Forms', 'Feedback', 'Identity', 'Sections'] as const
+export const categories = ['Cards', 'Buttons', 'Backgrounds', 'Text', 'Navigation', 'Overlays', 'Forms', 'Feedback', 'Identity', 'Sections', 'App', 'Kits'] as const

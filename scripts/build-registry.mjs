@@ -53,7 +53,7 @@ const itemsMeta = [
   ['spotlight-card', 'Spotlight Card', 'Cards', 'Twelve product cards with a pointer wash on top of distinct anatomies.', ['clsx', 'tailwind-merge'], ['utils']],
   ['flip-card', 'Flip Card', 'Cards', 'A two-sided card that turns on hover or click.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
   ['bento-grid', 'Bento Grid', 'Cards', 'A responsive mosaic of product tiles.', ['clsx', 'tailwind-merge'], ['utils']],
-  ['button', 'Button', 'Buttons', 'Thirteen button constructions from solid to beam and link.', ['class-variance-authority', 'clsx', 'tailwind-merge'], ['utils']],
+  ['button', 'Button', 'Buttons', 'Twenty-four button constructions including toggle, theme, FAB, store, swap, progress, and groups.', ['class-variance-authority', 'clsx', 'tailwind-merge'], ['utils']],
   ['magnetic-button', 'Magnetic Button', 'Buttons', 'Twelve product controls that lean toward a fine pointer.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
   ['aurora-background', 'Aurora Background', 'Backgrounds', 'Twelve ambient scenes with content above the field.', ['clsx', 'tailwind-merge'], ['utils']],
   ['grid-background', 'Grid Background', 'Backgrounds', 'Twelve ruled and dotted surfaces.', ['clsx', 'tailwind-merge'], ['utils']],
@@ -62,7 +62,7 @@ const itemsMeta = [
   ['text-reveal', 'Text Reveal', 'Text', 'Twelve typographic compositions that stagger into view.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
   ['floating-navbar', 'Floating Navbar', 'Navigation', 'Twelve navigation products.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
   ['modal', 'Modal', 'Overlays', 'Twelve dialog anatomies with a focus trap and scroll lock.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
-  ['hero', 'Hero', 'Sections', 'Twelve marketing page constructions.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
+  ['hero', 'Hero', 'Sections', 'Thirty marketing page constructions including AC remote, clinic, sports, and 21st.dev anatomies.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
   ['marquee', 'Marquee', 'Sections', 'Twelve continuous tracks with pause control.', ['clsx', 'tailwind-merge'], ['utils']],
   ['input', 'Input', 'Forms', 'Twelve field constructions.', ['clsx', 'tailwind-merge'], ['utils']],
   ['tabs', 'Tabs', 'Forms', 'Ten tab anatomies.', ['clsx', 'tailwind-merge'], ['utils']],
@@ -74,7 +74,33 @@ const itemsMeta = [
   ['pricing', 'Pricing', 'Sections', 'Ten pricing sections.', ['clsx', 'tailwind-merge'], ['utils']],
   ['testimonials', 'Testimonials', 'Sections', 'Ten social-proof constructions.', ['clsx', 'tailwind-merge'], ['utils']],
   ['footer', 'Footer', 'Sections', 'Ten closing constructions.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['stats', 'Stats', 'Sections', 'Twelve count-up constructions from Sri, Rise, and VDRSA.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['countdown', 'Countdown', 'Sections', 'Twelve event and race clocks.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['leaderboard', 'Leaderboard', 'Sections', 'Twelve medal-tally constructions.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['case-study', 'Case Study', 'Sections', 'Twelve client-story constructions including a tabbed carousel.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['services', 'Services', 'Sections', 'Twelve service grids: HVAC checklists, four crews, clinic doors.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['process', 'Process', 'Sections', 'Twelve step constructions including the written Nexara process.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['team', 'Team', 'Sections', 'Twelve people grids for doctors, crews, and coaches.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['contact', 'Contact', 'Sections', 'Twelve branch, map, and appointment constructions.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['cta-band', 'Cta Band', 'Sections', 'Twelve closing bands.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['chapters', 'Chapters', 'Sections', 'Twelve scroll-driven storytelling constructions.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['news', 'News', 'Sections', 'Twelve bulletin and notes constructions.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['logo-cloud', 'Logo Cloud', 'Sections', 'Twelve dealer and client strips.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['app-shell', 'App Shell', 'App', 'Twelve portal layouts for Agency OS.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['kpi', 'Kpi', 'App', 'Twelve dashboard metric tiles.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['data-table', 'Data Table', 'App', 'Twelve filterable tables.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['kanban-board', 'Kanban Board', 'App', 'Twelve boards for agency, plant, and clinic.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['chart-block', 'Chart Block', 'App', 'Twelve SVG chart constructions.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['activity', 'Activity', 'App', 'Twelve activity feeds.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['command-palette', 'Command Palette', 'App', 'Twelve jump menus.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['settings-panel', 'Settings Panel', 'App', 'Twelve settings constructions.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['kit', 'Kit', 'Kits', 'Twelve industry pages composed from the blocks.', ['clsx', 'tailwind-merge'], ['utils', 'hero', 'stats', 'services', 'process', 'team', 'contact', 'cta-band', 'chapters', 'news', 'logo-cloud', 'leaderboard', 'countdown', 'case-study', 'app-shell', 'kpi', 'data-table', 'kanban-board', 'activity', 'accordion', 'footer', 'button']],
 ]
+
+const extraFiles = {
+  hero: [{ path: 'src/components/ui/hero-extra.tsx', type: 'registry:ui' }],
+  button: [{ path: 'src/components/ui/button-extra.tsx', type: 'registry:ui' }],
+}
 
 const items = itemsMeta.map((entry) => {
   if (!Array.isArray(entry)) return entry
@@ -92,7 +118,7 @@ const items = itemsMeta.map((entry) => {
     categories: [category],
     dependencies,
     registryDependencies,
-    files: [{ path: `src/components/ui/${name}.tsx`, type: 'registry:ui' }],
+    files: [{ path: `src/components/ui/${name}.tsx`, type: 'registry:ui' }, ...(extraFiles[name] ?? [])],
     usage: itemVariants[0].usage,
     variants: itemVariants,
   }

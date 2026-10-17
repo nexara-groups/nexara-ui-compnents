@@ -50,3 +50,28 @@ export function useKeyframes(id: string, css: string) {
     ensureKeyframes(id, css)
   }, [id, css])
 }
+
+/** Count from 0 to `target`. Reduced motion snaps to the end. */
+export function useCountUp(target: number, duration = 1400) {
+  const reduced = usePrefersReducedMotion()
+  const [value, setValue] = useState(reduced ? target : 0)
+
+  useEffect(() => {
+    if (reduced) {
+      setValue(target)
+      return
+    }
+    const start = performance.now()
+    let frame = 0
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration)
+      const eased = 1 - (1 - t) ** 3
+      setValue(Math.round(target * eased))
+      if (t < 1) frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [duration, reduced, target])
+
+  return value
+}

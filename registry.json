@@ -418,7 +418,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Thirteen button constructions from solid to beam and link. Variants: solid, soft, outline, ghost, glass, gradient, destructive, split, social, icon, shimmer, beam, link.",
+      "description": "Twenty-four button constructions including toggle, theme, FAB, store, swap, progress, and groups. Variants: solid, soft, outline, ghost, glass, gradient, destructive, split, social, icon, shimmer, beam, link, toggle, theme, fab, badge, store, swap, progress, notify, success, group, flow.",
       "categories": [
         "Buttons"
       ],
@@ -433,6 +433,10 @@
       "files": [
         {
           "path": "src/components/ui/button.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/button-extra.tsx",
           "type": "registry:ui"
         }
       ],
@@ -515,6 +519,72 @@
           "title": "Link",
           "description": "Text with an animated underline.",
           "usage": "<Button variant=\"link\">Continue</Button>"
+        },
+        {
+          "name": "toggle",
+          "title": "Toggle",
+          "description": "Pressed state for a live view.",
+          "usage": "<Button variant=\"toggle\">Live view</Button>"
+        },
+        {
+          "name": "theme",
+          "title": "Theme",
+          "description": "Light and dark switcher.",
+          "usage": "<Button variant=\"theme\" />"
+        },
+        {
+          "name": "fab",
+          "title": "Fab",
+          "description": "Circular create action.",
+          "usage": "<Button variant=\"fab\" aria-label=\"Create\" />"
+        },
+        {
+          "name": "badge",
+          "title": "Badge",
+          "description": "Label with a count chip.",
+          "usage": "<Button variant=\"badge\" count={3}>Inbox</Button>"
+        },
+        {
+          "name": "store",
+          "title": "Store",
+          "description": "App Store brand badge.",
+          "usage": "<Button variant=\"store\">Download on the App Store</Button>"
+        },
+        {
+          "name": "swap",
+          "title": "Swap",
+          "description": "Letter-swap CTA.",
+          "usage": "<Button variant=\"swap\">Start a brief</Button>"
+        },
+        {
+          "name": "progress",
+          "title": "Progress",
+          "description": "Save with a fill bar.",
+          "usage": "<Button variant=\"progress\" progress={62}>Saving 62%</Button>"
+        },
+        {
+          "name": "notify",
+          "title": "Notify",
+          "description": "Dot plus unread count.",
+          "usage": "<Button variant=\"notify\" count={3}>Inbox</Button>"
+        },
+        {
+          "name": "success",
+          "title": "Success",
+          "description": "Stateful saved control.",
+          "usage": "<Button variant=\"success\" state=\"success\">Saved</Button>"
+        },
+        {
+          "name": "group",
+          "title": "Group",
+          "description": "Day Week Month cluster.",
+          "usage": "<Button variant=\"group\" />"
+        },
+        {
+          "name": "flow",
+          "title": "Flow",
+          "description": "Moving gradient CTA.",
+          "usage": "<Button variant=\"flow\">Book a room</Button>"
         }
       ]
     },
@@ -1302,7 +1372,7 @@
       "name": "hero",
       "type": "registry:ui",
       "title": "Hero",
-      "description": "Twelve marketing page constructions. Variants: saas, app, cinema, logos, pricing, studio, shop, event, search, product, journal, waitlist.",
+      "description": "Thirty marketing page constructions including AC remote, clinic, sports, and 21st.dev anatomies. Variants: saas, app, cinema, logos, pricing, studio, shop, event, search, product, journal, waitlist, ac-remote, divisions, four-doors, wordmark, clinic, sports, editorial, fan, glass-fold, split-cards, device, devtool, fashion, spiral, liquid, tilted, enterprise, featured.",
       "categories": [
         "Sections"
       ],
@@ -1317,6 +1387,10 @@
       "files": [
         {
           "path": "src/components/ui/hero.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/hero-extra.tsx",
           "type": "registry:ui"
         }
       ],
@@ -1393,6 +1467,114 @@
           "title": "Waitlist",
           "description": "Avatars, count, email field.",
           "usage": "<Hero variant=\"waitlist\" title=\"Ask for a seat\" />"
+        },
+        {
+          "name": "ac-remote",
+          "title": "AC remote",
+          "description": "HVAC hero with a live remote bar.",
+          "usage": "<Hero variant=\"ac-remote\" title=\"Cooling that stays commissioned.\" />"
+        },
+        {
+          "name": "divisions",
+          "title": "Divisions",
+          "description": "One core, three forces.",
+          "usage": "<Hero variant=\"divisions\" title=\"One core. Three forces.\" />"
+        },
+        {
+          "name": "four-doors",
+          "title": "Four doors",
+          "description": "Clinic doors under one roof.",
+          "usage": "<Hero variant=\"four-doors\" title=\"Four doors, one floor.\" />"
+        },
+        {
+          "name": "wordmark",
+          "title": "Wordmark",
+          "description": "Giant inverted brand mast.",
+          "usage": "<Hero variant=\"wordmark\" title=\"NEXARA\" />"
+        },
+        {
+          "name": "clinic",
+          "title": "Clinic",
+          "description": "Navy editorial heart-care hero.",
+          "usage": "<Hero variant=\"clinic\" title=\"Heart care, considered.\" />"
+        },
+        {
+          "name": "sports",
+          "title": "Sports",
+          "description": "Full-bleed association photo.",
+          "usage": "<Hero variant=\"sports\" title=\"A season you can stand on.\" />"
+        },
+        {
+          "name": "editorial",
+          "title": "Editorial",
+          "description": "Collage beside open type.",
+          "usage": "<Hero variant=\"editorial\" title=\"We grow engineers.\" />"
+        },
+        {
+          "name": "fan",
+          "title": "Fan",
+          "description": "Centered title over an image fan.",
+          "usage": "<Hero variant=\"fan\" title=\"Three cuts of the same room.\" />"
+        },
+        {
+          "name": "glass-fold",
+          "title": "Glass fold",
+          "description": "Frosted plate on a dusk field.",
+          "usage": "<Hero variant=\"glass-fold\" title=\"The desk after dark.\" />"
+        },
+        {
+          "name": "split-cards",
+          "title": "Split cards",
+          "description": "Pitch beside stacked project cards.",
+          "usage": "<Hero variant=\"split-cards\" title=\"Bring the dealer to the plant.\" />"
+        },
+        {
+          "name": "device",
+          "title": "Device",
+          "description": "Browser chrome under the pitch.",
+          "usage": "<Hero variant=\"device\" title=\"Reports without the waiting room.\" />"
+        },
+        {
+          "name": "devtool",
+          "title": "Devtool",
+          "description": "Monospace installer landing.",
+          "usage": "<Hero variant=\"devtool\" title=\"npx nexara add hero\" />"
+        },
+        {
+          "name": "fashion",
+          "title": "Fashion",
+          "description": "Split lookbook mast.",
+          "usage": "<Hero variant=\"fashion\" title=\"Summer cut.\" />"
+        },
+        {
+          "name": "spiral",
+          "title": "Spiral",
+          "description": "Conic field with a void.",
+          "usage": "<Hero variant=\"spiral\" title=\"Turn the season.\" />"
+        },
+        {
+          "name": "liquid",
+          "title": "Liquid",
+          "description": "Soft orbs behind the title.",
+          "usage": "<Hero variant=\"liquid\" title=\"The room dissolves.\" />"
+        },
+        {
+          "name": "tilted",
+          "title": "Tilted",
+          "description": "Perspective tile grid.",
+          "usage": "<Hero variant=\"tilted\" title=\"A floor you can tilt.\" />"
+        },
+        {
+          "name": "enterprise",
+          "title": "Enterprise",
+          "description": "Dual-CTA security landing.",
+          "usage": "<Hero variant=\"enterprise\" title=\"The desk that passes review.\" />"
+        },
+        {
+          "name": "featured",
+          "title": "Featured",
+          "description": "Featured project beside the pitch.",
+          "usage": "<Hero variant=\"featured\" title=\"Sai Nirmaan, quoted in a day.\" />"
         }
       ]
     },
@@ -2352,6 +2534,2064 @@
           "title": "Split",
           "description": "Line and address.",
           "usage": "<Footer variant=\"split\" />"
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "type": "registry:ui",
+      "title": "Stats",
+      "description": "Twelve count-up constructions from Sri, Rise, and VDRSA. Variants: countup, ribbon, ticker, year, split, dark, sports, clinic, stacked, compare, mosaic, live.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/stats.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Stats variant=\"countup\" />",
+      "variants": [
+        {
+          "name": "countup",
+          "title": "Countup",
+          "description": "Four Sri figures that count up.",
+          "usage": "<Stats variant=\"countup\" />"
+        },
+        {
+          "name": "ribbon",
+          "title": "Ribbon",
+          "description": "Inline clinic chips.",
+          "usage": "<Stats variant=\"ribbon\" />"
+        },
+        {
+          "name": "ticker",
+          "title": "Ticker",
+          "description": "Dark sports tape.",
+          "usage": "<Stats variant=\"ticker\" />"
+        },
+        {
+          "name": "year",
+          "title": "Year",
+          "description": "The year is the figure.",
+          "usage": "<Stats variant=\"year\" />"
+        },
+        {
+          "name": "split",
+          "title": "Split",
+          "description": "Rupee figure beside copy.",
+          "usage": "<Stats variant=\"split\" />"
+        },
+        {
+          "name": "dark",
+          "title": "Dark",
+          "description": "Inverted four-up.",
+          "usage": "<Stats variant=\"dark\" />"
+        },
+        {
+          "name": "sports",
+          "title": "Sports",
+          "description": "VDRSA season KPIs.",
+          "usage": "<Stats variant=\"sports\" />"
+        },
+        {
+          "name": "clinic",
+          "title": "Clinic",
+          "description": "Rise specialist counts.",
+          "usage": "<Stats variant=\"clinic\" />"
+        },
+        {
+          "name": "stacked",
+          "title": "Stacked",
+          "description": "Rows of labelled figures.",
+          "usage": "<Stats variant=\"stacked\" />"
+        },
+        {
+          "name": "compare",
+          "title": "Compare",
+          "description": "Before and after EECP.",
+          "usage": "<Stats variant=\"compare\" />"
+        },
+        {
+          "name": "mosaic",
+          "title": "Mosaic",
+          "description": "Uneven tile metrics.",
+          "usage": "<Stats variant=\"mosaic\" />"
+        },
+        {
+          "name": "live",
+          "title": "Live",
+          "description": "Desk-open ribbon.",
+          "usage": "<Stats variant=\"live\" />"
+        }
+      ]
+    },
+    {
+      "name": "countdown",
+      "type": "registry:ui",
+      "title": "Countdown",
+      "description": "Twelve event and race clocks. Variants: event, flip, circular, inline, poster, race, exam, launch, match, ribbon, minimal, analog.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/countdown.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Countdown variant=\"event\" />",
+      "variants": [
+        {
+          "name": "event",
+          "title": "Event",
+          "description": "Championship card clock.",
+          "usage": "<Countdown variant=\"event\" />"
+        },
+        {
+          "name": "flip",
+          "title": "Flip",
+          "description": "Dark flip tiles.",
+          "usage": "<Countdown variant=\"flip\" />"
+        },
+        {
+          "name": "circular",
+          "title": "Circular",
+          "description": "Four ring cells.",
+          "usage": "<Countdown variant=\"circular\" />"
+        },
+        {
+          "name": "inline",
+          "title": "Inline",
+          "description": "One-line remaining time.",
+          "usage": "<Countdown variant=\"inline\" />"
+        },
+        {
+          "name": "poster",
+          "title": "Poster",
+          "description": "Association poster clock.",
+          "usage": "<Countdown variant=\"poster\" />"
+        },
+        {
+          "name": "race",
+          "title": "Race",
+          "description": "Heat gun clock.",
+          "usage": "<Countdown variant=\"race\" />"
+        },
+        {
+          "name": "exam",
+          "title": "Exam",
+          "description": "Academy window.",
+          "usage": "<Countdown variant=\"exam\" />"
+        },
+        {
+          "name": "launch",
+          "title": "Launch",
+          "description": "T-minus launch.",
+          "usage": "<Countdown variant=\"launch\" />"
+        },
+        {
+          "name": "match",
+          "title": "Match",
+          "description": "Fixture card.",
+          "usage": "<Countdown variant=\"match\" />"
+        },
+        {
+          "name": "ribbon",
+          "title": "Ribbon",
+          "description": "Pill remaining time.",
+          "usage": "<Countdown variant=\"ribbon\" />"
+        },
+        {
+          "name": "minimal",
+          "title": "Minimal",
+          "description": "Days to the title.",
+          "usage": "<Countdown variant=\"minimal\" />"
+        },
+        {
+          "name": "analog",
+          "title": "Analog",
+          "description": "Second-hand disc.",
+          "usage": "<Countdown variant=\"analog\" />"
+        }
+      ]
+    },
+    {
+      "name": "leaderboard",
+      "type": "registry:ui",
+      "title": "Leaderboard",
+      "description": "Twelve medal-tally constructions. Variants: medals, table, podium, clubs, tally, heat, compact, nation, age, live, points, disciplines.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/leaderboard.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Leaderboard variant=\"medals\" />",
+      "variants": [
+        {
+          "name": "medals",
+          "title": "Medals",
+          "description": "Gold silver bronze tally.",
+          "usage": "<Leaderboard variant=\"medals\" />"
+        },
+        {
+          "name": "table",
+          "title": "Table",
+          "description": "Named club table.",
+          "usage": "<Leaderboard variant=\"table\" />"
+        },
+        {
+          "name": "podium",
+          "title": "Podium",
+          "description": "1-2-3 stands.",
+          "usage": "<Leaderboard variant=\"podium\" />"
+        },
+        {
+          "name": "clubs",
+          "title": "Clubs",
+          "description": "Club points list.",
+          "usage": "<Leaderboard variant=\"clubs\" />"
+        },
+        {
+          "name": "tally",
+          "title": "Tally",
+          "description": "Medal totals.",
+          "usage": "<Leaderboard variant=\"tally\" />"
+        },
+        {
+          "name": "heat",
+          "title": "Heat",
+          "description": "Bar race ranking.",
+          "usage": "<Leaderboard variant=\"heat\" />"
+        },
+        {
+          "name": "compact",
+          "title": "Compact",
+          "description": "Top three chips.",
+          "usage": "<Leaderboard variant=\"compact\" />"
+        },
+        {
+          "name": "nation",
+          "title": "Nation",
+          "description": "National dark tally.",
+          "usage": "<Leaderboard variant=\"nation\" />"
+        },
+        {
+          "name": "age",
+          "title": "Age",
+          "description": "U14 U16 U19 lanes.",
+          "usage": "<Leaderboard variant=\"age\" />"
+        },
+        {
+          "name": "live",
+          "title": "Live",
+          "description": "Live heat board.",
+          "usage": "<Leaderboard variant=\"live\" />"
+        },
+        {
+          "name": "points",
+          "title": "Points",
+          "description": "Season points list.",
+          "usage": "<Leaderboard variant=\"points\" />"
+        },
+        {
+          "name": "disciplines",
+          "title": "Disciplines",
+          "description": "Event winners grid.",
+          "usage": "<Leaderboard variant=\"disciplines\" />"
+        }
+      ]
+    },
+    {
+      "name": "case-study",
+      "type": "registry:ui",
+      "title": "Case Study",
+      "description": "Twelve client-story constructions including a tabbed carousel. Variants: tabs, autoplay, stack, film, split, mosaic, quote, before, logo, index, featured, reel.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/case-study.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<CaseStudy variant=\"tabs\" />",
+      "variants": [
+        {
+          "name": "tabs",
+          "title": "Tabs",
+          "description": "Auto client carousel.",
+          "usage": "<CaseStudy variant=\"tabs\" />"
+        },
+        {
+          "name": "autoplay",
+          "title": "Autoplay",
+          "description": "Same carousel, forced loop.",
+          "usage": "<CaseStudy variant=\"autoplay\" />"
+        },
+        {
+          "name": "stack",
+          "title": "Stack",
+          "description": "Offset project sheets.",
+          "usage": "<CaseStudy variant=\"stack\" />"
+        },
+        {
+          "name": "film",
+          "title": "Film",
+          "description": "Horizontal case film.",
+          "usage": "<CaseStudy variant=\"film\" />"
+        },
+        {
+          "name": "split",
+          "title": "Split",
+          "description": "Still beside the story.",
+          "usage": "<CaseStudy variant=\"split\" />"
+        },
+        {
+          "name": "mosaic",
+          "title": "Mosaic",
+          "description": "Uneven case tiles.",
+          "usage": "<CaseStudy variant=\"mosaic\" />"
+        },
+        {
+          "name": "quote",
+          "title": "Quote",
+          "description": "Client line as a pull.",
+          "usage": "<CaseStudy variant=\"quote\" />"
+        },
+        {
+          "name": "before",
+          "title": "Before",
+          "description": "Before and after cards.",
+          "usage": "<CaseStudy variant=\"before\" />"
+        },
+        {
+          "name": "logo",
+          "title": "Logo",
+          "description": "Client name pills.",
+          "usage": "<CaseStudy variant=\"logo\" />"
+        },
+        {
+          "name": "index",
+          "title": "Index",
+          "description": "Numbered case index.",
+          "usage": "<CaseStudy variant=\"index\" />"
+        },
+        {
+          "name": "featured",
+          "title": "Featured",
+          "description": "Inverted featured case.",
+          "usage": "<CaseStudy variant=\"featured\" />"
+        },
+        {
+          "name": "reel",
+          "title": "Reel",
+          "description": "Dots under one case.",
+          "usage": "<CaseStudy variant=\"reel\" />"
+        }
+      ]
+    },
+    {
+      "name": "services",
+      "type": "registry:ui",
+      "title": "Services",
+      "description": "Twelve service grids: HVAC checklists, four crews, clinic doors. Variants: checklist, four-crews, doors, cards, numbered, icons, rows, hover, compact, partner, why, disciplines.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/services.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Services variant=\"checklist\" />",
+      "variants": [
+        {
+          "name": "checklist",
+          "title": "Checklist",
+          "description": "HVAC services with ticks.",
+          "usage": "<Services variant=\"checklist\" />"
+        },
+        {
+          "name": "four-crews",
+          "title": "Four crews",
+          "description": "Design install commission AMC.",
+          "usage": "<Services variant=\"four-crews\" />"
+        },
+        {
+          "name": "doors",
+          "title": "Doors",
+          "description": "Four clinic doors.",
+          "usage": "<Services variant=\"doors\" />"
+        },
+        {
+          "name": "cards",
+          "title": "Cards",
+          "description": "Inverted service cards.",
+          "usage": "<Services variant=\"cards\" />"
+        },
+        {
+          "name": "numbered",
+          "title": "Numbered",
+          "description": "Why-us numbered grid.",
+          "usage": "<Services variant=\"numbered\" />"
+        },
+        {
+          "name": "icons",
+          "title": "Icons",
+          "description": "Icon wells on crews.",
+          "usage": "<Services variant=\"icons\" />"
+        },
+        {
+          "name": "rows",
+          "title": "Rows",
+          "description": "Service rows.",
+          "usage": "<Services variant=\"rows\" />"
+        },
+        {
+          "name": "hover",
+          "title": "Hover",
+          "description": "Doors that invert.",
+          "usage": "<Services variant=\"hover\" />"
+        },
+        {
+          "name": "compact",
+          "title": "Compact",
+          "description": "Service pills.",
+          "usage": "<Services variant=\"compact\" />"
+        },
+        {
+          "name": "partner",
+          "title": "Partner",
+          "description": "Dealer collaboration band.",
+          "usage": "<Services variant=\"partner\" />"
+        },
+        {
+          "name": "why",
+          "title": "Why",
+          "description": "Why-us copy grid.",
+          "usage": "<Services variant=\"why\" />"
+        },
+        {
+          "name": "disciplines",
+          "title": "Disciplines",
+          "description": "VDRSA sport grid.",
+          "usage": "<Services variant=\"disciplines\" />"
+        }
+      ]
+    },
+    {
+      "name": "process",
+      "type": "registry:ui",
+      "title": "Process",
+      "description": "Twelve step constructions including the written Nexara process. Variants: written, three, timeline, numbered, rail, cards, brief, weekly, handover, rhythm, checklist, filmstrip.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/process.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Process variant=\"written\" />",
+      "variants": [
+        {
+          "name": "written",
+          "title": "Written",
+          "description": "Nexara written steps.",
+          "usage": "<Process variant=\"written\" />"
+        },
+        {
+          "name": "three",
+          "title": "Three",
+          "description": "Rise three-step rhythm.",
+          "usage": "<Process variant=\"three\" />"
+        },
+        {
+          "name": "timeline",
+          "title": "Timeline",
+          "description": "Rail with nodes.",
+          "usage": "<Process variant=\"timeline\" />"
+        },
+        {
+          "name": "numbered",
+          "title": "Numbered",
+          "description": "Mono index steps.",
+          "usage": "<Process variant=\"numbered\" />"
+        },
+        {
+          "name": "rail",
+          "title": "Rail",
+          "description": "Left rail process.",
+          "usage": "<Process variant=\"rail\" />"
+        },
+        {
+          "name": "cards",
+          "title": "Cards",
+          "description": "Four step cards.",
+          "usage": "<Process variant=\"cards\" />"
+        },
+        {
+          "name": "brief",
+          "title": "Brief",
+          "description": "The brief, inverted.",
+          "usage": "<Process variant=\"brief\" />"
+        },
+        {
+          "name": "weekly",
+          "title": "Weekly",
+          "description": "Friday demo card.",
+          "usage": "<Process variant=\"weekly\" />"
+        },
+        {
+          "name": "handover",
+          "title": "Handover",
+          "description": "Handover checklist.",
+          "usage": "<Process variant=\"handover\" />"
+        },
+        {
+          "name": "rhythm",
+          "title": "Rhythm",
+          "description": "Three-step large type.",
+          "usage": "<Process variant=\"rhythm\" />"
+        },
+        {
+          "name": "checklist",
+          "title": "Checklist",
+          "description": "Ticked process.",
+          "usage": "<Process variant=\"checklist\" />"
+        },
+        {
+          "name": "filmstrip",
+          "title": "Filmstrip",
+          "description": "Horizontal steps.",
+          "usage": "<Process variant=\"filmstrip\" />"
+        }
+      ]
+    },
+    {
+      "name": "team",
+      "type": "registry:ui",
+      "title": "Team",
+      "description": "Twelve people grids for doctors, crews, and coaches. Variants: doctors, grid, featured, list, crew, faculty, coaches, circle, directory, compact, editorial, hours.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/team.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Team variant=\"doctors\" />",
+      "variants": [
+        {
+          "name": "doctors",
+          "title": "Doctors",
+          "description": "Clinic doctor grid.",
+          "usage": "<Team variant=\"doctors\" />"
+        },
+        {
+          "name": "grid",
+          "title": "Grid",
+          "description": "Six-up people grid.",
+          "usage": "<Team variant=\"grid\" />"
+        },
+        {
+          "name": "featured",
+          "title": "Featured",
+          "description": "Medical director card.",
+          "usage": "<Team variant=\"featured\" />"
+        },
+        {
+          "name": "list",
+          "title": "List",
+          "description": "Directory rows.",
+          "usage": "<Team variant=\"list\" />"
+        },
+        {
+          "name": "crew",
+          "title": "Crew",
+          "description": "Four-crew strip.",
+          "usage": "<Team variant=\"crew\" />"
+        },
+        {
+          "name": "faculty",
+          "title": "Faculty",
+          "description": "Academy faculty.",
+          "usage": "<Team variant=\"faculty\" />"
+        },
+        {
+          "name": "coaches",
+          "title": "Coaches",
+          "description": "VDRSA bench.",
+          "usage": "<Team variant=\"coaches\" />"
+        },
+        {
+          "name": "circle",
+          "title": "Circle",
+          "description": "Circular portraits.",
+          "usage": "<Team variant=\"circle\" />"
+        },
+        {
+          "name": "directory",
+          "title": "Directory",
+          "description": "Name role place.",
+          "usage": "<Team variant=\"directory\" />"
+        },
+        {
+          "name": "compact",
+          "title": "Compact",
+          "description": "People pills.",
+          "usage": "<Team variant=\"compact\" />"
+        },
+        {
+          "name": "editorial",
+          "title": "Editorial",
+          "description": "Large-type pair.",
+          "usage": "<Team variant=\"editorial\" />"
+        },
+        {
+          "name": "hours",
+          "title": "Hours",
+          "description": "Desk hours table.",
+          "usage": "<Team variant=\"hours\" />"
+        }
+      ]
+    },
+    {
+      "name": "contact",
+      "type": "registry:ui",
+      "title": "Contact",
+      "description": "Twelve branch, map, and appointment constructions. Variants: branches, map, appointment, split, offices, hours, form, directions, emergency, studio, compact, visit.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/contact.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Contact variant=\"branches\" />",
+      "variants": [
+        {
+          "name": "branches",
+          "title": "Branches",
+          "description": "Three city cards.",
+          "usage": "<Contact variant=\"branches\" />"
+        },
+        {
+          "name": "map",
+          "title": "Map",
+          "description": "Map pin and address.",
+          "usage": "<Contact variant=\"map\" />"
+        },
+        {
+          "name": "appointment",
+          "title": "Appointment",
+          "description": "Clinic booking form.",
+          "usage": "<Contact variant=\"appointment\" />"
+        },
+        {
+          "name": "split",
+          "title": "Split",
+          "description": "Pitch beside phones.",
+          "usage": "<Contact variant=\"split\" />"
+        },
+        {
+          "name": "offices",
+          "title": "Offices",
+          "description": "Office cards.",
+          "usage": "<Contact variant=\"offices\" />"
+        },
+        {
+          "name": "hours",
+          "title": "Hours",
+          "description": "Opening hours table.",
+          "usage": "<Contact variant=\"hours\" />"
+        },
+        {
+          "name": "form",
+          "title": "Form",
+          "description": "Studio brief form.",
+          "usage": "<Contact variant=\"form\" />"
+        },
+        {
+          "name": "directions",
+          "title": "Directions",
+          "description": "How to reach the bay.",
+          "usage": "<Contact variant=\"directions\" />"
+        },
+        {
+          "name": "emergency",
+          "title": "Emergency",
+          "description": "24h cardiac desk.",
+          "usage": "<Contact variant=\"emergency\" />"
+        },
+        {
+          "name": "studio",
+          "title": "Studio",
+          "description": "Nexara studio card.",
+          "usage": "<Contact variant=\"studio\" />"
+        },
+        {
+          "name": "compact",
+          "title": "Compact",
+          "description": "City line.",
+          "usage": "<Contact variant=\"compact\" />"
+        },
+        {
+          "name": "visit",
+          "title": "Visit",
+          "description": "Map visit card.",
+          "usage": "<Contact variant=\"visit\" />"
+        }
+      ]
+    },
+    {
+      "name": "cta-band",
+      "type": "registry:ui",
+      "title": "Cta Band",
+      "description": "Twelve closing bands. Variants: appointment, lime, split, dark, form, store, partner, waitlist, quote, emergency, studio, event.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/cta-band.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<CtaBand variant=\"appointment\" />",
+      "variants": [
+        {
+          "name": "appointment",
+          "title": "Appointment",
+          "description": "Clinic booking band.",
+          "usage": "<CtaBand variant=\"appointment\" />"
+        },
+        {
+          "name": "lime",
+          "title": "Lime",
+          "description": "Nexara lime closer.",
+          "usage": "<CtaBand variant=\"lime\" />"
+        },
+        {
+          "name": "split",
+          "title": "Split",
+          "description": "Two-offer band.",
+          "usage": "<CtaBand variant=\"split\" />"
+        },
+        {
+          "name": "dark",
+          "title": "Dark",
+          "description": "Inverted closer.",
+          "usage": "<CtaBand variant=\"dark\" />"
+        },
+        {
+          "name": "form",
+          "title": "Form",
+          "description": "Email join band.",
+          "usage": "<CtaBand variant=\"form\" />"
+        },
+        {
+          "name": "store",
+          "title": "Store",
+          "description": "App store badges.",
+          "usage": "<CtaBand variant=\"store\" />"
+        },
+        {
+          "name": "partner",
+          "title": "Partner",
+          "description": "Dealer closer.",
+          "usage": "<CtaBand variant=\"partner\" />"
+        },
+        {
+          "name": "waitlist",
+          "title": "Waitlist",
+          "description": "Seat request.",
+          "usage": "<CtaBand variant=\"waitlist\" />"
+        },
+        {
+          "name": "quote",
+          "title": "Quote",
+          "description": "Plant quote band.",
+          "usage": "<CtaBand variant=\"quote\" />"
+        },
+        {
+          "name": "emergency",
+          "title": "Emergency",
+          "description": "24h phone band.",
+          "usage": "<CtaBand variant=\"emergency\" />"
+        },
+        {
+          "name": "studio",
+          "title": "Studio",
+          "description": "Hire the desk.",
+          "usage": "<CtaBand variant=\"studio\" />"
+        },
+        {
+          "name": "event",
+          "title": "Event",
+          "description": "Championship closer.",
+          "usage": "<CtaBand variant=\"event\" />"
+        }
+      ]
+    },
+    {
+      "name": "chapters",
+      "type": "registry:ui",
+      "title": "Chapters",
+      "description": "Twelve scroll-driven storytelling constructions. Variants: eight, scrolly, rail, cards, film, numbered, essay, split, sticky, accordion, manifesto, lesson.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/chapters.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Chapters variant=\"eight\" />",
+      "variants": [
+        {
+          "name": "eight",
+          "title": "Eight",
+          "description": "Scroll-driven eight chapters.",
+          "usage": "<Chapters variant=\"eight\" />"
+        },
+        {
+          "name": "scrolly",
+          "title": "Scrolly",
+          "description": "Sticky index plus chapters.",
+          "usage": "<Chapters variant=\"scrolly\" />"
+        },
+        {
+          "name": "rail",
+          "title": "Rail",
+          "description": "Numbered rail essay.",
+          "usage": "<Chapters variant=\"rail\" />"
+        },
+        {
+          "name": "cards",
+          "title": "Cards",
+          "description": "Chapter cards.",
+          "usage": "<Chapters variant=\"cards\" />"
+        },
+        {
+          "name": "film",
+          "title": "Film",
+          "description": "Horizontal chapters.",
+          "usage": "<Chapters variant=\"film\" />"
+        },
+        {
+          "name": "numbered",
+          "title": "Numbered",
+          "description": "Index and title.",
+          "usage": "<Chapters variant=\"numbered\" />"
+        },
+        {
+          "name": "essay",
+          "title": "Essay",
+          "description": "Continuous short book.",
+          "usage": "<Chapters variant=\"essay\" />"
+        },
+        {
+          "name": "split",
+          "title": "Split",
+          "description": "Title beside four rooms.",
+          "usage": "<Chapters variant=\"split\" />"
+        },
+        {
+          "name": "sticky",
+          "title": "Sticky",
+          "description": "Sticky chapter nav.",
+          "usage": "<Chapters variant=\"sticky\" />"
+        },
+        {
+          "name": "accordion",
+          "title": "Accordion",
+          "description": "Chapter disclosures.",
+          "usage": "<Chapters variant=\"accordion\" />"
+        },
+        {
+          "name": "manifesto",
+          "title": "Manifesto",
+          "description": "Long-form manifesto.",
+          "usage": "<Chapters variant=\"manifesto\" />"
+        },
+        {
+          "name": "lesson",
+          "title": "Lesson",
+          "description": "Single academy lesson.",
+          "usage": "<Chapters variant=\"lesson\" />"
+        }
+      ]
+    },
+    {
+      "name": "news",
+      "type": "registry:ui",
+      "title": "News",
+      "description": "Twelve bulletin and notes constructions. Variants: bulletin, cards, list, featured, ticker, magazine, compact, video, digest, alert, editorial, feed.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/news.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<News variant=\"bulletin\" />",
+      "variants": [
+        {
+          "name": "bulletin",
+          "title": "Bulletin",
+          "description": "Association news tape.",
+          "usage": "<News variant=\"bulletin\" />"
+        },
+        {
+          "name": "cards",
+          "title": "Cards",
+          "description": "Notes and blog cards.",
+          "usage": "<News variant=\"cards\" />"
+        },
+        {
+          "name": "list",
+          "title": "List",
+          "description": "Dated headlines.",
+          "usage": "<News variant=\"list\" />"
+        },
+        {
+          "name": "featured",
+          "title": "Featured",
+          "description": "Large note.",
+          "usage": "<News variant=\"featured\" />"
+        },
+        {
+          "name": "ticker",
+          "title": "Ticker",
+          "description": "Single-line tape.",
+          "usage": "<News variant=\"ticker\" />"
+        },
+        {
+          "name": "magazine",
+          "title": "Magazine",
+          "description": "Issue plus index.",
+          "usage": "<News variant=\"magazine\" />"
+        },
+        {
+          "name": "compact",
+          "title": "Compact",
+          "description": "Tight headlines.",
+          "usage": "<News variant=\"compact\" />"
+        },
+        {
+          "name": "video",
+          "title": "Video",
+          "description": "Match film card.",
+          "usage": "<News variant=\"video\" />"
+        },
+        {
+          "name": "digest",
+          "title": "Digest",
+          "description": "This-week list.",
+          "usage": "<News variant=\"digest\" />"
+        },
+        {
+          "name": "alert",
+          "title": "Alert",
+          "description": "Lane-change notice.",
+          "usage": "<News variant=\"alert\" />"
+        },
+        {
+          "name": "editorial",
+          "title": "Editorial",
+          "description": "Essay headline.",
+          "usage": "<News variant=\"editorial\" />"
+        },
+        {
+          "name": "feed",
+          "title": "Feed",
+          "description": "Simple feed.",
+          "usage": "<News variant=\"feed\" />"
+        }
+      ]
+    },
+    {
+      "name": "logo-cloud",
+      "type": "registry:ui",
+      "title": "Logo Cloud",
+      "description": "Twelve dealer and client strips. Variants: dealers, strip, grid, marquee, grayscale, partner, press, clients, compact, invert, stacked, badges.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/logo-cloud.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<LogoCloud variant=\"dealers\" />",
+      "variants": [
+        {
+          "name": "dealers",
+          "title": "Dealers",
+          "description": "HVAC dealer wordmarks.",
+          "usage": "<LogoCloud variant=\"dealers\" />"
+        },
+        {
+          "name": "strip",
+          "title": "Strip",
+          "description": "Authorised strip.",
+          "usage": "<LogoCloud variant=\"strip\" />"
+        },
+        {
+          "name": "grid",
+          "title": "Grid",
+          "description": "Logo cells.",
+          "usage": "<LogoCloud variant=\"grid\" />"
+        },
+        {
+          "name": "marquee",
+          "title": "Marquee",
+          "description": "Looping marks.",
+          "usage": "<LogoCloud variant=\"marquee\" />"
+        },
+        {
+          "name": "grayscale",
+          "title": "Grayscale",
+          "description": "Quiet marks.",
+          "usage": "<LogoCloud variant=\"grayscale\" />"
+        },
+        {
+          "name": "partner",
+          "title": "Partner",
+          "description": "Partner collaboration.",
+          "usage": "<LogoCloud variant=\"partner\" />"
+        },
+        {
+          "name": "press",
+          "title": "Press",
+          "description": "Press marks.",
+          "usage": "<LogoCloud variant=\"press\" />"
+        },
+        {
+          "name": "clients",
+          "title": "Clients",
+          "description": "Nexara client names.",
+          "usage": "<LogoCloud variant=\"clients\" />"
+        },
+        {
+          "name": "compact",
+          "title": "Compact",
+          "description": "Inline names.",
+          "usage": "<LogoCloud variant=\"compact\" />"
+        },
+        {
+          "name": "invert",
+          "title": "Invert",
+          "description": "Dark logo bar.",
+          "usage": "<LogoCloud variant=\"invert\" />"
+        },
+        {
+          "name": "stacked",
+          "title": "Stacked",
+          "description": "Numbered client index.",
+          "usage": "<LogoCloud variant=\"stacked\" />"
+        },
+        {
+          "name": "badges",
+          "title": "Badges",
+          "description": "Logo pills.",
+          "usage": "<LogoCloud variant=\"badges\" />"
+        }
+      ]
+    },
+    {
+      "name": "app-shell",
+      "type": "registry:ui",
+      "title": "App Shell",
+      "description": "Twelve portal layouts for Agency OS. Variants: sidebar, rail, top, split, dense, agency, clinic, sports, academy, collapsed, command, mobile.",
+      "categories": [
+        "App"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/app-shell.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<AppShell variant=\"sidebar\" />",
+      "variants": [
+        {
+          "name": "sidebar",
+          "title": "Sidebar",
+          "description": "Agency OS sidebar.",
+          "usage": "<AppShell variant=\"sidebar\" />"
+        },
+        {
+          "name": "rail",
+          "title": "Rail",
+          "description": "Icon rail.",
+          "usage": "<AppShell variant=\"rail\" />"
+        },
+        {
+          "name": "top",
+          "title": "Top",
+          "description": "Top navigation.",
+          "usage": "<AppShell variant=\"top\" />"
+        },
+        {
+          "name": "split",
+          "title": "Split",
+          "description": "Workspace plus inspector.",
+          "usage": "<AppShell variant=\"split\" />"
+        },
+        {
+          "name": "dense",
+          "title": "Dense",
+          "description": "Compact sidebar.",
+          "usage": "<AppShell variant=\"dense\" />"
+        },
+        {
+          "name": "agency",
+          "title": "Agency",
+          "description": "Agency OS chrome.",
+          "usage": "<AppShell variant=\"agency\" />"
+        },
+        {
+          "name": "clinic",
+          "title": "Clinic",
+          "description": "Care desk chrome.",
+          "usage": "<AppShell variant=\"clinic\" />"
+        },
+        {
+          "name": "sports",
+          "title": "Sports",
+          "description": "VDRSA OS chrome.",
+          "usage": "<AppShell variant=\"sports\" />"
+        },
+        {
+          "name": "academy",
+          "title": "Academy",
+          "description": "Academy chrome.",
+          "usage": "<AppShell variant=\"academy\" />"
+        },
+        {
+          "name": "collapsed",
+          "title": "Collapsed",
+          "description": "Collapsed rail.",
+          "usage": "<AppShell variant=\"collapsed\" />"
+        },
+        {
+          "name": "command",
+          "title": "Command",
+          "description": "Command-first desk.",
+          "usage": "<AppShell variant=\"command\" />"
+        },
+        {
+          "name": "mobile",
+          "title": "Mobile",
+          "description": "Menu toggle shell.",
+          "usage": "<AppShell variant=\"mobile\" />"
+        }
+      ]
+    },
+    {
+      "name": "kpi",
+      "type": "registry:ui",
+      "title": "Kpi",
+      "description": "Twelve dashboard metric tiles. Variants: metric, spark, delta, progress, ring, compare, live, currency, queue, health, target, stack.",
+      "categories": [
+        "App"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/kpi.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Kpi variant=\"metric\" />",
+      "variants": [
+        {
+          "name": "metric",
+          "title": "Metric",
+          "description": "Plain count tile.",
+          "usage": "<Kpi variant=\"metric\" />"
+        },
+        {
+          "name": "spark",
+          "title": "Spark",
+          "description": "Figure plus spark.",
+          "usage": "<Kpi variant=\"spark\" />"
+        },
+        {
+          "name": "delta",
+          "title": "Delta",
+          "description": "Week-over-week change.",
+          "usage": "<Kpi variant=\"delta\" />"
+        },
+        {
+          "name": "progress",
+          "title": "Progress",
+          "description": "Target bar.",
+          "usage": "<Kpi variant=\"progress\" />"
+        },
+        {
+          "name": "ring",
+          "title": "Ring",
+          "description": "Donut metric.",
+          "usage": "<Kpi variant=\"ring\" />"
+        },
+        {
+          "name": "compare",
+          "title": "Compare",
+          "description": "Last week this week.",
+          "usage": "<Kpi variant=\"compare\" />"
+        },
+        {
+          "name": "live",
+          "title": "Live",
+          "description": "Live OPD queue.",
+          "usage": "<Kpi variant=\"live\" />"
+        },
+        {
+          "name": "currency",
+          "title": "Currency",
+          "description": "Rupee booked.",
+          "usage": "<Kpi variant=\"currency\" />"
+        },
+        {
+          "name": "queue",
+          "title": "Queue",
+          "description": "Export queue.",
+          "usage": "<Kpi variant=\"queue\" />"
+        },
+        {
+          "name": "health",
+          "title": "Health",
+          "description": "Uptime tile.",
+          "usage": "<Kpi variant=\"health\" />"
+        },
+        {
+          "name": "target",
+          "title": "Target",
+          "description": "Weekly target.",
+          "usage": "<Kpi variant=\"target\" />"
+        },
+        {
+          "name": "stack",
+          "title": "Stack",
+          "description": "Stacked mini metrics.",
+          "usage": "<Kpi variant=\"stack\" />"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "title": "Data Table",
+      "description": "Twelve filterable tables. Variants: filter, compact, invoices, patients, jobs, athletes, leads, inventory, tickets, dense, grouped, export.",
+      "categories": [
+        "App"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/data-table.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<DataTable variant=\"filter\" />",
+      "variants": [
+        {
+          "name": "filter",
+          "title": "Filter",
+          "description": "Search and status.",
+          "usage": "<DataTable variant=\"filter\" />"
+        },
+        {
+          "name": "compact",
+          "title": "Compact",
+          "description": "Tight rows.",
+          "usage": "<DataTable variant=\"compact\" />"
+        },
+        {
+          "name": "invoices",
+          "title": "Invoices",
+          "description": "Amount column.",
+          "usage": "<DataTable variant=\"invoices\" />"
+        },
+        {
+          "name": "patients",
+          "title": "Patients",
+          "description": "Care rows.",
+          "usage": "<DataTable variant=\"patients\" />"
+        },
+        {
+          "name": "jobs",
+          "title": "Jobs",
+          "description": "Plant jobs.",
+          "usage": "<DataTable variant=\"jobs\" />"
+        },
+        {
+          "name": "athletes",
+          "title": "Athletes",
+          "description": "Season table.",
+          "usage": "<DataTable variant=\"athletes\" />"
+        },
+        {
+          "name": "leads",
+          "title": "Leads",
+          "description": "Agency leads.",
+          "usage": "<DataTable variant=\"leads\" />"
+        },
+        {
+          "name": "inventory",
+          "title": "Inventory",
+          "description": "SKU search.",
+          "usage": "<DataTable variant=\"inventory\" />"
+        },
+        {
+          "name": "tickets",
+          "title": "Tickets",
+          "description": "Ticket search.",
+          "usage": "<DataTable variant=\"tickets\" />"
+        },
+        {
+          "name": "dense",
+          "title": "Dense",
+          "description": "Dense type.",
+          "usage": "<DataTable variant=\"dense\" />"
+        },
+        {
+          "name": "grouped",
+          "title": "Grouped",
+          "description": "Status grouped.",
+          "usage": "<DataTable variant=\"grouped\" />"
+        },
+        {
+          "name": "export",
+          "title": "Export",
+          "description": "CSV export control.",
+          "usage": "<DataTable variant=\"export\" />"
+        }
+      ]
+    },
+    {
+      "name": "kanban-board",
+      "type": "registry:ui",
+      "title": "Kanban Board",
+      "description": "Twelve boards for agency, plant, and clinic. Variants: agency, jobs, care, events, studio, compact, swim, priority, owners, wip, simple, review.",
+      "categories": [
+        "App"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/kanban-board.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<KanbanBoard variant=\"agency\" />",
+      "variants": [
+        {
+          "name": "agency",
+          "title": "Agency",
+          "description": "Brief build review.",
+          "usage": "<KanbanBoard variant=\"agency\" />"
+        },
+        {
+          "name": "jobs",
+          "title": "Jobs",
+          "description": "Plant job columns.",
+          "usage": "<KanbanBoard variant=\"jobs\" />"
+        },
+        {
+          "name": "care",
+          "title": "Care",
+          "description": "Clinic flow.",
+          "usage": "<KanbanBoard variant=\"care\" />"
+        },
+        {
+          "name": "events",
+          "title": "Events",
+          "description": "Race-day columns.",
+          "usage": "<KanbanBoard variant=\"events\" />"
+        },
+        {
+          "name": "studio",
+          "title": "Studio",
+          "description": "Studio board.",
+          "usage": "<KanbanBoard variant=\"studio\" />"
+        },
+        {
+          "name": "compact",
+          "title": "Compact",
+          "description": "Tight cards.",
+          "usage": "<KanbanBoard variant=\"compact\" />"
+        },
+        {
+          "name": "swim",
+          "title": "Swim",
+          "description": "Swimlane mark.",
+          "usage": "<KanbanBoard variant=\"swim\" />"
+        },
+        {
+          "name": "priority",
+          "title": "Priority",
+          "description": "High-priority mark.",
+          "usage": "<KanbanBoard variant=\"priority\" />"
+        },
+        {
+          "name": "owners",
+          "title": "Owners",
+          "description": "Named owners.",
+          "usage": "<KanbanBoard variant=\"owners\" />"
+        },
+        {
+          "name": "wip",
+          "title": "Wip",
+          "description": "WIP limits.",
+          "usage": "<KanbanBoard variant=\"wip\" />"
+        },
+        {
+          "name": "simple",
+          "title": "Simple",
+          "description": "Bare columns.",
+          "usage": "<KanbanBoard variant=\"simple\" />"
+        },
+        {
+          "name": "review",
+          "title": "Review",
+          "description": "Review column mark.",
+          "usage": "<KanbanBoard variant=\"review\" />"
+        }
+      ]
+    },
+    {
+      "name": "chart-block",
+      "type": "registry:ui",
+      "title": "Chart Block",
+      "description": "Twelve SVG chart constructions. Variants: area, bars, line, donut, compare, funnel, heat, stack, spark, goal, mix, clock.",
+      "categories": [
+        "App"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/chart-block.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<ChartBlock variant=\"area\" />",
+      "variants": [
+        {
+          "name": "area",
+          "title": "Area",
+          "description": "Filled spark area.",
+          "usage": "<ChartBlock variant=\"area\" />"
+        },
+        {
+          "name": "bars",
+          "title": "Bars",
+          "description": "Weekly bars.",
+          "usage": "<ChartBlock variant=\"bars\" />"
+        },
+        {
+          "name": "line",
+          "title": "Line",
+          "description": "Hairline series.",
+          "usage": "<ChartBlock variant=\"line\" />"
+        },
+        {
+          "name": "donut",
+          "title": "Donut",
+          "description": "Share ring.",
+          "usage": "<ChartBlock variant=\"donut\" />"
+        },
+        {
+          "name": "compare",
+          "title": "Compare",
+          "description": "Academy vs Labs.",
+          "usage": "<ChartBlock variant=\"compare\" />"
+        },
+        {
+          "name": "funnel",
+          "title": "Funnel",
+          "description": "Brief to handover.",
+          "usage": "<ChartBlock variant=\"funnel\" />"
+        },
+        {
+          "name": "heat",
+          "title": "Heat",
+          "description": "Activity heat.",
+          "usage": "<ChartBlock variant=\"heat\" />"
+        },
+        {
+          "name": "stack",
+          "title": "Stack",
+          "description": "Stacked share.",
+          "usage": "<ChartBlock variant=\"stack\" />"
+        },
+        {
+          "name": "spark",
+          "title": "Spark",
+          "description": "Tiny line.",
+          "usage": "<ChartBlock variant=\"spark\" />"
+        },
+        {
+          "name": "goal",
+          "title": "Goal",
+          "description": "Rupee target.",
+          "usage": "<ChartBlock variant=\"goal\" />"
+        },
+        {
+          "name": "mix",
+          "title": "Mix",
+          "description": "Area plus line.",
+          "usage": "<ChartBlock variant=\"mix\" />"
+        },
+        {
+          "name": "clock",
+          "title": "Clock",
+          "description": "Time-on-desk ring.",
+          "usage": "<ChartBlock variant=\"clock\" />"
+        }
+      ]
+    },
+    {
+      "name": "activity",
+      "type": "registry:ui",
+      "title": "Activity",
+      "description": "Twelve activity feeds. Variants: feed, compact, chat, audit, tickets, care, sports, deploy, mentions, files, timeline, digest.",
+      "categories": [
+        "App"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/activity.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Activity variant=\"feed\" />",
+      "variants": [
+        {
+          "name": "feed",
+          "title": "Feed",
+          "description": "Desk activity feed.",
+          "usage": "<Activity variant=\"feed\" />"
+        },
+        {
+          "name": "compact",
+          "title": "Compact",
+          "description": "Tight feed.",
+          "usage": "<Activity variant=\"compact\" />"
+        },
+        {
+          "name": "chat",
+          "title": "Chat",
+          "description": "Chat bubbles.",
+          "usage": "<Activity variant=\"chat\" />"
+        },
+        {
+          "name": "audit",
+          "title": "Audit",
+          "description": "Mono audit log.",
+          "usage": "<Activity variant=\"audit\" />"
+        },
+        {
+          "name": "tickets",
+          "title": "Tickets",
+          "description": "Ticket marks.",
+          "usage": "<Activity variant=\"tickets\" />"
+        },
+        {
+          "name": "care",
+          "title": "Care",
+          "description": "Clinic events.",
+          "usage": "<Activity variant=\"care\" />"
+        },
+        {
+          "name": "sports",
+          "title": "Sports",
+          "description": "Season events.",
+          "usage": "<Activity variant=\"sports\" />"
+        },
+        {
+          "name": "deploy",
+          "title": "Deploy",
+          "description": "Deploy event.",
+          "usage": "<Activity variant=\"deploy\" />"
+        },
+        {
+          "name": "mentions",
+          "title": "Mentions",
+          "description": "Named mentions.",
+          "usage": "<Activity variant=\"mentions\" />"
+        },
+        {
+          "name": "files",
+          "title": "Files",
+          "description": "File uploads.",
+          "usage": "<Activity variant=\"files\" />"
+        },
+        {
+          "name": "timeline",
+          "title": "Timeline",
+          "description": "Rail timeline.",
+          "usage": "<Activity variant=\"timeline\" />"
+        },
+        {
+          "name": "digest",
+          "title": "Digest",
+          "description": "Daily digest.",
+          "usage": "<Activity variant=\"digest\" />"
+        }
+      ]
+    },
+    {
+      "name": "command-palette",
+      "type": "registry:ui",
+      "title": "Command Palette",
+      "description": "Twelve jump menus. Variants: default, pages, jump, create, search, patients, jobs, athletes, settings, recent, empty, help.",
+      "categories": [
+        "App"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/command-palette.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<CommandPalette variant=\"default\" />",
+      "variants": [
+        {
+          "name": "default",
+          "title": "Default",
+          "description": "Jump menu.",
+          "usage": "<CommandPalette variant=\"default\" />"
+        },
+        {
+          "name": "pages",
+          "title": "Pages",
+          "description": "Page jumps.",
+          "usage": "<CommandPalette variant=\"pages\" />"
+        },
+        {
+          "name": "jump",
+          "title": "Jump",
+          "description": "Jump to a room.",
+          "usage": "<CommandPalette variant=\"jump\" />"
+        },
+        {
+          "name": "create",
+          "title": "Create",
+          "description": "Create actions.",
+          "usage": "<CommandPalette variant=\"create\" />"
+        },
+        {
+          "name": "search",
+          "title": "Search",
+          "description": "Search-first.",
+          "usage": "<CommandPalette variant=\"search\" />"
+        },
+        {
+          "name": "patients",
+          "title": "Patients",
+          "description": "Care search.",
+          "usage": "<CommandPalette variant=\"patients\" />"
+        },
+        {
+          "name": "jobs",
+          "title": "Jobs",
+          "description": "Plant search.",
+          "usage": "<CommandPalette variant=\"jobs\" />"
+        },
+        {
+          "name": "athletes",
+          "title": "Athletes",
+          "description": "Season search.",
+          "usage": "<CommandPalette variant=\"athletes\" />"
+        },
+        {
+          "name": "settings",
+          "title": "Settings",
+          "description": "Settings commands.",
+          "usage": "<CommandPalette variant=\"settings\" />"
+        },
+        {
+          "name": "recent",
+          "title": "Recent",
+          "description": "Recent rooms.",
+          "usage": "<CommandPalette variant=\"recent\" />"
+        },
+        {
+          "name": "empty",
+          "title": "Empty",
+          "description": "Empty match state.",
+          "usage": "<CommandPalette variant=\"empty\" />"
+        },
+        {
+          "name": "help",
+          "title": "Help",
+          "description": "Shortcut help.",
+          "usage": "<CommandPalette variant=\"help\" />"
+        }
+      ]
+    },
+    {
+      "name": "settings-panel",
+      "type": "registry:ui",
+      "title": "Settings Panel",
+      "description": "Twelve settings constructions. Variants: profile, team, billing, appearance, notifications, security, api, clinic, branches, compact, danger, integrations.",
+      "categories": [
+        "App"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/settings-panel.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<SettingsPanel variant=\"profile\" />",
+      "variants": [
+        {
+          "name": "profile",
+          "title": "Profile",
+          "description": "Name and desk.",
+          "usage": "<SettingsPanel variant=\"profile\" />"
+        },
+        {
+          "name": "team",
+          "title": "Team",
+          "description": "Member list.",
+          "usage": "<SettingsPanel variant=\"team\" />"
+        },
+        {
+          "name": "billing",
+          "title": "Billing",
+          "description": "Studio invoice.",
+          "usage": "<SettingsPanel variant=\"billing\" />"
+        },
+        {
+          "name": "appearance",
+          "title": "Appearance",
+          "description": "Dark desk switch.",
+          "usage": "<SettingsPanel variant=\"appearance\" />"
+        },
+        {
+          "name": "notifications",
+          "title": "Notifications",
+          "description": "Alert list.",
+          "usage": "<SettingsPanel variant=\"notifications\" />"
+        },
+        {
+          "name": "security",
+          "title": "Security",
+          "description": "SSO note.",
+          "usage": "<SettingsPanel variant=\"security\" />"
+        },
+        {
+          "name": "api",
+          "title": "Api",
+          "description": "Publishable key.",
+          "usage": "<SettingsPanel variant=\"api\" />"
+        },
+        {
+          "name": "clinic",
+          "title": "Clinic",
+          "description": "Care desk settings.",
+          "usage": "<SettingsPanel variant=\"clinic\" />"
+        },
+        {
+          "name": "branches",
+          "title": "Branches",
+          "description": "Plant branches.",
+          "usage": "<SettingsPanel variant=\"branches\" />"
+        },
+        {
+          "name": "compact",
+          "title": "Compact",
+          "description": "Short settings note.",
+          "usage": "<SettingsPanel variant=\"compact\" />"
+        },
+        {
+          "name": "danger",
+          "title": "Danger",
+          "description": "Archive desk.",
+          "usage": "<SettingsPanel variant=\"danger\" />"
+        },
+        {
+          "name": "integrations",
+          "title": "Integrations",
+          "description": "Calendar and Stripe.",
+          "usage": "<SettingsPanel variant=\"integrations\" />"
+        }
+      ]
+    },
+    {
+      "name": "kit",
+      "type": "registry:ui",
+      "title": "Kit",
+      "description": "Twelve industry pages composed from the blocks. Variants: healthcare, hvac, sports, agency, academy, portal, pharmacy, events, dealer, lab, studio, association.",
+      "categories": [
+        "Kits"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "hero",
+        "stats",
+        "services",
+        "process",
+        "team",
+        "contact",
+        "cta-band",
+        "chapters",
+        "news",
+        "logo-cloud",
+        "leaderboard",
+        "countdown",
+        "case-study",
+        "app-shell",
+        "kpi",
+        "data-table",
+        "kanban-board",
+        "activity",
+        "accordion",
+        "footer",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/kit.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Kit variant=\"healthcare\" />",
+      "variants": [
+        {
+          "name": "healthcare",
+          "title": "Healthcare",
+          "description": "Rise clinic page.",
+          "usage": "<Kit variant=\"healthcare\" />"
+        },
+        {
+          "name": "hvac",
+          "title": "Hvac",
+          "description": "Sri Engineering page.",
+          "usage": "<Kit variant=\"hvac\" />"
+        },
+        {
+          "name": "sports",
+          "title": "Sports",
+          "description": "VDRSA association page.",
+          "usage": "<Kit variant=\"sports\" />"
+        },
+        {
+          "name": "agency",
+          "title": "Agency",
+          "description": "Nexara studio page.",
+          "usage": "<Kit variant=\"agency\" />"
+        },
+        {
+          "name": "academy",
+          "title": "Academy",
+          "description": "Training cohort page.",
+          "usage": "<Kit variant=\"academy\" />"
+        },
+        {
+          "name": "portal",
+          "title": "Portal",
+          "description": "Agency OS dashboard.",
+          "usage": "<Kit variant=\"portal\" />"
+        },
+        {
+          "name": "pharmacy",
+          "title": "Pharmacy",
+          "description": "Pharmacy door page.",
+          "usage": "<Kit variant=\"pharmacy\" />"
+        },
+        {
+          "name": "events",
+          "title": "Events",
+          "description": "Championship page.",
+          "usage": "<Kit variant=\"events\" />"
+        },
+        {
+          "name": "dealer",
+          "title": "Dealer",
+          "description": "Dealer collaboration page.",
+          "usage": "<Kit variant=\"dealer\" />"
+        },
+        {
+          "name": "lab",
+          "title": "Lab",
+          "description": "Diagnostics page.",
+          "usage": "<Kit variant=\"lab\" />"
+        },
+        {
+          "name": "studio",
+          "title": "Studio",
+          "description": "Studio page alias.",
+          "usage": "<Kit variant=\"studio\" />"
+        },
+        {
+          "name": "association",
+          "title": "Association",
+          "description": "Association page alias.",
+          "usage": "<Kit variant=\"association\" />"
         }
       ]
     }

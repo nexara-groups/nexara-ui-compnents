@@ -125,9 +125,19 @@ export function DocsApp() {
   const filtered = useMemo(() => {
     const needle = query.trim().toLowerCase()
     if (!needle) return catalog
-    return catalog.filter((item) =>
-      [item.name, item.slug, item.category, item.description].join(' ').toLowerCase().includes(needle),
-    )
+    return catalog.filter((item) => {
+      const variants = variantDocs[item.slug as keyof typeof variantDocs] ?? []
+      const hay = [
+        item.name,
+        item.slug,
+        item.category,
+        item.description,
+        ...variants.map((variant) => `${item.slug} / ${variant.id} ${variant.name} ${variant.description}`),
+      ]
+        .join(' ')
+        .toLowerCase()
+      return hay.includes(needle)
+    })
   }, [query])
 
   return (
