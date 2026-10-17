@@ -3,35 +3,43 @@ import { Button } from '@/components/ui/button.tsx'
 import { FloatingNavbar, type FloatingNavbarProps, type NavItem } from '@/components/ui/floating-navbar.tsx'
 import { Modal, ModalContent, type ModalVariant } from '@/components/ui/modal.tsx'
 
-export function Face({ title }: { title: string }) {
-  return (
-    <div>
-      <p className="text-xs tracking-[0.16em] text-zinc-400 uppercase">{title}</p>
-      <p className="mt-2 font-serif text-2xl">Turn me</p>
-    </div>
-  )
-}
-
 export function ModalPreview({ variant }: { variant: ModalVariant }) {
   const [open, setOpen] = useState(false)
   return (
-    <div>
-      <Button size="sm" variant="glow-outline" onClick={() => setOpen(true)}>
-        Open {variant}
-      </Button>
-      <Modal open={open} onOpenChange={setOpen}>
-        <ModalContent variant={variant} title={variant} description="Escape or the backdrop closes this panel.">
-          <p className="text-sm">Variant {variant}.</p>
+    <div className="space-y-4">
+      <Modal>
+        <ModalContent inline variant={variant} title={titleFor(variant)} description="Escape or the backdrop closes the live dialog.">
+          <p className="text-sm text-nx-muted">Variant {variant} uses its own anatomy, not just a different entrance.</p>
         </ModalContent>
       </Modal>
+      <div>
+        <Button size="sm" variant="outline" onClick={() => setOpen(true)}>
+          Open live {variant}
+        </Button>
+        <Modal open={open} onOpenChange={setOpen}>
+          <ModalContent variant={variant} title={titleFor(variant)} description="Escape or the backdrop closes this panel.">
+            <p className="text-sm text-nx-muted">This is the same construction as the inline gallery above.</p>
+          </ModalContent>
+        </Modal>
+      </div>
     </div>
   )
 }
 
+function titleFor(variant: ModalVariant) {
+  if (variant === 'confirm') return 'Delete this room?'
+  if (variant === 'otp') return 'Check your email'
+  if (variant === 'command') return 'Jump'
+  if (variant === 'form') return 'Edit studio'
+  if (variant === 'notice') return 'Preview is open'
+  if (variant === 'auth') return 'Sign in'
+  return variant
+}
+
 function navFrame(variant: NonNullable<FloatingNavbarProps['variant']>) {
-  if (variant === 'sidebar') return 'relative h-[22rem] overflow-hidden rounded-2xl border border-white/10 bg-[#09090f]'
-  if (variant === 'overlay' || variant === 'announcement' || variant === 'mega') return 'relative h-56 overflow-hidden rounded-2xl border border-white/10 bg-[#09090f]'
-  return 'relative h-40 overflow-hidden rounded-2xl border border-white/10 bg-[#09090f]'
+  if (variant === 'sidebar') return 'relative h-[22rem] overflow-hidden rounded-2xl border border-nx-border bg-nx-bg'
+  if (variant === 'overlay' || variant === 'announcement' || variant === 'mega') return 'relative h-56 overflow-hidden rounded-2xl border border-nx-border bg-nx-bg'
+  return 'relative h-40 overflow-hidden rounded-2xl border border-nx-border bg-nx-bg'
 }
 
 export function NavPreview({ variant }: { variant: NonNullable<FloatingNavbarProps['variant']> }) {

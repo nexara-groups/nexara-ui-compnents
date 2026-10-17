@@ -1,23 +1,24 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import { type CSSProperties, type RefObject } from 'react'
-import { cn } from '@/lib/utils.ts'
+import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const tags = { p: 'p', h1: 'h1', h2: 'h2', h3: 'h3', span: 'span', div: 'div' } as const
 
 const VARIANTS = [
   'editorial',
-  'headline',
-  'marker',
+  'display',
+  'highlight',
   'outline',
   'split',
-  'figure',
+  'caption',
   'quote',
-  'medallion',
   'columns',
-  'annotation',
+  'note',
   'index',
-  'running-head',
+  'folio',
+  'stack',
 ] as const
 
 export type TextRevealVariant = (typeof VARIANTS)[number]
@@ -39,105 +40,110 @@ export interface TextRevealProps {
 
 /**
  * TextReveal
- * Twelve typographic compositions. The string is the copy; the variant is the layout.
- * Copy this file plus `src/lib/utils.ts`.
+ * Twelve typographic compositions. Copy this file plus `src/lib/utils.ts`.
  */
-export function TextReveal({ text, className, as = 'div', by = 'word', variant = 'editorial', style, container }: TextRevealProps) {
+export function TextReveal({
+  text,
+  className,
+  wordClassName,
+  as = 'div',
+  by = 'word',
+  variant = 'editorial',
+  stagger = 0.05,
+  delay = 0,
+  style,
+}: TextRevealProps) {
+  const reduced = usePrefersReducedMotion()
   const Tag = tags[as]
-  const words = text.split(/\s+/).filter(Boolean)
-  const first = words[0] ?? text
-  const rest = words.slice(1).join(' ')
+  const units = by === 'char' ? Array.from(text) : text.split(/\s+/).filter(Boolean)
+  const first = units[0] ?? text
+  const rest = units.slice(1)
+
+  const reveal = (items: string[], extra?: string) =>
+    items.map((item, index) => (
+      <motion.span
+        key={`${item}-${index}`}
+        className={cn('inline-block', wordClassName, extra)}
+        initial={reduced ? false : { opacity: 0, y: 10 }}
+        whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ delay: delay + index * stagger, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {item}
+        {by === 'word' ? '\u00a0' : ''}
+      </motion.span>
+    ))
 
   return (
-    <Tag data-nexara="text-reveal" data-variant={variant} className={cn('text-[#f6f3ec]', className)} style={style}>
+    <Tag data-nexara="text-reveal" data-variant={variant} className={cn('text-nx-fg', className)} style={style}>
       {variant === 'editorial' ? (
-        <p className="max-w-xl font-serif text-lg leading-8" data-scroll-root={container ? 'set' : undefined}>
-          {by === 'char' ? (
-            <span className="tracking-[0.35em] uppercase">{text}</span>
-          ) : (
-            <>
-              <span className="float-left mt-1 mr-2 font-serif text-6xl leading-none text-[#f5c16c]">{first.slice(0, 1)}</span>
-              {text.slice(1)}
-            </>
-          )}
+        <p className="max-w-xl font-serif text-lg leading-8">
+          <span className="float-left mt-1 mr-2 font-serif text-6xl leading-none text-nx-accent">{String(first).slice(0, 1)}</span>
+          {text.slice(1)}
         </p>
       ) : null}
-      {variant === 'headline' ? (
-        <div>
-          <p className="text-xs tracking-[0.22em] text-zinc-400 uppercase">Chapter</p>
-          <p className="font-serif text-6xl leading-none md:text-7xl">{text}</p>
-        </div>
+      {variant === 'display' ? (
+        <p className="font-serif text-5xl leading-[0.95] tracking-tight md:text-7xl">{reveal(units)}</p>
       ) : null}
-      {variant === 'marker' ? (
+      {variant === 'highlight' ? (
         <p className="font-serif text-4xl">
-          <span className="bg-[linear-gradient(#f5c16c,#f5c16c)] bg-[length:100%_0.35em] bg-[position:0_85%] bg-no-repeat px-1">{text}</span>
+          <span className="bg-[linear-gradient(transparent_62%,color-mix(in_oklab,var(--nx-accent)_32%,transparent)_62%)]">
+            {reveal(units)}
+          </span>
         </p>
       ) : null}
       {variant === 'outline' ? (
-        <p className="font-serif text-6xl text-transparent" style={{ WebkitTextStroke: '1.5px #f6f3ec' }}>{text}</p>
+        <p className="font-serif text-6xl text-transparent" style={{ WebkitTextStroke: '1.4px var(--nx-fg)' }}>
+          {reveal(units)}
+        </p>
       ) : null}
       {variant === 'split' ? (
         <p className="flex flex-wrap items-baseline gap-3">
-          <span className="font-serif text-5xl">{first}</span>
-          <span className="text-lg text-zinc-400">{rest || 'continues'}</span>
+          <span className="font-serif text-6xl leading-none">{first}</span>
+          <span className="max-w-xs text-sm leading-6 text-nx-muted">{rest.join(' ')}</span>
         </p>
       ) : null}
-      {variant === 'figure' ? (
-        <div>
-          <div className="relative h-24 border border-white/30">
-            <span className="absolute -top-px -left-px size-3 border-t border-l border-[#f6f3ec]" />
-            <span className="absolute -top-px -right-px size-3 border-t border-r border-[#f6f3ec]" />
-            <span className="absolute -bottom-px -left-px size-3 border-b border-l border-[#f6f3ec]" />
-            <span className="absolute -right-px -bottom-px size-3 border-r border-b border-[#f6f3ec]" />
-          </div>
-          <p className="mt-2 text-sm">{text}</p>
-        </div>
+      {variant === 'caption' ? (
+        <p>
+          <span className="block text-[11px] tracking-[0.2em] text-nx-muted uppercase">Fig. 18</span>
+          <span className="mt-2 block font-serif text-3xl">{text}</span>
+        </p>
       ) : null}
       {variant === 'quote' ? (
-        <blockquote className="border-l-2 border-[#f5c16c] pl-4">
-          <p className="font-serif text-3xl leading-tight">“{text}”</p>
-        </blockquote>
-      ) : null}
-      {variant === 'medallion' ? (
-        <p className="flex items-center gap-4">
-          <span className="inline-flex size-20 items-center justify-center rounded-full border-2 border-[#f5c16c] font-serif text-3xl">{first}</span>
-          <span className="text-sm tracking-[0.16em] text-zinc-400 uppercase">{rest || 'marked'}</span>
-        </p>
+        <blockquote className="border-l-2 border-nx-accent pl-5 font-serif text-3xl leading-snug">{text}</blockquote>
       ) : null}
       {variant === 'columns' ? (
-        <div>
-          <div className="mb-3 h-px bg-white/20" />
-          <div className="grid grid-cols-2 gap-6 text-sm leading-6">
-            <p>{words.filter((_, index) => index % 2 === 0).join(' ')}</p>
-            <p>{words.filter((_, index) => index % 2 === 1).join(' ')}</p>
-          </div>
-        </div>
+        <p className="max-w-xl columns-2 gap-6 font-serif text-sm leading-6">{text}</p>
       ) : null}
-      {variant === 'annotation' ? (
-        <p className="relative inline-block font-serif text-4xl">
-          {text}
-          <span className="absolute -top-6 right-0 rotate-[-8deg] font-serif text-sm text-[#ff6a3d]">see note</span>
+      {variant === 'note' ? (
+        <p className="font-serif text-2xl">
+          {text} <span className="align-super font-sans text-xs text-nx-accent">see margin</span>
         </p>
       ) : null}
       {variant === 'index' ? (
-        <ol className="space-y-1 font-serif text-2xl">
-          {words.slice(0, 4).map((word, index) => (
-            <li key={`${word}-${index}`} className="flex gap-4 border-b border-white/10">
-              <span className="text-[#f5c16c]">{String(index + 1).padStart(2, '0')}</span>
-              {word}
+        <ol className="space-y-2 text-sm">
+          {units.map((word, index) => (
+            <li key={`${word}-${index}`} className="flex justify-between border-b border-nx-border pb-1">
+              <span>{word}</span>
+              <span className="font-mono text-nx-faint">{String(index + 1).padStart(2, '0')}</span>
             </li>
           ))}
         </ol>
       ) : null}
-      {variant === 'running-head' ? (
-        <div>
-          <div className="flex items-center gap-3 text-[10px] tracking-[0.18em] text-zinc-400 uppercase">
-            <span>04</span>
-            <span className="h-px flex-1 bg-white/20" />
-            <span>{first}</span>
-          </div>
-          <p className="mt-3 font-serif text-3xl">{rest || text}</p>
-        </div>
+      {variant === 'folio' ? (
+        <p className="flex items-baseline justify-between border-t border-nx-line pt-2 text-xs tracking-[0.16em] text-nx-muted uppercase">
+          <span>{text}</span>
+          <span>018</span>
+        </p>
+      ) : null}
+      {variant === 'stack' ? (
+        <p className="font-serif text-4xl leading-[1.05]">
+          {units.map((word) => (
+            <span key={word} className="block">
+              {word}
+            </span>
+          ))}
+        </p>
       ) : null}
     </Tag>
   )

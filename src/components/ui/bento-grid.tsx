@@ -57,18 +57,18 @@ export function BentoGrid({ children, className, columns = 3, gap = 'md' }: Bent
 }
 
 const itemVariants = {
-  chart: 'rounded-3xl border-white/10 bg-[#10141c]',
+  chart: 'rounded-3xl border-nx-border bg-nx-card',
   quote: 'rounded-none border-0 bg-transparent',
-  editorial: 'rounded-none border-x-0 border-t-0 border-b border-white/20 bg-transparent',
-  terminal: 'rounded-lg border-[#3ddec4]/40 bg-[#07110f] font-mono',
-  schedule: 'rounded-2xl border-white/15 bg-[#14151f]',
-  scoreboard: 'rounded-3xl border-white/10 bg-[#10241f] font-mono',
-  stat: 'rounded-3xl border-white/10 bg-[#10131c]',
-  compare: 'rounded-3xl border-white/10 bg-[#12141c]',
-  media: 'rounded-[2rem] border-transparent bg-[#1a1420] p-0',
-  calendar: 'rounded-3xl border-white/10 bg-[#f6f3ec] text-[#1c1915]',
-  kanban: 'rounded-2xl border-white/10 bg-[#16141c]',
-  invoice: 'rounded-none border border-dashed border-white/25 bg-[#12110e] font-mono',
+  editorial: 'rounded-none border-x-0 border-t-0 border-b border-nx-line bg-transparent',
+  terminal: 'rounded-lg border-white/10 bg-[#0c0d10] font-mono text-[#9be7c4]',
+  schedule: 'rounded-2xl border-nx-border bg-nx-card',
+  scoreboard: 'rounded-3xl border-nx-border bg-[#10241f] font-mono text-[#d9fff6]',
+  stat: 'rounded-3xl border-nx-border bg-nx-elevated',
+  compare: 'rounded-3xl border-nx-border bg-nx-card',
+  media: 'rounded-[2rem] border-transparent bg-[#1a1420] p-0 text-white',
+  calendar: 'rounded-3xl border-nx-border bg-nx-card',
+  kanban: 'rounded-2xl border-nx-border bg-nx-card',
+  invoice: 'rounded-xl border border-dashed border-nx-line bg-nx-bg font-mono',
 } as const
 
 export type BentoVariant = keyof typeof itemVariants

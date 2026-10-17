@@ -6,17 +6,17 @@ import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const VARIANTS = [
   'credit',
-  'badge',
-  'playing',
   'product',
-  'flashcard',
-  'ticket',
-  'profile',
   'pricing',
-  'passport',
-  'vinyl',
-  'book',
-  'postcard',
+  'profile',
+  'metric',
+  'invite',
+  'auth',
+  'feature',
+  'quote',
+  'plan',
+  'media',
+  'flashcard',
 ] as const
 
 export type FlipVariant = (typeof VARIANTS)[number]
@@ -38,9 +38,7 @@ export interface FlipCardProps {
 
 /**
  * FlipCard
- * Twelve objects that turn: credit card, badge, playing card, product,
- * flashcard, ticket, profile, pricing, passport, vinyl, book, postcard.
- * Copy this file plus `src/lib/utils.ts`.
+ * Twelve two-sided product cards. Copy this file plus `src/lib/utils.ts`.
  */
 export function FlipCard({
   front,
@@ -92,14 +90,14 @@ export function FlipCard({
           transition={transition}
         >
           <div
-            className={cn('absolute inset-0 overflow-hidden rounded-3xl [backface-visibility:hidden]', flipped && 'pointer-events-none', frontClassName)}
+            className={cn('absolute inset-0 overflow-hidden [backface-visibility:hidden]', flipped && 'pointer-events-none', frontClassName)}
             inert={flipped ? true : undefined}
             aria-hidden={flipped || undefined}
           >
             {frontNode}
           </div>
           <div
-            className={cn('absolute inset-0 overflow-hidden rounded-3xl [backface-visibility:hidden] [transform:rotateY(180deg)]', !flipped && 'pointer-events-none', backClassName)}
+            className={cn('absolute inset-0 overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]', !flipped && 'pointer-events-none', backClassName)}
             inert={!flipped ? true : undefined}
             aria-hidden={!flipped || undefined}
           >
@@ -110,7 +108,7 @@ export function FlipCard({
       <button
         type="button"
         aria-pressed={flipped}
-        className="absolute right-3 bottom-3 z-20 inline-flex h-8 items-center rounded-full border border-white/20 bg-black/50 px-3 text-xs text-[#f6f3ec]"
+        className="absolute right-3 bottom-3 z-20 inline-flex h-8 items-center rounded-full border border-nx-border bg-nx-card/90 px-3 text-xs text-nx-fg backdrop-blur"
         onClick={(event) => {
           event.stopPropagation()
           setFlipped(!flipped)
@@ -124,82 +122,208 @@ export function FlipCard({
 }
 
 function pair(variant: FlipVariant): { front: ReactNode; back: ReactNode } {
-  if (variant === 'badge') {
-    return {
-      front: <Face className="bg-[#10241f] text-[#d9fff6]"><p className="text-xs tracking-[0.2em] uppercase">Visitor</p><p className="mt-6 font-serif text-3xl">Ada Klein</p><p className="mt-auto font-mono text-xs">NX-2041</p></Face>,
-      back: <Face className="bg-[#f6f3ec] text-[#1c1915]"><p className="text-xs uppercase">Barcode</p><div className="mt-6 h-16 bg-[repeating-linear-gradient(90deg,#1c1915_0_2px,transparent_2px_4px)]" /></Face>,
-    }
-  }
-  if (variant === 'playing') {
-    return {
-      front: <Face className="bg-[#f6f3ec] text-[#7f1d1d]"><p className="font-serif text-2xl">A</p><p className="m-auto font-serif text-5xl">♥</p><p className="self-end font-serif text-2xl">A</p></Face>,
-      back: <Face className="bg-[#1e3a8a]"><div className="m-auto size-24 rotate-45 border-4 border-[#f5c16c]" /></Face>,
-    }
-  }
   if (variant === 'product') {
     return {
-      front: <Face className="bg-[#f6f3ec] text-[#1c1915]"><div className="h-24 rounded-2xl bg-[#ff6a3d]" /><p className="mt-3 font-serif text-2xl">Lamp 04</p></Face>,
-      back: <Face className="bg-[#14151f]"><p className="text-xs uppercase text-zinc-400">Specs</p><p className="mt-3">Brass, linen cord, 40W</p><p className="mt-2 text-[#f5c16c]">$220</p></Face>,
-    }
-  }
-  if (variant === 'flashcard') {
-    return {
-      front: <Face className="bg-[#f6f3ec] text-[#1c1915]"><p className="text-xs uppercase">Term</p><p className="m-auto font-serif text-3xl">Atelier</p></Face>,
-      back: <Face className="bg-[#1c1915] text-[#f6f3ec]"><p className="text-xs uppercase text-[#f5c16c]">Definition</p><p className="mt-4">A room set aside for making.</p></Face>,
-    }
-  }
-  if (variant === 'ticket') {
-    return {
-      front: <Face className="bg-[#17151f]"><p className="text-xs tracking-[0.2em] uppercase">Admit one</p><p className="mt-4 font-serif text-3xl">Harbor Hall</p><p className="mt-auto border-t border-dashed border-white/30 pt-3 text-xs">Row C · Seat 12</p></Face>,
-      back: <Face className="bg-[#14120f]"><p className="text-xs uppercase">Stub</p><p className="mt-6 font-mono">NX · 18 · 09</p></Face>,
-    }
-  }
-  if (variant === 'profile') {
-    return {
-      front: <Face className="items-center bg-[#161222] text-center"><span className="size-16 rounded-full bg-[#8b7cff]" /><p className="mt-3 font-serif text-2xl">Ada Klein</p><p className="text-sm text-zinc-400">Studio lead</p></Face>,
-      back: <Face className="bg-[#12131c]"><p className="text-xs uppercase text-zinc-400">Bio</p><p className="mt-3 text-sm leading-6">Designs rooms, writes the notes, keeps the lights low.</p></Face>,
+      front: (
+        <Face className="rounded-[1.4rem] border border-nx-border bg-nx-card">
+          <div className="h-24 rounded-2xl bg-[radial-gradient(circle_at_30%_20%,#d9d6ff,transparent_40%),linear-gradient(160deg,#1b1b22,#0e0e12)]" />
+          <p className="mt-3 text-lg font-medium">Lamp 04</p>
+          <p className="text-sm text-nx-muted">$220 · brushed oak</p>
+        </Face>
+      ),
+      back: (
+        <Face className="rounded-[1.4rem] bg-nx-fg text-nx-bg">
+          <p className="text-xs tracking-[0.16em] uppercase opacity-60">Specs</p>
+          <p className="mt-3 text-sm leading-6">48cm · linen cord · 40W · Harbor finish</p>
+          <p className="mt-auto text-sm">Ships in 4 days</p>
+        </Face>
+      ),
     }
   }
   if (variant === 'pricing') {
     return {
-      front: <Face className="bg-[#12131c]"><p className="text-xs uppercase text-zinc-400">Studio</p><p className="mt-2 font-serif text-5xl">$48</p><p className="text-sm text-zinc-400">per month</p></Face>,
-      back: <Face className="bg-[#0f1c18]"><p className="text-xs uppercase text-[#3ddec4]">Includes</p><ul className="mt-3 space-y-1 text-sm"><li>Rooms</li><li>Library</li><li>Export</li></ul></Face>,
+      front: (
+        <Face className="rounded-[1.5rem] border border-nx-border bg-nx-card">
+          <p className="text-xs text-nx-muted">Studio</p>
+          <p className="mt-2 font-serif text-5xl">$48</p>
+          <p className="text-sm text-nx-muted">per seat / month</p>
+        </Face>
+      ),
+      back: (
+        <Face className="rounded-[1.5rem] bg-nx-accent text-nx-accent-fg">
+          <p className="text-xs tracking-[0.16em] uppercase opacity-70">Includes</p>
+          <ul className="mt-3 space-y-1 text-sm">
+            <li>Unlimited rooms</li>
+            <li>Shared libraries</li>
+            <li>Priority export</li>
+          </ul>
+        </Face>
+      ),
     }
   }
-  if (variant === 'passport') {
+  if (variant === 'profile') {
     return {
-      front: <Face className="items-center bg-[#143028] text-center text-[#d9fff6]"><p className="text-xs tracking-[0.28em] uppercase">Nexara</p><p className="mt-6 font-serif text-3xl">Passport</p></Face>,
-      back: <Face className="bg-[#f6f3ec] text-[#1c1915]"><p className="text-xs uppercase">Data page</p><p className="mt-3">Name: Ada Klein</p><p>No: NX20418</p></Face>,
+      front: (
+        <Face className="items-center rounded-[1.5rem] border border-nx-border bg-nx-card text-center">
+          <span className="inline-flex size-16 items-center justify-center rounded-full bg-[linear-gradient(135deg,#4c46e0,#22c5b0)] text-lg font-semibold text-white">AK</span>
+          <p className="mt-3 text-xl font-medium">Ada Klein</p>
+          <p className="text-sm text-nx-muted">Studio lead · Harbor</p>
+        </Face>
+      ),
+      back: (
+        <Face className="rounded-[1.5rem] bg-nx-elevated">
+          <p className="text-xs tracking-[0.16em] text-nx-muted uppercase">Bio</p>
+          <p className="mt-3 text-sm leading-6 text-nx-muted">Designs rooms, writes the notes, keeps the lights low. Previously Field.</p>
+        </Face>
+      ),
     }
   }
-  if (variant === 'vinyl') {
+  if (variant === 'metric') {
     return {
-      front: <Face className="items-center bg-[#2a1814]"><div className="size-28 rounded-full bg-[#111] shadow-[inset_0_0_0_18px_#3a2a24]"><div className="m-auto mt-10 size-8 rounded-full bg-[#f5c16c]" /></div></Face>,
-      back: <Face className="bg-[#1a120e]"><p className="text-xs uppercase text-[#f5c16c]">Side A</p><ol className="mt-3 space-y-1 text-sm"><li>1. Night desk</li><li>2. Harbor</li><li>3. Lamp</li></ol></Face>,
+      front: (
+        <Face className="rounded-2xl border border-nx-border bg-nx-card">
+          <p className="text-xs text-nx-muted">Export success</p>
+          <p className="mt-2 font-serif text-5xl">99.98</p>
+          <p className="text-sm text-nx-ok">+4.1% this week</p>
+        </Face>
+      ),
+      back: (
+        <Face className="rounded-2xl bg-[#111113] text-white">
+          <p className="text-xs text-white/50">Breakdown</p>
+          <p className="mt-3 text-sm">1.2M jobs · 18 failures · p95 240ms</p>
+        </Face>
+      ),
     }
   }
-  if (variant === 'book') {
+  if (variant === 'invite') {
     return {
-      front: <Face className="bg-[#7f1d1d]"><p className="mt-8 font-serif text-4xl leading-none">The quiet room</p><p className="mt-auto text-xs tracking-[0.16em] uppercase">Nexara Press</p></Face>,
-      back: <Face className="bg-[#f6f3ec] text-[#1c1915]"><p className="text-sm leading-6">A short book about leaving space on the page.</p></Face>,
+      front: (
+        <Face className="rounded-[1.4rem] border border-nx-border bg-nx-card">
+          <p className="text-xs tracking-[0.18em] text-nx-accent uppercase">Invite</p>
+          <p className="mt-4 font-serif text-3xl leading-none">Harbor Hall</p>
+          <p className="mt-auto text-sm text-nx-muted">12 Nov · 19:00</p>
+        </Face>
+      ),
+      back: (
+        <Face className="rounded-[1.4rem] bg-nx-fg text-nx-bg">
+          <p className="text-xs uppercase opacity-60">Seat</p>
+          <p className="mt-3 font-mono text-2xl">C12</p>
+          <p className="mt-auto text-sm">Show this at the door</p>
+        </Face>
+      ),
     }
   }
-  if (variant === 'postcard') {
+  if (variant === 'auth') {
     return {
-      front: <Face className="bg-[linear-gradient(160deg,#3ddec4,#1d4ed8)]"><p className="mt-auto font-serif text-3xl">Lisbon</p></Face>,
-      back: <Face className="bg-[#f6f3ec] text-[#1c1915]"><div className="ml-auto size-12 border border-dashed border-[#1c1915]/40" /><p className="mt-4 text-sm">Wish you were in the room.</p></Face>,
+      front: (
+        <Face className="rounded-2xl border border-nx-border bg-nx-card">
+          <p className="text-sm font-medium">Sign in to Nexara</p>
+          <p className="mt-2 text-sm text-nx-muted">We’ll email a six-digit code.</p>
+        </Face>
+      ),
+      back: (
+        <Face className="items-center rounded-2xl bg-nx-fg text-nx-bg">
+          <p className="text-xs tracking-[0.16em] uppercase opacity-60">Code</p>
+          <p className="mt-4 font-mono text-3xl tracking-[0.3em]">418 229</p>
+        </Face>
+      ),
+    }
+  }
+  if (variant === 'feature') {
+    return {
+      front: (
+        <Face className="rounded-2xl border border-nx-border bg-nx-card">
+          <p className="text-xs text-nx-accent">New</p>
+          <p className="mt-2 text-xl font-medium">Command palette</p>
+          <p className="mt-2 text-sm text-nx-muted">Jump any room with ⌘K.</p>
+        </Face>
+      ),
+      back: (
+        <Face className="rounded-2xl border border-nx-border bg-nx-elevated">
+          <p className="font-mono text-sm text-nx-muted">⌘K → “Harbor”</p>
+          <p className="mt-auto text-sm">Opens the last export.</p>
+        </Face>
+      ),
+    }
+  }
+  if (variant === 'quote') {
+    return {
+      front: (
+        <Face className="rounded-none border-l-2 border-nx-accent bg-transparent pl-5">
+          <p className="font-serif text-2xl leading-snug">“The registry finally feels like a product.”</p>
+        </Face>
+      ),
+      back: (
+        <Face className="rounded-none bg-transparent">
+          <p className="text-sm font-medium">Ada Klein</p>
+          <p className="text-sm text-nx-muted">Harbor · Issue 18</p>
+        </Face>
+      ),
+    }
+  }
+  if (variant === 'plan') {
+    return {
+      front: (
+        <Face className="rounded-2xl bg-nx-fg text-nx-bg">
+          <p className="text-xs uppercase opacity-60">This week</p>
+          <p className="mt-3 text-xl">Ship the mast</p>
+        </Face>
+      ),
+      back: (
+        <Face className="rounded-2xl border border-nx-border bg-nx-card">
+          <ul className="space-y-2 text-sm text-nx-muted">
+            <li>Review copy</li>
+            <li>Lock tokens</li>
+            <li>Record walkthrough</li>
+          </ul>
+        </Face>
+      ),
+    }
+  }
+  if (variant === 'media') {
+    return {
+      front: (
+        <Face className="rounded-[1.4rem] bg-[linear-gradient(140deg,#1c1630,#4c46e0_60%,#d7c4a4)] p-0">
+          <p className="mt-auto p-5 text-lg font-medium text-white">Issue 18 cover</p>
+        </Face>
+      ),
+      back: (
+        <Face className="rounded-[1.4rem] bg-nx-card">
+          <p className="text-sm text-nx-muted">Mira Chen · 6 min · Essay</p>
+          <p className="mt-3 font-serif text-2xl">A quieter measure of the room</p>
+        </Face>
+      ),
+    }
+  }
+  if (variant === 'flashcard') {
+    return {
+      front: (
+        <Face className="rounded-xl border border-nx-border bg-nx-card">
+          <p className="text-xs text-nx-muted">Term</p>
+          <p className="m-auto font-serif text-3xl">Atelier</p>
+        </Face>
+      ),
+      back: (
+        <Face className="rounded-xl bg-nx-fg text-nx-bg">
+          <p className="text-xs uppercase opacity-60">Definition</p>
+          <p className="mt-4 text-sm leading-6">A room set aside for making.</p>
+        </Face>
+      ),
     }
   }
   return {
     front: (
-      <Face className="bg-[linear-gradient(135deg,#1a1428,#3b1d4a)]">
-        <div className="flex justify-between text-xs tracking-[0.16em] uppercase"><span>Nexara</span><span>Debit</span></div>
-        <div className="mt-6 h-8 w-11 rounded-md bg-[#f5c16c]" />
-        <p className="mt-auto font-mono tracking-[0.18em]">4242 4242 4242 1881</p>
+      <Face className="rounded-2xl bg-[linear-gradient(135deg,#17151f,#2a2040)] text-white">
+        <div className="flex justify-between text-[11px] tracking-[0.16em] uppercase">
+          <span>Nexara</span>
+          <span>Debit</span>
+        </div>
+        <div className="mt-6 h-8 w-11 rounded-md bg-[#e4c56d]" />
+        <p className="mt-auto font-mono tracking-[0.18em]">4242  1881  2041  09</p>
       </Face>
     ),
     back: (
-      <Face className="bg-[#1c1915] p-0">
+      <Face className="rounded-2xl bg-[#1a1814] p-0 text-white">
         <div className="mt-6 h-10 bg-black" />
         <p className="mt-4 px-5 font-mono text-sm">CVV 188</p>
       </Face>
@@ -208,5 +332,5 @@ function pair(variant: FlipVariant): { front: ReactNode; back: ReactNode } {
 }
 
 function Face({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={cn('flex h-full flex-col p-5 text-[#f6f3ec]', className)}>{children}</div>
+  return <div className={cn('flex h-full flex-col p-5 text-nx-fg', className)}>{children}</div>
 }

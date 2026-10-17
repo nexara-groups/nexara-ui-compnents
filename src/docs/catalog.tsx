@@ -1,19 +1,29 @@
 import type { ComponentType } from 'react'
 import {
+  AccordionDemo,
   AuroraBackgroundDemo,
+  AvatarDemo,
+  BadgeDemo,
   BentoGridDemo,
   ButtonDemo,
   DraggableCardDemo,
   FlipCardDemo,
   FloatingNavbarDemo,
+  FooterDemo,
   GradientTextDemo,
   GridBackgroundDemo,
   HeroDemo,
+  InputDemo,
   MagneticButtonDemo,
   MarqueeDemo,
   ModalDemo,
+  PricingDemo,
   SpotlightCardDemo,
+  TabsDemo,
+  TestimonialsDemo,
   TextRevealDemo,
+  ToastDemo,
+  TooltipDemo,
   TypewriterDemo,
 } from '@/docs/demos.tsx'
 
@@ -45,8 +55,7 @@ export const catalog: CatalogEntry[] = [
     slug: 'draggable-card',
     name: 'Draggable Card',
     category: 'Cards',
-    description:
-      'A card you can throw inside a frame. It tilts while dragging, snaps back on request, and moves with the arrow keys.',
+    description: 'A card you can throw inside a frame. It tilts while dragging, snaps back on request, and moves with the arrow keys.',
     path: 'src/components/ui/draggable-card.tsx',
     dependencies: motionDeps,
     registryDependencies: ['utils'],
@@ -64,7 +73,7 @@ export function Example() {
   )
 }`,
     props: [
-      { name: 'variant', type: 'glass | film | sticker | window | ticket | polaroid | dossier | receipt | comic | playing | boarding | postcard', defaultValue: 'glass', description: 'Physical object. See the variant list for a live demo of each.' },
+      { name: 'variant', type: 'glass | window | note | media | task | invite | file | widget | message | stack | compact | calendar', defaultValue: 'glass', description: 'Card product. See the gallery for a live demo of each.' },
       { name: 'bounds', type: "'parent' | 'viewport' | RefObject", defaultValue: 'parent', description: 'Play area. parent creates one; a ref shares an external frame.' },
       { name: 'snapBack', type: 'boolean', defaultValue: 'false', description: 'Spring back to the start on release.' },
       { name: 'dragElastic', type: 'number', defaultValue: '0.16', description: 'Rubber-band past the edges, from 0 to 1.' },
@@ -72,14 +81,12 @@ export function Example() {
       { name: 'tilt', type: 'boolean', defaultValue: 'true', description: 'Rotate slightly while dragging.' },
       { name: 'tiltMax', type: 'number', defaultValue: '7', description: 'Maximum tilt in degrees.' },
       { name: 'glow', type: 'boolean', defaultValue: 'true', description: 'Soft color bloom in the corner.' },
-      { name: 'glowColor', type: 'string', defaultValue: 'rgba(139, 124, 255, 0.55)', description: 'Any CSS color for the bloom.' },
+      { name: 'glowColor', type: 'string', description: 'Any CSS color for the bloom.' },
       { name: 'handle', type: 'boolean', defaultValue: 'false', description: 'Drag only from the grip so inner controls stay clickable.' },
       { name: 'keyboardStep', type: 'number', defaultValue: '16', description: 'Arrow-key distance in pixels. Shift triples it.' },
-      { name: 'initialX / initialY', type: 'number', defaultValue: '0', description: 'Starting offset.' },
       { name: 'disabled', type: 'boolean', defaultValue: 'false', description: 'Turns dragging and keyboard movement off.' },
-      { name: 'className', type: 'string', description: 'Tailwind classes for the card. Merged with the variant.' },
+      { name: 'className', type: 'string', description: 'Tailwind classes for the card.' },
       { name: 'stageClassName', type: 'string', description: 'Classes for the generated play area when bounds is parent.' },
-      { name: 'onDragEnd', type: '(point: { x: number; y: number }) => void', description: 'Fires with the resting point.' },
     ],
     Demo: DraggableCardDemo,
   },
@@ -87,26 +94,20 @@ export function Example() {
     slug: 'spotlight-card',
     name: 'Spotlight Card',
     category: 'Cards',
-    description: 'A card whose highlight and hairline follow the pointer without re-rendering on each move.',
+    description: 'Twelve product cards. A pointer wash sits on top of a different anatomy each time.',
     path: 'src/components/ui/spotlight-card.tsx',
     dependencies: styleDeps,
     registryDependencies: ['utils'],
     usage: `import { SpotlightCard } from '@/components/ui/spotlight-card'
 
 export function Example() {
-  return (
-    <SpotlightCard spotlightColor="rgba(255, 106, 61, 0.45)" spotlightSize={320} className="p-6">
-      <h3>Follow the light</h3>
-    </SpotlightCard>
-  )
+  return <SpotlightCard variant="pricing" />
 }`,
     props: [
-      { name: 'variant', type: 'profile | pricing | product | testimonial | stat | music | weather | notification | repo | task | article | place', defaultValue: 'profile', description: 'Card product. A pointer wash sits on top of the anatomy.' },
-      { name: 'spotlightColor', type: 'string', defaultValue: 'rgba(139, 124, 255, 0.45)', description: 'CSS color of the radial wash.' },
-      { name: 'spotlightSize', type: 'number', defaultValue: '280', description: 'Glow diameter in pixels.' },
-      { name: 'borderGlow', type: 'boolean', defaultValue: 'true', description: 'Brightens a 1px edge under the pointer.' },
-      { name: 'className', type: 'string', description: 'Layout, padding, and color overrides.' },
-      { name: 'contentClassName', type: 'string', description: 'Classes for the inner content wrapper.' },
+      { name: 'variant', type: 'profile | pricing | product | testimonial | stat | player | weather | inbox | repo | task | article | place', defaultValue: 'profile', description: 'Card product. Anatomy differs; the wash is shared.' },
+      { name: 'spotlightColor', type: 'string', description: 'CSS color of the radial wash.' },
+      { name: 'spotlightSize', type: 'number', defaultValue: '220', description: 'Glow diameter in pixels.' },
+      { name: 'className', type: 'string', description: 'Layout and color overrides.' },
     ],
     Demo: SpotlightCardDemo,
   },
@@ -121,24 +122,13 @@ export function Example() {
     usage: `import { FlipCard } from '@/components/ui/flip-card'
 
 export function Example() {
-  return (
-    <FlipCard
-      className="h-80"
-      flipOn="hover"
-      front={<p>Front</p>}
-      back={<p>Back</p>}
-    />
-  )
+  return <FlipCard variant="credit" className="h-80" />
 }`,
     props: [
-      { name: 'variant', type: 'credit | badge | playing | product | flashcard | ticket | profile | pricing | passport | vinyl | book | postcard', defaultValue: 'credit', description: 'Object that turns. Front and back are optional.' },
+      { name: 'variant', type: 'credit | product | pricing | profile | metric | invite | auth | feature | quote | plan | media | flashcard', defaultValue: 'credit', description: 'Object that turns. Front and back are optional overrides.' },
       { name: 'front / back', type: 'ReactNode', description: 'The two faces.' },
       { name: 'flipOn', type: "'hover' | 'click'", defaultValue: 'hover', description: 'Hover also flips while focus is inside.' },
-      { name: 'flipped', type: 'boolean', description: 'Controlled face. Pair with onFlippedChange.' },
-      { name: 'defaultFlipped', type: 'boolean', defaultValue: 'false', description: 'Initial face when uncontrolled.' },
       { name: 'duration', type: 'number', defaultValue: '0.55', description: 'Turn length in seconds.' },
-      { name: 'className', type: 'string', defaultValue: 'h-72', description: 'Height and width. Override h-72 with another height class.' },
-      { name: 'frontClassName / backClassName', type: 'string', description: 'Per-face surface classes.' },
     ],
     Demo: FlipCardDemo,
   },
@@ -146,7 +136,7 @@ export function Example() {
     slug: 'bento-grid',
     name: 'Bento Grid',
     category: 'Cards',
-    description: 'A responsive mosaic of spotlight tiles. Spans collapse to a single column on small screens.',
+    description: 'A responsive mosaic of product tiles. Spans collapse to a single column on small screens.',
     path: 'src/components/ui/bento-grid.tsx',
     dependencies: styleDeps,
     registryDependencies: ['utils'],
@@ -155,22 +145,15 @@ export function Example() {
 export function Example() {
   return (
     <BentoGrid columns={3}>
-      <BentoItem colSpan={2} title="Wide tile" description="Spans two columns from the md breakpoint." />
-      <BentoItem title="Tile" description="One column." href="#bento" />
+      <BentoItem colSpan={2} variant="chart" title="Uptime" description="Last hour." />
+      <BentoItem variant="quote" title="Stay in the room." />
     </BentoGrid>
   )
 }`,
     props: [
       { name: 'columns', type: '2 | 3 | 4', defaultValue: '3', description: 'Column count from the md breakpoint up. BentoGrid.' },
-      { name: 'gap', type: "'sm' | 'md' | 'lg'", defaultValue: 'md', description: 'Grid gap. BentoGrid.' },
       { name: 'variant', type: 'chart | quote | editorial | terminal | schedule | scoreboard | stat | compare | media | calendar | kanban | invoice', defaultValue: 'chart', description: 'Tile product. BentoItem.' },
-      { name: 'colSpan', type: '1 | 2 | 3 | 4', defaultValue: '1', description: 'How many columns a tile spans. BentoItem.' },
-      { name: 'rowSpan', type: '1 | 2', defaultValue: '1', description: 'How many rows a tile spans. BentoItem.' },
-      { name: 'title / description / icon', type: 'ReactNode', description: 'Tile content. Title renders as a heading.' },
-      { name: 'href', type: 'string', description: 'Renders the tile as a link.' },
-      { name: 'spotlight', type: 'boolean', defaultValue: 'true', description: 'Pointer-following wash.' },
-      { name: 'spotlightColor', type: 'string', description: 'CSS color of that wash.' },
-      { name: 'className', type: 'string', description: 'Extra Tailwind classes on the grid or the tile.' },
+      { name: 'colSpan / rowSpan', type: '1 | 2 | 3 | 4', description: 'How many columns or rows a tile spans.' },
     ],
     Demo: BentoGridDemo,
   },
@@ -178,27 +161,21 @@ export function Example() {
     slug: 'button',
     name: 'Button',
     category: 'Buttons',
-    description: 'Twelve button constructions: flat, gel, glass, neumorphic, 3D, glow, split, avatar, beam, brutalist, skeuomorphic, and social.',
+    description: 'Thirteen constructions: solid, soft, outline, ghost, glass, gradient, destructive, split, social, icon, shimmer, beam, and link.',
     path: 'src/components/ui/button.tsx',
     dependencies: ['class-variance-authority', ...styleDeps],
     registryDependencies: ['utils'],
     usage: `import { Button } from '@/components/ui/button'
 
 export function Example() {
-  return (
-    <Button variant="gradient" size="lg" radius="full" rightIcon={<span aria-hidden>→</span>}>
-      Continue
-    </Button>
-  )
+  return <Button variant="gradient">Continue</Button>
 }`,
     props: [
-      { name: 'variant', type: 'solid | gradient | glass | neumorphic | pressable | glow-outline | split | avatar-pill | border-beam | brutalist | skeuomorphic | social | segment', defaultValue: 'solid', description: 'Construction. Each option is a different control, not a hover effect.' },
-      { name: 'size', type: "'sm' | 'md' | 'lg'", defaultValue: 'md', description: 'Height and padding. md is 44px tall.' },
-      { name: 'radius', type: "'md' | 'lg' | 'full'", defaultValue: 'full', description: 'Corner radius.' },
-      { name: 'loading', type: 'boolean', defaultValue: 'false', description: 'Shows a spinner, sets aria-busy, and blocks activation.' },
+      { name: 'variant', type: 'solid | soft | outline | ghost | glass | gradient | destructive | split | social | icon | shimmer | beam | link', defaultValue: 'solid', description: 'Construction. Each option is a different control.' },
+      { name: 'size', type: "'sm' | 'md' | 'lg'", defaultValue: 'md', description: 'Height and padding.' },
+      { name: 'radius', type: "'md' | 'lg' | 'full'", defaultValue: 'lg', description: 'Corner radius.' },
+      { name: 'loading', type: 'boolean', defaultValue: 'false', description: 'Shows a spinner and sets aria-busy.' },
       { name: 'href', type: 'string', description: 'Renders an anchor instead of a button.' },
-      { name: 'leftIcon / rightIcon', type: 'ReactNode', description: 'Slots beside the label.' },
-      { name: 'className', type: 'string', description: 'Tailwind overrides merged through tailwind-merge.' },
     ],
     Demo: ButtonDemo,
   },
@@ -206,24 +183,19 @@ export function Example() {
     slug: 'magnetic-button',
     name: 'Magnetic Button',
     category: 'Buttons',
-    description: 'A button that leans toward a fine pointer. Touch and reduced motion leave it still.',
+    description: 'A product control that leans toward a fine pointer. Touch and reduced motion leave it still.',
     path: 'src/components/ui/magnetic-button.tsx',
-    dependencies: motionDeps.concat('class-variance-authority'),
-    registryDependencies: ['utils', 'button'],
+    dependencies: motionDeps,
+    registryDependencies: ['utils'],
     usage: `import { MagneticButton } from '@/components/ui/magnetic-button'
 
 export function Example() {
-  return (
-    <MagneticButton magnet="pill" strength={20} proximity={16}>
-      Come closer
-    </MagneticButton>
-  )
+  return <MagneticButton magnet="pill">Come closer</MagneticButton>
 }`,
     props: [
-      { name: 'magnet', type: 'pill | keycap | bulb | dock | sticker | medal | stamp | badge | shutter | ticket | tag | wax', defaultValue: 'pill', description: 'Object. Every style pulls toward a fine pointer.' },
-      { name: 'strength', type: 'number', defaultValue: '18', description: 'Maximum travel in pixels.' },
-      { name: 'proximity', type: 'number', defaultValue: '28', description: 'Extra hit padding that still attracts the control.' },
-      { name: 'className', type: 'string', description: 'Passed through to the inner button.' },
+      { name: 'magnet', type: 'pill | orb | dock | fab | chip | glow | tilt | text | badge | glass | key | split', defaultValue: 'pill', description: 'Control anatomy. Every style pulls toward a fine pointer.' },
+      { name: 'strength', type: 'number', defaultValue: '16', description: 'Maximum travel in pixels.' },
+      { name: 'proximity', type: 'number', defaultValue: '24', description: 'Extra hit padding that still attracts the control.' },
     ],
     Demo: MagneticButtonDemo,
   },
@@ -231,7 +203,7 @@ export function Example() {
     slug: 'aurora-background',
     name: 'Aurora Background',
     category: 'Backgrounds',
-    description: 'Drifting color fields with optional film grain. Content sits in a layer above the effect.',
+    description: 'Twelve ambient scenes. Content sits in a layer above the field.',
     path: 'src/components/ui/aurora-background.tsx',
     dependencies: styleDeps,
     registryDependencies: ['utils'],
@@ -239,19 +211,13 @@ export function Example() {
 
 export function Example() {
   return (
-    <AuroraBackground colors={['#ff6a3d', '#8b7cff', '#3ddec4']} className="min-h-80 rounded-3xl">
-      <div className="p-10">Foreground content</div>
+    <AuroraBackground variant="mesh" className="min-h-80 rounded-3xl">
+      <div className="p-10">Foreground</div>
     </AuroraBackground>
   )
 }`,
     props: [
-      { name: 'variant', type: 'aurora | starfield | meteors | mesh | radar | sunset | clouds | rain | constellation | mountains | city | lightning', defaultValue: 'aurora', description: 'Scene.' },
-      { name: 'colors', type: 'string[]', defaultValue: 'flare, iris, tide, gold', description: 'Up to five CSS colors.' },
-      { name: 'duration', type: 'number', defaultValue: '14', description: 'Base loop length in seconds.' },
-      { name: 'blur', type: "'sm' | 'md' | 'lg' | 'xl'", defaultValue: 'lg', description: 'How soft the fields are.' },
-      { name: 'intensity', type: 'number', defaultValue: '0.55', description: 'Blob opacity from 0 to 1.' },
-      { name: 'pause', type: 'boolean', defaultValue: 'false', description: 'Freezes the fields.' },
-      { name: 'noise', type: 'boolean', defaultValue: 'true', description: 'Adds a faint grain overlay.' },
+      { name: 'variant', type: 'aurora | mesh | grain | dusk | spotlight | prism | plasma | fog | orbit | ember | tide | stars', defaultValue: 'aurora', description: 'Scene.' },
       { name: 'className / contentClassName', type: 'string', description: 'Outer frame and inner content classes.' },
     ],
     Demo: AuroraBackgroundDemo,
@@ -260,7 +226,7 @@ export function Example() {
     slug: 'grid-background',
     name: 'Grid Background',
     category: 'Backgrounds',
-    description: 'A dotted or ruled surface. The fade can follow the pointer so the pattern appears under the cursor.',
+    description: 'A ruled or dotted surface. The fade can follow the pointer.',
     path: 'src/components/ui/grid-background.tsx',
     dependencies: styleDeps,
     registryDependencies: ['utils'],
@@ -268,18 +234,15 @@ export function Example() {
 
 export function Example() {
   return (
-    <GridBackground variant="dots" size={28} fade interactive className="min-h-64">
+    <GridBackground variant="dots" className="min-h-64">
       <div className="p-8">Content</div>
     </GridBackground>
   )
 }`,
     props: [
-      { name: 'variant', type: 'graph | dots | isometric | hex | circuit | blueprint | notebook | perspective | topography | herringbone | pixel | brick', defaultValue: 'graph', description: 'Surface. Blueprint, notebook, and perspective are different objects from a repeating tile.' },
+      { name: 'variant', type: 'graph | dots | plus | isometric | hex | circuit | blueprint | notebook | perspective | topo | diagonal | fade', defaultValue: 'graph', description: 'Surface.' },
       { name: 'size', type: 'number', defaultValue: '28', description: 'Cell size in pixels.' },
-      { name: 'color', type: 'string', defaultValue: 'rgba(246, 243, 236, 0.16)', description: 'Pattern color.' },
       { name: 'fade', type: 'boolean', defaultValue: 'true', description: 'Masks the pattern with a radial falloff.' },
-      { name: 'interactive', type: 'boolean', defaultValue: 'true', description: 'Moves the mask with the pointer.' },
-      { name: 'className / contentClassName', type: 'string', description: 'Outer frame and inner content classes.' },
     ],
     Demo: GridBackgroundDemo,
   },
@@ -287,7 +250,7 @@ export function Example() {
     slug: 'gradient-text',
     name: 'Gradient Text',
     category: 'Text',
-    description: 'Lettering clipped to a moving gradient. Turn animation off for a static blend.',
+    description: 'Twelve lettering models. Turn animation off for a static blend.',
     path: 'src/components/ui/gradient-text.tsx',
     dependencies: styleDeps,
     registryDependencies: ['utils'],
@@ -296,17 +259,13 @@ export function Example() {
 export function Example() {
   return (
     <h1 className="text-6xl">
-      <GradientText from="#ff6a3d" via="#f5c16c" to="#8b7cff">Hello</GradientText>
+      <GradientText variant="shimmer">Harbor</GradientText>
     </h1>
   )
 }`,
     props: [
-      { name: 'variant', type: 'gradient | stroke | marker | glitch | neon | engraved | ribbon | stencil | boxed | script | seal | halftone', defaultValue: 'gradient', description: 'Lettering model.' },
-      { name: 'as', type: "'span' | 'p' | 'h1' | 'h2' | 'h3' | 'div'", defaultValue: 'span', description: 'Element to render.' },
-      { name: 'from / via / to', type: 'string', description: 'CSS colors for the gradient stops.' },
+      { name: 'variant', type: 'gradient | shimmer | stroke | mask | aurora | italic | highlight | underline | boxed | kinetic | glow | fade', defaultValue: 'gradient', description: 'Lettering model.' },
       { name: 'animate', type: 'boolean', defaultValue: 'true', description: 'Pans the gradient. Off when reduced motion is requested.' },
-      { name: 'duration', type: 'number', defaultValue: '8', description: 'Seconds for one sweep.' },
-      { name: 'className', type: 'string', description: 'Size, weight, and tracking.' },
     ],
     Demo: GradientTextDemo,
   },
@@ -321,22 +280,12 @@ export function Example() {
     usage: `import { Typewriter } from '@/components/ui/typewriter'
 
 export function Example() {
-  return (
-    <p>
-      We build <Typewriter phrases={['cards.', 'heroes.', 'tools.']} />
-    </p>
-  )
+  return <Typewriter variant="terminal" phrases={['cards.', 'heroes.']} />
 }`,
     props: [
-      { name: 'variant', type: 'terminal | chat | search | editor | split-flap | news | lower-third | dispatch | shipping | redaction | script | teletype', defaultValue: 'terminal', description: 'Device that types.' },
-      { name: 'phrases', type: 'string[]', description: 'Lines to cycle. Memoize or keep the array stable if you can.' },
-      { name: 'typeSpeed', type: 'number', defaultValue: '48', description: 'Milliseconds per typed character.' },
-      { name: 'deleteSpeed', type: 'number', defaultValue: '28', description: 'Milliseconds per deleted character.' },
-      { name: 'pause', type: 'number', defaultValue: '1400', description: 'Milliseconds to hold a finished phrase.' },
-      { name: 'loop', type: 'boolean', defaultValue: 'true', description: 'When false, typing stops on the last phrase.' },
-      { name: 'cursor', type: 'boolean', defaultValue: 'true', description: 'Shows the blinking caret.' },
-      { name: 'onPhraseComplete', type: '(phrase: string) => void', description: 'Fires when a phrase finishes typing.' },
-      { name: 'className / cursorClassName', type: 'string', description: 'Text and caret classes.' },
+      { name: 'variant', type: 'terminal | chat | search | editor | flap | headline | caption | prompt | label | redact | italic | tape', defaultValue: 'terminal', description: 'Device that types.' },
+      { name: 'phrases', type: 'string[]', description: 'Lines to cycle.' },
+      { name: 'paused', type: 'boolean', defaultValue: 'false', description: 'Holds the current phrase.' },
     ],
     Demo: TypewriterDemo,
   },
@@ -351,22 +300,12 @@ export function Example() {
     usage: `import { TextReveal } from '@/components/ui/text-reveal'
 
 export function Example() {
-  return (
-    <TextReveal
-      as="h2"
-      by="word"
-      className="text-5xl"
-      text="Arrive one word at a time."
-    />
-  )
+  return <TextReveal variant="editorial" text="Arrive one word at a time." />
 }`,
     props: [
-      { name: 'variant', type: 'editorial | headline | marker | outline | split | figure | quote | medallion | columns | annotation | index | running-head', defaultValue: 'editorial', description: 'Typographic composition.' },
-      { name: 'text', type: 'string', description: 'The copy to split. Do not pass children.' },
-      { name: 'by', type: "'word' | 'char'", defaultValue: 'word', description: 'Split unit. Prefer word for paragraphs.' },
-      { name: 'as', type: "'p' | 'h1' | 'h2' | 'h3' | 'span' | 'div'", defaultValue: 'p', description: 'Element to render.' },
-      { name: 'container', type: 'RefObject<HTMLElement | null>', description: 'Scroll container. Defaults to the window.' },
-      { name: 'className / wordClassName', type: 'string', description: 'Block classes and per-unit classes.' },
+      { name: 'variant', type: 'editorial | display | highlight | outline | split | caption | quote | columns | note | index | folio | stack', defaultValue: 'editorial', description: 'Typographic composition.' },
+      { name: 'text', type: 'string', description: 'The copy to split.' },
+      { name: 'by', type: "'word' | 'char'", defaultValue: 'word', description: 'Split unit.' },
     ],
     Demo: TextRevealDemo,
   },
@@ -374,7 +313,7 @@ export function Example() {
     slug: 'floating-navbar',
     name: 'Floating Navbar',
     category: 'Navigation',
-    description: 'A pill navigation bar that compacts on scroll and collapses into a menu on small screens.',
+    description: 'Twelve navigation products. The floating pill still compacts on scroll.',
     path: 'src/components/ui/floating-navbar.tsx',
     dependencies: motionDeps,
     registryDependencies: ['utils'],
@@ -383,26 +322,16 @@ export function Example() {
 export function Example() {
   return (
     <FloatingNavbar
+      variant="floating"
       logo={<span>Nexara</span>}
-      items={[
-        { label: 'Work', href: '/work', active: true },
-        { label: 'Notes', href: '/notes' },
-      ]}
-      actions={<a href="/start">Start</a>}
+      items={[{ label: 'Work', href: '/work', active: true }]}
     />
   )
 }`,
     props: [
-      { name: 'logo', type: 'ReactNode', description: 'Brand slot at the leading edge.' },
-      { name: 'items', type: '{ label, href, active? }[]', description: 'Links. active sets aria-current="page".' },
-      { name: 'actions', type: 'ReactNode', description: 'Trailing slot, usually a button.' },
       { name: 'variant', type: 'floating | dock | sidebar | overlay | command | transport | mega | app-bar | announcement | breadcrumb | segmented | wordmark', defaultValue: 'floating', description: 'Navigation product.' },
-      { name: 'shrinkOnScroll', type: 'boolean', defaultValue: 'true', description: 'Reduces padding after the page moves.' },
+      { name: 'items', type: '{ label, href, active? }[]', description: 'Links. active sets aria-current="page".' },
       { name: 'contained', type: 'boolean', defaultValue: 'false', description: 'Stick inside a parent instead of fixing to the viewport.' },
-      { name: 'blur', type: 'boolean', defaultValue: 'true', description: 'Backdrop blur behind floating and solid bars.' },
-      { name: 'scrollRoot', type: 'RefObject<HTMLElement | null>', description: 'Scroll container to watch. Defaults to the window.' },
-      { name: 'menuLabel', type: 'string', defaultValue: 'Menu', description: 'Accessible name of the small-screen toggle.' },
-      { name: 'className / menuClassName', type: 'string', description: 'Bar position overrides and menu panel classes.' },
     ],
     Demo: FloatingNavbarDemo,
   },
@@ -415,29 +344,23 @@ export function Example() {
     dependencies: motionDeps,
     registryDependencies: ['utils'],
     usage: `import { useState } from 'react'
-import { Modal, ModalClose, ModalContent } from '@/components/ui/modal'
+import { Modal, ModalContent } from '@/components/ui/modal'
 
 export function Example() {
   const [open, setOpen] = useState(false)
   return (
     <Modal open={open} onOpenChange={setOpen}>
       <button type="button" onClick={() => setOpen(true)}>Open</button>
-      <ModalContent title="Edit name" description="This stays in view until you dismiss it.">
-        <ModalClose>Close</ModalClose>
+      <ModalContent variant="dialog" title="Edit name">
+        Body
       </ModalContent>
     </Modal>
   )
 }`,
     props: [
-      { name: 'open / defaultOpen / onOpenChange', type: 'boolean / (open: boolean) => void', description: 'Controlled or uncontrolled open state. Modal.' },
-      { name: 'title', type: 'ReactNode', description: 'Required name of the dialog. ModalContent.' },
-      { name: 'description', type: 'ReactNode', description: 'Optional supporting line, wired to aria-describedby.' },
-      { name: 'variant', type: 'dialog | otp | command | lightbox | wizard | invoice | drawer | share | action-sheet | banner | ticket | auth', defaultValue: 'dialog', description: 'Dialog product. Anatomy differs, not only the edge it enters from.' },
-      { name: 'size', type: "'sm' | 'md' | 'lg'", defaultValue: 'md', description: 'Max width of the panel.' },
-      { name: 'dismissible', type: 'boolean', defaultValue: 'true', description: 'Backdrop click and Escape close the dialog.' },
-      { name: 'hideClose', type: 'boolean', defaultValue: 'false', description: 'Hides the icon close button.' },
-      { name: 'initialFocus', type: "'auto' | 'panel' | 'close'", defaultValue: 'auto', description: 'Where focus lands when the dialog opens.' },
-      { name: 'className / overlayClassName', type: 'string', description: 'Panel and backdrop classes.' },
+      { name: 'variant', type: 'dialog | confirm | otp | command | lightbox | wizard | form | drawer | share | sheet | notice | auth', defaultValue: 'dialog', description: 'Dialog product. Anatomy differs, not only the edge it enters from.' },
+      { name: 'inline', type: 'boolean', defaultValue: 'false', description: 'Renders the panel in place for galleries. Skips portal and focus trap.' },
+      { name: 'title', type: 'ReactNode', description: 'Required name of the dialog.' },
     ],
     Demo: ModalDemo,
   },
@@ -445,7 +368,7 @@ export function Example() {
     slug: 'hero',
     name: 'Hero',
     category: 'Sections',
-    description: 'A centered or split intro with staggered entrance. Title, actions, and media are slots.',
+    description: 'Twelve marketing pages: SaaS, app, cinema, logos, pricing, studio, shop, event, search, product, journal, waitlist.',
     path: 'src/components/ui/hero.tsx',
     dependencies: motionDeps,
     registryDependencies: ['utils'],
@@ -455,25 +378,16 @@ import { Button } from '@/components/ui/button'
 export function Example() {
   return (
     <Hero
-      align="split"
-      eyebrow="New"
-      title="A room with movable parts"
-      description="Compose this with any background or media."
+      variant="saas"
+      title="Ship the interface your team already described"
       actions={<Button>Begin</Button>}
-      media={<img alt="" src="/cover.jpg" />}
     />
   )
 }`,
     props: [
-      { name: 'variant', type: 'saas | download | video | logos | pricing | agency | commerce | event | search | dashboard | editorial | waitlist', description: 'Hero product. When omitted, align center selects saas and align split selects dashboard.' },
-      { name: 'align', type: "'center' | 'split'", defaultValue: 'center', description: 'Used when variant is omitted.' },
-      { name: 'eyebrow', type: 'ReactNode', description: 'Small label above the title.' },
-      { name: 'title', type: 'ReactNode', description: 'Rendered in an h2. Pass text or a gradient span.' },
-      { name: 'description', type: 'ReactNode', description: 'Supporting paragraph.' },
-      { name: 'actions', type: 'ReactNode', description: 'Button row.' },
-      { name: 'media', type: 'ReactNode', description: 'Right column in split layout. Hidden when omitted.' },
-      { name: 'className', type: 'string', description: 'Section padding and background overrides.' },
-      { name: 'titleClassName / descriptionClassName / actionsClassName / mediaClassName / eyebrowClassName', type: 'string', description: 'Per-slot Tailwind classes.' },
+      { name: 'variant', type: 'saas | app | cinema | logos | pricing | studio | shop | event | search | product | journal | waitlist', description: 'Hero product. When omitted, align center selects saas and align split selects product.' },
+      { name: 'title', type: 'ReactNode', description: 'Rendered in an h2 unless titleAs is set.' },
+      { name: 'actions / media', type: 'ReactNode', description: 'Slots.' },
     ],
     Demo: HeroDemo,
   },
@@ -488,27 +402,202 @@ export function Example() {
     usage: `import { Marquee } from '@/components/ui/marquee'
 
 export function Example() {
-  return (
-    <Marquee duration={24} pauseOnHover fade>
-      <span className="px-4">One</span>
-      <span className="px-4">Two</span>
-      <span className="px-4">Three</span>
-    </Marquee>
-  )
+  return <Marquee variant="logos" duration={24} />
 }`,
     props: [
-      { name: 'variant', type: 'logos | quotes | ticker | stubs | filmstrip | pills | stats | hazard | profiles | log | tiles | medals', defaultValue: 'logos', description: 'Track product. Omitting children shows that product’s sample.' },
-      { name: 'duration', type: 'number', defaultValue: '28', description: 'Seconds for one full loop. Larger is slower.' },
-      { name: 'direction', type: "'left' | 'right'", defaultValue: 'left', description: 'Travel direction.' },
-      { name: 'pauseOnHover', type: 'boolean', defaultValue: 'true', description: 'Pauses while the pointer is over the track.' },
-      { name: 'gap', type: 'number', defaultValue: '16', description: 'Space between items, in pixels.' },
-      { name: 'repeat', type: 'number', defaultValue: '2', description: 'Extra copies so a short row still fills the width.' },
-      { name: 'fade', type: 'boolean', defaultValue: 'true', description: 'Fades the left and right edges.' },
-      { name: 'showControls', type: 'boolean', defaultValue: 'true', description: 'Shows a pause button for touch and keyboard users.' },
-      { name: 'className', type: 'string', description: 'Outer wrapper classes.' },
+      { name: 'variant', type: 'logos | quotes | ticker | avatars | stats | products | changelog | tags | reviews | apps | metrics | awards', defaultValue: 'logos', description: 'Track product. Omitting children shows that product’s sample.' },
+      { name: 'duration', type: 'number', defaultValue: '28', description: 'Seconds for one full loop.' },
+      { name: 'showControls', type: 'boolean', defaultValue: 'true', description: 'Shows a pause button.' },
     ],
     Demo: MarqueeDemo,
   },
+  {
+    slug: 'input',
+    name: 'Input',
+    category: 'Forms',
+    description: 'Twelve field constructions, from a hairline box to OTP, file, tags, and a floating label.',
+    path: 'src/components/ui/input.tsx',
+    dependencies: styleDeps,
+    registryDependencies: ['utils'],
+    usage: `import { Input } from '@/components/ui/input'
+
+export function Example() {
+  return <Input variant="search" placeholder="Search the library" />
+}`,
+    props: [
+      { name: 'variant', type: 'outline | filled | underline | ghost | search | otp | file | password | amount | tag | command | floating', defaultValue: 'outline', description: 'Field construction.' },
+      { name: 'label / hint', type: 'ReactNode', description: 'Optional caption and helper.' },
+    ],
+    Demo: InputDemo,
+  },
+  {
+    slug: 'tabs',
+    name: 'Tabs',
+    category: 'Forms',
+    description: 'Ten tab anatomies: underline, pill, segmented, vertical, icon, card, folder, minimal, badge, rail.',
+    path: 'src/components/ui/tabs.tsx',
+    dependencies: styleDeps,
+    registryDependencies: ['utils'],
+    usage: `import { Tabs } from '@/components/ui/tabs'
+
+export function Example() {
+  return <Tabs variant="underline" items={[{ id: 'a', label: 'Rooms', panel: 'Open.' }]} />
+}`,
+    props: [
+      { name: 'variant', type: 'underline | pill | segmented | vertical | icon | card | folder | minimal | badge | rail', defaultValue: 'underline', description: 'Tab anatomy.' },
+      { name: 'items', type: '{ id, label, panel, count? }[]', description: 'Tabs and their panels.' },
+    ],
+    Demo: TabsDemo,
+  },
+  {
+    slug: 'accordion',
+    name: 'Accordion',
+    category: 'Forms',
+    description: 'Ten disclosure constructions, including numbered, FAQ, media, and timeline.',
+    path: 'src/components/ui/accordion.tsx',
+    dependencies: styleDeps,
+    registryDependencies: ['utils'],
+    usage: `import { Accordion } from '@/components/ui/accordion'
+
+export function Example() {
+  return <Accordion variant="plus" items={[{ id: 'a', title: 'Install?', content: 'Copy the file.' }]} />
+}`,
+    props: [
+      { name: 'variant', type: 'plus | chevron | bordered | separated | flush | numbered | icon | media | faq | timeline', defaultValue: 'plus', description: 'Disclosure anatomy.' },
+      { name: 'type', type: "'single' | 'multiple'", defaultValue: 'single', description: 'One open row, or many.' },
+    ],
+    Demo: AccordionDemo,
+  },
+  {
+    slug: 'tooltip',
+    name: 'Tooltip',
+    category: 'Feedback',
+    description: 'Ten hint constructions, from a chip to a metric card.',
+    path: 'src/components/ui/tooltip.tsx',
+    dependencies: styleDeps,
+    registryDependencies: ['utils'],
+    usage: `import { Tooltip } from '@/components/ui/tooltip'
+
+export function Example() {
+  return <Tooltip variant="kbd" content="⌘K">Hover</Tooltip>
+}`,
+    props: [
+      { name: 'variant', type: 'default | inverse | rich | kbd | success | warning | follow | plain | avatar | metric', defaultValue: 'default', description: 'Hint anatomy.' },
+      { name: 'content', type: 'ReactNode', description: 'The hint.' },
+      { name: 'defaultOpen', type: 'boolean', defaultValue: 'false', description: 'Show the hint at rest, used by the gallery.' },
+    ],
+    Demo: TooltipDemo,
+  },
+  {
+    slug: 'toast',
+    name: 'Toast',
+    category: 'Feedback',
+    description: 'Ten notification constructions, including action, progress, avatar, compact, and stacked.',
+    path: 'src/components/ui/toast.tsx',
+    dependencies: styleDeps,
+    registryDependencies: ['utils'],
+    usage: `import { Toast } from '@/components/ui/toast'
+
+export function Example() {
+  return <Toast variant="success" title="Export ready" />
+}`,
+    props: [
+      { name: 'variant', type: 'success | error | warning | info | loading | action | progress | avatar | compact | stacked', defaultValue: 'info', description: 'Notification construction.' },
+      { name: 'title / description', type: 'string', description: 'Copy.' },
+    ],
+    Demo: ToastDemo,
+  },
+  {
+    slug: 'avatar',
+    name: 'Avatar',
+    category: 'Identity',
+    description: 'Ten identity constructions: image, initials, status, group, square, ring, upload, icon, story, mention.',
+    path: 'src/components/ui/avatar.tsx',
+    dependencies: styleDeps,
+    registryDependencies: ['utils'],
+    usage: `import { Avatar } from '@/components/ui/avatar'
+
+export function Example() {
+  return <Avatar variant="status" name="Ada Klein" />
+}`,
+    props: [
+      { name: 'variant', type: 'image | initials | status | group | square | ring | upload | icon | story | mention', defaultValue: 'initials', description: 'Identity construction.' },
+      { name: 'name', type: 'string', defaultValue: 'Ada Klein', description: 'Used for initials and the mention label.' },
+    ],
+    Demo: AvatarDemo,
+  },
+  {
+    slug: 'badge',
+    name: 'Badge',
+    category: 'Identity',
+    description: 'Ten status chips, including count, removable, glow, and a corner ribbon.',
+    path: 'src/components/ui/badge.tsx',
+    dependencies: styleDeps,
+    registryDependencies: ['utils'],
+    usage: `import { Badge } from '@/components/ui/badge'
+
+export function Example() {
+  return <Badge variant="status">Passing</Badge>
+}`,
+    props: [
+      { name: 'variant', type: 'solid | soft | outline | dot | count | status | removable | icon | glow | ribbon', defaultValue: 'soft', description: 'Chip construction.' },
+    ],
+    Demo: BadgeDemo,
+  },
+  {
+    slug: 'pricing',
+    name: 'Pricing',
+    category: 'Sections',
+    description: 'Ten pricing sections: cards, toggle, compare, featured, usage, compact, enterprise, hobby, table, stacked.',
+    path: 'src/components/ui/pricing.tsx',
+    dependencies: styleDeps,
+    registryDependencies: ['utils'],
+    usage: `import { Pricing } from '@/components/ui/pricing'
+
+export function Example() {
+  return <Pricing variant="featured" />
+}`,
+    props: [
+      { name: 'variant', type: 'cards | toggle | compare | featured | usage | compact | enterprise | hobby | table | stacked', defaultValue: 'cards', description: 'Section anatomy.' },
+    ],
+    Demo: PricingDemo,
+  },
+  {
+    slug: 'testimonials',
+    name: 'Testimonials',
+    category: 'Sections',
+    description: 'Ten social-proof constructions: quote, grid, wall, slider, tweet, video, stat, logo, stacked, featured.',
+    path: 'src/components/ui/testimonials.tsx',
+    dependencies: styleDeps,
+    registryDependencies: ['utils'],
+    usage: `import { Testimonials } from '@/components/ui/testimonials'
+
+export function Example() {
+  return <Testimonials variant="grid" />
+}`,
+    props: [
+      { name: 'variant', type: 'quote | grid | wall | slider | tweet | video | stat | logo | stacked | featured', defaultValue: 'quote', description: 'Social-proof anatomy.' },
+    ],
+    Demo: TestimonialsDemo,
+  },
+  {
+    slug: 'footer',
+    name: 'Footer',
+    category: 'Sections',
+    description: 'Ten closing constructions: mega, compact, centered, newsletter, app, legal, social, sitemap, brand, split.',
+    path: 'src/components/ui/footer.tsx',
+    dependencies: styleDeps,
+    registryDependencies: ['utils'],
+    usage: `import { Footer } from '@/components/ui/footer'
+
+export function Example() {
+  return <Footer variant="mega" />
+}`,
+    props: [
+      { name: 'variant', type: 'mega | compact | centered | newsletter | app | legal | social | sitemap | brand | split', defaultValue: 'mega', description: 'Footer anatomy.' },
+    ],
+    Demo: FooterDemo,
+  },
 ]
 
-export const categories = ['Cards', 'Buttons', 'Backgrounds', 'Text', 'Navigation', 'Overlays', 'Sections'] as const
+export const categories = ['Cards', 'Buttons', 'Backgrounds', 'Text', 'Navigation', 'Overlays', 'Forms', 'Feedback', 'Identity', 'Sections'] as const

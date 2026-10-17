@@ -1,22 +1,32 @@
 import { useRef, useState } from 'react'
 import {
+  Accordion,
   AuroraBackground,
+  Avatar,
+  Badge,
   BentoGrid,
   BentoItem,
   Button,
   DraggableCard,
   FlipCard,
   FloatingNavbar,
+  Footer,
   GradientText,
   GridBackground,
   Hero,
+  Input,
   MagneticButton,
   Marquee,
   Modal,
   ModalClose,
   ModalContent,
+  Pricing,
   SpotlightCard,
+  Tabs,
+  Testimonials,
   TextReveal,
+  Toast,
+  Tooltip,
   Typewriter,
 } from '@/components/ui/index.ts'
 import { cn } from '@/lib/utils.ts'
@@ -56,10 +66,10 @@ function Segmented<T extends string>({
             onClick={() => onChange(option)}
             className={cn(
               'h-9 rounded-full border px-3 text-xs tracking-wide capitalize',
-              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring',
               selected
-                ? 'border-transparent bg-[#f6f3ec] text-[#16140f]'
-                : 'border-white/15 text-zinc-300 hover:bg-white/10',
+                ? 'border-transparent bg-nx-fg text-nx-bg'
+                : 'border-nx-border text-nx-muted hover:bg-nx-soft',
             )}
           >
             {option}
@@ -86,8 +96,8 @@ export function DraggableCardDemo() {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-zinc-300">Drag inside the frame. Arrow keys nudge a focused card. Home resets it.</p>
-        <label className="inline-flex items-center gap-2 text-sm text-zinc-200">
+        <p className="text-sm text-nx-muted">Drag inside the frame. Arrow keys nudge a focused card. Home resets it.</p>
+        <label className="inline-flex items-center gap-2 text-sm text-nx-fg">
           <input
             type="checkbox"
             checked={snapBack}
@@ -99,7 +109,7 @@ export function DraggableCardDemo() {
       </div>
       <div
         ref={stageRef}
-        className="relative h-[34rem] rounded-3xl border border-dashed border-white/20 bg-[#09090f]/40 md:h-[26rem]"
+        className="relative h-[34rem] rounded-3xl border border-dashed border-nx-border bg-nx-bg/40 md:h-[26rem]"
       >
         <DraggableCard
           bounds={stageRef}
@@ -108,9 +118,9 @@ export function DraggableCardDemo() {
           aria-label="Glass note card"
           className="absolute top-4 left-4 max-w-[calc(100%-2rem)]"
         >
-          <p className="text-xs tracking-[0.18em] text-[#f5c16c] uppercase">Movable</p>
-          <p className="mt-2 font-serif text-2xl text-[#f6f3ec]">Throw the card</p>
-          <p className="mt-2 text-sm leading-6 text-zinc-300">It tilts with the flick, then stays above the other card.</p>
+          <p className="text-xs tracking-[0.18em] text-nx-accent uppercase">Movable</p>
+          <p className="mt-2 font-serif text-2xl">Throw the card</p>
+          <p className="mt-2 text-sm leading-6 text-nx-muted">It tilts with the flick, then stays above the other card.</p>
         </DraggableCard>
         <DraggableCard
           bounds={stageRef}
@@ -121,10 +131,10 @@ export function DraggableCardDemo() {
           aria-label="Card with a drag handle"
           className="absolute right-4 bottom-4 max-w-[calc(100%-2rem)]"
         >
-          <p className="text-xs tracking-[0.18em] text-[#8b7cff] uppercase">Handle</p>
-          <p className="mt-2 font-serif text-2xl text-[#f6f3ec]">Drag from the grip</p>
-          <p className="mt-2 text-sm leading-6 text-zinc-300">{note}</p>
-          <Button className="mt-4" size="sm" variant="glow-outline" onClick={() => setNote('Click registered. The card did not swallow it.')}>
+          <p className="text-xs tracking-[0.18em] text-nx-accent uppercase">Handle</p>
+          <p className="mt-2 font-serif text-2xl">Drag from the grip</p>
+          <p className="mt-2 text-sm leading-6 text-nx-muted">{note}</p>
+          <Button className="mt-4" size="sm" variant="outline" onClick={() => setNote('Click registered. The card did not swallow it.')}>
             Ping button
           </Button>
         </DraggableCard>
@@ -143,9 +153,9 @@ export function SpotlightCardDemo() {
     <div className="grid gap-4 md:grid-cols-3">
       {cards.map((card) => (
         <SpotlightCard key={card.title} variant={card.variant} spotlightColor={card.color} spotlightSize={160} className="min-h-52">
-          <p className="text-xs tracking-[0.18em] text-zinc-400 uppercase">{card.variant}</p>
+          <p className="text-xs tracking-[0.18em] text-nx-faint uppercase">{card.variant}</p>
           <h3 className="mt-3 font-serif text-3xl">{card.title}</h3>
-          <p className="mt-3 text-sm leading-6 text-zinc-300">{card.copy}</p>
+          <p className="mt-3 text-sm leading-6 text-nx-muted">{card.copy}</p>
         </SpotlightCard>
       ))}
     </div>
@@ -162,11 +172,11 @@ export function ButtonDemo() {
         <Button radius={radius}>Solid</Button>
         <Button radius={radius} variant="gradient">Gradient</Button>
         <Button radius={radius} variant="glass">Glass</Button>
-        <Button radius={radius} variant="pressable">
-          Press
+        <Button radius={radius} variant="soft">
+          Soft
         </Button>
-        <Button radius={radius} variant="brutalist">
-          Brutal
+        <Button radius={radius} variant="outline">
+          Outline
         </Button>
         <Button
           radius={radius}
@@ -179,8 +189,8 @@ export function ButtonDemo() {
         >
           Save view
         </Button>
-        <Button radius={radius} href="#button" variant="glow-outline">
-          Glow
+        <Button radius={radius} href="#button" variant="glass">
+          Glass
         </Button>
       </div>
     </div>
@@ -193,11 +203,11 @@ export function MagneticButtonDemo() {
       <MagneticButton magnet="pill" strength={14} proximity={12}>
         Pull me closer
       </MagneticButton>
-      <MagneticButton magnet="keycap" strength={10} proximity={12}>
+      <MagneticButton magnet="key" strength={10} proximity={12}>
         Key
       </MagneticButton>
-      <MagneticButton magnet="bulb" strength={14} proximity={14}>
-        Bulb
+      <MagneticButton magnet="orb" strength={14} proximity={14}>
+        Orb
       </MagneticButton>
     </div>
   )
@@ -207,7 +217,7 @@ export function AuroraBackgroundDemo() {
   return (
     <AuroraBackground className="min-h-80 rounded-3xl" contentClassName="flex min-h-80 flex-col items-start justify-end p-8 md:p-10">
       <p className="text-xs tracking-[0.2em] text-zinc-200 uppercase">Aurora</p>
-      <p className="mt-3 max-w-lg font-serif text-4xl leading-tight text-[#f6f3ec] md:text-5xl">
+      <p className="mt-3 max-w-lg font-serif text-4xl leading-tight text-white md:text-5xl">
         Color that drifts instead of sitting still.
       </p>
     </AuroraBackground>
@@ -220,7 +230,7 @@ export function GridBackgroundDemo() {
     <div>
       <Segmented label="Pattern" value={variant} options={['dots', 'graph'] as const} onChange={setVariant} />
       <GridBackground variant={variant} className="min-h-72 rounded-3xl" contentClassName="flex min-h-72 items-end p-8">
-        <p className="max-w-sm text-sm leading-6 text-zinc-200">
+        <p className="max-w-sm text-sm leading-6 text-nx-muted">
           Move the pointer. The mask follows, so the pattern lights up where you are.
         </p>
       </GridBackground>
@@ -234,7 +244,7 @@ export function GradientTextDemo() {
       <p className="font-serif text-5xl leading-[1.08] md:text-7xl">
         <GradientText>Night, gold, and iris.</GradientText>
       </p>
-      <p className="text-lg text-zinc-300">
+      <p className="text-lg text-nx-muted">
         Static fallback:{' '}
         <GradientText animate={false} from="#3ddec4" via="#f6f3ec" to="#ff6a3d">
           tide to flare
@@ -251,7 +261,7 @@ export function TypewriterDemo() {
       <p className="font-serif text-4xl leading-tight md:text-5xl">
         Ship interfaces that feel{' '}
         <Typewriter
-          className="text-[#f5c16c]"
+          className="text-nx-accent"
           showControls={false}
           paused={paused}
           phrases={['deliberate.', 'movable.', 'alive.', 'yours.']}
@@ -261,7 +271,7 @@ export function TypewriterDemo() {
         type="button"
         aria-pressed={paused}
         onClick={() => setPaused((value) => !value)}
-        className="inline-flex h-9 items-center rounded-full border border-white/20 px-3 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]"
+        className="inline-flex h-9 items-center rounded-full border border-nx-border px-3 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring"
       >
         {paused ? 'Play' : 'Pause'} typing
       </button>
@@ -275,7 +285,7 @@ export function TextRevealDemo() {
   return (
     <div>
       <Segmented label="Split text by" value={by} options={['word', 'char'] as const} onChange={setBy} />
-      <div ref={scroller} className="h-72 overflow-auto rounded-3xl border border-white/10 px-4">
+      <div ref={scroller} className="h-72 overflow-auto rounded-3xl border border-nx-border px-4">
         <div className="h-72" />
         <TextReveal
           key={by}
@@ -304,7 +314,7 @@ export function FloatingNavbarDemo() {
     },
   }))
   return (
-    <div ref={scroller} className="h-96 overflow-auto rounded-3xl border border-white/10 bg-[#09090f]">
+    <div ref={scroller} className="h-96 overflow-auto rounded-3xl border border-nx-border bg-nx-bg">
       <FloatingNavbar
         contained
         scrollRoot={scroller}
@@ -320,7 +330,7 @@ export function FloatingNavbarDemo() {
       <div className="space-y-4 px-6 pt-8 pb-10">
         {['Scroll this pane.', 'The bar tightens after a few pixels.', 'On a narrow viewport, open Menu.'].map(
           (line) => (
-            <p key={line} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-zinc-200">
+            <p key={line} className="rounded-2xl border border-nx-border bg-nx-card p-5 text-nx-muted">
               {line}
             </p>
           ),
@@ -337,7 +347,7 @@ export function ModalDemo() {
   return (
     <div className="flex flex-wrap items-center gap-4">
       <Button onClick={() => setOpen(true)}>Open dialog</Button>
-      {saved ? <p className="text-sm text-zinc-300">{saved}</p> : null}
+      {saved ? <p className="text-sm text-nx-muted">{saved}</p> : null}
       <Modal open={open} onOpenChange={setOpen}>
         <ModalContent
           title="Name this board"
@@ -353,17 +363,17 @@ export function ModalDemo() {
               setOpen(false)
             }}
           >
-            <label className="block text-sm text-zinc-200" htmlFor="board-name">
+            <label className="block text-sm text-nx-fg" htmlFor="board-name">
               Board name
               <input
                 id="board-name"
                 name="board"
                 defaultValue="Atelier"
-                className="mt-2 h-11 w-full rounded-2xl border border-white/15 bg-black/30 px-3 text-[#f6f3ec] outline-none focus:ring-2 focus:ring-[#8b7cff]"
+                className="mt-2 h-11 w-full rounded-2xl border border-nx-border bg-nx-bg px-3 text-nx-fg outline-none focus:ring-2 focus:ring-nx-ring"
               />
             </label>
             <div className="flex flex-wrap justify-end gap-2">
-              <ModalClose className="inline-flex h-11 items-center rounded-full border border-white/15 px-4 text-sm hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]">
+              <ModalClose className="inline-flex h-11 items-center rounded-full border border-nx-border px-4 text-sm hover:bg-nx-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring">
                 Cancel
               </ModalClose>
               <Button type="submit" variant="solid">
@@ -401,7 +411,7 @@ export function HeroDemo() {
               <Button variant="gradient" rightIcon={<ArrowIcon />}>
                 Browse the registry
               </Button>
-              <Button variant="glow-outline" href="#draggable-card">
+              <Button variant="outline" href="#draggable-card">
                 Draggable card
               </Button>
             </>
@@ -431,7 +441,7 @@ export function MarqueeDemo() {
         {items.map((item) => (
           <span
             key={item}
-            className="inline-flex h-12 items-center rounded-full border border-white/12 bg-white/[0.04] px-5 text-sm text-[#f6f3ec]"
+            className="inline-flex h-12 items-center rounded-full border border-nx-border bg-nx-card px-5 text-sm"
           >
             {item}
           </span>
@@ -488,10 +498,10 @@ export function BentoGridDemo() {
         icon={<SparkIcon />}
         spotlightColor="rgba(255, 106, 61, 0.4)"
       >
-        <div className="flex flex-wrap gap-2 text-xs text-zinc-300">
-          <span className="rounded-full border border-white/15 px-3 py-1">aurora</span>
-          <span className="rounded-full border border-white/15 px-3 py-1">dots</span>
-          <span className="rounded-full border border-white/15 px-3 py-1">grid</span>
+        <div className="flex flex-wrap gap-2 text-xs text-nx-muted">
+          <span className="rounded-full border border-nx-border px-3 py-1">aurora</span>
+          <span className="rounded-full border border-nx-border px-3 py-1">dots</span>
+          <span className="rounded-full border border-nx-border px-3 py-1">grid</span>
         </div>
       </BentoItem>
     </BentoGrid>
@@ -502,26 +512,26 @@ export function FlipCardDemo() {
   return (
     <div className="grid gap-4 md:grid-cols-2">
       <div>
-        <p className="mb-3 text-sm text-zinc-300">Hover, or focus the link on the back.</p>
+        <p className="mb-3 text-sm text-nx-muted">Hover, or focus the link on the back.</p>
         <FlipCard
           flipOn="hover"
           front={
             <div className="flex h-full flex-col justify-between">
-              <p className="text-xs tracking-[0.18em] text-zinc-400 uppercase">Front</p>
+              <p className="text-xs tracking-[0.18em] text-nx-faint uppercase">Front</p>
               <div>
                 <p className="font-serif text-3xl">Hover to turn</p>
-                <p className="mt-2 text-sm text-zinc-300">The back stays available to the keyboard.</p>
+                <p className="mt-2 text-sm text-nx-muted">The back stays available to the keyboard.</p>
               </div>
             </div>
           }
           back={
             <div className="flex h-full flex-col justify-between">
-              <p className="text-xs tracking-[0.18em] text-[#f5c16c] uppercase">Back</p>
+              <p className="text-xs tracking-[0.18em] text-nx-accent uppercase">Back</p>
               <div>
                 <p className="font-serif text-3xl">A second face</p>
                 <a
                   href="#flip-card"
-                  className="mt-3 inline-flex text-sm text-[#8b7cff] underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]"
+                  className="mt-3 inline-flex text-sm text-nx-accent underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring"
                 >
                   Stay a while
                 </a>
@@ -531,12 +541,12 @@ export function FlipCardDemo() {
         />
       </div>
       <div>
-        <p className="mb-3 text-sm text-zinc-300">Click or press Enter to toggle.</p>
+        <p className="mb-3 text-sm text-nx-muted">Click or press Enter to toggle.</p>
         <FlipCard
           flipOn="click"
           front={
             <div className="flex h-full flex-col justify-end">
-              <p className="text-xs tracking-[0.18em] text-zinc-400 uppercase">Click</p>
+              <p className="text-xs tracking-[0.18em] text-nx-faint uppercase">Click</p>
               <p className="mt-2 font-serif text-3xl">Press to flip</p>
             </div>
           }
@@ -551,4 +561,91 @@ export function FlipCardDemo() {
       </div>
     </div>
   )
+}
+
+export function InputDemo() {
+  return (
+    <div className="grid gap-4 md:grid-cols-2">
+      <Input variant="outline" label="Studio" placeholder="Harbor" />
+      <Input variant="search" placeholder="Search the library" />
+    </div>
+  )
+}
+
+export function TabsDemo() {
+  return (
+    <Tabs
+      variant="underline"
+      items={[
+        { id: 'rooms', label: 'Rooms', panel: '24 rooms are open this week.' },
+        { id: 'library', label: 'Library', panel: '128 components ready to copy.' },
+        { id: 'export', label: 'Export', count: 6, panel: 'Six packs are in the queue.' },
+      ]}
+    />
+  )
+}
+
+export function AccordionDemo() {
+  return (
+    <Accordion
+      variant="plus"
+      items={[
+        { id: 'a', title: 'Do I install a package?', content: 'No. Copy the file and utils.ts.' },
+        { id: 'b', title: 'Does it support light mode?', content: 'Yes. Components read CSS tokens.' },
+        { id: 'c', title: 'Can agents find variants?', content: 'Ask for component / variant in the registry.' },
+      ]}
+    />
+  )
+}
+
+export function TooltipDemo() {
+  return (
+    <div className="flex justify-center py-8">
+      <Tooltip content="Jump any room">
+        <Button size="sm">Hover me</Button>
+      </Tooltip>
+    </div>
+  )
+}
+
+export function ToastDemo() {
+  return (
+    <div className="grid gap-3">
+      <Toast variant="success" title="Export ready" description="Harbor Hall pack is in your library." />
+      <Toast variant="action" title="Room archived" description="You can still undo for 8 seconds." />
+    </div>
+  )
+}
+
+export function AvatarDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      <Avatar variant="image" />
+      <Avatar variant="status" />
+      <Avatar variant="group" />
+    </div>
+  )
+}
+
+export function BadgeDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <Badge variant="soft">Live</Badge>
+      <Badge variant="status">Passing</Badge>
+      <Badge variant="count">12</Badge>
+      <Badge variant="glow">New</Badge>
+    </div>
+  )
+}
+
+export function PricingDemo() {
+  return <Pricing variant="cards" />
+}
+
+export function TestimonialsDemo() {
+  return <Testimonials variant="grid" />
+}
+
+export function FooterDemo() {
+  return <Footer variant="mega" />
 }

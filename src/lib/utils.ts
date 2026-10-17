@@ -9,6 +9,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+/** Shared focus ring that tracks the theme tokens. */
+export const focusRing =
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring focus-visible:ring-offset-2 focus-visible:ring-offset-nx-bg'
+
 /** Tracks the user's reduced-motion preference. Safe to call in the browser only. */
 export function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(() => {

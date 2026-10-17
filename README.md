@@ -1,6 +1,6 @@
 # Nexara UI
 
-Original, copy-paste React components inspired by the kinds of interactions on [21st.dev](https://21st.dev): movable cards, spotlight and flip surfaces, animated buttons, backgrounds, text effects, navigation, dialogs, and heroes.
+Original, copy-paste React components inspired by the kinds of interactions on [21st.dev](https://21st.dev): movable cards, spotlight and flip surfaces, animated buttons, backgrounds, text effects, navigation, dialogs, heroes, forms, and marketing sections.
 
 The code is written for this registry. It is not vendored from 21st, Aceternity, or shadcn. Components are React + TypeScript, styled with Tailwind CSS, and animated with Framer Motion where motion is doing real work. You copy a file into your app and own it.
 
@@ -39,8 +39,18 @@ Do not rewrite the component from scratch if it already exists here.
 | Modal | `modal` | `src/components/ui/modal.tsx` | framer-motion |
 | Hero | `hero` | `src/components/ui/hero.tsx` | framer-motion |
 | Marquee | `marquee` | `src/components/ui/marquee.tsx` | — |
+| Input | `input` | `src/components/ui/input.tsx` | — |
+| Tabs | `tabs` | `src/components/ui/tabs.tsx` | — |
+| Accordion | `accordion` | `src/components/ui/accordion.tsx` | — |
+| Tooltip | `tooltip` | `src/components/ui/tooltip.tsx` | — |
+| Toast | `toast` | `src/components/ui/toast.tsx` | — |
+| Avatar | `avatar` | `src/components/ui/avatar.tsx` | — |
+| Badge | `badge` | `src/components/ui/badge.tsx` | — |
+| Pricing | `pricing` | `src/components/ui/pricing.tsx` | — |
+| Testimonials | `testimonials` | `src/components/ui/testimonials.tsx` | — |
+| Footer | `footer` | `src/components/ui/footer.tsx` | — |
 
-Every component also needs `clsx` and `tailwind-merge` through `src/lib/utils.ts`. Each component has at least ten variants, and each variant is a different design, not a recolor or a different hover. The names are on the registry item (`variants[].name`) and on the docs page as `component / variant`, for example `button / social`. Research notes are in `docs/research/`. Critique notes are in `docs/reviews/`.
+Every component also needs `clsx` and `tailwind-merge` through `src/lib/utils.ts`. Each component has at least ten variants, and each variant is a different design, not a recolor or a different hover. The names are on the registry item (`variants[].name`) and on the docs page as `component / variant`, for example `button / social`. The docs site has a light/dark toggle. Research notes are in `docs/research/`. Critique notes are in `docs/reviews/`. The scored visual audit is in `docs/audit/`.
 
 ## Live preview
 
@@ -69,7 +79,7 @@ export function Board() {
 
   return (
     <div ref={stageRef} className="relative h-96">
-      <DraggableCard bounds={stageRef} variant="elevated" glowColor="rgba(255, 106, 61, 0.45)">
+      <DraggableCard bounds={stageRef} variant="window">
         <p>Drag me</p>
       </DraggableCard>
     </div>

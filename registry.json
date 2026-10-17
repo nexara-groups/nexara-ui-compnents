@@ -28,7 +28,7 @@
       "name": "draggable-card",
       "type": "registry:ui",
       "title": "Draggable Card",
-      "description": "A movable card with spring tilt, optional snap-back, a drag handle, and keyboard nudging. Also called a draggable or movable card. Variants: glass, film, sticker, window, ticket, polaroid, dossier, receipt, comic, playing, boarding, postcard.",
+      "description": "A movable card with spring tilt, optional snap-back, a drag handle, and keyboard nudging. Variants: glass, window, note, media, task, invite, file, widget, message, stack, compact, calendar.",
       "categories": [
         "Cards"
       ],
@@ -46,25 +46,13 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { DraggableCard } from '@/components/ui/draggable-card'\n\n<DraggableCard bounds={stageRef} variant=\"elevated\" snapBack={false}>\n  Drag me\n</DraggableCard>",
+      "usage": "<DraggableCard variant=\"glass\" bounds={stageRef}>Drag</DraggableCard>",
       "variants": [
         {
           "name": "glass",
           "title": "Glass",
-          "description": "Frosted panel: blur, hairline, and a soft shadow.",
+          "description": "Frosted panel with a hairline and soft shadow.",
           "usage": "<DraggableCard variant=\"glass\" bounds={stageRef}>Drag</DraggableCard>"
-        },
-        {
-          "name": "film",
-          "title": "Film",
-          "description": "Film frame with sprocket holes down both edges.",
-          "usage": "<DraggableCard variant=\"film\" bounds={stageRef}>Frame</DraggableCard>"
-        },
-        {
-          "name": "sticker",
-          "title": "Sticker",
-          "description": "Tilted paper held by a strip of tape.",
-          "usage": "<DraggableCard variant=\"sticker\" bounds={stageRef}>Peel</DraggableCard>"
         },
         {
           "name": "window",
@@ -73,52 +61,64 @@
           "usage": "<DraggableCard variant=\"window\" bounds={stageRef}>Window</DraggableCard>"
         },
         {
-          "name": "ticket",
-          "title": "Ticket",
-          "description": "Event ticket with a perforated stub.",
-          "usage": "<DraggableCard variant=\"ticket\" bounds={stageRef}>Admit</DraggableCard>"
+          "name": "note",
+          "title": "Note",
+          "description": "Warm paper note for a short reminder.",
+          "usage": "<DraggableCard variant=\"note\" bounds={stageRef}>Note</DraggableCard>"
         },
         {
-          "name": "polaroid",
-          "title": "Polaroid",
-          "description": "Photo print with a thick caption band.",
-          "usage": "<DraggableCard variant=\"polaroid\" bounds={stageRef}>Print</DraggableCard>"
+          "name": "media",
+          "title": "Media",
+          "description": "Photo well above a caption.",
+          "usage": "<DraggableCard variant=\"media\" bounds={stageRef}>Cover</DraggableCard>"
         },
         {
-          "name": "dossier",
-          "title": "Dossier",
-          "description": "Ruled file card with a corner stamp.",
-          "usage": "<DraggableCard variant=\"dossier\" bounds={stageRef}>File</DraggableCard>"
+          "name": "task",
+          "title": "Task",
+          "description": "Kanban ticket with a title.",
+          "usage": "<DraggableCard variant=\"task\" bounds={stageRef}>Task</DraggableCard>"
         },
         {
-          "name": "receipt",
-          "title": "Receipt",
-          "description": "Monospace thermal slip with a torn edge.",
-          "usage": "<DraggableCard variant=\"receipt\" bounds={stageRef}>Slip</DraggableCard>"
+          "name": "invite",
+          "title": "Invite",
+          "description": "Inverted event card.",
+          "usage": "<DraggableCard variant=\"invite\" bounds={stageRef}>Invite</DraggableCard>"
         },
         {
-          "name": "comic",
-          "title": "Comic",
-          "description": "Ink panel with halftone and a hard offset shadow.",
-          "usage": "<DraggableCard variant=\"comic\" bounds={stageRef}>Panel</DraggableCard>"
+          "name": "file",
+          "title": "File",
+          "description": "Document chip with a filename.",
+          "usage": "<DraggableCard variant=\"file\" bounds={stageRef}>File</DraggableCard>"
         },
         {
-          "name": "playing",
-          "title": "Playing card",
-          "description": "Face card with a corner rank and suit.",
-          "usage": "<DraggableCard variant=\"playing\" bounds={stageRef}>Ace</DraggableCard>"
+          "name": "widget",
+          "title": "Widget",
+          "description": "Dashboard metric tile.",
+          "usage": "<DraggableCard variant=\"widget\" bounds={stageRef}>99.98</DraggableCard>"
         },
         {
-          "name": "boarding",
-          "title": "Boarding pass",
-          "description": "Airline pass with a barcode along the foot.",
-          "usage": "<DraggableCard variant=\"boarding\" bounds={stageRef}>Gate</DraggableCard>"
+          "name": "message",
+          "title": "Message",
+          "description": "Chat bubble with a tail.",
+          "usage": "<DraggableCard variant=\"message\" bounds={stageRef}>Hello</DraggableCard>"
         },
         {
-          "name": "postcard",
-          "title": "Postcard",
-          "description": "Correspondence card with a stamp box.",
-          "usage": "<DraggableCard variant=\"postcard\" bounds={stageRef}>Note</DraggableCard>"
+          "name": "stack",
+          "title": "Stack",
+          "description": "Offset sheets under the active card.",
+          "usage": "<DraggableCard variant=\"stack\" bounds={stageRef}>Stack</DraggableCard>"
+        },
+        {
+          "name": "compact",
+          "title": "Compact",
+          "description": "Pill chip you can throw.",
+          "usage": "<DraggableCard variant=\"compact\" bounds={stageRef}>Chip</DraggableCard>"
+        },
+        {
+          "name": "calendar",
+          "title": "Calendar",
+          "description": "Month header over a day.",
+          "usage": "<DraggableCard variant=\"calendar\" bounds={stageRef}>18</DraggableCard>"
         }
       ]
     },
@@ -126,7 +126,7 @@
       "name": "spotlight-card",
       "type": "registry:ui",
       "title": "Spotlight Card",
-      "description": "A card whose highlight and hairline follow the pointer. Variants: profile, pricing, product, testimonial, stat, music, weather, notification, repo, task, article, place.",
+      "description": "Twelve product cards with a pointer wash on top of distinct anatomies. Variants: profile, pricing, product, testimonial, stat, player, weather, inbox, repo, task, article, place.",
       "categories": [
         "Cards"
       ],
@@ -143,78 +143,78 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { SpotlightCard } from '@/components/ui/spotlight-card'\n\n<SpotlightCard className=\"p-6\" spotlightColor=\"rgba(255, 106, 61, 0.45)\">\n  Follow the light\n</SpotlightCard>",
+      "usage": "<SpotlightCard variant=\"profile\" />",
       "variants": [
         {
           "name": "profile",
           "title": "Profile",
-          "description": "Avatar, name, role, and a follow control.",
+          "description": "Identity row with avatar and follow.",
           "usage": "<SpotlightCard variant=\"profile\" />"
         },
         {
           "name": "pricing",
           "title": "Pricing",
-          "description": "Plan name, price, feature list, and a choice.",
+          "description": "Plan, price, checklist, and CTA.",
           "usage": "<SpotlightCard variant=\"pricing\" />"
         },
         {
           "name": "product",
           "title": "Product",
-          "description": "Color stage, name, and price.",
+          "description": "Image-led shop card.",
           "usage": "<SpotlightCard variant=\"product\" />"
         },
         {
           "name": "testimonial",
           "title": "Testimonial",
-          "description": "Stars, a quote, and an attribution.",
+          "description": "Editorial quote with a rule.",
           "usage": "<SpotlightCard variant=\"testimonial\" />"
         },
         {
           "name": "stat",
           "title": "Stat",
-          "description": "A figure, a delta, and a sparkline.",
+          "description": "Metric with an area spark.",
           "usage": "<SpotlightCard variant=\"stat\" />"
         },
         {
-          "name": "music",
-          "title": "Music",
-          "description": "Cover, title, and a progress bar.",
-          "usage": "<SpotlightCard variant=\"music\" />"
+          "name": "player",
+          "title": "Player",
+          "description": "Dark music transport.",
+          "usage": "<SpotlightCard variant=\"player\" />"
         },
         {
           "name": "weather",
           "title": "Weather",
-          "description": "City, temperature, and the day’s range.",
+          "description": "Sky gradient and a sun.",
           "usage": "<SpotlightCard variant=\"weather\" />"
         },
         {
-          "name": "notification",
-          "title": "Notification",
-          "description": "App mark, title, time, and a message.",
-          "usage": "<SpotlightCard variant=\"notification\" />"
+          "name": "inbox",
+          "title": "Inbox",
+          "description": "Notification row.",
+          "usage": "<SpotlightCard variant=\"inbox\" />"
         },
         {
           "name": "repo",
           "title": "Repo",
-          "description": "Repository name, summary, language, and stars.",
+          "description": "Monospace repository card.",
           "usage": "<SpotlightCard variant=\"repo\" />"
         },
         {
           "name": "task",
           "title": "Task",
-          "description": "Checkbox, title, and tags.",
+          "description": "Checkbox and tags.",
           "usage": "<SpotlightCard variant=\"task\" />"
         },
         {
           "name": "article",
           "title": "Article",
-          "description": "Kicker, headline, and a byline.",
+          "description": "Thumb plus headline.",
           "usage": "<SpotlightCard variant=\"article\" />"
         },
         {
           "name": "place",
           "title": "Place",
-          "description": "Map field, name, and distance.",
+          "description": "Map tile and hours.",
           "usage": "<SpotlightCard variant=\"place\" />"
         }
       ]
@@ -223,7 +223,7 @@
       "name": "flip-card",
       "type": "registry:ui",
       "title": "Flip Card",
-      "description": "A two-sided card that turns on hover or click. Variants: credit, badge, playing, product, flashcard, ticket, profile, pricing, passport, vinyl, book, postcard.",
+      "description": "A two-sided card that turns on hover or click. Variants: credit, product, pricing, profile, metric, invite, auth, feature, quote, plan, media, flashcard.",
       "categories": [
         "Cards"
       ],
@@ -241,79 +241,79 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { FlipCard } from '@/components/ui/flip-card'\n\n<FlipCard flipOn=\"hover\" front={<p>Front</p>} back={<p>Back</p>} />",
+      "usage": "<FlipCard variant=\"credit\" />",
       "variants": [
         {
           "name": "credit",
           "title": "Credit",
-          "description": "Bank card with a chip on the front and a signature strip on the back.",
+          "description": "Bank card and a CVV reverse.",
           "usage": "<FlipCard variant=\"credit\" />"
-        },
-        {
-          "name": "badge",
-          "title": "Badge",
-          "description": "Visitor badge with a barcode on the reverse.",
-          "usage": "<FlipCard variant=\"badge\" />"
-        },
-        {
-          "name": "playing",
-          "title": "Playing",
-          "description": "Face card and a patterned back.",
-          "usage": "<FlipCard variant=\"playing\" />"
         },
         {
           "name": "product",
           "title": "Product",
-          "description": "Product stage in front, specs behind.",
+          "description": "Shop face and specs behind.",
           "usage": "<FlipCard variant=\"product\" />"
-        },
-        {
-          "name": "flashcard",
-          "title": "Flashcard",
-          "description": "Index card: term on the front, definition on the back.",
-          "usage": "<FlipCard variant=\"flashcard\" />"
-        },
-        {
-          "name": "ticket",
-          "title": "Ticket",
-          "description": "Event ticket and a tear-off stub.",
-          "usage": "<FlipCard variant=\"ticket\" />"
-        },
-        {
-          "name": "profile",
-          "title": "Profile",
-          "description": "Portrait on the front, biography on the back.",
-          "usage": "<FlipCard variant=\"profile\" />"
         },
         {
           "name": "pricing",
           "title": "Pricing",
-          "description": "Price on the front, the included list behind.",
+          "description": "Price front, includes back.",
           "usage": "<FlipCard variant=\"pricing\" />"
         },
         {
-          "name": "passport",
-          "title": "Passport",
-          "description": "Cover and a data page.",
-          "usage": "<FlipCard variant=\"passport\" />"
+          "name": "profile",
+          "title": "Profile",
+          "description": "Portrait and biography.",
+          "usage": "<FlipCard variant=\"profile\" />"
         },
         {
-          "name": "vinyl",
-          "title": "Vinyl",
-          "description": "Record face and a track list.",
-          "usage": "<FlipCard variant=\"vinyl\" />"
+          "name": "metric",
+          "title": "Metric",
+          "description": "Figure and a breakdown.",
+          "usage": "<FlipCard variant=\"metric\" />"
         },
         {
-          "name": "book",
-          "title": "Book",
-          "description": "Cloth cover and a back-cover blurb.",
-          "usage": "<FlipCard variant=\"book\" />"
+          "name": "invite",
+          "title": "Invite",
+          "description": "Event face and a seat code.",
+          "usage": "<FlipCard variant=\"invite\" />"
         },
         {
-          "name": "postcard",
-          "title": "Postcard",
-          "description": "Picture side and a written side with a stamp.",
-          "usage": "<FlipCard variant=\"postcard\" />"
+          "name": "auth",
+          "title": "Auth",
+          "description": "Sign-in and a one-time code.",
+          "usage": "<FlipCard variant=\"auth\" />"
+        },
+        {
+          "name": "feature",
+          "title": "Feature",
+          "description": "Launch note and a shortcut.",
+          "usage": "<FlipCard variant=\"feature\" />"
+        },
+        {
+          "name": "quote",
+          "title": "Quote",
+          "description": "Pull quote and attribution.",
+          "usage": "<FlipCard variant=\"quote\" />"
+        },
+        {
+          "name": "plan",
+          "title": "Plan",
+          "description": "Week title and a checklist.",
+          "usage": "<FlipCard variant=\"plan\" />"
+        },
+        {
+          "name": "media",
+          "title": "Media",
+          "description": "Cover and an essay back.",
+          "usage": "<FlipCard variant=\"media\" />"
+        },
+        {
+          "name": "flashcard",
+          "title": "Flashcard",
+          "description": "Term and definition.",
+          "usage": "<FlipCard variant=\"flashcard\" />"
         }
       ]
     },
@@ -321,7 +321,7 @@
       "name": "bento-grid",
       "type": "registry:ui",
       "title": "Bento Grid",
-      "description": "A responsive mosaic of spotlight tiles. Variants: chart, quote, editorial, terminal, schedule, scoreboard, stat, compare, media, calendar, kanban, invoice.",
+      "description": "A responsive mosaic of product tiles. Variants: chart, quote, editorial, terminal, schedule, scoreboard, stat, compare, media, calendar, kanban, invoice.",
       "categories": [
         "Cards"
       ],
@@ -338,7 +338,7 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { BentoGrid, BentoItem } from '@/components/ui/bento-grid'\n\n<BentoGrid columns={3}>\n  <BentoItem colSpan={2} title=\"Wide\" description=\"Two columns.\" />\n</BentoGrid>",
+      "usage": "<BentoItem variant=\"chart\" title=\"Uptime\" description=\"Last hour.\" />",
       "variants": [
         {
           "name": "chart",
@@ -349,31 +349,31 @@
         {
           "name": "quote",
           "title": "Quote",
-          "description": "A hanging quotation and an attribution.",
+          "description": "Hanging quotation.",
           "usage": "<BentoItem variant=\"quote\" title=\"Stay in the room.\" description=\"Atlas\" />"
         },
         {
           "name": "editorial",
           "title": "Editorial",
-          "description": "Open type closed by a baseline rule.",
+          "description": "Open type closed by a rule.",
           "usage": "<BentoItem variant=\"editorial\" title=\"Essay\" description=\"No chrome.\" />"
         },
         {
           "name": "terminal",
           "title": "Terminal",
-          "description": "Prompt, path, and monospace output.",
+          "description": "Prompt and monospace output.",
           "usage": "<BentoItem variant=\"terminal\" title=\"status\" description=\"ok\" />"
         },
         {
           "name": "schedule",
           "title": "Schedule",
-          "description": "A time gutter beside the title.",
+          "description": "Time gutter beside the title.",
           "usage": "<BentoItem variant=\"schedule\" title=\"Standup\" description=\"Room 4.\" />"
         },
         {
           "name": "scoreboard",
           "title": "Scoreboard",
-          "description": "Home and away scores on a tide ground.",
+          "description": "Home and away on a tide ground.",
           "usage": "<BentoItem variant=\"scoreboard\" title=\"1\" description=\"Final.\" />"
         },
         {
@@ -385,19 +385,19 @@
         {
           "name": "compare",
           "title": "Compare",
-          "description": "Before and after sit in two cells.",
+          "description": "Before and after cells.",
           "usage": "<BentoItem variant=\"compare\" title=\"Draft\" description=\"Shipped.\" />"
         },
         {
           "name": "media",
           "title": "Media",
-          "description": "Children fill the well. The title sits on a scrim.",
+          "description": "Children fill the well.",
           "usage": "<BentoItem variant=\"media\" title=\"Reel\" description=\"Play.\" />"
         },
         {
           "name": "calendar",
           "title": "Calendar",
-          "description": "Month header and a day grid on paper.",
+          "description": "Month header and a day.",
           "usage": "<BentoItem variant=\"calendar\" title=\"18\" />"
         },
         {
@@ -409,7 +409,7 @@
         {
           "name": "invoice",
           "title": "Invoice",
-          "description": "Line items and a total on a dashed slip.",
+          "description": "Line items and a total.",
           "usage": "<BentoItem variant=\"invoice\" title=\"Studio\" description=\"Export\" />"
         }
       ]
@@ -418,7 +418,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Solid, outline, ghost, gradient, and shimmer buttons with loading and link modes. Variants: solid, gradient, glass, neumorphic, pressable, glow-outline, split, avatar-pill, border-beam, brutalist, skeuomorphic, social, segment.",
+      "description": "Thirteen button constructions from solid to beam and link. Variants: solid, soft, outline, ghost, glass, gradient, destructive, split, social, icon, shimmer, beam, link.",
       "categories": [
         "Buttons"
       ],
@@ -436,85 +436,85 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { Button } from '@/components/ui/button'\n\n<Button variant=\"gradient\" size=\"lg\">Continue</Button>",
+      "usage": "<Button variant=\"solid\">Continue</Button>",
       "variants": [
         {
           "name": "solid",
           "title": "Solid",
-          "description": "A single flat fill. No extra chrome.",
+          "description": "Primary fill with a hairline.",
           "usage": "<Button variant=\"solid\">Continue</Button>"
         },
         {
-          "name": "gradient",
-          "title": "Gradient",
-          "description": "Gel body: a vertical gradient plus a glossy highlight.",
-          "usage": "<Button variant=\"gradient\">Continue</Button>"
+          "name": "soft",
+          "title": "Soft",
+          "description": "Tinted accent, no border.",
+          "usage": "<Button variant=\"soft\">Continue</Button>"
+        },
+        {
+          "name": "outline",
+          "title": "Outline",
+          "description": "Hairline, transparent fill.",
+          "usage": "<Button variant=\"outline\">Continue</Button>"
+        },
+        {
+          "name": "ghost",
+          "title": "Ghost",
+          "description": "No chrome until hover.",
+          "usage": "<Button variant=\"ghost\">Continue</Button>"
         },
         {
           "name": "glass",
           "title": "Glass",
-          "description": "Frosted plate with a hairline and a specular edge.",
+          "description": "Frosted plate with a specular edge.",
           "usage": "<Button variant=\"glass\">Continue</Button>"
         },
         {
-          "name": "neumorphic",
-          "title": "Neumorphic",
-          "description": "Extruded from the surface with a light and a dark shadow. No border.",
-          "usage": "<Button variant=\"neumorphic\">Continue</Button>"
+          "name": "gradient",
+          "title": "Gradient",
+          "description": "Mesh CTA with a hover shift.",
+          "usage": "<Button variant=\"gradient\">Continue</Button>"
         },
         {
-          "name": "pressable",
-          "title": "Pressable",
-          "description": "A 3D lip. Pressing the face collapses onto it.",
-          "usage": "<Button variant=\"pressable\">Continue</Button>"
-        },
-        {
-          "name": "glow-outline",
-          "title": "Glow outline",
-          "description": "Empty center, glowing stroke, no fill.",
-          "usage": "<Button variant=\"glow-outline\">Continue</Button>"
+          "name": "destructive",
+          "title": "Destructive",
+          "description": "Rose fill for irreversible work.",
+          "usage": "<Button variant=\"destructive\">Delete</Button>"
         },
         {
           "name": "split",
           "title": "Split",
-          "description": "A colored icon well joined to the label.",
+          "description": "Icon well joined to the label.",
           "usage": "<Button variant=\"split\">Continue</Button>"
-        },
-        {
-          "name": "avatar-pill",
-          "title": "Avatar pill",
-          "description": "Round avatar, label, and a chevron.",
-          "usage": "<Button variant=\"avatar-pill\">Ada Klein</Button>"
-        },
-        {
-          "name": "border-beam",
-          "title": "Border beam",
-          "description": "A spinning conic ring around an inner plate.",
-          "usage": "<Button variant=\"border-beam\">Continue</Button>"
-        },
-        {
-          "name": "brutalist",
-          "title": "Brutalist",
-          "description": "Thick border, hard offset shadow, square corners.",
-          "usage": "<Button variant=\"brutalist\">Continue</Button>"
-        },
-        {
-          "name": "skeuomorphic",
-          "title": "Skeuomorphic",
-          "description": "Brushed plate with two rivets.",
-          "usage": "<Button variant=\"skeuomorphic\">Continue</Button>"
         },
         {
           "name": "social",
           "title": "Social",
-          "description": "Brand mark, a “Continue with” kicker, and the provider name.",
+          "description": "Provider mark and Continue with.",
           "usage": "<Button variant=\"social\">Atlas</Button>"
         },
         {
-          "name": "segment",
-          "title": "Segment",
-          "description": "Label and a separate chevron cell, divided by a rule.",
-          "usage": "<Button variant=\"segment\">Continue</Button>"
+          "name": "icon",
+          "title": "Icon",
+          "description": "Square icon-only control.",
+          "usage": "<Button variant=\"icon\" aria-label=\"Continue\" />"
+        },
+        {
+          "name": "shimmer",
+          "title": "Shimmer",
+          "description": "Traveling sheen on a dark pill.",
+          "usage": "<Button variant=\"shimmer\">Continue</Button>"
+        },
+        {
+          "name": "beam",
+          "title": "Beam",
+          "description": "Spinning conic ring.",
+          "usage": "<Button variant=\"beam\">Continue</Button>"
+        },
+        {
+          "name": "link",
+          "title": "Link",
+          "description": "Text with an animated underline.",
+          "usage": "<Button variant=\"link\">Continue</Button>"
         }
       ]
     },
@@ -522,19 +522,17 @@
       "name": "magnetic-button",
       "type": "registry:ui",
       "title": "Magnetic Button",
-      "description": "A button that leans toward a fine pointer. Variants: pill, keycap, bulb, dock, sticker, medal, stamp, badge, shutter, ticket, tag, wax.",
+      "description": "Twelve product controls that lean toward a fine pointer. Variants: pill, orb, dock, fab, chip, glow, tilt, text, badge, glass, key, split.",
       "categories": [
         "Buttons"
       ],
       "dependencies": [
         "framer-motion",
-        "class-variance-authority",
         "clsx",
         "tailwind-merge"
       ],
       "registryDependencies": [
-        "utils",
-        "button"
+        "utils"
       ],
       "files": [
         {
@@ -542,79 +540,79 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { MagneticButton } from '@/components/ui/magnetic-button'\n\n<MagneticButton variant=\"outline\" strength={20}>Come closer</MagneticButton>",
+      "usage": "<MagneticButton magnet=\"pill\">Come closer</MagneticButton>",
       "variants": [
         {
           "name": "pill",
           "title": "Pill",
-          "description": "Capsule control that pulls toward the pointer.",
+          "description": "Capsule CTA that leans to the pointer.",
           "usage": "<MagneticButton magnet=\"pill\">Come closer</MagneticButton>"
         },
         {
-          "name": "keycap",
-          "title": "Keycap",
-          "description": "Keyboard key with a legend and a lip.",
-          "usage": "<MagneticButton magnet=\"keycap\">A</MagneticButton>"
-        },
-        {
-          "name": "bulb",
-          "title": "Bulb",
-          "description": "Glass envelope over a screw base.",
-          "usage": "<MagneticButton magnet=\"bulb\">Go</MagneticButton>"
+          "name": "orb",
+          "title": "Orb",
+          "description": "Circular solid control.",
+          "usage": "<MagneticButton magnet=\"orb\">Go</MagneticButton>"
         },
         {
           "name": "dock",
           "title": "Dock",
-          "description": "Rounded app icon with a glyph over a caption.",
+          "description": "App icon over a caption.",
           "usage": "<MagneticButton magnet=\"dock\">App</MagneticButton>"
         },
         {
-          "name": "sticker",
-          "title": "Sticker",
-          "description": "Tilted paper sticker with tape.",
-          "usage": "<MagneticButton magnet=\"sticker\">Peel</MagneticButton>"
+          "name": "fab",
+          "title": "Fab",
+          "description": "Floating create action.",
+          "usage": "<MagneticButton magnet=\"fab\">Create</MagneticButton>"
         },
         {
-          "name": "medal",
-          "title": "Medal",
-          "description": "Ribbon over a rimmed face.",
-          "usage": "<MagneticButton magnet=\"medal\">1</MagneticButton>"
+          "name": "chip",
+          "title": "Chip",
+          "description": "Status chip with a live dot.",
+          "usage": "<MagneticButton magnet=\"chip\">Live</MagneticButton>"
         },
         {
-          "name": "stamp",
-          "title": "Stamp",
-          "description": "A perforated postage stamp with a dashed inner frame.",
-          "usage": "<MagneticButton magnet=\"stamp\">Live</MagneticButton>"
+          "name": "glow",
+          "title": "Glow",
+          "description": "Soft bloom behind the label.",
+          "usage": "<MagneticButton magnet=\"glow\">Launch</MagneticButton>"
+        },
+        {
+          "name": "tilt",
+          "title": "Tilt",
+          "description": "Perspective plate.",
+          "usage": "<MagneticButton magnet=\"tilt\">Tilt</MagneticButton>"
+        },
+        {
+          "name": "text",
+          "title": "Text",
+          "description": "Magnetic text link.",
+          "usage": "<MagneticButton magnet=\"text\">Open</MagneticButton>"
         },
         {
           "name": "badge",
           "title": "Badge",
-          "description": "Label with a count sitting on the corner.",
+          "description": "Label with a count.",
           "usage": "<MagneticButton magnet=\"badge\">Inbox</MagneticButton>"
         },
         {
-          "name": "shutter",
-          "title": "Shutter",
-          "description": "Camera shutter: outer ring and a recessed well.",
-          "usage": "<MagneticButton magnet=\"shutter\" />"
+          "name": "glass",
+          "title": "Glass",
+          "description": "Frosted magnetic pill.",
+          "usage": "<MagneticButton magnet=\"glass\">Glass</MagneticButton>"
         },
         {
-          "name": "ticket",
-          "title": "Ticket",
-          "description": "Small admit stub split by a perforation.",
-          "usage": "<MagneticButton magnet=\"ticket\">C12</MagneticButton>"
+          "name": "key",
+          "title": "Key",
+          "description": "Keyboard key with a legend.",
+          "usage": "<MagneticButton magnet=\"key\">K</MagneticButton>"
         },
         {
-          "name": "tag",
-          "title": "Tag",
-          "description": "A notched price tag with a punched hole and a string.",
-          "usage": "<MagneticButton magnet=\"tag\">Open</MagneticButton>"
-        },
-        {
-          "name": "wax",
-          "title": "Wax",
-          "description": "Scalloped wax seal with a drip.",
-          "usage": "<MagneticButton magnet=\"wax\">NX</MagneticButton>"
+          "name": "split",
+          "title": "Split",
+          "description": "Label plus a chevron cell.",
+          "usage": "<MagneticButton magnet=\"split\">Menu</MagneticButton>"
         }
       ]
     },
@@ -622,7 +620,7 @@
       "name": "aurora-background",
       "type": "registry:ui",
       "title": "Aurora Background",
-      "description": "Drifting color fields with optional film grain. Variants: aurora, starfield, meteors, mesh, radar, sunset, clouds, rain, constellation, mountains, city, lightning.",
+      "description": "Twelve ambient scenes with content above the field. Variants: aurora, mesh, grain, dusk, spotlight, prism, plasma, fog, orbit, ember, tide, stars.",
       "categories": [
         "Backgrounds"
       ],
@@ -639,79 +637,79 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { AuroraBackground } from '@/components/ui/aurora-background'\n\n<AuroraBackground className=\"min-h-80 rounded-3xl\">{children}</AuroraBackground>",
+      "usage": "<AuroraBackground variant=\"aurora\" className=\"min-h-64\" />",
       "variants": [
         {
           "name": "aurora",
           "title": "Aurora",
-          "description": "Vertical color curtains.",
+          "description": "Drifting color curtains.",
           "usage": "<AuroraBackground variant=\"aurora\" className=\"min-h-64\" />"
-        },
-        {
-          "name": "starfield",
-          "title": "Starfield",
-          "description": "Points of different sizes.",
-          "usage": "<AuroraBackground variant=\"starfield\" className=\"min-h-64\" />"
-        },
-        {
-          "name": "meteors",
-          "title": "Meteors",
-          "description": "Diagonal streaks with bright heads.",
-          "usage": "<AuroraBackground variant=\"meteors\" className=\"min-h-64\" />"
         },
         {
           "name": "mesh",
           "title": "Mesh",
-          "description": "Large soft color fields, no particles.",
+          "description": "Large soft color fields.",
           "usage": "<AuroraBackground variant=\"mesh\" className=\"min-h-64\" />"
         },
         {
-          "name": "radar",
-          "title": "Radar",
-          "description": "Concentric range rings and a tick.",
-          "usage": "<AuroraBackground variant=\"radar\" className=\"min-h-64\" />"
+          "name": "grain",
+          "title": "Grain",
+          "description": "Film noise on a dark field.",
+          "usage": "<AuroraBackground variant=\"grain\" className=\"min-h-64\" />"
         },
         {
-          "name": "sunset",
-          "title": "Sunset",
-          "description": "Horizon gradient and a sun disc.",
-          "usage": "<AuroraBackground variant=\"sunset\" className=\"min-h-64\" />"
+          "name": "dusk",
+          "title": "Dusk",
+          "description": "Horizon wash from night to sand.",
+          "usage": "<AuroraBackground variant=\"dusk\" className=\"min-h-64\" />"
         },
         {
-          "name": "clouds",
-          "title": "Clouds",
-          "description": "Flat-bottom cloud masses.",
-          "usage": "<AuroraBackground variant=\"clouds\" className=\"min-h-64\" />"
+          "name": "spotlight",
+          "title": "Spotlight",
+          "description": "Top lamp on a dark stage.",
+          "usage": "<AuroraBackground variant=\"spotlight\" className=\"min-h-64\" />"
         },
         {
-          "name": "rain",
-          "title": "Rain",
-          "description": "Vertical streaks.",
-          "usage": "<AuroraBackground variant=\"rain\" className=\"min-h-64\" />"
+          "name": "prism",
+          "title": "Prism",
+          "description": "Slow conic blend.",
+          "usage": "<AuroraBackground variant=\"prism\" className=\"min-h-64\" />"
         },
         {
-          "name": "constellation",
-          "title": "Constellation",
-          "description": "Stars joined by lines.",
-          "usage": "<AuroraBackground variant=\"constellation\" className=\"min-h-64\" />"
+          "name": "plasma",
+          "title": "Plasma",
+          "description": "Two colliding orbs.",
+          "usage": "<AuroraBackground variant=\"plasma\" className=\"min-h-64\" />"
         },
         {
-          "name": "mountains",
-          "title": "Mountains",
-          "description": "Two filled ridgelines.",
-          "usage": "<AuroraBackground variant=\"mountains\" className=\"min-h-64\" />"
+          "name": "fog",
+          "title": "Fog",
+          "description": "Pale overcast field.",
+          "usage": "<AuroraBackground variant=\"fog\" className=\"min-h-64\" />"
         },
         {
-          "name": "city",
-          "title": "City",
-          "description": "A skyline of lit blocks.",
-          "usage": "<AuroraBackground variant=\"city\" className=\"min-h-64\" />"
+          "name": "orbit",
+          "title": "Orbit",
+          "description": "Range rings and a satellite.",
+          "usage": "<AuroraBackground variant=\"orbit\" className=\"min-h-64\" />"
         },
         {
-          "name": "lightning",
-          "title": "Lightning",
-          "description": "A forked bolt on a dark sky.",
-          "usage": "<AuroraBackground variant=\"lightning\" className=\"min-h-64\" />"
+          "name": "ember",
+          "title": "Ember",
+          "description": "Heat rising from the foot.",
+          "usage": "<AuroraBackground variant=\"ember\" className=\"min-h-64\" />"
+        },
+        {
+          "name": "tide",
+          "title": "Tide",
+          "description": "Deep water to foam.",
+          "usage": "<AuroraBackground variant=\"tide\" className=\"min-h-64\" />"
+        },
+        {
+          "name": "stars",
+          "title": "Stars",
+          "description": "Twinkle field and a meteor.",
+          "usage": "<AuroraBackground variant=\"stars\" className=\"min-h-64\" />"
         }
       ]
     },
@@ -719,7 +717,7 @@
       "name": "grid-background",
       "type": "registry:ui",
       "title": "Grid Background",
-      "description": "A dotted or ruled surface with an optional pointer-following fade. Variants: graph, dots, isometric, hex, circuit, blueprint, notebook, perspective, topography, herringbone, pixel, brick.",
+      "description": "Twelve ruled and dotted surfaces. Variants: graph, dots, plus, isometric, hex, circuit, blueprint, notebook, perspective, topo, diagonal, fade.",
       "categories": [
         "Backgrounds"
       ],
@@ -736,7 +734,7 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { GridBackground } from '@/components/ui/grid-background'\n\n<GridBackground variant=\"dots\" fade interactive className=\"min-h-64\">{children}</GridBackground>",
+      "usage": "<GridBackground variant=\"graph\" className=\"min-h-48\" />",
       "variants": [
         {
           "name": "graph",
@@ -747,8 +745,14 @@
         {
           "name": "dots",
           "title": "Dots",
-          "description": "Dot-grid paper.",
+          "description": "Dot grid with a pointer fade.",
           "usage": "<GridBackground variant=\"dots\" className=\"min-h-48\" />"
+        },
+        {
+          "name": "plus",
+          "title": "Plus",
+          "description": "Crosshair cells.",
+          "usage": "<GridBackground variant=\"plus\" className=\"min-h-48\" />"
         },
         {
           "name": "isometric",
@@ -765,50 +769,44 @@
         {
           "name": "circuit",
           "title": "Circuit",
-          "description": "Traces and a pad in every cell.",
+          "description": "Traces and pads.",
           "usage": "<GridBackground variant=\"circuit\" className=\"min-h-48\" />"
         },
         {
           "name": "blueprint",
           "title": "Blueprint",
-          "description": "Blue sheet, white rules, and a title block.",
+          "description": "Cyan rules and a title block.",
           "usage": "<GridBackground variant=\"blueprint\" className=\"min-h-48\" />"
         },
         {
           "name": "notebook",
           "title": "Notebook",
-          "description": "Ruled paper with a red margin.",
+          "description": "Ruled paper with a margin.",
           "usage": "<GridBackground variant=\"notebook\" className=\"min-h-48\" />"
         },
         {
           "name": "perspective",
           "title": "Perspective",
-          "description": "A floor grid in perspective.",
+          "description": "Floor grid in perspective.",
           "usage": "<GridBackground variant=\"perspective\" className=\"min-h-48\" />"
         },
         {
-          "name": "topography",
-          "title": "Topography",
-          "description": "Contour curves.",
-          "usage": "<GridBackground variant=\"topography\" className=\"min-h-48\" />"
+          "name": "topo",
+          "title": "Topo",
+          "description": "Contour rings.",
+          "usage": "<GridBackground variant=\"topo\" className=\"min-h-48\" />"
         },
         {
-          "name": "herringbone",
-          "title": "Herringbone",
-          "description": "A zigzag parquet tile.",
-          "usage": "<GridBackground variant=\"herringbone\" className=\"min-h-48\" />"
+          "name": "diagonal",
+          "title": "Diagonal",
+          "description": "Hatch field.",
+          "usage": "<GridBackground variant=\"diagonal\" className=\"min-h-48\" />"
         },
         {
-          "name": "pixel",
-          "title": "Pixel",
-          "description": "Chunky checker of filled cells.",
-          "usage": "<GridBackground variant=\"pixel\" className=\"min-h-48\" />"
-        },
-        {
-          "name": "brick",
-          "title": "Brick",
-          "description": "Running-bond masonry.",
-          "usage": "<GridBackground variant=\"brick\" className=\"min-h-48\" />"
+          "name": "fade",
+          "title": "Fade",
+          "description": "Graph that falls off at the edges.",
+          "usage": "<GridBackground variant=\"fade\" className=\"min-h-48\" />"
         }
       ]
     },
@@ -816,7 +814,7 @@
       "name": "gradient-text",
       "type": "registry:ui",
       "title": "Gradient Text",
-      "description": "Lettering clipped to an optional animated gradient. Variants: gradient, stroke, marker, glitch, neon, engraved, ribbon, stencil, boxed, script, seal, halftone.",
+      "description": "Twelve lettering models. Variants: gradient, shimmer, stroke, mask, aurora, italic, highlight, underline, boxed, kinetic, glow, fade.",
       "categories": [
         "Text"
       ],
@@ -833,13 +831,19 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { GradientText } from '@/components/ui/gradient-text'\n\n<GradientText>Night, gold, and iris.</GradientText>",
+      "usage": "<GradientText variant=\"gradient\">Night</GradientText>",
       "variants": [
         {
           "name": "gradient",
           "title": "Gradient",
-          "description": "Glyphs filled by a clipped gradient.",
+          "description": "Clipped moving blend.",
           "usage": "<GradientText variant=\"gradient\">Night</GradientText>"
+        },
+        {
+          "name": "shimmer",
+          "title": "Shimmer",
+          "description": "Panning sheen.",
+          "usage": "<GradientText variant=\"shimmer\">Night</GradientText>"
         },
         {
           "name": "stroke",
@@ -848,64 +852,58 @@
           "usage": "<GradientText variant=\"stroke\">Night</GradientText>"
         },
         {
-          "name": "marker",
-          "title": "Marker",
-          "description": "A highlighter sitting under the words.",
-          "usage": "<GradientText variant=\"marker\">Night</GradientText>"
+          "name": "mask",
+          "title": "Mask",
+          "description": "A bright slit across faint type.",
+          "usage": "<GradientText variant=\"mask\">Night</GradientText>"
         },
         {
-          "name": "glitch",
-          "title": "Glitch",
-          "description": "Three offset color copies.",
-          "usage": "<GradientText variant=\"glitch\">Night</GradientText>"
+          "name": "aurora",
+          "title": "Aurora",
+          "description": "Wide multi-stop wash.",
+          "usage": "<GradientText variant=\"aurora\">Night</GradientText>"
         },
         {
-          "name": "neon",
-          "title": "Neon",
-          "description": "Tube glow around the glyphs.",
-          "usage": "<GradientText variant=\"neon\">Night</GradientText>"
+          "name": "italic",
+          "title": "Italic",
+          "description": "Instrument italic.",
+          "usage": "<GradientText variant=\"italic\">Night</GradientText>"
         },
         {
-          "name": "engraved",
-          "title": "Engraved",
-          "description": "Inset letterpress.",
-          "usage": "<GradientText variant=\"engraved\">Night</GradientText>"
+          "name": "highlight",
+          "title": "Highlight",
+          "description": "Marker under the x-height.",
+          "usage": "<GradientText variant=\"highlight\">Night</GradientText>"
         },
         {
-          "name": "ribbon",
-          "title": "Ribbon",
-          "description": "A swallowtail prize ribbon.",
-          "usage": "<GradientText variant=\"ribbon\">Night</GradientText>"
-        },
-        {
-          "name": "stencil",
-          "title": "Stencil",
-          "description": "A horizontal slot cut through the glyphs.",
-          "usage": "<GradientText variant=\"stencil\">Night</GradientText>"
+          "name": "underline",
+          "title": "Underline",
+          "description": "Accent rule under the word.",
+          "usage": "<GradientText variant=\"underline\">Night</GradientText>"
         },
         {
           "name": "boxed",
           "title": "Boxed",
-          "description": "Each letter sits in its own cell.",
+          "description": "One cell per glyph.",
           "usage": "<GradientText variant=\"boxed\">Night</GradientText>"
         },
         {
-          "name": "script",
-          "title": "Script",
-          "description": "Italic serif with a flourish rule.",
-          "usage": "<GradientText variant=\"script\">Night</GradientText>"
+          "name": "kinetic",
+          "title": "Kinetic",
+          "description": "Tracking that breathes.",
+          "usage": "<GradientText variant=\"kinetic\">Night</GradientText>"
         },
         {
-          "name": "seal",
-          "title": "Seal",
-          "description": "A circular path of letters around a center mark.",
-          "usage": "<GradientText variant=\"seal\">Night</GradientText>"
+          "name": "glow",
+          "title": "Glow",
+          "description": "Soft accent bloom.",
+          "usage": "<GradientText variant=\"glow\">Night</GradientText>"
         },
         {
-          "name": "halftone",
-          "title": "Halftone",
-          "description": "Outlined word filled with dots.",
-          "usage": "<GradientText variant=\"halftone\">Night</GradientText>"
+          "name": "fade",
+          "title": "Fade",
+          "description": "Word dissolves to the right.",
+          "usage": "<GradientText variant=\"fade\">Night</GradientText>"
         }
       ]
     },
@@ -913,7 +911,7 @@
       "name": "typewriter",
       "type": "registry:ui",
       "title": "Typewriter",
-      "description": "Types and deletes a list of phrases. Variants: terminal, chat, search, editor, split-flap, news, lower-third, dispatch, shipping, redaction, script, teletype.",
+      "description": "Twelve devices that type and delete phrases. Variants: terminal, chat, search, editor, flap, headline, caption, prompt, label, redact, italic, tape.",
       "categories": [
         "Text"
       ],
@@ -930,79 +928,79 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { Typewriter } from '@/components/ui/typewriter'\n\n<Typewriter phrases={['cards.', 'heroes.', 'tools.']} />",
+      "usage": "<Typewriter variant=\"terminal\" phrases={['cards.', 'heroes.']} />",
       "variants": [
         {
           "name": "terminal",
           "title": "Terminal",
-          "description": "Window chrome, traffic lights, and a prompt.",
+          "description": "Window chrome and a prompt.",
           "usage": "<Typewriter variant=\"terminal\" phrases={['cards.', 'heroes.']} />"
         },
         {
           "name": "chat",
           "title": "Chat",
-          "description": "Incoming message bubble.",
+          "description": "Incoming bubble.",
           "usage": "<Typewriter variant=\"chat\" phrases={['On my way.']} />"
         },
         {
           "name": "search",
           "title": "Search",
-          "description": "A search field filling in.",
+          "description": "Search field filling in.",
           "usage": "<Typewriter variant=\"search\" phrases={['lamp']} />"
         },
         {
           "name": "editor",
           "title": "Editor",
-          "description": "A numbered line of code.",
+          "description": "Numbered line of code.",
           "usage": "<Typewriter variant=\"editor\" phrases={['export const room = 4']} />"
         },
         {
-          "name": "split-flap",
-          "title": "Split flap",
-          "description": "Airport tiles, one cell per glyph.",
-          "usage": "<Typewriter variant=\"split-flap\" phrases={['GATE C12']} />"
+          "name": "flap",
+          "title": "Flap",
+          "description": "Split-flap tiles.",
+          "usage": "<Typewriter variant=\"flap\" phrases={['GATE C12']} />"
         },
         {
-          "name": "news",
-          "title": "News",
-          "description": "A newspaper nameplate and a headline.",
-          "usage": "<Typewriter variant=\"news\" phrases={['Harbor opens']} />"
+          "name": "headline",
+          "title": "Headline",
+          "description": "Display typewriter.",
+          "usage": "<Typewriter variant=\"headline\" phrases={['Harbor opens']} />"
         },
         {
-          "name": "lower-third",
-          "title": "Lower third",
-          "description": "A broadcast name plate under the line.",
-          "usage": "<Typewriter variant=\"lower-third\" phrases={['The room is ready.']} />"
+          "name": "caption",
+          "title": "Caption",
+          "description": "Broadcast name plate.",
+          "usage": "<Typewriter variant=\"caption\" phrases={['The room is ready.']} />"
         },
         {
-          "name": "dispatch",
-          "title": "Dispatch",
-          "description": "A radio call with a channel stamp.",
-          "usage": "<Typewriter variant=\"dispatch\" phrases={['See you there.']} />"
+          "name": "prompt",
+          "title": "Prompt",
+          "description": "CLI caret.",
+          "usage": "<Typewriter variant=\"prompt\" phrases={['open atlas']} />"
         },
         {
-          "name": "shipping",
-          "title": "Shipping",
-          "description": "A parcel label with a barcode.",
-          "usage": "<Typewriter variant=\"shipping\" phrases={['Open atlas']} />"
+          "name": "label",
+          "title": "Label",
+          "description": "Small uppercase chip.",
+          "usage": "<Typewriter variant=\"label\" phrases={['live']} />"
         },
         {
-          "name": "redaction",
-          "title": "Redaction",
-          "description": "The line sits under a black bar.",
-          "usage": "<Typewriter variant=\"redaction\" phrases={['secret']} />"
+          "name": "redact",
+          "title": "Redact",
+          "description": "Black-bar type.",
+          "usage": "<Typewriter variant=\"redact\" phrases={['secret']} />"
         },
         {
-          "name": "script",
-          "title": "Script",
-          "description": "Handwritten italic.",
-          "usage": "<Typewriter variant=\"script\" phrases={['yours,']} />"
+          "name": "italic",
+          "title": "Italic",
+          "description": "Serif italic.",
+          "usage": "<Typewriter variant=\"italic\" phrases={['yours,']} />"
         },
         {
-          "name": "teletype",
-          "title": "Teletype",
-          "description": "Type on a paper roll.",
-          "usage": "<Typewriter variant=\"teletype\" phrases={['NX-18 OK']} />"
+          "name": "tape",
+          "title": "Tape",
+          "description": "Paper strip.",
+          "usage": "<Typewriter variant=\"tape\" phrases={['NX-18 OK']} />"
         }
       ]
     },
@@ -1010,7 +1008,7 @@
       "name": "text-reveal",
       "type": "registry:ui",
       "title": "Text Reveal",
-      "description": "Staggers words or characters into place when they enter the viewport. Variants: editorial, headline, marker, outline, split, figure, quote, medallion, columns, annotation, index, running-head.",
+      "description": "Twelve typographic compositions that stagger into view. Variants: editorial, display, highlight, outline, split, caption, quote, columns, note, index, folio, stack.",
       "categories": [
         "Text"
       ],
@@ -1028,79 +1026,79 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { TextReveal } from '@/components/ui/text-reveal'\n\n<TextReveal as=\"h2\" text=\"Arrive one word at a time.\" />",
+      "usage": "<TextReveal variant=\"editorial\" text=\"Arrive in order.\" />",
       "variants": [
         {
           "name": "editorial",
           "title": "Editorial",
-          "description": "A drop cap opening a serif paragraph.",
+          "description": "Drop cap paragraph.",
           "usage": "<TextReveal variant=\"editorial\" text=\"Arrive in order.\" />"
         },
         {
-          "name": "headline",
-          "title": "Headline",
-          "description": "A small chapter label over a huge line.",
-          "usage": "<TextReveal variant=\"headline\" text=\"Move the furniture.\" />"
+          "name": "display",
+          "title": "Display",
+          "description": "Huge staggered headline.",
+          "usage": "<TextReveal variant=\"display\" text=\"Move the furniture.\" />"
         },
         {
-          "name": "marker",
-          "title": "Marker",
-          "description": "The line sits on a highlighter.",
-          "usage": "<TextReveal variant=\"marker\" text=\"Mark the words.\" />"
+          "name": "highlight",
+          "title": "Highlight",
+          "description": "Marker under the line.",
+          "usage": "<TextReveal variant=\"highlight\" text=\"Mark the words.\" />"
         },
         {
           "name": "outline",
           "title": "Outline",
-          "description": "Stroke-only display type.",
+          "description": "Stroke-only display.",
           "usage": "<TextReveal variant=\"outline\" text=\"Open letters.\" />"
         },
         {
           "name": "split",
           "title": "Split",
-          "description": "A heavy first word beside a lighter rest.",
+          "description": "Heavy first word, lighter rest.",
           "usage": "<TextReveal variant=\"split\" text=\"Night continues.\" />"
         },
         {
-          "name": "figure",
-          "title": "Figure",
-          "description": "A numbered plate, then the caption.",
-          "usage": "<TextReveal variant=\"figure\" text=\"The north wall.\" />"
+          "name": "caption",
+          "title": "Caption",
+          "description": "Figure label over the line.",
+          "usage": "<TextReveal variant=\"caption\" text=\"The north wall.\" />"
         },
         {
           "name": "quote",
           "title": "Quote",
-          "description": "A pull quote with a gold rule.",
+          "description": "Pull quote with a rule.",
           "usage": "<TextReveal variant=\"quote\" text=\"Stay in the room.\" />"
-        },
-        {
-          "name": "medallion",
-          "title": "Medallion",
-          "description": "The figure sits inside a circular seal.",
-          "usage": "<TextReveal variant=\"medallion\" text=\"128 rooms\" />"
         },
         {
           "name": "columns",
           "title": "Columns",
-          "description": "The line is set as two newspaper columns.",
+          "description": "Two newspaper columns.",
           "usage": "<TextReveal variant=\"columns\" text=\"Night desk lamp\" />"
         },
         {
-          "name": "annotation",
-          "title": "Annotation",
-          "description": "The line with a handwritten note.",
-          "usage": "<TextReveal variant=\"annotation\" text=\"See the margin.\" />"
+          "name": "note",
+          "title": "Note",
+          "description": "Line with a superscript.",
+          "usage": "<TextReveal variant=\"note\" text=\"See the margin.\" />"
         },
         {
           "name": "index",
           "title": "Index",
-          "description": "A numbered list of the words.",
+          "description": "Numbered word list.",
           "usage": "<TextReveal variant=\"index\" text=\"Work Notes Atlas Harbor\" />"
         },
         {
-          "name": "running-head",
-          "title": "Running head",
-          "description": "A folio rule with the title in the margin.",
-          "usage": "<TextReveal variant=\"running-head\" text=\"A quieter measure.\" />"
+          "name": "folio",
+          "title": "Folio",
+          "description": "Running head and page.",
+          "usage": "<TextReveal variant=\"folio\" text=\"A quieter measure.\" />"
+        },
+        {
+          "name": "stack",
+          "title": "Stack",
+          "description": "One word per line.",
+          "usage": "<TextReveal variant=\"stack\" text=\"Ship the mast\" />"
         }
       ]
     },
@@ -1108,7 +1106,7 @@
       "name": "floating-navbar",
       "type": "registry:ui",
       "title": "Floating Navbar",
-      "description": "A pill navigation bar that compacts on scroll and collapses into a menu. Variants: floating, dock, sidebar, overlay, command, transport, mega, app-bar, announcement, breadcrumb, segmented, wordmark.",
+      "description": "Twelve navigation products. Variants: floating, dock, sidebar, overlay, command, transport, mega, app-bar, announcement, breadcrumb, segmented, wordmark.",
       "categories": [
         "Navigation"
       ],
@@ -1126,78 +1124,78 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { FloatingNavbar } from '@/components/ui/floating-navbar'\n\n<FloatingNavbar logo=\"Nexara\" items={[{ label: 'Work', href: '/work', active: true }]} />",
+      "usage": "<FloatingNavbar variant=\"floating\" items={items} logo=\"Nexara\" />",
       "variants": [
         {
           "name": "floating",
           "title": "Floating",
-          "description": "A marketing pill that compacts on scroll.",
+          "description": "Marketing pill that compacts on scroll.",
           "usage": "<FloatingNavbar variant=\"floating\" items={items} logo=\"Nexara\" />"
         },
         {
           "name": "dock",
           "title": "Dock",
-          "description": "A bottom dock of icons over captions.",
+          "description": "Bottom dock of icons.",
           "usage": "<FloatingNavbar variant=\"dock\" items={items} logo=\"Nexara\" />"
         },
         {
           "name": "sidebar",
           "title": "Sidebar",
-          "description": "An app column with a section label.",
+          "description": "App column with a section label.",
           "usage": "<FloatingNavbar variant=\"sidebar\" items={items} logo=\"Nexara\" />"
         },
         {
           "name": "overlay",
           "title": "Overlay",
-          "description": "A menu button that opens a full-screen list.",
+          "description": "Full-screen menu.",
           "usage": "<FloatingNavbar variant=\"overlay\" items={items} logo=\"Nexara\" />"
         },
         {
           "name": "command",
           "title": "Command",
-          "description": "A jump field with a shortcut hint.",
+          "description": "Jump field with ⌘K.",
           "usage": "<FloatingNavbar variant=\"command\" items={items} logo=\"Nexara\" />"
         },
         {
           "name": "transport",
           "title": "Transport",
-          "description": "Artwork, a title, a scrubber, and skip controls.",
+          "description": "Artwork, title, and a scrubber.",
           "usage": "<FloatingNavbar variant=\"transport\" items={items} logo=\"Nexara\" />"
         },
         {
           "name": "mega",
           "title": "Mega",
-          "description": "A full-width bar that opens three columns.",
+          "description": "Full-width bar with three columns.",
           "usage": "<FloatingNavbar variant=\"mega\" items={items} logo=\"Nexara\" />"
         },
         {
           "name": "app-bar",
           "title": "App bar",
-          "description": "A dense product bar with search.",
+          "description": "Dense product bar with search.",
           "usage": "<FloatingNavbar variant=\"app-bar\" items={items} logo=\"Nexara\" />"
         },
         {
           "name": "announcement",
           "title": "Announcement",
-          "description": "A notice strip above a link row.",
+          "description": "Notice strip above links.",
           "usage": "<FloatingNavbar variant=\"announcement\" items={items} logo=\"Nexara\" />"
         },
         {
           "name": "breadcrumb",
           "title": "Breadcrumb",
-          "description": "A path of separators, not a button bar.",
+          "description": "Path of separators.",
           "usage": "<FloatingNavbar variant=\"breadcrumb\" items={items} logo=\"Nexara\" />"
         },
         {
           "name": "segmented",
           "title": "Segmented",
-          "description": "Links inside a segmented control.",
+          "description": "Links inside a control.",
           "usage": "<FloatingNavbar variant=\"segmented\" items={items} logo=\"Nexara\" />"
         },
         {
           "name": "wordmark",
           "title": "Wordmark",
-          "description": "A large mark and an index disclosure.",
+          "description": "Large mark and an index.",
           "usage": "<FloatingNavbar variant=\"wordmark\" items={items} logo=\"Nexara\" />"
         }
       ]
@@ -1206,7 +1204,7 @@
       "name": "modal",
       "type": "registry:ui",
       "title": "Modal",
-      "description": "An accessible dialog with a focus trap, escape to close, and scroll locking. Variants: dialog, otp, command, lightbox, wizard, invoice, drawer, share, action-sheet, banner, ticket, auth.",
+      "description": "Twelve dialog anatomies with a focus trap and scroll lock. Variants: dialog, confirm, otp, command, lightbox, wizard, form, drawer, share, sheet, notice, auth.",
       "categories": [
         "Overlays"
       ],
@@ -1224,78 +1222,78 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { Modal, ModalContent, ModalClose } from '@/components/ui/modal'\n\n<Modal open={open} onOpenChange={setOpen}>\n  <ModalContent title=\"Edit name\">\n    <ModalClose>Close</ModalClose>\n  </ModalContent>\n</Modal>",
+      "usage": "<ModalContent variant=\"dialog\" title=\"Name\" />",
       "variants": [
         {
           "name": "dialog",
           "title": "Dialog",
-          "description": "Centered title, description, and body.",
+          "description": "Centered title and body.",
           "usage": "<ModalContent variant=\"dialog\" title=\"Name\" />"
+        },
+        {
+          "name": "confirm",
+          "title": "Confirm",
+          "description": "Destructive choice.",
+          "usage": "<ModalContent variant=\"confirm\" title=\"Delete room?\" />"
         },
         {
           "name": "otp",
           "title": "One-time code",
-          "description": "Four digit boxes and a resend control.",
+          "description": "Four digit boxes.",
           "usage": "<ModalContent variant=\"otp\" title=\"Check your email\" />"
         },
         {
           "name": "command",
           "title": "Command",
-          "description": "A command field above the results.",
+          "description": "Command field above results.",
           "usage": "<ModalContent variant=\"command\" title=\"Jump\" />"
         },
         {
           "name": "lightbox",
           "title": "Lightbox",
-          "description": "A media well, then the caption.",
+          "description": "Media well then a caption.",
           "usage": "<ModalContent variant=\"lightbox\" title=\"Plate\" />"
         },
         {
           "name": "wizard",
           "title": "Wizard",
-          "description": "A step track across the top.",
+          "description": "Step track across the top.",
           "usage": "<ModalContent variant=\"wizard\" step={2} steps={3} title=\"Plan\" />"
         },
         {
-          "name": "invoice",
-          "title": "Invoice",
-          "description": "Line items and a total on paper.",
-          "usage": "<ModalContent variant=\"invoice\" title=\"Invoice\" />"
+          "name": "form",
+          "title": "Form",
+          "description": "Named fields in a panel.",
+          "usage": "<ModalContent variant=\"form\" title=\"Edit studio\" />"
         },
         {
           "name": "drawer",
           "title": "Drawer",
-          "description": "A side navigation list.",
+          "description": "Side navigation list.",
           "usage": "<ModalContent variant=\"drawer\" title=\"Library\" />"
         },
         {
           "name": "share",
           "title": "Share",
-          "description": "A grid of share targets.",
+          "description": "Grid of share targets.",
           "usage": "<ModalContent variant=\"share\" title=\"Share\" />"
         },
         {
-          "name": "action-sheet",
-          "title": "Action sheet",
+          "name": "sheet",
+          "title": "Sheet",
           "description": "Stacked full-width actions.",
-          "usage": "<ModalContent variant=\"action-sheet\" title=\"Choose\" />"
+          "usage": "<ModalContent variant=\"sheet\" title=\"Choose\" />"
         },
         {
-          "name": "banner",
-          "title": "Banner",
-          "description": "A slim notice with an inline dismiss.",
-          "usage": "<ModalContent variant=\"banner\" title=\"Preview is open\" />"
-        },
-        {
-          "name": "ticket",
-          "title": "Ticket",
-          "description": "A barcode and an admit code.",
-          "usage": "<ModalContent variant=\"ticket\" title=\"Admit\" />"
+          "name": "notice",
+          "title": "Notice",
+          "description": "Slim top notice.",
+          "usage": "<ModalContent variant=\"notice\" title=\"Preview is open\" />"
         },
         {
           "name": "auth",
           "title": "Auth",
-          "description": "A color panel beside an email form.",
+          "description": "Color panel beside an email form.",
           "usage": "<ModalContent variant=\"auth\" title=\"Sign in\" />"
         }
       ]
@@ -1304,7 +1302,7 @@
       "name": "hero",
       "type": "registry:ui",
       "title": "Hero",
-      "description": "A centered or split marketing intro with staggered entrance and slots for actions and media. Variants: saas, download, video, logos, pricing, agency, commerce, event, search, dashboard, editorial, waitlist.",
+      "description": "Twelve marketing page constructions. Variants: saas, app, cinema, logos, pricing, studio, shop, event, search, product, journal, waitlist.",
       "categories": [
         "Sections"
       ],
@@ -1322,78 +1320,78 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { Hero } from '@/components/ui/hero'\n\n<Hero align=\"split\" eyebrow=\"New\" title=\"A room with movable parts\" description=\"Compose this freely.\" />",
+      "usage": "<Hero variant=\"saas\" title=\"Ship the interface\" />",
       "variants": [
         {
           "name": "saas",
           "title": "SaaS",
-          "description": "Gradient product window beside the pitch.",
-          "usage": "<Hero variant=\"saas\" title=\"Move the furniture\" />"
+          "description": "Product window beside the pitch.",
+          "usage": "<Hero variant=\"saas\" title=\"Ship the interface\" />"
         },
         {
-          "name": "download",
-          "title": "Download",
-          "description": "Phone mockups and store badges.",
-          "usage": "<Hero variant=\"download\" title=\"Take the room with you\" />"
+          "name": "app",
+          "title": "App",
+          "description": "Phones and store badges.",
+          "usage": "<Hero variant=\"app\" title=\"Take the room with you\" />"
         },
         {
-          "name": "video",
-          "title": "Video",
-          "description": "Full-bleed picture with a play control.",
-          "usage": "<Hero variant=\"video\" title=\"Watch the room\" />"
+          "name": "cinema",
+          "title": "Cinema",
+          "description": "Full-bleed still with play.",
+          "usage": "<Hero variant=\"cinema\" title=\"Watch the room\" />"
         },
         {
           "name": "logos",
           "title": "Logos",
-          "description": "A logo row and a testimonial.",
+          "description": "Logo row and a quote.",
           "usage": "<Hero variant=\"logos\" title=\"Studios already here\" />"
         },
         {
           "name": "pricing",
           "title": "Pricing",
-          "description": "A price card leads the page.",
+          "description": "Price card leads the page.",
           "usage": "<Hero variant=\"pricing\" title=\"One plan\" />"
         },
         {
-          "name": "agency",
-          "title": "Agency",
-          "description": "A typographic masthead and an index.",
-          "usage": "<Hero variant=\"agency\" title=\"Move the furniture\" />"
+          "name": "studio",
+          "title": "Studio",
+          "description": "Typographic masthead.",
+          "usage": "<Hero variant=\"studio\" title=\"Move the furniture\" />"
         },
         {
-          "name": "commerce",
-          "title": "Commerce",
-          "description": "A product stage, price, and swatches.",
-          "usage": "<Hero variant=\"commerce\" title=\"Lamp 04\" />"
+          "name": "shop",
+          "title": "Shop",
+          "description": "Product stage, price, swatches.",
+          "usage": "<Hero variant=\"shop\" title=\"Lamp 04\" />"
         },
         {
           "name": "event",
           "title": "Event",
-          "description": "Date, place, and a countdown.",
+          "description": "Date, place, countdown.",
           "usage": "<Hero variant=\"event\" title=\"Harbor Hall\" />"
         },
         {
           "name": "search",
           "title": "Search",
-          "description": "The search field is the primary action.",
+          "description": "Search is the primary action.",
           "usage": "<Hero variant=\"search\" title=\"Find a component\" />"
         },
         {
-          "name": "dashboard",
-          "title": "Dashboard",
-          "description": "App chrome: a sidebar and metric tiles.",
-          "usage": "<Hero variant=\"dashboard\" title=\"This week\" />"
+          "name": "product",
+          "title": "Product",
+          "description": "App chrome and metric tiles.",
+          "usage": "<Hero variant=\"product\" title=\"This week\" />"
         },
         {
-          "name": "editorial",
-          "title": "Editorial",
-          "description": "A magazine cover beside the feature.",
-          "usage": "<Hero variant=\"editorial\" title=\"Issue 18\" />"
+          "name": "journal",
+          "title": "Journal",
+          "description": "Magazine cover beside the feature.",
+          "usage": "<Hero variant=\"journal\" title=\"Issue 18\" />"
         },
         {
           "name": "waitlist",
           "title": "Waitlist",
-          "description": "Avatars, a count, and an email field.",
+          "description": "Avatars, count, email field.",
           "usage": "<Hero variant=\"waitlist\" title=\"Ask for a seat\" />"
         }
       ]
@@ -1402,7 +1400,7 @@
       "name": "marquee",
       "type": "registry:ui",
       "title": "Marquee",
-      "description": "An infinite horizontal loop with edge fade and a pause control. Variants: logos, quotes, ticker, stubs, filmstrip, pills, stats, hazard, profiles, log, tiles, medals.",
+      "description": "Twelve continuous tracks with pause control. Variants: logos, quotes, ticker, avatars, stats, products, changelog, tags, reviews, apps, metrics, awards.",
       "categories": [
         "Sections"
       ],
@@ -1419,7 +1417,7 @@
           "type": "registry:ui"
         }
       ],
-      "usage": "import { Marquee } from '@/components/ui/marquee'\n\n<Marquee duration={24}><span>One</span><span>Two</span></Marquee>",
+      "usage": "<Marquee variant=\"logos\" />",
       "variants": [
         {
           "name": "logos",
@@ -1436,26 +1434,14 @@
         {
           "name": "ticker",
           "title": "Ticker",
-          "description": "A news tape with a live stamp.",
+          "description": "News tape with a live stamp.",
           "usage": "<Marquee variant=\"ticker\" />"
         },
         {
-          "name": "stubs",
-          "title": "Stubs",
-          "description": "Torn ticket stubs.",
-          "usage": "<Marquee variant=\"stubs\" />"
-        },
-        {
-          "name": "filmstrip",
-          "title": "Filmstrip",
-          "description": "Sprocketed frames.",
-          "usage": "<Marquee variant=\"filmstrip\" />"
-        },
-        {
-          "name": "pills",
-          "title": "Pills",
-          "description": "Tag capsules.",
-          "usage": "<Marquee variant=\"pills\" />"
+          "name": "avatars",
+          "title": "Avatars",
+          "description": "Named chips.",
+          "usage": "<Marquee variant=\"avatars\" />"
         },
         {
           "name": "stats",
@@ -1464,34 +1450,908 @@
           "usage": "<Marquee variant=\"stats\" />"
         },
         {
-          "name": "hazard",
-          "title": "Hazard",
-          "description": "A caution band of diagonal stripes.",
-          "usage": "<Marquee variant=\"hazard\" />"
+          "name": "products",
+          "title": "Products",
+          "description": "Small product tiles.",
+          "usage": "<Marquee variant=\"products\" />"
         },
         {
-          "name": "profiles",
-          "title": "Profiles",
-          "description": "Avatar chips.",
-          "usage": "<Marquee variant=\"profiles\" />"
+          "name": "changelog",
+          "title": "Changelog",
+          "description": "Terminal log.",
+          "usage": "<Marquee variant=\"changelog\" />"
         },
         {
-          "name": "log",
-          "title": "Log",
-          "description": "A terminal log.",
-          "usage": "<Marquee variant=\"log\" />"
+          "name": "tags",
+          "title": "Tags",
+          "description": "Tag capsules.",
+          "usage": "<Marquee variant=\"tags\" />"
         },
         {
-          "name": "tiles",
-          "title": "Tiles",
+          "name": "reviews",
+          "title": "Reviews",
+          "description": "Rating chips.",
+          "usage": "<Marquee variant=\"reviews\" />"
+        },
+        {
+          "name": "apps",
+          "title": "Apps",
           "description": "App squircles.",
-          "usage": "<Marquee variant=\"tiles\" />"
+          "usage": "<Marquee variant=\"apps\" />"
         },
         {
-          "name": "medals",
-          "title": "Medals",
-          "description": "Ribbon medals.",
-          "usage": "<Marquee variant=\"medals\" />"
+          "name": "metrics",
+          "title": "Metrics",
+          "description": "Large figures.",
+          "usage": "<Marquee variant=\"metrics\" />"
+        },
+        {
+          "name": "awards",
+          "title": "Awards",
+          "description": "Press marks.",
+          "usage": "<Marquee variant=\"awards\" />"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Twelve field constructions. Variants: outline, filled, underline, ghost, search, otp, file, password, amount, tag, command, floating.",
+      "categories": [
+        "Forms"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Input variant=\"outline\" placeholder=\"Harbor\" />",
+      "variants": [
+        {
+          "name": "outline",
+          "title": "Outline",
+          "description": "Bordered field.",
+          "usage": "<Input variant=\"outline\" placeholder=\"Harbor\" />"
+        },
+        {
+          "name": "filled",
+          "title": "Filled",
+          "description": "Soft fill, no border.",
+          "usage": "<Input variant=\"filled\" placeholder=\"Harbor\" />"
+        },
+        {
+          "name": "underline",
+          "title": "Underline",
+          "description": "Baseline only.",
+          "usage": "<Input variant=\"underline\" placeholder=\"Harbor\" />"
+        },
+        {
+          "name": "ghost",
+          "title": "Ghost",
+          "description": "Transparent until hover.",
+          "usage": "<Input variant=\"ghost\" placeholder=\"Harbor\" />"
+        },
+        {
+          "name": "search",
+          "title": "Search",
+          "description": "Pill with a find mark.",
+          "usage": "<Input variant=\"search\" placeholder=\"Search\" />"
+        },
+        {
+          "name": "otp",
+          "title": "OTP",
+          "description": "Four digit boxes.",
+          "usage": "<Input variant=\"otp\" />"
+        },
+        {
+          "name": "file",
+          "title": "File",
+          "description": "Drop zone.",
+          "usage": "<Input variant=\"file\" />"
+        },
+        {
+          "name": "password",
+          "title": "Password",
+          "description": "Masked field.",
+          "usage": "<Input variant=\"password\" />"
+        },
+        {
+          "name": "amount",
+          "title": "Amount",
+          "description": "Currency prefix.",
+          "usage": "<Input variant=\"amount\" defaultValue=\"48\" />"
+        },
+        {
+          "name": "tag",
+          "title": "Tag",
+          "description": "Chips inside the field.",
+          "usage": "<Input variant=\"tag\" />"
+        },
+        {
+          "name": "command",
+          "title": "Command",
+          "description": "Prompt field.",
+          "usage": "<Input variant=\"command\" placeholder=\"open atlas\" />"
+        },
+        {
+          "name": "floating",
+          "title": "Floating",
+          "description": "Label sits inside.",
+          "usage": "<Input variant=\"floating\" label=\"Studio\" />"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Ten tab anatomies. Variants: underline, pill, segmented, vertical, icon, card, folder, minimal, badge, rail.",
+      "categories": [
+        "Forms"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Tabs variant=\"underline\" items={items} />",
+      "variants": [
+        {
+          "name": "underline",
+          "title": "Underline",
+          "description": "Rule under the active tab.",
+          "usage": "<Tabs variant=\"underline\" items={items} />"
+        },
+        {
+          "name": "pill",
+          "title": "Pill",
+          "description": "Pills in a track.",
+          "usage": "<Tabs variant=\"pill\" items={items} />"
+        },
+        {
+          "name": "segmented",
+          "title": "Segmented",
+          "description": "Segmented control.",
+          "usage": "<Tabs variant=\"segmented\" items={items} />"
+        },
+        {
+          "name": "vertical",
+          "title": "Vertical",
+          "description": "Column of tabs.",
+          "usage": "<Tabs variant=\"vertical\" items={items} />"
+        },
+        {
+          "name": "icon",
+          "title": "Icon",
+          "description": "Dot plus label.",
+          "usage": "<Tabs variant=\"icon\" items={items} />"
+        },
+        {
+          "name": "card",
+          "title": "Card",
+          "description": "Each tab is a card.",
+          "usage": "<Tabs variant=\"card\" items={items} />"
+        },
+        {
+          "name": "folder",
+          "title": "Folder",
+          "description": "Folder tabs on a rule.",
+          "usage": "<Tabs variant=\"folder\" items={items} />"
+        },
+        {
+          "name": "minimal",
+          "title": "Minimal",
+          "description": "Bare labels.",
+          "usage": "<Tabs variant=\"minimal\" items={items} />"
+        },
+        {
+          "name": "badge",
+          "title": "Badge",
+          "description": "Counts on the tabs.",
+          "usage": "<Tabs variant=\"badge\" items={items} />"
+        },
+        {
+          "name": "rail",
+          "title": "Rail",
+          "description": "Accent rail on the left.",
+          "usage": "<Tabs variant=\"rail\" items={items} />"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Ten disclosure constructions. Variants: plus, chevron, bordered, separated, flush, numbered, icon, media, faq, timeline.",
+      "categories": [
+        "Forms"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Accordion variant=\"plus\" items={items} />",
+      "variants": [
+        {
+          "name": "plus",
+          "title": "Plus",
+          "description": "Plus/minus disclosure.",
+          "usage": "<Accordion variant=\"plus\" items={items} />"
+        },
+        {
+          "name": "chevron",
+          "title": "Chevron",
+          "description": "Chevron disclosure.",
+          "usage": "<Accordion variant=\"chevron\" items={items} />"
+        },
+        {
+          "name": "bordered",
+          "title": "Bordered",
+          "description": "Rules between rows.",
+          "usage": "<Accordion variant=\"bordered\" items={items} />"
+        },
+        {
+          "name": "separated",
+          "title": "Separated",
+          "description": "Each row is a card.",
+          "usage": "<Accordion variant=\"separated\" items={items} />"
+        },
+        {
+          "name": "flush",
+          "title": "Flush",
+          "description": "Edge-to-edge rows.",
+          "usage": "<Accordion variant=\"flush\" items={items} />"
+        },
+        {
+          "name": "numbered",
+          "title": "Numbered",
+          "description": "Index in the margin.",
+          "usage": "<Accordion variant=\"numbered\" items={items} />"
+        },
+        {
+          "name": "icon",
+          "title": "Icon",
+          "description": "Icon well on each row.",
+          "usage": "<Accordion variant=\"icon\" items={items} />"
+        },
+        {
+          "name": "media",
+          "title": "Media",
+          "description": "Larger media well.",
+          "usage": "<Accordion variant=\"media\" items={items} />"
+        },
+        {
+          "name": "faq",
+          "title": "FAQ",
+          "description": "Q. prefix on titles.",
+          "usage": "<Accordion variant=\"faq\" items={items} />"
+        },
+        {
+          "name": "timeline",
+          "title": "Timeline",
+          "description": "Rail and nodes.",
+          "usage": "<Accordion variant=\"timeline\" items={items} />"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Ten hint constructions. Variants: default, inverse, rich, kbd, success, warning, follow, plain, avatar, metric.",
+      "categories": [
+        "Feedback"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Tooltip variant=\"default\" content=\"Hint\">Hover</Tooltip>",
+      "variants": [
+        {
+          "name": "default",
+          "title": "Default",
+          "description": "Inverted chip.",
+          "usage": "<Tooltip variant=\"default\" content=\"Hint\">Hover</Tooltip>"
+        },
+        {
+          "name": "inverse",
+          "title": "Inverse",
+          "description": "Card-colored hint.",
+          "usage": "<Tooltip variant=\"inverse\" content=\"Hint\">Hover</Tooltip>"
+        },
+        {
+          "name": "rich",
+          "title": "Rich",
+          "description": "Wider explanatory card.",
+          "usage": "<Tooltip variant=\"rich\" content=\"Hint\">Hover</Tooltip>"
+        },
+        {
+          "name": "kbd",
+          "title": "Kbd",
+          "description": "Monospace dark hint.",
+          "usage": "<Tooltip variant=\"kbd\" content=\"⌘K\">Hover</Tooltip>"
+        },
+        {
+          "name": "success",
+          "title": "Success",
+          "description": "Green status hint.",
+          "usage": "<Tooltip variant=\"success\" content=\"Saved\">Hover</Tooltip>"
+        },
+        {
+          "name": "warning",
+          "title": "Warning",
+          "description": "Amber status hint.",
+          "usage": "<Tooltip variant=\"warning\" content=\"Check\">Hover</Tooltip>"
+        },
+        {
+          "name": "follow",
+          "title": "Follow",
+          "description": "Pill that reads as a cursor tag.",
+          "usage": "<Tooltip variant=\"follow\" content=\"Ada\">Hover</Tooltip>"
+        },
+        {
+          "name": "plain",
+          "title": "Plain",
+          "description": "Unboxed text.",
+          "usage": "<Tooltip variant=\"plain\" content=\"Hint\">Hover</Tooltip>"
+        },
+        {
+          "name": "avatar",
+          "title": "Avatar",
+          "description": "Identity chip.",
+          "usage": "<Tooltip variant=\"avatar\" content=\"Ada Klein\">Hover</Tooltip>"
+        },
+        {
+          "name": "metric",
+          "title": "Metric",
+          "description": "Dark metric card.",
+          "usage": "<Tooltip variant=\"metric\" content=\"99.98\">Hover</Tooltip>"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Ten notification constructions. Variants: success, error, warning, info, loading, action, progress, avatar, compact, stacked.",
+      "categories": [
+        "Feedback"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/toast.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Toast variant=\"success\" />",
+      "variants": [
+        {
+          "name": "success",
+          "title": "Success",
+          "description": "Green mark.",
+          "usage": "<Toast variant=\"success\" />"
+        },
+        {
+          "name": "error",
+          "title": "Error",
+          "description": "Rose mark.",
+          "usage": "<Toast variant=\"error\" />"
+        },
+        {
+          "name": "warning",
+          "title": "Warning",
+          "description": "Amber mark.",
+          "usage": "<Toast variant=\"warning\" />"
+        },
+        {
+          "name": "info",
+          "title": "Info",
+          "description": "Accent mark.",
+          "usage": "<Toast variant=\"info\" />"
+        },
+        {
+          "name": "loading",
+          "title": "Loading",
+          "description": "Pending mark.",
+          "usage": "<Toast variant=\"loading\" />"
+        },
+        {
+          "name": "action",
+          "title": "Action",
+          "description": "Undo control.",
+          "usage": "<Toast variant=\"action\" />"
+        },
+        {
+          "name": "progress",
+          "title": "Progress",
+          "description": "Bar under the copy.",
+          "usage": "<Toast variant=\"progress\" />"
+        },
+        {
+          "name": "avatar",
+          "title": "Avatar",
+          "description": "Person mark.",
+          "usage": "<Toast variant=\"avatar\" />"
+        },
+        {
+          "name": "compact",
+          "title": "Compact",
+          "description": "Single-line pill.",
+          "usage": "<Toast variant=\"compact\" />"
+        },
+        {
+          "name": "stacked",
+          "title": "Stacked",
+          "description": "Sheet under the toast.",
+          "usage": "<Toast variant=\"stacked\" />"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Ten identity constructions. Variants: image, initials, status, group, square, ring, upload, icon, story, mention.",
+      "categories": [
+        "Identity"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Avatar variant=\"image\" />",
+      "variants": [
+        {
+          "name": "image",
+          "title": "Image",
+          "description": "Gradient photo stand-in.",
+          "usage": "<Avatar variant=\"image\" />"
+        },
+        {
+          "name": "initials",
+          "title": "Initials",
+          "description": "Letters on a soft field.",
+          "usage": "<Avatar variant=\"initials\" />"
+        },
+        {
+          "name": "status",
+          "title": "Status",
+          "description": "Presence dot.",
+          "usage": "<Avatar variant=\"status\" />"
+        },
+        {
+          "name": "group",
+          "title": "Group",
+          "description": "Stacked faces.",
+          "usage": "<Avatar variant=\"group\" />"
+        },
+        {
+          "name": "square",
+          "title": "Square",
+          "description": "Rounded square.",
+          "usage": "<Avatar variant=\"square\" />"
+        },
+        {
+          "name": "ring",
+          "title": "Ring",
+          "description": "Quiet ring.",
+          "usage": "<Avatar variant=\"ring\" />"
+        },
+        {
+          "name": "upload",
+          "title": "Upload",
+          "description": "Placeholder person.",
+          "usage": "<Avatar variant=\"upload\" />"
+        },
+        {
+          "name": "icon",
+          "title": "Icon",
+          "description": "User glyph.",
+          "usage": "<Avatar variant=\"icon\" />"
+        },
+        {
+          "name": "story",
+          "title": "Story",
+          "description": "Accent ring.",
+          "usage": "<Avatar variant=\"story\" />"
+        },
+        {
+          "name": "mention",
+          "title": "Mention",
+          "description": "Chip with a name.",
+          "usage": "<Avatar variant=\"mention\" />"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Ten status chips. Variants: solid, soft, outline, dot, count, status, removable, icon, glow, ribbon.",
+      "categories": [
+        "Identity"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Badge variant=\"solid\">Live</Badge>",
+      "variants": [
+        {
+          "name": "solid",
+          "title": "Solid",
+          "description": "Filled chip.",
+          "usage": "<Badge variant=\"solid\">Live</Badge>"
+        },
+        {
+          "name": "soft",
+          "title": "Soft",
+          "description": "Tinted chip.",
+          "usage": "<Badge variant=\"soft\">Live</Badge>"
+        },
+        {
+          "name": "outline",
+          "title": "Outline",
+          "description": "Hairline chip.",
+          "usage": "<Badge variant=\"outline\">Live</Badge>"
+        },
+        {
+          "name": "dot",
+          "title": "Dot",
+          "description": "Leading status dot.",
+          "usage": "<Badge variant=\"dot\">Live</Badge>"
+        },
+        {
+          "name": "count",
+          "title": "Count",
+          "description": "Numeric pill.",
+          "usage": "<Badge variant=\"count\">12</Badge>"
+        },
+        {
+          "name": "status",
+          "title": "Status",
+          "description": "Passing green.",
+          "usage": "<Badge variant=\"status\">Passing</Badge>"
+        },
+        {
+          "name": "removable",
+          "title": "Removable",
+          "description": "Chip with a close mark.",
+          "usage": "<Badge variant=\"removable\">Harbor</Badge>"
+        },
+        {
+          "name": "icon",
+          "title": "Icon",
+          "description": "Compact square.",
+          "usage": "<Badge variant=\"icon\">N</Badge>"
+        },
+        {
+          "name": "glow",
+          "title": "Glow",
+          "description": "Accent bloom.",
+          "usage": "<Badge variant=\"glow\">New</Badge>"
+        },
+        {
+          "name": "ribbon",
+          "title": "Ribbon",
+          "description": "Corner banner.",
+          "usage": "<Badge variant=\"ribbon\">Sale</Badge>"
+        }
+      ]
+    },
+    {
+      "name": "pricing",
+      "type": "registry:ui",
+      "title": "Pricing",
+      "description": "Ten pricing sections. Variants: cards, toggle, compare, featured, usage, compact, enterprise, hobby, table, stacked.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/pricing.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Pricing variant=\"cards\" />",
+      "variants": [
+        {
+          "name": "cards",
+          "title": "Cards",
+          "description": "Three plan cards.",
+          "usage": "<Pricing variant=\"cards\" />"
+        },
+        {
+          "name": "toggle",
+          "title": "Toggle",
+          "description": "Monthly / yearly switch.",
+          "usage": "<Pricing variant=\"toggle\" />"
+        },
+        {
+          "name": "compare",
+          "title": "Compare",
+          "description": "Stacked comparison.",
+          "usage": "<Pricing variant=\"compare\" />"
+        },
+        {
+          "name": "featured",
+          "title": "Featured",
+          "description": "Middle plan inverted.",
+          "usage": "<Pricing variant=\"featured\" />"
+        },
+        {
+          "name": "usage",
+          "title": "Usage",
+          "description": "Per-export price.",
+          "usage": "<Pricing variant=\"usage\" />"
+        },
+        {
+          "name": "compact",
+          "title": "Compact",
+          "description": "Single plan card.",
+          "usage": "<Pricing variant=\"compact\" />"
+        },
+        {
+          "name": "enterprise",
+          "title": "Enterprise",
+          "description": "Talk-to-us card.",
+          "usage": "<Pricing variant=\"enterprise\" />"
+        },
+        {
+          "name": "hobby",
+          "title": "Hobby",
+          "description": "Free plan card.",
+          "usage": "<Pricing variant=\"hobby\" />"
+        },
+        {
+          "name": "table",
+          "title": "Table",
+          "description": "Plan table.",
+          "usage": "<Pricing variant=\"table\" />"
+        },
+        {
+          "name": "stacked",
+          "title": "Stacked",
+          "description": "Single featured stack.",
+          "usage": "<Pricing variant=\"stacked\" />"
+        }
+      ]
+    },
+    {
+      "name": "testimonials",
+      "type": "registry:ui",
+      "title": "Testimonials",
+      "description": "Ten social-proof constructions. Variants: quote, grid, wall, slider, tweet, video, stat, logo, stacked, featured.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/testimonials.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Testimonials variant=\"quote\" />",
+      "variants": [
+        {
+          "name": "quote",
+          "title": "Quote",
+          "description": "Large pull quote.",
+          "usage": "<Testimonials variant=\"quote\" />"
+        },
+        {
+          "name": "grid",
+          "title": "Grid",
+          "description": "Three quote cards.",
+          "usage": "<Testimonials variant=\"grid\" />"
+        },
+        {
+          "name": "wall",
+          "title": "Wall",
+          "description": "Dense wall.",
+          "usage": "<Testimonials variant=\"wall\" />"
+        },
+        {
+          "name": "slider",
+          "title": "Slider",
+          "description": "Single framed quote.",
+          "usage": "<Testimonials variant=\"slider\" />"
+        },
+        {
+          "name": "tweet",
+          "title": "Tweet",
+          "description": "Social post.",
+          "usage": "<Testimonials variant=\"tweet\" />"
+        },
+        {
+          "name": "video",
+          "title": "Video",
+          "description": "Playable still.",
+          "usage": "<Testimonials variant=\"video\" />"
+        },
+        {
+          "name": "stat",
+          "title": "Stat",
+          "description": "Rating figures.",
+          "usage": "<Testimonials variant=\"stat\" />"
+        },
+        {
+          "name": "logo",
+          "title": "Logo",
+          "description": "Wordmark row.",
+          "usage": "<Testimonials variant=\"logo\" />"
+        },
+        {
+          "name": "stacked",
+          "title": "Stacked",
+          "description": "Vertical quotes.",
+          "usage": "<Testimonials variant=\"stacked\" />"
+        },
+        {
+          "name": "featured",
+          "title": "Featured",
+          "description": "Inverted quote.",
+          "usage": "<Testimonials variant=\"featured\" />"
+        }
+      ]
+    },
+    {
+      "name": "footer",
+      "type": "registry:ui",
+      "title": "Footer",
+      "description": "Ten closing constructions. Variants: mega, compact, centered, newsletter, app, legal, social, sitemap, brand, split.",
+      "categories": [
+        "Sections"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/footer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Footer variant=\"mega\" />",
+      "variants": [
+        {
+          "name": "mega",
+          "title": "Mega",
+          "description": "Four-column sitemap.",
+          "usage": "<Footer variant=\"mega\" />"
+        },
+        {
+          "name": "compact",
+          "title": "Compact",
+          "description": "Legal row.",
+          "usage": "<Footer variant=\"compact\" />"
+        },
+        {
+          "name": "centered",
+          "title": "Centered",
+          "description": "Wordmark center.",
+          "usage": "<Footer variant=\"centered\" />"
+        },
+        {
+          "name": "newsletter",
+          "title": "Newsletter",
+          "description": "Email join.",
+          "usage": "<Footer variant=\"newsletter\" />"
+        },
+        {
+          "name": "app",
+          "title": "App",
+          "description": "Store badges.",
+          "usage": "<Footer variant=\"app\" />"
+        },
+        {
+          "name": "legal",
+          "title": "Legal",
+          "description": "Copyright line.",
+          "usage": "<Footer variant=\"legal\" />"
+        },
+        {
+          "name": "social",
+          "title": "Social",
+          "description": "Network links.",
+          "usage": "<Footer variant=\"social\" />"
+        },
+        {
+          "name": "sitemap",
+          "title": "Sitemap",
+          "description": "Column index.",
+          "usage": "<Footer variant=\"sitemap\" />"
+        },
+        {
+          "name": "brand",
+          "title": "Brand",
+          "description": "Large mark.",
+          "usage": "<Footer variant=\"brand\" />"
+        },
+        {
+          "name": "split",
+          "title": "Split",
+          "description": "Line and address.",
+          "usage": "<Footer variant=\"split\" />"
         }
       ]
     }
