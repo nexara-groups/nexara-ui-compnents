@@ -62,7 +62,7 @@ export function Kit({ variant = 'healthcare', className }: KitProps) {
     <div data-nexara="kit" data-variant={variant} className={cn('space-y-10', className)}>
       {variant === 'healthcare' ? (
         <>
-          <Hero variant="clinic" title="Heart care, considered." description="Sixteen specialists, four doors, one floor in Madhurawada." actions={<Button variant="soft">Book a chair</Button>} />
+          <Hero variant="clinic" title="Heart care, considered." description="Sixteen specialists, four doors, one floor in Madhurawada." actions={<Button className="bg-[#f3b4b0] text-[#0b1220]">Book a chair</Button>} />
           <Stats variant="clinic" />
           <Services variant="doors" />
           <Chapters variant="eight" />

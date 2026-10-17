@@ -63,6 +63,9 @@ export function CommandPalette({ variant = 'default', className }: CommandPalett
       <div className="border-b border-nx-border px-3 py-2">
         <input
           className={cn(focusRing, 'h-10 w-full bg-transparent text-sm')}
+          role="combobox"
+          aria-expanded="true"
+          aria-controls={`nexara-command-list-${variant}`}
           placeholder={variant === 'search' || variant === 'jump' ? 'Jump to a room' : 'Type a command'}
           value={query}
           onChange={(event) => {
@@ -82,7 +85,7 @@ export function CommandPalette({ variant = 'default', className }: CommandPalett
           aria-label="Command"
         />
       </div>
-      <ul className="max-h-64 overflow-auto p-1" role="listbox">
+      <ul id={`nexara-command-list-${variant}`} className="max-h-64 overflow-auto p-1" role="listbox">
         {list.length === 0 ? (
           <li className="px-3 py-6 text-center text-sm text-nx-muted">Nothing matches. Try a person or a job.</li>
         ) : (

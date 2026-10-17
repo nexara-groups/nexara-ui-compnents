@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import { cn, useCountUp } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -80,10 +81,26 @@ function format(item: Stat, value: number) {
   return `${item.prefix ?? ''}${shown}${item.suffix ?? ''}`
 }
 
+function useInView() {
+  const ref = useRef<HTMLElement | null>(null)
+  const [active, setActive] = useState(false)
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting) setActive(true)
+    }, { threshold: 0.35 })
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
+  return { ref, active }
+}
+
 function Figure({ item, invert }: { item: Stat; invert?: boolean }) {
-  const value = useCountUp(item.value)
+  const { ref, active } = useInView()
+  const value = useCountUp(item.value, 1400, active)
   return (
-    <div>
+    <div ref={ref as never}>
       <p className={cn('font-serif text-4xl tracking-tight md:text-5xl', invert ? 'text-white' : 'text-nx-fg')}>{format(item, value)}</p>
       <p className={cn('mt-2 text-sm', invert ? 'text-white/60' : 'text-nx-muted')}>{item.label}</p>
       {item.note ? <p className={cn('text-xs', invert ? 'text-white/40' : 'text-nx-faint')}>{item.note}</p> : null}
@@ -223,6 +240,11 @@ function Live({ items }: { items: Stat[] }) {
 }
 
 function Count({ item, className }: { item: Stat; className?: string }) {
-  const value = useCountUp(item.value)
-  return <span className={className}>{format(item, value)}</span>
+  const { ref, active } = useInView()
+  const value = useCountUp(item.value, 1400, active)
+  return (
+    <span ref={ref as never} className={className}>
+      {format(item, value)}
+    </span>
+  )
 }

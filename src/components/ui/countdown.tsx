@@ -76,7 +76,7 @@ export function Countdown({
             {units.map(([label, value]) => (
               <div key={label} className="rounded-2xl bg-nx-bg p-3 text-center">
                 <p className="font-serif text-3xl">{pad(value)}</p>
-                <p className="mt-1 text-[10px] tracking-[0.16em] text-nx-faint uppercase">{label}</p>
+                <p className="mt-1 text-[10px] tracking-[0.16em] text-nx-muted uppercase">{label}</p>
               </div>
             ))}
           </div>

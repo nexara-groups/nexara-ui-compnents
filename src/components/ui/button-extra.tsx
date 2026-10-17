@@ -294,8 +294,8 @@ function SwapLabel({ text }: { text: string }) {
     <span className="inline-flex overflow-hidden">
       {Array.from(text).map((glyph, index) => (
         <span key={`${glyph}-${index}`} className="relative inline-block h-[1em] overflow-hidden">
-          <span className="block transition-transform duration-300 group-hover:-translate-y-full">{glyph === ' ' ? '\u00a0' : glyph}</span>
-          <span className="absolute inset-0 translate-y-full transition-transform duration-300 group-hover:translate-y-0">
+          <span className="block motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:-translate-y-full">{glyph === ' ' ? '\u00a0' : glyph}</span>
+          <span className="absolute inset-0 translate-y-full motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:translate-y-0">
             {glyph === ' ' ? '\u00a0' : glyph}
           </span>
         </span>

@@ -55,7 +55,7 @@ export function DataTable({ variant = 'filter', className }: DataTableProps) {
   const showAmount = variant === 'invoices' || variant === 'jobs' || variant === 'export'
 
   return (
-    <div data-nexara="data-table" data-variant={variant} className={cn('overflow-hidden rounded-[1.4rem] border border-nx-border bg-nx-card', className)}>
+    <div data-nexara="data-table" data-variant={variant} className={cn('overflow-x-auto rounded-[1.4rem] border border-nx-border bg-nx-card', className)}>
       {variant !== 'compact' ? (
         <div className="flex flex-wrap items-center gap-2 border-b border-nx-border p-3">
           <input
@@ -85,7 +85,7 @@ export function DataTable({ variant = 'filter', className }: DataTableProps) {
         </div>
       ) : null}
       <table className={cn('w-full text-left text-sm', dense && 'text-xs')}>
-        <thead className="bg-nx-elevated text-[11px] tracking-[0.12em] text-nx-faint uppercase">
+        <thead className="bg-nx-elevated text-[11px] tracking-[0.12em] text-nx-muted uppercase">
           <tr>
             <th className="px-3 py-2">Name</th>
             <th>Kind</th>

@@ -32,6 +32,7 @@ const studies = [
   { id: 'rise', client: 'Rise Medical Hub', line: 'Eight chapters for a heart clinic.', sector: 'Care' },
   { id: 'iarsa', client: 'IARSA', line: 'Association portal for a season.', sector: 'Sport' },
   { id: 'quali', client: 'Qualigene', line: 'Lab reports without the waiting room.', sector: 'Lab' },
+  { id: 'voice', client: 'Voice', line: 'A desk that answers in the caller language.', sector: 'Voice' },
 ]
 
 /**
@@ -42,14 +43,15 @@ const studies = [
 export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
   const reduced = usePrefersReducedMotion()
   const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
   const current = studies[active] ?? studies[0]!
+  const looping = variant === 'autoplay' || variant === 'tabs' || variant === 'reel'
 
   useEffect(() => {
-    if (variant !== 'autoplay' && variant !== 'tabs' && variant !== 'reel') return
-    if (reduced) return
+    if (!looping || reduced || paused) return
     const id = window.setInterval(() => setActive((value) => (value + 1) % studies.length), 4200)
     return () => window.clearInterval(id)
-  }, [reduced, variant])
+  }, [looping, paused, reduced])
 
   return (
     <section data-nexara="case-study" data-variant={variant} className={cn('w-full', className)}>
@@ -63,12 +65,20 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
                 role="tab"
                 aria-selected={index === active}
                 className={cn(focusRing, 'rounded-full px-3 py-1.5 text-xs', index === active ? 'bg-nx-fg text-nx-bg' : 'text-nx-muted hover:bg-nx-soft')}
-                onClick={() => setActive(index)}
+                onClick={() => {
+                  setActive(index)
+                  setPaused(true)
+                }}
               >
                 {study.client}
               </button>
             ))}
           </div>
+          {looping ? (
+            <button type="button" className={cn(focusRing, 'mt-3 text-xs text-nx-muted')} onClick={() => setPaused((value) => !value)}>
+              {paused ? 'Play cases' : 'Pause cases'}
+            </button>
+          ) : null}
           <article className="mt-5 grid min-h-48 overflow-hidden rounded-[1.6rem] bg-[#111113] text-white md:grid-cols-[1.1fr_0.9fr]">
             <div className="p-8">
               <p className="text-[11px] tracking-[0.18em] text-[#c8ff4d] uppercase">{current.sector}</p>

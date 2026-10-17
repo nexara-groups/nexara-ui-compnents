@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { cn } from '@/lib/utils.ts'
+import { cn, focusRing } from '@/lib/utils.ts'
 
 const VARIANTS = [
   'eight',
@@ -69,8 +69,14 @@ export function Chapters({ variant = 'eight', className }: ChaptersProps) {
         <div className="grid gap-8 lg:grid-cols-[12rem_1fr]">
           <ol className="top-6 hidden h-fit lg:sticky lg:block">
             {rise.map(([index, title], i) => (
-              <li key={title} className={cn('py-1 text-sm', i === active ? 'text-nx-fg' : 'text-nx-faint')}>
-                {index} {title}
+              <li key={title} className="py-1 text-sm">
+                <button
+                  type="button"
+                  className={cn(focusRing, 'text-left', i === active ? 'text-nx-fg' : 'text-nx-muted')}
+                  onClick={() => refs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                >
+                  {index} {title}
+                </button>
               </li>
             ))}
           </ol>

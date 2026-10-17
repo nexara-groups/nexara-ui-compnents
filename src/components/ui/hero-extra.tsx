@@ -44,6 +44,12 @@ export type ExtraHeroVariant = (typeof EXTRA_HERO)[number]
 
 const modes = ['Chill', 'Spring', 'Sunny', 'Autumn'] as const
 const fans = ['Quiet', 'Med', 'Turbo'] as const
+const modeTone = {
+  Chill: 'bg-[#7dd3fc] text-[#082f49]',
+  Spring: 'bg-[#86efac] text-[#14532d]',
+  Sunny: 'bg-[#fde68a] text-[#713f12]',
+  Autumn: 'bg-[#fdba74] text-[#7c2d12]',
+} as const
 
 /**
  * Extra hero anatomies studied from Nexara, Sri Engineering, Rise, VDRSA, and 21st.dev.
@@ -328,26 +334,28 @@ function AcRemote({
         <div className="mt-8 flex flex-wrap justify-center gap-3">{actions}</div>
       </div>
       <div className="pointer-events-none mx-auto mt-10 max-w-lg">
-        <AcUnit />
+        <AcUnit on={on} />
       </div>
       <div className="absolute inset-x-0 bottom-0 bg-[#111113] px-4 py-3 text-white">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2">
-            <button type="button" className={cn(focusRing, 'rounded-full px-3 py-1.5', on ? 'bg-[#ff4d2e]' : 'bg-white/10')} onClick={() => setOn((value) => !value)} aria-pressed={on}>
+            <button type="button" className={cn(focusRing, 'rounded-full px-3 py-1.5 font-medium', on ? 'bg-[#9b1c12] text-white' : 'bg-white/10')} onClick={() => setOn((value) => !value)} aria-pressed={on} aria-label={on ? 'Power on' : 'Power off'}>
               {on ? 'ON' : 'OFF'}
             </button>
             <span className="font-serif text-2xl">{temp}°</span>
             <button type="button" className={cn(focusRing, 'size-8 rounded-full bg-white/10')} aria-label="Decrease temperature" onClick={() => setTemp((value) => Math.max(16, value - 1))}>−</button>
             <button type="button" className={cn(focusRing, 'size-8 rounded-full bg-white/10')} aria-label="Increase temperature" onClick={() => setTemp((value) => Math.min(30, value + 1))}>+</button>
           </div>
-          <div className="flex flex-wrap gap-1" role="radiogroup" aria-label="Mode">
+          <div className="flex flex-wrap items-center gap-1" role="radiogroup" aria-label="Mode">
+            <span className="mr-1 text-[10px] tracking-[0.16em] text-white/45 uppercase">Mode</span>
             {modes.map((item) => (
-              <button key={item} type="button" role="radio" aria-checked={mode === item} className={cn(focusRing, 'rounded-full px-3 py-1.5', mode === item ? 'bg-white text-[#111]' : 'text-white/70')} onClick={() => setMode(item)}>
+              <button key={item} type="button" role="radio" aria-checked={mode === item} className={cn(focusRing, 'rounded-full px-3 py-1.5', mode === item ? modeTone[item] : 'text-white/70')} onClick={() => setMode(item)}>
                 {item}
               </button>
             ))}
           </div>
-          <div className="flex gap-1" role="radiogroup" aria-label="Fan">
+          <div className="flex items-center gap-1" role="radiogroup" aria-label="Fan">
+            <span className="mr-1 text-[10px] tracking-[0.16em] text-white/45 uppercase">Fan</span>
             {fans.map((item) => (
               <button key={item} type="button" role="radio" aria-checked={fan === item} className={cn(focusRing, 'rounded-full px-3 py-1.5', fan === item ? 'bg-white text-[#111]' : 'text-white/70')} onClick={() => setFan(item)}>
                 {item}
@@ -426,11 +434,16 @@ function FourDoors({
         <div className="mt-4">{lede}</div>
       </div>
       <div className="mx-auto mt-10 grid max-w-5xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {['EECP Therapy', 'Diagnostics', 'Pharmacy', 'OPD'].map((door, index) => (
+        {[
+          ['EECP Therapy', 'Named chairs. Thirty-five sessions a week.'],
+          ['Diagnostics', 'ECG, echo, and blood work on this floor.'],
+          ['Pharmacy', 'Cardiac scripts without a second queue.'],
+          ['OPD', 'Sixteen specialists. One reception.'],
+        ].map(([door, line], index) => (
           <article key={door} className="rounded-[1.4rem] border border-nx-border bg-nx-card p-5">
             <p className="text-[11px] text-nx-faint">{String(index + 1).padStart(2, '0')}</p>
             <p className="mt-3 font-medium">{door}</p>
-            <p className="mt-2 text-sm text-nx-muted">One roof in Madhurawada.</p>
+            <p className="mt-2 text-sm text-nx-muted">{line}</p>
           </article>
         ))}
       </div>
@@ -451,7 +464,7 @@ function HeartMark() {
   )
 }
 
-function AcUnit() {
+function AcUnit({ on }: { on: boolean }) {
   return (
     <svg viewBox="0 0 420 170" className="w-full drop-shadow-[0_24px_40px_rgba(16,32,24,0.18)]" aria-hidden="true">
       <rect x="24" y="28" width="372" height="96" rx="28" fill="#f7fffb" />
@@ -459,7 +472,7 @@ function AcUnit() {
       <rect x="24" y="28" width="372" height="96" rx="28" stroke="#c5d8cc" strokeWidth="1.2" fill="none" />
       <rect x="48" y="78" width="324" height="28" rx="14" fill="#d7ebe0" />
       <path d="M64 92h292" stroke="#9fbfad" strokeWidth="2" strokeDasharray="6 8" />
-      <circle cx="78" cy="52" r="5" fill="#1f7a4a" />
+      <circle cx="78" cy="52" r="5" fill={on ? '#1f7a4a' : '#9aa89e'} />
       <rect x="92" y="48" width="46" height="8" rx="4" fill="#cfe6d8" />
       <path d="M40 128c40 18 300 18 340 0" fill="none" stroke="#b7cfc2" strokeWidth="6" strokeLinecap="round" />
       <defs>

@@ -51,13 +51,13 @@ export function useKeyframes(id: string, css: string) {
   }, [id, css])
 }
 
-/** Count from 0 to `target`. Reduced motion snaps to the end. */
-export function useCountUp(target: number, duration = 1400) {
+/** Count from 0 to `target` when `active`. Reduced motion snaps to the end. */
+export function useCountUp(target: number, duration = 1400, active = true) {
   const reduced = usePrefersReducedMotion()
   const [value, setValue] = useState(reduced ? target : 0)
 
   useEffect(() => {
-    if (reduced) {
+    if (reduced || !active) {
       setValue(target)
       return
     }
@@ -71,7 +71,7 @@ export function useCountUp(target: number, duration = 1400) {
     }
     frame = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(frame)
-  }, [duration, reduced, target])
+  }, [active, duration, reduced, target])
 
   return value
 }

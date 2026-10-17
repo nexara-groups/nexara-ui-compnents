@@ -98,7 +98,7 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
     <div
       data-nexara="app-shell"
       data-variant={variant}
-      className={cn('grid min-h-72 overflow-hidden rounded-[1.4rem] border border-nx-border bg-nx-card', open ? (rail ? 'grid-cols-[4rem_1fr]' : 'grid-cols-[13rem_1fr]') : 'grid-cols-1', className)}
+      className={cn('grid min-h-72 overflow-hidden rounded-[1.4rem] border border-nx-border bg-nx-card', open ? (rail ? 'grid-cols-1 md:grid-cols-[4rem_1fr]' : 'grid-cols-1 md:grid-cols-[13rem_1fr]') : 'grid-cols-1', className)}
     >
       {open ? (
         <aside className={cn('border-r border-nx-border bg-nx-elevated p-3', variant === 'sports' && 'bg-[#111113] text-white', variant === 'clinic' && 'bg-[#0b1220] text-[#f6f1ea]')}>
