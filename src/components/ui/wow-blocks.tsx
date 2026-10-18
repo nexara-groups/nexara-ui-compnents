@@ -356,7 +356,7 @@ function StatsWow({ variant, className }: WowProps) {
       ].map((item) => (
         <div key={item.l} className="rounded-3xl border border-nx-border p-5">
           <p className="font-serif text-5xl">
-            <Odometer value={item.n} digits={item.n > 99 ? 4 : 2} />
+            <Odometer value={item.n} digits={item.l === 'Athletes' ? 4 : item.l === 'Uptime' ? 3 : 2} />
           </p>
           <p className="mt-2 text-sm text-nx-muted">{item.l}</p>
         </div>

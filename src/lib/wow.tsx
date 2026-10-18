@@ -485,22 +485,20 @@ export function Odometer({
   className?: string
   digits?: number
 }) {
-  const padded = String(Math.max(0, value)).padStart(digits, '0').slice(-digits)
+  const padded = String(Math.max(0, Math.round(value))).padStart(digits, '0').slice(-digits)
   return (
-    <span className={cn('inline-flex overflow-hidden font-mono tabular-nums', className)} aria-label={String(value)}>
+    <span className={cn('inline-flex font-mono tabular-nums tracking-tight', className)} aria-label={String(value)}>
       {padded.split('').map((digit, i) => (
-        <span key={`${i}-${digit}`} className="relative inline-block h-[1em] w-[0.7em] overflow-hidden">
+        <span key={i} className="inline-block overflow-hidden">
           <motion.span
+            key={digit}
             aria-hidden="true"
-            className="absolute inset-x-0 flex flex-col"
-            animate={{ y: `${-Number(digit)}em` }}
-            transition={{ type: 'spring', stiffness: 140, damping: 18 }}
+            className="inline-block"
+            initial={{ y: '0.55em', opacity: 0.2 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ type: 'spring', stiffness: 240, damping: 22 }}
           >
-            {Array.from({ length: 10 }, (_, n) => (
-              <span key={n} className="block h-[1em] leading-[1em]">
-                {n}
-              </span>
-            ))}
+            {digit}
           </motion.span>
         </span>
       ))}
