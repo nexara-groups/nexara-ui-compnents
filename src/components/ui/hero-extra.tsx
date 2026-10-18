@@ -123,7 +123,7 @@ export function ExtraHero({
     return (
       <section data-nexara="hero" data-variant="sports" className={cn('relative min-h-[30rem] overflow-hidden bg-[#111113] text-white', className)}>
         <MediaFrame src={image ?? media.sports} video={video} poster={poster} alt="Night track" className="absolute inset-0" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         <div className="relative z-10 mx-auto flex min-h-[30rem] max-w-6xl flex-col justify-end px-6 py-12">
           <p className={cn('text-[11px] tracking-[0.2em] text-[#c8ff4d] uppercase', eyebrowClassName)}>{eyebrow ?? 'Season desk'}</p>
           <Title className={cn(titleClass, 'mt-3 max-w-3xl text-5xl text-white md:text-7xl')}>{title}</Title>
