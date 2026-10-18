@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useId, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react'
-import { LoopPause, media } from '@/lib/media.tsx'
+import { LoopPause, MediaFrame, media } from '@/lib/media.tsx'
 import {
   CircuitBoard,
   CylinderSpin,
@@ -55,64 +55,68 @@ function HeroCopy({ title, description, actions, eyebrow }: Pick<WowProps, 'titl
 function HeroPin({ title, description, actions, eyebrow, className }: WowProps) {
   const loop = useLoopControl(true)
   const chapters = [
-    { k: '01', t: 'A plate, not a banner', d: 'The product starts as a card on the desk.' },
-    { k: '02', t: 'Glass grows with the scroll', d: 'Weight, chip, and finish arrive as the plate fills the room.' },
-    { k: '03', t: 'Night material', d: 'The grade shifts. Callouts lock to the edge.' },
-    { k: '04', t: String(title ?? 'North Display'), d: String(description ?? 'The hero is the transition.') },
+    { k: '01', t: 'North Display', d: 'It starts on the desk. One milled plane.' },
+    { k: '02', t: 'Glass, then the chip', d: '612 g. Nano-etched. Harbor, 16-core.' },
+    { k: '03', t: 'Midnight turns iris', d: 'The finish lives on the machine.' },
+    { k: '04', t: String(title ?? 'On the desk tonight'), d: String(description ?? 'Reserve a North Display.') },
   ]
   return (
     <div className={cn('rounded-[1.6rem] border border-white/10 bg-[#07070c]', className)}>
-      <ScrollPin height="420vh">
+      <ScrollPin height="520vh">
         {(p) => {
           const chapter = Math.min(3, Math.floor(p * 4))
-          const local = p * 4 - chapter
-          const scale = 0.42 + Math.min(1, p * 1.15) * 0.58
-          const radius = 32 - p * 26
-          const inset = `${20 - p * 18}%`
           const copy = chapters[chapter]!
+          const rot = 22 - p * 24
+          const scale = 0.52 + p * 0.62
+          const lift = 120 - p * 210
+          const showReel = chapter >= 2 && !loop.reduced
           return (
-            <div className="relative min-h-[32rem] w-full overflow-hidden text-white">
-              <img src={media.device} alt="" className="absolute inset-0 size-full object-cover opacity-40" />
-              <div className="absolute inset-0 bg-[#07070c]/55" />
+            <div className="relative h-full min-h-[36rem] w-full overflow-hidden text-white">
+              <img src={media.glass} alt="" className="absolute inset-0 size-full object-cover opacity-35" />
+              <div className="absolute inset-0 bg-[#07070c]/70" />
               <Grain />
-              <div className="relative z-10 grid min-h-[32rem] items-end gap-6 px-5 py-8 md:grid-cols-[1fr_0.9fr] md:px-10">
+              <div className="relative z-10 flex h-full min-h-[36rem] flex-col justify-between px-5 py-6 md:px-10">
                 <div>
                   <p className="font-mono text-[11px] tracking-[0.22em] text-[#f3c27a] uppercase">{eyebrow ?? 'North Display'}</p>
-                  <p className="mt-2 font-mono text-[11px] text-white/50">{copy.k} / 04</p>
-                  <h3 className="mt-3 font-serif text-4xl leading-[0.95] md:text-6xl">{copy.t}</h3>
-                  <p className="mt-4 max-w-md text-sm text-white/70">{copy.d}</p>
-                  {chapter === 3 && actions ? <div className="mt-6">{actions}</div> : null}
-                  <ol className="mt-6 flex gap-2" aria-label="Story progress">
-                    {chapters.map((item, i) => (
-                      <li key={item.k} className={cn('h-1 w-10 rounded-full', i <= chapter ? 'bg-[#f3c27a]' : 'bg-white/15')} />
-                    ))}
-                  </ol>
+                  <p className="mt-2 font-mono text-[11px] text-white/70">{copy.k} / 04</p>
+                  <h3 className="mt-3 max-w-lg font-serif text-4xl leading-[0.95] md:text-6xl">{copy.t}</h3>
+                  <p className="mt-3 max-w-md text-sm text-white/70">{copy.d}</p>
                 </div>
-                <div className="relative hidden min-h-48 md:block">
-                  {chapter >= 1 ? (
-                    <ul className="absolute top-6 left-0 space-y-3 text-xs text-white/70">
-                      <li>612 g · milled aluminum</li>
-                      <li>Nano-etched glass</li>
-                      <li>Harbor chip · 16-core</li>
-                    </ul>
-                  ) : null}
-                  {chapter >= 2 ? (
-                    <ul className="absolute right-0 bottom-8 space-y-3 text-right text-xs text-[#f3c27a]">
-                      <li>Midnight</li>
-                      <li>Iris</li>
-                      <li>Paper</li>
-                    </ul>
-                  ) : null}
-                </div>
+                <ol className="flex gap-2" aria-label="Story progress">
+                  {chapters.map((item, i) => (
+                    <li key={item.k} className={cn('h-1 w-10 rounded-full', i <= chapter ? 'bg-[#f3c27a]' : 'bg-white/20')} />
+                  ))}
+                </ol>
               </div>
               <motion.div
-                className="absolute right-0 bottom-0 left-0 mx-auto overflow-hidden shadow-[0_30px_80px_-30px_#000]"
-                style={{ scale, borderRadius: radius, left: inset, right: inset, transformOrigin: '50% 100%', opacity: 0.55 + local * 0.2 }}
+                className="pointer-events-none absolute inset-x-0 top-[22%] mx-auto w-[min(38rem,90%)]"
+                style={{ y: lift, scale, rotateX: rot, rotateZ: 6 - p * 8, transformPerspective: 1400 }}
               >
-                <img src={chapter >= 2 ? media.cinema : media.device} alt="" className="h-44 w-full object-cover md:h-56" />
-                {chapter >= 2 ? (
-                  <video src={media.reel} muted playsInline autoPlay loop className="absolute inset-0 size-full object-cover opacity-80" />
+                <div className={cn('relative overflow-hidden rounded-[1.5rem] shadow-[0_50px_110px_-28px_#000]', chapter < 1 && 'grayscale-[0.4]', chapter >= 2 && 'saturate-150')}>
+                  <MediaFrame
+                    src={media.device}
+                    alt="North Display on a night desk"
+                    video={showReel ? media.reel : undefined}
+                    playing={loop.playing}
+                    className="aspect-[16/10] bg-transparent"
+                    imgClassName="aspect-[16/10]"
+                    grain={false}
+                  />
+                  {chapter >= 2 ? <div className="pointer-events-none absolute inset-0 bg-[#7c6cff]/20 mix-blend-color" /> : null}
+                </div>
+                {chapter >= 1 ? (
+                  <p className="absolute top-[16%] -left-1 hidden text-[11px] text-white/70 md:block">
+                    <span className="mr-2 inline-block h-px w-10 bg-[#f3c27a] align-middle" />
+                    nano-etched glass
+                  </p>
                 ) : null}
+                {chapter >= 1 ? (
+                  <p className="absolute top-[56%] -right-1 hidden text-right text-[11px] text-white/70 md:block">
+                    Harbor chip
+                    <span className="ml-2 inline-block h-px w-10 bg-[#f3c27a] align-middle" />
+                  </p>
+                ) : null}
+                {chapter >= 3 ? <div className="pointer-events-auto mt-4">{actions}</div> : null}
               </motion.div>
               {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
             </div>
@@ -165,25 +169,27 @@ function HeroGlobe(props: WowProps) {
 
 function HeroMorph(props: WowProps) {
   const [open, setOpen] = useState(false)
+  const loop = useLoopControl(true)
   return (
     <div className={cn('min-h-[26rem] overflow-hidden rounded-[1.6rem] bg-[#111113] p-5 text-white md:p-8', props.className)}>
       <p className="font-mono text-[11px] tracking-[0.2em] text-[#f3c27a] uppercase">Shared element</p>
       <div className="mt-6 grid gap-4 md:grid-cols-[1fr_1.1fr]">
         <div>
           <h3 className="font-serif text-4xl">{props.title}</h3>
-          <p className="mt-3 text-sm text-white/60">{props.description}</p>
+          <p className="mt-3 text-sm text-white/70">{props.description}</p>
           <button type="button" className={cn(wowBtn, 'mt-6 bg-white text-[#111]')} onClick={() => setOpen((v) => !v)}>
             {open ? 'Fold the stage' : 'Open the stage'}
           </button>
         </div>
         <motion.div layoutId="nexara-morph-stage" className="overflow-hidden rounded-3xl bg-[#1b1b22]">
           {open ? (
-            <video src={media.reel} muted playsInline autoPlay loop className="min-h-64 w-full object-cover" />
+            <MediaFrame src={media.cinema} alt="" video={media.reel} playing={loop.playing} className="min-h-64" grain={false} />
           ) : (
             <img src={media.cinema} alt="" className="h-48 w-full object-cover" />
           )}
         </motion.div>
       </div>
+      {open && !loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="mt-3" /> : null}
     </div>
   )
 }
@@ -338,19 +344,27 @@ function SpotlightGlare({ className }: { className?: string }) {
 
 function SpotlightWell({ className }: { className?: string }) {
   return (
-    <WowStage shader className={cn('min-h-44 max-w-sm p-5', className)}>
-      <p className="font-mono text-[11px] text-[#f3c27a]">Shader well</p>
-      <p className="mt-2 font-serif text-3xl">Night desk</p>
-    </WowStage>
+    <div className={cn('relative min-h-44 max-w-sm overflow-hidden rounded-3xl', className)}>
+      <img src={media.lamp} alt="" className="absolute inset-0 size-full object-cover" />
+      <div className="absolute inset-0 bg-[#07070c]/55" />
+      <div className="relative z-10 p-5 text-white">
+        <p className="font-mono text-[11px] text-[#f3c27a]">Harbor shop</p>
+        <p className="mt-2 font-serif text-3xl">Lamp 04</p>
+        <p className="mt-2 text-sm text-white/70">Travertine, one bulb, $220.</p>
+      </div>
+    </div>
   )
 }
 
 function SpotlightOrbit({ className }: { className?: string }) {
   return (
-    <LensHover className={cn('min-h-44 max-w-sm overflow-hidden rounded-3xl bg-[#111113] p-5 text-white', className)}>
-      <p className="font-mono text-[11px] text-[#f3c27a]">Lamp 04</p>
-      <p className="mt-2 font-serif text-3xl">Travertine · $220</p>
-      <p className="mt-3 text-sm text-white/60">Move the loupe over the spec. One bulb, one base.</p>
+    <LensHover className={cn('max-w-sm overflow-hidden rounded-3xl bg-[#111113] text-white', className)}>
+      <img src={media.lamp} alt="Lamp 04, travertine base" className="h-44 w-full object-cover" />
+      <div className="p-5">
+        <p className="font-mono text-[11px] text-[#f3c27a]">Lamp 04</p>
+        <p className="mt-2 font-serif text-3xl">Travertine · $220</p>
+        <p className="mt-2 text-sm text-white/60">The loupe magnifies the base. One bulb.</p>
+      </div>
     </LensHover>
   )
 }
@@ -362,7 +376,7 @@ function SpotlightScramble({ className }: { className?: string }) {
       <ScrambleText text="UPTIME" className="font-mono text-[11px] tracking-[0.2em]" />
       <p className="mt-2 font-serif text-5xl">
         <Odometer value={value} digits={3} />
-        <span className="text-2xl text-white/40">.9%</span>
+        <span className="text-2xl text-white/70">.9%</span>
       </p>
     </div>
   )
@@ -372,28 +386,45 @@ function FlipWow({ variant, className }: { variant: string; className?: string }
   const [flipped, setFlipped] = useState(false)
   const id = useId().replace(/:/g, '')
   const reduced = usePrefersReducedMotion()
+  const front = (
+    <div className="relative h-full overflow-hidden rounded-3xl bg-[#111113] p-5 text-white">
+      {variant === 'liquid-flip' || variant === 'prism-face' ? <ShaderMesh /> : null}
+      {variant === 'liquid-flip' ? <GooPuddle /> : null}
+      {variant === 'prism-face' ? (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 mix-blend-screen"
+          style={{ background: 'conic-gradient(from 120deg, #7c6cff, #22c5b0, #f3c27a, #7c6cff)', opacity: 0.28 }}
+        />
+      ) : null}
+      {variant === 'path-reveal' ? <PathDraw d={INK_PATH} className="absolute inset-x-4 bottom-6 h-10 w-auto text-[#f3c27a]" /> : null}
+      <Grain />
+      <p className="relative z-10 font-serif text-3xl">{variant === 'morph-face' ? 'Face A' : variant}</p>
+      <p className="relative z-10 mt-2 text-sm text-white/70">Tap to turn.</p>
+    </div>
+  )
+  const back = (
+    <div className="h-full rounded-3xl bg-[#f3c27a] p-5 text-[#111]">
+      <PathDraw d={CHECK_PATH} className="h-12 w-28 text-[#111]" />
+      <p className="mt-4 font-serif text-2xl">The reverse is a drawn mark, not a duplicate face.</p>
+      <span className="sr-only">{id}</span>
+    </div>
+  )
+  if (reduced) {
+    return (
+      <button type="button" onClick={() => setFlipped((v) => !v)} className={cn(focusRing, 'h-52 w-full max-w-sm text-left', className)}>
+        {flipped ? back : front}
+      </button>
+    )
+  }
   return (
     <button type="button" onClick={() => setFlipped((v) => !v)} className={cn(focusRing, 'h-52 w-full max-w-sm text-left', className)}>
-      <motion.div animate={{ rotateY: reduced ? 0 : flipped ? 180 : 0 }} transition={{ duration: reduced ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }} className="relative h-full" style={{ transformStyle: 'preserve-3d' }}>
-        <div className="absolute inset-0 overflow-hidden rounded-3xl bg-[#111113] p-5 text-white" style={{ backfaceVisibility: 'hidden' }}>
-          {variant === 'liquid-flip' || variant === 'prism-face' ? <ShaderMesh /> : null}
-          {variant === 'liquid-flip' ? <GooPuddle /> : null}
-          {variant === 'prism-face' ? (
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 mix-blend-screen"
-              style={{ background: 'conic-gradient(from 120deg, #7c6cff, #22c5b0, #f3c27a, #7c6cff)', opacity: 0.28 }}
-            />
-          ) : null}
-          {variant === 'path-reveal' ? <PathDraw d={INK_PATH} className="absolute inset-x-4 bottom-6 h-10 w-auto text-[#f3c27a]" /> : null}
-          <Grain />
-          <p className="relative z-10 font-serif text-3xl">{variant === 'morph-face' ? 'Face A' : variant}</p>
-          <p className="relative z-10 mt-2 text-sm text-white/60">Tap to turn.</p>
+      <motion.div animate={{ rotateY: flipped ? 180 : 0 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} className="relative h-full" style={{ transformStyle: 'preserve-3d' }}>
+        <div className="absolute inset-0" style={{ backfaceVisibility: 'hidden' }}>
+          {front}
         </div>
-        <div className="absolute inset-0 rounded-3xl bg-[#f3c27a] p-5 text-[#111]" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
-          <PathDraw d={CHECK_PATH} className="h-12 w-28 text-[#111]" />
-          <p className="mt-4 font-serif text-2xl">The reverse is a drawn mark, not a duplicate face.</p>
-          <span className="sr-only">{id}</span>
+        <div className="absolute inset-0" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+          {back}
         </div>
       </motion.div>
     </button>
@@ -691,15 +722,14 @@ function MarqueeWow({ variant, className }: WowProps) {
     )
   }
   return (
-    <WowStage className={cn('py-6', className)} particles={false} shader={false}>
-      <div className="overflow-hidden">
-        <motion.div className="flex gap-8 px-4 font-mono text-sm text-white/70" animate={loop.playing ? { x: ['0%', '-50%'] } : undefined} transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}>
-          {[...row, ...row].map((item, i) => (
-            <span key={`${item}-${i}`}>{item} · live</span>
-          ))}
-        </motion.div>
-      </div>
-    </WowStage>
+    <div className={cn('overflow-hidden rounded-[1.6rem] bg-[#07070c] py-6', className)}>
+      <motion.div className="flex gap-8 px-4 font-mono text-sm text-white/70" animate={loop.playing ? { x: ['0%', '-50%'] } : undefined} transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}>
+        {[...row, ...row].map((item, i) => (
+          <span key={`${item}-${i}`}>{item} · live</span>
+        ))}
+      </motion.div>
+      {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="ml-4 mt-3" /> : null}
+    </div>
   )
 }
 

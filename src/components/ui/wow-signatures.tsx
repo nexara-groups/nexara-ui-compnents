@@ -37,7 +37,6 @@ export function WowSignature(props: WowProps) {
     family === 'activity' ||
     family === 'command-palette' ||
     family === 'settings-panel' ||
-    family === 'kit' ||
     family === 'loader'
   ) {
     return <WowApp {...props} />

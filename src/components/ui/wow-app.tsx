@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { AnalogClock, AreaSpark, GooPuddle, HeatGrid, SplitFlap } from '@/lib/wow-fx.tsx'
+import { LoopPause, faces, media } from '@/lib/media.tsx'
+import { AreaSpark, GooPuddle, HeatGrid } from '@/lib/wow-fx.tsx'
 import {
-  BarcodeScan,
   FoldPanel,
   InfinityPath,
   PeelCorner,
@@ -13,56 +13,81 @@ import {
   RadarSweep,
 } from '@/lib/wow-unique.tsx'
 import {
-  GlobeField,
   Grain,
   INK_PATH,
-  LazyMesh3D,
   MagneticWell,
   Odometer,
   ParticleField,
   PathDraw,
   ScrambleText,
   ScrollPin,
-  ShaderMesh,
-  SplitMask,
   WowStage,
-  wowBtn,
 } from '@/lib/wow.tsx'
-import { cn, focusRing, touchTarget, useCountUp } from '@/lib/utils.ts'
+import { cn, focusRing, touchTarget, useCountUp, useLoopControl } from '@/lib/utils.ts'
 import type { WowProps } from '@/lib/wow-variants.ts'
 
 function ShellWow({ variant, className }: WowProps) {
   const [open, setOpen] = useState(true)
   if (variant === 'shader-desk') {
     return (
-      <WowStage shader className={cn('min-h-72 p-4', className)}>
-        <div className="grid gap-3 md:grid-cols-[8rem_1fr]">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
+      <div className={cn('relative min-h-72 overflow-hidden rounded-[1.6rem]', className)}>
+        <img src={media.device} alt="" className="absolute inset-0 size-full object-cover" />
+        <div className="absolute inset-0 bg-[#07070c]/60" />
+        <div className="relative z-10 grid gap-3 p-4 text-white md:grid-cols-[9rem_1fr]">
+          <div className="rounded-2xl border border-white/15 bg-black/30 p-3 text-sm backdrop-blur-sm">
             Rooms
             <br />
             Library
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+          <div className="rounded-2xl border border-white/15 bg-black/30 p-4 backdrop-blur-sm">
             <p className="font-serif text-3xl">Night desk</p>
-            <p className="mt-2 text-sm text-white/60">The chrome is a field, not a gray sidebar.</p>
+            <p className="mt-2 text-sm text-white/70">Anitha’s Harbor room is live. The chrome sits on a photograph, not a mesh hat.</p>
           </div>
         </div>
-      </WowStage>
+      </div>
     )
   }
   if (variant === 'radar-jump') {
     return (
-      <div className={cn('grid min-h-72 items-center gap-4 rounded-[1.6rem] bg-[#07070c] p-5 text-white md:grid-cols-[1fr_12rem]', className)}>
-        <div>
-          <p className="font-mono text-[11px] text-[#f3c27a]">JUMP</p>
-          <p className="mt-2 font-serif text-3xl">Find a room.</p>
-          <ul className="mt-4 space-y-2 text-sm text-white/70">
-            <li>Open Harbor</li>
-            <li>Create a brief</li>
-            <li>Jump Atlas</li>
+      <div className={cn('grid min-h-[28rem] overflow-hidden rounded-[1.6rem] bg-[#111113] text-white md:grid-cols-[15rem_1fr]', className)}>
+        <aside className="border-white/10 p-4 md:border-r">
+          <img src={faces[0].src} alt={faces[0].name} className="size-14 rounded-2xl object-cover" />
+          <p className="mt-3 font-medium">North OS</p>
+          <p className="text-sm text-white/70">{faces[0].name} · Harbor desk</p>
+          <ul className="mt-5 space-y-2 text-sm">
+            <li className="flex items-center justify-between rounded-xl bg-white/5 px-3 py-2">
+              Harbor Hall <span className="text-[#f3c27a]">2 live</span>
+            </li>
+            <li className="flex items-center justify-between rounded-xl bg-white/5 px-3 py-2">
+              Atlas Lab <span className="text-white/70">review</span>
+            </li>
+            <li className="flex items-center justify-between rounded-xl bg-white/5 px-3 py-2">
+              Vale Chair <span className="text-[#f3c27a]">open</span>
+            </li>
+          </ul>
+        </aside>
+        <div className="p-5">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p className="font-serif text-3xl">Jump the desk</p>
+              <p className="mt-1 text-sm text-white/70">Friday 16:00 · two briefs waiting.</p>
+            </div>
+            <RadarSweep items={['H', 'A', 'V']} className="w-28" />
+          </div>
+          <ul className="mt-4 space-y-2 text-sm">
+            {[
+              { who: faces[0], job: 'Open Harbor', note: '2 briefs' },
+              { who: faces[1], job: 'Atlas review', note: 'due Friday' },
+              { who: faces[2], job: 'Create a chair', note: 'Vale' },
+            ].map((row) => (
+              <li key={row.job} className="flex items-center gap-3 rounded-xl border border-white/10 px-3 py-2">
+                <img src={row.who.src} alt="" className="size-8 rounded-full object-cover" />
+                <span className="flex-1">{row.job}</span>
+                <span className="text-white/70">{row.note}</span>
+              </li>
+            ))}
           </ul>
         </div>
-        <RadarSweep items={['H', 'A', 'K']} />
       </div>
     )
   }
@@ -76,9 +101,12 @@ function ShellWow({ variant, className }: WowProps) {
             </span>
           ))}
         </div>
-        <div className="relative flex-1 p-5">
-          <ShaderMesh />
-          <p className="relative z-10 font-serif text-3xl">Rail on a mesh</p>
+        <div className="relative flex-1">
+          <img src={media.screens.lumen} alt="" className="absolute inset-0 size-full object-cover opacity-50" />
+          <div className="relative z-10 p-5">
+            <p className="font-serif text-3xl">Rail on a desk</p>
+            <p className="mt-2 text-sm text-white/70">Lumen is already open. The letters stay identity.</p>
+          </div>
         </div>
       </div>
     )
@@ -136,7 +164,7 @@ function KpiWow({ variant, className }: WowProps) {
   if (variant === 'spark-delta') {
     return (
       <div className={cn('rounded-3xl bg-[#111113] p-5 text-white', className)}>
-        <p className="text-sm text-white/50">Week over week</p>
+        <p className="text-sm text-white/70">Week over week</p>
         <p className="font-serif text-4xl">+18%</p>
         <AreaSpark className="mt-3" />
       </div>
@@ -219,11 +247,30 @@ function KanbanWow({ variant, className }: WowProps) {
   ]
   if (variant === 'wip-pendulum') {
     return (
-      <PendulumCard className={className}>
-        <p className="text-xs text-white/50">WIP</p>
-        <p className="font-serif text-3xl">2 / 3</p>
-        <p className="mt-1 text-sm text-white/60">Review hangs until Atlas lands.</p>
-      </PendulumCard>
+      <div className={cn('grid gap-3 overflow-x-auto rounded-[1.6rem] bg-[#07070c] p-4 text-white md:grid-cols-3', className)}>
+        <div className="space-y-2">
+          <p className="text-xs tracking-[0.16em] text-white/70 uppercase">Brief</p>
+          {['Wren pack', 'Farm brief'].map((card) => (
+            <PeelCorner key={card} className="rounded-2xl border border-white/10 bg-white/5 p-3" label={card}>
+              <p className="font-medium">{card}</p>
+              <p className="text-xs text-white/70">Anitha · today</p>
+            </PeelCorner>
+          ))}
+        </div>
+        <div className="space-y-2">
+          <p className="text-xs tracking-[0.16em] text-white/70 uppercase">Build</p>
+          <PeelCorner className="rounded-2xl border border-white/10 bg-white/5 p-3" label="Remote">
+            <img src={media.screens.field} alt="" className="mb-2 h-16 w-full rounded-lg object-cover" />
+            <p className="font-medium">Remote lane</p>
+            <p className="text-xs text-white/70">Kiran · in flight</p>
+          </PeelCorner>
+        </div>
+        <PendulumCard className="min-h-0 bg-transparent p-0">
+          <p className="text-xs text-white/70">WIP · Review</p>
+          <p className="font-serif text-3xl">2 / 3</p>
+          <p className="mt-1 text-sm text-white/70">Atlas hangs until the farm brief lands.</p>
+        </PendulumCard>
+      </div>
     )
   }
   if (variant === 'particle-lane') {
@@ -231,7 +278,7 @@ function KanbanWow({ variant, className }: WowProps) {
       <div className={cn('relative overflow-hidden rounded-[1.6rem] bg-[#07070c] p-4 text-white', className)}>
         <ParticleField count={40} />
         <p className="relative z-10 font-serif text-2xl">Review lane</p>
-        <p className="relative z-10 mt-2 text-sm text-white/60">Atlas waits. Two briefs in the queue.</p>
+        <p className="relative z-10 mt-2 text-sm text-white/70">Atlas waits. Two briefs in the queue.</p>
       </div>
     )
   }
@@ -318,7 +365,7 @@ function ActivityWow({ variant, className }: WowProps) {
   if (variant === 'live-odometer') {
     return (
       <div className={cn('rounded-3xl bg-[#111113] p-5 text-white', className)}>
-        <p className="text-sm text-white/50">Events today</p>
+        <p className="text-sm text-white/70">Events today</p>
         <p className="font-serif text-5xl">
           <Odometer value={n} digits={2} />
         </p>
@@ -383,8 +430,10 @@ function SettingsWow({ variant, className }: WowProps) {
   if (variant === 'path-security') {
     return (
       <div className={cn('rounded-3xl border border-nx-border p-5', className)}>
-        <PathDraw d={INK_PATH} className="h-8 w-32 text-[#0c8a5e]" />
+        <p className="text-xs tracking-[0.16em] text-nx-muted uppercase">Security</p>
+        <PathDraw d={INK_PATH} className="mt-3 h-8 w-32 text-[#0c8a5e]" />
         <p className="mt-3 font-serif text-2xl">SSO is drawn, not stamped.</p>
+        <p className="mt-2 text-sm text-nx-muted">Passkeys on. Harbor is the named partner. Last check Friday 16:02.</p>
       </div>
     )
   }
@@ -393,17 +442,34 @@ function SettingsWow({ variant, className }: WowProps) {
       <FoldPanel
         className={className}
         front={
-          <div className="rounded-3xl bg-[#111113] p-5 text-white">
-            <p className="font-serif text-3xl">Anitha Rao</p>
-            <p className="text-sm text-white/50">Harbor desk</p>
+          <div className="overflow-hidden rounded-3xl bg-[#111113] text-white">
+            <img src={media.people.anitha} alt="" className="h-28 w-full object-cover" />
+            <div className="p-5">
+              <p className="font-serif text-3xl">Anitha Rao</p>
+              <p className="text-sm text-white/70">Harbor desk · SSO on</p>
+            </div>
           </div>
         }
-        back={<p className="rounded-3xl border border-nx-border p-4 text-sm text-nx-muted">SSO, desk hours, and the Harbor branch.</p>}
+        back={
+          <div className="rounded-3xl border border-nx-border p-4 text-sm">
+            <p className="font-medium">Desk hours</p>
+            <p className="mt-1 text-nx-muted">Mon–Fri 10:00–18:00 · Harbor Bay</p>
+            <p className="mt-3 font-medium">Security</p>
+            <p className="mt-1 text-nx-muted">Passkeys and a named partner.</p>
+          </div>
+        }
       />
     )
   }
   return (
-    <div className={cn('rounded-3xl border border-nx-border p-5', className)}>
+    <div className={cn('space-y-4 rounded-3xl border border-nx-border p-5', className)}>
+      <div className="flex items-center gap-3">
+        <img src={media.people.anitha} alt="" className="size-11 rounded-full object-cover" />
+        <div>
+          <p className="font-medium">Anitha Rao</p>
+          <p className="text-sm text-nx-muted">Harbor desk</p>
+        </div>
+      </div>
       <div className="flex items-center justify-between">
         <p className="font-medium">Dark desk</p>
         <button
@@ -416,113 +482,156 @@ function SettingsWow({ variant, className }: WowProps) {
           <motion.span layout className="absolute top-1 size-9 rounded-full bg-white" animate={{ left: on ? 28 : 4 }} />
         </button>
       </div>
-      {variant === 'morph-sections' ? <motion.p layout className="mt-4 text-sm text-nx-muted">Appearance travels with the switch.</motion.p> : null}
+      {variant === 'morph-sections' ? <motion.p layout className="text-sm text-nx-muted">Appearance travels with the switch. Hours stay 10–18.</motion.p> : null}
     </div>
-  )
-}
-
-function KitWow({ variant, className }: WowProps) {
-  if (variant === 'shader-clinic') {
-    return (
-      <WowStage shader className={cn('space-y-6 p-6', className)}>
-        <p className="font-mono text-[11px] text-[#f3c27a]">LUMEN CARE</p>
-        <SplitMask text={'Heart care,\nconsidered.'} className="font-serif text-5xl leading-[0.9] md:text-6xl" />
-        <p className="max-w-md text-sm text-white/65">Four doors. A shader field instead of a stock navy hero.</p>
-        <button type="button" className={cn(wowBtn, 'bg-white text-[#111]')}>
-          Book a chair
-        </button>
-      </WowStage>
-    )
-  }
-  if (variant === 'globe-agency') {
-    return (
-      <div className={cn('overflow-hidden rounded-[1.6rem] bg-[#07070c] text-white', className)}>
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="p-6">
-            <p className="font-mono text-[11px] text-[#f3c27a]">NORTH STUDIO</p>
-            <h3 className="mt-3 font-serif text-5xl">Move the furniture.</h3>
-            <p className="mt-3 text-sm text-white/60">A globe of rooms, not a logo strip.</p>
-          </div>
-          <div className="relative min-h-64">
-            <GlobeField />
-          </div>
-        </div>
-      </div>
-    )
-  }
-  if (variant === 'pin-sports') {
-    return (
-      <ScrollPin height="220vh" className={className}>
-        {(p) => (
-          <WowStage className="w-full min-h-[28rem] p-6">
-            <p className="font-mono text-[11px] text-[#f3c27a]">FIELD ATHLETICS</p>
-            <p className="mt-3 font-serif text-5xl md:text-6xl">A season you can stand on.</p>
-            <p className="mt-4 text-sm text-white/60">Scroll scrubs the medal book. {Math.round(p * 16)} events in view.</p>
-          </WowStage>
-        )}
-      </ScrollPin>
-    )
-  }
-  if (variant === 'liquid-portal') {
-    return (
-      <div className={cn('overflow-hidden rounded-[1.6rem] bg-[#07070c]', className)}>
-        <LazyMesh3D className="min-h-64" />
-        <div className="p-6 text-white">
-          <p className="font-mono text-[11px] text-[#f3c27a]">AGENCY OS</p>
-          <p className="mt-2 font-serif text-4xl">The desk after dark.</p>
-        </div>
-      </div>
-    )
-  }
-  return (
-    <WowStage className={cn('p-6', className)}>
-      <p className="font-mono text-[11px] text-[#f3c27a]">ATLAS ACADEMY</p>
-      <ScrambleText text="We grow engineers." className="mt-3 block font-serif text-5xl" />
-      <p className="mt-4 max-w-md text-sm text-white/60">Hover the title. The letters refuse to sit still until they mean it.</p>
-    </WowStage>
   )
 }
 
 function LoaderWow({ variant, className, title }: WowProps) {
   const n = useCountUp(72, 1600, true)
-  const label = String(title ?? 'Loading Harbor')
+  const label = String(title ?? 'Harbor pack')
+  const loop = useLoopControl(true)
   return (
     <div
       role="status"
       aria-live="polite"
-      aria-label={label}
-      className={cn('relative flex min-h-40 flex-col items-center justify-center overflow-hidden rounded-[1.6rem] bg-[#07070c] p-6 text-white', className)}
+      aria-label={`Loading ${label}`}
+      className={cn('relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#111113] p-6 text-white', className)}
     >
-      {variant === 'shader-fog' ? <ShaderMesh /> : null}
-      {variant === 'particle-drift' ? <ParticleField count={40} /> : null}
-      {variant === 'liquid-drop' ? <GooPuddle /> : null}
-      <div className="relative z-10">
-        {variant === 'orbit-beads' ? <RadarSweep items={['·', '·', '·']} /> : null}
-        {variant === 'path-infinity' ? <InfinityPath className="w-48" /> : null}
-        {variant === 'odometer-pct' ? (
-          <p className="font-serif text-5xl">
-            <Odometer value={n} digits={2} />%
-          </p>
-        ) : null}
-        {variant === 'scramble-hold' ? <ScrambleText text="HOLD THE DESK" className="block font-serif text-3xl" /> : null}
-        {variant === 'flap-wait' ? <SplitFlap text="WAIT" /> : null}
-        {variant === 'analog-sweep' ? <AnalogClock /> : null}
-        {variant === 'barcode-scan' ? <BarcodeScan labels={['PACK', 'HARBOR']} /> : null}
-        {variant === 'prism-bar' ? (
-          <PrismSplit>
-            <p className="font-serif text-4xl">Loading</p>
-          </PrismSplit>
-        ) : null}
-        {variant === 'pulse-halo' ? (
+      {variant === 'pulse-halo' ? (
+        <div className="relative size-24">
+          {[0, 1, 2].map((i) => (
+            <motion.span
+              key={i}
+              aria-hidden="true"
+              className="absolute inset-0 rounded-full border border-[#f3c27a]"
+              animate={loop.playing ? { scale: [0.55, 1.25], opacity: [0.7, 0] } : undefined}
+              transition={{ duration: 1.8, repeat: Infinity, delay: i * 0.4 }}
+            />
+          ))}
+          <span className="absolute inset-0 m-auto size-3 rounded-full bg-[#f3c27a]" />
+        </div>
+      ) : null}
+      {variant === 'orbit-beads' ? (
+        <div className="relative size-28">
+          {[0, 1, 2].map((i) => (
+            <motion.span
+              key={i}
+              aria-hidden="true"
+              className="absolute inset-0"
+              animate={loop.playing ? { rotate: [i * 120, i * 120 + 360] } : { rotate: i * 120 }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: 'linear' }}
+            >
+              <span className="absolute top-0 left-1/2 size-3 -translate-x-1/2 rounded-full bg-[#f3c27a]" />
+            </motion.span>
+          ))}
+          <span className="absolute inset-0 m-auto size-2 rounded-full bg-white" />
+        </div>
+      ) : null}
+      {variant === 'shader-fog' ? (
+        <motion.div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,#7c6cff55,transparent_45%),radial-gradient(circle_at_70%_70%,#f3c27a33,transparent_40%)]"
+          animate={loop.playing ? { opacity: [0.4, 0.9, 0.4], scale: [1, 1.08, 1] } : undefined}
+          transition={{ duration: 4, repeat: Infinity }}
+        />
+      ) : null}
+      {variant === 'path-infinity' ? <InfinityPath className="w-56" playing={loop.playing} pauseable={false} /> : null}
+      {variant === 'odometer-pct' ? (
+        <div className="w-48">
+          <p className="font-serif text-5xl tabular-nums">{n}%</p>
+          <span className="mt-3 block h-1.5 overflow-hidden rounded-full bg-white/10">
+            <span className="block h-full bg-[#f3c27a]" style={{ width: `${n}%` }} />
+          </span>
+        </div>
+      ) : null}
+      {variant === 'scramble-hold' ? (
+        <p className="font-serif text-3xl">
+          Hold
+          <motion.span aria-hidden="true" className="ml-2 inline-block w-8" animate={loop.playing ? { opacity: [0, 1, 0] } : undefined} transition={{ duration: 1.2, repeat: Infinity }}>
+            —
+          </motion.span>
+        </p>
+      ) : null}
+      {variant === 'liquid-drop' ? (
+        <motion.span
+          aria-hidden="true"
+          className="block size-10 rounded-full bg-[#7c6cff]"
+          animate={loop.playing ? { y: [-28, 18, 18], borderRadius: ['50%', '50%', '42% 42% 50% 50%'], scaleY: [1, 1, 0.7] } : undefined}
+          transition={{ duration: 1.6, repeat: Infinity }}
+        />
+      ) : null}
+      {variant === 'particle-drift' ? (
+        <div aria-hidden="true" className="relative h-24 w-12 rounded-full border border-white/20">
+          {Array.from({ length: 8 }, (_, i) => (
+            <motion.span
+              key={i}
+              className="absolute left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-[#f3c27a]"
+              animate={loop.playing ? { y: [8, 80], opacity: [1, 0] } : undefined}
+              transition={{ duration: 1.4, repeat: Infinity, delay: i * 0.12 }}
+            />
+          ))}
+        </div>
+      ) : null}
+      {variant === 'flap-wait' ? (
+        <div className="flex gap-1 font-mono text-2xl">
+          {['W', 'A', 'I', 'T'].map((ch, i) => (
+            <motion.span
+              key={ch}
+              className="inline-flex size-10 items-center justify-center rounded-md border border-white/15 bg-[#16161c]"
+              animate={loop.playing ? { rotateX: [0, -90, 0] } : undefined}
+              transition={{ duration: 1.1, repeat: Infinity, delay: i * 0.12 }}
+            >
+              {ch}
+            </motion.span>
+          ))}
+        </div>
+      ) : null}
+      {variant === 'analog-sweep' ? (
+        <div className="relative size-28 rounded-full border border-white/20">
           <motion.span
             aria-hidden="true"
-            className="block size-16 rounded-full border-2 border-[#f3c27a]"
-            animate={{ scale: [0.8, 1.15, 0.8], opacity: [0.4, 1, 0.4] }}
-            transition={{ duration: 1.6, repeat: Infinity }}
+            className="absolute top-3 left-1/2 h-11 w-px origin-bottom bg-[#f3c27a]"
+            animate={loop.playing ? { rotate: 360 } : undefined}
+            transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
           />
-        ) : null}
-      </div>
-      <p className="relative z-10 mt-4 text-sm text-white/50">{label}</p>
+          <span className="absolute inset-0 m-auto size-2 rounded-full bg-white" />
+        </div>
+      ) : null}
+      {variant === 'barcode-scan' ? (
+        <div className="relative w-56">
+          <div className="flex h-12 items-end gap-px">
+            {Array.from({ length: 28 }, (_, i) => (
+              <span key={i} className="flex-1 bg-white" style={{ height: `${30 + ((i * 13) % 70)}%` }} />
+            ))}
+          </div>
+          <motion.span
+            aria-hidden="true"
+            className="absolute inset-y-0 w-0.5 bg-[#f3c27a]"
+            animate={loop.playing ? { x: [0, 210] } : undefined}
+            transition={{ duration: 1.6, repeat: Infinity, ease: 'linear' }}
+          />
+          <p className="mt-2 font-mono text-[11px] tracking-[0.2em] text-white/70">HBR-4802</p>
+        </div>
+      ) : null}
+      {variant === 'prism-bar' ? (
+        <div className="relative h-3 w-56 overflow-hidden rounded-full bg-white/10">
+          <motion.span
+            aria-hidden="true"
+            className="absolute inset-y-0 left-0 w-1/2 bg-[#ff3b30] mix-blend-screen"
+            animate={loop.playing ? { x: ['-20%', '80%'] } : undefined}
+            transition={{ duration: 1.4, repeat: Infinity }}
+          />
+          <motion.span
+            aria-hidden="true"
+            className="absolute inset-y-0 left-0 w-1/2 bg-[#32ade6] mix-blend-screen"
+            animate={loop.playing ? { x: ['-10%', '90%'] } : undefined}
+            transition={{ duration: 1.4, repeat: Infinity, delay: 0.08 }}
+          />
+        </div>
+      ) : null}
+      <p className="relative z-10 mt-5 text-sm text-white/70">{label}</p>
+      {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3" /> : null}
     </div>
   )
 }
@@ -537,7 +646,6 @@ export function WowApp(props: WowProps) {
   if (family === 'activity') return <ActivityWow {...props} />
   if (family === 'command-palette') return <CommandWow {...props} />
   if (family === 'settings-panel') return <SettingsWow {...props} />
-  if (family === 'kit') return <KitWow {...props} />
   if (family === 'loader') return <LoaderWow {...props} />
   return (
     <WowStage className={props.className}>

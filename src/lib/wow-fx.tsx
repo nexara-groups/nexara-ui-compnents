@@ -360,20 +360,21 @@ export function AnalogClock({ className, paused = false }: { className?: string;
   const remain = useLiveRemain()
   const reduced = usePrefersReducedMotion()
   const seconds = remain.h * 3600 + remain.m * 60 + remain.s
+  const freeze = paused || reduced
   return (
     <div className={cn('relative mx-auto size-40 rounded-full border border-white/15', className)}>
       <span
         className="absolute top-1/2 left-1/2 h-14 w-0.5 origin-bottom bg-[#f3c27a]"
-        style={{ transform: `translate(-50%, -100%) rotate(${(paused || reduced ? 0 : remain.m) * 6}deg)` }}
+        style={{ transform: `translate(-50%, -100%) rotate(${remain.m * 6}deg)` }}
       />
       <span
         className="absolute top-1/2 left-1/2 h-10 w-0.5 origin-bottom bg-white"
-        style={{ transform: `translate(-50%, -100%) rotate(${(paused || reduced ? 0 : remain.h) * 30}deg)` }}
+        style={{ transform: `translate(-50%, -100%) rotate(${remain.h * 30}deg)` }}
       />
       <motion.span
         className="absolute top-1/2 left-1/2 h-16 w-px origin-bottom bg-[#22c5b0]"
-        animate={{ rotate: (paused || reduced ? 0 : seconds) * 6 }}
-        transition={{ duration: 0.4 }}
+        animate={{ rotate: (freeze ? remain.s : seconds) * 6 }}
+        transition={{ duration: freeze ? 0 : 0.4 }}
         style={{ transformOrigin: '50% 100%' }}
       />
       <span className="absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
@@ -406,6 +407,8 @@ export function HeatGrid({
 
 export function AreaSpark({ className, withParticles = false }: { className?: string; withParticles?: boolean }) {
   const d = 'M4 40 C 20 36, 28 12, 44 18 S 72 44, 88 22 110 10, 116 16'
+  const loop = useLoopControl(true)
+  const reduced = usePrefersReducedMotion()
   return (
     <div className={cn('relative', className)}>
       <svg viewBox="0 0 120 48" className="h-32 w-full text-[#8b87ff]">
@@ -423,7 +426,7 @@ export function AreaSpark({ className, withParticles = false }: { className?: st
           strokeWidth="2"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={{ duration: 1.6 }}
+          transition={{ duration: reduced ? 0 : 1.6 }}
         />
         {withParticles
           ? [20, 44, 72, 88, 110].map((x, i) => (
@@ -433,12 +436,13 @@ export function AreaSpark({ className, withParticles = false }: { className?: st
                 cy={[36, 18, 44, 22, 10][i]}
                 r="2.2"
                 fill="#f3c27a"
-                animate={{ opacity: [0.2, 1, 0.2], r: [1.4, 2.6, 1.4] }}
+                animate={loop.playing && !reduced ? { opacity: [0.2, 1, 0.2], r: [1.4, 2.6, 1.4] } : undefined}
                 transition={{ duration: 1.8, repeat: Infinity, delay: i * 0.15 }}
               />
             ))
           : null}
       </svg>
+      {withParticles && !loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-1 bottom-1" /> : null}
     </div>
   )
 }
@@ -485,33 +489,38 @@ export function MagneticCaretField({
 
 export function GooPuddle({
   className,
-  playing = true,
+  playing,
 }: {
   className?: string
   playing?: boolean
 }) {
   const raw = useId().replace(/:/g, '')
+  const loop = useLoopControl(true)
+  const reduced = usePrefersReducedMotion()
+  const on = (playing ?? loop.playing) && !reduced
+  const showPause = playing === undefined && !loop.reduced
   return (
-    <span className={cn('absolute inset-0 overflow-hidden', className)} aria-hidden="true">
-      <svg className="absolute h-0 w-0">
+    <span className={cn('absolute inset-0 overflow-hidden', className)}>
+      <svg className="absolute h-0 w-0" aria-hidden="true">
         <filter id={raw}>
           <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
           <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
           <feBlend in="SourceGraphic" in2="goo" />
         </filter>
       </svg>
-      <span className="absolute inset-0" style={{ filter: `url(#${raw})` }}>
+      <span className="absolute inset-0" style={{ filter: `url(#${raw})` }} aria-hidden="true">
         <motion.span
           className="absolute top-1 left-2 size-10 rounded-full bg-[#7c6cff]"
-          animate={playing ? { x: [0, 36, 8, 0], y: [0, -6, 6, 0] } : undefined}
+          animate={on ? { x: [0, 36, 8, 0], y: [0, -6, 6, 0] } : undefined}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.span
           className="absolute top-2 right-3 size-8 rounded-full bg-[#22c5b0]"
-          animate={playing ? { x: [0, -28, 4, 0], y: [0, 8, -4, 0] } : undefined}
+          animate={on ? { x: [0, -28, 4, 0], y: [0, 8, -4, 0] } : undefined}
           transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut' }}
         />
       </span>
+      {showPause ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-1 bottom-1 z-20" /> : null}
     </span>
   )
 }

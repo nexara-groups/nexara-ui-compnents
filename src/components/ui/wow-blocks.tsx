@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useId, useState } from 'react'
-import { faces, LoopPause, media } from '@/lib/media.tsx'
+import { faces, LoopPause, MediaFrame, media } from '@/lib/media.tsx'
 import { AnalogClock, GooPuddle, SplitFlap, useLiveRemain } from '@/lib/wow-fx.tsx'
 import {
   BarcodeScan,
@@ -260,6 +260,7 @@ function PricingWow({ variant, className }: WowProps) {
 }
 
 function TestimonialsWow({ variant, className }: WowProps) {
+  const loop = useLoopControl(true)
   const quotes = [
     { q: 'Stay in the room.', who: 'Anitha Rao' },
     { q: 'The furniture finally moved.', who: 'Kiran Reddy' },
@@ -278,12 +279,13 @@ function TestimonialsWow({ variant, className }: WowProps) {
   if (variant === 'video-shader') {
     return (
       <div className={cn('relative min-h-56 overflow-hidden rounded-[1.6rem] bg-[#07070c] text-white', className)}>
-        <video src={media.reel} muted playsInline autoPlay loop className="absolute inset-0 size-full object-cover" />
+        <MediaFrame src={media.cinema} alt="" video={media.reel} playing={loop.playing} className="absolute inset-0" grain={false} />
         <div className="absolute inset-0 bg-gradient-to-t from-[#07070c] via-[#07070c]/30 to-transparent" />
         <div className="relative z-10 p-6">
           <p className="font-serif text-3xl">“The reel is the quote.”</p>
-          <p className="mt-3 text-sm text-white/60">Harbor Review · Anitha Rao</p>
+          <p className="mt-3 text-sm text-white/70">Harbor Review · Anitha Rao</p>
         </div>
+        {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
       </div>
     )
   }
@@ -291,7 +293,7 @@ function TestimonialsWow({ variant, className }: WowProps) {
     return (
       <div className={cn('rounded-[1.6rem] bg-[#111113] p-6 text-white', className)}>
         <ScrambleText text="Stay in the room." className="block font-serif text-4xl" />
-        <p className="mt-4 text-sm text-white/50">Anitha Rao · Harbor</p>
+        <p className="mt-4 text-sm text-white/70">Anitha Rao · Harbor</p>
       </div>
     )
   }
@@ -400,6 +402,7 @@ function CountdownWow({ variant, className }: WowProps) {
   const live = useLiveRemain()
   const d = useCountUp(12, 800, true)
   const h = useCountUp(6, 800, true)
+  const clock = useLoopControl(true)
   if (variant === 'shader-rings') {
     return (
       <WowStage shader className={cn('grid grid-cols-2 gap-4 p-6', className)}>
@@ -411,7 +414,7 @@ function CountdownWow({ variant, className }: WowProps) {
         ].map(([cell, label]) => (
           <div key={label}>
             <p className="font-serif text-4xl">{cell}</p>
-            <p className="text-[11px] text-white/40">{label}</p>
+            <p className="text-[11px] text-white/70">{label}</p>
           </div>
         ))}
       </WowStage>
@@ -420,10 +423,11 @@ function CountdownWow({ variant, className }: WowProps) {
   if (variant === 'analog-orbit') {
     return (
       <div className={cn('relative min-h-56 overflow-hidden rounded-[1.6rem] bg-[#07070c] p-6 text-white', className)}>
-        <AnalogClock />
-        <p className="mt-4 text-center font-mono text-sm text-white/60">
+        <AnalogClock paused={!clock.playing} />
+        <p className="mt-4 text-center font-mono text-sm text-white/70">
           {live.d}d {live.h}h {live.m}m {live.s}s
         </p>
+        {!clock.reduced ? <LoopPause playing={clock.playing} onToggle={clock.toggle} className="absolute right-3 bottom-3" /> : null}
       </div>
     )
   }
@@ -843,6 +847,7 @@ function NewsWow({ variant, className }: WowProps) {
           <span key={i}>{l} ·</span>
         ))}
       </motion.p>
+      {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="ml-4 mt-2" /> : null}
     </div>
   )
 }

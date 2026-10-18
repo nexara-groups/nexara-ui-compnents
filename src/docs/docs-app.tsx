@@ -254,7 +254,7 @@ function ComponentPage({ entry }: { entry: CatalogEntry }) {
         <h2 className="font-serif text-2xl">Variants</h2>
         <p className="text-sm leading-6 text-nx-muted">
           Ask for <span className="text-nx-fg">{entry.slug} / {variantDocs[entry.slug as keyof typeof variantDocs]?.[0]?.id ?? 'variant'}</span> or
-          any id below. Gold <span className="text-[#b45309]">Signature</span> cells are the ones built to stand next to 21st.dev / Aceternity / Awwwards — shaders, scramble, pin-scroll, globes, odometers, unique family motions. The rest stay sensible.
+          any id below. Gold <span className="text-[#b45309]">Signature</span> cells are the motion-led variants. They are not a 21st.dev or Awwwards stamp. The rest stay sensible.
         </p>
         <VariantGallery
           family={entry.slug}

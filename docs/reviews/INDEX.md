@@ -75,4 +75,13 @@ Round 8 answered named lies (`7222670`). Round 9 (`494cd5e`) answers the visual 
 
 Round 10 (`d894f18`) closes the seven a11y blockers from [a11y critic](https://cursor.com/agents/bc-e2db98fd-82b6-5e62-99a5-6fcf7f9d73c8): self-Pause on looping fields, reduced-motion pin collapse, letter-physics `aria-hidden`, `scaleY` instead of height, real OTP/tabs/command controls, lazy signature split so sensible Button copy does not statically import WebGL. Self: `round-10-self.md`.
 
-Round 11 answers the named leftovers: destock orbit/tilt reuse, unique signature per family, deeper app-kit cells, four-chapter pin-scroll, dedicated loader family (12 variants), gallery `--nx-faint` content moved to `--nx-muted`. Critics re-score this commit independently. This is not a unanimous approve until they sign.
+Round 11 (`a4c5592`) destocked orbit/tilt counts, added a loader family, and attempted a four-chapter pin. Critics re-scored that commit:
+
+| Lens | File | Round 11 (scored `a4c5592`) |
+| --- | --- | --- |
+| Senior visual designer | (stalled, empty transcript) | **NO VERDICT** ([visual critic](https://cursor.com/agents/bc-dfe8a454-bcdb-5c49-8cb3-d07b24997f6f)). Run never wrote. |
+| Interaction / motion | `round-11-motion.md` on `cursor/round-11-motion-review-8256` | **CONDITIONAL** ([motion critic](https://cursor.com/agents/bc-8f2a83c1-dfd0-57c5-b375-3216d9298256)). 66 keep / 133 fail. Pin pause is a named lie; loader default has no Pause. |
+| Accessibility / performance | `round-11-a11y.md` on `cursor/round-11-a11y-review-8308` | **REJECT** ([a11y critic](https://cursor.com/agents/bc-057321bf-803c-5d03-8c2b-e49dd4c88308)). Pulse-halo / liquid-drop / analog-sweep fail 2.2.2; pin reel ignores Pause and reduced-motion. |
+| Sceptical design lead | `round-11-lead.md` | **REJECT ALL** ([sceptical lead](https://cursor.com/agents/bc-33a9cec7-833f-5dc0-b53d-ad5afdb8a0ea)). 0 / 47 families pass the standout test. |
+
+Round 12 answers those named blockers on the working tree: object-centric pin (Pause stops the reel), original loaders with Pause + reduced-motion, unique scenes for the thin app-kit cells, LensHover magnification, real ∞ path, KitWow deleted, gallery pin 80vh, leftover content contrast to `/70`. This is not a unanimous approve until the four critics sign the new commit.

@@ -27,44 +27,56 @@ function usePointerNorm() {
 export function LensHover({
   children,
   className,
-  zoom = 1.55,
+  zoom = 2.1,
 }: {
   children: ReactNode
   className?: string
   zoom?: number
 }) {
-  const { mx, my, move, leave, reduced } = usePointerNorm()
-  const [pos, setPos] = useState({ x: 50, y: 50 })
+  const reduced = usePrefersReducedMotion()
+  const host = useRef<HTMLDivElement | null>(null)
+  const [pos, setPos] = useState({ x: 0.5, y: 0.5, w: 1, h: 1 })
   return (
     <div
+      ref={host}
       className={cn('relative overflow-hidden', className)}
       onPointerMove={(event) => {
-        move(event)
-        const rect = event.currentTarget.getBoundingClientRect()
+        if (reduced || event.pointerType !== 'mouse' || !host.current) return
+        const rect = host.current.getBoundingClientRect()
         setPos({
-          x: ((event.clientX - rect.left) / rect.width) * 100,
-          y: ((event.clientY - rect.top) / rect.height) * 100,
+          x: (event.clientX - rect.left) / rect.width,
+          y: (event.clientY - rect.top) / rect.height,
+          w: rect.width,
+          h: rect.height,
         })
       }}
-      onPointerLeave={leave}
     >
       {children}
       {reduced ? null : (
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute size-28 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/40 shadow-[0_0_0_8px_rgba(255,255,255,0.08)]"
+          className="pointer-events-none absolute size-32 overflow-hidden rounded-full border border-white/50 shadow-[0_0_0_6px_rgba(255,255,255,0.08)]"
           style={{
-            left: `${pos.x}%`,
-            top: `${pos.y}%`,
-            background: 'transparent',
-            backdropFilter: 'none',
-            boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.35)',
-            transform: `translate(-50%, -50%) scale(${zoom})`,
-            clipPath: 'circle(46% at 50% 50%)',
+            left: `${pos.x * 100}%`,
+            top: `${pos.y * 100}%`,
+            transform: 'translate(-50%, -50%)',
           }}
-        />
+        >
+          <span
+            className="absolute block"
+            style={{
+              width: pos.w,
+              height: pos.h,
+              left: -pos.x * pos.w * zoom + 64,
+              top: -pos.y * pos.h * zoom + 64,
+              transform: `scale(${zoom})`,
+              transformOrigin: '0 0',
+            }}
+          >
+            {children}
+          </span>
+        </span>
       )}
-      <span className="sr-only">{mx.get()} {my.get()}</span>
     </div>
   )
 }
@@ -216,14 +228,14 @@ export function ZipperSplit({
     <div className={cn('relative grid min-h-16 overflow-hidden rounded-2xl', className)}>
       <motion.div
         className="absolute inset-y-0 left-0 w-1/2 overflow-hidden border-r border-white/10"
-        animate={{ x: open ? '-18%' : '0%' }}
+        animate={{ x: open ? '-38%' : '0%' }}
         transition={reduced ? { duration: 0 } : { type: 'spring', stiffness: 160, damping: 18 }}
       >
         {left}
       </motion.div>
       <motion.div
         className="absolute inset-y-0 right-0 w-1/2 overflow-hidden"
-        animate={{ x: open ? '18%' : '0%' }}
+        animate={{ x: open ? '38%' : '0%' }}
         transition={reduced ? { duration: 0 } : { type: 'spring', stiffness: 160, damping: 18 }}
       >
         {right}
@@ -269,13 +281,15 @@ export function PolaroidFan({
   className?: string
 }) {
   const [open, setOpen] = useState(false)
+  const reduced = usePrefersReducedMotion()
+  const fan = reduced || open
   return (
     <div className={cn('relative min-h-64', className)} onPointerEnter={() => setOpen(true)} onPointerLeave={() => setOpen(false)}>
       {faces.slice(0, 3).map((face, i) => (
         <motion.figure
           key={face.name}
           className="absolute top-6 left-1/2 w-36 -translate-x-1/2 overflow-hidden rounded-md bg-white p-2 shadow-[0_16px_40px_-20px_#000]"
-          animate={{ rotate: open ? (i - 1) * 14 : (i - 1) * 4, x: open ? (i - 1) * 48 : (i - 1) * 8, y: open ? i * 4 : i * 10 }}
+          animate={{ rotate: fan ? (i - 1) * 14 : (i - 1) * 4, x: fan ? (i - 1) * 48 : (i - 1) * 8, y: fan ? i * 4 : i * 10 }}
           transition={{ type: 'spring', stiffness: 160, damping: 16 }}
         >
           <img src={face.src} alt={face.name} className="h-28 w-full object-cover" />
@@ -616,24 +630,32 @@ export function BeamScan({
   )
 }
 
-export function InfinityPath({ className }: { className?: string }) {
+export function InfinityPath({ className, pauseable = true, playing }: { className?: string; pauseable?: boolean; playing?: boolean }) {
   const loop = useLoopControl(true)
   const reduced = usePrefersReducedMotion()
+  const on = (playing ?? loop.playing) && !reduced
   return (
     <div className={cn('relative', className)}>
       <svg viewBox="0 0 120 48" className="h-16 w-full text-[#8b87ff]">
         <motion.path
-          d="M10 24 C 22 8, 38 8, 50 24 S 78 40, 90 24 110 8, 110 24 98 40, 90 24 62 8, 50 24 22 40, 10 24"
+          d="M18 24 C 18 8, 42 8, 60 24 C 78 40, 102 40, 102 24 C 102 8, 78 8, 60 24 C 42 40, 18 40, 18 24"
           fill="none"
           stroke="currentColor"
           strokeWidth="3"
           strokeLinecap="round"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={!reduced && loop.playing ? { duration: 2.2, repeat: Infinity, ease: 'easeInOut' } : { duration: 0 }}
+          transition={on ? { duration: 2.4, repeat: Infinity, ease: 'linear' } : { duration: 0 }}
+        />
+        <motion.circle
+          r="3.2"
+          fill="#f3c27a"
+          animate={on ? { offsetDistance: ['0%', '100%'] } : undefined}
+          transition={{ duration: 2.4, repeat: Infinity, ease: 'linear' }}
+          style={{ offsetPath: 'path("M18 24 C 18 8, 42 8, 60 24 C 78 40, 102 40, 102 24 C 102 8, 78 8, 60 24 C 42 40, 18 40, 18 24")' }}
         />
       </svg>
-      {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} /> : null}
+      {pauseable && !loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} /> : null}
     </div>
   )
 }

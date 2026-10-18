@@ -167,7 +167,7 @@ function TypewriterCore({
             <i className="size-2.5 rounded-full bg-[#febc2e]" />
             <i className="size-2.5 rounded-full bg-[#28c840]" />
           </span>
-          <span className="text-white/35">~/nexara </span>
+          <span className="text-white/70">~/nexara </span>
           {glyphs}
         </span>
       ) : null}
@@ -184,7 +184,7 @@ function TypewriterCore({
       ) : null}
       {variant === 'editor' ? (
         <span className="flex w-full gap-3 rounded-lg border border-nx-border bg-[#0e1016] p-3 font-mono text-sm text-[#b7fff0]">
-          <span className="text-white/25">24</span>
+          <span className="text-white/70">24</span>
           {glyphs}
         </span>
       ) : null}
@@ -197,7 +197,7 @@ function TypewriterCore({
           <span className="w-1.5 bg-nx-accent" />
           <span className="px-3 py-1.5">
             <span className="block text-sm">{glyphs}</span>
-            <span className="block text-[10px] tracking-[0.16em] text-white/45 uppercase">Live</span>
+            <span className="block text-[10px] tracking-[0.16em] text-white/70 uppercase">Live</span>
           </span>
         </span>
       ) : null}

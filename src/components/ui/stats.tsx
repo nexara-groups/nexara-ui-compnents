@@ -110,7 +110,7 @@ function Figure({ item, invert }: { item: Stat; invert?: boolean }) {
     <div ref={ref as never}>
       <p className={cn('font-serif text-4xl tracking-tight md:text-5xl', invert ? 'text-white' : 'text-nx-fg')}>{format(item, value)}</p>
       <p className={cn('mt-2 text-sm', invert ? 'text-white/60' : 'text-nx-muted')}>{item.label}</p>
-      {item.note ? <p className={cn('text-xs', invert ? 'text-white/40' : 'text-nx-muted')}>{item.note}</p> : null}
+      {item.note ? <p className={cn('text-xs', invert ? 'text-white/70' : 'text-nx-muted')}>{item.note}</p> : null}
     </div>
   )
 }
