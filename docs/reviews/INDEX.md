@@ -61,3 +61,9 @@ Round 6 reviews the leftover-component pass (everything that was not in the cine
 | Sceptical design lead | `round-6-lead.md` | **Approve** named leftovers ([sceptical lead](https://cursor.com/agents/bc-7f1a9580-c2ed-519b-8890-09d222396d10)). Not a claim that every cell is 21st.dev. |
 
 A variant is approved only when all four agree. Round 6 approves the leftover *pass* (pause, AA fields, furnished shells, distinct dealer lockups, empty-geometry cells). It does **not** approve grid / magnetic / badge / chart as cinematic scenes, and it does not approve `leaderboard / podium` as a labelled still.
+
+Round 7 reviews the wow-signature pass (`WOW_VARIANTS`, 4–5 named IDs per family, gold Signature chip). Mandatory test: would the cell stand next to top 21st.dev / Aceternity / Awwwards entries, or is it a tinted card / slower fade?
+
+| Lens | File | Round 7 |
+| --- | --- | --- |
+| Sceptical design lead | `round-7-lead.md` | **REJECT ALL** of the wow-signature pass ([sceptical lead](https://cursor.com/agents/bc-c3fab7ac-44b4-5275-a268-eeaf13349c84)). 46/46 families fail the standout test. The 4–5-per-family claim is a sticker sheet of ~15 helpers. Round 5/6 cells are not on trial. Do not merge. |
