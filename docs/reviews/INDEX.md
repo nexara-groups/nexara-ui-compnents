@@ -79,7 +79,7 @@ Round 11 (`a4c5592`) destocked orbit/tilt counts, added a loader family, and att
 
 | Lens | File | Round 11 (scored `a4c5592`) |
 | --- | --- | --- |
-| Senior visual designer | (stalled, empty transcript) | **NO VERDICT** ([visual critic](https://cursor.com/agents/bc-dfe8a454-bcdb-5c49-8cb3-d07b24997f6f)). Run never wrote. |
+| Senior visual designer | `round-11-visual.md` on `cursor/round-11-visual-critic-7f6f` | **REJECT ALL** ([visual critic](https://cursor.com/agents/bc-dfe8a454-bcdb-5c49-8cb3-d07b24997f6f)). 0 keep / 199 fail. Worst: pin-scroll, lens-spec, prism-price, pulse-halo, radar-jump, wip-pendulum, tape-reels, metronome-steps. |
 | Interaction / motion | `round-11-motion.md` on `cursor/round-11-motion-review-8256` | **CONDITIONAL** ([motion critic](https://cursor.com/agents/bc-8f2a83c1-dfd0-57c5-b375-3216d9298256)). 66 keep / 133 fail. Pin pause is a named lie; loader default has no Pause. |
 | Accessibility / performance | `round-11-a11y.md` on `cursor/round-11-a11y-review-8308` | **REJECT** ([a11y critic](https://cursor.com/agents/bc-057321bf-803c-5d03-8c2b-e49dd4c88308)). Pulse-halo / liquid-drop / analog-sweep fail 2.2.2; pin reel ignores Pause and reduced-motion. |
 | Sceptical design lead | `round-11-lead.md` | **REJECT ALL** ([sceptical lead](https://cursor.com/agents/bc-33a9cec7-833f-5dc0-b53d-ad5afdb8a0ea)). 0 / 47 families pass the standout test. |
