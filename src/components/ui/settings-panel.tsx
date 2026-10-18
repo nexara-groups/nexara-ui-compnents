@@ -44,7 +44,7 @@ export function SettingsPanel({ variant = 'profile', className }: SettingsPanelP
           </label>
           <label className="text-sm">
             Desk
-            <input className={cn(focusRing, 'mt-1 h-10 w-full rounded-lg border border-nx-line px-3')} defaultValue="Nexara Academy" />
+            <input className={cn(focusRing, 'mt-1 h-10 w-full rounded-lg border border-nx-line px-3')} defaultValue="Atlas Academy" />
           </label>
         </div>
       ) : null}
@@ -88,7 +88,7 @@ export function SettingsPanel({ variant = 'profile', className }: SettingsPanelP
 
       {variant === 'notifications' ? (
         <ul className="space-y-3 text-sm">
-          {['Weekly demo reminder', 'EECP chair alerts', 'Medal posts'].map((item) => (
+          {['Weekly demo reminder', 'Therapy chair alerts', 'Medal posts'].map((item) => (
             <li key={item} className="flex items-center justify-between">
               {item}
               <span className="text-xs text-nx-ok">On</span>
@@ -115,13 +115,13 @@ export function SettingsPanel({ variant = 'profile', className }: SettingsPanelP
         <div>
           <p className="text-xs tracking-[0.16em] text-nx-faint uppercase">Care desk</p>
           <p className="mt-2 font-serif text-2xl">16 specialists · 4 doors</p>
-          <p className="mt-2 text-sm text-nx-muted">EECP chairs publish to the public site after 20:00.</p>
+          <p className="mt-2 text-sm text-nx-muted">Therapy chairs publish to the public site after 20:00.</p>
         </div>
       ) : null}
 
       {variant === 'branches' ? (
         <ul className="space-y-2 text-sm">
-          {['Hyderabad plant', 'Vizag bay', 'Vijayawada collab'].map((item) => (
+          {['Harbor North plant', 'Harbor East bay', 'Harbor West collab'].map((item) => (
             <li key={item} className="rounded-xl border border-nx-border px-3 py-2">
               {item}
             </li>

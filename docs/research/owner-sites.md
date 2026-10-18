@@ -1,6 +1,8 @@
-# Owner sites and 21st.dev — models to ship
+# Owner sites and 21st.dev — quality references only
 
 Captured 17 Oct 2026. Desktop + mobile frames in `docs/audit/references/`.
+
+These live sites were examples of visual quality, not templates. Do not replica or trace them. The shipped catalogue uses original layouts, fictional brands, and bundled generated media.
 
 ## nexaragroups.com
 

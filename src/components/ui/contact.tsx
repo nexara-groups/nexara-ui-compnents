@@ -1,5 +1,6 @@
 'use client'
 
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, focusRing } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -25,9 +26,9 @@ export interface ContactProps {
 }
 
 const branches = [
-  { city: 'Hyderabad', line: 'Banjara Hills plant desk', phone: '+91 40 4000 1200' },
-  { city: 'Visakhapatnam', line: 'Madhurawada service bay', phone: '+91 891 270 4411' },
-  { city: 'Vijayawada', line: 'Dealer collab floor', phone: '+91 866 243 8800' },
+  { city: 'Harbor North', line: 'Plant desk and drawing room', phone: '+1 415 400 1200' },
+  { city: 'Harbor East', line: 'Service bay and AMC floor', phone: '+1 617 270 4411' },
+  { city: 'Harbor West', line: 'Partner collab floor', phone: '+1 206 243 8800' },
 ]
 
 /**
@@ -56,14 +57,15 @@ export function Contact({ variant = 'branches', className }: ContactProps) {
 
       {variant === 'map' || variant === 'visit' ? (
         <article className="overflow-hidden rounded-[1.6rem] border border-nx-border">
-          <div className="relative h-48 bg-[linear-gradient(180deg,#d7e4dc,#c5d0c8)]">
+          <div className="relative h-48">
+            <MediaFrame src={media.clinic} alt="Clinic map still" className="absolute inset-0" />
             <span className="absolute top-1/2 left-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-nx-danger" />
             <span className="absolute top-1/2 left-1/2 h-10 w-px -translate-x-1/2 -translate-y-full bg-nx-danger" />
           </div>
           <div className="flex items-center justify-between p-4">
             <div>
-              <p className="font-medium">Rise Medical Hub</p>
-              <p className="text-sm text-nx-muted">Madhurawada, Visakhapatnam</p>
+              <p className="font-medium">Lumen Care</p>
+              <p className="text-sm text-nx-muted">Harbor East clinic floor</p>
             </div>
             <a className={cn(focusRing, 'rounded-full bg-nx-fg px-3 py-1.5 text-xs text-nx-bg')} href="#contact">
               Open map
@@ -75,7 +77,7 @@ export function Contact({ variant = 'branches', className }: ContactProps) {
       {variant === 'appointment' ? (
         <div className="rounded-[1.6rem] bg-[#0b1220] p-6 text-[#f6f1ea]">
           <p className="text-xs tracking-[0.18em] text-[#f3b4b0] uppercase">Book a chair</p>
-          <h3 className="mt-3 font-serif text-4xl">Same-day OPD if the file is in by noon.</h3>
+          <h3 className="mt-3 font-serif text-4xl">Same-day consult if the file is in by noon.</h3>
           <form className="mt-6 grid gap-3 md:grid-cols-2">
             <label className="text-sm">
               Name
@@ -96,7 +98,7 @@ export function Contact({ variant = 'branches', className }: ContactProps) {
         <div className="grid gap-6 md:grid-cols-2">
           <div>
             <h3 className="font-serif text-4xl">Come to the plant.</h3>
-            <p className="mt-3 text-sm text-nx-muted">Hyderabad answers weekday mornings. Vizag holds the service bay.</p>
+            <p className="mt-3 text-sm text-nx-muted">Harbor North answers weekday mornings. Harbor East holds the service bay.</p>
           </div>
           <ul className="space-y-3 text-sm">
             {branches.map((branch) => (
@@ -113,8 +115,8 @@ export function Contact({ variant = 'branches', className }: ContactProps) {
         <table className="w-full text-sm">
           <tbody>
             {[
-              ['OPD', '09:00 – 17:00'],
-              ['EECP', '08:00 – 20:00'],
+              ['Consult', '09:00 – 17:00'],
+              ['Therapy', '08:00 – 20:00'],
               ['Pharmacy', '08:00 – 22:00'],
               ['Emergency desk', '24 hours'],
             ].map(([label, value]) => (
@@ -139,9 +141,9 @@ export function Contact({ variant = 'branches', className }: ContactProps) {
 
       {variant === 'directions' ? (
         <article className="rounded-[1.4rem] border border-nx-border p-5">
-          <p className="text-xs text-nx-faint">From Maddilapalem</p>
-          <p className="mt-2 font-serif text-2xl">12 minutes to the Madhurawada bay.</p>
-          <p className="mt-2 text-sm text-nx-muted">NH16 north, left after the IT SEZ signal. Service gate on the east side.</p>
+          <p className="text-xs text-nx-faint">From the harbor</p>
+          <p className="mt-2 font-serif text-2xl">12 minutes to the East bay.</p>
+          <p className="mt-2 text-sm text-nx-muted">Coast road north, left after the park signal. Service gate on the east side.</p>
         </article>
       ) : null}
 
@@ -155,15 +157,15 @@ export function Contact({ variant = 'branches', className }: ContactProps) {
 
       {variant === 'studio' ? (
         <div className="rounded-[1.5rem] bg-[#07070a] p-6 text-white">
-          <p className="text-[#c8ff4d]">Nexara studio</p>
-          <p className="mt-3 font-serif text-4xl">Write the brief. We answer from Hyderabad.</p>
-          <p className="mt-3 text-sm text-white/60">hello@nexaragroups.com</p>
+          <p className="text-[#c8ff4d]">North studio</p>
+          <p className="mt-3 font-serif text-4xl">Write the brief. We answer from Harbor North.</p>
+          <p className="mt-3 text-sm text-white/60">hello@north.studio</p>
         </div>
       ) : null}
 
       {variant === 'compact' ? (
         <p className="text-sm">
-          <span className="font-medium">Hyderabad · Vizag · Vijayawada</span>
+          <span className="font-medium">Harbor North · East · West</span>
           <span className="text-nx-muted"> — ask for the plant desk</span>
         </p>
       ) : null}

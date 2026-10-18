@@ -35,10 +35,10 @@ export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
       {variant === 'appointment' ? (
         <div className="flex flex-wrap items-center justify-between gap-4 rounded-[1.6rem] bg-[#0b1220] px-6 py-8 text-[#f6f1ea]">
           <div>
-            <p className="text-xs tracking-[0.18em] text-[#f3b4b0] uppercase">Rise Medical Hub</p>
-            <p className="mt-2 font-serif text-3xl">Book the next EECP chair.</p>
+            <p className="text-xs tracking-[0.18em] text-[#f6f1ea] uppercase">Lumen Care</p>
+            <p className="mt-2 font-serif text-3xl">Book the next therapy chair.</p>
           </div>
-          <a className={cn(focusRing, 'rounded-full bg-[#f3b4b0] px-5 py-2.5 text-sm text-[#0b1220]')} href="#contact">
+          <a className={cn(focusRing, 'rounded-full bg-[#f6f1ea] px-5 py-2.5 text-sm text-[#0b1220]')} href="#contact">
             Request a slot
           </a>
         </div>
@@ -46,7 +46,7 @@ export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
 
       {variant === 'lime' ? (
         <div className="rounded-[1.6rem] bg-[#c8ff4d] px-6 py-8 text-[#111113]">
-          <p className="text-xs tracking-[0.2em] uppercase">Nexara</p>
+          <p className="text-xs tracking-[0.2em] uppercase">North Studio</p>
           <p className="mt-2 font-serif text-4xl">Send the brief. We answer with a named lead.</p>
           <a className={cn(focusRing, 'mt-5 inline-flex rounded-full bg-[#111113] px-5 py-2.5 text-sm text-white')} href="#contact">
             Write to the studio
@@ -96,7 +96,7 @@ export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
       {variant === 'partner' ? (
         <div className="rounded-[1.4rem] border border-nx-border px-6 py-6">
           <p className="font-serif text-3xl">Bring the dealer to the plant.</p>
-          <p className="mt-2 text-sm text-nx-muted">Voltas, Daikin, Dunham-Bush, and O General stay on the job after handover.</p>
+          <p className="mt-2 text-sm text-nx-muted">Kite, Solum, Nimbus, and Vale stay on the job after handover.</p>
         </div>
       ) : null}
 
@@ -127,7 +127,7 @@ export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
 
       {variant === 'studio' ? (
         <div className="rounded-[1.5rem] border border-nx-line px-6 py-8">
-          <p className="text-xs tracking-[0.18em] text-nx-faint uppercase">Nexara studio</p>
+          <p className="text-xs tracking-[0.18em] text-nx-faint uppercase">North studio</p>
           <p className="mt-2 font-serif text-3xl">Hire the desk, not a slide.</p>
         </div>
       ) : null}
@@ -136,7 +136,7 @@ export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
         <div className="flex flex-wrap items-center justify-between gap-4 rounded-[1.4rem] bg-[#111113] px-6 py-6 text-white">
           <div>
             <p className="text-[#c8ff4d]">12 Dec</p>
-            <p className="font-serif text-2xl">VDRSA State Championships</p>
+            <p className="font-serif text-2xl">Field Night Championships</p>
           </div>
           <a className={cn(focusRing, 'rounded-full bg-[#c8ff4d] px-4 py-2 text-sm text-[#111]')} href="#countdown">
             Reserve a lane

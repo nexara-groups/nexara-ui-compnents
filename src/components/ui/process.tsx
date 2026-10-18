@@ -33,13 +33,13 @@ const nexara = [
 
 const rise = [
   ['Listen', 'A cardiologist reads the file before the first chair.'],
-  ['Map', 'EECP, diagnostics, and pharmacy sit on one floor.'],
+  ['Map', 'Therapy, diagnostics, and pharmacy sit on one floor.'],
   ['Stay', 'Follow-up is booked before you leave the desk.'],
 ]
 
 /**
  * Process
- * Twelve step constructions: written Nexara process, Rise three-step rhythm.
+ * Twelve step constructions: written studio process and a three-step rhythm.
  * Copy this file plus `src/lib/utils.ts`.
  */
 export function Process({ variant = 'written', className }: ProcessProps) {

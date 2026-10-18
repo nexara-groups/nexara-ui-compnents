@@ -25,11 +25,11 @@ export interface ActivityProps {
 }
 
 const events = [
-  { who: 'Latha', text: 'moved Sai Nirmaan to Review', time: '2m', kind: 'board' },
-  { who: 'Dr. Rao', text: 'closed EECP session 14', time: '11m', kind: 'care' },
+  { who: 'Latha', text: 'moved Wren Build to Review', time: '2m', kind: 'board' },
+  { who: 'Dr. Rao', text: 'closed therapy session 14', time: '11m', kind: 'care' },
   { who: 'Suresh', text: 'uploaded gas book for Bay 04', time: '1h', kind: 'file' },
   { who: 'Coach V', text: 'posted Heat 3 times', time: '2h', kind: 'sport' },
-  { who: 'Agency OS', text: 'deployed portal.nexaragroups.com', time: '4h', kind: 'deploy' },
+  { who: 'North OS', text: 'deployed harbor.studio', time: '4h', kind: 'deploy' },
 ]
 
 /**

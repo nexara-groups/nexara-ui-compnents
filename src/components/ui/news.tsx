@@ -1,5 +1,6 @@
 'use client'
 
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -25,16 +26,16 @@ export interface NewsProps {
 }
 
 const items = [
-  { kicker: 'Meet', title: 'State championships move to Vizag Indoor', date: '12 Dec', note: 'VDRSA' },
-  { kicker: 'Note', title: 'Why we still write the brief by hand', date: '04 Oct', note: 'Nexara' },
-  { kicker: 'Clinic', title: 'EECP desk adds Saturday hours', date: '18 Sep', note: 'Rise' },
-  { kicker: 'Plant', title: 'Vijayawada bay opens for AMC week', date: '02 Sep', note: 'Sri' },
-  { kicker: 'Lab', title: 'Qualigene reports now in the portal', date: '21 Aug', note: 'Labs' },
+  { kicker: 'Meet', title: 'Night championships move to Harbor Hall', date: '12 Dec', note: 'Field' },
+  { kicker: 'Note', title: 'Why we still write the brief by hand', date: '04 Oct', note: 'North' },
+  { kicker: 'Clinic', title: 'Therapy desk adds Saturday hours', date: '18 Sep', note: 'Lumen' },
+  { kicker: 'Plant', title: 'Harbor West bay opens for AMC week', date: '02 Sep', note: 'Harbor' },
+  { kicker: 'Lab', title: 'Solum reports now in the portal', date: '21 Aug', note: 'Labs' },
 ]
 
 /**
  * News
- * Twelve bulletin and notes constructions from VDRSA and Nexara.
+ * Twelve bulletin and notes constructions for Field, North, and Lumen.
  * Copy this file plus `src/lib/utils.ts`.
  */
 export function News({ variant = 'bulletin', className }: NewsProps) {
@@ -44,7 +45,7 @@ export function News({ variant = 'bulletin', className }: NewsProps) {
         <div className="rounded-[1.4rem] border border-nx-border">
           <div className="flex items-center justify-between border-b border-nx-border px-4 py-3">
             <p className="text-[11px] tracking-[0.18em] text-nx-accent uppercase">Bulletin</p>
-            <p className="text-xs text-nx-faint">VDRSA desk</p>
+            <p className="text-xs text-nx-faint">Field desk</p>
           </div>
           <ul>
             {items.slice(0, 4).map((item) => (
@@ -89,7 +90,7 @@ export function News({ variant = 'bulletin', className }: NewsProps) {
           <p className="text-[11px] tracking-[0.2em] text-nx-accent uppercase">{items[1]!.kicker}</p>
           <h3 className="mt-3 font-serif text-5xl">{items[1]!.title}</h3>
           <p className="mt-4 max-w-xl text-sm leading-6 text-nx-muted">
-            Nexara still starts with a written brief. The carousel and the marquee come after the sentence is true.
+            North still starts with a written brief. The carousel and the marquee come after the sentence is true.
           </p>
         </article>
       ) : null}
@@ -131,8 +132,9 @@ export function News({ variant = 'bulletin', className }: NewsProps) {
 
       {variant === 'video' ? (
         <article className="overflow-hidden rounded-[1.5rem] border border-nx-border">
-          <div className="relative grid h-40 place-items-center bg-[#0b1220] text-white">
-            <span className="grid size-12 place-items-center rounded-full bg-white text-[#0b1220]">▶</span>
+          <div className="relative grid h-40 place-items-center text-white">
+            <MediaFrame src={media.sports} alt="" className="absolute inset-0" />
+            <span className="relative grid size-12 place-items-center rounded-full bg-white text-[#0b1220]">▶</span>
           </div>
           <div className="p-4">
             <p className="font-medium">{items[0]!.title}</p>

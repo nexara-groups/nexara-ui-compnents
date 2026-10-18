@@ -46,7 +46,10 @@ const itemsMeta = [
     categories: ['Utilities'],
     dependencies: ['clsx', 'tailwind-merge'],
     registryDependencies: [],
-    files: [{ path: 'src/lib/utils.ts', type: 'registry:lib' }],
+    files: [
+      { path: 'src/lib/utils.ts', type: 'registry:lib' },
+      { path: 'src/lib/media.tsx', type: 'registry:lib' },
+    ],
     usage: "import { cn, usePrefersReducedMotion } from '@/lib/utils'",
   },
   ['draggable-card', 'Draggable Card', 'Cards', 'A movable card with spring tilt, optional snap-back, a drag handle, and keyboard nudging.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
@@ -62,7 +65,7 @@ const itemsMeta = [
   ['text-reveal', 'Text Reveal', 'Text', 'Twelve typographic compositions that stagger into view.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
   ['floating-navbar', 'Floating Navbar', 'Navigation', 'Twelve navigation products.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
   ['modal', 'Modal', 'Overlays', 'Twelve dialog anatomies with a focus trap and scroll lock.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
-  ['hero', 'Hero', 'Sections', 'Thirty marketing page constructions including AC remote, clinic, sports, and 21st.dev anatomies.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
+  ['hero', 'Hero', 'Sections', 'Thirty marketing page constructions with first-class image, video, and lottie slots.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
   ['marquee', 'Marquee', 'Sections', 'Twelve continuous tracks with pause control.', ['clsx', 'tailwind-merge'], ['utils']],
   ['input', 'Input', 'Forms', 'Twelve field constructions.', ['clsx', 'tailwind-merge'], ['utils']],
   ['tabs', 'Tabs', 'Forms', 'Ten tab anatomies.', ['clsx', 'tailwind-merge'], ['utils']],
@@ -74,7 +77,7 @@ const itemsMeta = [
   ['pricing', 'Pricing', 'Sections', 'Ten pricing sections.', ['clsx', 'tailwind-merge'], ['utils']],
   ['testimonials', 'Testimonials', 'Sections', 'Ten social-proof constructions.', ['clsx', 'tailwind-merge'], ['utils']],
   ['footer', 'Footer', 'Sections', 'Ten closing constructions.', ['clsx', 'tailwind-merge'], ['utils']],
-  ['stats', 'Stats', 'Sections', 'Twelve count-up constructions from Sri, Rise, and VDRSA.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['stats', 'Stats', 'Sections', 'Twelve count-up constructions for climate, care, and sport desks.', ['clsx', 'tailwind-merge'], ['utils']],
   ['countdown', 'Countdown', 'Sections', 'Twelve event and race clocks.', ['clsx', 'tailwind-merge'], ['utils']],
   ['leaderboard', 'Leaderboard', 'Sections', 'Twelve medal-tally constructions.', ['clsx', 'tailwind-merge'], ['utils']],
   ['case-study', 'Case Study', 'Sections', 'Twelve client-story constructions including a tabbed carousel.', ['clsx', 'tailwind-merge'], ['utils']],
@@ -98,8 +101,19 @@ const itemsMeta = [
 ]
 
 const extraFiles = {
-  hero: [{ path: 'src/components/ui/hero-extra.tsx', type: 'registry:ui' }],
+  hero: [
+    { path: 'src/components/ui/hero-extra.tsx', type: 'registry:ui' },
+    { path: 'src/lib/media.tsx', type: 'registry:lib' },
+  ],
   button: [{ path: 'src/components/ui/button-extra.tsx', type: 'registry:ui' }],
+  team: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
+  'logo-cloud': [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
+  'case-study': [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
+  services: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
+  testimonials: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
+  avatar: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
+  news: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
+  contact: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
 }
 
 const items = itemsMeta.map((entry) => {

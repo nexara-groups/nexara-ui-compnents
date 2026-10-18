@@ -1,6 +1,6 @@
 'use client'
 
-import { type ComponentProps, type ReactNode } from 'react'
+import { type ClipboardEvent, type ComponentProps, type KeyboardEvent, type ReactNode, useRef, useState } from 'react'
 import { cn, focusRing } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -33,20 +33,7 @@ export interface InputProps extends Omit<ComponentProps<'input'>, 'size'> {
 export function Input({ variant = 'outline', label, hint, className, id, type, ...props }: InputProps) {
   const fieldId = id ?? `nexara-input-${variant}`
   if (variant === 'otp') {
-    return (
-      <div data-nexara="input" data-variant="otp" className={cn('flex gap-2', className)}>
-        {['4', '1', '8', ''].map((digit, index) => (
-          <input
-            key={index}
-            inputMode="numeric"
-            maxLength={1}
-            defaultValue={digit}
-            aria-label={`Digit ${index + 1}`}
-            className={cn(focusRing, 'size-12 rounded-xl border border-nx-border bg-nx-card text-center font-mono text-xl')}
-          />
-        ))}
-      </div>
-    )
+    return <OtpField className={className} defaultValue={typeof props.defaultValue === 'string' ? props.defaultValue : '418'} />
   }
   if (variant === 'file') {
     return (
@@ -107,6 +94,73 @@ export function Input({ variant = 'outline', label, hint, className, id, type, .
       ) : null}
       {field}
       {hint ? <p className="mt-1.5 text-xs text-nx-faint">{hint}</p> : null}
+    </div>
+  )
+}
+
+function OtpField({ className, defaultValue = '418' }: { className?: string; defaultValue?: string }) {
+  const length = 4
+  const [digits, setDigits] = useState(() => {
+    const raw = defaultValue.replace(/\D/g, '').slice(0, length)
+    return Array.from({ length }, (_, index) => raw[index] ?? '')
+  })
+  const refs = useRef<Array<HTMLInputElement | null>>([])
+
+  const focusAt = (index: number) => refs.current[Math.max(0, Math.min(length - 1, index))]?.focus()
+
+  const onChange = (index: number, value: string) => {
+    const char = value.replace(/\D/g, '').slice(-1)
+    const next = [...digits]
+    next[index] = char
+    setDigits(next)
+    if (char) focusAt(index + 1)
+  }
+
+  const onKeyDown = (index: number, event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault()
+      focusAt(index - 1)
+    }
+    if (event.key === 'ArrowRight') {
+      event.preventDefault()
+      focusAt(index + 1)
+    }
+    if (event.key === 'Backspace' && !digits[index]) {
+      event.preventDefault()
+      const next = [...digits]
+      next[index - 1] = ''
+      setDigits(next)
+      focusAt(index - 1)
+    }
+  }
+
+  const onPaste = (event: ClipboardEvent<HTMLInputElement>) => {
+    event.preventDefault()
+    const pasted = event.clipboardData.getData('text').replace(/\D/g, '').slice(0, length)
+    if (!pasted) return
+    setDigits(Array.from({ length }, (_, index) => pasted[index] ?? ''))
+    focusAt(Math.min(pasted.length, length - 1))
+  }
+
+  return (
+    <div data-nexara="input" data-variant="otp" className={cn('flex gap-2', className)}>
+      {digits.map((digit, index) => (
+        <input
+          key={index}
+          ref={(node) => {
+            refs.current[index] = node
+          }}
+          inputMode="numeric"
+          autoComplete={index === 0 ? 'one-time-code' : 'off'}
+          maxLength={1}
+          value={digit}
+          aria-label={`Digit ${index + 1}`}
+          onChange={(event) => onChange(index, event.target.value)}
+          onKeyDown={(event) => onKeyDown(index, event)}
+          onPaste={onPaste}
+          className={cn(focusRing, 'size-12 rounded-xl border border-nx-border bg-nx-card text-center font-mono text-xl')}
+        />
+      ))}
     </div>
   )
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -23,12 +24,12 @@ export interface TestimonialsProps {
 }
 
 const quotes = [
-  { name: 'Ada Klein', role: 'Design lead, Harbor', handle: '@ada', text: 'The registry finally feels like a product, not a folder of snippets.' },
-  { name: 'Jonah Ruiz', role: 'Engineer, Atlas', handle: '@jonah', text: 'We shipped the mast in a week because the variants were already distinct.' },
-  { name: 'Mira Chen', role: 'PM, Field', handle: '@mira', text: 'Quiet type, real numbers, light and dark. That was the bar.' },
-  { name: 'Eli Park', role: 'Founder, Lumen', handle: '@eli', text: 'Agents stop asking which button. They ask for button / shimmer and move on.' },
-  { name: 'Noor Hale', role: 'Brand, North', handle: '@noor', text: 'Geist, one accent, and a hairline. We stopped restyling every paste.' },
-  { name: 'Sam Ori', role: 'Staff, Tide', handle: '@sam', text: 'The modal gallery actually shows the dialog. That should not feel rare.' },
+  { name: 'Ada Klein', role: 'Design lead, Harbor', handle: '@ada', text: 'The registry finally feels like a product, not a folder of snippets.', src: media.people.anitha },
+  { name: 'Jonah Ruiz', role: 'Engineer, Atlas', handle: '@jonah', text: 'We shipped the mast in a week because the variants were already distinct.', src: media.people.kiran },
+  { name: 'Mira Chen', role: 'PM, Field', handle: '@mira', text: 'Quiet type, real numbers, light and dark. That was the bar.', src: media.people.meera },
+  { name: 'Eli Park', role: 'Founder, Lumen', handle: '@eli', text: 'Agents stop asking which button. They ask for button / shimmer and move on.', src: media.people.suresh },
+  { name: 'Noor Hale', role: 'Brand, North', handle: '@noor', text: 'Geist, one accent, and a hairline. We stopped restyling every paste.', src: media.people.latha },
+  { name: 'Sam Ori', role: 'Staff, Tide', handle: '@sam', text: 'The modal gallery actually shows the dialog. That should not feel rare.', src: media.people.vikram },
 ]
 
 /**
@@ -43,7 +44,7 @@ export function Testimonials({ variant = 'quote', className }: TestimonialsProps
         <figure className="max-w-3xl">
           <blockquote className="font-serif text-3xl leading-snug text-balance md:text-4xl">“{first.text}”</blockquote>
           <figcaption className="mt-5 flex items-center gap-3 text-sm">
-            <span className="inline-flex size-9 items-center justify-center rounded-full bg-nx-soft text-[11px] text-nx-accent">AK</span>
+            <MediaFrame src={first.src} alt={first.name} grain={false} className="size-9 rounded-full" />
             <span>
               <span className="block font-medium">{first.name}</span>
               <span className="text-nx-muted">{first.role}</span>
@@ -100,7 +101,7 @@ export function Testimonials({ variant = 'quote', className }: TestimonialsProps
       {variant === 'tweet' ? (
         <figure className="max-w-md rounded-2xl border border-nx-border bg-nx-card p-4 shadow-[var(--nx-shadow)]">
           <div className="flex items-center gap-3">
-            <span className="inline-flex size-9 items-center justify-center rounded-full bg-nx-soft text-[11px] text-nx-accent">AK</span>
+            <MediaFrame src={first.src} alt={first.name} grain={false} className="size-9 rounded-full" />
             <div>
               <p className="text-sm font-medium">{first.name}</p>
               <p className="text-xs text-nx-faint">{first.handle}</p>
@@ -112,9 +113,10 @@ export function Testimonials({ variant = 'quote', className }: TestimonialsProps
       ) : null}
 
       {variant === 'video' ? (
-        <div className="relative overflow-hidden rounded-[1.5rem] bg-[#111113] p-6 text-white">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,#4c46e066,transparent_45%)]" />
-          <div className="relative">
+        <div className="relative overflow-hidden rounded-[1.5rem] text-white">
+          <MediaFrame src={media.cinema} alt="" className="min-h-52" />
+          <div className="absolute inset-0 bg-black/45" />
+          <div className="absolute inset-0 flex flex-col justify-end p-6">
             <span className="inline-flex size-12 items-center justify-center rounded-full bg-white text-[#111]">
               <span className="ml-0.5">▶</span>
             </span>
@@ -139,8 +141,8 @@ export function Testimonials({ variant = 'quote', className }: TestimonialsProps
         <div>
           <p className="text-center text-xs tracking-[0.18em] text-nx-muted uppercase">Used in production at</p>
           <div className="mt-4 flex flex-wrap justify-center gap-3">
-            {['Harbor', 'Atlas', 'Field', 'Lumen', 'North'].map((name) => (
-              <span key={name} className="rounded-xl border border-nx-border bg-nx-card px-4 py-2 text-sm font-medium">{name}</span>
+            {[media.marks.kite, media.marks.solum, media.marks.nimbus, media.marks.vale, media.marks.orbit].map((src) => (
+              <MediaFrame key={src} src={src} alt="" grain={false} className="h-12 w-24 rounded-xl border border-nx-border bg-nx-card" imgClassName="object-contain p-2" />
             ))}
           </div>
           <blockquote className="mx-auto mt-6 max-w-xl text-center font-serif text-2xl">“{first.text}”</blockquote>

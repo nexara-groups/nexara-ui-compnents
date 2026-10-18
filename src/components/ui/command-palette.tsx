@@ -27,7 +27,7 @@ export interface CommandPaletteProps {
 
 const commands = [
   { id: 'overview', group: 'Pages', label: 'Open overview' },
-  { id: 'lead', group: 'Create', label: 'New lead · Sai Nirmaan' },
+  { id: 'lead', group: 'Create', label: 'New lead · Wren Build' },
   { id: 'patient', group: 'Care', label: 'Find patient · Ravi Teja' },
   { id: 'job', group: 'Plant', label: 'Open job · VRF Bay 04' },
   { id: 'athlete', group: 'Season', label: 'Jump to Ananya Rao' },

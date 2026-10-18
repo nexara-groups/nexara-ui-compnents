@@ -27,18 +27,18 @@ export interface ChaptersProps {
 
 const rise = [
   ['01', 'The file', 'We read the history before we book the chair.'],
-  ['02', 'The door', 'EECP, diagnostics, pharmacy, OPD — one roof.'],
+  ['02', 'The door', 'Therapy, consult, pharmacy, lab — one roof.'],
   ['03', 'The hour', 'Thirty-five sessions a week, named, not queued.'],
   ['04', 'The floor', 'The walk between rooms is measured in metres.'],
   ['05', 'The name', 'Sixteen specialists. You leave with one of them.'],
   ['06', 'The night', 'The desk stays on after the last consult.'],
   ['07', 'The return', 'Follow-up is booked before you reach the lift.'],
-  ['08', 'The city', 'Madhurawada is the address. The work is the rest.'],
+  ['08', 'The city', 'Harbor East is the address. The work is the rest.'],
 ]
 
 /**
  * Chapters
- * Twelve scroll-driven storytelling constructions, including Rise's eight.
+ * Twelve scroll-driven storytelling constructions, including eight clinic chapters.
  * Copy this file plus `src/lib/utils.ts`.
  */
 export function Chapters({ variant = 'eight', className }: ChaptersProps) {

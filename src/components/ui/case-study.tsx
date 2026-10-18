@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, focusRing, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -26,19 +27,19 @@ export interface CaseStudyProps {
 }
 
 const studies = [
-  { id: 'sai', client: 'Sai Nirmaan', line: 'A contractor desk that quotes in a day.', sector: 'Construction' },
-  { id: 'happy', client: 'Happy Farms', line: 'Traceable harvest for a farm brand.', sector: 'Agri' },
-  { id: 'sri', client: 'Sri Engineering', line: 'HVAC catalogue with a live remote.', sector: 'HVAC' },
-  { id: 'rise', client: 'Rise Medical Hub', line: 'Eight chapters for a heart clinic.', sector: 'Care' },
-  { id: 'iarsa', client: 'IARSA', line: 'Association portal for a season.', sector: 'Sport' },
-  { id: 'quali', client: 'Qualigene', line: 'Lab reports without the waiting room.', sector: 'Lab' },
-  { id: 'voice', client: 'Voice', line: 'A desk that answers in the caller language.', sector: 'Voice' },
+  { id: 'wren', client: 'Wren Build', line: 'A contractor desk that quotes in a day.', sector: 'Construction', src: media.cases.build },
+  { id: 'grove', client: 'Grove Farms', line: 'Traceable harvest for a farm brand.', sector: 'Agri', src: media.cases.farm },
+  { id: 'harbor', client: 'Harbor Climate', line: 'A live remote beside the plant book.', sector: 'Climate', src: media.cases.climate },
+  { id: 'lumen', client: 'Lumen Care', line: 'Eight chapters for a private clinic.', sector: 'Care', src: media.cases.care },
+  { id: 'field', client: 'Field Athletics', line: 'A season desk that posts the same night.', sector: 'Sport', src: media.cases.track },
+  { id: 'solum', client: 'Solum Lab', line: 'Reports without the waiting room.', sector: 'Lab', src: media.cases.lab },
+  { id: 'vale', client: 'Vale Voice', line: 'A desk that answers in the caller language.', sector: 'Voice', src: media.cases.voice },
 ]
 
 /**
  * Case study
- * Twelve client-story constructions, including the Nexara tabbed carousel.
- * Copy this file plus `src/lib/utils.ts`.
+ * Twelve client-story constructions with photographic stills and a pause control.
+ * Copy this file, `src/lib/media.tsx`, `src/lib/utils.ts`, and `public/media`.
  */
 export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
   const reduced = usePrefersReducedMotion()
@@ -85,21 +86,24 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
               <h3 className="mt-3 font-serif text-4xl">{current.client}</h3>
               <p className="mt-3 max-w-lg text-white/70">{current.line}</p>
             </div>
-            <div className="min-h-36 bg-[radial-gradient(circle_at_30%_30%,#3a3220,transparent_45%),linear-gradient(160deg,#1a1a14,#111113)]" />
+            <MediaFrame src={current.src} alt={current.client} className="min-h-36" />
           </article>
         </div>
       ) : null}
 
       {variant === 'stack' ? (
-        <div className="relative h-56">
+        <div className="relative h-64">
           {studies.slice(0, 3).map((study, index) => (
             <article
               key={study.id}
-              className="absolute inset-x-0 rounded-[1.4rem] border border-nx-border bg-nx-card p-6 shadow-[var(--nx-shadow)]"
+              className="absolute inset-x-0 overflow-hidden rounded-[1.4rem] border border-nx-border bg-nx-card shadow-[var(--nx-shadow)]"
               style={{ top: index * 16, transform: `scale(${1 - index * 0.04})` }}
             >
-              <p className="text-xs text-nx-faint">{study.sector}</p>
-              <p className="mt-2 font-serif text-2xl">{study.client}</p>
+              <MediaFrame src={study.src} alt="" className="h-24" />
+              <div className="p-5">
+                <p className="text-xs text-nx-faint">{study.sector}</p>
+                <p className="mt-2 font-serif text-2xl">{study.client}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -108,10 +112,12 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
       {variant === 'film' ? (
         <div className="flex gap-3 overflow-x-auto pb-2">
           {studies.map((study) => (
-            <article key={study.id} className="min-w-[14rem] rounded-[1.3rem] border border-nx-border p-4">
-              <div className="mb-4 h-24 rounded-xl bg-[linear-gradient(140deg,#1a1a14,#3a3228)]" />
-              <p className="font-medium">{study.client}</p>
-              <p className="mt-1 text-sm text-nx-muted">{study.line}</p>
+            <article key={study.id} className="min-w-[14rem] overflow-hidden rounded-[1.3rem] border border-nx-border">
+              <MediaFrame src={study.src} alt={study.client} className="h-28" />
+              <div className="p-4">
+                <p className="font-medium">{study.client}</p>
+                <p className="mt-1 text-sm text-nx-muted">{study.line}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -119,7 +125,7 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
 
       {variant === 'split' ? (
         <div className="grid gap-6 md:grid-cols-2">
-          <div className="min-h-52 rounded-[1.6rem] bg-[linear-gradient(160deg,#102018,#1f7a4a)]" />
+          <MediaFrame src={current.src} alt={current.client} className="min-h-52 rounded-[1.6rem]" />
           <div>
             <p className="text-xs tracking-[0.18em] text-nx-faint uppercase">{current.sector}</p>
             <h3 className="mt-2 font-serif text-4xl">{current.client}</h3>
@@ -131,9 +137,12 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
       {variant === 'mosaic' ? (
         <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
           {studies.map((study, index) => (
-            <article key={study.id} className={cn('rounded-[1.2rem] border border-nx-border p-4', index === 0 && 'md:col-span-2 md:row-span-2')}>
-              <p className="text-xs text-nx-faint">{study.sector}</p>
-              <p className={cn('mt-2 font-medium', index === 0 && 'font-serif text-3xl')}>{study.client}</p>
+            <article key={study.id} className={cn('overflow-hidden rounded-[1.2rem] border border-nx-border', index === 0 && 'md:col-span-2 md:row-span-2')}>
+              <MediaFrame src={study.src} alt={study.client} className={index === 0 ? 'h-48' : 'h-28'} />
+              <div className="p-4">
+                <p className="text-xs text-nx-faint">{study.sector}</p>
+                <p className={cn('mt-2 font-medium', index === 0 && 'font-serif text-3xl')}>{study.client}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -142,19 +151,28 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
       {variant === 'quote' ? (
         <figure className="max-w-2xl">
           <blockquote className="font-serif text-3xl leading-snug">“{current.line}”</blockquote>
-          <figcaption className="mt-4 text-sm text-nx-muted">{current.client}</figcaption>
+          <figcaption className="mt-4 flex items-center gap-3 text-sm text-nx-muted">
+            <MediaFrame src={media.people.meera} alt="" grain={false} className="size-9 rounded-full" />
+            {current.client}
+          </figcaption>
         </figure>
       ) : null}
 
       {variant === 'before' ? (
         <div className="grid gap-3 md:grid-cols-2">
-          <article className="rounded-[1.3rem] border border-dashed border-nx-line p-5">
-            <p className="text-xs text-nx-faint">Before</p>
-            <p className="mt-2">Quotes lived in WhatsApp threads.</p>
+          <article className="overflow-hidden rounded-[1.3rem] border border-dashed border-nx-line">
+            <MediaFrame src={media.editorial[2]} alt="" className="h-28 opacity-70 grayscale" />
+            <div className="p-5">
+              <p className="text-xs text-nx-faint">Before</p>
+              <p className="mt-2">Quotes lived in message threads.</p>
+            </div>
           </article>
-          <article className="rounded-[1.3rem] bg-nx-fg p-5 text-nx-bg">
-            <p className="text-xs opacity-60">After</p>
-            <p className="mt-2">{current.line}</p>
+          <article className="overflow-hidden rounded-[1.3rem] bg-nx-fg text-nx-bg">
+            <MediaFrame src={current.src} alt="" className="h-28" />
+            <div className="p-5">
+              <p className="text-xs opacity-60">After</p>
+              <p className="mt-2">{current.line}</p>
+            </div>
           </article>
         </div>
       ) : null}
@@ -165,10 +183,10 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
             <button
               key={study.id}
               type="button"
-              className={cn(focusRing, 'rounded-full border px-4 py-2 text-sm', index === active ? 'border-nx-fg' : 'border-nx-border text-nx-muted')}
+              className={cn(focusRing, 'overflow-hidden rounded-2xl border', index === active ? 'border-nx-fg' : 'border-nx-border')}
               onClick={() => setActive(index)}
             >
-              {study.client}
+              <MediaFrame src={study.src} alt={study.client} className="h-12 w-28" />
             </button>
           ))}
         </div>
@@ -177,9 +195,10 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
       {variant === 'index' ? (
         <ol className="divide-y divide-nx-border">
           {studies.map((study, index) => (
-            <li key={study.id} className="flex items-baseline justify-between py-3">
+            <li key={study.id} className="flex items-center justify-between gap-3 py-3">
               <span className="text-nx-faint">{String(index + 1).padStart(2, '0')}</span>
-              <span className="flex-1 px-4">{study.client}</span>
+              <MediaFrame src={study.src} alt="" className="size-10 rounded-lg" />
+              <span className="flex-1">{study.client}</span>
               <span className="text-sm text-nx-muted">{study.sector}</span>
             </li>
           ))}
@@ -187,18 +206,25 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
       ) : null}
 
       {variant === 'featured' ? (
-        <article className="overflow-hidden rounded-[1.8rem] bg-[#07070a] p-8 text-white">
-          <p className="text-[#c8ff4d]">Featured</p>
-          <h3 className="mt-4 font-serif text-5xl">{current.client}</h3>
-          <p className="mt-4 max-w-md text-white/65">{current.line}</p>
+        <article className="relative overflow-hidden rounded-[1.8rem] text-white">
+          <MediaFrame src={current.src} alt={current.client} className="min-h-72" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          <div className="absolute inset-0 flex flex-col justify-end p-8">
+            <p className="text-[#c8ff4d]">Featured</p>
+            <h3 className="mt-4 font-serif text-5xl">{current.client}</h3>
+            <p className="mt-4 max-w-md text-white/65">{current.line}</p>
+          </div>
         </article>
       ) : null}
 
       {variant === 'reel' ? (
         <div>
-          <article className="rounded-[1.4rem] border border-nx-border p-6">
-            <p className="font-serif text-3xl">{current.client}</p>
-            <p className="mt-2 text-sm text-nx-muted">{current.line}</p>
+          <article className="overflow-hidden rounded-[1.4rem] border border-nx-border">
+            <MediaFrame src={current.src} alt={current.client} className="h-44" />
+            <div className="p-6">
+              <p className="font-serif text-3xl">{current.client}</p>
+              <p className="mt-2 text-sm text-nx-muted">{current.line}</p>
+            </div>
           </article>
           <div className="mt-3 flex justify-center gap-1.5">
             {studies.map((study, index) => (

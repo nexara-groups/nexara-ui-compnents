@@ -1,5 +1,6 @@
 'use client'
 
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -20,29 +21,68 @@ export type AvatarVariant = (typeof VARIANTS)[number]
 export interface AvatarProps {
   variant?: AvatarVariant
   name?: string
+  src?: string
   className?: string
 }
 
+const faces = [media.people.anitha, media.people.kiran, media.people.meera]
+
 /**
  * Avatar
- * Ten identity constructions. Copy this file plus `src/lib/utils.ts`.
+ * Ten identity constructions. Photographic defaults; initials only when asked.
+ * Copy this file, `src/lib/media.tsx`, `src/lib/utils.ts`, and `public/media`.
  */
-export function Avatar({ variant = 'initials', name = 'Ada Klein', className }: AvatarProps) {
+export function Avatar({ variant = 'image', name = 'Ada Klein', src, className }: AvatarProps) {
   const initials = name
     .split(' ')
     .map((part) => part[0])
     .join('')
     .slice(0, 2)
+  const face = src ?? media.people.anitha
 
   if (variant === 'group') {
     return (
       <div data-nexara="avatar" data-variant="group" className={cn('flex -space-x-2', className)}>
-        {['AK', 'JR', 'MC'].map((mark) => (
-          <span key={mark} className="inline-flex size-9 items-center justify-center rounded-full border-2 border-nx-bg bg-nx-soft text-[11px] font-medium text-nx-accent">
-            {mark}
-          </span>
+        {faces.map((shot) => (
+          <MediaFrame key={shot} src={shot} alt="" grain={false} className="size-9 rounded-full border-2 border-nx-bg" />
         ))}
       </div>
+    )
+  }
+
+  if (variant === 'mention') {
+    return (
+      <span data-nexara="avatar" data-variant="mention" className={cn('inline-flex h-7 items-center gap-1.5 rounded-full bg-nx-soft px-2', className)}>
+        <MediaFrame src={face} alt="" grain={false} className="size-5 rounded-full" />
+        <span className="text-[11px] text-nx-fg">{name}</span>
+      </span>
+    )
+  }
+
+  if (variant === 'icon' || variant === 'upload') {
+    return (
+      <span
+        data-nexara="avatar"
+        data-variant={variant}
+        className={cn('relative inline-flex size-10 items-center justify-center rounded-xl bg-nx-soft text-nx-accent', className)}
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+          <circle cx="8" cy="6" r="2.4" fill="currentColor" />
+          <path d="M3 13c1.2-2 2.8-3 5-3s3.8 1 5 3" fill="none" stroke="currentColor" />
+        </svg>
+      </span>
+    )
+  }
+
+  if (variant === 'initials') {
+    return (
+      <span
+        data-nexara="avatar"
+        data-variant="initials"
+        className={cn('inline-flex size-10 items-center justify-center rounded-full bg-nx-soft text-xs font-medium text-nx-accent', className)}
+      >
+        {initials}
+      </span>
     )
   }
 
@@ -51,25 +91,15 @@ export function Avatar({ variant = 'initials', name = 'Ada Klein', className }: 
       data-nexara="avatar"
       data-variant={variant}
       className={cn(
-        'relative inline-flex items-center justify-center bg-nx-soft text-xs font-medium text-nx-accent',
-        variant === 'square' || variant === 'upload' ? 'rounded-xl' : 'rounded-full',
+        'relative inline-flex overflow-hidden',
+        variant === 'square' ? 'size-10 rounded-xl' : 'size-10 rounded-full',
         variant === 'story' && 'ring-2 ring-nx-accent ring-offset-2 ring-offset-nx-bg',
         variant === 'ring' && 'ring-2 ring-nx-line ring-offset-2 ring-offset-nx-bg',
-        variant === 'mention' ? 'h-7 rounded-full px-2' : 'size-10',
-        variant === 'image' && 'bg-[linear-gradient(135deg,#4c46e0,#22c5b0)] text-white',
         className,
       )}
     >
-      {variant === 'icon' || variant === 'upload' ? (
-        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-          <circle cx="8" cy="6" r="2.4" fill="currentColor" />
-          <path d="M3 13c1.2-2 2.8-3 5-3s3.8 1 5 3" fill="none" stroke="currentColor" />
-        </svg>
-      ) : (
-        initials
-      )}
+      <MediaFrame src={face} alt={name} grain={false} className="size-full" />
       {variant === 'status' ? <span className="absolute right-0 bottom-0 size-2.5 rounded-full bg-nx-ok ring-2 ring-nx-bg" /> : null}
-      {variant === 'mention' ? <span className="ml-1 text-[11px] text-nx-fg">{name}</span> : null}
     </span>
   )
 }

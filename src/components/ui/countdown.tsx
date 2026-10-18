@@ -55,7 +55,7 @@ export function Countdown({
   variant = 'event',
   className,
   target = '2026-12-12T09:00:00+05:30',
-  title = 'VDRSA State Championships',
+  title = 'Field Night Championships',
 }: CountdownProps) {
   const time = useRemaining(target)
   const units = [
@@ -161,7 +161,7 @@ export function Countdown({
         <div className="grid gap-4 rounded-[1.4rem] bg-[#0b1220] p-6 text-[#f6f1ea] md:grid-cols-[1fr_auto]">
           <div>
             <p className="text-xs tracking-[0.18em] text-[#f3b4b0] uppercase">Fixture</p>
-            <p className="mt-2 font-serif text-3xl">VDRSA vs Coastal</p>
+            <p className="mt-2 font-serif text-3xl">Field vs Coastal</p>
           </div>
           <div className="font-mono text-2xl">
             {pad(time.days)}d {pad(time.hours)}h

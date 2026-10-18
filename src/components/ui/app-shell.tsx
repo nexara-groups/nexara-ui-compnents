@@ -28,7 +28,7 @@ export interface AppShellProps {
 
 const nav = {
   agency: ['Overview', 'Leads', 'Boards', 'Invoices', 'Library'],
-  clinic: ['Today', 'Patients', 'EECP', 'Pharmacy', 'Rooms'],
+  clinic: ['Today', 'Patients', 'Therapy', 'Pharmacy', 'Rooms'],
   sports: ['Season', 'Athletes', 'Events', 'Medals', 'Clubs'],
   academy: ['Cohorts', 'Lessons', 'Faculty', 'Briefs', 'Handover'],
 }
@@ -40,6 +40,7 @@ const nav = {
  */
 export function AppShell({ variant = 'sidebar', className, children }: AppShellProps) {
   const [open, setOpen] = useState(variant !== 'collapsed' && variant !== 'mobile')
+  const [menu, setMenu] = useState(false)
   const items =
     variant === 'clinic'
       ? nav.clinic
@@ -49,7 +50,7 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
           ? nav.academy
           : nav.agency
   const brand =
-    variant === 'clinic' ? 'Rise desk' : variant === 'sports' ? 'VDRSA OS' : variant === 'academy' ? 'Academy' : 'Agency OS'
+    variant === 'clinic' ? 'Lumen desk' : variant === 'sports' ? 'Field OS' : variant === 'academy' ? 'Atlas' : 'North OS'
 
   if (variant === 'top') {
     return (
@@ -73,7 +74,7 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
         <div className="p-4">{children ?? <Blank title="Workspace" />}</div>
         <aside className="border-t border-nx-border bg-nx-elevated p-4 md:border-t-0 md:border-l">
           <p className="text-xs text-nx-faint">Inspector</p>
-          <p className="mt-2 text-sm">Lead · Sai Nirmaan</p>
+          <p className="mt-2 text-sm">Lead · Wren Build</p>
         </aside>
       </div>
     )
@@ -101,7 +102,14 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
       className={cn('grid min-h-72 overflow-hidden rounded-[1.4rem] border border-nx-border bg-nx-card', open ? (rail ? 'grid-cols-1 md:grid-cols-[4rem_1fr]' : 'grid-cols-1 md:grid-cols-[13rem_1fr]') : 'grid-cols-1', className)}
     >
       {open ? (
-        <aside className={cn('border-r border-nx-border bg-nx-elevated p-3', variant === 'sports' && 'bg-[#111113] text-white', variant === 'clinic' && 'bg-[#0b1220] text-[#f6f1ea]')}>
+        <aside
+          className={cn(
+            'border-r border-nx-border bg-nx-elevated p-3',
+            variant === 'sports' && 'bg-[#111113] text-white',
+            variant === 'clinic' && 'bg-[#0b1220] text-[#f6f1ea]',
+            variant !== 'mobile' && !menu && 'max-md:hidden',
+          )}
+        >
           <p className={cn('px-1 text-xs tracking-[0.16em] uppercase', rail && 'sr-only')}>{brand}</p>
           <nav className="mt-4 grid gap-1" aria-label="Desk">
             {items.map((item, index) => (
@@ -121,9 +129,9 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
         </aside>
       ) : null}
       <div className="p-4">
-        {variant === 'mobile' ? (
-          <button type="button" className={cn(focusRing, 'mb-3 rounded-lg border border-nx-border px-3 py-1.5 text-xs')} onClick={() => setOpen((value) => !value)}>
-            {open ? 'Hide menu' : 'Menu'}
+        {variant === 'mobile' || variant === 'sidebar' || variant === 'agency' || variant === 'clinic' || variant === 'sports' || variant === 'academy' || variant === 'dense' ? (
+          <button type="button" className={cn(focusRing, 'mb-3 rounded-lg border border-nx-border px-3 py-1.5 text-xs md:hidden')} onClick={() => (variant === 'mobile' ? setOpen((value) => !value) : setMenu((value) => !value))}>
+            {variant === 'mobile' ? (open ? 'Hide menu' : 'Menu') : menu ? 'Hide menu' : 'Menu'}
           </button>
         ) : null}
         {children ?? <Blank title={`${brand} canvas`} />}

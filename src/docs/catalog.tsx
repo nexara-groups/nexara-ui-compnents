@@ -370,7 +370,7 @@ export function Example() {
     slug: 'hero',
     name: 'Hero',
     category: 'Sections',
-    description: 'Thirty marketing pages, including AC remote, divisions, clinic, sports, and 21st.dev anatomies.',
+    description: 'Thirty marketing pages with first-class image, video, and lottie slots and bundled cinematic defaults.',
     path: 'src/components/ui/hero.tsx',
     dependencies: motionDeps,
     registryDependencies: ['utils'],
@@ -389,7 +389,8 @@ export function Example() {
     props: [
       { name: 'variant', type: 'saas | app | cinema | logos | pricing | studio | shop | event | search | product | journal | waitlist | ac-remote | divisions | four-doors | wordmark | clinic | sports | editorial | fan | glass-fold | split-cards | device | devtool | fashion | spiral | liquid | tilted | enterprise | featured', description: 'Hero product. Look up hero / ac-remote or hero / clinic.' },
       { name: 'title', type: 'ReactNode', description: 'Rendered in an h2 unless titleAs is set.' },
-      { name: 'actions / media', type: 'ReactNode', description: 'Slots.' },
+      { name: 'actions / media', type: 'ReactNode', description: 'Slots. media children win over image/video/lottie.' },
+      { name: 'image / video / poster / lottie', type: 'string', description: 'First-class media. Defaults are bundled originals in public/media.' },
     ],
     Demo: HeroDemo,
   },
@@ -428,7 +429,7 @@ export function Example() {
 }`,
     props: [
       { name: 'variant', type: 'outline | filled | underline | ghost | search | otp | file | password | amount | tag | command | floating', defaultValue: 'outline', description: 'Field construction.' },
-      { name: 'label / hint', type: 'ReactNode', description: 'Optional caption and helper.' },
+      { name: 'label / hint', type: 'ReactNode', description: 'Optional caption and helper. OTP supports paste and arrow keys.' },
     ],
     Demo: InputDemo,
   },
@@ -513,7 +514,7 @@ export function Example() {
     slug: 'avatar',
     name: 'Avatar',
     category: 'Identity',
-    description: 'Ten identity constructions: image, initials, status, group, square, ring, upload, icon, story, mention.',
+    description: 'Ten identity constructions with photographic defaults. Initials only when asked.',
     path: 'src/components/ui/avatar.tsx',
     dependencies: styleDeps,
     registryDependencies: ['utils'],
@@ -523,8 +524,9 @@ export function Example() {
   return <Avatar variant="status" name="Ada Klein" />
 }`,
     props: [
-      { name: 'variant', type: 'image | initials | status | group | square | ring | upload | icon | story | mention', defaultValue: 'initials', description: 'Identity construction.' },
+      { name: 'variant', type: 'image | initials | status | group | square | ring | upload | icon | story | mention', defaultValue: 'image', description: 'Identity construction. image is photographic by default.' },
       { name: 'name', type: 'string', defaultValue: 'Ada Klein', description: 'Used for initials and the mention label.' },
+      { name: 'src', type: 'string', description: 'Portrait URL. Defaults to a bundled original.' },
     ],
     Demo: AvatarDemo,
   },

@@ -1,6 +1,7 @@
 'use client'
 
 import { type ReactNode } from 'react'
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 import { EXTRA_HERO, ExtraHero, type ExtraHeroVariant } from './hero-extra.tsx'
 
@@ -21,6 +22,16 @@ const CORE_HERO = [
 
 const VARIANTS = [...CORE_HERO, ...EXTRA_HERO] as const
 
+const marks = [
+  { name: 'Kite', src: media.marks.kite },
+  { name: 'Solum', src: media.marks.solum },
+  { name: 'Nimbus', src: media.marks.nimbus },
+  { name: 'Vale', src: media.marks.vale },
+  { name: 'Orbit', src: media.marks.orbit },
+] as const
+
+const waitlistFaces = [media.people.anitha, media.people.kiran, media.people.meera, media.people.suresh]
+
 export type HeroVariant = (typeof VARIANTS)[number]
 
 export interface HeroProps {
@@ -29,6 +40,10 @@ export interface HeroProps {
   description?: ReactNode
   actions?: ReactNode
   media?: ReactNode
+  image?: string
+  video?: string
+  poster?: string
+  lottie?: string
   variant?: HeroVariant
   align?: 'center' | 'split'
   className?: string
@@ -42,14 +57,20 @@ export interface HeroProps {
 
 /**
  * Hero
- * Thirty marketing pages. Copy this file, `hero-extra.tsx`, and `src/lib/utils.ts`.
+ * Thirty marketing pages. Media is first-class: pass `image`, `video`,
+ * `poster`, `lottie`, or `media` children. Defaults are bundled originals.
+ * Copy this file, `hero-extra.tsx`, `src/lib/media.tsx`, `src/lib/utils.ts`, and `public/media`.
  */
 export function Hero({
   eyebrow,
   title,
   description,
   actions,
-  media,
+  media: mediaSlot,
+  image,
+  video,
+  poster,
+  lottie,
   variant,
   align = 'center',
   className,
@@ -69,7 +90,11 @@ export function Hero({
         title={title}
         description={description}
         actions={actions}
-        media={media}
+        media={mediaSlot}
+        image={image}
+        video={video}
+        poster={poster}
+        lottie={lottie}
         className={className}
         eyebrowClassName={eyebrowClassName}
         titleClassName={titleClassName}
@@ -101,14 +126,16 @@ export function Hero({
               <div><dt className="text-nx-faint">Copy time</dt><dd className="font-medium">12s</dd></div>
             </dl>
           </div>
-          <div className={cn('rounded-2xl border border-nx-border bg-nx-card p-3 shadow-[var(--nx-shadow)]', mediaClassName)}>
+          <div className={cn('overflow-hidden rounded-2xl border border-nx-border bg-nx-card p-3 shadow-[var(--nx-shadow)]', mediaClassName)}>
             <div className="mb-3 flex items-center gap-2">
               <span className="size-2.5 rounded-full bg-[#ff5f57]" />
               <span className="size-2.5 rounded-full bg-[#febc2e]" />
               <span className="size-2.5 rounded-full bg-[#28c840]" />
-              <span className="ml-2 font-mono text-[11px] text-nx-faint">nexara.app/library</span>
+              <span className="ml-2 font-mono text-[11px] text-nx-faint">harbor.studio/library</span>
             </div>
-            <div className="min-h-48 rounded-xl bg-nx-bg p-4">{media ?? <ProductWindow />}</div>
+            <MediaFrame src={image ?? media.device} video={video} poster={poster} lottie={lottie} alt="Product still" className="min-h-48 rounded-xl">
+              {mediaSlot}
+            </MediaFrame>
           </div>
         </div>
       ) : null}
@@ -126,18 +153,18 @@ export function Hero({
             </div>
           </div>
           <div className={cn('flex items-end justify-center gap-4', mediaClassName)}>
-            <Phone compact />
-            <Phone />
+            <Phone src={image ?? media.device} compact />
+            <Phone src={image ?? media.featured} />
           </div>
         </div>
       ) : null}
 
       {layout === 'cinema' ? (
         <div className="relative mx-auto min-h-[24rem] max-w-6xl overflow-hidden rounded-[1.8rem]">
-          <div className={cn('absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,#4c46e055,transparent_40%),linear-gradient(140deg,#0c0c10,#1a1428_50%,#10241f)]', mediaClassName)}>
-            {media}
-          </div>
-          <div className="absolute inset-0 bg-black/25" />
+          <MediaFrame src={image ?? media.cinema} video={video} poster={poster} lottie={lottie} alt="" className={cn('absolute inset-0', mediaClassName)}>
+            {mediaSlot}
+          </MediaFrame>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/10" />
           <div className="relative z-10 flex min-h-[24rem] flex-col justify-end p-8 md:p-12">
             <Title className={cn(titleClass, 'max-w-xl text-5xl text-white md:text-6xl')}>{title}</Title>
             <div className="mt-3 max-w-lg text-white/75">{lede}</div>
@@ -157,15 +184,18 @@ export function Hero({
           <Title className={cn(titleClass, 'mt-3 text-5xl md:text-6xl')}>{title}</Title>
           <div className="mx-auto mt-4 max-w-xl">{lede}</div>
           <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-5">
-            {['Harbor', 'Atlas', 'Field', 'Lumen', 'North'].map((name) => (
-              <li key={name} className="rounded-xl border border-nx-border bg-nx-card py-3 text-sm font-medium">
-                {name}
+            {marks.map((mark) => (
+              <li key={mark.name} className="overflow-hidden rounded-xl border border-nx-border bg-nx-card">
+                <MediaFrame src={mark.src} alt={mark.name} grain={false} className="h-16" imgClassName="object-contain p-3" />
               </li>
             ))}
           </ul>
           <blockquote className="mx-auto mt-10 max-w-xl text-left">
-            <p className="font-serif text-2xl">“{typeof eyebrow === 'string' ? eyebrow : 'The room finally feels finished.'}”</p>
-            <footer className="mt-2 text-sm text-nx-muted">Ada Klein, Harbor</footer>
+            <p className="font-serif text-2xl">“The room finally feels finished.”</p>
+            <footer className="mt-2 flex items-center gap-3 text-sm text-nx-muted">
+              <MediaFrame src={media.people.anitha} alt="Ada Klein" grain={false} className="size-9 rounded-full" />
+              Ada Klein, Harbor
+            </footer>
           </blockquote>
           <div className={cn('mt-6 flex justify-center', actionsClassName)}>{actions}</div>
         </div>
@@ -178,15 +208,18 @@ export function Hero({
             <Title className={cn(titleClass, 'mt-3 text-5xl')}>{title}</Title>
             <div className="mt-4">{lede}</div>
           </div>
-          <div className="rounded-[1.6rem] border border-nx-border bg-nx-card p-6 shadow-[var(--nx-shadow)]">
-            <p className="text-sm text-nx-muted">Studio</p>
-            <p className="mt-2 font-serif text-5xl">$48<span className="text-lg text-nx-muted">/mo</span></p>
-            <ul className="mt-5 space-y-2 text-sm text-nx-muted">
-              <li>Unlimited rooms</li>
-              <li>Shared libraries</li>
-              <li>Priority export</li>
-            </ul>
-            <div className={cn('mt-6', actionsClassName)}>{actions}</div>
+          <div className="overflow-hidden rounded-[1.6rem] border border-nx-border bg-nx-card shadow-[var(--nx-shadow)]">
+            <MediaFrame src={image ?? media.glass} alt="" className="h-28" />
+            <div className="p-6">
+              <p className="text-sm text-nx-muted">Studio</p>
+              <p className="mt-2 font-serif text-5xl">$48<span className="text-lg text-nx-muted">/mo</span></p>
+              <ul className="mt-5 space-y-2 text-sm text-nx-muted">
+                <li>Unlimited rooms</li>
+                <li>Shared libraries</li>
+                <li>Priority export</li>
+              </ul>
+              <div className={cn('mt-6', actionsClassName)}>{actions}</div>
+            </div>
           </div>
         </div>
       ) : null}
@@ -200,6 +233,7 @@ export function Hero({
           <Title className={cn(titleClass, 'py-10 text-6xl leading-[0.88] md:text-8xl')}>{title}</Title>
           <div className="grid gap-6 border-t border-nx-line pt-6 md:grid-cols-[1.4fr_0.6fr]">
             <div>{lede}</div>
+            <MediaFrame src={image ?? media.featured} alt="" className="h-32 rounded-2xl" />
             <div className={actionsClassName}>{actions}</div>
           </div>
         </div>
@@ -207,9 +241,9 @@ export function Hero({
 
       {layout === 'shop' ? (
         <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2">
-          <div className={cn('flex min-h-72 items-center justify-center rounded-[1.6rem] bg-[radial-gradient(circle_at_30%_20%,#ddd9ff,transparent_42%),linear-gradient(160deg,#f3f1ea,#e4ddd0)]', mediaClassName)}>
-            {media ?? <span className="h-40 w-16 rounded-full bg-[linear-gradient(180deg,#f7f2ea,#b9aa94)] shadow-2xl" />}
-          </div>
+          <MediaFrame src={image ?? media.lamp} video={video} poster={poster} lottie={lottie} alt="Lamp 04" className={cn('min-h-72 rounded-[1.6rem]', mediaClassName)}>
+            {mediaSlot}
+          </MediaFrame>
           <div>
             <p className={cn('text-xs tracking-[0.18em] text-nx-accent uppercase', eyebrowClassName)}>{eyebrow ?? 'In stock'}</p>
             <Title className={cn(titleClass, 'mt-2 text-5xl')}>{title}</Title>
@@ -226,19 +260,23 @@ export function Hero({
       ) : null}
 
       {layout === 'event' ? (
-        <div className="mx-auto max-w-4xl text-center">
-          <p className={cn('text-xs tracking-[0.22em] text-nx-accent uppercase', eyebrowClassName)}>{eyebrow ?? '12 Nov · Harbor Hall'}</p>
-          <Title className={cn(titleClass, 'mt-4 text-5xl md:text-7xl')}>{title}</Title>
-          <div className="mx-auto mt-4 max-w-lg">{lede}</div>
-          <div className="mt-8 grid grid-cols-4 gap-2">
-            {[['12', 'Days'], ['04', 'Hours'], ['18', 'Min'], ['09', 'Sec']].map(([value, unit]) => (
-              <div key={unit} className="rounded-2xl border border-nx-border bg-nx-card py-4">
-                <p className="font-serif text-3xl">{value}</p>
-                <p className="text-[10px] tracking-[0.16em] text-nx-muted uppercase">{unit}</p>
-              </div>
-            ))}
+        <div className="relative mx-auto max-w-4xl overflow-hidden rounded-[1.8rem] px-6 py-16 text-center text-white">
+          <MediaFrame src={image ?? media.sports} alt="" className="absolute inset-0" />
+          <div className="absolute inset-0 bg-black/55" />
+          <div className="relative">
+            <p className={cn('text-xs tracking-[0.22em] text-[#c8ff4d] uppercase', eyebrowClassName)}>{eyebrow ?? '12 Nov · Harbor Hall'}</p>
+            <Title className={cn(titleClass, 'mt-4 text-5xl text-white md:text-7xl')}>{title}</Title>
+            <div className="mx-auto mt-4 max-w-lg text-white/75">{lede}</div>
+            <div className="mt-8 grid grid-cols-4 gap-2">
+              {[['12', 'Days'], ['04', 'Hours'], ['18', 'Min'], ['09', 'Sec']].map(([value, unit]) => (
+                <div key={unit} className="rounded-2xl border border-white/15 bg-white/8 py-4 backdrop-blur-md">
+                  <p className="font-serif text-3xl">{value}</p>
+                  <p className="text-[10px] tracking-[0.16em] text-white/65 uppercase">{unit}</p>
+                </div>
+              ))}
+            </div>
+            <div className={cn('mt-8 flex justify-center', actionsClassName)}>{actions}</div>
           </div>
-          <div className={cn('mt-8 flex justify-center', actionsClassName)}>{actions}</div>
         </div>
       ) : null}
 
@@ -258,7 +296,7 @@ export function Hero({
       {layout === 'product' ? (
         <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[14rem_minmax(0,1fr)]">
           <aside className="rounded-3xl border border-nx-border bg-nx-card p-4">
-            <p className="text-sm font-medium">{eyebrow ?? 'Nexara'}</p>
+            <p className="text-sm font-medium">{eyebrow ?? 'Harbor'}</p>
             <ul className="mt-4 space-y-1 text-sm text-nx-muted">
               <li className="rounded-xl bg-nx-soft px-3 py-2 text-nx-fg">Overview</li>
               <li className="px-3 py-2">Rooms</li>
@@ -269,11 +307,11 @@ export function Hero({
             <Title className={cn(titleClass, 'text-4xl md:text-5xl')}>{title}</Title>
             <div className="mt-3 max-w-xl">{lede}</div>
             <div className={cn('mt-6 grid gap-3 sm:grid-cols-3', mediaClassName)}>
-              {media ?? (
+              {mediaSlot ?? (
                 <>
-                  <Stat label="Open" value="24" />
-                  <Stat label="Shipped" value="128" />
-                  <Stat label="Queue" value="6" />
+                  <Stat label="Open" value="24" src={media.cases.build} />
+                  <Stat label="Shipped" value="128" src={media.cases.farm} />
+                  <Stat label="Queue" value="6" src={media.cases.lab} />
                 </>
               )}
             </div>
@@ -284,9 +322,16 @@ export function Hero({
 
       {layout === 'journal' ? (
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.85fr_1.15fr]">
-          <div className={cn('min-h-72 bg-nx-fg p-6 text-nx-bg', mediaClassName)}>
-            <p className="text-xs tracking-[0.2em] uppercase">Issue 18</p>
-            {media ?? <p className="mt-20 font-serif text-6xl leading-none">Cover</p>}
+          <div className={cn('relative min-h-72 overflow-hidden', mediaClassName)}>
+            <MediaFrame src={image ?? media.featured} video={video} poster={poster} lottie={lottie} alt="Issue cover" className="absolute inset-0">
+              {mediaSlot}
+            </MediaFrame>
+            {mediaSlot ? null : (
+              <div className="absolute inset-0 flex flex-col justify-between p-6 text-white">
+                <p className="text-xs tracking-[0.2em] uppercase">Issue 18</p>
+                <p className="font-serif text-6xl leading-none">Cover</p>
+              </div>
+            )}
           </div>
           <div className="flex flex-col justify-end">
             <p className={cn('text-xs tracking-[0.22em] text-nx-accent uppercase', eyebrowClassName)}>{eyebrow ?? 'The journal'}</p>
@@ -300,10 +345,8 @@ export function Hero({
       {layout === 'waitlist' ? (
         <div className="mx-auto max-w-xl text-center">
           <div className="mb-4 flex justify-center -space-x-2">
-            {['AK', 'JR', 'MC', 'EP'].map((initials, index) => (
-              <span key={initials} className="inline-flex size-9 items-center justify-center rounded-full border-2 border-nx-bg bg-nx-soft text-[11px] font-medium" style={{ zIndex: 4 - index }}>
-                {initials}
-              </span>
+            {waitlistFaces.map((src) => (
+              <MediaFrame key={src} src={src} alt="" grain={false} className="size-10 rounded-full border-2 border-nx-bg" />
             ))}
           </div>
           <p className={cn('text-xs tracking-[0.18em] text-nx-muted uppercase', eyebrowClassName)}>{eyebrow ?? '2,400 already in'}</p>
@@ -321,33 +364,10 @@ export function Hero({
   )
 }
 
-function ProductWindow() {
+function Phone({ src, compact = false }: { src: string; compact?: boolean }) {
   return (
-    <div className="grid h-40 grid-cols-3 gap-2">
-      <div className="col-span-2 rounded-lg border border-nx-border bg-nx-card p-3">
-        <p className="text-[11px] text-nx-muted">Uptime</p>
-        <p className="font-serif text-3xl">99.98</p>
-      </div>
-      <div className="rounded-lg bg-nx-accent/90 p-3 text-nx-accent-fg">
-        <p className="text-[11px] opacity-80">Queue</p>
-        <p className="font-serif text-3xl">6</p>
-      </div>
-      <div className="rounded-lg border border-nx-border bg-nx-card" />
-      <div className="col-span-2 rounded-lg border border-nx-border bg-nx-elevated" />
-    </div>
-  )
-}
-
-function Phone({ compact = false }: { compact?: boolean }) {
-  return (
-    <div className={cn('w-28 rounded-[1.6rem] border border-nx-border bg-[#111113] p-2 shadow-[var(--nx-shadow)]', compact ? 'h-44' : 'h-52')}>
-      <div className="flex h-full flex-col rounded-[1.15rem] bg-[#16161a] p-3">
-        <span className="mx-auto mb-3 h-1 w-8 rounded-full bg-white/20" />
-        <span className="h-16 rounded-xl bg-[linear-gradient(135deg,#4c46e0,#22c5b0)]" />
-        <span className="mt-3 h-2 w-16 rounded bg-white/20" />
-        <span className="mt-2 h-2 w-12 rounded bg-white/10" />
-        <span className="mt-auto h-8 rounded-lg bg-white/10" />
-      </div>
+    <div className={cn('w-28 overflow-hidden rounded-[1.6rem] border border-nx-border bg-[#111113] p-2 shadow-[var(--nx-shadow)]', compact ? 'h-44' : 'h-52')}>
+      <MediaFrame src={src} alt="" className="h-full rounded-[1.15rem]" />
     </div>
   )
 }
@@ -361,11 +381,14 @@ function StoreBadge({ store }: { store: string }) {
   )
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+function Stat({ label, value, src }: { label: string; value: string; src: string }) {
   return (
-    <div className="rounded-2xl border border-nx-border bg-nx-card p-4">
-      <p className="text-xs text-nx-muted">{label}</p>
-      <p className="font-serif text-3xl">{value}</p>
+    <div className="overflow-hidden rounded-2xl border border-nx-border bg-nx-card">
+      <MediaFrame src={src} alt="" className="h-16" />
+      <div className="p-4">
+        <p className="text-xs text-nx-muted">{label}</p>
+        <p className="font-serif text-3xl">{value}</p>
+      </div>
     </div>
   )
 }

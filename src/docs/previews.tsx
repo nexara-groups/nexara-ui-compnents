@@ -93,12 +93,12 @@ function heroCopy(id: string) {
     product: { eyebrow: 'This week', title: 'Twenty-four rooms open', description: 'App chrome, a sidebar, and three metric tiles.', action: 'Open overview' },
     journal: { eyebrow: 'The journal', title: 'Issue 18', description: 'A magazine cover beside the feature.', action: 'Read the issue' },
     waitlist: { eyebrow: '2,400 already in', title: 'Ask for a seat', description: 'Avatars, a count, and an email field.', action: 'Join' },
-    'ac-remote': { eyebrow: 'Hyderabad · Vizag', title: 'Cooling that stays commissioned.', description: 'Power, temperature, mode, and fan on a live remote bar.', action: 'Ask for a plant walk' },
-    divisions: { eyebrow: 'The premise', title: 'One core. Three forces.', description: 'Academy, Labs, and Marketing under one roof.', action: 'Meet the desk' },
-    'four-doors': { eyebrow: 'Rise Medical Hub', title: 'Four doors, one floor.', description: 'EECP, diagnostics, pharmacy, OPD.', action: 'Book a chair' },
-    wordmark: { eyebrow: 'An engineering company', title: 'NEXARA', description: 'Giant inverted wordmark, lime on night.', action: 'Write the brief' },
-    clinic: { eyebrow: 'EECP · Madhurawada', title: 'Heart care, considered.', description: 'Sixteen specialists. The file is read first.', action: 'Request a slot' },
-    sports: { eyebrow: 'APRSA · RSFI', title: 'A season you can stand on.', description: 'Skaters, clubs, coaches, and a medal book.', action: 'See the championships' },
+    'ac-remote': { eyebrow: 'Harbor Climate', title: 'Cooling that stays commissioned.', description: 'Power, temperature, mode, and fan on a live remote bar.', action: 'Ask for a plant walk' },
+    divisions: { eyebrow: 'The premise', title: 'One core. Three forces.', description: 'Academy, Labs, and Studio under one roof.', action: 'Meet the desk' },
+    'four-doors': { eyebrow: 'Lumen Care', title: 'Four doors, one floor.', description: 'Therapy, consult, pharmacy, lab.', action: 'Book a chair' },
+    wordmark: { eyebrow: 'A studio in the dark', title: 'NORTH', description: 'Giant inverted wordmark on a night field.', action: 'Write the brief' },
+    clinic: { eyebrow: 'Private care', title: 'Heart care, considered.', description: 'Sixteen specialists. The file is read first.', action: 'Request a slot' },
+    sports: { eyebrow: 'Field Athletics', title: 'A season you can stand on.', description: 'Athletes, clubs, coaches, and a medal book.', action: 'See the championships' },
     editorial: { eyebrow: 'Collage', title: 'We grow engineers.', description: 'Open type closed by a picture grid.', action: 'Join the room' },
     fan: { eyebrow: 'Lookbook', title: 'Three cuts of the same room.', description: 'A fan of cards under the title.', action: 'Browse' },
     'glass-fold': { eyebrow: 'After dark', title: 'The desk after dark.', description: 'A frosted plate on a dusk field.', action: 'Enter' },
@@ -110,7 +110,7 @@ function heroCopy(id: string) {
     liquid: { eyebrow: 'Wash', title: 'The room dissolves.', description: 'Soft orbs behind the title.', action: 'Continue' },
     tilted: { eyebrow: 'Grid', title: 'A floor you can tilt.', description: 'Perspective tiles under the pitch.', action: 'Tilt' },
     enterprise: { eyebrow: 'SOC 2 · SSO', title: 'The desk that passes review.', description: 'Dual CTA for security teams.', action: 'Talk to us' },
-    featured: { eyebrow: 'Featured', title: 'Sai Nirmaan, quoted in a day.', description: 'A featured project beside the pitch.', action: 'Read the case' },
+    featured: { eyebrow: 'Featured', title: 'Wren Build, quoted in a day.', description: 'A featured project beside the pitch.', action: 'Read the case' },
   }
   return map[id] ?? map.saas!
 }

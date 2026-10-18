@@ -49,12 +49,12 @@ function entry(
 }
 
 export const catalogMore: ReturnType<typeof entry>[] = [
-  entry('stats', 'Stats', 'Sections', 'Count-up figures from Sri, Rise, and VDRSA.', 'countup | ribbon | ticker | year | split | dark | sports | clinic | stacked | compare | mosaic | live', StatsDemo),
+  entry('stats', 'Stats', 'Sections', 'Count-up figures for climate, care, and sport desks.', 'countup | ribbon | ticker | year | split | dark | sports | clinic | stacked | compare | mosaic | live', StatsDemo),
   entry('countdown', 'Countdown', 'Sections', 'Event, race, exam, and launch clocks.', 'event | flip | circular | inline | poster | race | exam | launch | match | ribbon | minimal | analog', CountdownDemo),
   entry('leaderboard', 'Leaderboard', 'Sections', 'Medal tallies, podiums, and club points.', 'medals | table | podium | clubs | tally | heat | compact | nation | age | live | points | disciplines', LeaderboardDemo),
   entry('case-study', 'Case Study', 'Sections', 'Tabbed client carousel and twelve case anatomies.', 'tabs | autoplay | stack | film | split | mosaic | quote | before | logo | index | featured | reel', CaseStudyDemo),
   entry('services', 'Services', 'Sections', 'HVAC checklists, four crews, clinic doors, why-us.', 'checklist | four-crews | doors | cards | numbered | icons | rows | hover | compact | partner | why | disciplines', ServicesDemo),
-  entry('process', 'Process', 'Sections', 'Written Nexara steps and Rise three-step rhythm.', 'written | three | timeline | numbered | rail | cards | brief | weekly | handover | rhythm | checklist | filmstrip', ProcessDemo),
+  entry('process', 'Process', 'Sections', 'Written studio steps and a three-step clinic rhythm.', 'written | three | timeline | numbered | rail | cards | brief | weekly | handover | rhythm | checklist | filmstrip', ProcessDemo),
   entry('team', 'Team', 'Sections', 'Doctors, crews, faculty, and coaches.', 'doctors | grid | featured | list | crew | faculty | coaches | circle | directory | compact | editorial | hours', TeamDemo),
   entry('contact', 'Contact', 'Sections', 'Branches, maps, appointment, and emergency desk.', 'branches | map | appointment | split | offices | hours | form | directions | emergency | studio | compact | visit', ContactDemo),
   entry('cta-band', 'Cta Band', 'Sections', 'Closing bands for clinic, studio, plant, and events.', 'appointment | lime | split | dark | form | store | partner | waitlist | quote | emergency | studio | event', CtaBandDemo),

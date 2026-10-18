@@ -26,11 +26,11 @@ export interface DataTableProps {
 }
 
 const rows = [
-  { name: 'Sai Nirmaan', kind: 'Lead', status: 'Open', amount: '₹2.4 L', owner: 'Latha' },
-  { name: 'Ravi Teja', kind: 'Patient', status: 'EECP', amount: '—', owner: 'Dr. Rao' },
-  { name: 'Vizag Indoor', kind: 'Event', status: 'Booked', amount: '—', owner: 'Coach V' },
+  { name: 'Wren Build', kind: 'Lead', status: 'Open', amount: '₹2.4 L', owner: 'Latha' },
+  { name: 'Ada Klein', kind: 'Patient', status: 'Therapy', amount: '—', owner: 'Dr. Rao' },
+  { name: 'Harbor Hall', kind: 'Event', status: 'Booked', amount: '—', owner: 'Coach V' },
   { name: 'VRF Bay 04', kind: 'Job', status: 'Commission', amount: '₹18 L', owner: 'Suresh' },
-  { name: 'Qualigene Q3', kind: 'Invoice', status: 'Due', amount: '₹86k', owner: 'Finance' },
+  { name: 'Solum Q3', kind: 'Invoice', status: 'Due', amount: '₹86k', owner: 'Finance' },
   { name: 'Ananya Rao', kind: 'Athlete', status: 'Gold', amount: '—', owner: 'Coastal' },
 ]
 
@@ -72,7 +72,7 @@ export function DataTable({ variant = 'filter', className }: DataTableProps) {
               onChange={(event) => setStatus(event.target.value)}
               aria-label="Status"
             >
-              {['All', 'Open', 'Due', 'Booked', 'EECP'].map((item) => (
+              {['All', 'Open', 'Due', 'Booked', 'Therapy'].map((item) => (
                 <option key={item}>{item}</option>
               ))}
             </select>

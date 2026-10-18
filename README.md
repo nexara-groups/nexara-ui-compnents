@@ -1,8 +1,8 @@
 # Nexara UI
 
-Original, copy-paste React components inspired by the kinds of interactions on [21st.dev](https://21st.dev) and the owner's production sites (Nexara, Sri Engineering, Rise Medical Hub, VDRSA): heroes, behavioral buttons, marketing sections, portal chrome, and industry kits.
+Original, copy-paste React components aimed at premium cinematic UI quality: heroes, behavioral buttons, marketing sections, portal chrome, and industry kits. Live sites were used only as a quality bar, not as templates. The catalogue uses fictional brands (Harbor Climate, Lumen Care, Field Athletics, North Studio, Atlas Academy, Solum Lab) and bundled original media.
 
-The code is written for this registry. It is not vendored from 21st, Aceternity, or shadcn. Components are React + TypeScript, styled with Tailwind CSS, and animated with Framer Motion where motion is doing real work. You copy a file into your app and own it.
+The code is written for this registry. It is not vendored from 21st, Aceternity, or shadcn. Components are React + TypeScript, styled with Tailwind CSS, and animated with Framer Motion where motion is doing real work. You copy a file into your app and own it. Heroes, teams, case studies, and logo clouds ship with photographic defaults in `public/media` and first-class `image` / `video` / `lottie` props.
 
 ## For agents
 
@@ -37,7 +37,7 @@ Do not rewrite the component from scratch if it already exists here.
 | Text Reveal | `text-reveal` | `src/components/ui/text-reveal.tsx` | framer-motion |
 | Floating Navbar | `floating-navbar` | `src/components/ui/floating-navbar.tsx` | framer-motion |
 | Modal | `modal` | `src/components/ui/modal.tsx` | framer-motion |
-| Hero (30 models, plus `hero-extra.tsx`) | `hero` | `src/components/ui/hero.tsx` | framer-motion |
+| Hero (30 models, plus `hero-extra.tsx` and `src/lib/media.tsx`) | `hero` | `src/components/ui/hero.tsx` | framer-motion |
 | Marquee | `marquee` | `src/components/ui/marquee.tsx` | — |
 | Input | `input` | `src/components/ui/input.tsx` | — |
 | Tabs | `tabs` | `src/components/ui/tabs.tsx` | — |
@@ -71,7 +71,7 @@ Do not rewrite the component from scratch if it already exists here.
 | Settings panel | `settings-panel` | `src/components/ui/settings-panel.tsx` | — |
 | Industry kit | `kit` | `src/components/ui/kit.tsx` | composed blocks |
 
-Every component also needs `clsx` and `tailwind-merge` through `src/lib/utils.ts`. Each component has at least ten variants, and each variant is a different design, not a recolor or a different hover. The names are on the registry item (`variants[].name`) and on the docs page as `component / variant`. Look up `hero / ac-remote`, `section / stats-countup` as `stats / countup`, `button / toggle`, or `kit / healthcare`. The docs search matches those strings. The docs site has a light/dark toggle. Research notes are in `docs/research/`. Critique notes are in `docs/reviews/`. The scored visual audit is in `docs/audit/`. Owner-site notes are in `docs/research/owner-sites.md`.
+Every component also needs `clsx` and `tailwind-merge` through `src/lib/utils.ts`. Copy `src/lib/media.tsx` and `public/media` with any item that shows a person, product, or brand mark. Each component has at least ten variants, and each variant is a different design, not a recolor or a different hover. The names are on the registry item (`variants[].name`) and on the docs page as `component / variant`. Look up `hero / ac-remote`, `section / stats-countup` as `stats / countup`, `button / toggle`, or `kit / healthcare`. The docs search matches those strings. The docs site has a light/dark toggle. Research notes are in `docs/research/`. Media attribution is in `docs/research/media.md`. Critique notes are in `docs/reviews/`. The scored visual audit is in `docs/audit/`.
 
 ## Live preview
 

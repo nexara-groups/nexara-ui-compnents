@@ -26,17 +26,17 @@ export interface LeaderboardProps {
 
 const rows = [
   { rank: 1, name: 'Ananya Rao', club: 'Coastal Speed', gold: 4, silver: 1, bronze: 0, points: 38, nation: 'IND', age: 'U16' },
-  { rank: 2, name: 'Vikram Setty', club: 'Vizag Rollers', gold: 3, silver: 2, bronze: 1, points: 34, nation: 'IND', age: 'U19' },
-  { rank: 3, name: 'Meera Iyer', club: 'Hyderabad Ice', gold: 2, silver: 2, bronze: 2, points: 28, nation: 'IND', age: 'Open' },
-  { rank: 4, name: 'Rahul Naidu', club: 'Guntur Track', gold: 1, silver: 3, bronze: 1, points: 22, nation: 'IND', age: 'U16' },
-  { rank: 5, name: 'Sana Mir', club: 'Vijayawada Club', gold: 1, silver: 1, bronze: 3, points: 18, nation: 'IND', age: 'U14' },
+  { rank: 2, name: 'Vikram Setty', club: 'Coastal Rollers', gold: 3, silver: 2, bronze: 1, points: 34, nation: 'IND', age: 'U19' },
+  { rank: 3, name: 'Meera Iyer', club: 'Harbor Ice', gold: 2, silver: 2, bronze: 2, points: 28, nation: 'IND', age: 'Open' },
+  { rank: 4, name: 'Rahul Naidu', club: 'North Track', gold: 1, silver: 3, bronze: 1, points: 22, nation: 'IND', age: 'U16' },
+  { rank: 5, name: 'Sana Mir', club: 'Field Club', gold: 1, silver: 1, bronze: 3, points: 18, nation: 'IND', age: 'U14' },
 ]
 
 const clubs = [
   { name: 'Coastal Speed', points: 112 },
-  { name: 'Vizag Rollers', points: 98 },
-  { name: 'Hyderabad Ice', points: 86 },
-  { name: 'Guntur Track', points: 71 },
+  { name: 'Coastal Rollers', points: 98 },
+  { name: 'Harbor Ice', points: 86 },
+  { name: 'North Track', points: 71 },
 ]
 
 const discs = ['Speed 500m', 'Speed 1000m', 'Relay', 'Artistic', 'Inline hockey']

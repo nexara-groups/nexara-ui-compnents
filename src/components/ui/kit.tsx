@@ -46,23 +46,23 @@ export interface KitProps {
 }
 
 const faq = [
-  { id: 'a', title: 'Do you take walk-ins?', content: 'OPD takes walk-ins before noon. EECP is named and booked.' },
-  { id: 'b', title: 'Which brands do you install?', content: 'Voltas, Daikin, Dunham-Bush, and O General, with the dealer on the job.' },
-  { id: 'c', title: 'How do clubs join VDRSA?', content: 'Write the desk. Affiliation is seasonal and named to a coach.' },
+  { id: 'a', title: 'Do you take walk-ins?', content: 'Consults take walk-ins before noon. Therapy chairs are named and booked.' },
+  { id: 'b', title: 'Which partners stay on site?', content: 'Kite, Solum, Nimbus, and Vale, with the partner on the job after handover.' },
+  { id: 'c', title: 'How do clubs join Field Athletics?', content: 'Write the desk. Affiliation is seasonal and named to a coach.' },
 ]
 
 /**
  * Kit
- * Twelve industry pages composed from the section and app blocks.
- * Look up `kit / healthcare`, `kit / hvac`, `kit / sports`.
- * Copy this file plus every imported block and `src/lib/utils.ts`.
+ * Twelve original industry pages composed from the section and app blocks.
+ * Fictional brands only: Lumen Care, Harbor Climate, Field Athletics, North Studio, Atlas Academy, Solum Lab.
+ * Copy this file plus every imported block, `src/lib/media.tsx`, and `public/media`.
  */
 export function Kit({ variant = 'healthcare', className }: KitProps) {
   return (
     <div data-nexara="kit" data-variant={variant} className={cn('space-y-10', className)}>
       {variant === 'healthcare' ? (
         <>
-          <Hero variant="clinic" title="Heart care, considered." description="Sixteen specialists, four doors, one floor in Madhurawada." actions={<Button className="bg-[#f3b4b0] text-[#0b1220]">Book a chair</Button>} />
+          <Hero variant="clinic" title="Heart care, considered." description="Sixteen specialists, four doors, one quiet floor." actions={<Button className="bg-[#f6f1ea] text-[#0b1220]">Book a chair</Button>} />
           <Stats variant="clinic" />
           <Services variant="doors" />
           <Chapters variant="eight" />
@@ -75,7 +75,7 @@ export function Kit({ variant = 'healthcare', className }: KitProps) {
 
       {variant === 'hvac' ? (
         <>
-          <Hero variant="ac-remote" title="Cooling that stays commissioned." description="Hyderabad, Visakhapatnam, Vijayawada. The remote is the brief." actions={<Button>Ask for a plant walk</Button>} />
+          <Hero variant="ac-remote" title="Cooling that stays commissioned." description="Harbor Climate. The remote is the brief." actions={<Button>Ask for a plant walk</Button>} />
           <LogoCloud variant="dealers" />
           <Stats variant="countup" />
           <Services variant="checklist" />
@@ -88,9 +88,9 @@ export function Kit({ variant = 'healthcare', className }: KitProps) {
 
       {variant === 'sports' ? (
         <>
-          <Hero variant="sports" title="A season you can stand on." description="Skaters, clubs, coaches, and a medal book that updates on the night." actions={<Button variant="flow">See the championships</Button>} />
+          <Hero variant="sports" title="A season you can stand on." description="Athletes, clubs, coaches, and a medal book that updates on the night." actions={<Button variant="flow">See the championships</Button>} />
           <Stats variant="sports" />
-          <Countdown variant="event" />
+          <Countdown variant="event" title="Field Night Championships" />
           <Leaderboard variant="medals" />
           <Services variant="disciplines" />
           <News variant="bulletin" />
@@ -100,7 +100,7 @@ export function Kit({ variant = 'healthcare', className }: KitProps) {
 
       {variant === 'association' ? (
         <>
-          <Hero variant="sports" title="VDRSA is the book of the season." description="Affiliation is named to a coach. Medals post the same night." actions={<Button>Write the desk</Button>} />
+          <Hero variant="sports" title="The book of the season." description="Affiliation is named to a coach. Medals post the same night." actions={<Button>Write the desk</Button>} />
           <Team variant="coaches" />
           <Leaderboard variant="clubs" />
           <News variant="digest" />
@@ -110,8 +110,8 @@ export function Kit({ variant = 'healthcare', className }: KitProps) {
 
       {variant === 'events' ? (
         <>
-          <Hero variant="sports" title="State championships, Vizag Indoor." description="Lanes, heats, and a podium that clears before midnight." actions={<Button variant="flow">Reserve a lane</Button>} />
-          <Countdown variant="poster" />
+          <Hero variant="sports" title="Night championships, Harbor Hall." description="Lanes, heats, and a podium that clears before midnight." actions={<Button variant="flow">Reserve a lane</Button>} />
+          <Countdown variant="poster" title="Field Night Championships" />
           <Leaderboard variant="live" />
           <News variant="alert" />
           <CtaBand variant="event" />
@@ -120,7 +120,7 @@ export function Kit({ variant = 'healthcare', className }: KitProps) {
 
       {variant === 'agency' ? (
         <>
-          <Hero variant="wordmark" title="NEXARA" description="An engineering company. Academy, Labs, and Marketing under one roof." actions={<Button variant="swap">Start a brief</Button>} />
+          <Hero variant="wordmark" title="NORTH" description="Academy, Labs, and Studio under one roof." actions={<Button variant="swap">Start a brief</Button>} />
           <Hero variant="divisions" title="One core. Three forces." />
           <CaseStudy variant="tabs" />
           <Process variant="written" />
@@ -143,7 +143,7 @@ export function Kit({ variant = 'healthcare', className }: KitProps) {
 
       {variant === 'academy' ? (
         <>
-          <Hero variant="editorial" title="We grow engineers." description="Cohorts write the brief, ship a weekly demo, and leave with a named lead." actions={<Button>Join the next room</Button>} />
+          <Hero variant="editorial" title="We grow makers." description="Cohorts write the brief, ship a weekly demo, and leave with a named lead." actions={<Button>Join the next room</Button>} />
           <Process variant="written" />
           <Team variant="faculty" />
           <Chapters variant="lesson" />
@@ -170,7 +170,7 @@ export function Kit({ variant = 'healthcare', className }: KitProps) {
 
       {variant === 'pharmacy' ? (
         <>
-          <Hero variant="four-doors" title="Pharmacy without a second queue." description="Cardiac scripts on the same floor as EECP and OPD." />
+          <Hero variant="four-doors" title="Pharmacy without a second queue." description="Scripts on the same floor as therapy and consult." />
           <Services variant="doors" />
           <Contact variant="hours" />
           <CtaBand variant="emergency" />
@@ -179,7 +179,7 @@ export function Kit({ variant = 'healthcare', className }: KitProps) {
 
       {variant === 'dealer' ? (
         <>
-          <Hero variant="split-cards" title="Bring the dealer to the plant." description="The brand that sold the iron stays on the job after handover." />
+          <Hero variant="split-cards" title="Bring the partner to the plant." description="The brand that sold the iron stays on the job after handover." />
           <LogoCloud variant="partner" />
           <Services variant="checklist" />
           <Contact variant="branches" />
@@ -188,7 +188,7 @@ export function Kit({ variant = 'healthcare', className }: KitProps) {
 
       {variant === 'lab' ? (
         <>
-          <Hero variant="device" title="Reports without the waiting room." description="Qualigene and Rise share a desk. The file arrives before the chair." />
+          <Hero variant="device" title="Reports without the waiting room." description="Solum Lab and Lumen Care share a desk. The file arrives before the chair." />
           <Stats variant="ribbon" />
           <News variant="cards" />
           <Contact variant="form" />

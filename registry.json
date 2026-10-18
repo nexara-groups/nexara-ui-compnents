@@ -20,6 +20,10 @@
         {
           "path": "src/lib/utils.ts",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "import { cn, usePrefersReducedMotion } from '@/lib/utils'"
@@ -1372,7 +1376,7 @@
       "name": "hero",
       "type": "registry:ui",
       "title": "Hero",
-      "description": "Thirty marketing page constructions including AC remote, clinic, sports, and 21st.dev anatomies. Variants: saas, app, cinema, logos, pricing, studio, shop, event, search, product, journal, waitlist, ac-remote, divisions, four-doors, wordmark, clinic, sports, editorial, fan, glass-fold, split-cards, device, devtool, fashion, spiral, liquid, tilted, enterprise, featured.",
+      "description": "Thirty marketing page constructions with first-class image, video, and lottie slots. Variants: saas, app, cinema, logos, pricing, studio, shop, event, search, product, journal, waitlist, ac-remote, divisions, four-doors, wordmark, clinic, sports, editorial, fan, glass-fold, split-cards, device, devtool, fashion, spiral, liquid, tilted, enterprise, featured.",
       "categories": [
         "Sections"
       ],
@@ -1392,6 +1396,10 @@
         {
           "path": "src/components/ui/hero-extra.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Hero variant=\"saas\" title=\"Ship the interface\" />",
@@ -1490,7 +1498,7 @@
           "name": "wordmark",
           "title": "Wordmark",
           "description": "Giant inverted brand mast.",
-          "usage": "<Hero variant=\"wordmark\" title=\"NEXARA\" />"
+          "usage": "<Hero variant=\"wordmark\" title=\"NORTH\" />"
         },
         {
           "name": "clinic",
@@ -1574,7 +1582,7 @@
           "name": "featured",
           "title": "Featured",
           "description": "Featured project beside the pitch.",
-          "usage": "<Hero variant=\"featured\" title=\"Sai Nirmaan, quoted in a day.\" />"
+          "usage": "<Hero variant=\"featured\" title=\"Wren Build, quoted in a day.\" />"
         }
       ]
     },
@@ -2131,6 +2139,10 @@
         {
           "path": "src/components/ui/avatar.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Avatar variant=\"image\" />",
@@ -2386,6 +2398,10 @@
         {
           "path": "src/components/ui/testimonials.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Testimonials variant=\"quote\" />",
@@ -2541,7 +2557,7 @@
       "name": "stats",
       "type": "registry:ui",
       "title": "Stats",
-      "description": "Twelve count-up constructions from Sri, Rise, and VDRSA. Variants: countup, ribbon, ticker, year, split, dark, sports, clinic, stacked, compare, mosaic, live.",
+      "description": "Twelve count-up constructions for climate, care, and sport desks. Variants: countup, ribbon, ticker, year, split, dark, sports, clinic, stacked, compare, mosaic, live.",
       "categories": [
         "Sections"
       ],
@@ -2563,7 +2579,7 @@
         {
           "name": "countup",
           "title": "Countup",
-          "description": "Four Sri figures that count up.",
+          "description": "Four climate figures that count up.",
           "usage": "<Stats variant=\"countup\" />"
         },
         {
@@ -2599,13 +2615,13 @@
         {
           "name": "sports",
           "title": "Sports",
-          "description": "VDRSA season KPIs.",
+          "description": "Field Athletics season KPIs.",
           "usage": "<Stats variant=\"sports\" />"
         },
         {
           "name": "clinic",
           "title": "Clinic",
-          "description": "Rise specialist counts.",
+          "description": "Lumen Care specialist counts.",
           "usage": "<Stats variant=\"clinic\" />"
         },
         {
@@ -2617,7 +2633,7 @@
         {
           "name": "compare",
           "title": "Compare",
-          "description": "Before and after EECP.",
+          "description": "Before and after therapy desk.",
           "usage": "<Stats variant=\"compare\" />"
         },
         {
@@ -2847,6 +2863,10 @@
         {
           "path": "src/components/ui/case-study.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<CaseStudy variant=\"tabs\" />",
@@ -2944,6 +2964,10 @@
         {
           "path": "src/components/ui/services.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Services variant=\"checklist\" />",
@@ -3017,7 +3041,7 @@
         {
           "name": "disciplines",
           "title": "Disciplines",
-          "description": "VDRSA sport grid.",
+          "description": "Field Athletics sport grid.",
           "usage": "<Services variant=\"disciplines\" />"
         }
       ]
@@ -3054,7 +3078,7 @@
         {
           "name": "three",
           "title": "Three",
-          "description": "Rise three-step rhythm.",
+          "description": "Three-step clinic rhythm.",
           "usage": "<Process variant=\"three\" />"
         },
         {
@@ -3138,6 +3162,10 @@
         {
           "path": "src/components/ui/team.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Team variant=\"doctors\" />",
@@ -3181,7 +3209,7 @@
         {
           "name": "coaches",
           "title": "Coaches",
-          "description": "VDRSA bench.",
+          "description": "Field Athletics bench.",
           "usage": "<Team variant=\"coaches\" />"
         },
         {
@@ -3235,6 +3263,10 @@
         {
           "path": "src/components/ui/contact.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Contact variant=\"branches\" />",
@@ -3526,6 +3558,10 @@
         {
           "path": "src/components/ui/news.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<News variant=\"bulletin\" />",
@@ -3623,6 +3659,10 @@
         {
           "path": "src/components/ui/logo-cloud.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<LogoCloud variant=\"dealers\" />",
@@ -3672,7 +3712,7 @@
         {
           "name": "clients",
           "title": "Clients",
-          "description": "Nexara client names.",
+          "description": "Original partner marks.",
           "usage": "<LogoCloud variant=\"clients\" />"
         },
         {
@@ -3769,7 +3809,7 @@
         {
           "name": "sports",
           "title": "Sports",
-          "description": "VDRSA OS chrome.",
+          "description": "Field OS chrome.",
           "usage": "<AppShell variant=\"sports\" />"
         },
         {
@@ -4524,25 +4564,25 @@
         {
           "name": "healthcare",
           "title": "Healthcare",
-          "description": "Rise clinic page.",
+          "description": "Lumen Care clinic page.",
           "usage": "<Kit variant=\"healthcare\" />"
         },
         {
           "name": "hvac",
           "title": "Hvac",
-          "description": "Sri Engineering page.",
+          "description": "Harbor Climate page.",
           "usage": "<Kit variant=\"hvac\" />"
         },
         {
           "name": "sports",
           "title": "Sports",
-          "description": "VDRSA association page.",
+          "description": "Field Athletics page.",
           "usage": "<Kit variant=\"sports\" />"
         },
         {
           "name": "agency",
           "title": "Agency",
-          "description": "Nexara studio page.",
+          "description": "North Studio page.",
           "usage": "<Kit variant=\"agency\" />"
         },
         {

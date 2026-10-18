@@ -27,8 +27,8 @@ export interface StatsProps {
 
 type Stat = { value: number; label: string; prefix?: string; suffix?: string; note?: string; decimals?: number }
 
-const sri: Stat[] = [
-  { value: 2018, label: 'Founded in', note: 'Hyderabad' },
+const plant: Stat[] = [
+  { value: 2018, label: 'Founded in', note: 'Harbor Climate' },
   { value: 20, label: 'Projects delivered', suffix: '+' },
   { value: 846, label: 'Work booked', prefix: '₹', suffix: ' Cr', decimals: 2 },
   { value: 48, label: 'People on crew', suffix: '+' },
@@ -44,31 +44,31 @@ const sports: Stat[] = [
 const clinic: Stat[] = [
   { value: 16, label: 'Specialists' },
   { value: 11, label: 'Departments' },
-  { value: 35, label: 'EECP sessions / week' },
+  { value: 35, label: 'Therapy sessions / week' },
   { value: 24, label: 'Hour desk', suffix: 'h' },
 ]
 
 /**
  * Stats
- * Twelve count-up constructions studied from Sri, Rise, and VDRSA.
+ * Twelve count-up constructions for climate, care, and sport desks.
  * Copy this file plus `src/lib/utils.ts`.
  */
 export function Stats({ variant = 'countup', className }: StatsProps) {
   return (
     <section data-nexara="stats" data-variant={variant} className={cn('w-full', className)}>
-      {variant === 'countup' ? <Grid items={sri} /> : null}
+      {variant === 'countup' ? <Grid items={plant} /> : null}
       {variant === 'ribbon' ? <Ribbon items={clinic} /> : null}
       {variant === 'ticker' ? <Ticker items={sports} /> : null}
       {variant === 'year' ? <Year /> : null}
       {variant === 'split' ? <Split /> : null}
       {variant === 'dark' ? (
         <div className="rounded-[1.6rem] bg-[#111113] px-6 py-10 text-white">
-          <Grid items={sri} invert />
+          <Grid items={plant} invert />
         </div>
       ) : null}
-      {variant === 'sports' ? <Grid items={sports} kicker="VDRSA season" /> : null}
-      {variant === 'clinic' ? <Grid items={clinic} kicker="Rise Medical Hub" /> : null}
-      {variant === 'stacked' ? <Stacked items={sri} /> : null}
+      {variant === 'sports' ? <Grid items={sports} kicker="Field Athletics season" /> : null}
+      {variant === 'clinic' ? <Grid items={clinic} kicker="Lumen Care" /> : null}
+      {variant === 'stacked' ? <Stacked items={plant} /> : null}
       {variant === 'compare' ? <Compare /> : null}
       {variant === 'mosaic' ? <Mosaic items={sports} /> : null}
       {variant === 'live' ? <Live items={clinic} /> : null}
@@ -150,12 +150,13 @@ function Ticker({ items }: { items: Stat[] }) {
 }
 
 function Year() {
-  const year = useCountUp(2018)
+  const { ref, active } = useInView()
+  const year = useCountUp(2018, 1400, active)
   return (
-    <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+    <div ref={ref as never} className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
       <p className="font-serif text-[12vw] leading-none md:text-8xl">{year}</p>
       <p className="max-w-sm text-sm leading-6 text-nx-muted">
-        Sri Engineering Works opened the first plant in Hyderabad. The count is the year, not a vanity metric.
+        Harbor Climate opened the first plant in 2018. The count is the year, not a vanity metric.
       </p>
     </div>
   )
@@ -164,9 +165,9 @@ function Year() {
 function Split() {
   return (
     <div className="grid gap-8 border-t border-nx-line pt-8 md:grid-cols-2">
-      <Figure item={sri[2]!} />
+      <Figure item={plant[2]!} />
       <p className="self-end text-sm leading-6 text-nx-muted">
-        Booked HVAC work across Visakhapatnam, Vijayawada, and Hyderabad. The rupee figure counts up on first view.
+        Booked climate work across three coastal plants. The rupee figure counts up on first view.
       </p>
     </div>
   )
@@ -186,12 +187,13 @@ function Stacked({ items }: { items: Stat[] }) {
 }
 
 function Compare() {
-  const before = useCountUp(12)
-  const after = useCountUp(35)
+  const { ref, active } = useInView()
+  const before = useCountUp(12, 1400, active)
+  const after = useCountUp(35, 1400, active)
   return (
-    <div className="grid gap-4 md:grid-cols-2">
+    <div ref={ref as never} className="grid gap-4 md:grid-cols-2">
       <article className="rounded-[1.4rem] border border-nx-border p-6">
-        <p className="text-[11px] tracking-[0.18em] text-nx-faint uppercase">Before EECP desk</p>
+        <p className="text-[11px] tracking-[0.18em] text-nx-faint uppercase">Before therapy desk</p>
         <p className="mt-3 font-serif text-5xl">{before}</p>
         <p className="mt-2 text-sm text-nx-muted">Weekly sessions</p>
       </article>

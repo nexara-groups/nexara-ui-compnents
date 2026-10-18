@@ -26,9 +26,9 @@ export interface KanbanBoardProps {
 
 const boards: Record<string, Array<[string, string[]]>> = {
   agency: [
-    ['Brief', ['Sai Nirmaan quote', 'Happy Farms store']],
-    ['Build', ['Sri remote hero', 'Rise chapters']],
-    ['Review', ['VDRSA medals', 'Qualigene portal']],
+    ['Brief', ['Wren Build quote', 'Grove Farms store']],
+    ['Build', ['Harbor remote hero', 'Lumen chapters']],
+    ['Review', ['Field medals', 'Solum portal']],
   ],
   jobs: [
     ['Design', ['VRF Bay 04', 'Chiller block B']],
@@ -37,7 +37,7 @@ const boards: Record<string, Array<[string, string[]]>> = {
   ],
   care: [
     ['Arrive', ['Ravi Teja · 09:20']],
-    ['Chair', ['EECP 3 · Anitha']],
+    ['Chair', ['Therapy 3 · Anitha']],
     ['Pharmacy', ['Script waiting']],
   ],
   events: [
