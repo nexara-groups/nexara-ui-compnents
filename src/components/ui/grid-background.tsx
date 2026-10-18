@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { type PointerEvent, type ReactNode } from 'react'
 import { cn } from '@/lib/utils.ts'
 
@@ -16,6 +18,10 @@ const VARIANTS = [
   'topo',
   'diagonal',
   'fade',
+  'perspective-fly',
+  'circuit-draw',
+  'topo-pulse',
+  'hex-orbit',
 ] as const
 
 export type GridVariant = (typeof VARIANTS)[number]
@@ -35,7 +41,7 @@ export interface GridBackgroundProps {
  * GridBackground
  * Twelve surfaces. Copy this file plus `src/lib/utils.ts`.
  */
-export function GridBackground({
+function GridBackgroundCore({
   children,
   className,
   contentClassName,
@@ -132,4 +138,20 @@ function pattern(variant: GridVariant, size: number, color?: string) {
     return `linear-gradient(${line} 1px, transparent 1px), linear-gradient(90deg, ${line} 1px, transparent 1px)`
   }
   return `linear-gradient(${line} 1px, transparent 1px), linear-gradient(90deg, ${line} 1px, transparent 1px)`
+}
+
+export function GridBackground(props: GridBackgroundProps) {
+  if (isWowVariant('grid-background', props.variant)) {
+    return (
+      <WowSignature
+        family="grid-background"
+        variant={props.variant!}
+        className={props.className}
+        
+      >
+      {props.children}
+    </WowSignature>
+    )
+  }
+  return <GridBackgroundCore {...props} />
 }

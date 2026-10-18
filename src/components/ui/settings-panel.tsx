@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useState } from 'react'
 import { MediaFrame, faces } from '@/lib/media.tsx'
 import { cn, fieldBorder, focusRing } from '@/lib/utils.ts'
@@ -17,6 +19,10 @@ const VARIANTS = [
   'compact',
   'danger',
   'integrations',
+  'morph-sections',
+  'liquid-toggle',
+  'path-security',
+  'glare-profile',
 ] as const
 
 export type SettingsPanelVariant = (typeof VARIANTS)[number]
@@ -31,7 +37,7 @@ export interface SettingsPanelProps {
  * Twelve settings constructions for Agency OS and clinic desks.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function SettingsPanel({ variant = 'profile', className }: SettingsPanelProps) {
+function SettingsPanelCore({ variant = 'profile', className }: SettingsPanelProps) {
   const [on, setOn] = useState(true)
 
   return (
@@ -160,4 +166,18 @@ export function SettingsPanel({ variant = 'profile', className }: SettingsPanelP
       ) : null}
     </section>
   )
+}
+
+export function SettingsPanel(props: SettingsPanelProps) {
+  if (isWowVariant('settings-panel', props.variant)) {
+    return (
+      <WowSignature
+        family="settings-panel"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <SettingsPanelCore {...props} />
 }

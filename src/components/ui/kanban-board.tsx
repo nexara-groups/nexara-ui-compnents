@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { cn } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -15,6 +17,10 @@ const VARIANTS = [
   'wip',
   'simple',
   'review',
+  'spring-toss',
+  'glare-cards',
+  'orbit-wip',
+  'particle-lane',
 ] as const
 
 export type KanbanBoardVariant = (typeof VARIANTS)[number]
@@ -52,7 +58,7 @@ const boards: Record<string, Array<[string, string[]]>> = {
  * Twelve boards for agency, plant jobs, clinic flow, and race days.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function KanbanBoard({ variant = 'agency', className }: KanbanBoardProps) {
+function KanbanBoardCore({ variant = 'agency', className }: KanbanBoardProps) {
   const columns = boards[variant] ?? boards.agency!
   const tight = variant === 'compact' || variant === 'simple'
 
@@ -80,4 +86,18 @@ export function KanbanBoard({ variant = 'agency', className }: KanbanBoardProps)
       ))}
     </div>
   )
+}
+
+export function KanbanBoard(props: KanbanBoardProps) {
+  if (isWowVariant('kanban-board', props.variant)) {
+    return (
+      <WowSignature
+        family="kanban-board"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <KanbanBoardCore {...props} />
 }

@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { createContext, useContext, type PointerEvent, type ReactNode } from 'react'
 import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
@@ -72,7 +74,7 @@ const itemVariants = {
   invoice: 'rounded-xl border border-dashed border-nx-line bg-nx-bg font-mono',
 } as const
 
-export type BentoVariant = keyof typeof itemVariants
+export type BentoVariant = keyof typeof itemVariants | 'depth-mosaic' | 'shader-tile' | 'orbit-tile' | 'ticker-tile'
 
 export interface BentoItemProps {
   title: ReactNode
@@ -92,7 +94,7 @@ export interface BentoItemProps {
   children?: ReactNode
 }
 
-export function BentoItem({
+function BentoItemCore({
   title,
   description,
   icon,
@@ -124,7 +126,7 @@ export function BentoItem({
     'group relative flex h-full flex-col overflow-hidden border p-5 text-left',
     'transition-[transform,border-color] duration-300 motion-safe:hover:-translate-y-0.5',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]',
-    itemVariants[variant],
+    itemVariants[variant as keyof typeof itemVariants],
     colSpanClass[span],
     rowSpanClass[rowSpan],
     className,
@@ -324,4 +326,18 @@ export function BentoItem({
       {body}
     </div>
   )
+}
+
+export function BentoItem(props: BentoItemProps) {
+  if (isWowVariant('bento-grid', props.variant)) {
+    return (
+      <WowSignature
+        family="bento-grid"
+        variant={props.variant!}
+        className={props.className}
+        
+       title={props.title} />
+    )
+  }
+  return <BentoItemCore {...props} />
 }

@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useState } from 'react'
 import { MediaFrame, PlayControl, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
@@ -15,6 +17,10 @@ const VARIANTS = [
   'logo',
   'stacked',
   'featured',
+  'wall-parallax',
+  'video-shader',
+  'orbit-quotes',
+  'scramble-pull',
 ] as const
 
 export type TestimonialsVariant = (typeof VARIANTS)[number]
@@ -37,7 +43,7 @@ const quotes = [
  * Testimonials
  * Ten social-proof constructions. Copy this file plus `src/lib/utils.ts`.
  */
-export function Testimonials({ variant = 'quote', className }: TestimonialsProps) {
+function TestimonialsCore({ variant = 'quote', className }: TestimonialsProps) {
   const first = quotes[0]!
   return (
     <section data-nexara="testimonials" data-variant={variant} className={cn('w-full', className)}>
@@ -175,4 +181,18 @@ function Stars() {
       ★★★★★
     </p>
   )
+}
+
+export function Testimonials(props: TestimonialsProps) {
+  if (isWowVariant('testimonials', props.variant)) {
+    return (
+      <WowSignature
+        family="testimonials"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <TestimonialsCore {...props} />
 }

@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { motion } from 'framer-motion'
 import { useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import { MediaFrame, faces, media } from '@/lib/media.tsx'
@@ -18,6 +20,10 @@ const VARIANTS = [
   'plan',
   'media',
   'flashcard',
+  'morph-face',
+  'liquid-flip',
+  'hologram',
+  'path-reveal',
 ] as const
 
 export type FlipVariant = (typeof VARIANTS)[number]
@@ -41,7 +47,7 @@ export interface FlipCardProps {
  * FlipCard
  * Twelve two-sided product cards. Copy this file plus `src/lib/utils.ts`.
  */
-export function FlipCard({
+function FlipCardCore({
   front,
   back,
   className,
@@ -335,4 +341,18 @@ function pair(variant: FlipVariant): { front: ReactNode; back: ReactNode } {
 
 function Face({ className, children }: { className?: string; children: ReactNode }) {
   return <div className={cn('flex h-full flex-col p-5 text-nx-fg', className)}>{children}</div>
+}
+
+export function FlipCard(props: FlipCardProps) {
+  if (isWowVariant('flip-card', props.variant)) {
+    return (
+      <WowSignature
+        family="flip-card"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <FlipCardCore {...props} />
 }

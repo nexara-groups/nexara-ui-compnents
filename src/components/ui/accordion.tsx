@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useState, type ReactNode } from 'react'
 import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, focusRing } from '@/lib/utils.ts'
@@ -17,6 +19,10 @@ const VARIANTS = [
   'media',
   'faq',
   'timeline',
+  'height-morph',
+  'path-plus',
+  'kinetic-faq',
+  'shader-row',
 ] as const
 
 export type AccordionVariant = (typeof VARIANTS)[number]
@@ -33,7 +39,7 @@ export interface AccordionProps {
  * Accordion
  * Ten disclosure constructions. Copy this file plus `src/lib/utils.ts`.
  */
-export function Accordion({ items, variant = 'plus', type = 'single', className }: AccordionProps) {
+function AccordionCore({ items, variant = 'plus', type = 'single', className }: AccordionProps) {
   const [open, setOpen] = useState<string[]>([items[0]?.id ?? ''])
 
   function toggle(id: string) {
@@ -90,4 +96,18 @@ export function Accordion({ items, variant = 'plus', type = 'single', className 
       })}
     </div>
   )
+}
+
+export function Accordion(props: AccordionProps) {
+  if (isWowVariant('accordion', props.variant)) {
+    return (
+      <WowSignature
+        family="accordion"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <AccordionCore {...props} />
 }

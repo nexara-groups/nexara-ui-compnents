@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { cn, useCountUp } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -15,6 +17,10 @@ const VARIANTS = [
   'health',
   'target',
   'stack',
+  'odometer-spark',
+  'ring-draw',
+  'particle-live',
+  'glare-delta',
 ] as const
 
 export type KpiVariant = (typeof VARIANTS)[number]
@@ -33,7 +39,7 @@ export interface KpiProps {
  * Twelve dashboard metric tiles for Agency OS and clinic desks.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function Kpi({
+function KpiCore({
   variant = 'metric',
   className,
   label = 'Open leads',
@@ -160,4 +166,18 @@ export function Kpi({
       ) : null}
     </article>
   )
+}
+
+export function Kpi(props: KpiProps) {
+  if (isWowVariant('kpi', props.variant)) {
+    return (
+      <WowSignature
+        family="kpi"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <KpiCore {...props} />
 }

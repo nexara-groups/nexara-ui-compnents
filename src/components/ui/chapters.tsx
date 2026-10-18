@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useEffect, useRef, useState } from 'react'
 import { cn, focusRing, usePrefersReducedMotion } from '@/lib/utils.ts'
 
@@ -16,6 +18,10 @@ const VARIANTS = [
   'accordion',
   'manifesto',
   'lesson',
+  'pin-story',
+  'scrub-essay',
+  'parallax-index',
+  'path-folio',
 ] as const
 
 export type ChaptersVariant = (typeof VARIANTS)[number]
@@ -41,7 +47,7 @@ const rise = [
  * Twelve scroll-driven storytelling constructions, including eight clinic chapters.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function Chapters({ variant = 'eight', className }: ChaptersProps) {
+function ChaptersCore({ variant = 'eight', className }: ChaptersProps) {
   const reduced = usePrefersReducedMotion()
   const [active, setActive] = useState(0)
   const refs = useRef<Array<HTMLElement | null>>([])
@@ -188,4 +194,18 @@ export function Chapters({ variant = 'eight', className }: ChaptersProps) {
       ) : null}
     </section>
   )
+}
+
+export function Chapters(props: ChaptersProps) {
+  if (isWowVariant('chapters', props.variant)) {
+    return (
+      <WowSignature
+        family="chapters"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <ChaptersCore {...props} />
 }

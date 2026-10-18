@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { MediaFrame, faces } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
@@ -16,6 +18,10 @@ const VARIANTS = [
   'live',
   'points',
   'disciplines',
+  'heat-race',
+  'podium-spring',
+  'live-odometer',
+  'particle-rank',
 ] as const
 
 export type LeaderboardVariant = (typeof VARIANTS)[number]
@@ -47,7 +53,7 @@ const discs = ['Speed 500m', 'Speed 1000m', 'Relay', 'Artistic', 'Inline hockey'
  * Twelve medal-tally and ranking constructions from association sites.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function Leaderboard({ variant = 'medals', className }: LeaderboardProps) {
+function LeaderboardCore({ variant = 'medals', className }: LeaderboardProps) {
   return (
     <section data-nexara="leaderboard" data-variant={variant} className={cn('w-full', className)}>
       {variant === 'medals' ? (
@@ -255,4 +261,18 @@ export function Leaderboard({ variant = 'medals', className }: LeaderboardProps)
       ) : null}
     </section>
   )
+}
+
+export function Leaderboard(props: LeaderboardProps) {
+  if (isWowVariant('leaderboard', props.variant)) {
+    return (
+      <WowSignature
+        family="leaderboard"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <LeaderboardCore {...props} />
 }

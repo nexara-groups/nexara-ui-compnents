@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { LoopPause, MediaFrame, media } from '@/lib/media.tsx'
 import { cn, useKeyframes, useLoopControl, usePrefersReducedMotion } from '@/lib/utils.ts'
 
@@ -22,6 +24,10 @@ const VARIANTS = [
   'invert',
   'stacked',
   'badges',
+  'orbit-3d',
+  'magnetic-marks',
+  'glare-lockups',
+  'particle-press',
 ] as const
 
 export type LogoCloudVariant = (typeof VARIANTS)[number]
@@ -53,7 +59,7 @@ const press = [
  * mark, and ground — never six matching glyphs.
  * Copy this file, `src/lib/media.tsx`, `src/lib/utils.ts`, and `public/media`.
  */
-export function LogoCloud({ variant = 'dealers', className }: LogoCloudProps) {
+function LogoCloudCore({ variant = 'dealers', className }: LogoCloudProps) {
   const loop = useLoopControl()
   const reduced = usePrefersReducedMotion()
   useKeyframes('nexara-logo-marquee', MARQUEE_CSS)
@@ -229,4 +235,18 @@ function Lockup({
       />
     </figure>
   )
+}
+
+export function LogoCloud(props: LogoCloudProps) {
+  if (isWowVariant('logo-cloud', props.variant)) {
+    return (
+      <WowSignature
+        family="logo-cloud"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <LogoCloudCore {...props} />
 }

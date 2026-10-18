@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { cn, focusRing } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -15,6 +17,10 @@ const VARIANTS = [
   'emergency',
   'studio',
   'event',
+  'liquid-wash',
+  'scramble-cta',
+  'particle-close',
+  'glare-band',
 ] as const
 
 export type CtaBandVariant = (typeof VARIANTS)[number]
@@ -29,7 +35,7 @@ export interface CtaBandProps {
  * Twelve closing bands: clinic appointment, Nexara lime, store, emergency.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
+function CtaBandCore({ variant = 'appointment', className }: CtaBandProps) {
   return (
     <section data-nexara="cta-band" data-variant={variant} className={cn('w-full', className)}>
       {variant === 'appointment' ? (
@@ -145,4 +151,18 @@ export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
       ) : null}
     </section>
   )
+}
+
+export function CtaBand(props: CtaBandProps) {
+  if (isWowVariant('cta-band', props.variant)) {
+    return (
+      <WowSignature
+        family="cta-band"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <CtaBandCore {...props} />
 }

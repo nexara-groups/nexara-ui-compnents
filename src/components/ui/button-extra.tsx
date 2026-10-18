@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { type ComponentProps, type MouseEvent, type ReactNode, useState } from 'react'
 import { LoopPause } from '@/lib/media.tsx'
 import { cn, focusRing, useKeyframes, usePrefersReducedMotion } from '@/lib/utils.ts'
@@ -16,6 +18,11 @@ export const EXTRA_BUTTON = [
   'success',
   'group',
   'flow',
+  'liquid',
+  'ink-path',
+  'glare',
+  'burst',
+  'scramble',
 ] as const
 
 export type ExtraButtonVariant = (typeof EXTRA_BUTTON)[number]
@@ -66,7 +73,7 @@ function Check() {
  * Behavioral button kinds: toggle, theme, FAB, badge, store, letter-swap,
  * save-with-progress, notify, success, group, flow. Original constructions.
  */
-export function ExtraButton({
+function ExtraButtonCore({
   variant,
   className,
   size = 'md',
@@ -163,6 +170,11 @@ export function ExtraButton({
     flow: 'overflow-hidden border-0 text-white',
     theme: '',
     group: '',
+    liquid: '',
+    'ink-path': '',
+    glare: '',
+    burst: '',
+    scramble: '',
   }[variant]
 
   const inner = (
@@ -316,4 +328,15 @@ function SwapLabel({ text }: { text: string }) {
       ))}
     </span>
   )
+}
+
+export function ExtraButton(props: ExtraButtonProps) {
+  if (isWowVariant('button', props.variant)) {
+    return (
+      <WowSignature family="button" variant={props.variant} className={props.className}>
+        {props.children}
+      </WowSignature>
+    )
+  }
+  return <ExtraButtonCore {...props} />
 }

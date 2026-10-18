@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import {
   animate,
   motion,
@@ -36,7 +38,7 @@ const variants = {
   calendar: 'rounded-2xl border border-nx-border bg-nx-card overflow-hidden p-0',
 } as const
 
-export type DraggableCardVariant = keyof typeof variants
+export type DraggableCardVariant = keyof typeof variants | 'physics-deck' | 'magnetic-stack' | 'hologram' | 'particle-toss'
 export type DraggableCardBounds = 'parent' | 'viewport' | RefObject<HTMLElement | null>
 
 export interface DraggableCardProps {
@@ -140,7 +142,7 @@ function GripIcon() {
  * A springy card you can throw inside a bounded area, with keyboard nudging.
  * Copy this file plus `src/lib/utils.ts`. Requires framer-motion.
  */
-export function DraggableCard({
+function DraggableCardCore({
   children,
   className,
   contentClassName,
@@ -345,7 +347,7 @@ export function DraggableCard({
         onKeyUp={onKeyUp}
       >
         <motion.div
-          className={cn('relative rounded-3xl p-5', variants[variant], className)}
+          className={cn('relative rounded-3xl p-5', variants[variant as keyof typeof variants], className)}
           style={{
             rotateX: tilt && !reduced ? rotateX : 0,
             rotateY: tilt && !reduced ? rotateY : 0,
@@ -416,4 +418,20 @@ export function DraggableCard({
       {card}
     </div>
   )
+}
+
+export function DraggableCard(props: DraggableCardProps) {
+  if (isWowVariant('draggable-card', props.variant)) {
+    return (
+      <WowSignature
+        family="draggable-card"
+        variant={props.variant!}
+        className={props.className}
+        
+      >
+      {props.children}
+    </WowSignature>
+    )
+  }
+  return <DraggableCardCore {...props} />
 }

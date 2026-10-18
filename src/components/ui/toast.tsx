@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { MediaFrame, faces } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
@@ -14,6 +16,10 @@ const VARIANTS = [
   'avatar',
   'compact',
   'stacked',
+  'spring-stack',
+  'path-check',
+  'liquid-slide',
+  'odometer-count',
 ] as const
 
 export type ToastVariant = (typeof VARIANTS)[number]
@@ -29,7 +35,7 @@ export interface ToastProps {
  * Toast
  * Ten notification constructions. Copy this file plus `src/lib/utils.ts`.
  */
-export function Toast({
+function ToastCore({
   variant = 'info',
   title = 'Export ready',
   description = 'Harbor Hall pack is in your library.',
@@ -91,4 +97,18 @@ function mark(variant: ToastVariant) {
   if (variant === 'action') return '↩'
   if (variant === 'progress') return '↑'
   return 'i'
+}
+
+export function Toast(props: ToastProps) {
+  if (isWowVariant('toast', props.variant)) {
+    return (
+      <WowSignature
+        family="toast"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <ToastCore {...props} />
 }

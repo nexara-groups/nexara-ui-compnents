@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useState } from 'react'
 import { MediaFrame, PlayControl, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
@@ -17,6 +19,10 @@ const VARIANTS = [
   'alert',
   'editorial',
   'feed',
+  'velocity-tape',
+  'flip-headlines',
+  'shader-magazine',
+  'orbit-digest',
 ] as const
 
 export type NewsVariant = (typeof VARIANTS)[number]
@@ -39,7 +45,7 @@ const items = [
  * Twelve bulletin and notes constructions for Field, North, and Lumen.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function News({ variant = 'bulletin', className }: NewsProps) {
+function NewsCore({ variant = 'bulletin', className }: NewsProps) {
   return (
     <section data-nexara="news" data-variant={variant} className={cn('w-full', className)}>
       {variant === 'bulletin' ? (
@@ -172,4 +178,18 @@ function MatchFilm({ title }: { title: string }) {
       </div>
     </article>
   )
+}
+
+export function News(props: NewsProps) {
+  if (isWowVariant('news', props.variant)) {
+    return (
+      <WowSignature
+        family="news"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <NewsCore {...props} />
 }

@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useRef, type PointerEvent, type ReactNode } from 'react'
 import { cn, focusRing, usePrefersReducedMotion } from '@/lib/utils.ts'
@@ -17,6 +19,10 @@ const MAGNET_STYLES = [
   'glass',
   'key',
   'split',
+  'gravity-well',
+  'comet-trail',
+  'orbit-pull',
+  'shatter',
 ] as const
 
 export type MagnetStyle = (typeof MAGNET_STYLES)[number]
@@ -37,7 +43,7 @@ export interface MagneticButtonProps {
  * Touch and reduced motion leave the control still.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function MagneticButton({
+function MagneticButtonCore({
   magnet = 'pill',
   strength = 16,
   proximity = 24,
@@ -198,4 +204,20 @@ function Shell({ magnet, children }: { magnet: MagnetStyle; children?: ReactNode
       {children}
     </span>
   )
+}
+
+export function MagneticButton(props: MagneticButtonProps) {
+  if (isWowVariant('magnetic-button', props.magnet)) {
+    return (
+      <WowSignature
+        family="magnetic-button"
+        variant={props.magnet!}
+        className={props.className}
+        
+      >
+      {props.children}
+    </WowSignature>
+    )
+  }
+  return <MagneticButtonCore {...props} />
 }

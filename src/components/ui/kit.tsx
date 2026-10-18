@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { Accordion } from './accordion.tsx'
 import { Activity } from './activity.tsx'
 import { AppShell } from './app-shell.tsx'
@@ -36,6 +38,11 @@ const VARIANTS = [
   'lab',
   'studio',
   'association',
+  'shader-clinic',
+  'globe-agency',
+  'pin-sports',
+  'liquid-portal',
+  'scramble-academy',
 ] as const
 
 export type KitVariant = (typeof VARIANTS)[number]
@@ -57,7 +64,7 @@ const faq = [
  * Fictional brands only: Lumen Care, Harbor Climate, Field Athletics, North Studio, Atlas Academy, Solum Lab.
  * Copy this file plus every imported block, `src/lib/media.tsx`, and `public/media`.
  */
-export function Kit({ variant = 'healthcare', className }: KitProps) {
+function KitCore({ variant = 'healthcare', className }: KitProps) {
   return (
     <div data-nexara="kit" data-variant={variant} className={cn('space-y-10', className)}>
       {variant === 'healthcare' ? (
@@ -196,4 +203,18 @@ export function Kit({ variant = 'healthcare', className }: KitProps) {
       ) : null}
     </div>
   )
+}
+
+export function Kit(props: KitProps) {
+  if (isWowVariant('kit', props.variant)) {
+    return (
+      <WowSignature
+        family="kit"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <KitCore {...props} />
 }

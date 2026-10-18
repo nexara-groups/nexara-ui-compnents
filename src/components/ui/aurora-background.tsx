@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { type ReactNode } from 'react'
 import { LoopPause } from '@/lib/media.tsx'
 import { cn, useKeyframes, useLoopControl } from '@/lib/utils.ts'
@@ -44,6 +46,10 @@ const VARIANTS = [
   'ember',
   'tide',
   'stars',
+  'shader-mesh',
+  'particle-field',
+  'liquid-glass',
+  'globe-field',
 ] as const
 
 export type AuroraVariant = (typeof VARIANTS)[number]
@@ -67,7 +73,7 @@ export interface AuroraBackgroundProps {
  * AuroraBackground
  * Twelve atmospheric fields. Copy this file plus `src/lib/utils.ts`.
  */
-export function AuroraBackground({
+function AuroraBackgroundCore({
   children,
   className,
   contentClassName,
@@ -222,4 +228,20 @@ function Scene({
       <span className="absolute bottom-0 left-1/3 h-[50%] w-[40%] rounded-full blur-3xl" style={{ background: c, opacity: intensity * 0.7, animation: anim('nexara-aurora-a', 'reverse') }} />
     </>
   )
+}
+
+export function AuroraBackground(props: AuroraBackgroundProps) {
+  if (isWowVariant('aurora-background', props.variant)) {
+    return (
+      <WowSignature
+        family="aurora-background"
+        variant={props.variant!}
+        className={props.className}
+        
+      >
+      {props.children}
+    </WowSignature>
+    )
+  }
+  return <AuroraBackgroundCore {...props} />
 }

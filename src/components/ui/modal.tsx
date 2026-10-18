@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   createContext,
@@ -141,13 +143,17 @@ const modalVariants = [
   'sheet',
   'notice',
   'auth',
+  'shared-morph',
+  'shader-veil',
+  'liquid-sheet',
+  'particle-confirm',
 ] as const
 
 export type ModalVariant = (typeof modalVariants)[number]
 
 type ModalMotion = { opacity?: number; y?: number | string; x?: number | string; scale?: number }
 
-const modalFrame: Record<ModalVariant, { container: string; panel: string; initial: ModalMotion; exit: ModalMotion }> = {
+const modalFrame: Record<string, { container: string; panel: string; initial: ModalMotion; exit: ModalMotion }> = {
   dialog: {
     container: 'items-end justify-center p-4 sm:items-center',
     panel: 'max-h-[min(40rem,calc(100dvh-2rem))] rounded-[1.5rem] border border-nx-border bg-nx-card text-nx-fg shadow-[var(--nx-shadow)]',
@@ -248,7 +254,7 @@ export interface ModalContentProps {
   inline?: boolean
 }
 
-export function ModalContent({
+function ModalContentCore({
   children,
   title,
   description,
@@ -563,4 +569,18 @@ function CloseIcon() {
       <path d="M4 4l8 8M12 4 4 12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
     </svg>
   )
+}
+
+export function ModalContent(props: ModalContentProps) {
+  if (isWowVariant('modal', props.variant)) {
+    return (
+      <WowSignature
+        family="modal"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <ModalContentCore {...props} />
 }

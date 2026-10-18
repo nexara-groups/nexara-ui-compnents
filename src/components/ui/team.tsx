@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
@@ -16,6 +18,10 @@ const VARIANTS = [
   'compact',
   'editorial',
   'hours',
+  'glare-portraits',
+  'orbit-crew',
+  'holographic',
+  'particle-grid',
 ] as const
 
 export type TeamVariant = (typeof VARIANTS)[number]
@@ -39,7 +45,7 @@ const people = [
  * Twelve people grids with photographic portraits by default.
  * Copy this file, `src/lib/media.tsx`, `src/lib/utils.ts`, and `public/media`.
  */
-export function Team({ variant = 'doctors', className }: TeamProps) {
+function TeamCore({ variant = 'doctors', className }: TeamProps) {
   return (
     <section data-nexara="team" data-variant={variant} className={cn('w-full', className)}>
       {variant === 'doctors' || variant === 'grid' ? (
@@ -199,4 +205,18 @@ export function Team({ variant = 'doctors', className }: TeamProps) {
       ) : null}
     </section>
   )
+}
+
+export function Team(props: TeamProps) {
+  if (isWowVariant('team', props.variant)) {
+    return (
+      <WowSignature
+        family="team"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <TeamCore {...props} />
 }

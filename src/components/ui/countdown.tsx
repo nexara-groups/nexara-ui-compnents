@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useEffect, useMemo, useState } from 'react'
 import { cn } from '@/lib/utils.ts'
 
@@ -16,6 +18,10 @@ const VARIANTS = [
   'ribbon',
   'minimal',
   'analog',
+  'flip-3d',
+  'shader-rings',
+  'analog-orbit',
+  'launch-scrub',
 ] as const
 
 export type CountdownVariant = (typeof VARIANTS)[number]
@@ -51,7 +57,7 @@ const pad = (value: number) => String(value).padStart(2, '0')
  * Twelve clocks for events, exams, launches, and race days.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function Countdown({
+function CountdownCore({
   variant = 'event',
   className,
   target = '2026-12-12T09:00:00+05:30',
@@ -203,4 +209,18 @@ export function Countdown({
       ) : null}
     </section>
   )
+}
+
+export function Countdown(props: CountdownProps) {
+  if (isWowVariant('countdown', props.variant)) {
+    return (
+      <WowSignature
+        family="countdown"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <CountdownCore {...props} />
 }

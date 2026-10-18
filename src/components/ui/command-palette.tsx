@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useMemo, useState } from 'react'
 import { cn, focusRing } from '@/lib/utils.ts'
 
@@ -16,6 +18,10 @@ const VARIANTS = [
   'recent',
   'empty',
   'help',
+  'scramble-search',
+  'morph-results',
+  'particle-jump',
+  'glare-row',
 ] as const
 
 export type CommandPaletteVariant = (typeof VARIANTS)[number]
@@ -40,7 +46,7 @@ const commands = [
  * Twelve jump menus for Agency OS and industry desks.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function CommandPalette({ variant = 'default', className }: CommandPaletteProps) {
+function CommandPaletteCore({ variant = 'default', className }: CommandPaletteProps) {
   const [query, setQuery] = useState(variant === 'empty' ? 'xyzzy' : '')
   const [active, setActive] = useState(0)
   const list = useMemo(() => {
@@ -104,4 +110,18 @@ export function CommandPalette({ variant = 'default', className }: CommandPalett
       </ul>
     </div>
   )
+}
+
+export function CommandPalette(props: CommandPaletteProps) {
+  if (isWowVariant('command-palette', props.variant)) {
+    return (
+      <WowSignature
+        family="command-palette"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <CommandPaletteCore {...props} />
 }

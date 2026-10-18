@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { type ComponentPropsWithoutRef, type ElementType, type ReactNode } from 'react'
 import { LoopPause } from '@/lib/media.tsx'
 import { cn, useKeyframes, useLoopControl } from '@/lib/utils.ts'
@@ -27,6 +29,10 @@ const VARIANTS = [
   'kinetic',
   'glow',
   'fade',
+  'variable-morph',
+  'scramble',
+  'path-write',
+  'split-mask',
 ] as const
 
 export type GradientTextVariant = (typeof VARIANTS)[number]
@@ -47,7 +53,7 @@ export interface GradientTextProps {
  * GradientText
  * Twelve lettering models. Copy this file plus `src/lib/utils.ts`.
  */
-export function GradientText({
+function GradientTextCore({
   children,
   className,
   as = 'span',
@@ -177,4 +183,20 @@ export function GradientText({
       <LoopPause playing={loop.playing} onToggle={loop.toggle} />
     </span>
   )
+}
+
+export function GradientText(props: GradientTextProps) {
+  if (isWowVariant('gradient-text', props.variant)) {
+    return (
+      <WowSignature
+        family="gradient-text"
+        variant={props.variant!}
+        className={props.className}
+        
+      >
+      {props.children}
+    </WowSignature>
+    )
+  }
+  return <GradientTextCore {...props} />
 }

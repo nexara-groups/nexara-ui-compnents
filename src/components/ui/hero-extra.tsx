@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useState, type ReactNode } from 'react'
 import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, focusRing } from '@/lib/utils.ts'
@@ -43,6 +45,11 @@ export const EXTRA_HERO = [
   'tilted',
   'enterprise',
   'featured',
+  'pin-scroll',
+  'shader-void',
+  'scramble-mast',
+  'globe-orbit',
+  'morph-stage',
 ] as const
 
 export type ExtraHeroVariant = (typeof EXTRA_HERO)[number]
@@ -60,7 +67,7 @@ const modeTone = {
  * Extra hero anatomies. Original layouts and bundled cinematic media.
  * Copy this file, `src/lib/media.tsx`, `src/lib/utils.ts`, and `public/media`.
  */
-export function ExtraHero({
+function ExtraHeroCore({
   variant,
   eyebrow,
   title,
@@ -568,4 +575,21 @@ function FourDoors({
       <div className="mx-auto mt-8 max-w-5xl">{actions}</div>
     </section>
   )
+}
+
+export function ExtraHero(props: ExtraHeroProps) {
+  if (isWowVariant('hero', props.variant)) {
+    return (
+      <WowSignature
+        family="hero"
+        variant={props.variant}
+        className={props.className}
+        title={props.title}
+        description={props.description}
+        actions={props.actions}
+        eyebrow={props.eyebrow}
+      />
+    )
+  }
+  return <ExtraHeroCore {...props} />
 }

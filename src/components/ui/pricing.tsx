@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useState } from 'react'
 import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, focusRing } from '@/lib/utils.ts'
@@ -15,6 +17,10 @@ const VARIANTS = [
   'hobby',
   'table',
   'stacked',
+  'tilt-glare',
+  'odometer-price',
+  'morph-toggle',
+  'shader-featured',
 ] as const
 
 export type PricingVariant = (typeof VARIANTS)[number]
@@ -41,7 +47,7 @@ const matrix = [
  * Pricing
  * Ten structurally different pricing sections. Copy this file plus `src/lib/utils.ts`.
  */
-export function Pricing({ variant = 'cards', className }: PricingProps) {
+function PricingCore({ variant = 'cards', className }: PricingProps) {
   const [yearly, setYearly] = useState(false)
 
   return (
@@ -269,4 +275,18 @@ function Check() {
       <path d="M3 7.2 5.8 10 11 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
     </svg>
   )
+}
+
+export function Pricing(props: PricingProps) {
+  if (isWowVariant('pricing', props.variant)) {
+    return (
+      <WowSignature
+        family="pricing"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <PricingCore {...props} />
 }

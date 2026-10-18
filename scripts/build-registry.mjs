@@ -49,6 +49,7 @@ const itemsMeta = [
     files: [
       { path: 'src/lib/utils.ts', type: 'registry:lib' },
       { path: 'src/lib/media.tsx', type: 'registry:lib' },
+      { path: 'src/lib/wow.tsx', type: 'registry:lib' },
     ],
     usage: "import { cn, usePrefersReducedMotion } from '@/lib/utils'",
   },
@@ -58,14 +59,14 @@ const itemsMeta = [
   ['bento-grid', 'Bento Grid', 'Cards', 'A responsive mosaic of product tiles.', ['clsx', 'tailwind-merge'], ['utils']],
   ['button', 'Button', 'Buttons', 'Twenty-four button constructions including toggle, theme, FAB, store, swap, progress, and groups.', ['class-variance-authority', 'clsx', 'tailwind-merge'], ['utils']],
   ['magnetic-button', 'Magnetic Button', 'Buttons', 'Twelve product controls that lean toward a fine pointer.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
-  ['aurora-background', 'Aurora Background', 'Backgrounds', 'Twelve ambient scenes with content above the field.', ['clsx', 'tailwind-merge'], ['utils']],
+  ['aurora-background', 'Aurora Background', 'Backgrounds', 'Twelve ambient scenes plus shader, particle, glass, and globe signatures.', ['clsx', 'tailwind-merge', 'three', '@react-three/fiber'], ['utils']],
   ['grid-background', 'Grid Background', 'Backgrounds', 'Twelve ruled and dotted surfaces.', ['clsx', 'tailwind-merge'], ['utils']],
   ['gradient-text', 'Gradient Text', 'Text', 'Twelve lettering models.', ['clsx', 'tailwind-merge'], ['utils']],
   ['typewriter', 'Typewriter', 'Text', 'Twelve devices that type and delete phrases.', ['clsx', 'tailwind-merge'], ['utils']],
   ['text-reveal', 'Text Reveal', 'Text', 'Twelve typographic compositions that stagger into view.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
   ['floating-navbar', 'Floating Navbar', 'Navigation', 'Twelve navigation products.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
   ['modal', 'Modal', 'Overlays', 'Twelve dialog anatomies with a focus trap and scroll lock.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils', 'input']],
-  ['hero', 'Hero', 'Sections', 'Thirty marketing page constructions with first-class image, video, and lottie slots.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
+  ['hero', 'Hero', 'Sections', 'Marketing pages plus pin-scroll, shader, scramble, globe, and morph signatures.', ['framer-motion', 'clsx', 'tailwind-merge', 'three', '@react-three/fiber'], ['utils']],
   ['marquee', 'Marquee', 'Sections', 'Twelve continuous tracks with pause control.', ['clsx', 'tailwind-merge'], ['utils']],
   ['input', 'Input', 'Forms', 'Twelve field constructions.', ['clsx', 'tailwind-merge'], ['utils']],
   ['tabs', 'Tabs', 'Forms', 'Ten tab anatomies.', ['clsx', 'tailwind-merge'], ['utils']],
@@ -97,10 +98,18 @@ const itemsMeta = [
   ['activity', 'Activity', 'App', 'Twelve activity feeds.', ['clsx', 'tailwind-merge'], ['utils']],
   ['command-palette', 'Command Palette', 'App', 'Twelve jump menus.', ['clsx', 'tailwind-merge'], ['utils']],
   ['settings-panel', 'Settings Panel', 'App', 'Twelve settings constructions.', ['clsx', 'tailwind-merge'], ['utils']],
-  ['kit', 'Kit', 'Kits', 'Twelve industry pages composed from the blocks.', ['clsx', 'tailwind-merge'], ['utils', 'hero', 'stats', 'services', 'process', 'team', 'contact', 'cta-band', 'chapters', 'news', 'logo-cloud', 'leaderboard', 'countdown', 'case-study', 'app-shell', 'kpi', 'data-table', 'kanban-board', 'activity', 'accordion', 'footer', 'button']],
+  ['kit', 'Kit', 'Kits', 'Industry pages plus shader, globe, pin, liquid, and scramble signatures.', ['clsx', 'tailwind-merge', 'three', '@react-three/fiber'], ['utils', 'hero', 'stats', 'services', 'process', 'team', 'contact', 'cta-band', 'chapters', 'news', 'logo-cloud', 'leaderboard', 'countdown', 'case-study', 'app-shell', 'kpi', 'data-table', 'kanban-board', 'activity', 'accordion', 'footer', 'button']],
 ]
 
 const mediaFile = [{ path: 'src/lib/media.tsx', type: 'registry:lib' }]
+const wowFiles = [
+  { path: 'src/lib/wow.tsx', type: 'registry:lib' },
+  { path: 'src/components/ui/wow-signatures.tsx', type: 'registry:ui' },
+  { path: 'src/components/ui/wow-core.tsx', type: 'registry:ui' },
+  { path: 'src/components/ui/wow-blocks.tsx', type: 'registry:ui' },
+  { path: 'src/components/ui/wow-app.tsx', type: 'registry:ui' },
+  { path: 'src/components/ui/wow-scene.tsx', type: 'registry:ui' },
+]
 
 const extraFiles = {
   hero: [
@@ -152,7 +161,7 @@ const items = itemsMeta.map((entry) => {
     categories: [category],
     dependencies,
     registryDependencies,
-    files: [{ path: `src/components/ui/${name}.tsx`, type: 'registry:ui' }, ...(extraFiles[name] ?? [])],
+    files: [{ path: `src/components/ui/${name}.tsx`, type: 'registry:ui' }, ...(extraFiles[name] ?? []), ...wowFiles],
     usage: itemVariants[0].usage,
     variants: itemVariants,
   }

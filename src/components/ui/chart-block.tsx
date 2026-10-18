@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { cn } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -15,6 +17,10 @@ const VARIANTS = [
   'goal',
   'mix',
   'clock',
+  'path-draw',
+  'particle-area',
+  'scrub-bars',
+  'shader-donut',
 ] as const
 
 export type ChartBlockVariant = (typeof VARIANTS)[number]
@@ -33,7 +39,7 @@ const bars = [40, 62, 48, 80, 55, 72]
  * Twelve SVG chart constructions. No chart library.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function ChartBlock({ variant = 'area', className, title = 'Leads this week' }: ChartBlockProps) {
+function ChartBlockCore({ variant = 'area', className, title = 'Leads this week' }: ChartBlockProps) {
   const points = series.map((value, index) => `${index * 16},${40 - value}`).join(' ')
   const area = `0,40 ${points} 112,40`
 
@@ -124,4 +130,18 @@ export function ChartBlock({ variant = 'area', className, title = 'Leads this we
       ) : null}
     </article>
   )
+}
+
+export function ChartBlock(props: ChartBlockProps) {
+  if (isWowVariant('chart-block', props.variant)) {
+    return (
+      <WowSignature
+        family="chart-block"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <ChartBlockCore {...props} />
 }

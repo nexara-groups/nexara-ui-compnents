@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
@@ -16,6 +18,10 @@ const VARIANTS = [
   'partner',
   'why',
   'disciplines',
+  'tilt-doors',
+  'orbit-crews',
+  'shader-cards',
+  'path-checklist',
 ] as const
 
 export type ServicesVariant = (typeof VARIANTS)[number]
@@ -67,7 +73,7 @@ const discs = [
  * Twelve service grids with photographic wells, not empty cards.
  * Copy this file, `src/lib/media.tsx`, `src/lib/utils.ts`, and `public/media`.
  */
-export function Services({ variant = 'checklist', className }: ServicesProps) {
+function ServicesCore({ variant = 'checklist', className }: ServicesProps) {
   return (
     <section data-nexara="services" data-variant={variant} className={cn('w-full', className)}>
       {variant === 'checklist' ? (
@@ -232,4 +238,18 @@ export function Services({ variant = 'checklist', className }: ServicesProps) {
       ) : null}
     </section>
   )
+}
+
+export function Services(props: ServicesProps) {
+  if (isWowVariant('services', props.variant)) {
+    return (
+      <WowSignature
+        family="services"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <ServicesCore {...props} />
 }

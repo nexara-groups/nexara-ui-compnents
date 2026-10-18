@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { type ReactNode, useState } from 'react'
 import { MediaFrame, faces, media } from '@/lib/media.tsx'
 import { cn, focusRing } from '@/lib/utils.ts'
@@ -17,6 +19,10 @@ const VARIANTS = [
   'collapsed',
   'command',
   'mobile',
+  'morph-sidebar',
+  'command-orbit',
+  'shader-desk',
+  'liquid-rail',
 ] as const
 
 export type AppShellVariant = (typeof VARIANTS)[number]
@@ -40,7 +46,7 @@ const nav = {
  * heats, briefs — not empty Open / Waiting / Done tiles.
  * Copy this file, `src/lib/media.tsx`, `src/lib/utils.ts`, and `public/media`.
  */
-export function AppShell({ variant = 'sidebar', className, children }: AppShellProps) {
+function AppShellCore({ variant = 'sidebar', className, children }: AppShellProps) {
   const [open, setOpen] = useState(variant !== 'collapsed' && variant !== 'mobile')
   const [menu, setMenu] = useState(false)
   const items =
@@ -307,4 +313,18 @@ function Activity() {
       </ul>
     </div>
   )
+}
+
+export function AppShell(props: AppShellProps) {
+  if (isWowVariant('app-shell', props.variant)) {
+    return (
+      <WowSignature
+        family="app-shell"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <AppShellCore {...props} />
 }

@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
@@ -18,6 +20,10 @@ const VARIANTS = [
   'rhythm',
   'checklist',
   'filmstrip',
+  'scrub-timeline',
+  'pin-steps',
+  'path-rail',
+  'orbit-rhythm',
 ] as const
 
 export type ProcessVariant = (typeof VARIANTS)[number]
@@ -45,7 +51,7 @@ const rise = [
  * Twelve step constructions: written studio process and a three-step rhythm.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function Process({ variant = 'written', className }: ProcessProps) {
+function ProcessCore({ variant = 'written', className }: ProcessProps) {
   return (
     <section data-nexara="process" data-variant={variant} className={cn('w-full', className)}>
       {variant === 'written' ? (
@@ -171,4 +177,18 @@ export function Process({ variant = 'written', className }: ProcessProps) {
       ) : null}
     </section>
   )
+}
+
+export function Process(props: ProcessProps) {
+  if (isWowVariant('process', props.variant)) {
+    return (
+      <WowSignature
+        family="process"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <ProcessCore {...props} />
 }

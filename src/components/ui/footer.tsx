@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, fieldBorder, focusRing } from '@/lib/utils.ts'
 
@@ -14,6 +16,10 @@ const VARIANTS = [
   'sitemap',
   'brand',
   'split',
+  'giant-marquee',
+  'grain-night',
+  'orbit-marks',
+  'path-sitemap',
 ] as const
 
 export type FooterVariant = (typeof VARIANTS)[number]
@@ -33,7 +39,7 @@ const columns = {
  * Footer
  * Ten closing constructions. Copy this file plus `src/lib/utils.ts`.
  */
-export function Footer({ variant = 'mega', className }: FooterProps) {
+function FooterCore({ variant = 'mega', className }: FooterProps) {
   return (
     <footer data-nexara="footer" data-variant={variant} className={cn('w-full text-sm', className)}>
       {variant === 'mega' ? (
@@ -170,4 +176,18 @@ export function Footer({ variant = 'mega', className }: FooterProps) {
       ) : null}
     </footer>
   )
+}
+
+export function Footer(props: FooterProps) {
+  if (isWowVariant('footer', props.variant)) {
+    return (
+      <WowSignature
+        family="footer"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <FooterCore {...props} />
 }

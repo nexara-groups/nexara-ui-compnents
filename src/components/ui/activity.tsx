@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { cn } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -15,6 +17,10 @@ const VARIANTS = [
   'files',
   'timeline',
   'digest',
+  'stagger-feed',
+  'path-rail',
+  'live-odometer',
+  'liquid-chat',
 ] as const
 
 export type ActivityVariant = (typeof VARIANTS)[number]
@@ -37,7 +43,7 @@ const events = [
  * Twelve feeds for agency, clinic, plant, and association desks.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function Activity({ variant = 'feed', className }: ActivityProps) {
+function ActivityCore({ variant = 'feed', className }: ActivityProps) {
   return (
     <section data-nexara="activity" data-variant={variant} className={cn('w-full', className)}>
       {variant === 'chat' ? (
@@ -109,4 +115,18 @@ export function Activity({ variant = 'feed', className }: ActivityProps) {
       ) : null}
     </section>
   )
+}
+
+export function Activity(props: ActivityProps) {
+  if (isWowVariant('activity', props.variant)) {
+    return (
+      <WowSignature
+        family="activity"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <ActivityCore {...props} />
 }

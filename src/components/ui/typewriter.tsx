@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { cn, useKeyframes, usePrefersReducedMotion } from '@/lib/utils.ts'
 
@@ -23,6 +25,10 @@ const VARIANTS = [
   'redact',
   'italic',
   'tape',
+  'odometer',
+  'scramble-line',
+  'matrix-rain',
+  'flap-3d',
 ] as const
 
 export type TypewriterVariant = (typeof VARIANTS)[number]
@@ -47,7 +53,7 @@ export interface TypewriterProps {
  * Typewriter
  * Twelve devices that type. Copy this file plus `src/lib/utils.ts`.
  */
-export function Typewriter({
+function TypewriterCore({
   phrases,
   className,
   cursorClassName,
@@ -226,4 +232,11 @@ export function Typewriter({
       <span className="sr-only">{phrases.filter(Boolean).join('. ')}</span>
     </span>
   )
+}
+
+export function Typewriter(props: TypewriterProps) {
+  if (isWowVariant('typewriter', props.variant)) {
+    return <WowSignature family="typewriter" variant={props.variant!} className={props.className} />
+  }
+  return <TypewriterCore {...props} />
 }

@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { motion } from 'framer-motion'
 import { type CSSProperties, type RefObject } from 'react'
 import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
@@ -19,6 +21,10 @@ const VARIANTS = [
   'index',
   'folio',
   'stack',
+  'line-mask',
+  'letter-physics',
+  'kinetic-stack',
+  'svg-draw',
 ] as const
 
 export type TextRevealVariant = (typeof VARIANTS)[number]
@@ -42,7 +48,7 @@ export interface TextRevealProps {
  * TextReveal
  * Twelve typographic compositions. Copy this file plus `src/lib/utils.ts`.
  */
-export function TextReveal({
+function TextRevealCore({
   text,
   className,
   wordClassName,
@@ -147,4 +153,18 @@ export function TextReveal({
       ) : null}
     </Tag>
   )
+}
+
+export function TextReveal(props: TextRevealProps) {
+  if (isWowVariant('text-reveal', props.variant)) {
+    return (
+      <WowSignature
+        family="text-reveal"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <TextRevealCore {...props} />
 }

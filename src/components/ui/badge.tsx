@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { type ReactNode } from 'react'
 import { cn } from '@/lib/utils.ts'
 
@@ -14,6 +16,10 @@ const VARIANTS = [
   'icon',
   'glow',
   'ribbon',
+  'beam-orbit',
+  'scramble-live',
+  'liquid-pill',
+  'path-ribbon',
 ] as const
 
 export type BadgeVariant = (typeof VARIANTS)[number]
@@ -28,7 +34,7 @@ export interface BadgeProps {
  * Badge
  * Ten status constructions. Copy this file plus `src/lib/utils.ts`.
  */
-export function Badge({ variant = 'soft', children = 'Live', className }: BadgeProps) {
+function BadgeCore({ variant = 'soft', children = 'Live', className }: BadgeProps) {
   if (variant === 'ribbon') {
     return (
       <span data-nexara="badge" data-variant="ribbon" className={cn('absolute top-3 -right-1 rotate-12 bg-nx-accent px-3 py-0.5 text-[10px] tracking-[0.14em] text-nx-accent-fg uppercase', className)}>
@@ -59,4 +65,20 @@ export function Badge({ variant = 'soft', children = 'Live', className }: BadgeP
       {variant === 'removable' ? <span aria-hidden="true">×</span> : null}
     </span>
   )
+}
+
+export function Badge(props: BadgeProps) {
+  if (isWowVariant('badge', props.variant)) {
+    return (
+      <WowSignature
+        family="badge"
+        variant={props.variant!}
+        className={props.className}
+        
+      >
+      {props.children}
+    </WowSignature>
+    )
+  }
+  return <BadgeCore {...props} />
 }

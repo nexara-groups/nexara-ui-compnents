@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, useKeyframes, usePrefersReducedMotion } from '@/lib/utils.ts'
@@ -24,6 +26,10 @@ const VARIANTS = [
   'apps',
   'metrics',
   'awards',
+  'cylinder-3d',
+  'logo-orbit',
+  'velocity-scroll',
+  'grain-tape',
 ] as const
 
 export type MarqueeVariant = (typeof VARIANTS)[number]
@@ -52,7 +58,7 @@ export interface MarqueeProps {
  * changelog, tags, reviews, apps, metrics, awards.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function Marquee({
+function MarqueeCore({
   children,
   className,
   controlClassName,
@@ -251,4 +257,18 @@ function samples(variant: MarqueeVariant): ReactNode {
   return ['Harbor', 'Atlas', 'Field', 'Lumen', 'North'].map((name) => (
     <span key={name} className="px-4 text-sm font-medium tracking-[0.18em] text-nx-muted uppercase">{name}</span>
   ))
+}
+
+export function Marquee(props: MarqueeProps) {
+  if (isWowVariant('marquee', props.variant)) {
+    return (
+      <WowSignature
+        family="marquee"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <MarqueeCore {...props} />
 }

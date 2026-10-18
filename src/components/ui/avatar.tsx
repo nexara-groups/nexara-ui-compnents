@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { MediaFrame, faces, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
@@ -14,6 +16,10 @@ const VARIANTS = [
   'icon',
   'story',
   'mention',
+  'orbit-status',
+  'shader-ring',
+  'particle-presence',
+  'holographic',
 ] as const
 
 export type AvatarVariant = (typeof VARIANTS)[number]
@@ -32,7 +38,7 @@ const stack = faces.slice(0, 3)
  * Ten identity constructions. Photographic portraits by default; initials only when asked.
  * Copy this file, `src/lib/media.tsx`, `src/lib/utils.ts`, and `public/media`.
  */
-export function Avatar({ variant = 'image', name = 'Anitha Rao', src, className }: AvatarProps) {
+function AvatarCore({ variant = 'image', name = 'Anitha Rao', src, className }: AvatarProps) {
   const initials = name
     .split(' ')
     .map((part) => part[0])
@@ -108,4 +114,18 @@ export function Avatar({ variant = 'image', name = 'Anitha Rao', src, className 
       {variant === 'status' ? <span className="absolute right-0 bottom-0 size-2.5 rounded-full bg-nx-ok ring-2 ring-nx-bg" /> : null}
     </span>
   )
+}
+
+export function Avatar(props: AvatarProps) {
+  if (isWowVariant('avatar', props.variant)) {
+    return (
+      <WowSignature
+        family="avatar"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <AvatarCore {...props} />
 }

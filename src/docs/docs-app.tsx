@@ -254,9 +254,10 @@ function ComponentPage({ entry }: { entry: CatalogEntry }) {
         <h2 className="font-serif text-2xl">Variants</h2>
         <p className="text-sm leading-6 text-nx-muted">
           Ask for <span className="text-nx-fg">{entry.slug} / {variantDocs[entry.slug as keyof typeof variantDocs]?.[0]?.id ?? 'variant'}</span> or
-          any id below. Each block is a live preview and a copyable usage line.
+          any id below. Gold <span className="text-[#b45309]">Signature</span> cells are the ones built to stand next to 21st.dev / Aceternity / Awwwards — shaders, scramble, pin-scroll, globes, odometers, tilt-glare. The rest stay sensible.
         </p>
         <VariantGallery
+          family={entry.slug}
           items={variantDocs[entry.slug as keyof typeof variantDocs] ?? []}
           render={(id) => renderVariantPreview(entry.slug, id)}
         />
@@ -267,8 +268,11 @@ function ComponentPage({ entry }: { entry: CatalogEntry }) {
       <section className="space-y-3">
         <h2 className="font-serif text-2xl">Install by copying</h2>
         <p className="text-sm leading-6 text-nx-muted">
-          Copy <code className="text-nx-fg">{entry.path}</code> and{' '}
-          <code className="text-nx-fg">src/lib/utils.ts</code>. Dependencies:{' '}
+          Copy <code className="text-nx-fg">{entry.path}</code>,{' '}
+          <code className="text-nx-fg">src/lib/utils.ts</code>
+          {', and for Signature variants '}
+          <code className="text-nx-fg">src/lib/wow.tsx</code>
+          {' plus the wow-*.tsx files.'} Dependencies:{' '}
           {entry.dependencies.join(', ')}.
           {entry.registryDependencies.filter((item) => item !== 'utils').length > 0
             ? ` Also copy ${entry.registryDependencies.filter((item) => item !== 'utils').join(', ')}.`

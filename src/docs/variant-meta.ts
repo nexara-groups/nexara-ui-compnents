@@ -19,6 +19,11 @@ export const variantDocs = {
     { id: 'stack', name: 'Stack', description: 'Offset sheets under the active card.', usage: `<DraggableCard variant="stack" bounds={stageRef}>Stack</DraggableCard>` },
     { id: 'compact', name: 'Compact', description: 'Pill chip you can throw.', usage: `<DraggableCard variant="compact" bounds={stageRef}>Chip</DraggableCard>` },
     { id: 'calendar', name: 'Calendar', description: 'Month header over a day.', usage: `<DraggableCard variant="calendar" bounds={stageRef}>18</DraggableCard>` },
+    { id: 'physics-deck', name: 'Physics deck', description: 'A plate that leans as you throw it.', usage: `<DraggableCard variant="physics-deck" bounds={stageRef}>Drag</DraggableCard>` },
+    { id: 'magnetic-stack', name: 'Magnetic stack', description: 'Offset sheets that lean toward the pointer.', usage: `<DraggableCard variant="magnetic-stack" bounds={stageRef}>Drag</DraggableCard>` },
+    { id: 'hologram', name: 'Hologram', description: 'Shader field under a tilting plate.', usage: `<DraggableCard variant="hologram" bounds={stageRef}>Drag</DraggableCard>` },
+    { id: 'particle-toss', name: 'Particle toss', description: 'The field reacts while you drag.', usage: `<DraggableCard variant="particle-toss" bounds={stageRef}>Drag</DraggableCard>` },
+  
   ],
   'spotlight-card': [
     { id: 'profile', name: 'Profile', description: 'Identity row with avatar and follow.', usage: `<SpotlightCard variant="profile" />` },
@@ -33,6 +38,11 @@ export const variantDocs = {
     { id: 'task', name: 'Task', description: 'Checkbox and tags.', usage: `<SpotlightCard variant="task" />` },
     { id: 'article', name: 'Article', description: 'Thumb plus headline.', usage: `<SpotlightCard variant="article" />` },
     { id: 'place', name: 'Place', description: 'Map tile and hours.', usage: `<SpotlightCard variant="place" />` },
+    { id: 'glare-tilt', name: 'Glare tilt', description: 'Specular highlight and Z layers.', usage: `<SpotlightCard variant="glare-tilt" />` },
+    { id: 'shader-well', name: 'Shader well', description: 'The card is a mesh, not a wash.', usage: `<SpotlightCard variant="shader-well" />` },
+    { id: 'orbit-badge', name: 'Orbit badge', description: 'Live marks on a ring.', usage: `<SpotlightCard variant="orbit-badge" />` },
+    { id: 'scramble-stat', name: 'Scramble stat', description: 'Odometer figure on a night plate.', usage: `<SpotlightCard variant="scramble-stat" />` },
+  
   ],
   'flip-card': [
     { id: 'credit', name: 'Credit', description: 'Bank card and a CVV reverse.', usage: `<FlipCard variant="credit" />` },
@@ -47,6 +57,11 @@ export const variantDocs = {
     { id: 'plan', name: 'Plan', description: 'Week title and a checklist.', usage: `<FlipCard variant="plan" />` },
     { id: 'media', name: 'Media', description: 'Cover and an essay back.', usage: `<FlipCard variant="media" />` },
     { id: 'flashcard', name: 'Flashcard', description: 'Term and definition.', usage: `<FlipCard variant="flashcard" />` },
+    { id: 'morph-face', name: 'Morph face', description: 'A drawn reverse, not a duplicate face.', usage: `<FlipCard variant="morph-face" />` },
+    { id: 'liquid-flip', name: 'Liquid flip', description: 'Shader on the front, path on the back.', usage: `<FlipCard variant="liquid-flip" />` },
+    { id: 'hologram', name: 'Hologram', description: 'Shader field under a tilting plate.', usage: `<FlipCard variant="hologram" />` },
+    { id: 'path-reveal', name: 'Path reveal', description: 'The reverse draws a mark.', usage: `<FlipCard variant="path-reveal" />` },
+  
   ],
   'bento-grid': [
     { id: 'chart', name: 'Chart', description: 'Title plus a sparkline.', usage: `<BentoItem variant="chart" title="Uptime" description="Last hour." />` },
@@ -61,6 +76,11 @@ export const variantDocs = {
     { id: 'calendar', name: 'Calendar', description: 'Month header and a day.', usage: `<BentoItem variant="calendar" title="18" />` },
     { id: 'kanban', name: 'Kanban', description: 'A column of task chips.', usage: `<BentoItem variant="kanban" title="Review the mast" description="Next pass" />` },
     { id: 'invoice', name: 'Invoice', description: 'Line items and a total.', usage: `<BentoItem variant="invoice" title="Studio" description="Export" />` },
+    { id: 'depth-mosaic', name: 'Depth mosaic', description: 'Bento tile with glare depth.', usage: `<BentoItem variant="depth-mosaic" title="Uptime" description="Last hour." />` },
+    { id: 'shader-tile', name: 'Shader tile', description: 'Mesh field as a bento cell.', usage: `<BentoItem variant="shader-tile" title="Uptime" description="Last hour." />` },
+    { id: 'orbit-tile', name: 'Orbit tile', description: 'Marks on a ring inside a cell.', usage: `<BentoItem variant="orbit-tile" title="Uptime" description="Last hour." />` },
+    { id: 'ticker-tile', name: 'Ticker tile', description: 'Odometer figure as the tile.', usage: `<BentoItem variant="ticker-tile" title="Uptime" description="Last hour." />` },
+  
   ],
   button: [
     { id: 'solid', name: 'Solid', description: 'Primary fill with a hairline.', usage: `<Button variant="solid">Continue</Button>` },
@@ -87,6 +107,12 @@ export const variantDocs = {
     { id: 'success', name: 'Success', description: 'Stateful saved control.', usage: `<Button variant="success" state="success">Saved</Button>` },
     { id: 'group', name: 'Group', description: 'Day Week Month cluster.', usage: `<Button variant="group" />` },
     { id: 'flow', name: 'Flow', description: 'Moving gradient CTA with a visible pause control.', usage: `<Button variant="flow">Book a room</Button>` },
+    { id: 'liquid', name: 'Liquid', description: 'Goo blobs inside the CTA.', usage: `<Button variant="liquid">Continue</Button>` },
+    { id: 'ink-path', name: 'Ink path', description: 'An SVG stroke writes the underline.', usage: `<Button variant="ink-path">Continue</Button>` },
+    { id: 'glare', name: 'Glare', description: 'Tilt plus a moving specular.', usage: `<Button variant="glare">Continue</Button>` },
+    { id: 'burst', name: 'Burst', description: 'Particles explode on hover.', usage: `<Button variant="burst">Continue</Button>` },
+    { id: 'scramble', name: 'Scramble', description: 'Letters settle only on hover.', usage: `<Button variant="scramble">Continue</Button>` },
+  
   ],
   'magnetic-button': [
     { id: 'pill', name: 'Pill', description: 'Capsule CTA that leans to the pointer.', usage: `<MagneticButton magnet="pill">Come closer</MagneticButton>` },
@@ -101,6 +127,11 @@ export const variantDocs = {
     { id: 'glass', name: 'Glass', description: 'Frosted magnetic pill.', usage: `<MagneticButton magnet="glass">Glass</MagneticButton>` },
     { id: 'key', name: 'Key', description: 'Keyboard key with a legend.', usage: `<MagneticButton magnet="key">K</MagneticButton>` },
     { id: 'split', name: 'Split', description: 'Label plus a chevron cell.', usage: `<MagneticButton magnet="split">Menu</MagneticButton>` },
+    { id: 'gravity-well', name: 'Gravity well', description: 'A heavier magnetic pull.', usage: `<MagneticButton magnet="gravity-well">Come closer</MagneticButton>` },
+    { id: 'comet-trail', name: 'Comet trail', description: 'A bloom follows the pointer.', usage: `<MagneticButton magnet="comet-trail">Come closer</MagneticButton>` },
+    { id: 'orbit-pull', name: 'Orbit pull', description: 'Satellites around the control.', usage: `<MagneticButton magnet="orbit-pull">Come closer</MagneticButton>` },
+    { id: 'shatter', name: 'Shatter', description: 'Tracking opens on hover.', usage: `<MagneticButton magnet="shatter">Come closer</MagneticButton>` },
+  
   ],
   'aurora-background': [
     { id: 'aurora', name: 'Aurora', description: 'Drifting color curtains.', usage: `<AuroraBackground variant="aurora" className="min-h-64" />` },
@@ -115,6 +146,11 @@ export const variantDocs = {
     { id: 'ember', name: 'Ember', description: 'Heat rising from the foot.', usage: `<AuroraBackground variant="ember" className="min-h-64" />` },
     { id: 'tide', name: 'Tide', description: 'Deep water to foam.', usage: `<AuroraBackground variant="tide" className="min-h-64" />` },
     { id: 'stars', name: 'Stars', description: 'Twinkle field and a meteor.', usage: `<AuroraBackground variant="stars" className="min-h-64" />` },
+    { id: 'shader-mesh', name: 'Shader mesh', description: 'Cursor-warped WebGL field.', usage: `<AuroraBackground variant="shader-mesh" />` },
+    { id: 'particle-field', name: 'Particle field', description: 'Constellation that avoids the pointer.', usage: `<AuroraBackground variant="particle-field" />` },
+    { id: 'liquid-glass', name: 'Liquid glass', description: 'Frosted plate over a mesh.', usage: `<AuroraBackground variant="liquid-glass" />` },
+    { id: 'globe-field', name: 'Globe field', description: 'Projected Fibonacci sphere.', usage: `<AuroraBackground variant="globe-field" />` },
+  
   ],
   'grid-background': [
     { id: 'graph', name: 'Graph', description: 'Engineering graph paper.', usage: `<GridBackground variant="graph" className="min-h-48" />` },
@@ -129,6 +165,11 @@ export const variantDocs = {
     { id: 'topo', name: 'Topo', description: 'Contour rings.', usage: `<GridBackground variant="topo" className="min-h-48" />` },
     { id: 'diagonal', name: 'Diagonal', description: 'Hatch field.', usage: `<GridBackground variant="diagonal" className="min-h-48" />` },
     { id: 'fade', name: 'Fade', description: 'Graph that falls off at the edges.', usage: `<GridBackground variant="fade" className="min-h-48" />` },
+    { id: 'perspective-fly', name: 'Perspective fly', description: 'A floor grid that travels.', usage: `<GridBackground variant="perspective-fly" />` },
+    { id: 'circuit-draw', name: 'Circuit draw', description: 'Traces draw themselves.', usage: `<GridBackground variant="circuit-draw" />` },
+    { id: 'topo-pulse', name: 'Topo pulse', description: 'Contour rings expand.', usage: `<GridBackground variant="topo-pulse" />` },
+    { id: 'hex-orbit', name: 'Hex orbit', description: 'Cells on a ring.', usage: `<GridBackground variant="hex-orbit" />` },
+  
   ],
   'gradient-text': [
     { id: 'gradient', name: 'Gradient', description: 'Clipped moving blend.', usage: `<GradientText variant="gradient">Night</GradientText>` },
@@ -143,6 +184,11 @@ export const variantDocs = {
     { id: 'kinetic', name: 'Kinetic', description: 'Tracking that breathes.', usage: `<GradientText variant="kinetic">Night</GradientText>` },
     { id: 'glow', name: 'Glow', description: 'Soft accent bloom.', usage: `<GradientText variant="glow">Night</GradientText>` },
     { id: 'fade', name: 'Fade', description: 'Word dissolves to the right.', usage: `<GradientText variant="fade">Night</GradientText>` },
+    { id: 'variable-morph', name: 'Variable morph', description: 'Tracking breathes like a variable font.', usage: `<GradientText variant="variable-morph">Night</GradientText>` },
+    { id: 'scramble', name: 'Scramble', description: 'Letters settle only on hover.', usage: `<GradientText variant="scramble">Night</GradientText>` },
+    { id: 'path-write', name: 'Path write', description: 'A stroke writes under the word.', usage: `<GradientText variant="path-write">Night</GradientText>` },
+    { id: 'split-mask', name: 'Split mask', description: 'Per-line clipped reveal.', usage: `<GradientText variant="split-mask">Night</GradientText>` },
+  
   ],
   typewriter: [
     { id: 'terminal', name: 'Terminal', description: 'Window chrome and a prompt.', usage: `<Typewriter variant="terminal" phrases={['cards.', 'heroes.']} />` },
@@ -157,6 +203,11 @@ export const variantDocs = {
     { id: 'redact', name: 'Redact', description: 'Black-bar type.', usage: `<Typewriter variant="redact" phrases={['secret']} />` },
     { id: 'italic', name: 'Italic', description: 'Serif italic.', usage: `<Typewriter variant="italic" phrases={['yours,']} />` },
     { id: 'tape', name: 'Tape', description: 'Paper strip.', usage: `<Typewriter variant="tape" phrases={['NX-18 OK']} />` },
+    { id: 'odometer', name: 'Odometer', description: 'Digit columns flip to the figure.', usage: `<Typewriter variant="odometer" />` },
+    { id: 'scramble-line', name: 'Scramble line', description: 'A line that refuses to sit still.', usage: `<Typewriter variant="scramble-line" />` },
+    { id: 'matrix-rain', name: 'Matrix rain', description: 'Particles behind a prompt.', usage: `<Typewriter variant="matrix-rain" />` },
+    { id: 'flap-3d', name: 'Flap 3d', description: 'Split-flap tiles with depth.', usage: `<Typewriter variant="flap-3d" />` },
+  
   ],
   'text-reveal': [
     { id: 'editorial', name: 'Editorial', description: 'Drop cap paragraph.', usage: `<TextReveal variant="editorial" text="Arrive in order." />` },
@@ -171,6 +222,11 @@ export const variantDocs = {
     { id: 'index', name: 'Index', description: 'Numbered word list.', usage: `<TextReveal variant="index" text="Work Notes Atlas Harbor" />` },
     { id: 'folio', name: 'Folio', description: 'Running head and page.', usage: `<TextReveal variant="folio" text="A quieter measure." />` },
     { id: 'stack', name: 'Stack', description: 'One word per line.', usage: `<TextReveal variant="stack" text="Ship the mast" />` },
+    { id: 'line-mask', name: 'Line mask', description: 'Lines rise through a clip.', usage: `<TextReveal variant="line-mask" />` },
+    { id: 'letter-physics', name: 'Letter physics', description: 'Glyphs spring in one by one.', usage: `<TextReveal variant="letter-physics" />` },
+    { id: 'kinetic-stack', name: 'Kinetic stack', description: 'Stacked words with mask reveals.', usage: `<TextReveal variant="kinetic-stack" />` },
+    { id: 'svg-draw', name: 'Svg draw', description: 'A stroke signs the line.', usage: `<TextReveal variant="svg-draw" />` },
+  
   ],
   'floating-navbar': [
     { id: 'floating', name: 'Floating', description: 'Marketing pill that compacts on scroll.', usage: `<FloatingNavbar variant="floating" items={items} logo="Nexara" />` },
@@ -185,6 +241,11 @@ export const variantDocs = {
     { id: 'breadcrumb', name: 'Breadcrumb', description: 'Path of separators.', usage: `<FloatingNavbar variant="breadcrumb" items={items} logo="Nexara" />` },
     { id: 'segmented', name: 'Segmented', description: 'Links inside a control.', usage: `<FloatingNavbar variant="segmented" items={items} logo="Nexara" />` },
     { id: 'wordmark', name: 'Wordmark', description: 'Large mark and an index.', usage: `<FloatingNavbar variant="wordmark" items={items} logo="Nexara" />` },
+    { id: 'magnetic-pill', name: 'Magnetic pill', description: 'The bar leans to the pointer.', usage: `<FloatingNavbar variant="magnetic-pill" items={items} logo="Nexara" />` },
+    { id: 'morph-dock', name: 'Morph dock', description: 'Labels collapse into marks.', usage: `<FloatingNavbar variant="morph-dock" items={items} logo="Nexara" />` },
+    { id: 'orbit-nav', name: 'Orbit nav', description: 'Destinations on a ring.', usage: `<FloatingNavbar variant="orbit-nav" items={items} logo="Nexara" />` },
+    { id: 'glass-liquid', name: 'Glass liquid', description: 'A pill over a shader sea.', usage: `<FloatingNavbar variant="glass-liquid" items={items} logo="Nexara" />` },
+  
   ],
   modal: [
     { id: 'dialog', name: 'Dialog', description: 'Centered title and body.', usage: `<ModalContent variant="dialog" title="Name" />` },
@@ -199,6 +260,11 @@ export const variantDocs = {
     { id: 'sheet', name: 'Sheet', description: 'Stacked full-width actions.', usage: `<ModalContent variant="sheet" title="Choose" />` },
     { id: 'notice', name: 'Notice', description: 'Slim top notice.', usage: `<ModalContent variant="notice" title="Preview is open" />` },
     { id: 'auth', name: 'Auth', description: 'Color panel beside an email form.', usage: `<ModalContent variant="auth" title="Sign in" />` },
+    { id: 'shared-morph', name: 'Shared morph', description: 'A mark travels into the panel.', usage: `<ModalContent variant="shared-morph" title="Name" />` },
+    { id: 'shader-veil', name: 'Shader veil', description: 'The overlay is a field.', usage: `<ModalContent variant="shader-veil" title="Name" />` },
+    { id: 'liquid-sheet', name: 'Liquid sheet', description: 'Goo blobs instead of a card.', usage: `<ModalContent variant="liquid-sheet" title="Name" />` },
+    { id: 'particle-confirm', name: 'Particle confirm', description: 'A burst behind the choice.', usage: `<ModalContent variant="particle-confirm" title="Name" />` },
+  
   ],
   hero: [
     { id: 'saas', name: 'SaaS', description: 'Product window beside the pitch.', usage: `<Hero variant="saas" title="Ship the interface" />` },
@@ -231,6 +297,12 @@ export const variantDocs = {
     { id: 'tilted', name: 'Tilted', description: 'Perspective tile grid.', usage: `<Hero variant="tilted" title="A floor you can tilt." />` },
     { id: 'enterprise', name: 'Enterprise', description: 'Dual-CTA security landing.', usage: `<Hero variant="enterprise" title="The desk that passes review." />` },
     { id: 'featured', name: 'Featured', description: 'Featured project beside the pitch.', usage: `<Hero variant="featured" title="Wren Build, quoted in a day." />` },
+    { id: 'pin-scroll', name: 'Pin scroll', description: 'A media plate that grows with scroll.', usage: `<Hero variant="pin-scroll" title="Ship the interface" />` },
+    { id: 'shader-void', name: 'Shader void', description: 'WebGL mast with scramble type.', usage: `<Hero variant="shader-void" title="Ship the interface" />` },
+    { id: 'scramble-mast', name: 'Scramble mast', description: 'Masked display type that settles.', usage: `<Hero variant="scramble-mast" title="Ship the interface" />` },
+    { id: 'globe-orbit', name: 'Globe orbit', description: 'A sphere with orbiting marks.', usage: `<Hero variant="globe-orbit" title="Ship the interface" />` },
+    { id: 'morph-stage', name: 'Morph stage', description: 'Shared-element wordmark to mesh.', usage: `<Hero variant="morph-stage" title="Ship the interface" />` },
+  
   ],
   marquee: [
     { id: 'logos', name: 'Logos', description: 'A row of wordmarks.', usage: `<Marquee variant="logos" />` },
@@ -245,6 +317,11 @@ export const variantDocs = {
     { id: 'apps', name: 'Apps', description: 'App squircles.', usage: `<Marquee variant="apps" />` },
     { id: 'metrics', name: 'Metrics', description: 'Large figures.', usage: `<Marquee variant="metrics" />` },
     { id: 'awards', name: 'Awards', description: 'Press marks.', usage: `<Marquee variant="awards" />` },
+    { id: 'cylinder-3d', name: 'Cylinder 3d', description: 'A perspective tape.', usage: `<Marquee variant="cylinder-3d" />` },
+    { id: 'logo-orbit', name: 'Logo orbit', description: 'Wordmarks on a ring.', usage: `<Marquee variant="logo-orbit" />` },
+    { id: 'velocity-scroll', name: 'Velocity scroll', description: 'Oversized type on a fast track.', usage: `<Marquee variant="velocity-scroll" />` },
+    { id: 'grain-tape', name: 'Grain tape', description: 'Night tape with grain.', usage: `<Marquee variant="grain-tape" />` },
+  
   ],
   input: [
     { id: 'outline', name: 'Outline', description: 'Bordered field.', usage: `<Input variant="outline" placeholder="Harbor" />` },
@@ -259,6 +336,11 @@ export const variantDocs = {
     { id: 'tag', name: 'Tag', description: 'Chips inside the field.', usage: `<Input variant="tag" />` },
     { id: 'command', name: 'Command', description: 'Prompt field.', usage: `<Input variant="command" placeholder="open atlas" />` },
     { id: 'floating', name: 'Floating', description: 'Label sits inside.', usage: `<Input variant="floating" label="Studio" />` },
+    { id: 'liquid-focus', name: 'Liquid focus', description: 'Goo ornament on the field.', usage: `<Input variant="liquid-focus" />` },
+    { id: 'magnetic-caret', name: 'Magnetic caret', description: 'The field leans in.', usage: `<Input variant="magnetic-caret" />` },
+    { id: 'path-underline', name: 'Path underline', description: 'A stroke writes the baseline.', usage: `<Input variant="path-underline" />` },
+    { id: 'otp-flip', name: 'Otp flip', description: 'Odometer digits for a code.', usage: `<Input variant="otp-flip" />` },
+  
   ],
   tabs: [
     { id: 'underline', name: 'Underline', description: 'Rule under the active tab.', usage: `<Tabs variant="underline" items={items} />` },
@@ -271,6 +353,11 @@ export const variantDocs = {
     { id: 'minimal', name: 'Minimal', description: 'Bare labels.', usage: `<Tabs variant="minimal" items={items} />` },
     { id: 'badge', name: 'Badge', description: 'Counts on the tabs.', usage: `<Tabs variant="badge" items={items} />` },
     { id: 'rail', name: 'Rail', description: 'Accent rail on the left.', usage: `<Tabs variant="rail" items={items} />` },
+    { id: 'layout-morph', name: 'Layout morph', description: 'Ink that travels between tabs.', usage: `<Tabs variant="layout-morph" />` },
+    { id: 'liquid-ink', name: 'Liquid ink', description: 'A soft bloom under the active tab.', usage: `<Tabs variant="liquid-ink" />` },
+    { id: 'orbit-pills', name: 'Orbit pills', description: 'Tabs on a ring.', usage: `<Tabs variant="orbit-pills" />` },
+    { id: 'scramble-label', name: 'Scramble label', description: 'Labels settle on hover.', usage: `<Tabs variant="scramble-label" />` },
+  
   ],
   accordion: [
     { id: 'plus', name: 'Plus', description: 'Plus/minus disclosure.', usage: `<Accordion variant="plus" items={items} />` },
@@ -283,6 +370,11 @@ export const variantDocs = {
     { id: 'media', name: 'Media', description: 'Larger media well.', usage: `<Accordion variant="media" items={items} />` },
     { id: 'faq', name: 'FAQ', description: 'Q. prefix on titles.', usage: `<Accordion variant="faq" items={items} />` },
     { id: 'timeline', name: 'Timeline', description: 'Rail and nodes.', usage: `<Accordion variant="timeline" items={items} />` },
+    { id: 'height-morph', name: 'Height morph', description: 'Rows open with a spring height.', usage: `<Accordion variant="height-morph" />` },
+    { id: 'path-plus', name: 'Path plus', description: 'The plus draws itself.', usage: `<Accordion variant="path-plus" />` },
+    { id: 'kinetic-faq', name: 'Kinetic faq', description: 'Questions scramble on hover.', usage: `<Accordion variant="kinetic-faq" />` },
+    { id: 'shader-row', name: 'Shader row', description: 'Disclosures on a mesh.', usage: `<Accordion variant="shader-row" />` },
+  
   ],
   tooltip: [
     { id: 'default', name: 'Default', description: 'Inverted chip.', usage: `<Tooltip variant="default" content="Hint">Hover</Tooltip>` },
@@ -295,6 +387,11 @@ export const variantDocs = {
     { id: 'plain', name: 'Plain', description: 'Unboxed text.', usage: `<Tooltip variant="plain" content="Hint">Hover</Tooltip>` },
     { id: 'avatar', name: 'Avatar', description: 'Identity chip.', usage: `<Tooltip variant="avatar" content="Ada Klein">Hover</Tooltip>` },
     { id: 'metric', name: 'Metric', description: 'Dark metric card.', usage: `<Tooltip variant="metric" content="99.98">Hover</Tooltip>` },
+    { id: 'follow-glare', name: 'Follow glare', description: 'A hint that tilts.', usage: `<Tooltip variant="follow-glare" content="Hint">Hover</Tooltip>` },
+    { id: 'particle-hint', name: 'Particle hint', description: 'A constellation chip.', usage: `<Tooltip variant="particle-hint" content="Hint">Hover</Tooltip>` },
+    { id: 'scramble-tip', name: 'Scramble tip', description: 'The hint unsettles.', usage: `<Tooltip variant="scramble-tip" content="Hint">Hover</Tooltip>` },
+    { id: 'magnetic-tag', name: 'Magnetic tag', description: 'A name that leans.', usage: `<Tooltip variant="magnetic-tag" content="Hint">Hover</Tooltip>` },
+  
   ],
   toast: [
     { id: 'success', name: 'Success', description: 'Green mark.', usage: `<Toast variant="success" />` },
@@ -307,6 +404,11 @@ export const variantDocs = {
     { id: 'avatar', name: 'Avatar', description: 'Person mark.', usage: `<Toast variant="avatar" />` },
     { id: 'compact', name: 'Compact', description: 'Single-line pill.', usage: `<Toast variant="compact" />` },
     { id: 'stacked', name: 'Stacked', description: 'Sheet under the toast.', usage: `<Toast variant="stacked" />` },
+    { id: 'spring-stack', name: 'Spring stack', description: 'The toast springs in.', usage: `<Toast variant="spring-stack" />` },
+    { id: 'path-check', name: 'Path check', description: 'A check that draws.', usage: `<Toast variant="path-check" />` },
+    { id: 'liquid-slide', name: 'Liquid slide', description: 'An accent rail on entry.', usage: `<Toast variant="liquid-slide" />` },
+    { id: 'odometer-count', name: 'Odometer count', description: 'The inbox ticks.', usage: `<Toast variant="odometer-count" />` },
+  
   ],
   avatar: [
     { id: 'image', name: 'Image', description: 'Photographic portrait default.', usage: `<Avatar variant="image" name="Anitha Rao" />` },
@@ -319,6 +421,11 @@ export const variantDocs = {
     { id: 'icon', name: 'Icon', description: 'User glyph.', usage: `<Avatar variant="icon" />` },
     { id: 'story', name: 'Story', description: 'Accent ring.', usage: `<Avatar variant="story" />` },
     { id: 'mention', name: 'Mention', description: 'Chip with a name.', usage: `<Avatar variant="mention" />` },
+    { id: 'orbit-status', name: 'Orbit status', description: 'A live ring around the face.', usage: `<Avatar variant="orbit-status" />` },
+    { id: 'shader-ring', name: 'Shader ring', description: 'Mesh behind the portrait.', usage: `<Avatar variant="shader-ring" />` },
+    { id: 'particle-presence', name: 'Particle presence', description: 'A field around the face.', usage: `<Avatar variant="particle-presence" />` },
+    { id: 'holographic', name: 'Holographic', description: 'Grain over a tilt plate.', usage: `<Avatar variant="holographic" />` },
+  
   ],
   badge: [
     { id: 'solid', name: 'Solid', description: 'Filled chip.', usage: `<Badge variant="solid">Live</Badge>` },
@@ -331,6 +438,11 @@ export const variantDocs = {
     { id: 'icon', name: 'Icon', description: 'Compact square.', usage: `<Badge variant="icon">N</Badge>` },
     { id: 'glow', name: 'Glow', description: 'Accent bloom.', usage: `<Badge variant="glow">New</Badge>` },
     { id: 'ribbon', name: 'Ribbon', description: 'Corner banner.', usage: `<Badge variant="ribbon">Sale</Badge>` },
+    { id: 'beam-orbit', name: 'Beam orbit', description: 'A conic ring around the chip.', usage: `<Badge variant="beam-orbit">Live</Badge>` },
+    { id: 'scramble-live', name: 'Scramble live', description: 'LIVE that refuses to sit.', usage: `<Badge variant="scramble-live">Live</Badge>` },
+    { id: 'liquid-pill', name: 'Liquid pill', description: 'A goo chip.', usage: `<Badge variant="liquid-pill">Live</Badge>` },
+    { id: 'path-ribbon', name: 'Path ribbon', description: 'A sale mark that writes.', usage: `<Badge variant="path-ribbon">Live</Badge>` },
+  
   ],
   pricing: [
     { id: 'cards', name: 'Cards', description: 'Three plan cards.', usage: `<Pricing variant="cards" />` },
@@ -343,6 +455,11 @@ export const variantDocs = {
     { id: 'hobby', name: 'Hobby', description: 'Free plan card.', usage: `<Pricing variant="hobby" />` },
     { id: 'table', name: 'Table', description: 'Plan table.', usage: `<Pricing variant="table" />` },
     { id: 'stacked', name: 'Stacked', description: 'Single featured stack.', usage: `<Pricing variant="stacked" />` },
+    { id: 'tilt-glare', name: 'Tilt glare', description: 'Plans that tilt and shine.', usage: `<Pricing variant="tilt-glare" />` },
+    { id: 'odometer-price', name: 'Odometer price', description: 'The price ticks up.', usage: `<Pricing variant="odometer-price" />` },
+    { id: 'morph-toggle', name: 'Morph toggle', description: 'Monthly and yearly share a control.', usage: `<Pricing variant="morph-toggle" />` },
+    { id: 'shader-featured', name: 'Shader featured', description: 'The middle plan is a field.', usage: `<Pricing variant="shader-featured" />` },
+  
   ],
   testimonials: [
     { id: 'quote', name: 'Quote', description: 'Large pull quote.', usage: `<Testimonials variant="quote" />` },
@@ -355,6 +472,11 @@ export const variantDocs = {
     { id: 'logo', name: 'Logo', description: 'Wordmark row.', usage: `<Testimonials variant="logo" />` },
     { id: 'stacked', name: 'Stacked', description: 'Vertical quotes.', usage: `<Testimonials variant="stacked" />` },
     { id: 'featured', name: 'Featured', description: 'Inverted quote.', usage: `<Testimonials variant="featured" />` },
+    { id: 'wall-parallax', name: 'Wall parallax', description: 'Quotes sit on different depths.', usage: `<Testimonials variant="wall-parallax" />` },
+    { id: 'video-shader', name: 'Video shader', description: 'The reel is the quote.', usage: `<Testimonials variant="video-shader" />` },
+    { id: 'orbit-quotes', name: 'Orbit quotes', description: 'Names on a ring.', usage: `<Testimonials variant="orbit-quotes" />` },
+    { id: 'scramble-pull', name: 'Scramble pull', description: 'A pull quote that settles.', usage: `<Testimonials variant="scramble-pull" />` },
+  
   ],
   footer: [
     { id: 'mega', name: 'Mega', description: 'Four-column sitemap.', usage: `<Footer variant="mega" />` },
@@ -367,6 +489,11 @@ export const variantDocs = {
     { id: 'sitemap', name: 'Sitemap', description: 'Column index.', usage: `<Footer variant="sitemap" />` },
     { id: 'brand', name: 'Brand', description: 'Large mark.', usage: `<Footer variant="brand" />` },
     { id: 'split', name: 'Split', description: 'Line and address.', usage: `<Footer variant="split" />` },
+    { id: 'giant-marquee', name: 'Giant marquee', description: 'A wordmark tape at display size.', usage: `<Footer variant="giant-marquee" />` },
+    { id: 'grain-night', name: 'Grain night', description: 'A void closer with grain.', usage: `<Footer variant="grain-night" />` },
+    { id: 'orbit-marks', name: 'Orbit marks', description: 'Sitemap on a ring.', usage: `<Footer variant="orbit-marks" />` },
+    { id: 'path-sitemap', name: 'Path sitemap', description: 'The map draws itself.', usage: `<Footer variant="path-sitemap" />` },
+  
   ],
   stats: [
     { id: 'countup', name: 'Countup', description: 'Four climate figures that count up.', usage: `<Stats variant="countup" />` },
@@ -381,6 +508,11 @@ export const variantDocs = {
     { id: 'compare', name: 'Compare', description: 'Before and after therapy desk.', usage: `<Stats variant="compare" />` },
     { id: 'mosaic', name: 'Mosaic', description: 'Uneven tile metrics.', usage: `<Stats variant="mosaic" />` },
     { id: 'live', name: 'Live', description: 'Desk-open ribbon.', usage: `<Stats variant="live" />` },
+    { id: 'odometer', name: 'Odometer', description: 'Digit columns flip to the figure.', usage: `<Stats variant="odometer" />` },
+    { id: 'orbit-ring', name: 'Orbit ring', description: 'Figures on a ring.', usage: `<Stats variant="orbit-ring" />` },
+    { id: 'particle-pulse', name: 'Particle pulse', description: 'A constellation behind the figure.', usage: `<Stats variant="particle-pulse" />` },
+    { id: 'glare-mosaic', name: 'Glare mosaic', description: 'Tilted metric tiles.', usage: `<Stats variant="glare-mosaic" />` },
+  
   ],
   countdown: [
     { id: 'event', name: 'Event', description: 'Championship card clock.', usage: `<Countdown variant="event" />` },
@@ -395,6 +527,11 @@ export const variantDocs = {
     { id: 'ribbon', name: 'Ribbon', description: 'Pill remaining time.', usage: `<Countdown variant="ribbon" />` },
     { id: 'minimal', name: 'Minimal', description: 'Days to the title.', usage: `<Countdown variant="minimal" />` },
     { id: 'analog', name: 'Analog', description: 'Second-hand disc.', usage: `<Countdown variant="analog" />` },
+    { id: 'flip-3d', name: 'Flip 3d', description: 'Odometer tiles for the clock.', usage: `<Countdown variant="flip-3d" />` },
+    { id: 'shader-rings', name: 'Shader rings', description: 'Cells on a mesh.', usage: `<Countdown variant="shader-rings" />` },
+    { id: 'analog-orbit', name: 'Analog orbit', description: 'Hands as satellites.', usage: `<Countdown variant="analog-orbit" />` },
+    { id: 'launch-scrub', name: 'Launch scrub', description: 'Scroll is T-minus.', usage: `<Countdown variant="launch-scrub" />` },
+  
   ],
   leaderboard: [
     { id: 'medals', name: 'Medals', description: 'Gold silver bronze tally.', usage: `<Leaderboard variant="medals" />` },
@@ -409,6 +546,11 @@ export const variantDocs = {
     { id: 'live', name: 'Live', description: 'Live heat board.', usage: `<Leaderboard variant="live" />` },
     { id: 'points', name: 'Points', description: 'Season points list.', usage: `<Leaderboard variant="points" />` },
     { id: 'disciplines', name: 'Disciplines', description: 'Event winners grid.', usage: `<Leaderboard variant="disciplines" />` },
+    { id: 'heat-race', name: 'Heat race', description: 'Bars grow into rank.', usage: `<Leaderboard variant="heat-race" />` },
+    { id: 'podium-spring', name: 'Podium spring', description: 'Stands rise.', usage: `<Leaderboard variant="podium-spring" />` },
+    { id: 'live-odometer', name: 'Live odometer', description: 'Points tick.', usage: `<Leaderboard variant="live-odometer" />` },
+    { id: 'particle-rank', name: 'Particle rank', description: 'A field behind the table.', usage: `<Leaderboard variant="particle-rank" />` },
+  
   ],
   'case-study': [
     { id: 'tabs', name: 'Tabs', description: 'Auto client carousel.', usage: `<CaseStudy variant="tabs" />` },
@@ -423,6 +565,11 @@ export const variantDocs = {
     { id: 'index', name: 'Index', description: 'Numbered case index.', usage: `<CaseStudy variant="index" />` },
     { id: 'featured', name: 'Featured', description: 'Inverted featured case.', usage: `<CaseStudy variant="featured" />` },
     { id: 'reel', name: 'Reel', description: 'Dots under one case.', usage: `<CaseStudy variant="reel" />` },
+    { id: 'scroll-film', name: 'Scroll film', description: 'A horizontal case reel.', usage: `<CaseStudy variant="scroll-film" />` },
+    { id: 'shared-morph', name: 'Shared morph', description: 'A mark travels into the panel.', usage: `<CaseStudy variant="shared-morph" />` },
+    { id: 'glare-stack', name: 'Glare stack', description: 'Cases that tilt.', usage: `<CaseStudy variant="glare-stack" />` },
+    { id: 'path-index', name: 'Path index', description: 'A drawn case index.', usage: `<CaseStudy variant="path-index" />` },
+  
   ],
   services: [
     { id: 'checklist', name: 'Checklist', description: 'HVAC services with ticks.', usage: `<Services variant="checklist" />` },
@@ -437,6 +584,11 @@ export const variantDocs = {
     { id: 'partner', name: 'Partner', description: 'Dealer collaboration band.', usage: `<Services variant="partner" />` },
     { id: 'why', name: 'Why', description: 'Why-us copy grid.', usage: `<Services variant="why" />` },
     { id: 'disciplines', name: 'Disciplines', description: 'Field Athletics sport grid.', usage: `<Services variant="disciplines" />` },
+    { id: 'tilt-doors', name: 'Tilt doors', description: 'Clinic doors with glare.', usage: `<Services variant="tilt-doors" />` },
+    { id: 'orbit-crews', name: 'Orbit crews', description: 'Crews on a ring.', usage: `<Services variant="orbit-crews" />` },
+    { id: 'shader-cards', name: 'Shader cards', description: 'Service plates on a mesh.', usage: `<Services variant="shader-cards" />` },
+    { id: 'path-checklist', name: 'Path checklist', description: 'Ticks that draw.', usage: `<Services variant="path-checklist" />` },
+  
   ],
   process: [
     { id: 'written', name: 'Written', description: 'Nexara written steps.', usage: `<Process variant="written" />` },
@@ -451,6 +603,11 @@ export const variantDocs = {
     { id: 'rhythm', name: 'Rhythm', description: 'Three-step large type.', usage: `<Process variant="rhythm" />` },
     { id: 'checklist', name: 'Checklist', description: 'Ticked process.', usage: `<Process variant="checklist" />` },
     { id: 'filmstrip', name: 'Filmstrip', description: 'Horizontal steps.', usage: `<Process variant="filmstrip" />` },
+    { id: 'scrub-timeline', name: 'Scrub timeline', description: 'Scroll changes the step.', usage: `<Process variant="scrub-timeline" />` },
+    { id: 'pin-steps', name: 'Pin steps', description: 'A pinned process.', usage: `<Process variant="pin-steps" />` },
+    { id: 'path-rail', name: 'Path rail', description: 'A rail that writes.', usage: `<Process variant="path-rail" />` },
+    { id: 'orbit-rhythm', name: 'Orbit rhythm', description: 'Steps on a ring.', usage: `<Process variant="orbit-rhythm" />` },
+  
   ],
   team: [
     { id: 'doctors', name: 'Doctors', description: 'Clinic doctor grid.', usage: `<Team variant="doctors" />` },
@@ -465,6 +622,11 @@ export const variantDocs = {
     { id: 'compact', name: 'Compact', description: 'People pills.', usage: `<Team variant="compact" />` },
     { id: 'editorial', name: 'Editorial', description: 'Large-type pair.', usage: `<Team variant="editorial" />` },
     { id: 'hours', name: 'Hours', description: 'Desk hours table.', usage: `<Team variant="hours" />` },
+    { id: 'glare-portraits', name: 'Glare portraits', description: 'Faces that tilt.', usage: `<Team variant="glare-portraits" />` },
+    { id: 'orbit-crew', name: 'Orbit crew', description: 'Names on a ring.', usage: `<Team variant="orbit-crew" />` },
+    { id: 'holographic', name: 'Holographic', description: 'Grain over a tilt plate.', usage: `<Team variant="holographic" />` },
+    { id: 'particle-grid', name: 'Particle grid', description: 'Portraits on a field.', usage: `<Team variant="particle-grid" />` },
+  
   ],
   contact: [
     { id: 'branches', name: 'Branches', description: 'Three city cards.', usage: `<Contact variant="branches" />` },
@@ -479,6 +641,11 @@ export const variantDocs = {
     { id: 'studio', name: 'Studio', description: 'Nexara studio card.', usage: `<Contact variant="studio" />` },
     { id: 'compact', name: 'Compact', description: 'City line.', usage: `<Contact variant="compact" />` },
     { id: 'visit', name: 'Visit', description: 'Map visit card.', usage: `<Contact variant="visit" />` },
+    { id: 'map-shader', name: 'Map shader', description: 'Coordinates on a mesh.', usage: `<Contact variant="map-shader" />` },
+    { id: 'liquid-form', name: 'Liquid form', description: 'A goo brief.', usage: `<Contact variant="liquid-form" />` },
+    { id: 'magnetic-branches', name: 'Magnetic branches', description: 'Cities that lean.', usage: `<Contact variant="magnetic-branches" />` },
+    { id: 'path-directions', name: 'Path directions', description: 'A route that draws.', usage: `<Contact variant="path-directions" />` },
+  
   ],
   'cta-band': [
     { id: 'appointment', name: 'Appointment', description: 'Clinic booking band.', usage: `<CtaBand variant="appointment" />` },
@@ -493,6 +660,11 @@ export const variantDocs = {
     { id: 'emergency', name: 'Emergency', description: '24h phone band.', usage: `<CtaBand variant="emergency" />` },
     { id: 'studio', name: 'Studio', description: 'Hire the desk.', usage: `<CtaBand variant="studio" />` },
     { id: 'event', name: 'Event', description: 'Championship closer.', usage: `<CtaBand variant="event" />` },
+    { id: 'liquid-wash', name: 'Liquid wash', description: 'A closer on a mesh.', usage: `<CtaBand variant="liquid-wash" />` },
+    { id: 'scramble-cta', name: 'Scramble cta', description: 'The closer unsettles.', usage: `<CtaBand variant="scramble-cta" />` },
+    { id: 'particle-close', name: 'Particle close', description: 'A constellation closer.', usage: `<CtaBand variant="particle-close" />` },
+    { id: 'glare-band', name: 'Glare band', description: 'A closer that tilts.', usage: `<CtaBand variant="glare-band" />` },
+  
   ],
   chapters: [
     { id: 'eight', name: 'Eight', description: 'Scroll-driven eight chapters.', usage: `<Chapters variant="eight" />` },
@@ -507,6 +679,11 @@ export const variantDocs = {
     { id: 'accordion', name: 'Accordion', description: 'Chapter disclosures.', usage: `<Chapters variant="accordion" />` },
     { id: 'manifesto', name: 'Manifesto', description: 'Long-form manifesto.', usage: `<Chapters variant="manifesto" />` },
     { id: 'lesson', name: 'Lesson', description: 'Single academy lesson.', usage: `<Chapters variant="lesson" />` },
+    { id: 'pin-story', name: 'Pin story', description: 'Chapters pinned to scroll.', usage: `<Chapters variant="pin-story" />` },
+    { id: 'scrub-essay', name: 'Scrub essay', description: 'Scroll picks the chapter.', usage: `<Chapters variant="scrub-essay" />` },
+    { id: 'parallax-index', name: 'Parallax index', description: 'Index beside masked type.', usage: `<Chapters variant="parallax-index" />` },
+    { id: 'path-folio', name: 'Path folio', description: 'A folio that writes.', usage: `<Chapters variant="path-folio" />` },
+  
   ],
   news: [
     { id: 'bulletin', name: 'Bulletin', description: 'Association news tape.', usage: `<News variant="bulletin" />` },
@@ -521,6 +698,11 @@ export const variantDocs = {
     { id: 'alert', name: 'Alert', description: 'Lane-change notice.', usage: `<News variant="alert" />` },
     { id: 'editorial', name: 'Editorial', description: 'Essay headline.', usage: `<News variant="editorial" />` },
     { id: 'feed', name: 'Feed', description: 'Simple feed.', usage: `<News variant="feed" />` },
+    { id: 'velocity-tape', name: 'Velocity tape', description: 'A fast news track.', usage: `<News variant="velocity-tape" />` },
+    { id: 'flip-headlines', name: 'Flip headlines', description: 'Headlines scramble.', usage: `<News variant="flip-headlines" />` },
+    { id: 'shader-magazine', name: 'Shader magazine', description: 'Issue on a mesh.', usage: `<News variant="shader-magazine" />` },
+    { id: 'orbit-digest', name: 'Orbit digest', description: 'Days on a ring.', usage: `<News variant="orbit-digest" />` },
+  
   ],
   'logo-cloud': [
     { id: 'dealers', name: 'Dealers', description: 'Six original color lockups with cities — not matching glyphs.', usage: `<LogoCloud variant="dealers" />` },
@@ -535,6 +717,11 @@ export const variantDocs = {
     { id: 'invert', name: 'Invert', description: 'Dark logo bar.', usage: `<LogoCloud variant="invert" />` },
     { id: 'stacked', name: 'Stacked', description: 'Numbered client index.', usage: `<LogoCloud variant="stacked" />` },
     { id: 'badges', name: 'Badges', description: 'Logo pills.', usage: `<LogoCloud variant="badges" />` },
+    { id: 'orbit-3d', name: 'Orbit 3d', description: 'Marks around a globe.', usage: `<LogoCloud variant="orbit-3d" />` },
+    { id: 'magnetic-marks', name: 'Magnetic marks', description: 'Lockups that lean.', usage: `<LogoCloud variant="magnetic-marks" />` },
+    { id: 'glare-lockups', name: 'Glare lockups', description: 'Marks that tilt.', usage: `<LogoCloud variant="glare-lockups" />` },
+    { id: 'particle-press', name: 'Particle press', description: 'A press name on a field.', usage: `<LogoCloud variant="particle-press" />` },
+  
   ],
   'app-shell': [
     { id: 'sidebar', name: 'Sidebar', description: 'Agency OS sidebar.', usage: `<AppShell variant="sidebar" />` },
@@ -549,6 +736,11 @@ export const variantDocs = {
     { id: 'collapsed', name: 'Collapsed', description: 'Collapsed rail.', usage: `<AppShell variant="collapsed" />` },
     { id: 'command', name: 'Command', description: 'Command-first desk.', usage: `<AppShell variant="command" />` },
     { id: 'mobile', name: 'Mobile', description: 'Menu toggle shell.', usage: `<AppShell variant="mobile" />` },
+    { id: 'morph-sidebar', name: 'Morph sidebar', description: 'A rail that keeps identity.', usage: `<AppShell variant="morph-sidebar" />` },
+    { id: 'command-orbit', name: 'Command orbit', description: 'Jump targets on a ring.', usage: `<AppShell variant="command-orbit" />` },
+    { id: 'shader-desk', name: 'Shader desk', description: 'App chrome on a mesh.', usage: `<AppShell variant="shader-desk" />` },
+    { id: 'liquid-rail', name: 'Liquid rail', description: 'A rail beside a field.', usage: `<AppShell variant="liquid-rail" />` },
+  
   ],
   kpi: [
     { id: 'metric', name: 'Metric', description: 'Plain count tile.', usage: `<Kpi variant="metric" />` },
@@ -563,6 +755,11 @@ export const variantDocs = {
     { id: 'health', name: 'Health', description: 'Uptime tile.', usage: `<Kpi variant="health" />` },
     { id: 'target', name: 'Target', description: 'Weekly target.', usage: `<Kpi variant="target" />` },
     { id: 'stack', name: 'Stack', description: 'Stacked mini metrics.', usage: `<Kpi variant="stack" />` },
+    { id: 'odometer-spark', name: 'Odometer spark', description: 'A booked figure that ticks.', usage: `<Kpi variant="odometer-spark" />` },
+    { id: 'ring-draw', name: 'Ring draw', description: 'A donut that draws.', usage: `<Kpi variant="ring-draw" />` },
+    { id: 'particle-live', name: 'Particle live', description: 'A live figure on a field.', usage: `<Kpi variant="particle-live" />` },
+    { id: 'glare-delta', name: 'Glare delta', description: 'A change that tilts.', usage: `<Kpi variant="glare-delta" />` },
+  
   ],
   'data-table': [
     { id: 'filter', name: 'Filter', description: 'Search and status.', usage: `<DataTable variant="filter" />` },
@@ -577,6 +774,11 @@ export const variantDocs = {
     { id: 'dense', name: 'Dense', description: 'Dense type.', usage: `<DataTable variant="dense" />` },
     { id: 'grouped', name: 'Grouped', description: 'Status grouped.', usage: `<DataTable variant="grouped" />` },
     { id: 'export', name: 'Export', description: 'CSV export control.', usage: `<DataTable variant="export" />` },
+    { id: 'row-stagger', name: 'Row stagger', description: 'Rows spring in.', usage: `<DataTable variant="row-stagger" />` },
+    { id: 'morph-cards', name: 'Morph cards', description: 'Rows become cards on a phone.', usage: `<DataTable variant="morph-cards" />` },
+    { id: 'heat-cells', name: 'Heat cells', description: 'A heat map instead of rows.', usage: `<DataTable variant="heat-cells" />` },
+    { id: 'odometer-cells', name: 'Odometer cells', description: 'Amounts tick.', usage: `<DataTable variant="odometer-cells" />` },
+  
   ],
   'kanban-board': [
     { id: 'agency', name: 'Agency', description: 'Brief build review.', usage: `<KanbanBoard variant="agency" />` },
@@ -591,6 +793,11 @@ export const variantDocs = {
     { id: 'wip', name: 'Wip', description: 'WIP limits.', usage: `<KanbanBoard variant="wip" />` },
     { id: 'simple', name: 'Simple', description: 'Bare columns.', usage: `<KanbanBoard variant="simple" />` },
     { id: 'review', name: 'Review', description: 'Review column mark.', usage: `<KanbanBoard variant="review" />` },
+    { id: 'spring-toss', name: 'Spring toss', description: 'Cards that lean.', usage: `<KanbanBoard variant="spring-toss" />` },
+    { id: 'glare-cards', name: 'Glare cards', description: 'Tickets that tilt.', usage: `<KanbanBoard variant="glare-cards" />` },
+    { id: 'orbit-wip', name: 'Orbit wip', description: 'WIP limits on a ring.', usage: `<KanbanBoard variant="orbit-wip" />` },
+    { id: 'particle-lane', name: 'Particle lane', description: 'A review lane on a field.', usage: `<KanbanBoard variant="particle-lane" />` },
+  
   ],
   'chart-block': [
     { id: 'area', name: 'Area', description: 'Filled spark area.', usage: `<ChartBlock variant="area" />` },
@@ -605,6 +812,11 @@ export const variantDocs = {
     { id: 'goal', name: 'Goal', description: 'Rupee target.', usage: `<ChartBlock variant="goal" />` },
     { id: 'mix', name: 'Mix', description: 'Area plus line.', usage: `<ChartBlock variant="mix" />` },
     { id: 'clock', name: 'Clock', description: 'Time-on-desk ring.', usage: `<ChartBlock variant="clock" />` },
+    { id: 'path-draw', name: 'Path draw', description: 'A series that writes.', usage: `<ChartBlock variant="path-draw" />` },
+    { id: 'particle-area', name: 'Particle area', description: 'An area made of dots.', usage: `<ChartBlock variant="particle-area" />` },
+    { id: 'scrub-bars', name: 'Scrub bars', description: 'Scroll grows the week.', usage: `<ChartBlock variant="scrub-bars" />` },
+    { id: 'shader-donut', name: 'Shader donut', description: 'A share ring on a mesh.', usage: `<ChartBlock variant="shader-donut" />` },
+  
   ],
   activity: [
     { id: 'feed', name: 'Feed', description: 'Desk activity feed.', usage: `<Activity variant="feed" />` },
@@ -619,6 +831,11 @@ export const variantDocs = {
     { id: 'files', name: 'Files', description: 'File uploads.', usage: `<Activity variant="files" />` },
     { id: 'timeline', name: 'Timeline', description: 'Rail timeline.', usage: `<Activity variant="timeline" />` },
     { id: 'digest', name: 'Digest', description: 'Daily digest.', usage: `<Activity variant="digest" />` },
+    { id: 'stagger-feed', name: 'Stagger feed', description: 'Events spring in.', usage: `<Activity variant="stagger-feed" />` },
+    { id: 'path-rail', name: 'Path rail', description: 'A rail that writes.', usage: `<Activity variant="path-rail" />` },
+    { id: 'live-odometer', name: 'Live odometer', description: 'Points tick.', usage: `<Activity variant="live-odometer" />` },
+    { id: 'liquid-chat', name: 'Liquid chat', description: 'Bubbles with a spring.', usage: `<Activity variant="liquid-chat" />` },
+  
   ],
   'command-palette': [
     { id: 'default', name: 'Default', description: 'Jump menu.', usage: `<CommandPalette variant="default" />` },
@@ -633,6 +850,11 @@ export const variantDocs = {
     { id: 'recent', name: 'Recent', description: 'Recent rooms.', usage: `<CommandPalette variant="recent" />` },
     { id: 'empty', name: 'Empty', description: 'Empty match state.', usage: `<CommandPalette variant="empty" />` },
     { id: 'help', name: 'Help', description: 'Shortcut help.', usage: `<CommandPalette variant="help" />` },
+    { id: 'scramble-search', name: 'Scramble search', description: 'The query unsettles.', usage: `<CommandPalette variant="scramble-search" />` },
+    { id: 'morph-results', name: 'Morph results', description: 'Results keep a shared layout.', usage: `<CommandPalette variant="morph-results" />` },
+    { id: 'particle-jump', name: 'Particle jump', description: 'Jump on a field.', usage: `<CommandPalette variant="particle-jump" />` },
+    { id: 'glare-row', name: 'Glare row', description: 'A row that shines.', usage: `<CommandPalette variant="glare-row" />` },
+  
   ],
   'settings-panel': [
     { id: 'profile', name: 'Profile', description: 'Name and desk.', usage: `<SettingsPanel variant="profile" />` },
@@ -647,6 +869,11 @@ export const variantDocs = {
     { id: 'compact', name: 'Compact', description: 'Short settings note.', usage: `<SettingsPanel variant="compact" />` },
     { id: 'danger', name: 'Danger', description: 'Archive desk.', usage: `<SettingsPanel variant="danger" />` },
     { id: 'integrations', name: 'Integrations', description: 'Calendar and Stripe.', usage: `<SettingsPanel variant="integrations" />` },
+    { id: 'morph-sections', name: 'Morph sections', description: 'Settings travel with the switch.', usage: `<SettingsPanel variant="morph-sections" />` },
+    { id: 'liquid-toggle', name: 'Liquid toggle', description: 'A spring thumb.', usage: `<SettingsPanel variant="liquid-toggle" />` },
+    { id: 'path-security', name: 'Path security', description: 'SSO that draws.', usage: `<SettingsPanel variant="path-security" />` },
+    { id: 'glare-profile', name: 'Glare profile', description: 'A profile that tilts.', usage: `<SettingsPanel variant="glare-profile" />` },
+  
   ],
   kit: [
     { id: 'healthcare', name: 'Healthcare', description: 'Lumen Care clinic page.', usage: `<Kit variant="healthcare" />` },
@@ -661,5 +888,11 @@ export const variantDocs = {
     { id: 'lab', name: 'Lab', description: 'Diagnostics page.', usage: `<Kit variant="lab" />` },
     { id: 'studio', name: 'Studio', description: 'Studio page alias.', usage: `<Kit variant="studio" />` },
     { id: 'association', name: 'Association', description: 'Association page alias.', usage: `<Kit variant="association" />` },
+    { id: 'shader-clinic', name: 'Shader clinic', description: 'Lumen Care on a mesh.', usage: `<Kit variant="shader-clinic" />` },
+    { id: 'globe-agency', name: 'Globe agency', description: 'North Studio with a globe.', usage: `<Kit variant="globe-agency" />` },
+    { id: 'pin-sports', name: 'Pin sports', description: 'A season scrubbed by scroll.', usage: `<Kit variant="pin-sports" />` },
+    { id: 'liquid-portal', name: 'Liquid portal', description: 'Agency OS with a 3D mast.', usage: `<Kit variant="liquid-portal" />` },
+    { id: 'scramble-academy', name: 'Scramble academy', description: 'A title that settles.', usage: `<Kit variant="scramble-academy" />` },
+  
   ],
 } as const

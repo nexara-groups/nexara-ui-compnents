@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useEffect, useRef, useState } from 'react'
 import { cn, useCountUp } from '@/lib/utils.ts'
 
@@ -16,6 +18,10 @@ const VARIANTS = [
   'compare',
   'mosaic',
   'live',
+  'odometer',
+  'orbit-ring',
+  'particle-pulse',
+  'glare-mosaic',
 ] as const
 
 export type StatsVariant = (typeof VARIANTS)[number]
@@ -53,7 +59,7 @@ const clinic: Stat[] = [
  * Twelve count-up constructions for climate, care, and sport desks.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function Stats({ variant = 'countup', className }: StatsProps) {
+function StatsCore({ variant = 'countup', className }: StatsProps) {
   return (
     <section data-nexara="stats" data-variant={variant} className={cn('w-full', className)}>
       {variant === 'countup' ? <Grid items={plant} /> : null}
@@ -249,4 +255,18 @@ function Count({ item, className }: { item: Stat; className?: string }) {
       {format(item, value)}
     </span>
   )
+}
+
+export function Stats(props: StatsProps) {
+  if (isWowVariant('stats', props.variant)) {
+    return (
+      <WowSignature
+        family="stats"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <StatsCore {...props} />
 }

@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useEffect, useState } from 'react'
 import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, focusRing, usePrefersReducedMotion } from '@/lib/utils.ts'
@@ -17,6 +19,10 @@ const VARIANTS = [
   'index',
   'featured',
   'reel',
+  'scroll-film',
+  'shared-morph',
+  'glare-stack',
+  'path-index',
 ] as const
 
 export type CaseStudyVariant = (typeof VARIANTS)[number]
@@ -41,7 +47,7 @@ const studies = [
  * Twelve client-story constructions with photographic stills and a pause control.
  * Copy this file, `src/lib/media.tsx`, `src/lib/utils.ts`, and `public/media`.
  */
-export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
+function CaseStudyCore({ variant = 'tabs', className }: CaseStudyProps) {
   const reduced = usePrefersReducedMotion()
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
@@ -273,4 +279,18 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
       ) : null}
     </section>
   )
+}
+
+export function CaseStudy(props: CaseStudyProps) {
+  if (isWowVariant('case-study', props.variant)) {
+    return (
+      <WowSignature
+        family="case-study"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <CaseStudyCore {...props} />
 }

@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useEffect, useId, useRef, useState, type MouseEvent, type ReactNode, type RefObject } from 'react'
 import { createPortal } from 'react-dom'
 import { MediaFrame, media } from '@/lib/media.tsx'
@@ -31,7 +33,7 @@ export interface FloatingNavbarProps {
   logo?: ReactNode
   items: NavItem[]
   actions?: ReactNode
-  variant?: keyof typeof variantClass
+  variant?: keyof typeof variantClass | 'magnetic-pill' | 'morph-dock' | 'orbit-nav' | 'glass-liquid'
   shrinkOnScroll?: boolean
   contained?: boolean
   blur?: boolean
@@ -48,7 +50,7 @@ export interface FloatingNavbarProps {
  * Twelve navigation products: pill, dock, sidebar, overlay, command field,
  * transport bar, mega menu, app bar, announcement, breadcrumb, segmented control, wordmark.
  */
-export function FloatingNavbar({
+function FloatingNavbarCore({
   logo,
   items,
   actions,
@@ -344,4 +346,18 @@ export function FloatingNavbar({
       </nav>
     </div>
   )
+}
+
+export function FloatingNavbar(props: FloatingNavbarProps) {
+  if (isWowVariant('floating-navbar', props.variant)) {
+    return (
+      <WowSignature
+        family="floating-navbar"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <FloatingNavbarCore {...props} />
 }

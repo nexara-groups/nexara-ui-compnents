@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useId, useState, type ReactNode } from 'react'
 import { MediaFrame, faces } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
@@ -15,6 +17,10 @@ const VARIANTS = [
   'plain',
   'avatar',
   'metric',
+  'follow-glare',
+  'particle-hint',
+  'scramble-tip',
+  'magnetic-tag',
 ] as const
 
 export type TooltipVariant = (typeof VARIANTS)[number]
@@ -32,7 +38,7 @@ export interface TooltipProps {
  * Tooltip
  * Ten hint constructions. Copy this file plus `src/lib/utils.ts`.
  */
-export function Tooltip({ content, children, variant = 'default', className, open: openProp, defaultOpen = false }: TooltipProps) {
+function TooltipCore({ content, children, variant = 'default', className, open: openProp, defaultOpen = false }: TooltipProps) {
   const [uncontrolled, setUncontrolled] = useState(defaultOpen)
   const isControlled = openProp !== undefined
   const open = isControlled ? openProp : uncontrolled
@@ -83,4 +89,18 @@ export function Tooltip({ content, children, variant = 'default', className, ope
       ) : null}
     </span>
   )
+}
+
+export function Tooltip(props: TooltipProps) {
+  if (isWowVariant('tooltip', props.variant)) {
+    return (
+      <WowSignature
+        family="tooltip"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <TooltipCore {...props} />
 }

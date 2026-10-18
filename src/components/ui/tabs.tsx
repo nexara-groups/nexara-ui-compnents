@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useId, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { cn, focusRing } from '@/lib/utils.ts'
 
@@ -14,6 +16,10 @@ const VARIANTS = [
   'minimal',
   'badge',
   'rail',
+  'layout-morph',
+  'liquid-ink',
+  'orbit-pills',
+  'scramble-label',
 ] as const
 
 export type TabsVariant = (typeof VARIANTS)[number]
@@ -32,7 +38,7 @@ export interface TabsProps {
  * Ten tab anatomies with APG keyboard and labelled panels.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function Tabs({ items, variant = 'underline', defaultValue, className }: TabsProps) {
+function TabsCore({ items, variant = 'underline', defaultValue, className }: TabsProps) {
   const [value, setValue] = useState(defaultValue ?? items[0]?.id ?? '')
   const current = items.find((item) => item.id === value) ?? items[0]
   const vertical = variant === 'vertical' || variant === 'rail'
@@ -109,4 +115,18 @@ function tabClass(variant: TabsVariant, selected: boolean) {
   if (variant === 'rail') return cn(base, 'rounded-none border-l-2', selected ? 'border-nx-accent text-nx-fg' : 'border-transparent text-nx-muted')
   if (variant === 'vertical') return cn(base, 'justify-start rounded-xl', selected ? 'bg-nx-soft text-nx-fg' : 'text-nx-muted')
   return cn(base, selected ? 'text-nx-fg' : 'text-nx-muted')
+}
+
+export function Tabs(props: TabsProps) {
+  if (isWowVariant('tabs', props.variant)) {
+    return (
+      <WowSignature
+        family="tabs"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <TabsCore {...props} />
 }

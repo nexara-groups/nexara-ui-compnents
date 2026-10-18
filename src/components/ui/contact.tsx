@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, focusRing } from '@/lib/utils.ts'
 
@@ -16,6 +18,10 @@ const VARIANTS = [
   'studio',
   'compact',
   'visit',
+  'map-shader',
+  'liquid-form',
+  'magnetic-branches',
+  'path-directions',
 ] as const
 
 export type ContactVariant = (typeof VARIANTS)[number]
@@ -36,7 +42,7 @@ const branches = [
  * Twelve branch, map, and appointment constructions.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function Contact({ variant = 'branches', className }: ContactProps) {
+function ContactCore({ variant = 'branches', className }: ContactProps) {
   return (
     <section data-nexara="contact" data-variant={variant} className={cn('w-full', className)}>
       {variant === 'branches' || variant === 'offices' ? (
@@ -171,4 +177,18 @@ export function Contact({ variant = 'branches', className }: ContactProps) {
       ) : null}
     </section>
   )
+}
+
+export function Contact(props: ContactProps) {
+  if (isWowVariant('contact', props.variant)) {
+    return (
+      <WowSignature
+        family="contact"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <ContactCore {...props} />
 }

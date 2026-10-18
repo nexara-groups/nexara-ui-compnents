@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from 'react'
+import { WOW_VARIANTS } from '@/components/ui/wow-signatures.tsx'
 
 export type VariantDoc = {
   id: string
@@ -11,11 +12,14 @@ export function VariantGallery({
   items,
   render,
   previewClassName = '',
+  family,
 }: {
   items: readonly VariantDoc[]
   render: (id: string) => ReactNode
   previewClassName?: string
+  family?: string
 }) {
+  const signatures = family ? new Set<string>(WOW_VARIANTS[family as keyof typeof WOW_VARIANTS] ?? []) : new Set<string>()
   return (
     <div className="grid gap-4">
       {items.map((item) => (
@@ -23,6 +27,11 @@ export function VariantGallery({
           <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-nx-border px-4 py-3">
             <h3 className="font-mono text-sm text-nx-accent">
               {item.name} <span className="text-nx-faint">/ {item.id}</span>
+              {signatures.has(item.id) ? (
+                <span className="ml-2 rounded-full bg-[#111113] px-2 py-0.5 text-[10px] tracking-[0.16em] text-[#f3c27a] uppercase">
+                  Signature
+                </span>
+              ) : null}
             </h3>
             <p className="max-w-xl text-sm text-nx-muted">{item.description}</p>
           </div>

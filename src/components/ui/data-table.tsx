@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { useMemo, useState } from 'react'
 import { cn, focusRing } from '@/lib/utils.ts'
 
@@ -16,6 +18,10 @@ const VARIANTS = [
   'dense',
   'grouped',
   'export',
+  'row-stagger',
+  'morph-cards',
+  'heat-cells',
+  'odometer-cells',
 ] as const
 
 export type DataTableVariant = (typeof VARIANTS)[number]
@@ -39,7 +45,7 @@ const rows = [
  * Twelve filterable tables for portals: invoices, patients, jobs, athletes.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function DataTable({ variant = 'filter', className }: DataTableProps) {
+function DataTableCore({ variant = 'filter', className }: DataTableProps) {
   const [query, setQuery] = useState('')
   const [status, setStatus] = useState('All')
   const filtered = useMemo(() => {
@@ -128,4 +134,18 @@ function placeholder(variant: DataTableVariant) {
   if (variant === 'tickets') return 'Search tickets'
   if (variant === 'inventory') return 'Search SKUs'
   return 'Filter the desk'
+}
+
+export function DataTable(props: DataTableProps) {
+  if (isWowVariant('data-table', props.variant)) {
+    return (
+      <WowSignature
+        family="data-table"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <DataTableCore {...props} />
 }

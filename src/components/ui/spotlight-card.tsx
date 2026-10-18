@@ -1,5 +1,7 @@
 'use client'
 
+import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+
 import { type CSSProperties, type PointerEvent, type ReactNode } from 'react'
 import { MediaFrame, faces, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
@@ -17,6 +19,10 @@ const VARIANTS = [
   'task',
   'article',
   'place',
+  'glare-tilt',
+  'shader-well',
+  'orbit-badge',
+  'scramble-stat',
 ] as const
 
 export type SpotlightVariant = (typeof VARIANTS)[number]
@@ -41,7 +47,7 @@ export interface SpotlightCardProps {
  * Twelve product cards. Anatomy differs; a pointer wash sits on top.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function SpotlightCard({
+function SpotlightCardCore({
   children,
   className,
   contentClassName,
@@ -314,4 +320,18 @@ function Check() {
       <path d="M3.5 8.5 6.5 11.5 12.5 4.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
     </svg>
   )
+}
+
+export function SpotlightCard(props: SpotlightCardProps) {
+  if (isWowVariant('spotlight-card', props.variant)) {
+    return (
+      <WowSignature
+        family="spotlight-card"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <SpotlightCardCore {...props} />
 }
