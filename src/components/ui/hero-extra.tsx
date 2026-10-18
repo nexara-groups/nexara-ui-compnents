@@ -454,7 +454,7 @@ function RadioChips<T extends string>({
 }) {
   return (
     <div className="flex flex-wrap items-center gap-1" role="radiogroup" aria-label={label}>
-      <span className="mr-1 text-[10px] tracking-[0.16em] text-white/45 uppercase">{label}</span>
+      <span className="mr-1 text-[10px] tracking-[0.16em] text-white/70 uppercase">{label}</span>
       {options.map((item) => {
         const selected = item === value
         return (

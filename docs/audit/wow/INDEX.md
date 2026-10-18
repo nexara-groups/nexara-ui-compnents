@@ -6,7 +6,7 @@ Every catalog family keeps its sensible variants and adds 4–5 gold **Signature
 
 ## Proof
 
-Motion: `round12-motion.webm` / `.gif` (pin-scroll chapters 01→04 + loaders). Chapter stills: `hero-pin-scroll-ch2.png`, `hero-pin-scroll-ch4.png`. Earlier clips: `round11-motion.webm`, `signatures-motion.webm`, `shader-void-motion.webm`.
+Motion: `round13-motion.webm` / `.gif` (pin chapters 01–04 + loaders) when recaptured; prior `round12-motion.webm`. Chapter stills: `hero-pin-scroll-ch2.png`, `hero-pin-scroll-ch3.png`, `hero-pin-scroll-ch4.png`.
 
 Stills (1280, dark):
 
@@ -35,9 +35,8 @@ Shaders, particles, and the globe are raw WebGL / canvas and do not need those p
 
 ## Honest gaps
 
-- Round 11 scored `a4c5592`: [sceptical lead](https://cursor.com/agents/bc-33a9cec7-833f-5dc0-b53d-ad5afdb8a0ea) **REJECT ALL** (0/47 standout); [motion critic](https://cursor.com/agents/bc-8f2a83c1-dfd0-57c5-b375-3216d9298256) **CONDITIONAL** 66/199; [a11y critic](https://cursor.com/agents/bc-057321bf-803c-5d03-8c2b-e49dd4c88308) **REJECT** on Pause / reduced-motion; visual critic stalled with no verdict.
-- Round 12 answers those named blockers. Critics have not re-scored. This is not a unanimous approve.
-- Pin-scroll is an object-centric CSS story on a stock device still. It is not a filmed Apple product page.
-- Unique helpers are finished constructions inside this repo. They are not a claim that every gold cell would sit next to a top Aceternity globe.
-- One leftover `OrbitRing` on `hero / globe-orbit`. One leftover `TiltGlare` on glare button and glare-tilt card.
+- Round 12 scored `daee816`: [visual critic](https://cursor.com/agents/bc-b4cae384-0890-52ff-b08a-f3f11c3573d1) **REJECT ALL** 0/47; [sceptical lead](https://cursor.com/agents/bc-7a27e41c-b8a5-59fb-abb9-d8c3851bcd2a) **REJECT ALL** 0/47. Motion / a11y were still running on that SHA.
+- Round 13 closes the named leftovers (pin objects, pulse-halo station, fold desk, globe-agency page, morph cinema, destocked orbit/tilt). It does **not** claim the standout test.
+- Pin-scroll is still CSS and stock photography. It is not a filmed Apple product page.
+- One leftover `TiltGlare` on `glare-tilt` (the name). `OrbitRing` is off `globe-orbit`.
 - No physical-device pass. Captures are Playwright against Vite on `127.0.0.1:5173`.

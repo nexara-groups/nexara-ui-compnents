@@ -1,5 +1,6 @@
 'use client'
 
+import { faces, media } from '@/lib/media.tsx'
 import { GlobeField, LazyMesh3D, ScrambleText, ScrollPin, SplitMask, WowStage } from '@/lib/wow.tsx'
 import { isWowVariant } from '@/lib/wow-variants.ts'
 
@@ -226,13 +227,43 @@ export function Kit(props: KitProps) {
         </WowStage>
       ) : null}
       {props.variant === 'globe-agency' ? (
-        <div className="grid overflow-hidden rounded-[1.6rem] bg-[#07070c] text-white md:grid-cols-2">
-          <div className="p-6 md:p-10">
-            <p className="font-mono text-[11px] text-[#f3c27a]">NORTH STUDIO</p>
-            <h3 className="mt-3 font-serif text-5xl">Move the furniture.</h3>
+        <div className="overflow-hidden rounded-[1.6rem] bg-[#07070c] text-white">
+          <div className="grid gap-6 p-6 md:grid-cols-[1.35fr_14rem] md:p-10">
+            <div>
+              <p className="font-mono text-[11px] text-[#f3c27a]">NORTH STUDIO</p>
+              <h3 className="mt-3 font-serif text-5xl">Move the furniture.</h3>
+              <p className="mt-3 max-w-md text-sm text-white/70">Academy, Labs, and Studio. A named lead. A Friday demo. The globe is the directory, not the page.</p>
+              <ul className="mt-6 grid gap-3 sm:grid-cols-3">
+                {[
+                  { t: 'Wren Build', d: 'Quoted in a day', src: media.cases.build },
+                  { t: 'Solum Lab', d: 'File before the chair', src: media.cases.lab },
+                  { t: 'Field Night', d: 'Medals the same night', src: media.cases.track },
+                ].map((item) => (
+                  <li key={item.t} className="overflow-hidden rounded-2xl bg-white/5">
+                    <img src={item.src} alt="" className="h-20 w-full object-cover" />
+                    <div className="p-3">
+                      <p className="font-medium">{item.t}</p>
+                      <p className="text-xs text-white/70">{item.d}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="relative min-h-48 overflow-hidden rounded-3xl border border-white/10">
+              <GlobeField />
+              <p className="absolute bottom-3 left-3 font-mono text-[11px] text-white/70">studios in motion</p>
+            </div>
           </div>
-          <div className="relative min-h-64">
-            <GlobeField />
+          <div className="grid gap-px border-t border-white/10 bg-white/5 md:grid-cols-3">
+            {faces.slice(0, 3).map((face) => (
+              <div key={face.name} className="flex items-center gap-3 p-4">
+                <img src={face.src} alt="" className="size-10 rounded-full object-cover" />
+                <div>
+                  <p className="text-sm font-medium">{face.name}</p>
+                  <p className="text-xs text-white/70">Named lead</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       ) : null}
@@ -241,36 +272,26 @@ export function Kit(props: KitProps) {
           {(p) => {
             const chapter = Math.min(3, Math.floor(p * 4))
             const copy = [
-              { t: 'A season you can stand on.', d: 'The athlete is the object. Sixteen events.' },
-              { t: 'Heat, then handover.', d: 'Clubs, coaches, and a named lane.' },
-              { t: 'The track turns.', d: 'Callouts lock to the body, not the caption.' },
-              { t: 'The book closes on Sunday.', d: `${Math.round(p * 16)} events in view.` },
+              { t: 'A season you can stand on.', d: 'Sixteen events. Affiliation named to a coach.', src: media.sports, callout: 'the athlete' },
+              { t: 'Heat, then handover.', d: 'Clubs, coaches, and a named lane.', src: media.venues.field, callout: 'named lane' },
+              { t: 'The water turns.', d: 'Pool book, then the night heat.', src: media.venues.pool, callout: 'heat board' },
+              { t: 'The book closes on Sunday.', d: `${Math.round(p * 16)} events in view.`, src: media.venues.studio, callout: 'the medal book' },
             ][chapter]!
             return (
               <div className="relative h-full min-h-[28rem] w-full overflow-hidden rounded-[1.6rem] bg-[#07070c] text-white">
-                <img src="/media/sports-hero.webp" alt="" className="absolute inset-0 size-full object-cover opacity-40" />
-                <div className="absolute inset-0 bg-[#07070c]/50" />
+                <img src={copy.src} alt="" className="absolute inset-0 size-full object-cover" />
+                <div className="absolute inset-0 bg-[#07070c]/45" />
                 <div className="relative z-10 flex h-full min-h-[28rem] flex-col justify-between p-6 md:p-10">
                   <div>
                     <p className="font-mono text-[11px] text-[#f3c27a]">FIELD ATHLETICS · 0{chapter + 1} / 04</p>
                     <p className="mt-3 max-w-lg font-serif text-5xl">{copy.t}</p>
                     <p className="mt-4 text-sm text-white/80">{copy.d}</p>
                   </div>
-                </div>
-                <img
-                  src="/media/sports-hero.webp"
-                  alt="Field athlete"
-                  className="pointer-events-none absolute right-[8%] bottom-0 w-[min(22rem,55%)] origin-bottom object-cover"
-                  style={{
-                    transform: `translateY(${40 - p * 80}px) scale(${0.72 + p * 0.42}) rotate(${8 - p * 10}deg)`,
-                  }}
-                />
-                {chapter >= 1 ? (
-                  <p className="absolute top-[42%] right-[4%] hidden text-[11px] text-white/80 md:block">
-                    named lane
-                    <span className="ml-2 inline-block h-px w-8 bg-[#f3c27a] align-middle" />
+                  <p className="text-[11px] text-white/80">
+                    <span className="mr-2 inline-block h-px w-8 bg-[#f3c27a] align-middle" />
+                    {copy.callout}
                   </p>
-                ) : null}
+                </div>
               </div>
             )
           }}

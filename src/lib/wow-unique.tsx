@@ -35,7 +35,19 @@ export function LensHover({
 }) {
   const reduced = usePrefersReducedMotion()
   const host = useRef<HTMLDivElement | null>(null)
-  const [pos, setPos] = useState({ x: 0.5, y: 0.5, w: 1, h: 1 })
+  const [pos, setPos] = useState({ x: 0.42, y: 0.28, w: 1, h: 1 })
+  useEffect(() => {
+    const node = host.current
+    if (!node) return
+    const measure = () => {
+      const rect = node.getBoundingClientRect()
+      setPos((current) => ({ ...current, w: rect.width, h: rect.height }))
+    }
+    measure()
+    const observer = new ResizeObserver(measure)
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
   return (
     <div
       ref={host}
@@ -83,7 +95,7 @@ export function LensHover({
 
 export function PrismSplit({ children, className }: { children: ReactNode; className?: string }) {
   const { sx, sy, move, leave, reduced } = usePointerNorm()
-  const [off, setOff] = useState({ x: 0, y: 0 })
+  const [off, setOff] = useState({ x: 5, y: 3 })
   return (
     <div
       className={cn('relative', className)}
@@ -97,7 +109,7 @@ export function PrismSplit({ children, className }: { children: ReactNode; class
       }}
       onPointerLeave={() => {
         leave()
-        setOff({ x: 0, y: 0 })
+        setOff({ x: 5, y: 3 })
       }}
     >
       {reduced ? (
@@ -280,7 +292,7 @@ export function PolaroidFan({
   who: string
   className?: string
 }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const reduced = usePrefersReducedMotion()
   const fan = reduced || open
   return (
@@ -342,7 +354,8 @@ export function DialGauge({
   className?: string
 }) {
   const reduced = usePrefersReducedMotion()
-  const deg = Math.min(240, Math.max(0, (value / 100) * 240)) - 120
+  const ratio = Math.min(1, Math.max(0, value / 100))
+  const deg = ratio * 240 - 120
   return (
     <div className={cn('rounded-[1.6rem] bg-[#111113] p-5 text-white', className)}>
       <div className="relative mx-auto size-36">
@@ -354,15 +367,18 @@ export function DialGauge({
             stroke="#f3c27a"
             strokeWidth="8"
             strokeLinecap="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: reduced ? value / 100 : value / 100 }}
-            transition={{ duration: 1.2 }}
+            initial={false}
+            animate={{ pathLength: ratio }}
+            transition={{ duration: reduced ? 0 : 1.2 }}
           />
         </svg>
         <motion.span
           aria-hidden="true"
-          className="absolute top-8 left-1/2 h-12 w-0.5 origin-bottom bg-white"
+          className="absolute left-1/2 h-[2.15rem] w-0.5 bg-white"
+          style={{ top: '28%', transformOrigin: '50% 100%' }}
+          initial={false}
           animate={{ rotate: deg }}
+          transition={{ duration: reduced ? 0 : 1.2 }}
         />
       </div>
       <p className="mt-2 text-center font-serif text-4xl">{value}</p>
@@ -375,12 +391,14 @@ export function FoldPanel({
   front,
   back,
   className,
+  defaultOpen = false,
 }: {
   front: ReactNode
   back: ReactNode
   className?: string
+  defaultOpen?: boolean
 }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(defaultOpen)
   const reduced = usePrefersReducedMotion()
   return (
     <button type="button" onClick={() => setOpen((v) => !v)} className={cn('text-left [perspective:900px]', className)}>

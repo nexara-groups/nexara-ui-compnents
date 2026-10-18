@@ -1,6 +1,6 @@
 # Round 11 — visual
 
-**From:** visual designer critic  
+**From:** [Visual critic](https://cursor.com/agents/bc-dfe8a454-bcdb-5c49-8cb3-d07b24997f6f)  
 **Commit scored:** `a4c5592` on `cursor/visual-quality-overhaul-3ef7` (`feat: destock orbit reuse, add loader family, deepen pin-scroll`).  
 **Evidence:** `docs/audit/wow/` stills (hero-pin-scroll, loader-*, app-radar-jump, card-lens-spec, testimonials-polaroid-quotes, kit-pin-sports, pricing-prism-price, nav-compass, stats-dial-gauge, kanban-wip-pendulum, plus the shader / button / kit set); source in `src/lib/wow-unique.tsx`, `src/lib/wow.tsx`, `src/components/ui/wow-core.tsx`, `wow-blocks.tsx`, `wow-app.tsx`, `kit.tsx`; live docs on `127.0.0.1:5173` for `#hero` (pin-scroll / shader-void / scramble-mast / globe-orbit / morph-stage), `#loader`, `#app-shell` (radar-jump), `#testimonials` (polaroid-quotes), `#pricing` (prism-price), plus lens-spec, kit pin-sports / shader-clinic / globe-agency, dial, pendulum, compass, zipper, barcode, metronome, constellation, stamp, tape-reels, beam, fold-profile.  
 **Bar:** composition, typography, material, product content, screenshot-worthiness. Reject generic SaaS chrome and a reused orbit / tilt / shader-fog farm.  

@@ -79,13 +79,13 @@ function TabsWow({ variant, className }: WowProps) {
 
 function AccordionWow({ variant, className }: WowProps) {
   const items = [
-    { q: 'Do I install a package?', a: 'No. Copy the file and the wow helpers.' },
-    { q: 'Does motion pause?', a: 'Yes. Reduced motion and a visible pause control.' },
-    { q: 'Will this look normal?', a: 'If it does, it is not a signature variant.' },
+    { q: 'When is the Harbor desk open?', a: 'Monday to Friday, 10:00–18:00 in Harbor Bay.' },
+    { q: 'Do we keep passkeys?', a: 'Yes. SSO and a named partner. Audit keeps seven years.' },
+    { q: 'Who takes Friday’s demo?', a: 'A named lead. The reel is the brief.' },
   ]
   const [open, setOpen] = useState(0)
   return (
-    <div className={cn('overflow-hidden rounded-3xl border border-nx-border', variant === 'shader-row' && 'border-white/10 bg-[#07070c] text-white', className)}>
+    <div className={cn('relative min-h-56 overflow-hidden rounded-3xl border border-nx-border', variant === 'shader-row' && 'border-white/10 bg-[#07070c] text-white', className)}>
       {variant === 'shader-row' ? <ShaderMesh /> : null}
       <div className="relative z-10">
         {items.map((item, i) => (

@@ -84,4 +84,13 @@ Round 11 (`a4c5592`) destocked orbit/tilt counts, added a loader family, and att
 | Accessibility / performance | `round-11-a11y.md` on `cursor/round-11-a11y-review-8308` | **REJECT** ([a11y critic](https://cursor.com/agents/bc-057321bf-803c-5d03-8c2b-e49dd4c88308)). Pulse-halo / liquid-drop / analog-sweep fail 2.2.2; pin reel ignores Pause and reduced-motion. |
 | Sceptical design lead | `round-11-lead.md` | **REJECT ALL** ([sceptical lead](https://cursor.com/agents/bc-33a9cec7-833f-5dc0-b53d-ad5afdb8a0ea)). 0 / 47 families pass the standout test. |
 
-Round 12 answers those named blockers on the working tree: object-centric pin (Pause stops the reel), original loaders with Pause + reduced-motion, unique scenes for the thin app-kit cells, LensHover magnification, real ∞ path, KitWow deleted, gallery pin 80vh, leftover content contrast to `/70`. This is not a unanimous approve until the four critics sign the new commit.
+Round 12 scored `daee816` (pin visible, real infinity, Pause on loaders). Critics:
+
+| Lens | File | Round 12 (scored `daee816`) |
+| --- | --- | --- |
+| Senior visual designer | `round-12-visual.md` on `cursor/round-12-visual-73d1` | **REJECT ALL** ([visual critic](https://cursor.com/agents/bc-b4cae384-0890-52ff-b08a-f3f11c3573d1)). 0 keep / 47 fail. Worst: fold-profile, pulse-halo, glare-tilt, morph-stage, globe-agency. |
+| Sceptical design lead | `round-12-lead.md` on `cursor/round-12-lead-review-cd2a` | **REJECT ALL** ([sceptical lead](https://cursor.com/agents/bc-7a27e41c-b8a5-59fb-abb9-d8c3851bcd2a)). 0 / 47 standout. Pin is a scaled laptop; loaders are CSS toys. |
+| Interaction / motion | pending | [motion critic](https://cursor.com/agents/bc-a9db780d-32ca-5918-ba44-f1e67ada0b89) still running on `daee816`. |
+| Accessibility / performance | pending | [a11y critic](https://cursor.com/agents/bc-709c67dc-adb8-5f60-b2c0-88f444cf3480) still running on `daee816`. |
+
+Round 13 answers the named leftovers from visual + lead: pin objects change per chapter (device / glass / finish / reserved desk), product copy (no “hero is the transition”), taller gallery pin (92vh, 56rem frame), pulse-halo as a packed station, fold-profile desk hours on the front, globe-agency is a page, morph-stage defaults open on cinema, glare-tilt lamp is taller, lens measures the host, polaroid starts fanned, dial needle matches the arc, prism rest offset is visible, globe-orbit drops `OrbitRing` for flight paths, button glare drops `TiltGlare` for a rest sheen. This is not a unanimous approve. The standout test against 21st.dev / Aceternity / Awwwards is still the remaining block.

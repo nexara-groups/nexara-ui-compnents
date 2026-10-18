@@ -297,7 +297,7 @@ export const variantDocs = {
     { id: 'tilted', name: 'Tilted', description: 'Perspective tile grid.', usage: `<Hero variant="tilted" title="A floor you can tilt." />` },
     { id: 'enterprise', name: 'Enterprise', description: 'Dual-CTA security landing.', usage: `<Hero variant="enterprise" title="The desk that passes review." />` },
     { id: 'featured', name: 'Featured', description: 'Featured project beside the pitch.', usage: `<Hero variant="featured" title="Wren Build, quoted in a day." />` },
-    { id: 'pin-scroll', name: 'Pin scroll', description: 'A media plate that grows with scroll.', usage: `<Hero variant="pin-scroll" title="Ship the interface" />` },
+    { id: 'pin-scroll', name: 'Pin scroll', description: 'Four objects. Four jobs. North Display from desk to Friday.', usage: `<Hero variant="pin-scroll" title="Reserve a North Display" />` },
     { id: 'shader-void', name: 'Shader void', description: 'WebGL mast with scramble type.', usage: `<Hero variant="shader-void" title="Ship the interface" />` },
     { id: 'scramble-mast', name: 'Scramble mast', description: 'Masked display type that settles.', usage: `<Hero variant="scramble-mast" title="Ship the interface" />` },
     { id: 'globe-orbit', name: 'Globe orbit', description: 'A sphere with orbiting marks.', usage: `<Hero variant="globe-orbit" title="Ship the interface" />` },

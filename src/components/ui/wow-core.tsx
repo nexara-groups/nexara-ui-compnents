@@ -27,7 +27,6 @@ import {
   MagneticWell,
   NightType,
   Odometer,
-  OrbitRing,
   ParticleField,
   PathDraw,
   ScrambleText,
@@ -52,13 +51,45 @@ function HeroCopy({ title, description, actions, eyebrow }: Pick<WowProps, 'titl
   )
 }
 
-function HeroPin({ title, description, actions, eyebrow, className }: WowProps) {
+function HeroPin({ eyebrow, className }: WowProps) {
   const loop = useLoopControl(true)
   const chapters = [
-    { k: '01', t: 'North Display', d: 'It starts on the desk. One milled plane.' },
-    { k: '02', t: 'Glass, then the chip', d: '612 g. Nano-etched. Harbor, 16-core.' },
-    { k: '03', t: 'Midnight turns iris', d: 'The finish lives on the machine.' },
-    { k: '04', t: String(title ?? 'On the desk tonight'), d: String(description ?? 'Reserve a North Display.') },
+    {
+      k: '01',
+      t: 'North Display',
+      d: 'It starts on the desk. One milled plane.',
+      src: media.device,
+      alt: 'North Display on a night desk',
+      callout: 'milled plate',
+      env: media.glass,
+    },
+    {
+      k: '02',
+      t: 'Glass, then the chip',
+      d: '612 g. Nano-etched. Harbor, 16-core.',
+      src: media.glass,
+      alt: 'Nano-etched glass on the North Display',
+      callout: 'nano-etched glass',
+      env: media.device,
+    },
+    {
+      k: '03',
+      t: 'Midnight turns iris',
+      d: 'The finish lives on the machine.',
+      src: media.liquid,
+      alt: 'Iris finish on the North Display',
+      callout: 'iris finish',
+      env: media.cinema,
+    },
+    {
+      k: '04',
+      t: 'Reserve a North Display',
+      d: 'Harbor chip. Ships Friday. One named desk.',
+      src: media.featured,
+      alt: 'A reserved North Display on the night desk',
+      callout: 'Friday handover',
+      env: media.journal,
+    },
   ]
   return (
     <div className={cn('rounded-[1.6rem] border border-white/10 bg-[#07070c]', className)}>
@@ -66,21 +97,21 @@ function HeroPin({ title, description, actions, eyebrow, className }: WowProps) 
         {(p) => {
           const chapter = Math.min(3, Math.floor(p * 4))
           const copy = chapters[chapter]!
-          const rot = 22 - p * 24
-          const scale = 0.52 + p * 0.62
-          const lift = 120 - p * 210
-          const showReel = chapter >= 2 && !loop.reduced
+          const rot = 18 - p * 16
+          const scale = 0.72 + p * 0.28
+          const lift = 80 - p * 110
+          const showReel = chapter === 2 && !loop.reduced
           return (
-            <div data-pin-chapter={copy.k} className="relative h-full min-h-[36rem] w-full overflow-hidden text-white">
-              <img src={media.glass} alt="" className="absolute inset-0 size-full object-cover opacity-35" />
-              <div className="absolute inset-0 bg-[#07070c]/70" />
+            <div data-pin-chapter={copy.k} className="relative h-full min-h-[32rem] w-full overflow-hidden text-white">
+              <img src={copy.env} alt="" className="absolute inset-0 size-full object-cover opacity-30" />
+              <div className={cn('absolute inset-0 bg-[#07070c]/70', chapter === 2 && 'bg-[#1a1438]/55')} />
               <Grain />
-              <div className="relative z-10 flex h-full min-h-[36rem] flex-col justify-between px-5 py-6 md:px-10">
-                <div>
+              <div className="relative z-10 flex h-full min-h-[32rem] flex-col justify-between px-5 py-6 md:px-10">
+                <div className="max-w-md">
                   <p className="font-mono text-[11px] tracking-[0.22em] text-[#f3c27a] uppercase">{eyebrow ?? 'North Display'}</p>
                   <p className="mt-2 font-mono text-[11px] text-white/70">{copy.k} / 04</p>
-                  <h3 className="mt-3 max-w-lg font-serif text-4xl leading-[0.95] md:text-6xl">{copy.t}</h3>
-                  <p className="mt-3 max-w-md text-sm text-white/70">{copy.d}</p>
+                  <h3 className="mt-3 font-serif text-4xl leading-[0.95] md:text-6xl">{copy.t}</h3>
+                  <p className="mt-3 text-sm text-white/70">{copy.d}</p>
                 </div>
                 <ol className="flex gap-2" aria-label="Story progress">
                   {chapters.map((item, i) => (
@@ -89,34 +120,36 @@ function HeroPin({ title, description, actions, eyebrow, className }: WowProps) 
                 </ol>
               </div>
               <motion.div
-                className="pointer-events-none absolute inset-x-0 top-[22%] mx-auto w-[min(38rem,90%)]"
-                style={{ y: lift, scale, rotateX: rot, rotateZ: 6 - p * 8, transformPerspective: 1400 }}
+                className="pointer-events-none absolute inset-x-0 top-[28%] mx-auto w-[min(36rem,86%)]"
+                style={{ y: lift, scale, rotateX: rot, rotateZ: 4 - p * 5, transformPerspective: 1400 }}
               >
-                <div className={cn('relative overflow-hidden rounded-[1.5rem] shadow-[0_50px_110px_-28px_#000]', chapter < 1 && 'grayscale-[0.4]', chapter >= 2 && 'saturate-150')}>
+                <div className="relative overflow-hidden rounded-[1.5rem] shadow-[0_50px_110px_-28px_#000]">
                   <MediaFrame
-                    src={media.device}
-                    alt="North Display on a night desk"
+                    src={copy.src}
+                    alt={copy.alt}
                     video={showReel ? media.reel : undefined}
                     playing={loop.playing}
                     className="aspect-[16/10] bg-transparent"
                     imgClassName="aspect-[16/10]"
                     grain={false}
                   />
-                  {chapter >= 2 ? <div className="pointer-events-none absolute inset-0 bg-[#7c6cff]/20 mix-blend-color" /> : null}
+                  {chapter === 3 ? (
+                    <img
+                      src={media.people.anitha}
+                      alt=""
+                      className="absolute right-3 bottom-3 h-16 w-16 rounded-2xl object-cover ring-2 ring-white/40"
+                    />
+                  ) : null}
                 </div>
-                {chapter >= 1 ? (
-                  <p className="absolute top-[16%] -left-1 hidden text-[11px] text-white/70 md:block">
-                    <span className="mr-2 inline-block h-px w-10 bg-[#f3c27a] align-middle" />
-                    nano-etched glass
+                <p className="absolute top-[18%] -left-1 hidden text-[11px] text-white/70 md:block">
+                  <span className="mr-2 inline-block h-px w-10 bg-[#f3c27a] align-middle" />
+                  {copy.callout}
+                </p>
+                {chapter === 3 ? (
+                  <p className="pointer-events-auto mt-4 inline-flex h-11 items-center rounded-full bg-white px-4 text-sm text-[#111]">
+                    Reserve Friday
                   </p>
                 ) : null}
-                {chapter >= 1 ? (
-                  <p className="absolute top-[56%] -right-1 hidden text-right text-[11px] text-white/70 md:block">
-                    Harbor chip
-                    <span className="ml-2 inline-block h-px w-10 bg-[#f3c27a] align-middle" />
-                  </p>
-                ) : null}
-                {chapter >= 3 ? <div className="pointer-events-auto mt-4">{actions}</div> : null}
               </motion.div>
               {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
             </div>
@@ -155,12 +188,47 @@ function HeroScramble(props: WowProps) {
 
 function HeroGlobe(props: WowProps) {
   const loop = useLoopControl(true)
+  const cities = [
+    { n: 'Harbor', x: '14%', y: '38%' },
+    { n: 'Atlas', x: '46%', y: '24%' },
+    { n: 'Vale', x: '70%', y: '52%' },
+    { n: 'Kite', x: '32%', y: '66%' },
+  ]
   return (
     <div className={cn('relative min-h-[28rem] overflow-hidden rounded-[1.6rem] bg-[#07070c] text-white', props.className)}>
-      <GlobeField paused={!loop.playing} />
-      <OrbitRing items={['Kite', 'Solum', 'Nimbus', 'Vale', 'Orbit']} className="pointer-events-none absolute inset-0 opacity-80" radius={110} paused={!loop.playing} />
+      <img src={media.climate} alt="" className="absolute inset-0 size-full object-cover opacity-45" />
+      <div className="absolute inset-0 bg-[#07070c]/55" />
+      <svg className="absolute inset-0 size-full" viewBox="0 0 100 56" preserveAspectRatio="none" aria-hidden="true">
+        <motion.path
+          d="M16 22 C 30 10, 42 14, 46 14 S 62 20, 70 30"
+          fill="none"
+          stroke="#f3c27a"
+          strokeWidth="0.35"
+          initial={{ pathLength: 0 }}
+          animate={loop.playing ? { pathLength: [0, 1, 1] } : { pathLength: 1 }}
+          transition={{ duration: 4.2, repeat: Infinity }}
+        />
+        <motion.path
+          d="M16 22 C 26 38, 30 42, 34 36 S 40 28, 46 14"
+          fill="none"
+          stroke="#7c6cff"
+          strokeWidth="0.3"
+          initial={{ pathLength: 0 }}
+          animate={loop.playing ? { pathLength: [0.15, 1, 0.15] } : { pathLength: 1 }}
+          transition={{ duration: 5, repeat: Infinity }}
+        />
+      </svg>
+      {cities.map((city) => (
+        <span key={city.n} className="absolute font-mono text-[11px] text-white/80" style={{ left: city.x, top: city.y }}>
+          <span className="mr-1 inline-block size-1.5 rounded-full bg-[#f3c27a]" />
+          {city.n}
+        </span>
+      ))}
+      <div className="absolute top-5 right-5 hidden size-36 overflow-hidden rounded-full border border-white/15 md:block">
+        <GlobeField paused={!loop.playing} />
+      </div>
       <div className="relative z-10 flex min-h-[28rem] items-end">
-        <HeroCopy title={props.title} description={props.description} actions={props.actions} eyebrow={props.eyebrow ?? 'Orbit'} />
+        <HeroCopy title={props.title} description={props.description} actions={props.actions} eyebrow={props.eyebrow ?? 'Studios'} />
       </div>
       {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
     </div>
@@ -168,11 +236,11 @@ function HeroGlobe(props: WowProps) {
 }
 
 function HeroMorph(props: WowProps) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const loop = useLoopControl(true)
   return (
     <div className={cn('min-h-[26rem] overflow-hidden rounded-[1.6rem] bg-[#111113] p-5 text-white md:p-8', props.className)}>
-      <p className="font-mono text-[11px] tracking-[0.2em] text-[#f3c27a] uppercase">Shared element</p>
+      <p className="font-mono text-[11px] tracking-[0.2em] text-[#f3c27a] uppercase">{props.eyebrow ?? 'Harbor cinema'}</p>
       <div className="mt-6 grid gap-4 md:grid-cols-[1fr_1.1fr]">
         <div>
           <h3 className="font-serif text-4xl">{props.title}</h3>
@@ -232,12 +300,20 @@ function ButtonInk({ children, className }: WowProps) {
 }
 
 function ButtonGlare({ children, className }: WowProps) {
+  const loop = useLoopControl(true)
   return (
-    <TiltGlare className="inline-block">
-      <button type="button" className={cn(wowBtn, 'h-12 bg-[#111113] px-6 text-white shadow-[0_20px_40px_-24px_#7c6cff]', className)}>
-        {children ?? 'Continue'}
+    <span className="relative inline-flex items-center gap-2">
+      <button type="button" className={cn(wowBtn, 'relative h-12 overflow-hidden bg-[#111113] px-6 text-white', className)}>
+        <motion.span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 w-16 bg-gradient-to-r from-transparent via-white/55 to-transparent"
+          animate={loop.playing ? { x: ['-90%', '240%'] } : { x: '35%' }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <span className="relative z-10">{children ?? 'Continue'}</span>
       </button>
-    </TiltGlare>
+      {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} /> : null}
+    </span>
   )
 }
 
@@ -332,7 +408,7 @@ function CardHolo({ title, className }: { title: string; className?: string }) {
 function SpotlightGlare({ className }: { className?: string }) {
   return (
     <TiltGlare className={cn('max-w-sm overflow-hidden rounded-3xl border border-nx-border bg-nx-card', className)}>
-      <img src={media.lamp} alt="Lamp 04" className="h-40 w-full object-cover" />
+      <img src={media.lamp} alt="Lamp 04" className="h-56 w-full object-cover" />
       <div className="p-5">
         <p className="font-mono text-[11px] text-nx-accent">Harbor shop</p>
         <p className="mt-2 font-serif text-3xl">Lamp 04</p>

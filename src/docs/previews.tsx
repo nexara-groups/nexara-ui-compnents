@@ -112,11 +112,11 @@ function heroCopy(id: string) {
     tilted: { eyebrow: 'Grid', title: 'A floor you can tilt.', description: 'Perspective tiles under the pitch.', action: 'Tilt' },
     enterprise: { eyebrow: 'SOC 2 · SSO', title: 'The desk that passes review.', description: 'Dual CTA for security teams.', action: 'Talk to us' },
     featured: { eyebrow: 'Featured', title: 'Wren Build, quoted in a day.', description: 'A featured project beside the pitch.', action: 'Read the case' },
-    'pin-scroll': { eyebrow: 'Scroll the plate', title: 'The hero is the transition', description: 'A media plate that grows from a card to a field.', action: 'Keep scrolling' },
+    'pin-scroll': { eyebrow: 'North Display', title: 'Reserve a North Display', description: 'Harbor chip. Ships Friday. One named desk.', action: 'Reserve Friday' },
     'shader-void': { eyebrow: 'Void field', title: 'The room opens.', description: 'A WebGL mesh that follows the pointer.', action: 'Enter the void' },
     'scramble-mast': { eyebrow: 'Lettering', title: 'Hold the mast', description: 'Masked display type that settles, then scrambles on hover.', action: 'Read the folio' },
     'globe-orbit': { eyebrow: 'Orbit', title: 'Studios in motion', description: 'A projected sphere with orbiting marks.', action: 'See the rooms' },
-    'morph-stage': { eyebrow: 'Shared element', title: 'Open the stage', description: 'A wordmark that becomes a live mesh.', action: 'Open the stage' },
+    'morph-stage': { eyebrow: 'Harbor cinema', title: 'The reel is the brief', description: 'Open the plate. Friday’s cut plays in the room.', action: 'Open the stage' },
   }
   return map[id] ?? map.saas!
 }

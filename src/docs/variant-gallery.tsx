@@ -53,7 +53,7 @@ export function VariantGallery({
           </div>
           <div
             data-pin-scroller={PIN_IDS.has(item.id) ? '' : undefined}
-            className={PIN_IDS.has(item.id) ? 'max-h-[80vh] overflow-y-auto p-4 md:p-6' : `p-4 md:p-6 ${previewClassName}`}
+            className={PIN_IDS.has(item.id) ? 'min-h-[92vh] max-h-[92vh] overflow-y-auto p-4 md:p-6' : `p-4 md:p-6 ${previewClassName}`}
           >
             {render(item.id)}
           </div>

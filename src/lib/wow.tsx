@@ -729,7 +729,7 @@ export function ScrollPin({
   if (reduced) {
     return (
       <div className={cn('relative', className)}>
-        <div className="flex min-h-[min(36rem,100%)] items-stretch overflow-hidden">{children(1)}</div>
+        <div className="flex min-h-[min(52rem,100%)] items-stretch overflow-hidden">{children(1)}</div>
       </div>
     )
   }
@@ -738,7 +738,7 @@ export function ScrollPin({
     <div ref={track} className={cn('relative', className)} style={{ height }}>
       <div
         ref={frame}
-        className="flex h-[min(36rem,80vh)] min-h-80 w-full items-stretch overflow-hidden"
+        className="flex h-[min(56rem,92vh)] min-h-[28rem] w-full items-stretch overflow-hidden"
         style={{ position: nested ? 'absolute' : 'sticky', top: 0, left: 0, right: 0 }}
       >
         {children(progress)}

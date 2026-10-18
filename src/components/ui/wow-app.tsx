@@ -49,12 +49,13 @@ function ShellWow({ variant, className }: WowProps) {
   }
   if (variant === 'radar-jump') {
     return (
-      <div className={cn('grid min-h-[28rem] overflow-hidden rounded-[1.6rem] bg-[#111113] text-white md:grid-cols-[15rem_1fr]', className)}>
+      <div className={cn('grid min-h-[32rem] overflow-hidden rounded-[1.6rem] bg-[#111113] text-white md:grid-cols-[15rem_1fr]', className)}>
         <aside className="border-white/10 p-4 md:border-r">
           <img src={faces[0].src} alt={faces[0].name} className="size-14 rounded-2xl object-cover" />
           <p className="mt-3 font-medium">North OS</p>
           <p className="text-sm text-white/70">{faces[0].name} · Harbor desk</p>
-          <ul className="mt-5 space-y-2 text-sm">
+          <p className="mt-4 text-[11px] tracking-[0.16em] text-white/70 uppercase">Rooms</p>
+          <ul className="mt-2 space-y-2 text-sm">
             <li className="flex items-center justify-between rounded-xl bg-white/5 px-3 py-2">
               Harbor Hall <span className="text-[#f3c27a]">2 live</span>
             </li>
@@ -64,29 +65,36 @@ function ShellWow({ variant, className }: WowProps) {
             <li className="flex items-center justify-between rounded-xl bg-white/5 px-3 py-2">
               Vale Chair <span className="text-[#f3c27a]">open</span>
             </li>
+            <li className="flex items-center justify-between rounded-xl bg-white/5 px-3 py-2">
+              Wren Plant <span className="text-white/70">idle</span>
+            </li>
           </ul>
+          <p className="mt-5 text-[11px] text-white/70">Friday 10:00–18:00 · Harbor Bay</p>
         </aside>
-        <div className="p-5">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
-              <p className="font-serif text-3xl">Jump the desk</p>
-              <p className="mt-1 text-sm text-white/70">Friday 16:00 · two briefs waiting.</p>
+        <div className="relative p-5">
+          <img src={media.screens.lumen} alt="" className="absolute inset-0 size-full object-cover opacity-25" />
+          <div className="relative z-10">
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <p className="font-serif text-3xl">Jump the desk</p>
+                <p className="mt-1 text-sm text-white/70">Friday 16:00 · two briefs waiting. Lumen is already on the glass.</p>
+              </div>
+              <RadarSweep items={['H', 'A', 'V']} className="w-28" />
             </div>
-            <RadarSweep items={['H', 'A', 'V']} className="w-28" />
+            <ul className="mt-4 space-y-2 text-sm">
+              {[
+                { who: faces[0], job: 'Open Harbor', note: '2 briefs' },
+                { who: faces[1], job: 'Atlas review', note: 'due Friday' },
+                { who: faces[2], job: 'Create a chair', note: 'Vale' },
+              ].map((row) => (
+                <li key={row.job} className="flex items-center gap-3 rounded-xl border border-white/10 bg-black/35 px-3 py-2">
+                  <img src={row.who.src} alt="" className="size-8 rounded-full object-cover" />
+                  <span className="flex-1">{row.job}</span>
+                  <span className="text-white/70">{row.note}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="mt-4 space-y-2 text-sm">
-            {[
-              { who: faces[0], job: 'Open Harbor', note: '2 briefs' },
-              { who: faces[1], job: 'Atlas review', note: 'due Friday' },
-              { who: faces[2], job: 'Create a chair', note: 'Vale' },
-            ].map((row) => (
-              <li key={row.job} className="flex items-center gap-3 rounded-xl border border-white/10 px-3 py-2">
-                <img src={row.who.src} alt="" className="size-8 rounded-full object-cover" />
-                <span className="flex-1">{row.job}</span>
-                <span className="text-white/70">{row.note}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     )
@@ -247,9 +255,9 @@ function KanbanWow({ variant, className }: WowProps) {
   ]
   if (variant === 'wip-pendulum') {
     return (
-      <div className={cn('grid gap-3 overflow-x-auto rounded-[1.6rem] bg-[#07070c] p-4 text-white md:grid-cols-3', className)}>
-        <div className="space-y-2">
-          <p className="text-xs tracking-[0.16em] text-white/70 uppercase">Brief</p>
+      <div className={cn('grid gap-3 overflow-hidden rounded-[1.6rem] bg-[#07070c] p-4 text-white md:grid-cols-3', className)}>
+        <div className="min-w-0 space-y-2 overflow-hidden">
+          <p className="text-xs tracking-[0.16em] text-white/70 uppercase">Brief · 2</p>
           {['Wren pack', 'Farm brief'].map((card) => (
             <PeelCorner key={card} className="rounded-2xl border border-white/10 bg-white/5 p-3" label={card}>
               <p className="font-medium">{card}</p>
@@ -257,19 +265,23 @@ function KanbanWow({ variant, className }: WowProps) {
             </PeelCorner>
           ))}
         </div>
-        <div className="space-y-2">
-          <p className="text-xs tracking-[0.16em] text-white/70 uppercase">Build</p>
+        <div className="min-w-0 space-y-2 overflow-hidden">
+          <p className="text-xs tracking-[0.16em] text-white/70 uppercase">Build · 1</p>
           <PeelCorner className="rounded-2xl border border-white/10 bg-white/5 p-3" label="Remote">
-            <img src={media.screens.field} alt="" className="mb-2 h-16 w-full rounded-lg object-cover" />
+            <img src={media.screens.field} alt="" className="mb-2 h-20 w-full rounded-lg object-cover" />
             <p className="font-medium">Remote lane</p>
             <p className="text-xs text-white/70">Kiran · in flight</p>
           </PeelCorner>
         </div>
-        <PendulumCard className="min-h-0 bg-transparent p-0">
-          <p className="text-xs text-white/70">WIP · Review</p>
-          <p className="font-serif text-3xl">2 / 3</p>
-          <p className="mt-1 text-sm text-white/70">Atlas hangs until the farm brief lands.</p>
-        </PendulumCard>
+        <div className="min-w-0 overflow-hidden">
+          <p className="mb-2 text-xs tracking-[0.16em] text-white/70 uppercase">Review · WIP 2 / 3</p>
+          <PendulumCard className="min-h-48 bg-transparent p-0">
+            <img src={media.screens.lumen} alt="" className="mb-2 h-14 w-full rounded-lg object-cover" />
+            <p className="text-xs text-white/70">Atlas hangs</p>
+            <p className="font-serif text-3xl">2 / 3</p>
+            <p className="mt-1 text-sm text-white/70">Farm brief must land first.</p>
+          </PendulumCard>
+        </div>
       </div>
     )
   }
@@ -439,26 +451,41 @@ function SettingsWow({ variant, className }: WowProps) {
   }
   if (variant === 'fold-profile') {
     return (
-      <FoldPanel
-        className={className}
-        front={
-          <div className="overflow-hidden rounded-3xl bg-[#111113] text-white">
-            <img src={media.people.anitha} alt="" className="h-28 w-full object-cover" />
-            <div className="p-5">
-              <p className="font-serif text-3xl">Anitha Rao</p>
-              <p className="text-sm text-white/70">Harbor desk · SSO on</p>
+      <div className={cn('grid gap-3 overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#111113] p-4 text-white md:grid-cols-[1.1fr_0.9fr]', className)}>
+        <FoldPanel
+          defaultOpen
+          className="w-full"
+          front={
+            <div className="overflow-hidden rounded-3xl bg-[#16161c]">
+              <img src={media.people.anitha} alt="Anitha Rao" className="h-36 w-full object-cover" />
+              <div className="p-4">
+                <p className="font-serif text-3xl">Anitha Rao</p>
+                <p className="mt-1 text-sm text-white/70">Harbor desk · SSO on</p>
+                <p className="mt-3 text-sm text-white/70">Mon–Fri 10:00–18:00 · Harbor Bay</p>
+                <p className="mt-1 text-xs text-white/70">Last check Friday 16:02</p>
+              </div>
             </div>
-          </div>
-        }
-        back={
-          <div className="rounded-3xl border border-nx-border p-4 text-sm">
-            <p className="font-medium">Desk hours</p>
-            <p className="mt-1 text-nx-muted">Mon–Fri 10:00–18:00 · Harbor Bay</p>
-            <p className="mt-3 font-medium">Security</p>
-            <p className="mt-1 text-nx-muted">Passkeys and a named partner.</p>
-          </div>
-        }
-      />
+          }
+          back={
+            <div className="rounded-3xl border border-white/15 bg-white/5 p-4 text-sm">
+              <p className="font-medium">Security</p>
+              <p className="mt-1 text-white/70">Passkeys. Named partner. Audit keeps seven years.</p>
+              <p className="mt-3 font-medium">Desk</p>
+              <p className="mt-1 text-white/70">Harbor Hall is live. Atlas is in review.</p>
+            </div>
+          }
+        />
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-4">
+          <p className="text-[11px] tracking-[0.16em] text-white/70 uppercase">Desk hours</p>
+          <p className="mt-2 font-serif text-3xl">10–18</p>
+          <p className="mt-2 text-sm text-white/70">Harbor Bay. Fold the portrait for the partner book.</p>
+          <ul className="mt-4 space-y-2 text-sm text-white/70">
+            <li>SSO · passkeys</li>
+            <li>Named partner · Vale</li>
+            <li>Friday demo · 16:00</li>
+          </ul>
+        </div>
+      </div>
     )
   }
   return (
@@ -499,18 +526,27 @@ function LoaderWow({ variant, className, title }: WowProps) {
       className={cn('relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#111113] p-6 text-white', className)}
     >
       {variant === 'pulse-halo' ? (
-        <div className="relative size-24">
-          {[0, 1, 2].map((i) => (
+        <div className="relative size-40">
+          {[0, 1, 2, 3, 4, 5].map((i) => (
             <motion.span
               key={i}
               aria-hidden="true"
-              className="absolute inset-0 rounded-full border border-[#f3c27a]"
-              animate={loop.playing ? { scale: [0.55, 1.25], opacity: [0.7, 0] } : undefined}
-              transition={{ duration: 1.8, repeat: Infinity, delay: i * 0.4 }}
+              className="absolute inset-0 rounded-full border border-[#f3c27a]/70"
+              style={{ inset: `${i * 7}px` }}
+              animate={loop.playing ? { scale: [0.92, 1.08, 0.92], opacity: [0.85, 0.25, 0.85] } : undefined}
+              transition={{ duration: 2.2, repeat: Infinity, delay: i * 0.18 }}
             />
           ))}
-          <span className="absolute inset-0 m-auto size-3 rounded-full bg-[#f3c27a]" />
+          <img src={media.device} alt="" className="absolute inset-10 rounded-2xl object-cover" />
+          <span className="absolute inset-0 m-auto size-2.5 rounded-full bg-[#f3c27a]" />
         </div>
+      ) : null}
+      {variant === 'pulse-halo' ? (
+        <ol className="relative z-10 mt-4 flex gap-1" aria-label="Harbor pack progress">
+          {Array.from({ length: 12 }, (_, i) => (
+            <li key={i} className={cn('h-1 w-3 rounded-full', i < 4 ? 'bg-[#f3c27a]' : 'bg-white/20')} />
+          ))}
+        </ol>
       ) : null}
       {variant === 'orbit-beads' ? (
         <div className="relative size-28">
@@ -579,8 +615,8 @@ function LoaderWow({ variant, className, title }: WowProps) {
             <motion.span
               key={ch}
               className="inline-flex size-10 items-center justify-center rounded-md border border-white/15 bg-[#16161c]"
-              animate={loop.playing ? { rotateX: [0, -90, 0] } : undefined}
-              transition={{ duration: 1.1, repeat: Infinity, delay: i * 0.12 }}
+              animate={loop.playing ? { rotateX: [0, 0, -90, 0] } : { rotateX: 0 }}
+              transition={{ duration: 2.4, repeat: Infinity, delay: i * 0.16, times: [0, 0.55, 0.75, 1] }}
             >
               {ch}
             </motion.span>
