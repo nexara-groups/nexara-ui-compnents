@@ -16,6 +16,9 @@ export const focusRing =
 /** Form-field border that holds ~3:1 against card surfaces (WCAG non-text). */
 export const fieldBorder = 'border border-nx-field'
 
+/** Minimum 44×44 touch target (owner bar; WCAG 2.5.5). */
+export const touchTarget = 'min-h-11 min-w-11'
+
 /** Playing unless the user paused or asked for reduced motion. */
 export function useLoopControl(startPlaying = true) {
   const reduced = usePrefersReducedMotion()

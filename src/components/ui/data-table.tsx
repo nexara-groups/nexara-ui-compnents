@@ -59,7 +59,7 @@ export function DataTable({ variant = 'filter', className }: DataTableProps) {
       {variant !== 'compact' ? (
         <div className="flex flex-wrap items-center gap-2 border-b border-nx-border p-3">
           <input
-            className={cn(focusRing, 'h-9 flex-1 rounded-lg border border-nx-line bg-nx-bg px-3 text-sm')}
+            className={cn(focusRing, 'h-11 min-w-0 flex-1 rounded-lg border border-nx-line bg-nx-bg px-3 text-sm')}
             placeholder={placeholder(variant)}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
@@ -67,7 +67,7 @@ export function DataTable({ variant = 'filter', className }: DataTableProps) {
           />
           {variant === 'filter' || variant === 'grouped' || variant === 'leads' ? (
             <select
-              className={cn(focusRing, 'h-9 rounded-lg border border-nx-line bg-nx-bg px-2 text-sm')}
+              className={cn(focusRing, 'h-11 rounded-lg border border-nx-line bg-nx-bg px-2 text-sm')}
               value={status}
               onChange={(event) => setStatus(event.target.value)}
               aria-label="Status"
@@ -78,13 +78,22 @@ export function DataTable({ variant = 'filter', className }: DataTableProps) {
             </select>
           ) : null}
           {variant === 'export' ? (
-            <button type="button" className={cn(focusRing, 'h-9 rounded-lg bg-nx-fg px-3 text-xs text-nx-bg')}>
+            <button type="button" className={cn(focusRing, 'inline-flex h-11 items-center rounded-lg bg-nx-fg px-3 text-xs text-nx-bg')}>
               Export CSV
             </button>
           ) : null}
         </div>
       ) : null}
-      <table className={cn('w-full text-left text-sm', dense && 'text-xs')}>
+      <ul className="divide-y divide-nx-border md:hidden">
+        {(variant === 'patients' ? rows.filter((row) => row.kind === 'Patient' || row.kind === 'Athlete') : filtered).map((row) => (
+          <li key={row.name} className="px-3 py-3">
+            <p className="font-medium">{row.name}</p>
+            <p className="mt-1 text-sm text-nx-muted">{row.kind} · {row.status}</p>
+            <p className="mt-1 text-sm">{showAmount ? row.amount : row.owner}</p>
+          </li>
+        ))}
+      </ul>
+      <table className={cn('hidden w-full text-left text-sm md:table', dense && 'text-xs')}>
         <caption className="sr-only">Desk rows</caption>
         <thead className="bg-nx-elevated text-[11px] tracking-[0.12em] text-nx-muted uppercase">
           <tr>

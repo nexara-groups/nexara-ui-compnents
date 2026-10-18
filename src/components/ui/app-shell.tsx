@@ -57,17 +57,9 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
 
   if (variant === 'top') {
     return (
-      <div data-nexara="app-shell" data-variant={variant} className={cn('overflow-hidden rounded-[1.4rem] border border-nx-border bg-nx-card', className)}>
-        <header className="flex items-center justify-between border-b border-nx-border px-4 py-3">
-          <p className="font-medium">{brand}</p>
-          <nav className="flex gap-3 text-sm text-nx-muted">
-            {items.slice(0, 4).map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </nav>
-        </header>
-        <div className="p-4">{canvas}</div>
-      </div>
+      <TopShell brand={brand} items={items} className={className}>
+        {canvas}
+      </TopShell>
     )
   }
 
@@ -88,7 +80,7 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
   if (variant === 'command') {
     return (
       <div data-nexara="app-shell" data-variant={variant} className={cn('rounded-[1.4rem] border border-nx-border bg-nx-card p-4', className)}>
-        <button type="button" className={cn(focusRing, 'flex h-10 w-full items-center justify-between rounded-xl border border-nx-field px-3 text-sm text-nx-muted')}>
+        <button type="button" className={cn(focusRing, 'flex h-11 w-full items-center justify-between rounded-xl border border-nx-field px-3 text-sm text-nx-muted')}>
           Jump to a room
           <kbd className="rounded bg-nx-elevated px-1.5 font-mono text-[10px]">⌘K</kbd>
         </button>
@@ -126,10 +118,10 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
                 type="button"
                 className={cn(
                   focusRing,
-                  'rounded-lg px-2 py-1.5 text-left text-sm',
+                  'min-h-11 min-w-11 rounded-lg px-2 text-left text-sm',
                   index === 0 ? 'bg-nx-soft text-nx-accent' : 'text-current/70',
                   rail && 'text-center',
-                  dense && 'py-1 text-xs',
+                  dense && 'text-xs',
                 )}
               >
                 {rail ? <span aria-label={item}>{item.slice(0, 1)}</span> : item}
@@ -144,7 +136,7 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
             type="button"
             aria-expanded={menuOpen}
             aria-controls={navId}
-            className={cn(focusRing, 'mb-3 rounded-lg border border-nx-field px-3 py-1.5 text-xs md:hidden')}
+            className={cn(focusRing, 'mb-3 inline-flex min-h-11 items-center rounded-lg border border-nx-field px-3 text-xs md:hidden')}
             onClick={() => (variant === 'mobile' ? setOpen((value) => !value) : setMenu((value) => !value))}
           >
             {menuOpen ? 'Hide menu' : 'Menu'}
@@ -152,6 +144,43 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
         ) : null}
         {canvas}
       </div>
+    </div>
+  )
+}
+
+function TopShell({ brand, items, className, children }: { brand: string; items: string[]; className?: string; children: ReactNode }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div data-nexara="app-shell" data-variant="top" className={cn('overflow-hidden rounded-[1.4rem] border border-nx-border bg-nx-card', className)}>
+      <header className="flex items-center justify-between gap-3 border-b border-nx-border px-4 py-3">
+        <p className="font-medium">{brand}</p>
+        <nav className="hidden gap-3 text-sm text-nx-muted md:flex">
+          {items.slice(0, 4).map((item) => (
+            <a key={item} href={`#${item.toLowerCase()}`} className="inline-flex min-h-11 min-w-11 items-center px-1">
+              {item}
+            </a>
+          ))}
+        </nav>
+        <button
+          type="button"
+          className={cn(focusRing, 'inline-flex min-h-11 items-center rounded-lg border border-nx-field px-3 text-xs md:hidden')}
+          aria-expanded={open}
+          aria-controls="nexara-desk-top"
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? 'Close' : 'Menu'}
+        </button>
+      </header>
+      {open ? (
+        <nav id="nexara-desk-top" className="grid gap-1 border-b border-nx-border px-3 py-2 md:hidden" aria-label="Desk">
+          {items.slice(0, 4).map((item) => (
+            <a key={item} href={`#${item.toLowerCase()}`} className="flex min-h-11 items-center rounded-lg px-2 text-sm">
+              {item}
+            </a>
+          ))}
+        </nav>
+      ) : null}
+      <div className="p-4">{children}</div>
     </div>
   )
 }
@@ -254,7 +283,7 @@ function AcademyDesk() {
 function Metric({ label, value, note }: { label: string; value: string; note: string }) {
   return (
     <div className="rounded-2xl border border-nx-border bg-nx-elevated p-3">
-      <p className="text-[11px] text-nx-muted">{label}</p>
+      <p className="text-xs text-nx-muted">{label}</p>
       <p className="mt-1 font-serif text-3xl">{value}</p>
       <p className="mt-1 text-xs text-nx-muted">{note}</p>
     </div>

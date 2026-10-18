@@ -64,7 +64,7 @@ export function Accordion({ items, variant = 'plus', type = 'single', className 
                 id={`nexara-acc-btn-${item.id}`}
                 aria-expanded={expanded}
                 aria-controls={`nexara-acc-${item.id}`}
-                className={cn(focusRing, 'flex w-full items-center gap-3 py-3 text-left text-sm font-medium')}
+                className={cn(focusRing, 'flex min-h-11 w-full items-center gap-3 py-3 text-left text-sm font-medium')}
                 onClick={() => toggle(item.id)}
               >
                 {variant === 'numbered' ? <span className="font-mono text-xs text-nx-muted">{String(index + 1).padStart(2, '0')}</span> : null}

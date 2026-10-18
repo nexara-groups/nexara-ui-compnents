@@ -109,7 +109,7 @@ export function ExtraButton({
           <button
             key={item}
             type="button"
-            className={cn(focusRing, 'h-10 px-3.5 text-sm', group === item ? 'bg-nx-fg text-nx-bg' : 'text-nx-muted hover:bg-nx-soft')}
+            className={cn(focusRing, 'min-h-11 px-3.5 text-sm', group === item ? 'bg-nx-fg text-nx-bg' : 'text-nx-muted hover:bg-nx-soft')}
             aria-pressed={group === item}
             onClick={() => setGroup(item)}
           >
@@ -128,7 +128,7 @@ export function ExtraButton({
         data-variant="theme"
         aria-pressed={dark}
         aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
-        className={cn(focusRing, 'inline-flex h-10 items-center gap-2 rounded-full border border-nx-border bg-nx-card px-3 text-sm', className)}
+        className={cn(focusRing, 'inline-flex min-h-11 items-center gap-2 rounded-full border border-nx-border bg-nx-card px-3 text-sm', className)}
         onClick={() => {
           const next = !dark
           setDark(next)
@@ -148,7 +148,7 @@ export function ExtraButton({
     )
   }
 
-  const height = size === 'sm' ? 'h-9 px-3.5 text-sm' : size === 'lg' ? 'h-12 px-5 text-[15px]' : 'h-10 px-4 text-sm'
+  const height = size === 'sm' ? 'min-h-11 px-3.5 text-sm' : size === 'lg' ? 'h-12 px-5 text-[15px]' : 'min-h-11 px-4 text-sm'
   const round = radius === 'full' ? 'rounded-full' : radius === 'md' ? 'rounded-lg' : 'rounded-xl'
 
   const surface = {

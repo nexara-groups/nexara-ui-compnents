@@ -104,7 +104,7 @@ export function ExtraHero({
   if (variant === 'clinic') {
     return (
       <section data-nexara="hero" data-variant="clinic" className={cn('relative overflow-hidden bg-[#0b1220] text-[#f6f1ea]', className)}>
-        <div className="mx-auto grid max-w-6xl items-stretch md:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl items-stretch lg:grid-cols-2">
           <div className="px-6 py-16 md:py-20">
             <p className={cn('text-xs tracking-[0.2em] text-[#f3b4b0] uppercase', eyebrowClassName)}>{eyebrow ?? 'Private care'}</p>
             <Title className={cn(titleClass, 'mt-4 text-5xl text-[#f6f1ea] md:text-7xl')}>{title}</Title>
@@ -137,13 +137,13 @@ export function ExtraHero({
   if (variant === 'editorial') {
     return (
       <section data-nexara="hero" data-variant="editorial" className={cn('px-6 py-16', className)}>
-        <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-12">
-          <div className="md:col-span-6">
+        <div className="mx-auto grid max-w-6xl gap-4 lg:grid-cols-12">
+          <div className="lg:col-span-6">
             <Title className={cn(titleClass, 'text-5xl md:text-7xl')}>{title}</Title>
             <div className="mt-4 max-w-md">{lede}</div>
             <div className={cn('mt-8', actionsClassName)}>{actions}</div>
           </div>
-          <div className={cn('grid grid-cols-2 gap-2 md:col-span-6', mediaClassName)}>
+          <div className={cn('grid grid-cols-2 gap-2 lg:col-span-6', mediaClassName)}>
             {mediaSlot ?? (
               <>
                 <MediaFrame src={media.editorial[0]} alt="Books and fruit" className="h-44 rounded-2xl" />
@@ -203,7 +203,7 @@ export function ExtraHero({
     ] as const
     return (
       <section data-nexara="hero" data-variant="split-cards" className={cn('px-6 py-16', className)}>
-        <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
           <div>
             <Title className={cn(titleClass, 'text-5xl')}>{title}</Title>
             <div className="mt-4">{lede}</div>
@@ -258,7 +258,7 @@ export function ExtraHero({
 
   if (variant === 'fashion') {
     return (
-      <section data-nexara="hero" data-variant="fashion" className={cn('grid min-h-[28rem] md:grid-cols-2', className)}>
+      <section data-nexara="hero" data-variant="fashion" className={cn('grid min-h-[28rem] lg:grid-cols-2', className)}>
         <div className="flex flex-col justify-end bg-[#f3efe6] p-8 text-[#16140f]">
           <p className="text-[11px] tracking-[0.22em] uppercase">{eyebrow ?? 'Look 04'}</p>
           <Title className={cn(titleClass, 'mt-4 text-6xl')}>{title}</Title>
@@ -333,7 +333,7 @@ export function ExtraHero({
 
   return (
     <section data-nexara="hero" data-variant="featured" className={cn('px-6 py-16', className)}>
-      <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[1.1fr_0.9fr]">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.1fr_0.9fr]">
         <MediaFrame src={image ?? media.featured} video={video} poster={poster} alt="Featured project" className={cn('min-h-72 rounded-[1.6rem]', mediaClassName)}>
           {mediaSlot}
         </MediaFrame>
@@ -373,7 +373,7 @@ function AcRemote({
 
   return (
     <section data-nexara="hero" data-variant="ac-remote" className={cn('relative overflow-hidden bg-[#e8f3ec] text-[#102018]', className)}>
-      <div className="grid items-end md:grid-cols-[1.05fr_0.95fr]">
+      <div className="grid items-end lg:grid-cols-[1.05fr_0.95fr]">
         <div className="px-6 pt-16 pb-10 md:pb-28">
           <p className="text-xs tracking-[0.18em] text-[#1f7a4a] uppercase">Harbor Climate</p>
           <Title className={cn(titleClass, 'mt-4 text-5xl md:text-7xl')}>{title}</Title>
@@ -396,7 +396,7 @@ function AcRemote({
           <div className="flex items-center gap-2">
             <button
               type="button"
-              className={cn(focusRing, 'rounded-full px-3 py-1.5 font-medium', on ? 'bg-[#9b1c12] text-white' : 'bg-white/10')}
+              className={cn(focusRing, 'inline-flex min-h-11 min-w-11 items-center justify-center rounded-full px-4 font-medium', on ? 'bg-[#9b1c12] text-white' : 'bg-white/10')}
               onClick={() => setOn((value) => !value)}
               aria-pressed={on}
               aria-label={on ? 'Power on' : 'Power off'}
@@ -404,10 +404,10 @@ function AcRemote({
               {on ? 'ON' : 'OFF'}
             </button>
             <span className="font-serif text-2xl">{temp}°</span>
-            <button type="button" className={cn(focusRing, 'size-8 rounded-full bg-white/10')} aria-label="Decrease temperature" onClick={() => setTemp((value) => Math.max(16, value - 1))}>
+            <button type="button" className={cn(focusRing, 'size-11 rounded-full bg-white/10')} aria-label="Decrease temperature" onClick={() => setTemp((value) => Math.max(16, value - 1))}>
               −
             </button>
-            <button type="button" className={cn(focusRing, 'size-8 rounded-full bg-white/10')} aria-label="Increase temperature" onClick={() => setTemp((value) => Math.min(30, value + 1))}>
+            <button type="button" className={cn(focusRing, 'size-11 rounded-full bg-white/10')} aria-label="Increase temperature" onClick={() => setTemp((value) => Math.min(30, value + 1))}>
               +
             </button>
           </div>
@@ -456,7 +456,7 @@ function RadioChips<T extends string>({
             role="radio"
             aria-checked={selected}
             tabIndex={selected ? 0 : -1}
-            className={cn(focusRing, 'rounded-full px-3 py-1.5', tone(item))}
+            className={cn(focusRing, 'inline-flex min-h-11 items-center rounded-full px-3', tone(item))}
             onClick={() => onChange(item)}
             onKeyDown={(event) => {
               if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft' && event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return

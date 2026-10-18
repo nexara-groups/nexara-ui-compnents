@@ -72,7 +72,7 @@ export function Countdown({
           <p className="text-[11px] tracking-[0.2em] text-nx-accent uppercase">Next meet</p>
           <h3 className="mt-2 font-serif text-3xl">{title}</h3>
           <p className="mt-1 text-sm text-nx-muted">Visakhapatnam Indoor · 12 Dec</p>
-          <div className="mt-6 grid grid-cols-4 gap-3">
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {units.map(([label, value]) => (
               <div key={label} className="rounded-2xl bg-nx-bg p-3 text-center">
                 <p className="font-serif text-3xl">{pad(value)}</p>

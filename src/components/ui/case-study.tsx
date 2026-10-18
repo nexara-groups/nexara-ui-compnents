@@ -68,7 +68,7 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
                 aria-selected={index === active}
                 aria-controls={`case-panel-${study.id}`}
                 tabIndex={index === active ? 0 : -1}
-                className={cn(focusRing, 'rounded-full px-3 py-1.5 text-xs', index === active ? 'bg-nx-fg text-nx-bg' : 'text-nx-muted hover:bg-nx-soft')}
+                className={cn(focusRing, 'inline-flex min-h-11 items-center rounded-full px-3 text-xs', index === active ? 'bg-nx-fg text-nx-bg' : 'text-nx-muted hover:bg-nx-soft')}
                 onClick={() => {
                   setActive(index)
                   setPaused(true)
@@ -91,7 +91,7 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
             <button
               type="button"
               aria-pressed={!paused}
-              className={cn(focusRing, 'mt-3 text-xs text-nx-muted')}
+              className={cn(focusRing, 'mt-3 inline-flex min-h-11 min-w-11 items-center px-2 text-xs text-nx-muted')}
               onClick={() => setPaused((value) => !value)}
             >
               {paused ? 'Play cases' : 'Pause cases'}
@@ -255,15 +255,17 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
                   key={study.id}
                   type="button"
                   aria-label={study.client}
-                  className={cn(focusRing, 'size-2 rounded-full', index === active ? 'bg-nx-fg' : 'bg-nx-line')}
+                  className={cn(focusRing, 'grid size-11 place-items-center')}
                   onClick={() => {
                     setActive(index)
                     setPaused(true)
                   }}
-                />
+                >
+                  <span className={cn('size-2 rounded-full', index === active ? 'bg-nx-fg' : 'bg-nx-line')} />
+                </button>
               ))}
             </div>
-            <button type="button" aria-pressed={!paused} className={cn(focusRing, 'text-xs text-nx-muted')} onClick={() => setPaused((value) => !value)}>
+            <button type="button" aria-pressed={!paused} className={cn(focusRing, 'inline-flex min-h-11 min-w-11 shrink-0 items-center px-2 text-xs text-nx-muted')} onClick={() => setPaused((value) => !value)}>
               {paused ? 'Play cases' : 'Pause cases'}
             </button>
           </div>

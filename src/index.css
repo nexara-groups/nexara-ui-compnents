@@ -89,6 +89,12 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-wrap: anywhere;
+}
+
+img,
+video {
+  max-width: 100%;
 }
 
 ::selection {

@@ -416,13 +416,13 @@ export function ModalContent({
               {variant === 'command' ? (
                 <label className={cn('mb-3 flex h-11 items-center rounded-xl bg-nx-bg px-3 text-sm text-nx-muted', fieldBorder)}>
                   <span className="sr-only">Command</span>
-                  <input className={cn(focusRing, 'w-full rounded-lg bg-transparent text-nx-fg')} placeholder="Type a command" />
+                  <input className={cn(focusRing, 'h-11 w-full rounded-lg bg-transparent text-nx-fg')} placeholder="Type a command" />
                 </label>
               ) : null}
               {variant === 'otp' ? (
                 <div className="mb-4 flex flex-col items-center gap-3">
                   <Input variant="otp" defaultValue="4182" />
-                  <button type="button" className="text-sm text-nx-accent">Resend code</button>
+                  <button type="button" className="inline-flex min-h-11 items-center text-sm text-nx-accent">Resend code</button>
                 </div>
               ) : null}
               {variant === 'form' ? (
@@ -439,8 +439,8 @@ export function ModalContent({
               ) : null}
               {variant === 'confirm' ? (
                 <div className="mb-4 flex justify-center gap-2">
-                  <button type="button" className="h-10 rounded-xl border border-nx-border px-4 text-sm" onClick={() => setOpen(false)}>Cancel</button>
-                  <button type="button" className="h-10 rounded-xl bg-nx-danger px-4 text-sm text-white" onClick={() => setOpen(false)}>Delete room</button>
+                  <button type="button" className="min-h-11 rounded-xl border border-nx-border px-4 text-sm" onClick={() => setOpen(false)}>Cancel</button>
+                  <button type="button" className="min-h-11 rounded-xl bg-nx-danger px-4 text-sm text-white" onClick={() => setOpen(false)}>Delete room</button>
                 </div>
               ) : null}
               {variant === 'drawer' ? (
@@ -466,7 +466,7 @@ export function ModalContent({
             {variant === 'notice' ? (
               <div className="flex items-center justify-between gap-4 px-4 py-3">
                 <p className="text-sm">{title}</p>
-                <button type="button" className="h-9 rounded-full bg-nx-fg px-3 text-sm text-nx-bg" onClick={() => setOpen(false)}>
+                <button type="button" className="inline-flex min-h-11 items-center rounded-full bg-nx-fg px-3 text-sm text-nx-bg" onClick={() => setOpen(false)}>
                   Dismiss
                 </button>
               </div>

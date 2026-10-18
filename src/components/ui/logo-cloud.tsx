@@ -67,7 +67,7 @@ export function LogoCloud({ variant = 'dealers', className }: LogoCloudProps) {
             {partners.map((brand) => (
               <li key={brand.name}>
                 <Lockup src={brand.lockup} name={brand.name} />
-                <p className="mt-2 text-[11px] text-nx-muted">{brand.city}</p>
+                <p className="mt-2 text-xs text-nx-muted">{brand.city}</p>
               </li>
             ))}
           </ul>
@@ -78,7 +78,7 @@ export function LogoCloud({ variant = 'dealers', className }: LogoCloudProps) {
         <div className="overflow-hidden rounded-[1.4rem] border border-nx-field bg-nx-card">
           <div className="flex items-center justify-between border-b border-nx-border px-4 py-2">
             <p className="text-[11px] tracking-[0.18em] text-nx-muted uppercase">On the job after handover</p>
-            <p className="text-[11px] text-nx-muted">Harbor Climate</p>
+            <p className="text-xs text-nx-muted">Harbor Climate</p>
           </div>
           <div className="flex gap-3 overflow-x-auto p-3">
             {partners.map((brand) => (

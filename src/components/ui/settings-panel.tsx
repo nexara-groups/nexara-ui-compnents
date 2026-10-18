@@ -44,11 +44,11 @@ export function SettingsPanel({ variant = 'profile', className }: SettingsPanelP
           </div>
           <label className="text-sm">
             Name
-            <input className={cn(focusRing, fieldBorder, 'mt-1 h-10 w-full rounded-lg px-3')} defaultValue="Latha Iyer" />
+            <input className={cn(focusRing, fieldBorder, 'mt-1 h-11 w-full rounded-lg px-3')} defaultValue="Latha Iyer" />
           </label>
           <label className="text-sm">
             Desk
-            <input className={cn(focusRing, fieldBorder, 'mt-1 h-10 w-full rounded-lg px-3')} defaultValue="Atlas Academy" />
+            <input className={cn(focusRing, fieldBorder, 'mt-1 h-11 w-full rounded-lg px-3')} defaultValue="Atlas Academy" />
           </label>
         </div>
       ) : null}
@@ -82,10 +82,10 @@ export function SettingsPanel({ variant = 'profile', className }: SettingsPanelP
             type="button"
             role="switch"
             aria-checked={on}
-            className={cn(focusRing, 'h-7 w-12 rounded-full', on ? 'bg-nx-fg' : 'bg-nx-line')}
+            className={cn(focusRing, 'h-11 w-16 rounded-full', on ? 'bg-nx-fg' : 'bg-nx-line')}
             onClick={() => setOn((value) => !value)}
           >
-            <span className={cn('block size-5 translate-x-1 rounded-full bg-nx-card transition', on && 'translate-x-6')} />
+            <span className={cn('block size-8 translate-x-1 rounded-full bg-nx-card transition', on && 'translate-x-7')} />
           </button>
         </div>
       ) : null}
@@ -143,7 +143,7 @@ export function SettingsPanel({ variant = 'profile', className }: SettingsPanelP
         <div>
           <p className="font-medium text-nx-danger">Archive this desk</p>
           <p className="mt-2 text-sm text-nx-muted">Leads stay in the audit log. Public pages go dark.</p>
-          <button type="button" className={cn(focusRing, 'mt-4 h-9 rounded-lg bg-nx-danger px-3 text-sm text-white')}>
+          <button type="button" className={cn(focusRing, 'mt-4 inline-flex min-h-11 items-center rounded-lg bg-nx-danger px-3 text-sm text-white')}>
             Archive
           </button>
         </div>

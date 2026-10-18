@@ -47,7 +47,7 @@ export function Contact({ variant = 'branches', className }: ContactProps) {
               <h3 className="mt-2 font-serif text-2xl">{branch.city}</h3>
               <p className="mt-2 text-sm text-nx-muted">{branch.line}</p>
               <p className="mt-3 text-sm">{branch.phone}</p>
-              <a className={cn(focusRing, 'mt-4 inline-flex text-sm text-nx-accent')} href="#contact">
+              <a className={cn(focusRing, 'mt-4 inline-flex min-h-11 items-center text-sm text-nx-accent')} href="#contact">
                 Directions
               </a>
             </article>
@@ -67,7 +67,7 @@ export function Contact({ variant = 'branches', className }: ContactProps) {
               <p className="font-medium">Lumen Care</p>
               <p className="text-sm text-nx-muted">Harbor East clinic floor</p>
             </div>
-            <a className={cn(focusRing, 'rounded-full bg-nx-fg px-3 py-1.5 text-xs text-nx-bg')} href="#contact">
+            <a className={cn(focusRing, 'inline-flex min-h-11 items-center rounded-full bg-nx-fg px-3 text-xs text-nx-bg')} href="#contact">
               Open map
             </a>
           </div>

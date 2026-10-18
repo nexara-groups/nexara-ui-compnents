@@ -109,7 +109,7 @@ export function FlipCard({
       <button
         type="button"
         aria-pressed={flipped}
-        className="absolute right-3 bottom-3 z-20 inline-flex h-8 items-center rounded-full border border-nx-border bg-nx-card/90 px-3 text-xs text-nx-fg backdrop-blur"
+        className="absolute right-3 bottom-3 z-20 inline-flex min-h-11 items-center rounded-full border border-nx-border bg-nx-card/90 px-3 text-xs text-nx-fg backdrop-blur"
         onClick={(event) => {
           event.stopPropagation()
           setFlipped(!flipped)

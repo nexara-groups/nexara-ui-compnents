@@ -136,7 +136,7 @@ function Face({ variant }: { variant: SpotlightVariant }) {
           <li className="flex gap-2"><Check /> Shared libraries</li>
           <li className="flex gap-2"><Check /> Priority export</li>
         </ul>
-        <span className="mt-5 inline-flex h-10 w-full items-center justify-center rounded-xl bg-nx-fg text-sm text-nx-bg">
+        <span className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-nx-fg text-sm text-nx-bg">
           Start Studio
         </span>
       </div>
@@ -245,7 +245,7 @@ function Face({ variant }: { variant: SpotlightVariant }) {
           <span className="text-nx-muted">nexara-groups /</span> nexara-ui
         </p>
         <p className="mt-2 text-xs leading-5 text-nx-muted">Original copy-paste components for product teams.</p>
-        <p className="mt-3 flex gap-4 text-[11px] text-nx-muted">
+        <p className="mt-3 flex gap-4 text-xs text-nx-muted">
           <span className="inline-flex items-center gap-1.5">
             <span className="size-2 rounded-full bg-[#3178c6]" />
             TypeScript
@@ -260,7 +260,7 @@ function Face({ variant }: { variant: SpotlightVariant }) {
     return (
       <div>
         <label className="flex items-start gap-3">
-          <input type="checkbox" className="mt-1 size-4 accent-[var(--nx-accent)]" />
+          <input type="checkbox" className="size-11 shrink-0 accent-[var(--nx-accent)]" />
           <span>
             <span className="block text-sm font-medium">Review the mast for Issue 18</span>
             <span className="mt-2 flex flex-wrap gap-1.5">

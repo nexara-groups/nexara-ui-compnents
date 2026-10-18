@@ -38,7 +38,7 @@ export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
             <p className="text-xs tracking-[0.18em] text-[#f6f1ea] uppercase">Lumen Care</p>
             <p className="mt-2 font-serif text-3xl">Book the next therapy chair.</p>
           </div>
-          <a className={cn(focusRing, 'rounded-full bg-[#f6f1ea] px-5 py-2.5 text-sm text-[#0b1220]')} href="#contact">
+          <a className={cn(focusRing, 'inline-flex min-h-11 items-center rounded-full bg-[#f6f1ea] px-5 text-sm text-[#0b1220]')} href="#contact">
             Request a slot
           </a>
         </div>
@@ -48,7 +48,7 @@ export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
         <div className="rounded-[1.6rem] bg-[#c8ff4d] px-6 py-8 text-[#111113]">
           <p className="text-xs tracking-[0.2em] uppercase">North Studio</p>
           <p className="mt-2 font-serif text-4xl">Send the brief. We answer with a named lead.</p>
-          <a className={cn(focusRing, 'mt-5 inline-flex rounded-full bg-[#111113] px-5 py-2.5 text-sm text-white')} href="#contact">
+          <a className={cn(focusRing, 'mt-5 inline-flex min-h-11 items-center rounded-full bg-[#111113] px-5 text-sm text-white')} href="#contact">
             Write to the studio
           </a>
         </div>
@@ -70,7 +70,7 @@ export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
       {variant === 'dark' ? (
         <div className="rounded-[1.5rem] bg-[#07070a] px-6 py-10 text-center text-white">
           <p className="font-serif text-4xl">One core. Three forces.</p>
-          <a className={cn(focusRing, 'mt-5 inline-flex rounded-full border border-white/20 px-5 py-2.5 text-sm')} href="#hero">
+          <a className={cn(focusRing, 'mt-5 inline-flex min-h-11 items-center rounded-full border border-white/20 px-5 text-sm')} href="#hero">
             Meet Academy, Labs, Marketing
           </a>
         </div>
@@ -78,7 +78,7 @@ export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
 
       {variant === 'form' ? (
         <form className="flex flex-col gap-3 rounded-[1.4rem] border border-nx-border p-5 sm:flex-row">
-          <input className={cn(focusRing, 'h-11 flex-1 rounded-xl bg-nx-bg px-3')} placeholder="Work email" />
+          <input className={cn(focusRing, 'min-h-11 min-w-0 flex-1 rounded-xl bg-nx-bg px-3')} placeholder="Work email" />
           <button type="button" className={cn(focusRing, 'h-11 rounded-xl bg-nx-fg px-5 text-nx-bg')}>
             Join the desk
           </button>
@@ -103,7 +103,7 @@ export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
       {variant === 'waitlist' ? (
         <div className="text-center">
           <p className="font-serif text-4xl">2,400 already in the room.</p>
-          <button type="button" className={cn(focusRing, 'mt-4 rounded-full bg-nx-fg px-5 py-2.5 text-sm text-nx-bg')}>
+          <button type="button" className={cn(focusRing, 'mt-4 inline-flex min-h-11 items-center rounded-full bg-nx-fg px-5 text-sm text-nx-bg')}>
             Ask for a seat
           </button>
         </div>
@@ -112,7 +112,7 @@ export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
       {variant === 'quote' ? (
         <div className="rounded-[1.4rem] bg-nx-elevated px-6 py-8">
           <p className="font-serif text-3xl">Need a plant quote by Friday?</p>
-          <a className={cn(focusRing, 'mt-4 inline-flex text-sm text-nx-accent')} href="#contact">
+          <a className={cn(focusRing, 'mt-4 inline-flex min-h-11 items-center text-sm text-nx-accent')} href="#contact">
             Send the drawing →
           </a>
         </div>
@@ -138,7 +138,7 @@ export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
             <p className="text-[#c8ff4d]">12 Dec</p>
             <p className="font-serif text-2xl">Field Night Championships</p>
           </div>
-          <a className={cn(focusRing, 'rounded-full bg-[#c8ff4d] px-4 py-2 text-sm text-[#111]')} href="#countdown">
+          <a className={cn(focusRing, 'inline-flex min-h-11 items-center rounded-full bg-[#c8ff4d] px-4 text-sm text-[#111]')} href="#countdown">
             Reserve a lane
           </a>
         </div>

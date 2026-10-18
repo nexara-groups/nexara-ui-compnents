@@ -51,8 +51,8 @@ export function Leaderboard({ variant = 'medals', className }: LeaderboardProps)
   return (
     <section data-nexara="leaderboard" data-variant={variant} className={cn('w-full', className)}>
       {variant === 'medals' ? (
-        <div className="overflow-hidden rounded-[1.4rem] border border-nx-border">
-          <table className="w-full text-left text-sm">
+        <div className="overflow-x-auto rounded-[1.4rem] border border-nx-border">
+          <table className="w-full min-w-[20rem] text-left text-sm">
             <thead className="bg-nx-elevated text-[11px] tracking-[0.14em] text-nx-muted uppercase">
               <tr>
                 <th className="px-4 py-3">Athlete</th>
@@ -80,7 +80,15 @@ export function Leaderboard({ variant = 'medals', className }: LeaderboardProps)
 
       {variant === 'table' ? (
         <div className="overflow-x-auto rounded-[1.4rem] border border-nx-border">
-          <table className="w-full min-w-[32rem] text-left text-sm">
+          <ul className="divide-y divide-nx-border md:hidden">
+            {rows.map((row) => (
+              <li key={row.name} className="px-4 py-3">
+                <p className="font-medium">{row.rank}. {row.name}</p>
+                <p className="mt-1 text-sm text-nx-muted">{row.club} · {row.points} pts</p>
+              </li>
+            ))}
+          </ul>
+          <table className="hidden w-full min-w-[32rem] text-left text-sm md:table">
             <thead className="bg-nx-elevated text-xs text-nx-muted">
               <tr>
                 <th className="px-4 py-3">#</th>

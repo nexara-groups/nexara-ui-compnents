@@ -52,7 +52,7 @@ export function Tabs({ items, variant = 'underline', defaultValue, className }: 
 
   return (
     <div data-nexara="tabs" data-variant={variant} className={cn(vertical && 'grid gap-4 md:grid-cols-[10rem_1fr]', className)}>
-      <div role="tablist" aria-orientation={vertical ? 'vertical' : 'horizontal'} className={listClass(variant)} onKeyDown={onKeyDown}>
+      <div role="tablist" aria-orientation={vertical ? 'vertical' : 'horizontal'} className={cn(listClass(variant), !vertical && 'max-w-full overflow-x-auto')} onKeyDown={onKeyDown}>
         {items.map((item) => {
           const selected = item.id === value
           return (
@@ -101,7 +101,7 @@ function listClass(variant: TabsVariant) {
 }
 
 function tabClass(variant: TabsVariant, selected: boolean) {
-  const base = 'inline-flex items-center gap-2 px-3 py-2 text-sm'
+  const base = 'inline-flex min-h-11 items-center gap-2 px-3 text-sm'
   if (variant === 'underline') return cn(base, 'border-b-2 -mb-px', selected ? 'border-nx-fg text-nx-fg' : 'border-transparent text-nx-muted')
   if (variant === 'pill' || variant === 'segmented') return cn(base, 'rounded-full', selected ? 'bg-nx-card text-nx-fg shadow-[var(--nx-shadow)]' : 'text-nx-muted')
   if (variant === 'card') return cn(base, 'rounded-xl border', selected ? 'border-nx-fg bg-nx-card' : 'border-nx-border text-nx-muted')

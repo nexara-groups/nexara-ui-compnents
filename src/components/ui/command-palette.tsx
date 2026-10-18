@@ -62,7 +62,7 @@ export function CommandPalette({ variant = 'default', className }: CommandPalett
     <div data-nexara="command-palette" data-variant={variant} className={cn('overflow-hidden rounded-[1.3rem] border border-nx-border bg-nx-card shadow-[var(--nx-shadow)]', className)}>
       <div className="border-b border-nx-border px-3 py-2">
         <input
-          className={cn(focusRing, 'h-10 w-full bg-transparent text-sm')}
+          className={cn(focusRing, 'h-11 w-full bg-transparent text-sm')}
           role="combobox"
           aria-expanded="true"
           aria-controls={`nexara-command-list-${variant}`}
@@ -94,7 +94,7 @@ export function CommandPalette({ variant = 'default', className }: CommandPalett
               key={item.id}
               role="option"
               aria-selected={index === active}
-              className={cn('flex items-center justify-between rounded-lg px-3 py-2 text-sm', index === active && 'bg-nx-soft')}
+              className={cn('flex min-h-11 items-center justify-between rounded-lg px-3 text-sm', index === active && 'bg-nx-soft')}
             >
               <span>{item.label}</span>
               <span className="text-[11px] text-nx-muted">{item.group}</span>

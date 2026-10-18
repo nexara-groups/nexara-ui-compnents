@@ -74,7 +74,7 @@ export function Toast({
         {variant === 'progress' ? <span className="mt-2 block h-1 overflow-hidden rounded-full bg-nx-border"><span className="block h-1 w-2/3 bg-nx-accent" /></span> : null}
       </div>
       {variant === 'action' ? (
-        <button type="button" className="text-xs font-medium text-nx-accent">
+        <button type="button" className="inline-flex min-h-11 min-w-11 items-center justify-center text-xs font-medium text-nx-accent">
           Undo
         </button>
       ) : null}

@@ -86,7 +86,7 @@ function Segmented<T extends string>({
             }}
             onClick={() => onChange(option)}
             className={cn(
-              'h-9 rounded-full border px-3 text-xs tracking-wide capitalize',
+              'inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border px-3.5 text-xs tracking-wide capitalize',
               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring',
               selected
                 ? 'border-transparent bg-nx-fg text-nx-bg'
@@ -118,12 +118,12 @@ export function DraggableCardDemo() {
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-nx-muted">Drag inside the frame. Arrow keys nudge a focused card. Home resets it.</p>
-        <label className="inline-flex items-center gap-2 text-sm text-nx-fg">
+        <label className="inline-flex min-h-11 items-center gap-2 text-sm text-nx-fg">
           <input
             type="checkbox"
             checked={snapBack}
             onChange={(event) => setSnapBack(event.target.checked)}
-            className="size-4 accent-[#8b7cff]"
+            className="size-11 shrink-0 accent-[#8b7cff]"
           />
           Snap back
         </label>
@@ -295,7 +295,7 @@ export function TypewriterDemo() {
         type="button"
         aria-pressed={paused}
         onClick={() => setPaused((value) => !value)}
-        className="inline-flex h-9 items-center rounded-full border border-nx-border px-3 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring"
+        className="inline-flex min-h-11 items-center rounded-full border border-nx-border px-3 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring"
       >
         {paused ? 'Play' : 'Pause'} typing
       </button>

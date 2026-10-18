@@ -216,7 +216,7 @@ export function Typewriter({
       {showControls && !reduced ? (
         <button
           type="button"
-          className="ml-2 h-8 rounded-full border border-nx-border px-2 text-xs"
+          className="ml-2 inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full border border-nx-border px-3 text-xs"
           aria-pressed={held}
           onClick={() => setManualPause((value) => !value)}
         >

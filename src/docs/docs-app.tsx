@@ -61,7 +61,7 @@ function CodeBlock({ code }: { code: string }) {
         <button
           type="button"
           onClick={() => void copy()}
-          className="h-8 rounded-full border border-nx-border px-3 text-xs text-nx-fg hover:bg-nx-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring"
+          className="inline-flex min-h-11 items-center rounded-full border border-nx-border px-3 text-xs text-nx-fg hover:bg-nx-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring"
         >
           {copied ? 'Copied' : 'Copy'}
         </button>
@@ -151,7 +151,7 @@ export function DocsApp() {
       <header className="border-b border-nx-border">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 md:px-6">
           <a href="#draggable-card" className="group flex items-center gap-3">
-            <span className="inline-flex size-9 items-center justify-center rounded-xl border border-nx-border bg-nx-card font-serif text-lg">
+            <span className="inline-flex size-11 items-center justify-center rounded-xl border border-nx-border bg-nx-card font-serif text-lg">
               N
             </span>
             <span>
@@ -164,7 +164,7 @@ export function DocsApp() {
             <button
               type="button"
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="h-9 rounded-full border border-nx-border px-3 text-xs text-nx-fg hover:bg-nx-soft"
+              className="inline-flex min-h-11 items-center rounded-full border border-nx-border px-3 text-xs text-nx-fg hover:bg-nx-soft"
             >
               {theme === 'dark' ? 'Light' : 'Dark'}
             </button>
@@ -196,7 +196,7 @@ export function DocsApp() {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Filter components"
-              className="h-10 w-full rounded-full border border-nx-border bg-transparent px-3 text-sm outline-none placeholder:text-nx-faint focus:ring-2 focus:ring-nx-ring"
+              className="h-11 w-full rounded-full border border-nx-border bg-transparent px-3 text-sm outline-none placeholder:text-nx-faint focus:ring-2 focus:ring-nx-ring"
             />
           </label>
           <nav className="hidden md:block" aria-label="Components">
@@ -215,7 +215,7 @@ export function DocsApp() {
                             href={`#${item.slug}`}
                             aria-current={current ? 'page' : undefined}
                             className={cn(
-                              'block rounded-xl px-3 py-2 text-sm text-nx-muted hover:bg-nx-soft hover:text-nx-fg',
+                              'flex min-h-11 items-center rounded-xl px-3 text-sm text-nx-muted hover:bg-nx-soft hover:text-nx-fg',
                               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring',
                               current && 'bg-nx-soft text-nx-fg',
                             )}

@@ -1,7 +1,7 @@
 'use client'
 
 import { type ReactNode, useEffect, useRef } from 'react'
-import { cn, focusRing } from '@/lib/utils.ts'
+import { cn, focusRing, touchTarget } from '@/lib/utils.ts'
 
 /** Bundled originals in `public/media`. Swap any of these via props. */
 export const media = {
@@ -259,7 +259,8 @@ export function LoopPause({
       onClick={onToggle}
       className={cn(
         focusRing,
-        'inline-flex items-center rounded-full border border-nx-field bg-nx-card px-2.5 py-1 text-[11px] font-medium text-nx-fg',
+        touchTarget,
+        'inline-flex items-center justify-center rounded-full border border-nx-field bg-nx-card px-3 text-[11px] font-medium text-nx-fg',
         className,
       )}
     >

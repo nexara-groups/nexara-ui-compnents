@@ -82,7 +82,7 @@ export function MagneticButton({
       data-nexara="magnetic-button"
       data-variant={magnet}
       style={{ x: reduced ? 0 : springX, y: reduced ? 0 : springY }}
-      className={cn(focusRing, 'inline-flex items-center justify-center rounded-xl disabled:opacity-45', className)}
+      className={cn(focusRing, 'inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl disabled:opacity-45', className)}
       onPointerMove={onMove}
       onPointerLeave={reset}
       onClick={() => onClick?.()}
@@ -125,7 +125,7 @@ function Shell({ magnet, children }: { magnet: MagnetStyle; children?: ReactNode
   }
   if (magnet === 'chip') {
     return (
-      <span className="inline-flex h-9 items-center gap-2 rounded-full border border-nx-border bg-nx-card px-3 text-sm text-nx-fg">
+      <span className="inline-flex min-h-11 items-center gap-2 rounded-full border border-nx-border bg-nx-card px-3 text-sm text-nx-fg">
         <span className="size-1.5 rounded-full bg-nx-ok" />
         {children}
       </span>
@@ -148,7 +148,7 @@ function Shell({ magnet, children }: { magnet: MagnetStyle; children?: ReactNode
   }
   if (magnet === 'text') {
     return (
-      <span className="inline-flex items-center gap-1 text-sm font-medium text-nx-fg">
+      <span className="inline-flex min-h-11 items-center gap-1 px-1 text-sm font-medium text-nx-fg">
         {children}
         <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
           <path d="M2 6h8M7 3l3 3-3 3" fill="none" stroke="currentColor" strokeWidth="1.4" />
@@ -158,7 +158,7 @@ function Shell({ magnet, children }: { magnet: MagnetStyle; children?: ReactNode
   }
   if (magnet === 'badge') {
     return (
-      <span className="relative inline-flex h-10 items-center rounded-xl border border-nx-border bg-nx-card px-3.5 text-sm text-nx-fg">
+      <span className="relative inline-flex min-h-11 items-center rounded-xl border border-nx-border bg-nx-card px-3.5 text-sm text-nx-fg">
         {children}
         <span className="absolute -top-1.5 -right-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-nx-accent px-1 text-[10px] font-semibold text-nx-accent-fg">
           3

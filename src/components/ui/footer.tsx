@@ -48,7 +48,7 @@ export function Footer({ variant = 'mega', className }: FooterProps) {
                 <p className="text-[11px] tracking-[0.16em] text-nx-muted uppercase">{title}</p>
                 <ul className="mt-3 space-y-2">
                   {links.map((link) => (
-                    <li key={link}><a href={`#${link.toLowerCase()}`} className="hover:text-nx-accent">{link}</a></li>
+                    <li key={link}><a href={`#${link.toLowerCase()}`} className="inline-flex min-h-11 min-w-11 items-center px-1 hover:text-nx-accent">{link}</a></li>
                   ))}
                 </ul>
               </div>
@@ -65,7 +65,7 @@ export function Footer({ variant = 'mega', className }: FooterProps) {
               <p className="text-[11px] tracking-[0.16em] text-nx-muted uppercase">{title}</p>
               <ul className="mt-3 space-y-2">
                 {links.map((link) => (
-                  <li key={link}><a href={`#${link.toLowerCase()}`}>{link}</a></li>
+                  <li key={link}><a href={`#${link.toLowerCase()}`} className="inline-flex min-h-11 min-w-11 items-center px-1">{link}</a></li>
                 ))}
               </ul>
             </div>
@@ -76,10 +76,10 @@ export function Footer({ variant = 'mega', className }: FooterProps) {
       {variant === 'compact' ? (
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-nx-border py-4 text-nx-muted">
           <p>© 2026 Nexara</p>
-          <nav className="flex gap-4" aria-label="Legal">
-            <a href="#privacy">Privacy</a>
-            <a href="#terms">Terms</a>
-            <a href="#security">Security</a>
+          <nav className="flex flex-wrap gap-4" aria-label="Legal">
+            <a href="#privacy" className="inline-flex min-h-11 min-w-11 items-center px-1">Privacy</a>
+            <a href="#terms" className="inline-flex min-h-11 min-w-11 items-center px-1">Terms</a>
+            <a href="#security" className="inline-flex min-h-11 min-w-11 items-center px-1">Security</a>
           </nav>
         </div>
       ) : null}
@@ -96,7 +96,7 @@ export function Footer({ variant = 'mega', className }: FooterProps) {
           <p className="font-serif text-3xl">Nexara</p>
           <nav className="mt-4 flex flex-wrap justify-center gap-4 text-nx-muted" aria-label="Footer">
             {['Components', 'Journal', 'Careers', 'Privacy'].map((link) => (
-              <a key={link} href={`#${link.toLowerCase()}`}>{link}</a>
+              <a key={link} href={`#${link.toLowerCase()}`} className="inline-flex min-h-11 min-w-11 items-center px-1">{link}</a>
             ))}
           </nav>
         </div>
@@ -122,8 +122,8 @@ export function Footer({ variant = 'mega', className }: FooterProps) {
           </div>
           <form className="flex flex-col gap-2 sm:flex-row" onSubmit={(event) => event.preventDefault()}>
             <label className="sr-only" htmlFor="nexara-footer-email">Email</label>
-            <input id="nexara-footer-email" type="email" placeholder="you@studio.com" className={cn(focusRing, fieldBorder, 'h-11 flex-1 rounded-xl bg-nx-card px-3')} />
-            <button type="submit" className={cn(focusRing, 'h-11 rounded-xl bg-nx-fg px-4 text-nx-bg')}>Join</button>
+            <input id="nexara-footer-email" type="email" placeholder="you@studio.com" className={cn(focusRing, fieldBorder, 'min-h-11 min-w-0 flex-1 rounded-xl bg-nx-card px-3')} />
+            <button type="submit" className={cn(focusRing, 'inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl bg-nx-fg px-4 text-nx-bg')}>Join</button>
           </form>
         </div>
       ) : null}
@@ -152,7 +152,7 @@ export function Footer({ variant = 'mega', className }: FooterProps) {
           <p className="font-serif text-xl">Nexara</p>
           <nav className="flex gap-4 text-nx-muted" aria-label="Social">
             {['X', 'GitHub', 'YouTube', 'Journal'].map((name) => (
-              <a key={name} href={`#${name.toLowerCase()}`} className="hover:text-nx-fg">{name}</a>
+              <a key={name} href={`#${name.toLowerCase()}`} className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 hover:text-nx-fg">{name}</a>
             ))}
           </nav>
         </div>

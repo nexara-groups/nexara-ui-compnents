@@ -114,10 +114,10 @@ export function Hero({
   return (
     <section data-nexara="hero" data-variant={layout} className={cn('relative overflow-hidden px-6 py-16 md:px-10', className)}>
       {layout === 'saas' ? (
-        <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1.05fr_0.95fr]">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <p className={cn('mb-4 text-xs tracking-[0.2em] text-nx-accent uppercase', eyebrowClassName)}>{eyebrow ?? 'Component registry'}</p>
-            <Title className={cn(titleClass, 'text-5xl md:text-6xl')}>{title}</Title>
+            <Title className={cn(titleClass, 'text-4xl sm:text-5xl md:text-6xl')}>{title}</Title>
             <div className="mt-5 max-w-md">{lede}</div>
             <div className={cn('mt-8 flex flex-wrap gap-3', actionsClassName)}>{actions}</div>
             <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 text-sm">
@@ -141,10 +141,10 @@ export function Hero({
       ) : null}
 
       {layout === 'app' ? (
-        <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-[1.1fr_0.9fr]">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <p className={cn('mb-3 text-xs tracking-[0.18em] text-nx-muted uppercase', eyebrowClassName)}>{eyebrow ?? 'iOS and Android'}</p>
-            <Title className={cn(titleClass, 'text-5xl md:text-6xl')}>{title}</Title>
+            <Title className={cn(titleClass, 'text-4xl sm:text-5xl md:text-6xl')}>{title}</Title>
             <div className="mt-4 max-w-md">{lede}</div>
             <div className={cn('mt-6 flex flex-wrap gap-3', actionsClassName)}>
               <StoreBadge store="App Store" />
@@ -179,7 +179,7 @@ export function Hero({
       {layout === 'logos' ? (
         <div className="mx-auto max-w-5xl text-center">
           <p className={cn('text-xs tracking-[0.18em] text-nx-muted uppercase', eyebrowClassName)}>{eyebrow ?? 'Trusted in production'}</p>
-          <Title className={cn(titleClass, 'mt-3 text-5xl md:text-6xl')}>{title}</Title>
+          <Title className={cn(titleClass, 'mt-3 text-4xl sm:text-5xl md:text-6xl')}>{title}</Title>
           <div className="mx-auto mt-4 max-w-xl">{lede}</div>
           <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-5">
             {marks.map((mark) => (
@@ -200,10 +200,10 @@ export function Hero({
       ) : null}
 
       {layout === 'pricing' ? (
-        <div className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-[1.1fr_0.9fr]">
+        <div className="mx-auto grid max-w-5xl items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <p className={cn('text-xs tracking-[0.18em] text-nx-accent uppercase', eyebrowClassName)}>{eyebrow ?? 'Pricing'}</p>
-            <Title className={cn(titleClass, 'mt-3 text-5xl')}>{title}</Title>
+            <Title className={cn(titleClass, 'mt-3 text-4xl sm:text-5xl')}>{title}</Title>
             <div className="mt-4">{lede}</div>
           </div>
           <div className="overflow-hidden rounded-[1.6rem] border border-nx-border bg-nx-card shadow-[var(--nx-shadow)]">
@@ -228,8 +228,8 @@ export function Hero({
             <p className={cn('text-xs tracking-[0.28em] text-nx-muted uppercase', eyebrowClassName)}>{eyebrow ?? 'Studio index'}</p>
             <p className="text-xs text-nx-faint">04 — 12</p>
           </div>
-          <Title className={cn(titleClass, 'py-10 text-6xl leading-[0.88] md:text-8xl')}>{title}</Title>
-          <div className="grid gap-6 border-t border-nx-line pt-6 md:grid-cols-[1.4fr_0.6fr]">
+          <Title className={cn(titleClass, 'py-8 text-4xl leading-[0.95] sm:text-6xl md:py-10 md:text-8xl')}>{title}</Title>
+          <div className="grid gap-6 border-t border-nx-line pt-6 lg:grid-cols-[1.4fr_0.6fr]">
             <div>{lede}</div>
             <MediaFrame src={image ?? media.featured} alt="" className="h-32 rounded-2xl" />
             <div className={actionsClassName}>{actions}</div>
@@ -238,13 +238,13 @@ export function Hero({
       ) : null}
 
       {layout === 'shop' ? (
-        <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
           <MediaFrame src={image ?? media.lamp} video={video} poster={poster} lottie={lottie} alt="Lamp 04" grain={false} className={cn('min-h-72 rounded-[1.6rem]', mediaClassName)}>
             {mediaSlot}
           </MediaFrame>
           <div>
             <p className={cn('text-xs tracking-[0.18em] text-nx-accent uppercase', eyebrowClassName)}>{eyebrow ?? 'In stock'}</p>
-            <Title className={cn(titleClass, 'mt-2 text-5xl')}>{title}</Title>
+            <Title className={cn(titleClass, 'mt-2 text-4xl sm:text-5xl')}>{title}</Title>
             <p className="mt-3 font-serif text-3xl">$220</p>
             <div className="mt-3">{lede}</div>
             <div className="mt-4 flex gap-2" aria-label="Finishes">
@@ -263,9 +263,9 @@ export function Hero({
           <div className="absolute inset-0 bg-black/55" />
           <div className="relative">
             <p className={cn('text-xs tracking-[0.22em] text-[#c8ff4d] uppercase', eyebrowClassName)}>{eyebrow ?? '12 Nov · Harbor Hall'}</p>
-            <Title className={cn(titleClass, 'mt-4 text-5xl text-white md:text-7xl')}>{title}</Title>
+            <Title className={cn(titleClass, 'mt-4 text-4xl text-white sm:text-5xl md:text-7xl')}>{title}</Title>
             <div className="mx-auto mt-4 max-w-lg text-white/75">{lede}</div>
-            <div className="mt-8 grid grid-cols-4 gap-2">
+            <div className="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-4">
               {[['12', 'Days'], ['04', 'Hours'], ['18', 'Min'], ['09', 'Sec']].map(([value, unit]) => (
                 <div key={unit} className="rounded-2xl border border-white/15 bg-white/8 py-4 backdrop-blur-md">
                   <p className="font-serif text-3xl">{value}</p>
@@ -280,19 +280,19 @@ export function Hero({
 
       {layout === 'search' ? (
         <div className="mx-auto max-w-3xl text-center">
-          <Title className={cn(titleClass, 'text-5xl md:text-6xl')}>{title}</Title>
+          <Title className={cn(titleClass, 'text-4xl sm:text-5xl md:text-6xl')}>{title}</Title>
           <div className="mx-auto mt-4 max-w-lg">{lede}</div>
-          <form className="mt-8 flex rounded-full border border-nx-border bg-nx-card shadow-[var(--nx-shadow)]" action="#" onSubmit={(event) => event.preventDefault()}>
+          <form className="mt-8 flex flex-col rounded-3xl border border-nx-border bg-nx-card p-1 shadow-[var(--nx-shadow)] sm:flex-row sm:rounded-full" action="#" onSubmit={(event) => event.preventDefault()}>
             <label className="sr-only" htmlFor="nexara-hero-search">Search</label>
-            <input id="nexara-hero-search" className={cn(focusRing, 'h-14 flex-1 rounded-full bg-transparent px-5 text-nx-fg')} placeholder="Search the library" />
-            <button type="submit" className="m-1 rounded-full bg-nx-fg px-5 text-sm text-nx-bg">Search</button>
+            <input id="nexara-hero-search" className={cn(focusRing, 'h-14 min-h-11 min-w-0 flex-1 rounded-full bg-transparent px-5 text-nx-fg')} placeholder="Search the library" />
+            <button type="submit" className="m-1 inline-flex min-h-11 items-center justify-center rounded-full bg-nx-fg px-5 text-sm text-nx-bg">Search</button>
           </form>
           <div className={cn('mt-4 flex justify-center', actionsClassName)}>{actions}</div>
         </div>
       ) : null}
 
       {layout === 'product' ? (
-        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[14rem_minmax(0,1fr)]">
+        <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[14rem_minmax(0,1fr)]">
           <aside className="rounded-3xl border border-nx-border bg-nx-card p-4">
             <p className="text-sm font-medium">{eyebrow ?? 'Harbor'}</p>
             <ul className="mt-4 space-y-1 text-sm text-nx-muted">
@@ -319,7 +319,7 @@ export function Hero({
       ) : null}
 
       {layout === 'journal' ? (
-        <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.85fr_1.15fr]">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div className={cn('relative min-h-72 overflow-hidden', mediaClassName)}>
             <MediaFrame src={image ?? media.journal} video={video} poster={poster} lottie={lottie} alt="Issue 18 cover" className="absolute inset-0">
               {mediaSlot}
@@ -333,7 +333,7 @@ export function Hero({
           </div>
           <div className="flex flex-col justify-end">
             <p className={cn('text-xs tracking-[0.22em] text-nx-accent uppercase', eyebrowClassName)}>{eyebrow ?? 'The journal'}</p>
-            <Title className={cn(titleClass, 'mt-3 text-5xl leading-[0.9] md:text-7xl')}>{title}</Title>
+            <Title className={cn(titleClass, 'mt-3 text-4xl leading-[0.95] sm:text-5xl md:text-7xl')}>{title}</Title>
             <div className="mt-4 max-w-md border-t border-nx-line pt-4">{lede}</div>
             <div className={cn('mt-6', actionsClassName)}>{actions}</div>
           </div>
@@ -348,12 +348,12 @@ export function Hero({
             ))}
           </div>
           <p className={cn('text-xs tracking-[0.18em] text-nx-muted uppercase', eyebrowClassName)}>{eyebrow ?? '2,400 already in'}</p>
-          <Title className={cn(titleClass, 'mt-3 text-5xl md:text-6xl')}>{title}</Title>
+          <Title className={cn(titleClass, 'mt-3 text-4xl sm:text-5xl md:text-6xl')}>{title}</Title>
           <div className="mx-auto mt-4 max-w-md">{lede}</div>
-          <form className="mt-6 flex gap-2" action="#" onSubmit={(event) => event.preventDefault()}>
+          <form className="mt-6 flex flex-col gap-2 sm:flex-row" action="#" onSubmit={(event) => event.preventDefault()}>
             <label className="sr-only" htmlFor="nexara-waitlist">Email</label>
-            <input id="nexara-waitlist" type="email" placeholder="you@studio.com" className={cn(focusRing, 'h-12 flex-1 rounded-full border border-nx-border bg-nx-card px-4 text-nx-fg')} />
-            <button type="submit" className="h-12 rounded-full bg-nx-fg px-5 text-sm text-nx-bg">Join</button>
+            <input id="nexara-waitlist" type="email" placeholder="you@studio.com" className={cn(focusRing, 'h-12 min-h-11 min-w-0 flex-1 rounded-full border border-nx-border bg-nx-card px-4 text-nx-fg')} />
+            <button type="submit" className="inline-flex h-12 items-center justify-center rounded-full bg-nx-fg px-5 text-sm text-nx-bg">Join</button>
           </form>
           {actions ? <div className={cn('mt-4', actionsClassName)}>{actions}</div> : null}
         </div>
@@ -405,7 +405,7 @@ function CinemaHero({
       </MediaFrame>
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/10" />
       <div className="relative z-10 flex min-h-[24rem] flex-col justify-end p-8 md:p-12">
-        <Title className={cn(titleClass, 'max-w-xl text-5xl text-white md:text-6xl')}>{title}</Title>
+        <Title className={cn(titleClass, 'max-w-xl text-4xl text-white sm:text-5xl md:text-6xl')}>{title}</Title>
         <div className="mt-3 max-w-lg text-white/75">{lede}</div>
         <div className={cn('mt-6 flex items-center gap-3', actionsClassName)}>
           <PlayControl playing={playing} onToggle={() => setPlaying((value) => !value)} />

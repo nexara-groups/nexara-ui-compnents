@@ -38,16 +38,16 @@ const buttonVariants = cva(
         glass: 'border border-nx-border bg-nx-glass text-nx-fg shadow-[var(--nx-shadow)] backdrop-blur-xl',
         gradient: 'border-0 bg-transparent text-white',
         destructive: 'bg-nx-danger text-white',
-        split: 'gap-0 overflow-hidden bg-nx-fg p-0 text-nx-bg',
+        split: 'gap-0 bg-nx-fg p-0 text-nx-bg',
         social: 'justify-start gap-3 border border-nx-border bg-nx-card pr-5 pl-1.5 text-left text-nx-fg shadow-[var(--nx-shadow)]',
         icon: 'border border-nx-border bg-nx-card p-0 text-nx-fg',
-        shimmer: 'overflow-hidden border border-white/10 bg-[#111113] text-white',
-        beam: 'overflow-hidden bg-transparent p-0 text-nx-fg',
+        shimmer: 'border border-white/10 bg-[#111113] text-white',
+        beam: 'bg-transparent p-0 text-nx-fg',
         link: 'bg-transparent px-0 text-nx-fg',
       },
       size: {
-        sm: 'h-9 px-3.5 text-sm',
-        md: 'h-10 px-4 text-sm',
+        sm: 'min-h-11 px-3.5 text-sm',
+        md: 'min-h-11 px-4 text-sm',
         lg: 'h-12 px-5 text-[15px]',
       },
       radius: {
@@ -60,8 +60,8 @@ const buttonVariants = cva(
       { variant: 'split', class: 'px-0' },
       { variant: 'beam', class: 'px-0' },
       { variant: 'link', class: 'h-auto rounded-none px-0 shadow-none' },
-      { variant: 'icon', size: 'sm', class: 'size-9 px-0' },
-      { variant: 'icon', size: 'md', class: 'size-10 px-0' },
+      { variant: 'icon', size: 'sm', class: 'size-11 px-0' },
+      { variant: 'icon', size: 'md', class: 'size-11 px-0' },
       { variant: 'icon', size: 'lg', class: 'size-12 px-0' },
       { variant: 'social', class: 'h-12 rounded-2xl' },
       { variant: 'shimmer', class: 'rounded-full' },
@@ -217,25 +217,25 @@ export function Button({
         </>
       ) : null}
       {kind === 'shimmer' ? (
-        <span
-          aria-hidden="true"
-          className={cn(
-            'pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.28),transparent)]',
-            looping && 'motion-safe:animate-[nexara-shimmer_2.4s_ease_infinite]',
-          )}
-        />
+        <span aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]">
+          <span
+            className={cn(
+              'absolute inset-y-0 left-0 w-1/2 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.28),transparent)]',
+              looping && 'motion-safe:animate-[nexara-shimmer_2.4s_ease_infinite]',
+            )}
+          />
+        </span>
       ) : null}
       {kind === 'beam' ? (
-        <>
+        <span aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]">
           <span
-            aria-hidden="true"
             className={cn(
               'absolute top-1/2 left-1/2 h-[240%] w-[240%] -translate-x-1/2 -translate-y-1/2 bg-[conic-gradient(from_90deg,#4c46e0,#22c5b0,#8b87ff,#4c46e0)]',
               looping && 'motion-safe:animate-[nexara-beam_3.6s_linear_infinite]',
             )}
           />
-          <span aria-hidden="true" className="absolute inset-[1.5px] rounded-[inherit] bg-nx-card" />
-        </>
+          <span className="absolute inset-[1.5px] rounded-[inherit] bg-nx-card" />
+        </span>
       ) : null}
       {kind === 'split' ? (
         <span className="relative z-10 inline-flex h-full items-center self-stretch bg-nx-accent px-3 text-nx-accent-fg">

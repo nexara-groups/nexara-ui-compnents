@@ -148,7 +148,7 @@ export function Marquee({
       {showControls && !reduced ? (
         <button
           type="button"
-          className={cn('mt-3 inline-flex h-9 items-center rounded-full border border-current/25 px-3 text-xs', controlClassName)}
+          className={cn('mt-3 inline-flex min-h-11 items-center rounded-full border border-current/25 px-3 text-xs', controlClassName)}
           aria-pressed={pauseHeld}
           aria-controls={trackId}
           onClick={() => {
@@ -171,7 +171,7 @@ function frameClass(variant: MarqueeVariant) {
 }
 
 function FrameLabel({ variant }: { variant: MarqueeVariant }) {
-  if (variant === 'ticker') return <p className="px-3 pb-1 text-[10px] tracking-[0.18em] text-[#fb7185]">LIVE · 18:04</p>
+  if (variant === 'ticker') return <p className="px-3 pb-1 text-xs tracking-[0.18em] text-[#fb7185]">LIVE · 18:04</p>
   if (variant === 'changelog') return <p className="px-3 pb-1 text-nx-faint">~/nexara</p>
   return null
 }

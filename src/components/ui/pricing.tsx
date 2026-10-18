@@ -51,10 +51,10 @@ export function Pricing({ variant = 'cards', className }: PricingProps) {
         <div>
           <div className="mb-8 flex justify-center">
             <div className="inline-flex rounded-full bg-nx-elevated p-1 text-xs" role="group" aria-label="Billing period">
-              <button type="button" className={cn(focusRing, 'rounded-full px-3 py-1.5', !yearly && 'bg-nx-card shadow-[var(--nx-shadow)]')} onClick={() => setYearly(false)}>
+              <button type="button" className={cn(focusRing, 'min-h-11 rounded-full px-3', !yearly && 'bg-nx-card shadow-[var(--nx-shadow)]')} onClick={() => setYearly(false)}>
                 Monthly
               </button>
-              <button type="button" className={cn(focusRing, 'rounded-full px-3 py-1.5', yearly && 'bg-nx-card shadow-[var(--nx-shadow)]')} onClick={() => setYearly(true)}>
+              <button type="button" className={cn(focusRing, 'min-h-11 rounded-full px-3', yearly && 'bg-nx-card shadow-[var(--nx-shadow)]')} onClick={() => setYearly(true)}>
                 Yearly <span className="text-nx-accent">−20%</span>
               </button>
             </div>
@@ -92,7 +92,7 @@ function Cards({ yearly }: { yearly: boolean }) {
               </li>
             ))}
           </ul>
-          <span className="mt-6 inline-flex h-10 items-center justify-center rounded-xl bg-nx-fg text-sm text-nx-bg">{plan.cta}</span>
+          <span className="mt-6 inline-flex min-h-11 items-center justify-center rounded-xl bg-nx-fg text-sm text-nx-bg">{plan.cta}</span>
         </article>
       ))}
     </div>
@@ -120,7 +120,7 @@ function Featured() {
                 <li key={feature}>{feature}</li>
               ))}
             </ul>
-            <span className={cn('mt-6 inline-flex h-10 items-center justify-center rounded-xl text-sm', featured ? 'bg-nx-bg text-nx-fg' : 'bg-nx-fg text-nx-bg')}>
+            <span className={cn('mt-6 inline-flex min-h-11 items-center justify-center rounded-xl text-sm', featured ? 'bg-nx-bg text-nx-fg' : 'bg-nx-fg text-nx-bg')}>
               {plan.cta}
             </span>
           </article>
@@ -138,7 +138,7 @@ function Compare() {
           <p className="font-medium">{plan.name}</p>
           <p className="font-serif text-2xl">{plan.price == null ? 'Talk' : `$${plan.price}`}</p>
           <p className="text-sm text-nx-muted">{plan.features.join(' · ')}</p>
-          <span className="inline-flex h-9 items-center justify-center rounded-full bg-nx-fg px-3 text-xs text-nx-bg">{plan.cta}</span>
+          <span className="inline-flex min-h-11 items-center justify-center rounded-full bg-nx-fg px-3 text-xs text-nx-bg">{plan.cta}</span>
         </div>
       ))}
     </div>
@@ -175,7 +175,7 @@ function Compact() {
         <p className="text-xs text-nx-muted">Unlimited rooms · Shared libraries</p>
       </div>
       <p className="font-serif text-4xl">$48</p>
-      <span className="inline-flex h-10 items-center rounded-full bg-nx-fg px-4 text-sm text-nx-bg">Start Studio</span>
+      <span className="inline-flex min-h-11 items-center rounded-full bg-nx-fg px-4 text-sm text-nx-bg">Start Studio</span>
     </div>
   )
 }

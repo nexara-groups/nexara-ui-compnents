@@ -73,7 +73,7 @@ export function Chapters({ variant = 'eight', className }: ChaptersProps) {
               <li key={title} className="py-1 text-sm">
                 <button
                   type="button"
-                  className={cn(focusRing, 'text-left', i === active ? 'text-nx-fg' : 'text-nx-muted')}
+                  className={cn(focusRing, 'inline-flex min-h-11 items-center text-left', i === active ? 'text-nx-fg' : 'text-nx-muted')}
                   onClick={() => refs.current[i]?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' })}
                 >
                   {index} {title}

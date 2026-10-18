@@ -57,9 +57,9 @@ export function KanbanBoard({ variant = 'agency', className }: KanbanBoardProps)
   const tight = variant === 'compact' || variant === 'simple'
 
   return (
-    <div data-nexara="kanban-board" data-variant={variant} className={cn('grid gap-3 md:grid-cols-3', className)}>
+    <div data-nexara="kanban-board" data-variant={variant} className={cn('flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 md:grid md:grid-cols-3 md:overflow-visible md:pb-0', className)}>
       {columns.map(([title, cards]) => (
-        <section key={title} className="rounded-[1.3rem] border border-nx-border bg-nx-elevated p-3">
+        <section key={title} className="min-w-[16.5rem] snap-start rounded-[1.3rem] border border-nx-border bg-nx-elevated p-3 md:min-w-0">
           <header className="mb-2 flex items-center justify-between text-xs">
             <h3 className="font-medium">{title}</h3>
             <span className="text-nx-muted">{cards.length}</span>
@@ -68,11 +68,11 @@ export function KanbanBoard({ variant = 'agency', className }: KanbanBoardProps)
             {cards.map((card) => (
               <li key={card} className={cn('rounded-xl border border-nx-border bg-nx-card p-3 text-sm', tight && 'p-2 text-xs')}>
                 {card}
-                {variant === 'priority' ? <p className="mt-1 text-[10px] text-nx-danger">High</p> : null}
-                {variant === 'owners' ? <p className="mt-1 text-[10px] text-nx-muted">Latha</p> : null}
-                {variant === 'wip' ? <p className="mt-1 text-[10px] text-nx-warn">WIP 2/3</p> : null}
-                {variant === 'review' && title === 'Review' ? <p className="mt-1 text-[10px] text-nx-accent">Needs pass</p> : null}
-                {variant === 'swim' ? <p className="mt-1 text-[10px] text-nx-muted">Studio swim</p> : null}
+                {variant === 'priority' ? <p className="mt-1 text-xs text-nx-danger">High</p> : null}
+                {variant === 'owners' ? <p className="mt-1 text-xs text-nx-muted">Latha</p> : null}
+                {variant === 'wip' ? <p className="mt-1 text-xs text-nx-warn">WIP 2/3</p> : null}
+                {variant === 'review' && title === 'Review' ? <p className="mt-1 text-xs text-nx-accent">Needs pass</p> : null}
+                {variant === 'swim' ? <p className="mt-1 text-xs text-nx-muted">Studio swim</p> : null}
               </li>
             ))}
           </ul>

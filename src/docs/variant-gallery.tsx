@@ -43,7 +43,7 @@ function Usage({ code }: { code: string }) {
       </pre>
       <button
         type="button"
-        className="h-8 shrink-0 rounded-full border border-nx-border px-3 text-xs text-nx-fg hover:bg-nx-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring"
+        className="inline-flex min-h-11 shrink-0 items-center rounded-full border border-nx-border px-3 text-xs text-nx-fg hover:bg-nx-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring"
         onClick={() => {
           void navigator.clipboard.writeText(code).then(() => {
             setCopied(true)

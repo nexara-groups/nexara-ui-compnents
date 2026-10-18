@@ -97,10 +97,14 @@ export function News({ variant = 'bulletin', className }: NewsProps) {
       ) : null}
 
       {variant === 'ticker' ? (
-        <div className="overflow-hidden rounded-full border border-nx-border bg-nx-card px-4 py-2 text-sm">
-          <p className="truncate">
-            {items.map((item) => `${item.note}: ${item.title}`).join('  ·  ')}
-          </p>
+        <div className="rounded-2xl border border-nx-border bg-nx-card px-4 py-3 text-sm sm:rounded-full sm:py-2">
+          <ul className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-3">
+            {items.map((item) => (
+              <li key={item.title} className="min-w-0">
+                <span className="text-nx-muted">{item.note}:</span> {item.title}
+              </li>
+            ))}
+          </ul>
         </div>
       ) : null}
 

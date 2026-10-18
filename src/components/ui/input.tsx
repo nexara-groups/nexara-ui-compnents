@@ -48,7 +48,7 @@ export function Input({ variant = 'outline', label, hint, className, id, type, .
     return (
       <div className={cn('flex min-h-11 flex-wrap items-center gap-1.5 rounded-xl border-nx-field bg-nx-card px-2 py-1.5', fieldBorder, className)}>
         <span className="rounded-full bg-nx-soft px-2 py-0.5 text-xs text-nx-accent">Harbor</span>
-        <input id={fieldId} className={cn(focusRing, 'min-w-24 flex-1 bg-transparent text-sm outline-none')} placeholder="Add a tag" {...props} />
+        <input id={fieldId} className={cn(focusRing, 'min-h-11 min-w-24 flex-1 bg-transparent text-sm outline-none')} placeholder="Add a tag" {...props} />
       </div>
     )
   }
