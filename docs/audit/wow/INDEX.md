@@ -34,8 +34,10 @@ Shaders, particles, and the globe are raw WebGL / canvas and do not need those p
 
 ## Honest gaps
 
-- The round-7 sceptical lead rejected all 46 families. Round 8 made the named lies true and wrapped kits, but orbit/tilt reuse remains. This is not a unanimous critic pass.
-- App-kit signatures are still thinner than hero / button / background / kit.
+- Round 7 scored `22635c5`: [sceptical lead](https://cursor.com/agents/bc-c3fab7ac-44b4-5275-a268-eeaf13349c84) and [visual critic](https://cursor.com/agents/bc-d5d4a6f8-a618-56e4-9ca6-689558025919) **REJECT ALL**; [motion critic](https://cursor.com/agents/bc-28ecc41f-1ba1-5bb2-98e4-746b10d26a9a) **CONDITIONAL** (47 keep / 140 fail); [a11y critic](https://cursor.com/agents/bc-e2db98fd-82b6-5e62-99a5-6fcf7f9d73c8) **REJECT ALL**.
+- Rounds 8–10 (`7222670`, `494cd5e`, `d894f18`) answered named lies, the visual worst eight, the motion rAF contract, and the seven a11y blockers. Critics have not re-scored. This is not a unanimous approve.
+- Orbit/tilt reuse remains. App-kit signatures are still thinner than hero / button / background / kit.
 - Pin-scroll now has a media plate and a gallery scroller; it is still not an Apple product page.
 - There is no dedicated loader family.
+- Gallery chrome contrast leftovers from rounds 5–6 remain.
 - No physical-device pass. Captures are Playwright against Vite on `127.0.0.1:5173`.
