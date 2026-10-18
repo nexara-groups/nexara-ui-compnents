@@ -17,6 +17,8 @@ Answers [visual critic](https://cursor.com/agents/bc-b4cae384-0890-52ff-b08a-f3f
 - **Orbit / tilt destock.** `hero / globe-orbit` is a climate field + flight paths + a small globe. `button / glare` is a rest sheen, not `TiltGlare`. One `TiltGlare` remains on `glare-tilt` (the name).
 - **Accordion / contrast.** Harbor desk FAQ. Content label `white/45` → `/70`.
 
+Motion leftovers from [motion critic](https://cursor.com/agents/bc-a9db780d-32ca-5918-ba44-f1e67ada0b89) CONDITIONAL on `daee816`: `FlipWow` reduced now shows the reverse face; `useLiveRemain` parks when Pause is on; Polaroid mounts already fanned with no spring under reduced-motion. A11y leftover `white/45` and scramble `/50` moved to muted / `/70`.
+
 ## Honest ceiling
 
-This is still CSS and stock photography on a Vite gallery page. It is not a filmed Apple product page. Unique-inside-this-repo is not a 21st.dev / Awwwards stamp. I do not claim unanimous approve. The remaining block is the standout test for all 47 gold families.
+This is still CSS and stock photography on a Vite gallery page. It is not a filmed Apple product page. Unique-inside-this-repo is not a 21st.dev / Awwwards stamp. I do not claim unanimous approve. The remaining block is the standout test for all 47 gold families. Visual and lead rejected `daee816` at 0 / 47. They have not re-scored this SHA.

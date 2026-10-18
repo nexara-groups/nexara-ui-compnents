@@ -35,7 +35,7 @@ Shaders, particles, and the globe are raw WebGL / canvas and do not need those p
 
 ## Honest gaps
 
-- Round 12 scored `daee816`: [visual critic](https://cursor.com/agents/bc-b4cae384-0890-52ff-b08a-f3f11c3573d1) **REJECT ALL** 0/47; [sceptical lead](https://cursor.com/agents/bc-7a27e41c-b8a5-59fb-abb9-d8c3851bcd2a) **REJECT ALL** 0/47. Motion / a11y were still running on that SHA.
+- Round 12 scored `daee816`: [visual critic](https://cursor.com/agents/bc-b4cae384-0890-52ff-b08a-f3f11c3573d1) **REJECT ALL** 0/47; [sceptical lead](https://cursor.com/agents/bc-7a27e41c-b8a5-59fb-abb9-d8c3851bcd2a) **REJECT ALL** 0/47; [motion critic](https://cursor.com/agents/bc-a9db780d-32ca-5918-ba44-f1e67ada0b89) **CONDITIONAL** 68/131; [a11y critic](https://cursor.com/agents/bc-709c67dc-adb8-5f60-b2c0-88f444cf3480) **APPROVE**.
 - Round 13 closes the named leftovers (pin objects, pulse-halo station, fold desk, globe-agency page, morph cinema, destocked orbit/tilt). It does **not** claim the standout test.
 - Pin-scroll is still CSS and stock photography. It is not a filmed Apple product page.
 - One leftover `TiltGlare` on `glare-tilt` (the name). `OrbitRing` is off `globe-orbit`.

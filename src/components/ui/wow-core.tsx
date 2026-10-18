@@ -58,37 +58,49 @@ function HeroPin({ eyebrow, className }: WowProps) {
       k: '01',
       t: 'North Display',
       d: 'It starts on the desk. One milled plane.',
-      src: media.device,
-      alt: 'North Display on a night desk',
       callout: 'milled plate',
       env: media.glass,
+      objectPos: '50% 50%',
+      crop: 1,
+      iris: false,
+      reel: false,
+      person: false,
     },
     {
       k: '02',
       t: 'Glass, then the chip',
       d: '612 g. Nano-etched. Harbor, 16-core.',
-      src: media.glass,
-      alt: 'Nano-etched glass on the North Display',
       callout: 'nano-etched glass',
-      env: media.device,
+      env: media.glass,
+      objectPos: '50% 22%',
+      crop: 1.45,
+      iris: false,
+      reel: false,
+      person: false,
     },
     {
       k: '03',
       t: 'Midnight turns iris',
       d: 'The finish lives on the machine.',
-      src: media.liquid,
-      alt: 'Iris finish on the North Display',
       callout: 'iris finish',
       env: media.cinema,
+      objectPos: '50% 40%',
+      crop: 1.12,
+      iris: true,
+      reel: true,
+      person: false,
     },
     {
       k: '04',
       t: 'Reserve a North Display',
       d: 'Harbor chip. Ships Friday. One named desk.',
-      src: media.featured,
-      alt: 'A reserved North Display on the night desk',
       callout: 'Friday handover',
       env: media.journal,
+      objectPos: '50% 50%',
+      crop: 0.94,
+      iris: false,
+      reel: false,
+      person: true,
     },
   ]
   return (
@@ -97,14 +109,14 @@ function HeroPin({ eyebrow, className }: WowProps) {
         {(p) => {
           const chapter = Math.min(3, Math.floor(p * 4))
           const copy = chapters[chapter]!
-          const rot = 18 - p * 16
-          const scale = 0.72 + p * 0.28
-          const lift = 80 - p * 110
-          const showReel = chapter === 2 && !loop.reduced
+          const rot = 14 - p * 12
+          const scale = 0.78 + p * 0.18
+          const lift = 64 - p * 80
+          const showReel = copy.reel && !loop.reduced
           return (
             <div data-pin-chapter={copy.k} className="relative h-full min-h-[32rem] w-full overflow-hidden text-white">
-              <img src={copy.env} alt="" className="absolute inset-0 size-full object-cover opacity-30" />
-              <div className={cn('absolute inset-0 bg-[#07070c]/70', chapter === 2 && 'bg-[#1a1438]/55')} />
+              <img src={copy.env} alt="" className="absolute inset-0 size-full object-cover opacity-28" />
+              <div className={cn('absolute inset-0 bg-[#07070c]/72', copy.iris && 'bg-[#1a1438]/50')} />
               <Grain />
               <div className="relative z-10 flex h-full min-h-[32rem] flex-col justify-between px-5 py-6 md:px-10">
                 <div className="max-w-md">
@@ -121,19 +133,24 @@ function HeroPin({ eyebrow, className }: WowProps) {
               </div>
               <motion.div
                 className="pointer-events-none absolute inset-x-0 top-[28%] mx-auto w-[min(36rem,86%)]"
-                style={{ y: lift, scale, rotateX: rot, rotateZ: 4 - p * 5, transformPerspective: 1400 }}
+                style={{ y: lift, scale, rotateX: rot, rotateZ: 3 - p * 4, transformPerspective: 1400 }}
               >
                 <div className="relative overflow-hidden rounded-[1.5rem] shadow-[0_50px_110px_-28px_#000]">
-                  <MediaFrame
-                    src={copy.src}
-                    alt={copy.alt}
-                    video={showReel ? media.reel : undefined}
-                    playing={loop.playing}
-                    className="aspect-[16/10] bg-transparent"
-                    imgClassName="aspect-[16/10]"
-                    grain={false}
-                  />
-                  {chapter === 3 ? (
+                  <div className="aspect-[16/10] overflow-hidden">
+                    <div className="size-full" style={{ transform: `scale(${copy.crop})`, transformOrigin: copy.objectPos }}>
+                      <MediaFrame
+                        src={media.device}
+                        alt="North Display on a night desk"
+                        video={showReel ? media.reel : undefined}
+                        playing={loop.playing}
+                        className="size-full bg-transparent"
+                        imgClassName="size-full object-cover"
+                        grain={false}
+                      />
+                    </div>
+                  </div>
+                  {copy.iris ? <div className="pointer-events-none absolute inset-0 bg-[#7c6cff]/25 mix-blend-color" /> : null}
+                  {copy.person ? (
                     <img
                       src={media.people.anitha}
                       alt=""
@@ -145,7 +162,7 @@ function HeroPin({ eyebrow, className }: WowProps) {
                   <span className="mr-2 inline-block h-px w-10 bg-[#f3c27a] align-middle" />
                   {copy.callout}
                 </p>
-                {chapter === 3 ? (
+                {copy.person ? (
                   <p className="pointer-events-auto mt-4 inline-flex h-11 items-center rounded-full bg-white px-4 text-sm text-[#111]">
                     Reserve Friday
                   </p>
@@ -489,7 +506,7 @@ function FlipWow({ variant, className }: { variant: string; className?: string }
   if (reduced) {
     return (
       <button type="button" onClick={() => setFlipped((v) => !v)} className={cn(focusRing, 'h-52 w-full max-w-sm text-left', className)}>
-        {flipped ? back : front}
+        {flipped ? front : back}
       </button>
     )
   }

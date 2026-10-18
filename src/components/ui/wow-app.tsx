@@ -422,7 +422,7 @@ function CommandWow({ variant, className }: WowProps) {
           className={cn(focusRing, 'min-h-11 w-full bg-transparent px-2')}
           placeholder={variant === 'scramble-search' ? 'scramble…' : 'Jump'}
         />
-        {variant === 'scramble-search' ? <ScrambleText text={q || 'open atlas'} className="block px-2 text-xs text-current/50" /> : null}
+        {variant === 'scramble-search' ? <ScrambleText text={q || 'open atlas'} className="block px-2 text-xs text-nx-muted" /> : null}
         <ul className="mt-2">
           {items.map((item) => (
             <li key={item}>
@@ -453,7 +453,6 @@ function SettingsWow({ variant, className }: WowProps) {
     return (
       <div className={cn('grid gap-3 overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#111113] p-4 text-white md:grid-cols-[1.1fr_0.9fr]', className)}>
         <FoldPanel
-          defaultOpen
           className="w-full"
           front={
             <div className="overflow-hidden rounded-3xl bg-[#16161c]">

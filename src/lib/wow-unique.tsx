@@ -301,8 +301,9 @@ export function PolaroidFan({
         <motion.figure
           key={face.name}
           className="absolute top-6 left-1/2 w-36 -translate-x-1/2 overflow-hidden rounded-md bg-white p-2 shadow-[0_16px_40px_-20px_#000]"
+          initial={{ rotate: (i - 1) * 14, x: (i - 1) * 48, y: i * 4 }}
           animate={{ rotate: fan ? (i - 1) * 14 : (i - 1) * 4, x: fan ? (i - 1) * 48 : (i - 1) * 8, y: fan ? i * 4 : i * 10 }}
-          transition={{ type: 'spring', stiffness: 160, damping: 16 }}
+          transition={reduced ? { duration: 0 } : { type: 'spring', stiffness: 160, damping: 16 }}
         >
           <img src={face.src} alt={face.name} className="h-28 w-full object-cover" />
           <figcaption className="mt-1 text-[10px] text-[#111]">{face.name}</figcaption>

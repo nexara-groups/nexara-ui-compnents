@@ -340,14 +340,14 @@ export function DragPlate({
   )
 }
 
-export function useLiveRemain(seed = 12 * 86400 + 6 * 3600 + 18 * 60 + 4) {
+export function useLiveRemain(seed = 12 * 86400 + 6 * 3600 + 18 * 60 + 4, paused = false) {
   const [left, setLeft] = useState(seed)
   const reduced = usePrefersReducedMotion()
   useEffect(() => {
-    if (reduced) return
+    if (reduced || paused) return
     const id = window.setInterval(() => setLeft((s) => (s > 0 ? s - 1 : seed)), 1000)
     return () => window.clearInterval(id)
-  }, [reduced, seed])
+  }, [reduced, paused, seed])
   return {
     d: Math.floor(left / 86400),
     h: Math.floor((left % 86400) / 3600),
@@ -357,7 +357,7 @@ export function useLiveRemain(seed = 12 * 86400 + 6 * 3600 + 18 * 60 + 4) {
 }
 
 export function AnalogClock({ className, paused = false }: { className?: string; paused?: boolean }) {
-  const remain = useLiveRemain()
+  const remain = useLiveRemain(12 * 86400 + 6 * 3600 + 18 * 60 + 4, paused)
   const reduced = usePrefersReducedMotion()
   const seconds = remain.h * 3600 + remain.m * 60 + remain.s
   const freeze = paused || reduced
