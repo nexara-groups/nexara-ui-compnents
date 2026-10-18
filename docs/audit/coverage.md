@@ -111,6 +111,18 @@ These are in-scope even when the parent item was already reviewed:
 
 `utils` is a library helper, not a visual component.
 
-## Work this pass will do
+## Work this pass did
 
-Bring every **not overhauled** and **partial** item to the same bar: original lockups / photography where the model needs imagery, pause on looping motion, AA field and content contrast, furnished shells, registry + docs lookups kept in sync.
+- Distinct color lockups for Kite / Solum / Nimbus / Vale / Orbit / Marble and four press mastheads.
+- Isolated `app-shell` canvases ship leads, chairs, heats, and briefs instead of empty Open / Waiting / Done.
+- Visible `Pause` on `button / shimmer|beam|flow`, aurora fields, gradient / kinetic type, and the logo marquee.
+- `--nx-field` (~3:1) on form fields; leftover `text-nx-faint` content moved to `--nx-muted`.
+- Tabs gained APG `aria-controls` + arrows. Modal OTP uses the wired field. Lightbox and leftover cards use bundled stills.
+- Registry extra files now list `media.tsx` on every item that imports it.
+
+## Honest remaining gaps
+
+- Grid / magnetic / typewriter / text-reveal / badge / chart-block stay construction-first. They have 10+ models; they are not cinematic scenes.
+- Ornamental weather / credit-card faces are still illustrations by design.
+- `--nx-faint` still appears on some already-overhauled heroes and services as decorative captions.
+- Full four-critic agreement on *every leftover cell* is still open until the round-6 panel files land.
