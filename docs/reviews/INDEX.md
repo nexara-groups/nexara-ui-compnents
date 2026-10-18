@@ -37,7 +37,7 @@ Round 4 reviews the original media rebuild. Live sites are a quality bar only â€
 
 | Lens | File | Round 4 |
 | --- | --- | --- |
-| Senior visual designer | `round-4-visual.md` | Pending ([visual critic](bc-514c0a38-69f6-5b14-afde-fd52437963e7)) |
+| Senior visual designer | `round-4-visual.md` | **Approve** ([visual critic](bc-514c0a38-69f6-5b14-afde-fd52437963e7)). Photographic catalogue; leftover redesign cells are polish, not empty geometry. |
 | Interaction / motion | `round-4-motion.md` | Conditional ([motion critic](bc-b06d104a-c984-55f6-8560-0425d052e3be)). Reel pause, count-up hold, and reduced-motion stills are the hold-backs. |
-| Accessibility / responsive | `round-4-a11y.md` | Pending ([a11y critic](bc-0a076234-3cbe-5157-9005-3b0462ed0201)) |
-| Sceptical design lead | `round-4-lead.md` | Pending ([sceptical lead](bc-3facdc5c-af41-5810-bf98-3253c3ca9cc5)) |
+| Accessibility / responsive | `round-4-a11y.md` | Conditional ([a11y critic](bc-0a076234-3cbe-5157-9005-3b0462ed0201)). Cream/navy, OTP, and case pause pass; shell disclosure and leftover APG remain. |
+| Sceptical design lead | `round-4-lead.md` | Conditional ([sceptical lead](https://cursor.com/agents/bc-3facdc5c-af41-5810-bf98-3253c3ca9cc5)). Stills replace drawings; people pack is still paint; logos/play/reuse holds. |

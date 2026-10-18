@@ -114,6 +114,7 @@ const extraFiles = {
   avatar: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
   news: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
   contact: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
+  marquee: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
 }
 
 const items = itemsMeta.map((entry) => {

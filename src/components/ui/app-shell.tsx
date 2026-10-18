@@ -94,6 +94,8 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
 
   const rail = variant === 'rail' || variant === 'collapsed'
   const dense = variant === 'dense'
+  const navId = `nexara-desk-${variant}`
+  const menuOpen = variant === 'mobile' ? open : menu
 
   return (
     <div
@@ -103,6 +105,7 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
     >
       {open ? (
         <aside
+          id={navId}
           className={cn(
             'border-r border-nx-border bg-nx-elevated p-3',
             variant === 'sports' && 'bg-[#111113] text-white',
@@ -113,25 +116,33 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
           <p className={cn('px-1 text-xs tracking-[0.16em] uppercase', rail && 'sr-only')}>{brand}</p>
           <nav className="mt-4 grid gap-1" aria-label="Desk">
             {items.map((item, index) => (
-              <span
+              <button
                 key={item}
+                type="button"
                 className={cn(
-                  'rounded-lg px-2 py-1.5 text-sm',
+                  focusRing,
+                  'rounded-lg px-2 py-1.5 text-left text-sm',
                   index === 0 ? 'bg-nx-soft text-nx-accent' : 'text-current/70',
                   rail && 'text-center',
                   dense && 'py-1 text-xs',
                 )}
               >
-                {rail ? item.slice(0, 1) : item}
-              </span>
+                {rail ? <span aria-label={item}>{item.slice(0, 1)}</span> : item}
+              </button>
             ))}
           </nav>
         </aside>
       ) : null}
       <div className="p-4">
         {variant === 'mobile' || variant === 'sidebar' || variant === 'agency' || variant === 'clinic' || variant === 'sports' || variant === 'academy' || variant === 'dense' ? (
-          <button type="button" className={cn(focusRing, 'mb-3 rounded-lg border border-nx-border px-3 py-1.5 text-xs md:hidden')} onClick={() => (variant === 'mobile' ? setOpen((value) => !value) : setMenu((value) => !value))}>
-            {variant === 'mobile' ? (open ? 'Hide menu' : 'Menu') : menu ? 'Hide menu' : 'Menu'}
+          <button
+            type="button"
+            aria-expanded={menuOpen}
+            aria-controls={navId}
+            className={cn(focusRing, 'mb-3 rounded-lg border border-nx-border px-3 py-1.5 text-xs md:hidden')}
+            onClick={() => (variant === 'mobile' ? setOpen((value) => !value) : setMenu((value) => !value))}
+          >
+            {menuOpen ? 'Hide menu' : 'Menu'}
           </button>
         ) : null}
         {children ?? <Blank title={`${brand} canvas`} />}

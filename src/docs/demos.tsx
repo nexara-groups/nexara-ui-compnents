@@ -711,7 +711,15 @@ export function LogoCloudDemo() {
   return <LogoCloud variant="dealers" />
 }
 export function AppShellDemo() {
-  return <AppShell variant="agency" />
+  return (
+    <AppShell variant="agency">
+      <div className="grid gap-3 md:grid-cols-3">
+        <Kpi variant="metric" label="Open leads" value={24} />
+        <Kpi variant="delta" label="Weekly demos" value={7} />
+        <Kpi variant="currency" value={86} />
+      </div>
+    </AppShell>
+  )
 }
 export function KpiDemo() {
   return (

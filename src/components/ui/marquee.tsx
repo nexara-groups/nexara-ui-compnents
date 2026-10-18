@@ -1,6 +1,7 @@
 'use client'
 
 import { useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, useKeyframes, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const MARQUEE_CSS = `
@@ -188,12 +189,12 @@ function samples(variant: MarqueeVariant): ReactNode {
   }
   if (variant === 'avatars') {
     return [
-      ['AK', 'Ada Klein'],
-      ['JR', 'Jonah Ruiz'],
-      ['MC', 'Mira Chen'],
-    ].map(([initials, name]) => (
+      [media.people.anitha, 'Ada Klein'],
+      [media.people.kiran, 'Jonah Ruiz'],
+      [media.people.meera, 'Mira Chen'],
+    ].map(([src, name]) => (
       <span key={name} className="inline-flex items-center gap-2 rounded-full border border-nx-border bg-nx-card pr-3">
-        <span className="inline-flex size-8 items-center justify-center rounded-full bg-nx-soft text-xs font-medium text-nx-accent">{initials}</span>
+        <MediaFrame src={src} alt="" grain={false} className="size-8 rounded-full" />
         <span className="text-sm">{name}</span>
       </span>
     ))

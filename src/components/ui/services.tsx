@@ -57,9 +57,9 @@ const discs = [
   { name: 'Track', src: media.sports },
   { name: 'Court', src: media.cases.track },
   { name: 'Field', src: media.field },
-  { name: 'Pool', src: media.liquid },
+  { name: 'Pool', src: media.doors.therapy },
   { name: 'Studio', src: media.featured },
-  { name: 'Climb', src: media.spiral },
+  { name: 'Climb', src: media.cases.build },
 ]
 
 /**

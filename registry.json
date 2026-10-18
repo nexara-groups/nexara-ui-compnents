@@ -1605,6 +1605,10 @@
         {
           "path": "src/components/ui/marquee.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Marquee variant=\"logos\" />",
@@ -2150,7 +2154,7 @@
         {
           "name": "image",
           "title": "Image",
-          "description": "Gradient photo stand-in.",
+          "description": "Photographic portrait default.",
           "usage": "<Avatar variant=\"image\" />"
         },
         {
@@ -3670,7 +3674,7 @@
         {
           "name": "dealers",
           "title": "Dealers",
-          "description": "HVAC dealer wordmarks.",
+          "description": "Partner mark stills.",
           "usage": "<LogoCloud variant=\"dealers\" />"
         },
         {

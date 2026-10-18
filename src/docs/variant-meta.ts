@@ -309,7 +309,7 @@ export const variantDocs = {
     { id: 'stacked', name: 'Stacked', description: 'Sheet under the toast.', usage: `<Toast variant="stacked" />` },
   ],
   avatar: [
-    { id: 'image', name: 'Image', description: 'Gradient photo stand-in.', usage: `<Avatar variant="image" />` },
+    { id: 'image', name: 'Image', description: 'Photographic portrait default.', usage: `<Avatar variant="image" />` },
     { id: 'initials', name: 'Initials', description: 'Letters on a soft field.', usage: `<Avatar variant="initials" />` },
     { id: 'status', name: 'Status', description: 'Presence dot.', usage: `<Avatar variant="status" />` },
     { id: 'group', name: 'Group', description: 'Stacked faces.', usage: `<Avatar variant="group" />` },
@@ -523,7 +523,7 @@ export const variantDocs = {
     { id: 'feed', name: 'Feed', description: 'Simple feed.', usage: `<News variant="feed" />` },
   ],
   'logo-cloud': [
-    { id: 'dealers', name: 'Dealers', description: 'HVAC dealer wordmarks.', usage: `<LogoCloud variant="dealers" />` },
+    { id: 'dealers', name: 'Dealers', description: 'Partner mark stills.', usage: `<LogoCloud variant="dealers" />` },
     { id: 'strip', name: 'Strip', description: 'Authorised strip.', usage: `<LogoCloud variant="strip" />` },
     { id: 'grid', name: 'Grid', description: 'Logo cells.', usage: `<LogoCloud variant="grid" />` },
     { id: 'marquee', name: 'Marquee', description: 'Looping marks.', usage: `<LogoCloud variant="marquee" />` },

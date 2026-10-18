@@ -241,7 +241,7 @@ export function Hero({
 
       {layout === 'shop' ? (
         <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2">
-          <MediaFrame src={image ?? media.lamp} video={video} poster={poster} lottie={lottie} alt="Lamp 04" className={cn('min-h-72 rounded-[1.6rem]', mediaClassName)}>
+          <MediaFrame src={image ?? media.lamp} video={video} poster={poster} lottie={lottie} alt="Lamp 04" grain={false} className={cn('min-h-72 rounded-[1.6rem]', mediaClassName)}>
             {mediaSlot}
           </MediaFrame>
           <div>
@@ -366,8 +366,14 @@ export function Hero({
 
 function Phone({ src, compact = false }: { src: string; compact?: boolean }) {
   return (
-    <div className={cn('w-28 overflow-hidden rounded-[1.6rem] border border-nx-border bg-[#111113] p-2 shadow-[var(--nx-shadow)]', compact ? 'h-44' : 'h-52')}>
-      <MediaFrame src={src} alt="" className="h-full rounded-[1.15rem]" />
+    <div className={cn('w-28 overflow-hidden rounded-[1.6rem] border border-nx-border bg-[#111113] p-1.5 shadow-[var(--nx-shadow)]', compact ? 'h-44' : 'h-52')}>
+      <div className="flex h-full flex-col rounded-[1.15rem] bg-[#16161a] p-2">
+        <span className="mx-auto mb-2 h-1 w-8 rounded-full bg-white/20" />
+        <MediaFrame src={src} alt="" grain={false} className="h-20 rounded-lg" />
+        <span className="mt-2 h-1.5 w-16 rounded bg-white/25" />
+        <span className="mt-1.5 h-1.5 w-12 rounded bg-white/12" />
+        <span className="mt-auto h-7 rounded-lg bg-white/10" />
+      </div>
     </div>
   )
 }

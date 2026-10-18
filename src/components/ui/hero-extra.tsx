@@ -186,7 +186,7 @@ export function ExtraHero({
     return (
       <section data-nexara="hero" data-variant="glass-fold" className={cn('relative overflow-hidden px-6 py-20 text-white', className)}>
         <MediaFrame src={image ?? media.glass} video={video} poster={poster} alt="" className="absolute inset-0" />
-        <div className="relative mx-auto max-w-3xl rounded-[2rem] border border-white/20 bg-white/12 p-10 shadow-[var(--nx-shadow)] backdrop-blur-2xl">
+        <div className="relative mx-auto max-w-3xl rounded-[2rem] border border-white/25 bg-black/25 p-10 shadow-[var(--nx-shadow)] backdrop-blur-md">
           <Title className={cn(titleClass, 'text-5xl text-white')}>{title}</Title>
           <div className="mt-4 text-white/75">{lede}</div>
           <div className={cn('mt-8', actionsClassName)}>{actions}</div>
@@ -265,7 +265,7 @@ export function ExtraHero({
           <div className="mt-4">{lede}</div>
           <div className={cn('mt-8', actionsClassName)}>{actions}</div>
         </div>
-        <MediaFrame src={image ?? media.fashion} video={video} poster={poster} alt="Lookbook still" className={cn('min-h-72', mediaClassName)}>
+        <MediaFrame src={image ?? media.fashion} video={video} poster={poster} alt="Lookbook still" grain={false} className={cn('min-h-72', mediaClassName)}>
           {mediaSlot}
         </MediaFrame>
       </section>
