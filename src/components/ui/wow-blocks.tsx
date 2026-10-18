@@ -208,9 +208,9 @@ function PricingWow({ variant, className }: WowProps) {
   const price = useCountUp(48, 1400, true)
   const [year, setYear] = useState(false)
   const plans = [
-    { name: 'Hobby', n: 0 },
-    { name: 'Studio', n: year ? 38 : 48 },
-    { name: 'Desk', n: year ? 90 : 110 },
+    { name: 'Hobby', n: 0, feats: ['One room', 'Community notes'] },
+    { name: 'Studio', n: year ? 38 : 48, feats: ['Four rooms', 'Export', 'Desk hours'] },
+    { name: 'Desk', n: year ? 90 : 110, feats: ['Unlimited rooms', 'SSO', 'Named partner'] },
   ]
   return (
     <div className={cn('grid gap-4 md:grid-cols-3', className)}>
@@ -218,17 +218,20 @@ function PricingWow({ variant, className }: WowProps) {
         <TiltGlare key={plan.name} className={cn('rounded-3xl border border-nx-border bg-nx-card p-5', i === 1 && variant === 'shader-featured' && 'overflow-hidden border-white/10 bg-[#07070c] text-white')}>
           {i === 1 && variant === 'shader-featured' ? <ShaderMesh /> : null}
           <div className="relative z-10">
-            <p className="text-sm text-current/60">{plan.name}</p>
+            <p className="text-sm text-current/60">{plan.name}{i === 1 ? ' · recommended' : ''}</p>
             <p className="mt-2 font-serif text-4xl">
               {variant === 'odometer-price' ? <Odometer value={i === 1 ? price : plan.n} digits={3} /> : `$${plan.n}`}
             </p>
+            <ul className="mt-3 space-y-1 text-sm opacity-70">
+              {plan.feats.map((feat) => (
+                <li key={feat}>{feat}</li>
+              ))}
+            </ul>
             {variant === 'morph-toggle' && i === 1 ? (
               <button type="button" className={cn(wowBtn, 'mt-4 bg-nx-fg text-nx-bg')} onClick={() => setYear((v) => !v)}>
                 {year ? 'Yearly' : 'Monthly'}
               </button>
-            ) : (
-              <p className="mt-3 text-sm opacity-70">The number ticks. The featured plate is a field.</p>
-            )}
+            ) : null}
           </div>
         </TiltGlare>
       ))}
@@ -243,7 +246,19 @@ function TestimonialsWow({ variant, className }: WowProps) {
     { q: 'We shipped the mast on Friday.', who: 'Meera Shah' },
   ]
   if (variant === 'orbit-quotes') {
-    return <PausedOrbit items={quotes.map((item) => item.who.split(' ')[0]!)} radius={96} className={className} />
+    return (
+      <div className={cn('grid gap-4 rounded-[1.6rem] bg-[#07070c] p-5 text-white md:grid-cols-[auto_1fr]', className)}>
+        <div className="flex gap-2 md:flex-col">
+          {faces.slice(0, 3).map((face) => (
+            <img key={face.name} src={face.src} alt={face.name} className="size-14 rounded-full object-cover" />
+          ))}
+        </div>
+        <blockquote>
+          <p className="font-serif text-3xl">“{quotes[0]?.q}”</p>
+          <footer className="mt-3 text-sm text-white/50">{quotes[0]?.who} · Harbor Review</footer>
+        </blockquote>
+      </div>
+    )
   }
   if (variant === 'video-shader') {
     return (
@@ -275,6 +290,7 @@ function TestimonialsWow({ variant, className }: WowProps) {
           whileInView={{ y: i * 12 }}
           viewport={{ once: true, amount: 0.4 }}
         >
+          <img src={faces[i]?.src} alt={item.who} className="mb-3 size-10 rounded-full object-cover" />
           <p className="font-serif text-xl">{item.q}</p>
           <footer className="mt-3 text-sm text-nx-muted">{item.who}</footer>
         </motion.blockquote>

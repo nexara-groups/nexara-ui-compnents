@@ -171,9 +171,10 @@ export function ShaderMesh({
       gl.uniform2f(uRes, canvas.width, canvas.height)
       gl.uniform2f(uMouse, pointer.x.current, 1 - pointer.y.current)
       gl.uniform1f(uTime, (now - start) / 1000)
-      gl.uniform1f(uPlay, paused || reduced || !inView ? 0 : 1)
+      const live = !paused && !reduced && inView
+      gl.uniform1f(uPlay, live ? 1 : 0)
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
-      frame = requestAnimationFrame(draw)
+      if (live) frame = requestAnimationFrame(draw)
     }
     frame = requestAnimationFrame(draw)
     return () => {
@@ -282,7 +283,7 @@ export function ParticleField({
         }
       }
       ctx.globalAlpha = 1
-      frame = requestAnimationFrame(draw)
+      if (live) frame = requestAnimationFrame(draw)
     }
     frame = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(frame)
@@ -338,7 +339,8 @@ export function GlobeField({
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       ctx.clearRect(0, 0, w, h)
-      if (!paused && !reduced && inView) rot += 0.004
+      const live = !paused && !reduced && inView
+      if (live) rot += 0.004
       const tiltX = (pointer.y.current - 0.5) * 0.6
       const tiltY = (pointer.x.current - 0.5) * 0.8
       const cx = w * 0.5
@@ -360,7 +362,7 @@ export function GlobeField({
         ctx.arc(cx + x1 * scale, cy + y1 * scale, 0.7 + depth * 1.5, 0, Math.PI * 2)
         ctx.fill()
       }
-      frame = requestAnimationFrame(draw)
+      if (live) frame = requestAnimationFrame(draw)
     }
     frame = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(frame)
@@ -489,12 +491,12 @@ export function Odometer({
   return (
     <span className={cn('inline-flex font-mono tabular-nums tracking-tight', className)} aria-label={String(value)}>
       {padded.split('').map((digit, i) => (
-        <span key={i} className="inline-block overflow-hidden">
+        <span key={i} className="inline-block h-[1.05em] overflow-hidden leading-none">
           <motion.span
             key={digit}
             aria-hidden="true"
             className="inline-block"
-            initial={{ y: '0.55em', opacity: 0.2 }}
+            initial={false}
             animate={{ y: 0, opacity: 1 }}
             transition={{ type: 'spring', stiffness: 240, damping: 22 }}
           >
@@ -623,22 +625,28 @@ export function OrbitRing({
   paused?: boolean
 }) {
   const reduced = usePrefersReducedMotion()
+  const { ref, inView } = useInView<HTMLDivElement>()
+  const halt = paused || reduced || !inView
   return (
-    <div className={cn('relative mx-auto aspect-square', className)} style={{ width: radius * 2 + 48 }}>
+    <div ref={ref} className={cn('relative mx-auto aspect-square', className)} style={{ width: radius * 2 + 48 }}>
       {items.map((item, i) => {
         const angle = (i / items.length) * 360
         return (
           <motion.div
             key={i}
-            aria-hidden={false}
             className="absolute top-1/2 left-1/2"
-            animate={paused || reduced ? { rotate: angle } : { rotate: [angle, angle + 360] }}
-            transition={paused || reduced ? undefined : { duration: 22, repeat: Infinity, ease: 'linear' }}
+            animate={halt ? { rotate: angle } : { rotate: [angle, angle + 360] }}
+            transition={halt ? undefined : { duration: 22, repeat: Infinity, ease: 'linear' }}
             style={{ transformOrigin: '0 0' }}
           >
-            <div style={{ transform: `translate(${radius}px, 0)` }} className="rounded-full border border-white/15 bg-white/10 px-2 py-1 text-[11px] text-white backdrop-blur">
+            <motion.div
+              style={{ transform: `translate(${radius}px, -50%)` }}
+              animate={halt ? { rotate: -angle } : { rotate: [-angle, -angle - 360] }}
+              transition={halt ? undefined : { duration: 22, repeat: Infinity, ease: 'linear' }}
+              className="rounded-full border border-white/15 bg-white/10 px-2 py-1 text-[11px] whitespace-nowrap text-white backdrop-blur"
+            >
               {item}
-            </div>
+            </motion.div>
           </motion.div>
         )
       })}

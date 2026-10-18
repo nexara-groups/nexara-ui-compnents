@@ -64,11 +64,11 @@ A variant is approved only when all four agree. Round 6 approves the leftover *p
 
 Round 7 reviews the wow-signature pass. Research: `docs/research/wow-benchmark.md`. Proof: `docs/audit/wow/`. Self note: `round-7-self.md` (CONDITIONAL — heroes/buttons/fields/kits pass the standout test; several app-kit orbits do not).
 
-| Lens | File | Round 7 |
+| Lens | File | Round 7 (scored `22635c5`) |
 | --- | --- | --- |
-| Senior visual designer | pending | [visual critic](https://cursor.com/agents/bc-d5d4a6f8-a618-56e4-9ca6-689558025919) running. Must reject “normal.” |
-| Interaction / motion | pending | [motion critic](https://cursor.com/agents/bc-28ecc41f-1ba1-5bb2-98e4-746b10d26a9a) running. |
-| Accessibility / performance | pending | [a11y critic](https://cursor.com/agents/bc-e2db98fd-82b6-5e62-99a5-6fcf7f9d73c8) running. |
-| Sceptical design lead | `round-7-lead.md` (on `cursor/round-7-lead-review-9c84`) | **REJECT ALL** ([sceptical lead](https://cursor.com/agents/bc-c3fab7ac-44b4-5275-a268-eeaf13349c84)). 46/46 families fail the standout test. Named-lie variants, helper stamps, dead pin-scroll in gallery. |
+| Senior visual designer | `round-7-visual.md` on `cursor/round-7-visual-critic-5919` | **REJECT ALL** ([visual critic](https://cursor.com/agents/bc-d5d4a6f8-a618-56e4-9ca6-689558025919)). Keep none. Worst: morph-stage, orbit-nav, orbit-quotes, pin-sports, glare-tilt, liquid-sheet, orbit-pull, tilt-glare. |
+| Interaction / motion | `round-7-motion.md` on `cursor/round-7-motion-critic-6a9a` | **CONDITIONAL** ([motion critic](https://cursor.com/agents/bc-28ecc41f-1ba1-5bb2-98e4-746b10d26a9a)). 47 keep / 140 fail. Canvas rAF kept spinning while `u_play=0`. |
+| Accessibility / performance | pending | [a11y critic](https://cursor.com/agents/bc-e2db98fd-82b6-5e62-99a5-6fcf7f9d73c8) still running. |
+| Sceptical design lead | `round-7-lead.md` on `cursor/round-7-lead-review-9c84` | **REJECT ALL** ([sceptical lead](https://cursor.com/agents/bc-c3fab7ac-44b4-5275-a268-eeaf13349c84)). 46/46 families fail the standout test. |
 
-Round 8 answers that reject: true names, family-specific motion, pin gallery scroller, kit signatures wrap the industry pages. Self: `round-8-self.md`. Proof recapture: `docs/audit/wow/`. Other round-7 lenses were still running when this pass shipped.
+Round 8 answered named lies. Round 9 (this follow-up) answers the visual worst-eight and the motion contract: canvases cancel `requestAnimationFrame` when paused or off-screen, orbit labels stay upright, pin-scroll type clears the media plate, liquid CTA is readable + pauseable, pricing/testimonials/nav/modal/kit use product content. Self: `round-8-self.md`. This is still not a unanimous approve.

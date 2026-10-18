@@ -239,11 +239,15 @@ export function Kit(props: KitProps) {
       {props.variant === 'pin-sports' ? (
         <ScrollPin height="180vh">
           {(p) => (
-            <WowStage className="w-full min-h-[22rem] p-6">
-              <p className="font-mono text-[11px] text-[#f3c27a]">FIELD ATHLETICS</p>
-              <p className="mt-3 font-serif text-5xl">A season you can stand on.</p>
-              <p className="mt-4 text-sm text-white/60">{Math.round(p * 16)} events in the medal book.</p>
-            </WowStage>
+            <div className="relative w-full min-h-[22rem] overflow-hidden rounded-[1.6rem]">
+              <img src="/media/sports-hero.webp" alt="" className="absolute inset-0 size-full object-cover" />
+              <div className="absolute inset-0 bg-[#07070c]/45" />
+              <div className="relative z-10 p-6 text-white">
+                <p className="font-mono text-[11px] text-[#f3c27a]">FIELD ATHLETICS</p>
+                <p className="mt-3 font-serif text-5xl">A season you can stand on.</p>
+                <p className="mt-4 text-sm text-white/80">{Math.round(p * 16)} events in the medal book.</p>
+              </div>
+            </div>
           )}
         </ScrollPin>
       ) : null}

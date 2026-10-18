@@ -22,7 +22,6 @@ import {
   GlobeField,
   Grain,
   INK_PATH,
-  LazyMesh3D,
   LiquidFilter,
   MagneticWell,
   NightType,
@@ -53,6 +52,7 @@ function HeroCopy({ title, description, actions, eyebrow }: Pick<WowProps, 'titl
 }
 
 function HeroPin({ title, description, actions, eyebrow, className }: WowProps) {
+  const loop = useLoopControl(true)
   return (
     <div className={cn('rounded-[1.6rem] border border-white/10 bg-[#07070c]', className)}>
       <ScrollPin height="240vh">
@@ -62,19 +62,19 @@ function HeroPin({ title, description, actions, eyebrow, className }: WowProps) 
           const inset = `${22 - p * 16}%`
           return (
             <div className="relative min-h-[28rem] w-full overflow-hidden">
-              <ShaderMesh />
+              <ShaderMesh paused={!loop.playing} />
               <Grain />
-              <motion.div
-                className="absolute top-8 overflow-hidden shadow-[0_30px_80px_-30px_#000]"
-                style={{ scale, borderRadius: radius, left: inset, right: inset, transformOrigin: '50% 30%' }}
-              >
-                <img src={media.cinema} alt="" className="h-56 w-full object-cover md:h-72" />
-                <video src={media.reel} muted playsInline autoPlay loop className="absolute inset-0 size-full object-cover opacity-80" />
-              </motion.div>
-              <div className="relative z-10 flex min-h-[28rem] items-end">
+              <div className="relative z-10">
                 <HeroCopy title={title} description={description} actions={actions} eyebrow={eyebrow ?? 'Scroll the plate'} />
               </div>
-              <p className="absolute top-4 right-5 font-mono text-[11px] text-white/40">{Math.round(p * 100)}%</p>
+              <motion.div
+                className="absolute right-0 bottom-6 left-0 mx-auto overflow-hidden shadow-[0_30px_80px_-30px_#000]"
+                style={{ scale, borderRadius: radius, left: inset, right: inset, transformOrigin: '50% 100%' }}
+              >
+                <img src={media.cinema} alt="" className="h-40 w-full object-cover md:h-52" />
+                <video src={media.reel} muted playsInline autoPlay loop className="absolute inset-0 size-full object-cover opacity-80" />
+              </motion.div>
+              {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
             </div>
           )
         }}
@@ -137,7 +137,11 @@ function HeroMorph(props: WowProps) {
           </button>
         </div>
         <motion.div layoutId="nexara-morph-stage" className="overflow-hidden rounded-3xl bg-[#1b1b22]">
-          {open ? <LazyMesh3D className="min-h-64" /> : <div className="flex min-h-48 items-center justify-center font-serif text-5xl">N</div>}
+          {open ? (
+            <video src={media.reel} muted playsInline autoPlay loop className="min-h-64 w-full object-cover" />
+          ) : (
+            <img src={media.cinema} alt="" className="h-48 w-full object-cover" />
+          )}
         </motion.div>
       </div>
     </div>
@@ -148,22 +152,25 @@ function ButtonLiquid({ children, className }: WowProps) {
   const id = useId().replace(/:/g, '')
   const loop = useLoopControl(true)
   return (
-    <button type="button" className={cn(wowBtn, 'h-12 min-w-[10rem] bg-[#111113] text-white', className)}>
-      <LiquidFilter id={id} />
-      <span className="absolute inset-0" style={{ filter: `url(#${id})` }} aria-hidden="true">
-        <motion.span
-          className="absolute top-1 left-2 size-10 rounded-full bg-[#7c6cff]"
-          animate={loop.playing ? { x: [0, 42, 8, 0], y: [0, -6, 4, 0] } : undefined}
-          transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.span
-          className="absolute top-2 right-3 size-8 rounded-full bg-[#22c5b0]"
-          animate={loop.playing ? { x: [0, -30, 6, 0], y: [0, 8, -4, 0] } : undefined}
-          transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      </span>
-      <span className="relative z-10">{children ?? 'Continue'}</span>
-    </button>
+    <span className="relative inline-flex items-center gap-2">
+      <button type="button" className={cn(wowBtn, 'h-12 min-w-[10rem] bg-[#111113] text-white', className)}>
+        <LiquidFilter id={id} />
+        <span className="pointer-events-none absolute inset-0 opacity-55" style={{ filter: `url(#${id})` }} aria-hidden="true">
+          <motion.span
+            className="absolute top-1 left-2 size-10 rounded-full bg-[#7c6cff]"
+            animate={loop.playing ? { x: [0, 42, 8, 0], y: [0, -6, 4, 0] } : undefined}
+            transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          <motion.span
+            className="absolute top-2 right-3 size-8 rounded-full bg-[#22c5b0]"
+            animate={loop.playing ? { x: [0, -30, 6, 0], y: [0, 8, -4, 0] } : undefined}
+            transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        </span>
+        <span className="relative z-10">{children ?? 'Continue'}</span>
+      </button>
+      {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} /> : null}
+    </span>
   )
 }
 
@@ -242,13 +249,13 @@ function MagnetTrail({ children, className }: WowProps) {
   )
 }
 
-function MagnetOrbit({ children, className }: WowProps) {
+function MagnetOrbit({ className }: WowProps) {
   const loop = useLoopControl(true)
   return (
     <div className={cn('relative inline-flex size-28 items-center justify-center', className)}>
       <OrbitRing items={['N', 'X', '·']} radius={46} paused={!loop.playing} />
       <button type="button" className={cn(wowBtn, 'absolute size-14 bg-white text-[#111]')}>
-        {children ?? 'Go'}
+        Go
       </button>
     </div>
   )
@@ -278,11 +285,13 @@ function CardHolo({ title, className }: { title: string; className?: string }) {
 
 function SpotlightGlare({ className }: { className?: string }) {
   return (
-    <TiltGlare className={cn('max-w-sm rounded-3xl border border-nx-border bg-nx-card p-5', className)}>
-      <p className="font-mono text-[11px] text-nx-accent">Glare tilt</p>
-      <p className="mt-2 font-serif text-3xl">Lamp 04</p>
-      <p className="mt-2 text-sm text-nx-muted">Specular highlight follows the pointer. Layers sit on Z.</p>
-      <motion.div style={{ translateZ: 28 }} className="mt-4 h-24 rounded-2xl bg-[#111113]" />
+    <TiltGlare className={cn('max-w-sm overflow-hidden rounded-3xl border border-nx-border bg-nx-card', className)}>
+      <img src={media.lamp} alt="Lamp 04" className="h-40 w-full object-cover" />
+      <div className="p-5">
+        <p className="font-mono text-[11px] text-nx-accent">Harbor shop</p>
+        <p className="mt-2 font-serif text-3xl">Lamp 04</p>
+        <p className="mt-2 text-sm text-nx-muted">$220 · Travertine base, one bulb.</p>
+      </div>
     </TiltGlare>
   )
 }
@@ -403,9 +412,9 @@ function GridWow({ variant, className, children }: WowProps) {
   const loop = useLoopControl(true)
   return (
     <div className={cn('relative min-h-40 overflow-hidden rounded-2xl border border-white/10 bg-[#07070c]', className)}>
-      {variant === 'perspective-fly' ? <PerspectiveFloor paused={!loop.playing} /> : null}
-      {variant === 'circuit-draw' ? <CircuitBoard playing={loop.playing} /> : null}
-      {variant === 'topo-pulse' ? <TopoField paused={!loop.playing} /> : null}
+      {variant === 'perspective-fly' ? <PerspectiveFloor paused={!loop.playing || loop.reduced} /> : null}
+      {variant === 'circuit-draw' ? <CircuitBoard playing={loop.playing && !loop.reduced} /> : null}
+      {variant === 'topo-pulse' ? <TopoField paused={!loop.playing || loop.reduced} /> : null}
       {variant === 'hex-orbit' ? <HexLattice /> : null}
       <div className="relative z-10 flex min-h-40 items-end p-5 text-white">{children ?? variant}</div>
       {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
@@ -474,8 +483,13 @@ function NavWow({ variant, className }: WowProps) {
   const [open, setOpen] = useState(true)
   if (variant === 'orbit-nav') {
     return (
-      <div className={cn('relative h-40 overflow-hidden rounded-2xl bg-[#07070c]', className)}>
-        <OrbitRing items={['Work', 'Notes', 'Atlas']} radius={72} />
+      <div className={cn('flex h-40 items-start justify-center rounded-2xl bg-[#07070c] pt-6', className)}>
+        <nav className="flex min-h-11 items-center gap-4 rounded-full border border-white/15 bg-white/10 px-4 text-sm text-white backdrop-blur-xl">
+          <span className="font-medium">Nexara</span>
+          <span className="text-white/50">Work</span>
+          <span className="text-white/50">Notes</span>
+          <span className="rounded-full bg-white px-3 py-1 text-[#111]">Atlas</span>
+        </nav>
       </div>
     )
   }
@@ -555,13 +569,26 @@ function ModalWow({ variant, className }: WowProps) {
   }
   if (variant === 'liquid-sheet') {
     return (
-      <div className={cn('overflow-hidden rounded-[1.6rem] bg-[#111113] p-6 text-white', className)}>
-        <LiquidFilter id={id} />
-        <div style={{ filter: `url(#${id})` }} className="mb-4 h-16">
-          <span className="inline-block size-16 rounded-full bg-[#7c6cff]" />
-          <span className="ml-[-20px] inline-block size-16 rounded-full bg-[#22c5b0]" />
-        </div>
-        <p className="font-serif text-3xl">Liquid sheet</p>
+      <div className={cn('relative min-h-72 overflow-hidden rounded-[1.6rem] bg-[#07070c] p-4', className)}>
+        <button type="button" onClick={() => setOpen(true)} className={cn(wowBtn, 'bg-white text-[#111]')}>
+          Open the sheet
+        </button>
+        {open ? (
+          <div className="absolute inset-x-0 bottom-0 overflow-hidden rounded-t-[1.8rem] bg-[#16161c] p-6 text-white">
+            <GooPuddle />
+            <p className="relative z-10 font-serif text-3xl">Confirm the chair</p>
+            <p className="relative z-10 mt-2 text-sm text-white/60">Anitha · Friday 16:00 · Harbor Bay</p>
+            <div className="relative z-10 mt-5 flex gap-2">
+              <button type="button" className={cn(wowBtn, 'bg-white text-[#111]')} onClick={() => setOpen(false)}>
+                Keep it
+              </button>
+              <button type="button" className={cn(wowBtn, 'bg-transparent text-white')} onClick={() => setOpen(false)}>
+                Release
+              </button>
+            </div>
+            <span className="sr-only">{id}</span>
+          </div>
+        ) : null}
       </div>
     )
   }
