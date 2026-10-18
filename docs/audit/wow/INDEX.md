@@ -6,14 +6,15 @@ Every catalog family keeps its sensible variants and adds 4–5 gold **Signature
 
 ## Proof
 
-Motion: `signatures-motion.webm`, `signatures-motion.gif` (shader hero pointer, liquid button, stats ticker).
+Motion: `signatures-motion.webm`, `signatures-motion.gif` (docs tour: liquid button, stats ticker). `shader-void-motion.webm` / `.gif` is the shader hero with pointer and Pause.
 
 Stills (1280, dark):
 
 - Heroes: `hero-shader-void`, `hero-pin-scroll`, `hero-scramble-mast`, `hero-globe-orbit`, `hero-morph-stage`
 - Buttons: `button-liquid`, `button-ink-path`, `button-glare`, `button-burst`
 - Field / proof: `aurora-shader-mesh`, `aurora-globe-field`, `stats-odometer`, `pricing-tilt-glare`, `pricing-shader-featured`, `testimonials-scramble-pull`, `footer-giant-marquee`, `modal-shader-veil`, `tabs-layout-morph`, `accordion-shader-row`, `cta-liquid-wash`, `nav-glass-liquid`, `card-glare-tilt`
-- Kits: `kit-shader-clinic`, `kit-globe-agency`
+- Kits: `kit-shader-clinic` (mesh mast + full healthcare page), `kit-globe-agency`
+- Round-8 name-true cells: `typewriter-flap-3d`, `typewriter-matrix-rain`, `countdown-analog`, `card-physics-deck`, `button-shatter`
 - Phone 375 / tablet 768: `hero-shader-void-phone|tablet`, `button-liquid-phone|tablet`, `kit-shader-clinic-phone|tablet`
 
 ## Checks held
@@ -33,8 +34,8 @@ Shaders, particles, and the globe are raw WebGL / canvas and do not need those p
 
 ## Honest gaps
 
-- App-kit signatures (settings morph, command scramble, table heat, kanban orbit) are thinner than the hero / button / background / kit set. A critic who only opens those will still say “normal.”
-- Pin-scroll and scrub variants need a tall track; in the docs gallery they read as a short sticky preview, not a full Apple product page.
-- Odometer is a per-digit spring, not a mechanical split-flap reel (a reel overflowed Geist Mono).
-- No physical-device pass. computerUse was not used; captures are Playwright against Vite on `127.0.0.1:5173`.
-- Independent critic panel for this pass is running and has not signed yet.
+- The round-7 sceptical lead rejected all 46 families. Round 8 made the named lies true and wrapped kits, but orbit/tilt reuse remains. This is not a unanimous critic pass.
+- App-kit signatures are still thinner than hero / button / background / kit.
+- Pin-scroll now has a media plate and a gallery scroller; it is still not an Apple product page.
+- There is no dedicated loader family.
+- No physical-device pass. Captures are Playwright against Vite on `127.0.0.1:5173`.
