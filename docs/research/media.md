@@ -37,6 +37,7 @@ No Unsplash or Pexels files are bundled. If you swap in licence-free stock, keep
 | `screen-*.webp` | App phone UI stills |
 | `portrait-*.webp` | Team and avatars |
 | `mark-*.svg` | Flat logo marks |
-| `cinema-reel.mp4`, `sports-reel.mp4` | Playable reels |
+| `cinema-reel.mp4`, `cinema-reel.webm` | Cinema playable reel |
+| `sports-reel.mp4`, `sports-reel.webm` | Sports playable reel |
 
-Stills are ffmpeg WebP (`libwebp`, q80) from generated JPEGs. Reels are 6s 1280×720 H.264 zooms of the cinema and sports stills.
+Stills are ffmpeg WebP (`libwebp`, q80) from generated JPEGs. Reels are 6s 1280×720 Ken Burns zooms. `MediaFrame` offers WebM then H.264 so Chromium and Safari both play.

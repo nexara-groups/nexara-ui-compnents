@@ -111,15 +111,19 @@ export function MediaFrame({
   useEffect(() => {
     const node = videoRef.current
     if (!node || playing === undefined) return
-    if (playing) {
-      void node.play().catch(() => undefined)
-    } else {
+    if (!playing) {
       node.pause()
+      return
     }
+    const start = () => void node.play().catch(() => undefined)
+    if (node.readyState >= 2) start()
+    else node.addEventListener('canplay', start, { once: true })
+    return () => node.removeEventListener('canplay', start)
   }, [playing])
 
   const still = poster ?? src
   const showStill = Boolean(still) && playing === false
+  const sources = videoSources(video)
 
   return (
     <div className={cn('relative overflow-hidden bg-nx-elevated', className)}>
@@ -129,14 +133,18 @@ export function MediaFrame({
         <>
           <video
             ref={videoRef}
-            src={video}
             poster={still}
             autoPlay={playing === undefined}
             muted
             loop
             playsInline
+            preload="auto"
             className={cn('size-full object-cover motion-reduce:hidden', imgClassName)}
-          />
+          >
+            {sources.map((source) => (
+              <source key={source.src} src={source.src} type={source.type} />
+            ))}
+          </video>
           {still ? (
             <img
               src={still}
@@ -171,6 +179,23 @@ export function MediaFrame({
       ) : null}
     </div>
   )
+}
+
+function videoSources(src?: string) {
+  if (!src) return []
+  if (src.endsWith('.mp4')) {
+    return [
+      { src: src.replace(/\.mp4$/, '.webm'), type: 'video/webm' },
+      { src, type: 'video/mp4' },
+    ]
+  }
+  if (src.endsWith('.webm')) {
+    return [
+      { src, type: 'video/webm' },
+      { src: src.replace(/\.webm$/, '.mp4'), type: 'video/mp4' },
+    ]
+  }
+  return [{ src, type: undefined }]
 }
 
 export function PlayControl({
