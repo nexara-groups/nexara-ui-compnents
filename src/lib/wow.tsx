@@ -662,20 +662,33 @@ export function ScrollPin({
   useEffect(() => {
     const node = track.current
     if (!node) return
+    let parent: HTMLElement | null = node.parentElement
+    let scroller: HTMLElement | null = null
+    while (parent) {
+      const oy = getComputedStyle(parent).overflowY
+      if (oy === 'auto' || oy === 'scroll') {
+        scroller = parent
+        break
+      }
+      parent = parent.parentElement
+    }
     const onScroll = () => {
       const rect = node.getBoundingClientRect()
-      const total = rect.height - window.innerHeight
-      const p = total <= 0 ? 1 : Math.min(1, Math.max(0, -rect.top / total))
-      setProgress(reduced ? 1 : p)
+      const viewH = scroller ? scroller.clientHeight : window.innerHeight
+      const viewTop = scroller ? scroller.getBoundingClientRect().top : 0
+      const total = rect.height - viewH
+      const next = total <= 0 ? 1 : Math.min(1, Math.max(0, (viewTop - rect.top) / total))
+      setProgress(reduced ? 1 : next)
     }
     onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    const target: EventTarget = scroller ?? window
+    target.addEventListener('scroll', onScroll, { passive: true })
+    return () => target.removeEventListener('scroll', onScroll)
   }, [reduced])
 
   return (
     <div ref={track} className={cn('relative', className)} style={{ height }}>
-      <div className="sticky top-0 flex min-h-[min(32rem,100dvh)] items-center overflow-hidden">{children(progress)}</div>
+      <div className="sticky top-0 flex min-h-[min(28rem,100%)] items-center overflow-hidden">{children(progress)}</div>
     </div>
   )
 }

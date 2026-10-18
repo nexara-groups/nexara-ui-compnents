@@ -2,7 +2,21 @@
 
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useId, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react'
-import { LoopPause } from '@/lib/media.tsx'
+import { LoopPause, media } from '@/lib/media.tsx'
+import {
+  CircuitBoard,
+  CylinderSpin,
+  DragPlate,
+  GooPuddle,
+  HexLattice,
+  MagneticCaretField,
+  MatrixRain,
+  PerspectiveFloor,
+  ShatterText,
+  SplitFlap,
+  TopoField,
+  VariableMorph,
+} from '@/lib/wow-fx.tsx'
 import {
   CHECK_PATH,
   GlobeField,
@@ -40,19 +54,22 @@ function HeroCopy({ title, description, actions, eyebrow }: Pick<WowProps, 'titl
 
 function HeroPin({ title, description, actions, eyebrow, className }: WowProps) {
   return (
-    <div className={cn('overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#07070c]', className)}>
+    <div className={cn('rounded-[1.6rem] border border-white/10 bg-[#07070c]', className)}>
       <ScrollPin height="240vh">
         {(p) => {
-          const scale = 0.42 + p * 0.58
-          const radius = 28 - p * 20
+          const scale = 0.48 + p * 0.52
+          const radius = 36 - p * 28
+          const inset = `${22 - p * 16}%`
           return (
             <div className="relative min-h-[28rem] w-full overflow-hidden">
+              <ShaderMesh />
+              <Grain />
               <motion.div
-                className="absolute inset-x-6 top-8 bottom-8 overflow-hidden bg-[#111118] md:inset-x-10"
-                style={{ scale, borderRadius: radius, transformOrigin: '50% 40%' }}
+                className="absolute top-8 overflow-hidden shadow-[0_30px_80px_-30px_#000]"
+                style={{ scale, borderRadius: radius, left: inset, right: inset, transformOrigin: '50% 30%' }}
               >
-                <ShaderMesh />
-                <Grain />
+                <img src={media.cinema} alt="" className="h-56 w-full object-cover md:h-72" />
+                <video src={media.reel} muted playsInline autoPlay loop className="absolute inset-0 size-full object-cover opacity-80" />
               </motion.div>
               <div className="relative z-10 flex min-h-[28rem] items-end">
                 <HeroCopy title={title} description={description} actions={actions} eyebrow={eyebrow ?? 'Scroll the plate'} />
@@ -238,10 +255,9 @@ function MagnetOrbit({ children, className }: WowProps) {
 }
 
 function MagnetShatter({ children, className }: WowProps) {
-  const [hot, setHot] = useState(false)
   return (
-    <button type="button" onPointerEnter={() => setHot(true)} onPointerLeave={() => setHot(false)} className={cn(wowBtn, 'h-14 bg-[#111113] text-white', className)}>
-      <motion.span animate={hot ? { letterSpacing: '0.28em' } : { letterSpacing: '0.02em' }}>{children ?? 'Break'}</motion.span>
+    <button type="button" className={cn(wowBtn, 'h-14 bg-[#111113] text-white', className)}>
+      <ShatterText text={String(children ?? 'Break')} />
     </button>
   )
 }
@@ -303,18 +319,29 @@ function SpotlightScramble({ className }: { className?: string }) {
 
 function FlipWow({ variant, className }: { variant: string; className?: string }) {
   const [flipped, setFlipped] = useState(false)
+  const id = useId().replace(/:/g, '')
   return (
     <button type="button" onClick={() => setFlipped((v) => !v)} className={cn(focusRing, 'h-52 w-full max-w-sm text-left', className)}>
       <motion.div animate={{ rotateY: flipped ? 180 : 0 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} className="relative h-full" style={{ transformStyle: 'preserve-3d' }}>
         <div className="absolute inset-0 overflow-hidden rounded-3xl bg-[#111113] p-5 text-white" style={{ backfaceVisibility: 'hidden' }}>
-          {variant === 'liquid-flip' ? <ShaderMesh /> : null}
+          {variant === 'liquid-flip' || variant === 'hologram' ? <ShaderMesh /> : null}
+          {variant === 'liquid-flip' ? <GooPuddle /> : null}
+          {variant === 'hologram' ? (
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 mix-blend-screen"
+              style={{ background: 'conic-gradient(from 120deg, #7c6cff, #22c5b0, #f3c27a, #7c6cff)', opacity: 0.28 }}
+            />
+          ) : null}
+          {variant === 'path-reveal' ? <PathDraw d={INK_PATH} className="absolute inset-x-4 bottom-6 h-10 w-auto text-[#f3c27a]" /> : null}
           <Grain />
-          <p className="relative z-10 font-serif text-3xl">{variant}</p>
+          <p className="relative z-10 font-serif text-3xl">{variant === 'morph-face' ? 'Face A' : variant}</p>
           <p className="relative z-10 mt-2 text-sm text-white/60">Tap to turn.</p>
         </div>
         <div className="absolute inset-0 rounded-3xl bg-[#f3c27a] p-5 text-[#111]" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
           <PathDraw d={CHECK_PATH} className="h-12 w-28 text-[#111]" />
           <p className="mt-4 font-serif text-2xl">The reverse is a drawn mark, not a duplicate face.</p>
+          <span className="sr-only">{id}</span>
         </div>
       </motion.div>
     </button>
@@ -323,35 +350,24 @@ function FlipWow({ variant, className }: { variant: string; className?: string }
 
 function BentoWow({ variant, className, title }: { variant: string; className?: string; title?: ReactNode }) {
   const v = useCountUp(1860, 1400, true)
-  if (variant === 'shader-tile') {
-    return (
-      <WowStage shader className={cn('min-h-40 p-5', className)}>
-        <p className="font-serif text-2xl">{title ?? 'Mesh'}</p>
-      </WowStage>
-    )
-  }
-  if (variant === 'orbit-tile') {
-    return (
-      <div className={cn('min-h-40 overflow-hidden rounded-3xl bg-[#07070c] p-4 text-white', className)}>
-        <OrbitRing items={['A', 'B', 'C', 'D']} radius={58} />
+  return (
+    <div className={cn('grid grid-cols-2 gap-3 md:grid-cols-4', className)}>
+      <div className="relative col-span-2 min-h-40 overflow-hidden rounded-3xl bg-[#111113] p-5 text-white">
+        {variant === 'shader-tile' ? <ShaderMesh /> : null}
+        {variant === 'depth-mosaic' ? <Grain /> : null}
+        <p className="relative z-10 font-serif text-2xl">{title ?? 'Harbor'}</p>
+        <p className="relative z-10 mt-2 text-sm text-white/60">Feature tile.</p>
       </div>
-    )
-  }
-  if (variant === 'ticker-tile') {
-    return (
-      <div className={cn('min-h-40 rounded-3xl bg-nx-card p-5', className)}>
+      <div className="relative min-h-40 overflow-hidden rounded-3xl bg-[#07070c] p-3 text-white">
+        {variant === 'orbit-tile' ? <OrbitRing items={['A', 'B', 'C']} radius={48} /> : <p className="font-serif text-xl">Atlas</p>}
+      </div>
+      <div className="min-h-40 rounded-3xl border border-nx-border bg-nx-card p-4">
         <p className="text-[11px] text-nx-muted">Athletes</p>
-        <p className="mt-2 font-serif text-5xl">
-          <Odometer value={v} digits={4} />
+        <p className="mt-2 font-serif text-4xl">
+          {variant === 'ticker-tile' ? <Odometer value={v} digits={4} /> : '1860'}
         </p>
       </div>
-    )
-  }
-  return (
-    <TiltGlare className={cn('min-h-40 rounded-3xl border border-nx-border bg-nx-card p-5', className)}>
-      <p className="font-serif text-2xl">{title ?? 'Depth'}</p>
-      <p className="mt-2 text-sm text-nx-muted">Mosaic tile with glare. Drop into any bento.</p>
-    </TiltGlare>
+    </div>
   )
 }
 
@@ -384,41 +400,15 @@ function AuroraWow({ variant, className, children }: WowProps) {
 }
 
 function GridWow({ variant, className, children }: WowProps) {
+  const loop = useLoopControl(true)
   return (
-    <div
-      className={cn(
-        'relative min-h-40 overflow-hidden rounded-2xl border border-nx-border',
-        variant === 'perspective-fly' && 'bg-[#07070c] [perspective:800px]',
-        className,
-      )}
-    >
-      {variant === 'perspective-fly' ? (
-        <motion.div
-          aria-hidden="true"
-          className="absolute inset-0 origin-bottom bg-[linear-gradient(rgba(124,108,255,0.35)_1px,transparent_1px),linear-gradient(90deg,rgba(124,108,255,0.35)_1px,transparent_1px)] bg-size-[32px_32px]"
-          animate={{ rotateX: 62, y: [0, 32] }}
-          transition={{ y: { duration: 4, repeat: Infinity, ease: 'linear' } }}
-        />
-      ) : null}
-      {variant === 'circuit-draw' ? <PathDraw d="M8 20 H 40 V 8 H 72 V 28 H 112" className="absolute inset-4 h-auto w-auto text-[#22c5b0]" /> : null}
-      {variant === 'topo-pulse' ? (
-        <div className="absolute inset-0 bg-[#07070c]">
-          {[0, 1, 2, 3].map((i) => (
-            <motion.span
-              key={i}
-              className="absolute top-1/2 left-1/2 size-16 rounded-full border border-[#f3c27a]/40"
-              animate={{ scale: [0.4 + i * 0.3, 2.2], opacity: [0.6, 0] }}
-              transition={{ duration: 3.2, repeat: Infinity, delay: i * 0.45 }}
-            />
-          ))}
-        </div>
-      ) : null}
-      {variant === 'hex-orbit' ? (
-        <div className="absolute inset-0 bg-[#0b1220]">
-          <OrbitRing items={['01', '02', '03', '04', '05', '06']} radius={70} />
-        </div>
-      ) : null}
+    <div className={cn('relative min-h-40 overflow-hidden rounded-2xl border border-white/10 bg-[#07070c]', className)}>
+      {variant === 'perspective-fly' ? <PerspectiveFloor paused={!loop.playing} /> : null}
+      {variant === 'circuit-draw' ? <CircuitBoard playing={loop.playing} /> : null}
+      {variant === 'topo-pulse' ? <TopoField paused={!loop.playing} /> : null}
+      {variant === 'hex-orbit' ? <HexLattice /> : null}
       <div className="relative z-10 flex min-h-40 items-end p-5 text-white">{children ?? variant}</div>
+      {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
     </div>
   )
 }
@@ -426,6 +416,7 @@ function GridWow({ variant, className, children }: WowProps) {
 function TextWow({ family, variant, children, className }: WowProps) {
   const label = String(children ?? 'Night, gold, and iris.')
   const year = useCountUp(2026, 1600, true)
+  const loop = useLoopControl(true)
   if (variant === 'scramble' || variant === 'scramble-line') {
     return <ScrambleText text={label} className={cn('font-serif text-4xl', className)} trigger="hover" />
   }
@@ -449,21 +440,15 @@ function TextWow({ family, variant, children, className }: WowProps) {
   }
   if (variant === 'matrix-rain') {
     return (
-      <WowStage particles className={cn('min-h-32 px-5 py-6 font-mono text-sm', className)}>
-        <ScrambleText text="export const room = 4" className="block" />
-      </WowStage>
+      <div className={cn('relative min-h-40 overflow-hidden rounded-2xl bg-[#07070c] px-5 py-6 font-mono text-sm text-[#34d399]', className)}>
+        <MatrixRain paused={!loop.playing} />
+        <p className="relative z-10">export const room = 4</p>
+        {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
+      </div>
     )
   }
   if (variant === 'flap-3d') {
-    return (
-      <div className={cn('flex gap-1', className)}>
-        {'GATE'.split('').map((ch) => (
-          <span key={ch} className="rounded-md bg-[#111113] px-2 py-1 font-mono text-2xl text-white">
-            {ch}
-          </span>
-        ))}
-      </div>
-    )
+    return <SplitFlap text="GATE" className={className} />
   }
   if (variant === 'letter-physics') {
     return (
@@ -480,11 +465,7 @@ function TextWow({ family, variant, children, className }: WowProps) {
     return <SplitMask text={'Ship\nthe\nmast'} className={cn('font-serif text-5xl leading-[0.85]', className)} />
   }
   if (variant === 'variable-morph') {
-    return (
-      <motion.p className={cn('font-serif text-5xl', className)} animate={{ letterSpacing: ['-0.06em', '0.12em', '-0.06em'] }} transition={{ duration: 5, repeat: Infinity }}>
-        {label}
-      </motion.p>
-    )
+    return <VariableMorph text={label} className={cn('text-5xl', className)} />
   }
   return <p className={cn('font-serif text-4xl', className)}>{family} {variant}</p>
 }
@@ -538,6 +519,31 @@ function NavWow({ variant, className }: WowProps) {
 
 function ModalWow({ variant, className }: WowProps) {
   const id = useId().replace(/:/g, '')
+  const [open, setOpen] = useState(false)
+  if (variant === 'shared-morph') {
+    return (
+      <div className={cn('space-y-4', className)}>
+        <button type="button" onClick={() => setOpen(true)} className={cn(wowBtn, 'bg-[#111113] text-white')}>
+          <motion.span layoutId="nexara-modal-mark" className="mr-2 inline-flex size-8 items-center justify-center rounded-lg bg-white/10 font-serif">
+            N
+          </motion.span>
+          Open the room
+        </button>
+        {open ? (
+          <div className="rounded-[1.6rem] border border-nx-border bg-nx-card p-6">
+            <motion.div layoutId="nexara-modal-mark" className="mb-4 size-12 rounded-2xl bg-[#111113] text-center font-serif text-2xl leading-[3rem] text-white">
+              N
+            </motion.div>
+            <p className="font-serif text-3xl">Shared morph</p>
+            <p className="mt-2 text-sm text-nx-muted">The mark travels from the trigger into the panel.</p>
+            <button type="button" className={cn(wowBtn, 'mt-4 bg-nx-fg text-nx-bg')} onClick={() => setOpen(false)}>
+              Fold
+            </button>
+          </div>
+        ) : null}
+      </div>
+    )
+  }
   if (variant === 'shader-veil') {
     return (
       <WowStage shader className={cn('min-h-64 p-6', className)}>
@@ -570,11 +576,7 @@ function ModalWow({ variant, className }: WowProps) {
   }
   return (
     <div className={cn('rounded-[1.6rem] border border-nx-border bg-nx-card p-6', className)}>
-      <motion.div layoutId="nexara-modal-mark" className="mb-4 size-12 rounded-2xl bg-[#111113] text-center font-serif text-2xl leading-[3rem] text-white">
-        N
-      </motion.div>
-      <p className="font-serif text-3xl">Shared morph</p>
-      <p className="mt-2 text-sm text-nx-muted">The mark travels from the trigger into the panel.</p>
+      <p className="font-serif text-3xl">Panel</p>
     </div>
   )
 }
@@ -592,18 +594,9 @@ function MarqueeWow({ variant, className }: WowProps) {
   }
   if (variant === 'cylinder-3d') {
     return (
-      <div className={cn('overflow-hidden rounded-2xl bg-[#111113] py-8 [perspective:900px]', className)}>
-        <motion.div
-          className="flex gap-8 font-serif text-4xl text-white"
-          animate={loop.playing ? { x: ['0%', '-50%'] } : undefined}
-          transition={{ duration: 16, repeat: Infinity, ease: 'linear' }}
-          style={{ transform: 'rotateX(18deg)' }}
-        >
-          {[...row, ...row].map((item, i) => (
-            <span key={`${item}-${i}`}>{item}</span>
-          ))}
-        </motion.div>
-        {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="ml-4 mt-4" /> : null}
+      <div className={cn('overflow-hidden rounded-2xl bg-[#111113] py-4', className)}>
+        <CylinderSpin items={row} paused={!loop.playing} />
+        {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="ml-4 mt-2" /> : null}
       </div>
     )
   }
@@ -654,11 +647,7 @@ function InputWow({ variant, className }: WowProps) {
     )
   }
   if (variant === 'magnetic-caret') {
-    return (
-      <MagneticWell className={className}>
-        <input className={cn(focusRing, 'min-h-11 w-full max-w-sm rounded-full border border-nx-field px-4')} placeholder="Ask the desk" />
-      </MagneticWell>
-    )
+    return <MagneticCaretField className={className} />
   }
   return (
     <div className={cn('relative max-w-sm', className)}>
@@ -670,16 +659,23 @@ function InputWow({ variant, className }: WowProps) {
 }
 
 function DragWow({ variant, className, children }: WowProps) {
+  const [burst, setBurst] = useState(false)
   if (variant === 'particle-toss') {
     return (
       <div className={cn('relative min-h-52 overflow-hidden rounded-3xl bg-[#07070c] p-4', className)}>
-        <ParticleField count={48} />
-        <MagneticWell className="relative z-10 max-w-[14rem]">
-          <div className="rounded-2xl border border-white/15 bg-white/10 p-4 text-white backdrop-blur-xl">
+        {burst ? <ParticleField count={64} /> : <ParticleField count={18} />}
+        <DragPlate className="relative z-10 max-w-[14rem]">
+          <div
+            className="rounded-2xl border border-white/15 bg-white/10 p-4 text-white backdrop-blur-xl"
+            onPointerUp={() => {
+              setBurst(true)
+              window.setTimeout(() => setBurst(false), 900)
+            }}
+          >
             <p className="font-serif text-xl">{children ?? 'Toss'}</p>
-            <p className="mt-1 text-sm text-white/60">The field reacts while you drag.</p>
+            <p className="mt-1 text-sm text-white/60">Drag, then let go. The field bursts.</p>
           </div>
-        </MagneticWell>
+        </DragPlate>
       </div>
     )
   }
@@ -687,8 +683,8 @@ function DragWow({ variant, className, children }: WowProps) {
     return (
       <div className={cn('relative min-h-52', className)}>
         {[0, 1, 2].map((i) => (
-          <MagneticWell key={i} strength={10 + i * 6} className="absolute left-6" >
-            <div className="w-48 rounded-2xl border border-nx-border bg-nx-card p-4" style={{ top: i * 18, transform: `translateY(${i * 18}px) rotate(${i * 2}deg)` }}>
+          <MagneticWell key={i} strength={10 + i * 6} className="absolute left-6">
+            <div className="w-48 rounded-2xl border border-nx-border bg-nx-card p-4" style={{ transform: `translateY(${i * 18}px) rotate(${i * 2}deg)` }}>
               Sheet {i + 1}
             </div>
           </MagneticWell>
@@ -698,10 +694,12 @@ function DragWow({ variant, className, children }: WowProps) {
   }
   if (variant === 'hologram') return <CardHolo title={String(children ?? 'Hologram')} className={className} />
   return (
-    <TiltGlare className={cn('max-w-[16rem] rounded-3xl bg-[#111113] p-5 text-white', className)}>
-      <p className="font-serif text-2xl">{children ?? 'Deck'}</p>
-      <p className="mt-2 text-sm text-white/60">Physics deck. The plate leans as you throw it.</p>
-    </TiltGlare>
+    <DragPlate className={cn('max-w-[16rem]', className)}>
+      <div className="rounded-3xl bg-[#111113] p-5 text-white shadow-[0_24px_50px_-28px_#7c6cff]">
+        <p className="font-serif text-2xl">{children ?? 'Deck'}</p>
+        <p className="mt-2 text-sm text-white/60">Drag the plate. It leans, then springs home.</p>
+      </div>
+    </DragPlate>
   )
 }
 

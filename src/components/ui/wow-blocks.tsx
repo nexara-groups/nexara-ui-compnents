@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { useId, useState } from 'react'
-import { faces, LoopPause } from '@/lib/media.tsx'
+import { faces, LoopPause, media } from '@/lib/media.tsx'
+import { AnalogClock, GooPuddle, PausedOrbit, SplitFlap, useLiveRemain } from '@/lib/wow-fx.tsx'
 import {
   CHECK_PATH,
   GlobeField,
@@ -43,7 +44,7 @@ function TabsWow({ variant, className }: WowProps) {
                 {variant === 'layout-morph' && active === tab ? (
                   <motion.span layoutId="nexara-tab-ink" className="absolute inset-0 rounded-full bg-[#111113]" />
                 ) : null}
-                {variant === 'liquid-ink' && active === tab ? <span className="absolute inset-0 rounded-full bg-[#4c46e0]/20 blur-sm" /> : null}
+                {variant === 'liquid-ink' && active === tab ? <GooPuddle className="rounded-full" /> : null}
                 <span className={cn('relative z-10', variant === 'layout-morph' && active === tab && 'text-white')}>
                   {variant === 'scramble-label' ? <ScrambleText text={tab} trigger="hover" /> : tab}
                 </span>
@@ -111,7 +112,7 @@ function TooltipWow({ variant, className }: WowProps) {
   if (variant === 'magnetic-tag') {
     return (
       <MagneticWell className={className}>
-        <span className="inline-flex min-h-11 items-center rounded-full bg-[#111113] px-3 text-sm text-white">Ada Klein</span>
+        <span className="inline-flex min-h-11 items-center rounded-full bg-[#111113] px-3 text-sm text-white">Anitha Rao</span>
       </MagneticWell>
     )
   }
@@ -130,7 +131,7 @@ function ToastWow({ variant, className }: WowProps) {
       animate={{ y: 0, opacity: 1 }}
       className={cn('relative overflow-hidden rounded-2xl border border-nx-border bg-nx-card p-4 shadow-[var(--nx-shadow)]', className)}
     >
-      {variant === 'liquid-slide' ? <span className="absolute inset-y-0 left-0 w-1 bg-[#4c46e0]" /> : null}
+      {variant === 'liquid-slide' ? <GooPuddle /> : null}
       <div className="flex items-center gap-3">
         {variant === 'path-check' ? <PathDraw d={CHECK_PATH} className="h-8 w-12 text-[#0c8a5e]" /> : null}
         <div>
@@ -196,8 +197,9 @@ function BadgeWow({ variant, className, children }: WowProps) {
   }
   return (
     <span className={cn('relative inline-flex min-h-11 items-center overflow-hidden rounded-full bg-[#111113] px-3 text-sm text-white', className)}>
-      <span className="absolute -left-1 size-8 rounded-full bg-[#22c5b0]" style={{ filter: `url(#${id})` }} />
+      <GooPuddle />
       <span className="relative z-10">{children ?? 'Live'}</span>
+      <span className="sr-only">{id}</span>
     </span>
   )
 }
@@ -241,18 +243,18 @@ function TestimonialsWow({ variant, className }: WowProps) {
     { q: 'We shipped the mast on Friday.', who: 'Meera Shah' },
   ]
   if (variant === 'orbit-quotes') {
-    return (
-      <div className={cn('relative min-h-56 overflow-hidden rounded-[1.6rem] bg-[#07070c]', className)}>
-        <OrbitRing items={quotes.map((item) => item.who.split(' ')[0]!)} radius={96} />
-      </div>
-    )
+    return <PausedOrbit items={quotes.map((item) => item.who.split(' ')[0]!)} radius={96} className={className} />
   }
   if (variant === 'video-shader') {
     return (
-      <WowStage shader className={cn('min-h-56 p-6', className)}>
-        <p className="font-serif text-3xl">“The reel is the quote.”</p>
-        <p className="mt-3 text-sm text-white/60">Harbor Review · Anitha Rao</p>
-      </WowStage>
+      <div className={cn('relative min-h-56 overflow-hidden rounded-[1.6rem] bg-[#07070c] text-white', className)}>
+        <video src={media.reel} muted playsInline autoPlay loop className="absolute inset-0 size-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#07070c] via-[#07070c]/30 to-transparent" />
+        <div className="relative z-10 p-6">
+          <p className="font-serif text-3xl">“The reel is the quote.”</p>
+          <p className="mt-3 text-sm text-white/60">Harbor Review · Anitha Rao</p>
+        </div>
+      </div>
     )
   }
   if (variant === 'scramble-pull') {
@@ -266,7 +268,13 @@ function TestimonialsWow({ variant, className }: WowProps) {
   return (
     <div className={cn('grid gap-3 md:grid-cols-3', className)}>
       {quotes.map((item, i) => (
-        <motion.blockquote key={item.who} className="rounded-3xl border border-nx-border bg-nx-card p-4" style={{ y: i * 8 }}>
+        <motion.blockquote
+          key={item.who}
+          className="rounded-3xl border border-nx-border bg-nx-card p-4"
+          initial={{ y: 24 + i * 18 }}
+          whileInView={{ y: i * 12 }}
+          viewport={{ once: true, amount: 0.4 }}
+        >
           <p className="font-serif text-xl">{item.q}</p>
           <footer className="mt-3 text-sm text-nx-muted">{item.who}</footer>
         </motion.blockquote>
@@ -290,11 +298,7 @@ function FooterWow({ variant, className }: WowProps) {
     )
   }
   if (variant === 'orbit-marks') {
-    return (
-      <div className={cn('relative min-h-48 overflow-hidden rounded-[1.6rem] bg-[#07070c]', className)}>
-        <OrbitRing items={['Work', 'Notes', 'Legal', 'Press']} radius={88} />
-      </div>
-    )
+    return <PausedOrbit items={['Work', 'Notes', 'Legal', 'Press']} radius={88} className={className} />
   }
   if (variant === 'path-sitemap') {
     return (
@@ -317,11 +321,7 @@ function StatsWow({ variant, className }: WowProps) {
   const b = useCountUp(998, 1400, true)
   const c = useCountUp(48, 1400, true)
   if (variant === 'orbit-ring') {
-    return (
-      <div className={cn('relative min-h-56 overflow-hidden rounded-[1.6rem] bg-[#07070c]', className)}>
-        <OrbitRing items={[String(a), String(b), String(c), '16']} radius={90} />
-      </div>
-    )
+    return <PausedOrbit items={[String(a), String(b), String(c), '16']} radius={90} className={className} />
   }
   if (variant === 'particle-pulse') {
     return (
@@ -366,23 +366,33 @@ function StatsWow({ variant, className }: WowProps) {
 }
 
 function CountdownWow({ variant, className }: WowProps) {
+  const live = useLiveRemain()
   const d = useCountUp(12, 800, true)
   const h = useCountUp(6, 800, true)
   if (variant === 'shader-rings') {
     return (
       <WowStage shader className={cn('grid grid-cols-2 gap-4 p-6', className)}>
-        {['12d', '06h', '18m', '04s'].map((cell) => (
-          <p key={cell} className="font-serif text-4xl">
-            {cell}
-          </p>
+        {[
+          [`${String(live.d).padStart(2, '0')}d`, 'days'],
+          [`${String(live.h).padStart(2, '0')}h`, 'hours'],
+          [`${String(live.m).padStart(2, '0')}m`, 'min'],
+          [`${String(live.s).padStart(2, '0')}s`, 'sec'],
+        ].map(([cell, label]) => (
+          <div key={label}>
+            <p className="font-serif text-4xl">{cell}</p>
+            <p className="text-[11px] text-white/40">{label}</p>
+          </div>
         ))}
       </WowStage>
     )
   }
   if (variant === 'analog-orbit') {
     return (
-      <div className={cn('relative min-h-48 overflow-hidden rounded-[1.6rem] bg-[#07070c]', className)}>
-        <OrbitRing items={['d', 'h', 'm', 's']} radius={80} />
+      <div className={cn('relative min-h-56 overflow-hidden rounded-[1.6rem] bg-[#07070c] p-6 text-white', className)}>
+        <AnalogClock />
+        <p className="mt-4 text-center font-mono text-sm text-white/60">
+          {live.d}d {live.h}h {live.m}m {live.s}s
+        </p>
       </div>
     )
   }
@@ -417,12 +427,25 @@ function LeaderboardWow({ variant, className }: WowProps) {
   ]
   const a = useCountUp(98, 1000, true)
   if (variant === 'podium-spring') {
+    const podium = [
+      { name: 'Atlas', h: 120, place: 2, src: media.people.kiran },
+      { name: 'Harbor', h: 160, place: 1, src: media.people.anitha },
+      { name: 'Vale', h: 96, place: 3, src: media.people.meera },
+    ]
     return (
       <div className={cn('flex items-end justify-center gap-3', className)}>
-        {[86, 98, 74].map((h, i) => (
-          <motion.div key={i} initial={{ height: 40 }} animate={{ height: 40 + h }} className="flex w-20 items-end justify-center rounded-t-2xl bg-[#111113] text-white">
-            {i + 1}
-          </motion.div>
+        {podium.map((item) => (
+          <div key={item.name} className="flex w-24 flex-col items-center">
+            <img src={item.src} alt={item.name} className="mb-2 size-12 rounded-full object-cover" />
+            <motion.div
+              initial={{ height: 36 }}
+              animate={{ height: item.h }}
+              className="flex w-full items-end justify-center rounded-t-2xl bg-[#111113] pb-3 font-serif text-2xl text-white"
+            >
+              {item.place}
+            </motion.div>
+            <p className="mt-2 text-xs text-nx-muted">{item.name}</p>
+          </div>
         ))}
       </div>
     )
@@ -441,12 +464,25 @@ function LeaderboardWow({ variant, className }: WowProps) {
     )
   }
   return (
-    <div className={cn('space-y-2', className)}>
-      {rows.map((row) => (
+    <div className={cn('space-y-3', className)}>
+      {rows.map((row, i) => (
         <div key={row.name} className="flex items-center gap-3">
           <span className="w-6 font-mono text-sm">{row.n}</span>
-          <div className="h-3 flex-1 overflow-hidden rounded-full bg-nx-soft">
-            <motion.div className="h-full bg-[#4c46e0]" initial={{ width: 0 }} animate={{ width: `${row.pts}%` }} />
+          <div className="relative h-8 flex-1 overflow-hidden rounded-full bg-nx-soft">
+            <motion.div
+              className="absolute inset-y-0 left-0 rounded-full bg-[#4c46e0]"
+              initial={{ width: 0 }}
+              animate={{ width: `${row.pts}%` }}
+              transition={{ duration: 1.1, delay: i * 0.12 }}
+            />
+            {variant === 'heat-race' ? (
+              <motion.span
+                className="absolute top-1 size-6 rounded-full bg-[#f3c27a]"
+                initial={{ left: 0 }}
+                animate={{ left: `calc(${row.pts}% - 1.5rem)` }}
+                transition={{ duration: 1.1, delay: i * 0.12 }}
+              />
+            ) : null}
           </div>
           {variant === 'live-odometer' ? <Odometer value={row.n === 1 ? a : row.pts} digits={2} /> : <span>{row.pts}</span>}
         </div>
@@ -503,11 +539,7 @@ function CaseWow({ variant, className }: WowProps) {
 function ServicesWow({ variant, className }: WowProps) {
   const doors = ['Consult', 'Lab', 'Pharmacy', 'Therapy']
   if (variant === 'orbit-crews') {
-    return (
-      <div className={cn('relative min-h-52 overflow-hidden rounded-[1.6rem] bg-[#07070c]', className)}>
-        <OrbitRing items={doors} radius={92} />
-      </div>
-    )
+    return <PausedOrbit items={doors} radius={92} className={className} />
   }
   if (variant === 'shader-cards') {
     return (
@@ -545,7 +577,7 @@ function ServicesWow({ variant, className }: WowProps) {
 
 function ProcessWow({ variant, className }: WowProps) {
   const steps = ['Brief', 'Build', 'Review', 'Handover']
-  if (variant === 'pin-steps' || variant === 'scrub-timeline') {
+  if (variant === 'scrub-timeline') {
     return (
       <ScrollPin height="200vh" className={className}>
         {(p) => {
@@ -561,6 +593,18 @@ function ProcessWow({ variant, className }: WowProps) {
           )
         }}
       </ScrollPin>
+    )
+  }
+  if (variant === 'pin-steps') {
+    return (
+      <div className={cn('space-y-[40vh]', className)}>
+        {steps.map((step, i) => (
+          <div key={step} className="sticky top-4 rounded-[1.6rem] border border-white/10 bg-[#111113] p-6 text-white" style={{ top: 16 + i * 12 }}>
+            <p className="font-mono text-[11px] text-[#f3c27a]">0{i + 1}</p>
+            <p className="mt-2 font-serif text-4xl">{step}</p>
+          </div>
+        ))}
+      </div>
     )
   }
   if (variant === 'orbit-rhythm') {
@@ -581,11 +625,7 @@ function ProcessWow({ variant, className }: WowProps) {
 function TeamWow({ variant, className }: WowProps) {
   const people = faces.slice(0, 4)
   if (variant === 'orbit-crew') {
-    return (
-      <div className={cn('relative min-h-52 overflow-hidden rounded-[1.6rem] bg-[#07070c]', className)}>
-        <OrbitRing items={people.map((p) => p.name.split(' ')[0]!)} radius={88} />
-      </div>
-    )
+    return <PausedOrbit items={people.map((p) => p.name.split(' ')[0]!)} radius={88} className={className} />
   }
   if (variant === 'particle-grid') {
     return (
@@ -682,6 +722,18 @@ function CtaWow({ variant, className }: WowProps) {
 
 function ChaptersWow({ variant, className }: WowProps) {
   const chapters = ['Mast', 'Harbor', 'Atlas', 'Night']
+  if (variant === 'pin-story') {
+    return (
+      <div className={cn('space-y-24', className)}>
+        {chapters.map((chapter, i) => (
+          <div key={chapter} className="sticky top-6 overflow-hidden rounded-[1.6rem] relative">
+            <img src={[media.cinema, media.clinic, media.sports, media.fashion][i]} alt="" className="h-64 w-full object-cover" />
+            <p className="absolute bottom-4 left-5 font-serif text-4xl text-white">0{i + 1} {chapter}</p>
+          </div>
+        ))}
+      </div>
+    )
+  }
   if (variant === 'parallax-index') {
     return (
       <div className={cn('grid gap-3 md:grid-cols-[8rem_1fr]', className)}>
@@ -729,19 +781,13 @@ function NewsWow({ variant, className }: WowProps) {
     )
   }
   if (variant === 'orbit-digest') {
-    return (
-      <div className={cn('relative min-h-48 overflow-hidden rounded-[1.6rem] bg-[#07070c]', className)}>
-        <OrbitRing items={['Mon', 'Tue', 'Wed', 'Thu']} radius={80} />
-      </div>
-    )
+    return <PausedOrbit items={['Mon', 'Tue', 'Wed', 'Thu']} radius={80} className={className} />
   }
   if (variant === 'flip-headlines') {
     return (
-      <div className={cn('space-y-2', className)}>
+      <div className={cn('space-y-3 rounded-[1.6rem] bg-[#07070c] p-4', className)}>
         {lines.map((line) => (
-          <p key={line} className="overflow-hidden rounded-2xl bg-[#111113] px-4 py-3 font-serif text-xl text-white">
-            <ScrambleText text={line} trigger="hover" />
-          </p>
+          <SplitFlap key={line} text={line.replace(/[^A-Za-z0-9 ]/g, '').slice(0, 14).toUpperCase()} />
         ))}
       </div>
     )
@@ -758,12 +804,17 @@ function NewsWow({ variant, className }: WowProps) {
 }
 
 function LogoWow({ variant, className }: WowProps) {
-  const marks = ['Kite', 'Solum', 'Nimbus', 'Vale']
+  const marks = [
+    { name: 'Kite', src: media.marks.kite },
+    { name: 'Solum', src: media.marks.solum },
+    { name: 'Nimbus', src: media.marks.nimbus },
+    { name: 'Vale', src: media.marks.vale },
+  ]
   if (variant === 'orbit-3d') {
     return (
       <div className={cn('relative min-h-48 overflow-hidden rounded-[1.6rem] bg-[#07070c]', className)}>
         <GlobeField />
-        <OrbitRing items={marks} radius={100} />
+        <PausedOrbit items={marks.map((m) => m.name)} radius={100} className="bg-transparent" />
       </div>
     )
   }
@@ -775,12 +826,25 @@ function LogoWow({ variant, className }: WowProps) {
       </div>
     )
   }
+  if (variant === 'magnetic-marks') {
+    return (
+      <div className={cn('grid grid-cols-2 gap-3 md:grid-cols-4', className)}>
+        {marks.map((m) => (
+          <MagneticWell key={m.name}>
+            <div className="flex items-center justify-center rounded-2xl border border-nx-border bg-nx-card px-4 py-6">
+              <img src={m.src} alt={m.name} className="h-8" />
+            </div>
+          </MagneticWell>
+        ))}
+      </div>
+    )
+  }
   return (
     <div className={cn('grid grid-cols-2 gap-3 md:grid-cols-4', className)}>
       {marks.map((m) => (
-        <MagneticWell key={m}>
-          <TiltGlare className="rounded-2xl border border-nx-border bg-nx-card px-4 py-6 text-center font-serif text-xl">{m}</TiltGlare>
-        </MagneticWell>
+        <TiltGlare key={m.name} className="rounded-2xl border border-nx-border bg-nx-card px-4 py-6">
+          <img src={m.src} alt={m.name} className="mx-auto h-8" />
+        </TiltGlare>
       ))}
     </div>
   )

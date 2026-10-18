@@ -1,6 +1,7 @@
 'use client'
 
-import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+import { GlobeField, LazyMesh3D, ScrambleText, ScrollPin, SplitMask, WowStage } from '@/lib/wow.tsx'
+import { isWowVariant } from './wow-signatures.tsx'
 
 import { Accordion } from './accordion.tsx'
 import { Activity } from './activity.tsx'
@@ -205,16 +206,60 @@ function KitCore({ variant = 'healthcare', className }: KitProps) {
   )
 }
 
+const KIT_WOW = {
+  'shader-clinic': 'healthcare',
+  'globe-agency': 'agency',
+  'pin-sports': 'sports',
+  'liquid-portal': 'portal',
+  'scramble-academy': 'academy',
+} as const
+
 export function Kit(props: KitProps) {
-  if (isWowVariant('kit', props.variant)) {
-    return (
-      <WowSignature
-        family="kit"
-        variant={props.variant!}
-        className={props.className}
-        
-       />
-    )
-  }
-  return <KitCore {...props} />
+  const base = props.variant && isWowVariant('kit', props.variant) ? KIT_WOW[props.variant as keyof typeof KIT_WOW] : null
+  if (!base || !props.variant) return <KitCore {...props} />
+  return (
+    <div data-nexara="kit" data-variant={props.variant} className={cn('space-y-8', props.className)}>
+      {props.variant === 'shader-clinic' ? (
+        <WowStage shader className="p-6 md:p-10">
+          <p className="font-mono text-[11px] text-[#f3c27a]">LUMEN CARE</p>
+          <SplitMask text={'Heart care,\nconsidered.'} className="mt-3 font-serif text-5xl leading-[0.9] md:text-7xl" />
+        </WowStage>
+      ) : null}
+      {props.variant === 'globe-agency' ? (
+        <div className="grid overflow-hidden rounded-[1.6rem] bg-[#07070c] text-white md:grid-cols-2">
+          <div className="p-6 md:p-10">
+            <p className="font-mono text-[11px] text-[#f3c27a]">NORTH STUDIO</p>
+            <h3 className="mt-3 font-serif text-5xl">Move the furniture.</h3>
+          </div>
+          <div className="relative min-h-64">
+            <GlobeField />
+          </div>
+        </div>
+      ) : null}
+      {props.variant === 'pin-sports' ? (
+        <ScrollPin height="180vh">
+          {(p) => (
+            <WowStage className="w-full min-h-[22rem] p-6">
+              <p className="font-mono text-[11px] text-[#f3c27a]">FIELD ATHLETICS</p>
+              <p className="mt-3 font-serif text-5xl">A season you can stand on.</p>
+              <p className="mt-4 text-sm text-white/60">{Math.round(p * 16)} events in the medal book.</p>
+            </WowStage>
+          )}
+        </ScrollPin>
+      ) : null}
+      {props.variant === 'liquid-portal' ? (
+        <div className="overflow-hidden rounded-[1.6rem] bg-[#07070c] text-white">
+          <LazyMesh3D className="min-h-64" />
+          <p className="p-6 font-serif text-4xl">The desk after dark.</p>
+        </div>
+      ) : null}
+      {props.variant === 'scramble-academy' ? (
+        <WowStage className="p-6 md:p-10">
+          <p className="font-mono text-[11px] text-[#f3c27a]">ATLAS ACADEMY</p>
+          <ScrambleText text="We grow engineers." className="mt-3 block font-serif text-5xl" />
+        </WowStage>
+      ) : null}
+      <KitCore variant={base} />
+    </div>
+  )
 }

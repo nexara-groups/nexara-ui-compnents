@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { AreaSpark, GooPuddle, HeatGrid, PausedOrbit } from '@/lib/wow-fx.tsx'
 import {
   GlobeField,
   Grain,
@@ -43,11 +44,7 @@ function ShellWow({ variant, className }: WowProps) {
     )
   }
   if (variant === 'command-orbit') {
-    return (
-      <div className={cn('relative min-h-64 overflow-hidden rounded-[1.6rem] bg-[#07070c]', className)}>
-        <OrbitRing items={['Jump', 'Create', 'Atlas', 'K']} radius={88} />
-      </div>
-    )
+    return <PausedOrbit items={['Jump', 'Create', 'Atlas', 'K']} radius={88} className={cn('min-h-64', className)} />
   }
   if (variant === 'liquid-rail') {
     return (
@@ -143,35 +140,32 @@ function TableWow({ variant, className }: WowProps) {
   const a = useCountUp(48, 1000, true)
   if (variant === 'morph-cards') {
     return (
-      <div className={cn('grid gap-3 md:hidden', className)}>
+      <div className={cn('grid gap-3 sm:grid-cols-3', className)}>
         {rows.map((row) => (
-          <TiltGlare key={row.name} className="rounded-2xl border border-nx-border p-4">
+          <motion.article layout key={row.name} className="rounded-2xl border border-nx-border p-4">
             <p className="font-medium">{row.name}</p>
             <p className="text-sm text-nx-muted">${row.amt}</p>
-          </TiltGlare>
+          </motion.article>
         ))}
-        <div className="hidden overflow-x-auto md:block">
-          <table className="w-full text-sm">
-            <tbody>
-              {rows.map((row) => (
-                <tr key={row.name} className="border-b border-nx-border">
-                  <td className="py-3">{row.name}</td>
-                  <td>${row.amt}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
       </div>
     )
   }
   if (variant === 'heat-cells') {
     return (
-      <div className={cn('grid grid-cols-3 gap-1', className)}>
-        {Array.from({ length: 12 }, (_, i) => (
-          <div key={i} className="h-10 rounded-md" style={{ background: `rgba(76,70,224,${0.15 + (i % 4) * 0.2})` }} />
-        ))}
-      </div>
+      <HeatGrid
+        className={className}
+        cells={[
+          { label: 'Wren', heat: 0.48 },
+          { label: 'Harbor', heat: 0.22 },
+          { label: 'Atlas', heat: 0.86 },
+          { label: 'Vale', heat: 0.61 },
+          { label: 'Kite', heat: 0.33 },
+          { label: 'Solum', heat: 0.74 },
+          { label: 'Nimbus', heat: 0.41 },
+          { label: 'Farm', heat: 0.19 },
+          { label: 'Track', heat: 0.92 },
+        ]}
+      />
     )
   }
   return (
@@ -203,11 +197,7 @@ function KanbanWow({ variant, className }: WowProps) {
     { name: 'Review', cards: ['Atlas'] },
   ]
   if (variant === 'orbit-wip') {
-    return (
-      <div className={cn('relative min-h-52 overflow-hidden rounded-[1.6rem] bg-[#07070c]', className)}>
-        <OrbitRing items={['2/3', '1/2', '1/1']} radius={86} />
-      </div>
-    )
+    return <PausedOrbit items={['2/3', '1/2', '1/1']} radius={86} className={className} />
   }
   if (variant === 'particle-lane') {
     return (
@@ -236,8 +226,8 @@ function KanbanWow({ variant, className }: WowProps) {
 function ChartWow({ variant, className }: WowProps) {
   if (variant === 'particle-area') {
     return (
-      <div className={cn('relative min-h-44 overflow-hidden rounded-3xl bg-[#07070c]', className)}>
-        <ParticleField count={50} />
+      <div className={cn('relative min-h-44 overflow-hidden rounded-3xl bg-[#07070c] p-4', className)}>
+        <AreaSpark withParticles />
       </div>
     )
   }
@@ -302,9 +292,15 @@ function ActivityWow({ variant, className }: WowProps) {
   }
   if (variant === 'liquid-chat') {
     return (
-      <div className={cn('space-y-2', className)}>
-        <div className="max-w-[80%] rounded-2xl rounded-bl-md bg-[#4c46e0] px-3 py-2 text-sm text-white">The room is ready.</div>
-        <div className="ml-auto max-w-[80%] rounded-2xl rounded-br-md bg-nx-soft px-3 py-2 text-sm">On my way.</div>
+      <div className={cn('space-y-3', className)}>
+        <div className="relative max-w-[80%] overflow-hidden rounded-2xl rounded-bl-md bg-[#4c46e0] px-3 py-2 text-sm text-white">
+          <GooPuddle />
+          <span className="relative z-10">The room is ready.</span>
+        </div>
+        <div className="relative ml-auto max-w-[80%] overflow-hidden rounded-2xl rounded-br-md bg-nx-soft px-3 py-2 text-sm">
+          <GooPuddle />
+          <span className="relative z-10">On my way.</span>
+        </div>
       </div>
     )
   }
@@ -371,8 +367,9 @@ function SettingsWow({ variant, className }: WowProps) {
           type="button"
           aria-pressed={on}
           onClick={() => setOn((v) => !v)}
-          className={cn(focusRing, 'relative h-11 w-16 rounded-full', on ? 'bg-[#4c46e0]' : 'bg-nx-soft')}
+          className={cn(focusRing, 'relative h-11 w-16 overflow-hidden rounded-full', on ? 'bg-[#4c46e0]' : 'bg-nx-soft')}
         >
+          {variant === 'liquid-toggle' ? <GooPuddle /> : null}
           <motion.span layout className="absolute top-1 size-9 rounded-full bg-white" animate={{ left: on ? 28 : 4 }} />
         </button>
       </div>

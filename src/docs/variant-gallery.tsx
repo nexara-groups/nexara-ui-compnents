@@ -1,6 +1,18 @@
 import { useState, type ReactNode } from 'react'
 import { WOW_VARIANTS } from '@/components/ui/wow-signatures.tsx'
 
+const PIN_IDS = new Set([
+  'pin-scroll',
+  'pin-steps',
+  'pin-story',
+  'scrub-essay',
+  'scrub-timeline',
+  'launch-scrub',
+  'scrub-bars',
+  'pin-sports',
+  'scroll-film',
+])
+
 export type VariantDoc = {
   id: string
   name: string
@@ -23,7 +35,11 @@ export function VariantGallery({
   return (
     <div className="grid gap-4">
       {items.map((item) => (
-        <article key={item.id} id={item.id} className="overflow-hidden rounded-3xl border border-nx-border bg-nx-card">
+        <article
+          key={item.id}
+          id={item.id}
+          className={PIN_IDS.has(item.id) ? 'rounded-3xl border border-nx-border bg-nx-card' : 'overflow-hidden rounded-3xl border border-nx-border bg-nx-card'}
+        >
           <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-nx-border px-4 py-3">
             <h3 className="font-mono text-sm text-nx-accent">
               {item.name} <span className="text-nx-faint">/ {item.id}</span>
@@ -35,7 +51,9 @@ export function VariantGallery({
             </h3>
             <p className="max-w-xl text-sm text-nx-muted">{item.description}</p>
           </div>
-          <div className={`p-4 md:p-6 ${previewClassName}`}>{render(item.id)}</div>
+          <div className={PIN_IDS.has(item.id) ? 'max-h-[36rem] overflow-y-auto p-4 md:p-6' : `p-4 md:p-6 ${previewClassName}`}>
+            {render(item.id)}
+          </div>
           <Usage code={item.usage} />
         </article>
       ))}

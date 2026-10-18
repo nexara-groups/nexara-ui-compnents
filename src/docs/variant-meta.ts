@@ -19,10 +19,10 @@ export const variantDocs = {
     { id: 'stack', name: 'Stack', description: 'Offset sheets under the active card.', usage: `<DraggableCard variant="stack" bounds={stageRef}>Stack</DraggableCard>` },
     { id: 'compact', name: 'Compact', description: 'Pill chip you can throw.', usage: `<DraggableCard variant="compact" bounds={stageRef}>Chip</DraggableCard>` },
     { id: 'calendar', name: 'Calendar', description: 'Month header over a day.', usage: `<DraggableCard variant="calendar" bounds={stageRef}>18</DraggableCard>` },
-    { id: 'physics-deck', name: 'Physics deck', description: 'A plate that leans as you throw it.', usage: `<DraggableCard variant="physics-deck" bounds={stageRef}>Drag</DraggableCard>` },
+    { id: 'physics-deck', name: 'Physics deck', description: 'Drag the plate. It leans, then springs home.', usage: `<DraggableCard variant="physics-deck" bounds={stageRef}>Drag</DraggableCard>` },
     { id: 'magnetic-stack', name: 'Magnetic stack', description: 'Offset sheets that lean toward the pointer.', usage: `<DraggableCard variant="magnetic-stack" bounds={stageRef}>Drag</DraggableCard>` },
     { id: 'hologram', name: 'Hologram', description: 'Shader field under a tilting plate.', usage: `<DraggableCard variant="hologram" bounds={stageRef}>Drag</DraggableCard>` },
-    { id: 'particle-toss', name: 'Particle toss', description: 'The field reacts while you drag.', usage: `<DraggableCard variant="particle-toss" bounds={stageRef}>Drag</DraggableCard>` },
+    { id: 'particle-toss', name: 'Particle toss', description: 'Drag, then let go. The field bursts.', usage: `<DraggableCard variant="particle-toss" bounds={stageRef}>Drag</DraggableCard>` },
   
   ],
   'spotlight-card': [
@@ -59,7 +59,7 @@ export const variantDocs = {
     { id: 'flashcard', name: 'Flashcard', description: 'Term and definition.', usage: `<FlipCard variant="flashcard" />` },
     { id: 'morph-face', name: 'Morph face', description: 'A drawn reverse, not a duplicate face.', usage: `<FlipCard variant="morph-face" />` },
     { id: 'liquid-flip', name: 'Liquid flip', description: 'Shader on the front, path on the back.', usage: `<FlipCard variant="liquid-flip" />` },
-    { id: 'hologram', name: 'Hologram', description: 'Shader field under a tilting plate.', usage: `<FlipCard variant="hologram" />` },
+    { id: 'hologram', name: 'Hologram', description: 'Iridescent shader on the front face.', usage: `<FlipCard variant="hologram" />` },
     { id: 'path-reveal', name: 'Path reveal', description: 'The reverse draws a mark.', usage: `<FlipCard variant="path-reveal" />` },
   
   ],
@@ -130,7 +130,7 @@ export const variantDocs = {
     { id: 'gravity-well', name: 'Gravity well', description: 'A heavier magnetic pull.', usage: `<MagneticButton magnet="gravity-well">Come closer</MagneticButton>` },
     { id: 'comet-trail', name: 'Comet trail', description: 'A bloom follows the pointer.', usage: `<MagneticButton magnet="comet-trail">Come closer</MagneticButton>` },
     { id: 'orbit-pull', name: 'Orbit pull', description: 'Satellites around the control.', usage: `<MagneticButton magnet="orbit-pull">Come closer</MagneticButton>` },
-    { id: 'shatter', name: 'Shatter', description: 'Tracking opens on hover.', usage: `<MagneticButton magnet="shatter">Come closer</MagneticButton>` },
+    { id: 'shatter', name: 'Shatter', description: 'Letters explode on hover, then spring back.', usage: `<MagneticButton magnet="shatter">Come closer</MagneticButton>` },
   
   ],
   'aurora-background': [
@@ -168,7 +168,7 @@ export const variantDocs = {
     { id: 'perspective-fly', name: 'Perspective fly', description: 'A floor grid that travels.', usage: `<GridBackground variant="perspective-fly" />` },
     { id: 'circuit-draw', name: 'Circuit draw', description: 'Traces draw themselves.', usage: `<GridBackground variant="circuit-draw" />` },
     { id: 'topo-pulse', name: 'Topo pulse', description: 'Contour rings expand.', usage: `<GridBackground variant="topo-pulse" />` },
-    { id: 'hex-orbit', name: 'Hex orbit', description: 'Cells on a ring.', usage: `<GridBackground variant="hex-orbit" />` },
+    { id: 'hex-orbit', name: 'Hex orbit', description: 'Honeycomb lattice that breathes.', usage: `<GridBackground variant="hex-orbit" />` },
   
   ],
   'gradient-text': [
@@ -184,7 +184,7 @@ export const variantDocs = {
     { id: 'kinetic', name: 'Kinetic', description: 'Tracking that breathes.', usage: `<GradientText variant="kinetic">Night</GradientText>` },
     { id: 'glow', name: 'Glow', description: 'Soft accent bloom.', usage: `<GradientText variant="glow">Night</GradientText>` },
     { id: 'fade', name: 'Fade', description: 'Word dissolves to the right.', usage: `<GradientText variant="fade">Night</GradientText>` },
-    { id: 'variable-morph', name: 'Variable morph', description: 'Tracking breathes like a variable font.', usage: `<GradientText variant="variable-morph">Night</GradientText>` },
+    { id: 'variable-morph', name: 'Variable morph', description: 'Geist weight axis 200–800, looping.', usage: `<GradientText variant="variable-morph">Night</GradientText>` },
     { id: 'scramble', name: 'Scramble', description: 'Letters settle only on hover.', usage: `<GradientText variant="scramble">Night</GradientText>` },
     { id: 'path-write', name: 'Path write', description: 'A stroke writes under the word.', usage: `<GradientText variant="path-write">Night</GradientText>` },
     { id: 'split-mask', name: 'Split mask', description: 'Per-line clipped reveal.', usage: `<GradientText variant="split-mask">Night</GradientText>` },
@@ -205,8 +205,8 @@ export const variantDocs = {
     { id: 'tape', name: 'Tape', description: 'Paper strip.', usage: `<Typewriter variant="tape" phrases={['NX-18 OK']} />` },
     { id: 'odometer', name: 'Odometer', description: 'Digit columns flip to the figure.', usage: `<Typewriter variant="odometer" />` },
     { id: 'scramble-line', name: 'Scramble line', description: 'A line that refuses to sit still.', usage: `<Typewriter variant="scramble-line" />` },
-    { id: 'matrix-rain', name: 'Matrix rain', description: 'Particles behind a prompt.', usage: `<Typewriter variant="matrix-rain" />` },
-    { id: 'flap-3d', name: 'Flap 3d', description: 'Split-flap tiles with depth.', usage: `<Typewriter variant="flap-3d" />` },
+    { id: 'matrix-rain', name: 'Matrix rain', description: 'Falling glyph columns behind a prompt.', usage: `<Typewriter variant="matrix-rain" />` },
+    { id: 'flap-3d', name: 'Flap 3d', description: 'Split-flap tiles that cycle, then lock.', usage: `<Typewriter variant="flap-3d" />` },
   
   ],
   'text-reveal': [
@@ -317,7 +317,7 @@ export const variantDocs = {
     { id: 'apps', name: 'Apps', description: 'App squircles.', usage: `<Marquee variant="apps" />` },
     { id: 'metrics', name: 'Metrics', description: 'Large figures.', usage: `<Marquee variant="metrics" />` },
     { id: 'awards', name: 'Awards', description: 'Press marks.', usage: `<Marquee variant="awards" />` },
-    { id: 'cylinder-3d', name: 'Cylinder 3d', description: 'A perspective tape.', usage: `<Marquee variant="cylinder-3d" />` },
+    { id: 'cylinder-3d', name: 'Cylinder 3d', description: 'Marks ride a spinning Y-axis cylinder.', usage: `<Marquee variant="cylinder-3d" />` },
     { id: 'logo-orbit', name: 'Logo orbit', description: 'Wordmarks on a ring.', usage: `<Marquee variant="logo-orbit" />` },
     { id: 'velocity-scroll', name: 'Velocity scroll', description: 'Oversized type on a fast track.', usage: `<Marquee variant="velocity-scroll" />` },
     { id: 'grain-tape', name: 'Grain tape', description: 'Night tape with grain.', usage: `<Marquee variant="grain-tape" />` },
@@ -337,7 +337,7 @@ export const variantDocs = {
     { id: 'command', name: 'Command', description: 'Prompt field.', usage: `<Input variant="command" placeholder="open atlas" />` },
     { id: 'floating', name: 'Floating', description: 'Label sits inside.', usage: `<Input variant="floating" label="Studio" />` },
     { id: 'liquid-focus', name: 'Liquid focus', description: 'Goo ornament on the field.', usage: `<Input variant="liquid-focus" />` },
-    { id: 'magnetic-caret', name: 'Magnetic caret', description: 'The field leans in.', usage: `<Input variant="magnetic-caret" />` },
+    { id: 'magnetic-caret', name: 'Magnetic caret', description: 'A custom caret follows the pointer, then the typed width.', usage: `<Input variant="magnetic-caret" />` },
     { id: 'path-underline', name: 'Path underline', description: 'A stroke writes the baseline.', usage: `<Input variant="path-underline" />` },
     { id: 'otp-flip', name: 'Otp flip', description: 'Odometer digits for a code.', usage: `<Input variant="otp-flip" />` },
   
@@ -385,7 +385,7 @@ export const variantDocs = {
     { id: 'warning', name: 'Warning', description: 'Amber status hint.', usage: `<Tooltip variant="warning" content="Check">Hover</Tooltip>` },
     { id: 'follow', name: 'Follow', description: 'Pill that reads as a cursor tag.', usage: `<Tooltip variant="follow" content="Ada">Hover</Tooltip>` },
     { id: 'plain', name: 'Plain', description: 'Unboxed text.', usage: `<Tooltip variant="plain" content="Hint">Hover</Tooltip>` },
-    { id: 'avatar', name: 'Avatar', description: 'Identity chip.', usage: `<Tooltip variant="avatar" content="Ada Klein">Hover</Tooltip>` },
+    { id: 'avatar', name: 'Avatar', description: 'Identity chip.', usage: `<Tooltip variant="avatar" content="Anitha Rao">Hover</Tooltip>` },
     { id: 'metric', name: 'Metric', description: 'Dark metric card.', usage: `<Tooltip variant="metric" content="99.98">Hover</Tooltip>` },
     { id: 'follow-glare', name: 'Follow glare', description: 'A hint that tilts.', usage: `<Tooltip variant="follow-glare" content="Hint">Hover</Tooltip>` },
     { id: 'particle-hint', name: 'Particle hint', description: 'A constellation chip.', usage: `<Tooltip variant="particle-hint" content="Hint">Hover</Tooltip>` },
@@ -528,8 +528,8 @@ export const variantDocs = {
     { id: 'minimal', name: 'Minimal', description: 'Days to the title.', usage: `<Countdown variant="minimal" />` },
     { id: 'analog', name: 'Analog', description: 'Second-hand disc.', usage: `<Countdown variant="analog" />` },
     { id: 'flip-3d', name: 'Flip 3d', description: 'Odometer tiles for the clock.', usage: `<Countdown variant="flip-3d" />` },
-    { id: 'shader-rings', name: 'Shader rings', description: 'Cells on a mesh.', usage: `<Countdown variant="shader-rings" />` },
-    { id: 'analog-orbit', name: 'Analog orbit', description: 'Hands as satellites.', usage: `<Countdown variant="analog-orbit" />` },
+    { id: 'shader-rings', name: 'Shader rings', description: 'A live countdown on a mesh.', usage: `<Countdown variant="shader-rings" />` },
+    { id: 'analog-orbit', name: 'Analog orbit', description: 'Clock hands plus a ticking remainder.', usage: `<Countdown variant="analog-orbit" />` },
     { id: 'launch-scrub', name: 'Launch scrub', description: 'Scroll is T-minus.', usage: `<Countdown variant="launch-scrub" />` },
   
   ],
@@ -546,7 +546,7 @@ export const variantDocs = {
     { id: 'live', name: 'Live', description: 'Live heat board.', usage: `<Leaderboard variant="live" />` },
     { id: 'points', name: 'Points', description: 'Season points list.', usage: `<Leaderboard variant="points" />` },
     { id: 'disciplines', name: 'Disciplines', description: 'Event winners grid.', usage: `<Leaderboard variant="disciplines" />` },
-    { id: 'heat-race', name: 'Heat race', description: 'Bars grow into rank.', usage: `<Leaderboard variant="heat-race" />` },
+    { id: 'heat-race', name: 'Heat race', description: 'Markers race along growing heat bars.', usage: `<Leaderboard variant="heat-race" />` },
     { id: 'podium-spring', name: 'Podium spring', description: 'Stands rise.', usage: `<Leaderboard variant="podium-spring" />` },
     { id: 'live-odometer', name: 'Live odometer', description: 'Points tick.', usage: `<Leaderboard variant="live-odometer" />` },
     { id: 'particle-rank', name: 'Particle rank', description: 'A field behind the table.', usage: `<Leaderboard variant="particle-rank" />` },
@@ -834,7 +834,7 @@ export const variantDocs = {
     { id: 'stagger-feed', name: 'Stagger feed', description: 'Events spring in.', usage: `<Activity variant="stagger-feed" />` },
     { id: 'path-rail', name: 'Path rail', description: 'A rail that writes.', usage: `<Activity variant="path-rail" />` },
     { id: 'live-odometer', name: 'Live odometer', description: 'Points tick.', usage: `<Activity variant="live-odometer" />` },
-    { id: 'liquid-chat', name: 'Liquid chat', description: 'Bubbles with a spring.', usage: `<Activity variant="liquid-chat" />` },
+    { id: 'liquid-chat', name: 'Liquid chat', description: 'Goo blobs inside the bubbles.', usage: `<Activity variant="liquid-chat" />` },
   
   ],
   'command-palette': [
