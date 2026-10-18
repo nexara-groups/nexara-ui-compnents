@@ -75,11 +75,11 @@ export function ChartBlock({ variant = 'area', className, title = 'Leads this we
       {variant === 'compare' ? (
         <div className="mt-4 grid grid-cols-2 gap-3">
           <div>
-            <p className="text-[11px] text-nx-faint">Academy</p>
+            <p className="text-[11px] text-nx-muted">Academy</p>
             <div className="mt-2 h-16 rounded-lg bg-nx-soft" />
           </div>
           <div>
-            <p className="text-[11px] text-nx-faint">Labs</p>
+            <p className="text-[11px] text-nx-muted">Labs</p>
             <div className="mt-2 h-24 rounded-lg bg-nx-accent/40" />
           </div>
         </div>

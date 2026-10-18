@@ -1,5 +1,6 @@
 'use client'
 
+import { MediaFrame, faces } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -52,7 +53,7 @@ export function Leaderboard({ variant = 'medals', className }: LeaderboardProps)
       {variant === 'medals' ? (
         <div className="overflow-hidden rounded-[1.4rem] border border-nx-border">
           <table className="w-full text-left text-sm">
-            <thead className="bg-nx-elevated text-[11px] tracking-[0.14em] text-nx-faint uppercase">
+            <thead className="bg-nx-elevated text-[11px] tracking-[0.14em] text-nx-muted uppercase">
               <tr>
                 <th className="px-4 py-3">Athlete</th>
                 <th className="px-2 py-3">G</th>
@@ -64,7 +65,7 @@ export function Leaderboard({ variant = 'medals', className }: LeaderboardProps)
               {rows.map((row) => (
                 <tr key={row.name} className="border-t border-nx-border">
                   <td className="px-4 py-3">
-                    <span className="mr-2 text-nx-faint">{row.rank}</span>
+                    <span className="mr-2 text-nx-muted">{row.rank}</span>
                     {row.name}
                   </td>
                   <td className="px-2 py-3 text-[#b8860b]">{row.gold}</td>
@@ -80,7 +81,7 @@ export function Leaderboard({ variant = 'medals', className }: LeaderboardProps)
       {variant === 'table' ? (
         <div className="overflow-x-auto rounded-[1.4rem] border border-nx-border">
           <table className="w-full min-w-[32rem] text-left text-sm">
-            <thead className="bg-nx-elevated text-xs text-nx-faint">
+            <thead className="bg-nx-elevated text-xs text-nx-muted">
               <tr>
                 <th className="px-4 py-3">#</th>
                 <th>Name</th>
@@ -112,8 +113,9 @@ export function Leaderboard({ variant = 'medals', className }: LeaderboardProps)
                 index === 1 ? 'h-40 bg-nx-fg text-nx-bg' : 'h-32',
               )}
             >
-              <p className="font-serif text-2xl">{row!.rank}</p>
-              <p className="mt-2 text-xs">{row!.name}</p>
+              <MediaFrame src={faces[index].src} alt="" grain={false} className="mx-auto size-10 rounded-full" />
+              <p className="mt-2 font-serif text-2xl">{row!.rank}</p>
+              <p className="mt-1 text-xs">{row!.name}</p>
             </article>
           ))}
         </div>
@@ -124,7 +126,7 @@ export function Leaderboard({ variant = 'medals', className }: LeaderboardProps)
           {clubs.map((club, index) => (
             <li key={club.name} className="flex items-center justify-between rounded-2xl border border-nx-border px-4 py-3">
               <span>
-                <span className="mr-3 text-nx-faint">{index + 1}</span>
+                <span className="mr-3 text-nx-muted">{index + 1}</span>
                 {club.name}
               </span>
               <span className="font-mono text-sm">{club.points}</span>
@@ -154,7 +156,7 @@ export function Leaderboard({ variant = 'medals', className }: LeaderboardProps)
         <ol className="space-y-2">
           {rows.slice(0, 4).map((row) => (
             <li key={row.name} className="grid grid-cols-[2rem_1fr_auto] items-center gap-3">
-              <span className="text-nx-faint">{row.rank}</span>
+              <span className="text-nx-muted">{row.rank}</span>
               <div>
                 <p className="text-sm">{row.name}</p>
                 <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-nx-elevated">
@@ -198,7 +200,7 @@ export function Leaderboard({ variant = 'medals', className }: LeaderboardProps)
         <div className="grid gap-3 md:grid-cols-3">
           {['U14', 'U16', 'U19'].map((age) => (
             <article key={age} className="rounded-2xl border border-nx-border p-4">
-              <p className="text-xs text-nx-faint">{age}</p>
+              <p className="text-xs text-nx-muted">{age}</p>
               <p className="mt-2 font-medium">{rows.find((row) => row.age === age)?.name ?? 'Open lane'}</p>
             </article>
           ))}

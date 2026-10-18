@@ -97,7 +97,7 @@ export function CommandPalette({ variant = 'default', className }: CommandPalett
               className={cn('flex items-center justify-between rounded-lg px-3 py-2 text-sm', index === active && 'bg-nx-soft')}
             >
               <span>{item.label}</span>
-              <span className="text-[11px] text-nx-faint">{item.group}</span>
+              <span className="text-[11px] text-nx-muted">{item.group}</span>
             </li>
           ))
         )}

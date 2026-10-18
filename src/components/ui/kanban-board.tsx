@@ -62,7 +62,7 @@ export function KanbanBoard({ variant = 'agency', className }: KanbanBoardProps)
         <section key={title} className="rounded-[1.3rem] border border-nx-border bg-nx-elevated p-3">
           <header className="mb-2 flex items-center justify-between text-xs">
             <h3 className="font-medium">{title}</h3>
-            <span className="text-nx-faint">{cards.length}</span>
+            <span className="text-nx-muted">{cards.length}</span>
           </header>
           <ul className="space-y-2">
             {cards.map((card) => (
@@ -72,7 +72,7 @@ export function KanbanBoard({ variant = 'agency', className }: KanbanBoardProps)
                 {variant === 'owners' ? <p className="mt-1 text-[10px] text-nx-muted">Latha</p> : null}
                 {variant === 'wip' ? <p className="mt-1 text-[10px] text-nx-warn">WIP 2/3</p> : null}
                 {variant === 'review' && title === 'Review' ? <p className="mt-1 text-[10px] text-nx-accent">Needs pass</p> : null}
-                {variant === 'swim' ? <p className="mt-1 text-[10px] text-nx-faint">Studio swim</p> : null}
+                {variant === 'swim' ? <p className="mt-1 text-[10px] text-nx-muted">Studio swim</p> : null}
               </li>
             ))}
           </ul>

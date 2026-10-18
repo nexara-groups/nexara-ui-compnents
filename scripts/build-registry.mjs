@@ -131,6 +131,9 @@ const extraFiles = {
   marquee: mediaFile,
   'app-shell': mediaFile,
   'settings-panel': mediaFile,
+  process: mediaFile,
+  leaderboard: mediaFile,
+  pricing: mediaFile,
 }
 
 const items = itemsMeta.map((entry) => {

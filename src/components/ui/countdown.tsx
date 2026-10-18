@@ -100,7 +100,7 @@ export function Countdown({
             <div key={label} className="grid size-24 place-items-center rounded-full border border-nx-line">
               <div className="text-center">
                 <p className="font-serif text-2xl">{pad(value)}</p>
-                <p className="text-[10px] text-nx-faint uppercase">{label}</p>
+                <p className="text-[10px] text-nx-muted uppercase">{label}</p>
               </div>
             </div>
           ))}
@@ -126,7 +126,7 @@ export function Countdown({
       {variant === 'race' ? (
         <div className="flex items-center justify-between rounded-2xl border border-nx-border px-5 py-4">
           <div>
-            <p className="text-xs text-nx-faint">Heat 4 · 500m</p>
+            <p className="text-xs text-nx-muted">Heat 4 · 500m</p>
             <p className="font-medium">Gun in</p>
           </div>
           <p className="font-mono text-3xl">
@@ -137,7 +137,7 @@ export function Countdown({
 
       {variant === 'exam' ? (
         <div className="rounded-2xl border border-nx-border bg-nx-elevated p-5">
-          <p className="text-xs tracking-[0.16em] text-nx-faint uppercase">Academy exam window</p>
+          <p className="text-xs tracking-[0.16em] text-nx-muted uppercase">Academy exam window</p>
           <p className="mt-2 font-serif text-2xl">Closes in {time.days} days</p>
           <p className="mt-1 font-mono text-sm text-nx-muted">
             {pad(time.hours)}h {pad(time.minutes)}m remaining today
@@ -175,7 +175,7 @@ export function Countdown({
           {units.map(([label, value]) => (
             <span key={label} className="font-mono">
               {pad(value)}
-              <span className="ml-1 text-[10px] text-nx-faint">{label[0]}</span>
+              <span className="ml-1 text-[10px] text-nx-muted">{label[0]}</span>
             </span>
           ))}
         </div>

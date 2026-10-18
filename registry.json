@@ -2370,6 +2370,10 @@
         {
           "path": "src/components/ui/pricing.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Pricing variant=\"cards\" />",
@@ -2827,6 +2831,10 @@
         {
           "path": "src/components/ui/leaderboard.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Leaderboard variant=\"medals\" />",
@@ -3126,6 +3134,10 @@
         {
           "path": "src/components/ui/process.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Process variant=\"written\" />",

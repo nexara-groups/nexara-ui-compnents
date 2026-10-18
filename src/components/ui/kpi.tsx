@@ -80,7 +80,7 @@ export function Kpi({
           <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-nx-elevated">
             <div className="h-full w-[68%] bg-nx-accent" />
           </div>
-          <p className="mt-2 text-xs text-nx-faint">68% of weekly target</p>
+          <p className="mt-2 text-xs text-nx-muted">68% of weekly target</p>
         </>
       ) : null}
 
@@ -100,11 +100,11 @@ export function Kpi({
       {variant === 'compare' ? (
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <p className="text-xs text-nx-faint">Last week</p>
+            <p className="text-xs text-nx-muted">Last week</p>
             <p className="font-serif text-2xl">18</p>
           </div>
           <div>
-            <p className="text-xs text-nx-faint">This week</p>
+            <p className="text-xs text-nx-muted">This week</p>
             <p className="font-serif text-2xl">{shown}</p>
           </div>
         </div>
@@ -140,7 +140,7 @@ export function Kpi({
         <>
           <p className="text-xs text-nx-muted">Uptime</p>
           <p className="mt-2 font-serif text-3xl text-nx-ok">99.98%</p>
-          <p className="text-xs text-nx-faint">Agency OS · last 30 days</p>
+          <p className="text-xs text-nx-muted">Agency OS · last 30 days</p>
         </>
       ) : null}
 

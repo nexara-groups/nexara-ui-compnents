@@ -103,7 +103,7 @@ function Figure({ item, invert }: { item: Stat; invert?: boolean }) {
     <div ref={ref as never}>
       <p className={cn('font-serif text-4xl tracking-tight md:text-5xl', invert ? 'text-white' : 'text-nx-fg')}>{format(item, value)}</p>
       <p className={cn('mt-2 text-sm', invert ? 'text-white/60' : 'text-nx-muted')}>{item.label}</p>
-      {item.note ? <p className={cn('text-xs', invert ? 'text-white/40' : 'text-nx-faint')}>{item.note}</p> : null}
+      {item.note ? <p className={cn('text-xs', invert ? 'text-white/40' : 'text-nx-muted')}>{item.note}</p> : null}
     </div>
   )
 }
@@ -193,7 +193,7 @@ function Compare() {
   return (
     <div ref={ref as never} className="grid gap-4 md:grid-cols-2">
       <article className="rounded-[1.4rem] border border-nx-border p-6">
-        <p className="text-[11px] tracking-[0.18em] text-nx-faint uppercase">Before therapy desk</p>
+        <p className="text-[11px] tracking-[0.18em] text-nx-muted uppercase">Before therapy desk</p>
         <p className="mt-3 font-serif text-5xl">{before}</p>
         <p className="mt-2 text-sm text-nx-muted">Weekly sessions</p>
       </article>

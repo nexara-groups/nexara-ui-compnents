@@ -103,7 +103,7 @@ export function Chapters({ variant = 'eight', className }: ChaptersProps) {
         <ol className="space-y-5">
           {rise.map(([index, title, line]) => (
             <li key={title} className="grid grid-cols-[3rem_1fr] gap-4">
-              <span className="font-mono text-sm text-nx-faint">{index}</span>
+              <span className="font-mono text-sm text-nx-muted">{index}</span>
               <div>
                 <p className="font-serif text-2xl">{title}</p>
                 <p className="mt-1 text-sm text-nx-muted">{line}</p>
@@ -117,7 +117,7 @@ export function Chapters({ variant = 'eight', className }: ChaptersProps) {
         <div className="grid gap-3 md:grid-cols-2">
           {rise.map(([index, title, line]) => (
             <article key={title} className="rounded-[1.3rem] border border-nx-border p-5">
-              <p className="text-xs text-nx-faint">{index}</p>
+              <p className="text-xs text-nx-muted">{index}</p>
               <p className="mt-2 font-medium">{title}</p>
               <p className="mt-1 text-sm text-nx-muted">{line}</p>
             </article>
@@ -139,7 +139,7 @@ export function Chapters({ variant = 'eight', className }: ChaptersProps) {
 
       {variant === 'essay' || variant === 'manifesto' ? (
         <article className="max-w-2xl">
-          <p className="text-[11px] tracking-[0.2em] text-nx-faint uppercase">A short book</p>
+          <p className="text-[11px] tracking-[0.2em] text-nx-muted uppercase">A short book</p>
           <h3 className="mt-3 font-serif text-5xl">Heart care, considered.</h3>
           <div className="mt-8 space-y-5 text-sm leading-7 text-nx-muted">
             {rise.map(([, title, line]) => (
@@ -158,7 +158,7 @@ export function Chapters({ variant = 'eight', className }: ChaptersProps) {
           <ol className="space-y-3 text-sm">
             {rise.slice(0, 4).map(([index, title, line]) => (
               <li key={title}>
-                <span className="text-nx-faint">{index} </span>
+                <span className="text-nx-muted">{index} </span>
                 {title} — {line}
               </li>
             ))}

@@ -127,7 +127,7 @@ export function CtaBand({ variant = 'appointment', className }: CtaBandProps) {
 
       {variant === 'studio' ? (
         <div className="rounded-[1.5rem] border border-nx-line px-6 py-8">
-          <p className="text-xs tracking-[0.18em] text-nx-faint uppercase">North studio</p>
+          <p className="text-xs tracking-[0.18em] text-nx-muted uppercase">North studio</p>
           <p className="mt-2 font-serif text-3xl">Hire the desk, not a slide.</p>
         </div>
       ) : null}

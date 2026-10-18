@@ -1,6 +1,9 @@
 'use client'
 
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
+
+const stills = [media.cases.build, media.journal, media.featured, media.venues.studio]
 
 const VARIANTS = [
   'written',
@@ -49,7 +52,7 @@ export function Process({ variant = 'written', className }: ProcessProps) {
         <div className="max-w-2xl space-y-8">
           {nexara.map(([title, line], index) => (
             <article key={title}>
-              <p className="text-[11px] tracking-[0.18em] text-nx-faint uppercase">Step {index + 1}</p>
+              <p className="text-[11px] tracking-[0.18em] text-nx-muted uppercase">Step {index + 1}</p>
               <h3 className="mt-2 font-serif text-3xl">{title}</h3>
               <p className="mt-2 text-sm leading-6 text-nx-muted">{line}</p>
             </article>
@@ -61,7 +64,7 @@ export function Process({ variant = 'written', className }: ProcessProps) {
         <ol className="grid gap-6 md:grid-cols-3">
           {rise.map(([title, line], index) => (
             <li key={title}>
-              <p className="font-serif text-5xl text-nx-faint">{index + 1}</p>
+              <p className="font-serif text-5xl text-nx-muted">{index + 1}</p>
               <p className="mt-3 font-medium">{title}</p>
               <p className="mt-2 text-sm text-nx-muted">{line}</p>
             </li>
@@ -116,7 +119,7 @@ export function Process({ variant = 'written', className }: ProcessProps) {
 
       {variant === 'weekly' ? (
         <div className="rounded-[1.4rem] border border-nx-border p-6">
-          <p className="text-xs tracking-[0.16em] text-nx-faint uppercase">Friday 16:00 IST</p>
+          <p className="text-xs tracking-[0.16em] text-nx-muted uppercase">Friday 16:00 IST</p>
           <p className="mt-2 font-serif text-3xl">Weekly demo</p>
           <p className="mt-2 text-sm text-nx-muted">{nexara[1]![1]}</p>
         </div>
@@ -155,10 +158,13 @@ export function Process({ variant = 'written', className }: ProcessProps) {
       {variant === 'filmstrip' ? (
         <div className="flex gap-3 overflow-x-auto pb-2">
           {nexara.map(([title, line], index) => (
-            <article key={title} className="min-w-[14rem] rounded-[1.3rem] border border-nx-border p-4">
-              <p className="text-xs text-nx-faint">{String(index + 1).padStart(2, '0')}</p>
-              <p className="mt-2 font-medium">{title}</p>
-              <p className="mt-2 text-sm text-nx-muted">{line}</p>
+            <article key={title} className="min-w-[14rem] overflow-hidden rounded-[1.3rem] border border-nx-border bg-nx-card">
+              <MediaFrame src={stills[index % stills.length]} alt="" className="h-20" />
+              <div className="p-4">
+                <p className="text-xs text-nx-muted">{String(index + 1).padStart(2, '0')}</p>
+                <p className="mt-2 font-medium">{title}</p>
+                <p className="mt-2 text-sm text-nx-muted">{line}</p>
+              </div>
             </article>
           ))}
         </div>

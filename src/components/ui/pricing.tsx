@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, focusRing } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -182,11 +183,12 @@ function Compact() {
 function Enterprise() {
   return (
     <div className="grid overflow-hidden rounded-[1.6rem] border border-nx-border md:grid-cols-2">
-      <div className="bg-nx-fg p-6 text-nx-bg md:p-8">
-        <p className="text-xs tracking-[0.18em] uppercase opacity-70">Enterprise</p>
-        <p className="mt-3 font-serif text-4xl leading-tight">A desk for the security review.</p>
-        <p className="mt-3 text-sm opacity-70">SSO, audit logs, and a named engineer. We will send the SOC 2 packet before the call.</p>
-        <span className="mt-6 inline-flex h-11 items-center rounded-full bg-nx-bg px-4 text-sm text-nx-fg">Talk to us</span>
+      <div className="relative overflow-hidden bg-nx-fg p-6 text-nx-bg md:p-8">
+        <MediaFrame src={media.featured} alt="" className="pointer-events-none absolute inset-0 opacity-30" />
+        <p className="relative text-xs tracking-[0.18em] uppercase opacity-70">Enterprise</p>
+        <p className="relative mt-3 font-serif text-4xl leading-tight">A desk for the security review.</p>
+        <p className="relative mt-3 text-sm opacity-70">SSO, audit logs, and a named engineer. We will send the SOC 2 packet before the call.</p>
+        <span className="relative mt-6 inline-flex h-11 items-center rounded-full bg-nx-bg px-4 text-sm text-nx-fg">Talk to us</span>
       </div>
       <ul className="space-y-3 bg-nx-card p-6 text-sm md:p-8">
         {['SAML and SCIM', 'Unlimited audit retention', 'Private export corridor', 'On-call desk in your timezone'].map((item) => (
