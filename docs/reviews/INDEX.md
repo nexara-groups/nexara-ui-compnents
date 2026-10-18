@@ -32,3 +32,12 @@ Round 3 reviews the owner-site expansion (30 heroes, section blocks, dashboard k
 | Sceptical design lead | `round-3-lead.md` | Reject. Does not reach or exceed the live sites. |
 
 A variant is approved only when all four agree. Round 3 does **not** approve the claim that the library now matches the owner sites. The catalogue and findable names (`hero / ac-remote`, `kit / healthcare`) are signed. The photography and 21st.dev scene density are not.
+
+Round 4 reviews the original media rebuild. Live sites are a quality bar only — not templates. Screenshots: `docs/audit/round-4/`.
+
+| Lens | File | Round 4 |
+| --- | --- | --- |
+| Senior visual designer | `round-4-visual.md` | Pending ([visual critic](bc-514c0a38-69f6-5b14-afde-fd52437963e7)) |
+| Interaction / motion | `round-4-motion.md` | Pending ([motion critic](bc-b06d104a-c984-55f6-8560-0425d052e3be)) |
+| Accessibility / responsive | `round-4-a11y.md` | Pending ([a11y critic](bc-0a076234-3cbe-5157-9005-3b0462ed0201)) |
+| Sceptical design lead | `round-4-lead.md` | Pending ([sceptical lead](bc-3facdc5c-af41-5810-bf98-3253c3ca9cc5)) |
