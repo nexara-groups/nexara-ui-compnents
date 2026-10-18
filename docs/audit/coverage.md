@@ -125,4 +125,4 @@ These are in-scope even when the parent item was already reviewed:
 - Grid / magnetic / typewriter / text-reveal / badge / chart-block stay construction-first. They have 10+ models; they are not cinematic scenes.
 - Ornamental weather / credit-card faces are still illustrations by design.
 - `--nx-faint` still appears on some already-overhauled heroes and services as decorative captions.
-- Full four-critic agreement on *every leftover cell* is still open until the round-6 panel files land.
+- Round-6 panel files have landed: leftover pass approved; construction-first cells remain named. Not a library-wide 21st.dev caption.
