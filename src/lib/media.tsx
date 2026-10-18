@@ -84,17 +84,27 @@ export function MediaFrame({
       {children ? (
         children
       ) : video ? (
-        <video
-          src={video}
-          poster={poster ?? src}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className={cn('size-full object-cover motion-reduce:hidden', imgClassName)}
-        />
+        <>
+          <video
+            src={video}
+            poster={poster ?? src}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className={cn('size-full object-cover motion-reduce:hidden', imgClassName)}
+          />
+          {poster || src ? (
+            <img src={poster ?? src} alt={alt} className={cn('hidden size-full object-cover motion-reduce:block', imgClassName)} />
+          ) : null}
+        </>
       ) : lottie ? (
-        <iframe title={alt || 'Motion'} src={lottie} className={cn('size-full border-0', imgClassName)} />
+        <>
+          <iframe title={alt || 'Motion'} src={lottie} className={cn('size-full border-0 motion-reduce:hidden', imgClassName)} />
+          {poster || src ? (
+            <img src={poster ?? src} alt={alt} className={cn('hidden size-full object-cover motion-reduce:block', imgClassName)} />
+          ) : null}
+        </>
       ) : src ? (
         <img src={src} alt={alt} className={cn('size-full object-cover', imgClassName)} />
       ) : null}

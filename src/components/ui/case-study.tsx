@@ -226,16 +226,24 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
               <p className="mt-2 text-sm text-nx-muted">{current.line}</p>
             </div>
           </article>
-          <div className="mt-3 flex justify-center gap-1.5">
-            {studies.map((study, index) => (
-              <button
-                key={study.id}
-                type="button"
-                aria-label={study.client}
-                className={cn(focusRing, 'size-2 rounded-full', index === active ? 'bg-nx-fg' : 'bg-nx-line')}
-                onClick={() => setActive(index)}
-              />
-            ))}
+          <div className="mt-3 flex items-center justify-center gap-3">
+            <div className="flex justify-center gap-1.5">
+              {studies.map((study, index) => (
+                <button
+                  key={study.id}
+                  type="button"
+                  aria-label={study.client}
+                  className={cn(focusRing, 'size-2 rounded-full', index === active ? 'bg-nx-fg' : 'bg-nx-line')}
+                  onClick={() => {
+                    setActive(index)
+                    setPaused(true)
+                  }}
+                />
+              ))}
+            </div>
+            <button type="button" className={cn(focusRing, 'text-xs text-nx-muted')} onClick={() => setPaused((value) => !value)}>
+              {paused ? 'Play cases' : 'Pause cases'}
+            </button>
           </div>
         </div>
       ) : null}
