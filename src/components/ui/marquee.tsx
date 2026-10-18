@@ -189,9 +189,9 @@ function samples(variant: MarqueeVariant): ReactNode {
   }
   if (variant === 'avatars') {
     return [
-      [media.people.anitha, 'Ada Klein'],
-      [media.people.kiran, 'Jonah Ruiz'],
-      [media.people.meera, 'Mira Chen'],
+      [media.people.anitha, 'Anitha Rao'],
+      [media.people.kiran, 'Kiran Reddy'],
+      [media.people.meera, 'Meera Shah'],
     ].map(([src, name]) => (
       <span key={name} className="inline-flex items-center gap-2 rounded-full border border-nx-border bg-nx-card pr-3">
         <MediaFrame src={src} alt={name} grain={false} className="size-8 shrink-0 rounded-full" />

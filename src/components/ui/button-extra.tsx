@@ -100,7 +100,7 @@ export function ExtraButton({
 
   if (variant === 'group') {
     return (
-      <div role="group" aria-label="Range" data-nexara="button" data-variant="group" className={cn('inline-flex overflow-hidden rounded-xl border border-nx-line bg-nx-card', className)}>
+      <div role="group" aria-label="Range" data-nexara="button" data-variant="group" className={cn('inline-flex rounded-xl border border-nx-line bg-nx-card', className)}>
         {['Day', 'Week', 'Month'].map((item) => (
           <button
             key={item}

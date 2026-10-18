@@ -41,3 +41,12 @@ Round 4 reviews the original media rebuild. Live sites are a quality bar only â€
 | Interaction / motion | `round-4-motion.md` | Conditional ([motion critic](bc-b06d104a-c984-55f6-8560-0425d052e3be)). Reel pause, count-up hold, and reduced-motion stills are the hold-backs. |
 | Accessibility / responsive | `round-4-a11y.md` | Conditional ([a11y critic](bc-0a076234-3cbe-5157-9005-3b0462ed0201)). Cream/navy, OTP, and case pause pass; shell disclosure and leftover APG remain. |
 | Sceptical design lead | `round-4-lead.md` | Conditional ([sceptical lead](https://cursor.com/agents/bc-3facdc5c-af41-5810-bf98-3253c3ca9cc5)). Stills replace drawings; people pack is still paint; logos/play/reuse holds. |
+
+Round 5 reviews the photoreal people pack, flat marks, wired reels, and labelled-still pass. Screenshots: `docs/audit/round-5/`.
+
+| Lens | File | Round 5 |
+| --- | --- | --- |
+| Senior visual designer | `round-5-visual.md` | Pending. Round 4 approved the stills. |
+| Interaction / motion | `round-5-motion.md` | Pending. |
+| Accessibility / responsive | `round-5-a11y.md` | Conditional ([a11y critic](https://cursor.com/agents/bc-ad614f93-d848-5586-a040-0a5c15714207)). Named OTP/faces/rings/caption/disclosure pass; radios, tabpanel, and faint-as-content remain. |
+| Sceptical design lead | `round-5-lead.md` | Conditional ([sceptical lead](https://cursor.com/agents/bc-1816708c-face-5378-ae7b-5d31e3047a12)). People, logos, Play, and Join hold. Labelled stills fail: Lumen phone was Carewell; HVAC checklist wells missed their captions. |

@@ -45,6 +45,11 @@ export const media = {
     studio: '/media/venue-studio.webp',
     climb: '/media/venue-climb.webp',
   },
+  hvac: {
+    ducted: '/media/hvac-ducted.webp',
+    cassette: '/media/hvac-cassette.webp',
+    plant: '/media/hvac-plant.webp',
+  },
   screens: {
     field: '/media/screen-field.webp',
     lumen: '/media/screen-lumen.webp',

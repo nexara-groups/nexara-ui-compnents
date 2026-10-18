@@ -33,8 +33,9 @@ No Unsplash or Pexels files are bundled. If you swap in licence-free stock, keep
 | `editorial-*.webp`, `fan-*.webp` | Collage / fan |
 | `door-*.webp` | Clinic doors |
 | `case-*.webp` | Case studies |
-| `venue-*.webp` | Court, field, pool, studio, climb |
-| `screen-*.webp` | App phone UI stills |
+| `venue-*.webp` | Court, field, pool, athletic studio, climb |
+| `hvac-*.webp` | Ducted lines, cassette, plant room |
+| `screen-*.webp` | Field and Lumen app phone UI stills |
 | `portrait-*.webp` | Team and avatars |
 | `mark-*.svg` | Flat logo marks |
 | `cinema-reel.mp4`, `cinema-reel.webm` | Cinema playable reel |

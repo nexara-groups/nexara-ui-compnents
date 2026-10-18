@@ -27,9 +27,9 @@ export interface ServicesProps {
 
 const climate = [
   { name: 'VRF rooms', items: ['Load calc on site', 'Quiet night set', 'Commissioning book'], src: media.climate },
-  { name: 'Ducted lines', items: ['Ceiling routes', 'Static pressure', 'Filter schedule'], src: media.device },
-  { name: 'Cassette', items: ['Four-way throw', 'Condensate pumps', 'Night set'], src: media.glass },
-  { name: 'Plant', items: ['Air and water cooled', 'Plant room', 'BMS handshake'], src: media.cases.climate },
+  { name: 'Ducted lines', items: ['Ceiling routes', 'Static pressure', 'Filter schedule'], src: media.hvac.ducted },
+  { name: 'Cassette', items: ['Four-way throw', 'Condensate pumps', 'Night set'], src: media.hvac.cassette },
+  { name: 'Plant', items: ['Air and water cooled', 'Plant room', 'BMS handshake'], src: media.hvac.plant },
 ]
 
 const crews = [

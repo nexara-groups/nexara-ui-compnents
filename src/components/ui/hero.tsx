@@ -282,7 +282,7 @@ export function Hero({
         <div className="mx-auto max-w-3xl text-center">
           <Title className={cn(titleClass, 'text-5xl md:text-6xl')}>{title}</Title>
           <div className="mx-auto mt-4 max-w-lg">{lede}</div>
-          <form className="mt-8 flex overflow-hidden rounded-full border border-nx-border bg-nx-card shadow-[var(--nx-shadow)]" action="#" onSubmit={(event) => event.preventDefault()}>
+          <form className="mt-8 flex rounded-full border border-nx-border bg-nx-card shadow-[var(--nx-shadow)]" action="#" onSubmit={(event) => event.preventDefault()}>
             <label className="sr-only" htmlFor="nexara-hero-search">Search</label>
             <input id="nexara-hero-search" className={cn(focusRing, 'h-14 flex-1 rounded-full bg-transparent px-5 text-nx-fg')} placeholder="Search the library" />
             <button type="submit" className="m-1 rounded-full bg-nx-fg px-5 text-sm text-nx-bg">Search</button>

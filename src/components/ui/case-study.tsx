@@ -62,13 +62,25 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
             {studies.map((study, index) => (
               <button
                 key={study.id}
+                id={`case-tab-${study.id}`}
                 type="button"
                 role="tab"
                 aria-selected={index === active}
+                aria-controls={`case-panel-${study.id}`}
+                tabIndex={index === active ? 0 : -1}
                 className={cn(focusRing, 'rounded-full px-3 py-1.5 text-xs', index === active ? 'bg-nx-fg text-nx-bg' : 'text-nx-muted hover:bg-nx-soft')}
                 onClick={() => {
                   setActive(index)
                   setPaused(true)
+                }}
+                onKeyDown={(event) => {
+                  if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return
+                  event.preventDefault()
+                  const delta = event.key === 'ArrowRight' ? 1 : -1
+                  const next = (index + delta + studies.length) % studies.length
+                  setActive(next)
+                  setPaused(true)
+                  event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[next]?.focus()
                 }}
               >
                 {study.client}
@@ -76,11 +88,21 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
             ))}
           </div>
           {looping ? (
-            <button type="button" className={cn(focusRing, 'mt-3 text-xs text-nx-muted')} onClick={() => setPaused((value) => !value)}>
+            <button
+              type="button"
+              aria-pressed={!paused}
+              className={cn(focusRing, 'mt-3 text-xs text-nx-muted')}
+              onClick={() => setPaused((value) => !value)}
+            >
               {paused ? 'Play cases' : 'Pause cases'}
             </button>
           ) : null}
-          <article className="mt-5 grid min-h-48 overflow-hidden rounded-[1.6rem] bg-[#111113] text-white md:grid-cols-[1.1fr_0.9fr]">
+          <article
+            id={`case-panel-${current.id}`}
+            role="tabpanel"
+            aria-labelledby={`case-tab-${current.id}`}
+            className="mt-5 grid min-h-48 overflow-hidden rounded-[1.6rem] bg-[#111113] text-white md:grid-cols-[1.1fr_0.9fr]"
+          >
             <div className="p-8">
               <p className="text-[11px] tracking-[0.18em] text-[#c8ff4d] uppercase">{current.sector}</p>
               <h3 className="mt-3 font-serif text-4xl">{current.client}</h3>
@@ -241,7 +263,7 @@ export function CaseStudy({ variant = 'tabs', className }: CaseStudyProps) {
                 />
               ))}
             </div>
-            <button type="button" className={cn(focusRing, 'text-xs text-nx-muted')} onClick={() => setPaused((value) => !value)}>
+            <button type="button" aria-pressed={!paused} className={cn(focusRing, 'text-xs text-nx-muted')} onClick={() => setPaused((value) => !value)}>
               {paused ? 'Play cases' : 'Pause cases'}
             </button>
           </div>

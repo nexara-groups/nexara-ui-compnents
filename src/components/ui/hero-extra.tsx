@@ -307,7 +307,7 @@ export function ExtraHero({
           <Title className={cn(titleClass, 'text-5xl')}>{title}</Title>
           <div className="mt-4">{lede}</div>
         </div>
-        <div className="mx-auto mt-10 grid max-w-5xl grid-cols-3 gap-3" style={{ transform: 'perspective(900px) rotateX(16deg)' }}>
+        <div className="mx-auto mt-10 grid max-w-5xl grid-cols-3 gap-3" aria-hidden="true" style={{ transform: 'perspective(900px) rotateX(16deg)' }}>
           {tiles.map((src) => (
             <MediaFrame key={src} src={src} alt="" className="h-28 rounded-xl border border-nx-border" />
           ))}
@@ -411,25 +411,70 @@ function AcRemote({
               +
             </button>
           </div>
-          <div className="flex flex-wrap items-center gap-1" role="radiogroup" aria-label="Mode">
-            <span className="mr-1 text-[10px] tracking-[0.16em] text-white/45 uppercase">Mode</span>
-            {modes.map((item) => (
-              <button key={item} type="button" role="radio" aria-checked={mode === item} className={cn(focusRing, 'rounded-full px-3 py-1.5', mode === item ? modeTone[item] : 'text-white/70')} onClick={() => setMode(item)}>
-                {item}
-              </button>
-            ))}
-          </div>
-          <div className="flex items-center gap-1" role="radiogroup" aria-label="Fan">
-            <span className="mr-1 text-[10px] tracking-[0.16em] text-white/45 uppercase">Fan</span>
-            {fans.map((item) => (
-              <button key={item} type="button" role="radio" aria-checked={fan === item} className={cn(focusRing, 'rounded-full px-3 py-1.5', fan === item ? 'bg-white text-[#111]' : 'text-white/70')} onClick={() => setFan(item)}>
-                {item}
-              </button>
-            ))}
-          </div>
+          <RadioChips
+            label="Mode"
+            value={mode}
+            options={modes}
+            onChange={setMode}
+            tone={(item) => (item === mode ? modeTone[item] : 'text-white/70')}
+          />
+          <RadioChips
+            label="Fan"
+            value={fan}
+            options={fans}
+            onChange={setFan}
+            tone={(item) => (item === fan ? 'bg-white text-[#111]' : 'text-white/70')}
+          />
         </div>
       </div>
     </section>
+  )
+}
+
+function RadioChips<T extends string>({
+  label,
+  value,
+  options,
+  onChange,
+  tone,
+}: {
+  label: string
+  value: T
+  options: readonly T[]
+  onChange: (value: T) => void
+  tone: (item: T) => string
+}) {
+  return (
+    <div className="flex flex-wrap items-center gap-1" role="radiogroup" aria-label={label}>
+      <span className="mr-1 text-[10px] tracking-[0.16em] text-white/45 uppercase">{label}</span>
+      {options.map((item) => {
+        const selected = item === value
+        return (
+          <button
+            key={item}
+            type="button"
+            role="radio"
+            aria-checked={selected}
+            tabIndex={selected ? 0 : -1}
+            className={cn(focusRing, 'rounded-full px-3 py-1.5', tone(item))}
+            onClick={() => onChange(item)}
+            onKeyDown={(event) => {
+              if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft' && event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
+              event.preventDefault()
+              const index = options.indexOf(value)
+              const delta = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1
+              const next = options[(index + delta + options.length) % options.length]
+              if (!next) return
+              onChange(next)
+              const radios = event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('[role="radio"]')
+              radios?.[(index + delta + options.length) % options.length]?.focus()
+            }}
+          >
+            {item}
+          </button>
+        )
+      })}
+    </div>
   )
 }
 

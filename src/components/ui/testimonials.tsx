@@ -25,9 +25,9 @@ export interface TestimonialsProps {
 }
 
 const quotes = [
-  { name: 'Ada Klein', role: 'Design lead, Harbor', handle: '@ada', text: 'The registry finally feels like a product, not a folder of snippets.', src: media.people.anitha },
-  { name: 'Jonah Ruiz', role: 'Engineer, Atlas', handle: '@jonah', text: 'We shipped the mast in a week because the variants were already distinct.', src: media.people.kiran },
-  { name: 'Mira Chen', role: 'PM, Field', handle: '@mira', text: 'Quiet type, real numbers, light and dark. That was the bar.', src: media.people.meera },
+  { name: 'Anitha Rao', role: 'Design lead, Harbor', handle: '@anitha', text: 'The registry finally feels like a product, not a folder of snippets.', src: media.people.anitha },
+  { name: 'Kiran Reddy', role: 'Engineer, Atlas', handle: '@kiran', text: 'We shipped the mast in a week because the variants were already distinct.', src: media.people.kiran },
+  { name: 'Meera Shah', role: 'PM, Field', handle: '@meera', text: 'Quiet type, real numbers, light and dark. That was the bar.', src: media.people.meera },
   { name: 'Eli Park', role: 'Founder, Lumen', handle: '@eli', text: 'Agents stop asking which button. They ask for button / shimmer and move on.', src: media.people.suresh },
   { name: 'Noor Hale', role: 'Brand, North', handle: '@noor', text: 'Geist, one accent, and a hairline. We stopped restyling every paste.', src: media.people.latha },
   { name: 'Sam Ori', role: 'Staff, Tide', handle: '@sam', text: 'The modal gallery actually shows the dialog. That should not feel rare.', src: media.people.vikram },
@@ -162,7 +162,7 @@ function HarborReel() {
       <div className="absolute inset-0 bg-black/45" />
       <div className="absolute inset-0 flex flex-col justify-end p-6">
         <PlayControl playing={playing} onToggle={() => setPlaying((value) => !value)} />
-        <p className="mt-6 font-serif text-3xl">Anitha on Harbor</p>
+        <p className="mt-6 font-serif text-3xl">Harbor after dark</p>
         <p className="mt-2 text-sm text-white/70">2:18 · How the registry landed in production</p>
       </div>
     </div>
