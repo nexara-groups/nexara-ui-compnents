@@ -43,7 +43,7 @@ const press = [
 
 /**
  * Logo cloud
- * Twelve brand strips using original mark stills — never serif words as logos.
+ * Twelve brand strips using original flat marks — never serif words or 3D tokens.
  * Copy this file, `src/lib/media.tsx`, `src/lib/utils.ts`, and `public/media`.
  */
 export function LogoCloud({ variant = 'dealers', className }: LogoCloudProps) {
@@ -159,7 +159,7 @@ function Mark({
 }) {
   return (
     <figure className={cn('overflow-hidden rounded-2xl border border-nx-border bg-nx-card', invert && 'border-white/10 bg-white/6', slim && 'min-w-28', tall && 'h-24')}>
-      <MediaFrame src={mark.src} alt={mark.name} grain={false} className={cn(tall ? 'h-24' : 'h-16')} imgClassName="object-contain p-3" />
+      <MediaFrame src={mark.src} alt={mark.name} grain={false} className={cn(tall ? 'h-24' : 'h-16')} imgClassName={cn('object-contain p-3', invert && 'invert')} />
     </figure>
   )
 }

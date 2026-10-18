@@ -203,7 +203,7 @@ export const variantDocs = {
   hero: [
     { id: 'saas', name: 'SaaS', description: 'Product window beside the pitch.', usage: `<Hero variant="saas" title="Ship the interface" />` },
     { id: 'app', name: 'App', description: 'Phones and store badges.', usage: `<Hero variant="app" title="Take the room with you" />` },
-    { id: 'cinema', name: 'Cinema', description: 'Full-bleed still with play.', usage: `<Hero variant="cinema" title="Watch the room" />` },
+    { id: 'cinema', name: 'Cinema', description: 'Full-bleed reel with a working play control.', usage: `<Hero variant="cinema" title="Watch the room" />` },
     { id: 'logos', name: 'Logos', description: 'Logo row and a quote.', usage: `<Hero variant="logos" title="Studios already here" />` },
     { id: 'pricing', name: 'Pricing', description: 'Price card leads the page.', usage: `<Hero variant="pricing" title="One plan" />` },
     { id: 'studio', name: 'Studio', description: 'Typographic masthead.', usage: `<Hero variant="studio" title="Move the furniture" />` },
@@ -309,7 +309,7 @@ export const variantDocs = {
     { id: 'stacked', name: 'Stacked', description: 'Sheet under the toast.', usage: `<Toast variant="stacked" />` },
   ],
   avatar: [
-    { id: 'image', name: 'Image', description: 'Photographic portrait default.', usage: `<Avatar variant="image" />` },
+    { id: 'image', name: 'Image', description: 'Photographic portrait default.', usage: `<Avatar variant="image" name="Anitha Rao" />` },
     { id: 'initials', name: 'Initials', description: 'Letters on a soft field.', usage: `<Avatar variant="initials" />` },
     { id: 'status', name: 'Status', description: 'Presence dot.', usage: `<Avatar variant="status" />` },
     { id: 'group', name: 'Group', description: 'Stacked faces.', usage: `<Avatar variant="group" />` },
@@ -523,7 +523,7 @@ export const variantDocs = {
     { id: 'feed', name: 'Feed', description: 'Simple feed.', usage: `<News variant="feed" />` },
   ],
   'logo-cloud': [
-    { id: 'dealers', name: 'Dealers', description: 'Partner mark stills.', usage: `<LogoCloud variant="dealers" />` },
+    { id: 'dealers', name: 'Dealers', description: 'Partner marks as flat originals.', usage: `<LogoCloud variant="dealers" />` },
     { id: 'strip', name: 'Strip', description: 'Authorised strip.', usage: `<LogoCloud variant="strip" />` },
     { id: 'grid', name: 'Grid', description: 'Logo cells.', usage: `<LogoCloud variant="grid" />` },
     { id: 'marquee', name: 'Marquee', description: 'Looping marks.', usage: `<LogoCloud variant="marquee" />` },

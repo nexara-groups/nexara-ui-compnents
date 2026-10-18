@@ -85,6 +85,7 @@ export function DataTable({ variant = 'filter', className }: DataTableProps) {
         </div>
       ) : null}
       <table className={cn('w-full text-left text-sm', dense && 'text-xs')}>
+        <caption className="sr-only">Desk rows</caption>
         <thead className="bg-nx-elevated text-[11px] tracking-[0.12em] text-nx-muted uppercase">
           <tr>
             <th className="px-3 py-2">Name</th>

@@ -83,7 +83,7 @@ function heroCopy(id: string) {
   const map: Record<string, { eyebrow: string; title: string; description: string; action: string }> = {
     saas: { eyebrow: 'Component registry', title: 'Ship the interface your team already described', description: 'A product window beside the pitch. Swap the title, actions, and media.', action: 'Browse the registry' },
     app: { eyebrow: 'iOS and Android', title: 'Take the room with you', description: 'Store badges and a pair of phones. The mast travels.', action: 'Get the app' },
-    cinema: { eyebrow: 'Watch', title: 'Harbor after dark', description: 'A still, a play mark, and a title that sits on the grade.', action: 'Play reel' },
+    cinema: { eyebrow: 'Watch', title: 'Harbor after dark', description: 'A reel, a play control, and a title that sits on the grade.', action: 'Visit Harbor' },
     logos: { eyebrow: 'Trusted in production', title: 'Studios already here', description: 'A logo row and a quote from Harbor.', action: 'See the list' },
     pricing: { eyebrow: 'Pricing', title: 'One plan for the desk', description: 'The price card leads. $48, three includes, a start.', action: 'Start Studio' },
     studio: { eyebrow: 'Studio index', title: 'Move the furniture', description: 'A typographic masthead. Folio on the right, rule under the title.', action: 'Open the index' },
@@ -92,7 +92,7 @@ function heroCopy(id: string) {
     search: { eyebrow: 'Library', title: 'Find a component', description: 'Search is the primary action.', action: 'Search' },
     product: { eyebrow: 'This week', title: 'Twenty-four rooms open', description: 'App chrome, a sidebar, and three metric tiles.', action: 'Open overview' },
     journal: { eyebrow: 'The journal', title: 'Issue 18', description: 'A magazine cover beside the feature.', action: 'Read the issue' },
-    waitlist: { eyebrow: '2,400 already in', title: 'Ask for a seat', description: 'Avatars, a count, and an email field.', action: 'Join' },
+    waitlist: { eyebrow: '2,400 already in', title: 'Ask for a seat', description: 'Avatars, a count, and an email field.', action: '' },
     'ac-remote': { eyebrow: 'Harbor Climate', title: 'Cooling that stays commissioned.', description: 'Power, temperature, mode, and fan on a live remote bar.', action: 'Ask for a plant walk' },
     divisions: { eyebrow: 'The premise', title: 'One core. Three forces.', description: 'Academy, Labs, and Studio under one roof.', action: 'Meet the desk' },
     'four-doors': { eyebrow: 'Lumen Care', title: 'Four doors, one floor.', description: 'Therapy, consult, pharmacy, lab.', action: 'Book a chair' },
@@ -208,7 +208,7 @@ export function renderVariantPreview(slug: string, id: string): ReactNode {
           eyebrow={copy.eyebrow}
           title={copy.title}
           description={copy.description}
-          actions={<Button size="sm">{copy.action}</Button>}
+          actions={copy.action ? <Button size="sm">{copy.action}</Button> : undefined}
           className="px-4 py-8 md:py-10"
           titleClassName="text-3xl md:text-4xl"
         />

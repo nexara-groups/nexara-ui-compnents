@@ -1,6 +1,7 @@
 'use client'
 
-import { MediaFrame, media } from '@/lib/media.tsx'
+import { useState } from 'react'
+import { MediaFrame, PlayControl, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -112,19 +113,7 @@ export function Testimonials({ variant = 'quote', className }: TestimonialsProps
         </figure>
       ) : null}
 
-      {variant === 'video' ? (
-        <div className="relative overflow-hidden rounded-[1.5rem] text-white">
-          <MediaFrame src={media.cinema} alt="" className="min-h-52" />
-          <div className="absolute inset-0 bg-black/45" />
-          <div className="absolute inset-0 flex flex-col justify-end p-6">
-            <span className="inline-flex size-12 items-center justify-center rounded-full bg-white text-[#111]">
-              <span className="ml-0.5">▶</span>
-            </span>
-            <p className="mt-6 font-serif text-3xl">Ada on Harbor</p>
-            <p className="mt-2 text-sm text-white/70">2:18 · How the registry landed in production</p>
-          </div>
-        </div>
-      ) : null}
+      {variant === 'video' ? <HarborReel /> : null}
 
       {variant === 'stat' ? (
         <div className="grid gap-4 sm:grid-cols-3">
@@ -162,6 +151,21 @@ export function Testimonials({ variant = 'quote', className }: TestimonialsProps
         </ol>
       ) : null}
     </section>
+  )
+}
+
+function HarborReel() {
+  const [playing, setPlaying] = useState(false)
+  return (
+    <div className="relative overflow-hidden rounded-[1.5rem] text-white">
+      <MediaFrame src={media.cinema} video={media.reel} poster={media.cinema} playing={playing} alt="" className="min-h-52" />
+      <div className="absolute inset-0 bg-black/45" />
+      <div className="absolute inset-0 flex flex-col justify-end p-6">
+        <PlayControl playing={playing} onToggle={() => setPlaying((value) => !value)} />
+        <p className="mt-6 font-serif text-3xl">Anitha on Harbor</p>
+        <p className="mt-2 text-sm text-white/70">2:18 · How the registry landed in production</p>
+      </div>
+    </div>
   )
 }
 

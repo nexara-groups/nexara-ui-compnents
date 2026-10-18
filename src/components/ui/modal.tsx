@@ -13,7 +13,7 @@ import {
   type ReactNode,
 } from 'react'
 import { createPortal } from 'react-dom'
-import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
+import { cn, focusRing, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
@@ -414,7 +414,7 @@ export function ModalContent({
               {variant === 'command' ? (
                 <label className="mb-3 flex h-11 items-center rounded-xl border border-nx-border bg-nx-bg px-3 text-sm text-nx-muted">
                   <span className="sr-only">Command</span>
-                  <input className="w-full bg-transparent text-nx-fg outline-none" placeholder="Type a command" />
+                  <input className={cn(focusRing, 'w-full rounded-lg bg-transparent text-nx-fg')} placeholder="Type a command" />
                 </label>
               ) : null}
               {variant === 'otp' ? (

@@ -1,8 +1,8 @@
 'use client'
 
-import { type ReactNode } from 'react'
-import { MediaFrame, media } from '@/lib/media.tsx'
-import { cn } from '@/lib/utils.ts'
+import { type ReactNode, useState } from 'react'
+import { MediaFrame, PlayControl, faces, media } from '@/lib/media.tsx'
+import { cn, focusRing } from '@/lib/utils.ts'
 import { EXTRA_HERO, ExtraHero, type ExtraHeroVariant } from './hero-extra.tsx'
 
 const CORE_HERO = [
@@ -30,7 +30,7 @@ const marks = [
   { name: 'Orbit', src: media.marks.orbit },
 ] as const
 
-const waitlistFaces = [media.people.anitha, media.people.kiran, media.people.meera, media.people.suresh]
+const waitlistFaces = faces.slice(0, 4)
 
 export type HeroVariant = (typeof VARIANTS)[number]
 
@@ -153,29 +153,27 @@ export function Hero({
             </div>
           </div>
           <div className={cn('flex items-end justify-center gap-4', mediaClassName)}>
-            <Phone src={image ?? media.device} compact />
-            <Phone src={image ?? media.featured} />
+            <Phone src={image ?? media.screens.field} compact />
+            <Phone src={image ?? media.screens.lumen} />
           </div>
         </div>
       ) : null}
 
       {layout === 'cinema' ? (
-        <div className="relative mx-auto min-h-[24rem] max-w-6xl overflow-hidden rounded-[1.8rem]">
-          <MediaFrame src={image ?? media.cinema} video={video} poster={poster} lottie={lottie} alt="" className={cn('absolute inset-0', mediaClassName)}>
-            {mediaSlot}
-          </MediaFrame>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/10" />
-          <div className="relative z-10 flex min-h-[24rem] flex-col justify-end p-8 md:p-12">
-            <Title className={cn(titleClass, 'max-w-xl text-5xl text-white md:text-6xl')}>{title}</Title>
-            <div className="mt-3 max-w-lg text-white/75">{lede}</div>
-            <div className={cn('mt-6 flex items-center gap-3', actionsClassName)}>
-              <span className="inline-flex size-12 items-center justify-center rounded-full bg-white text-[#111]">
-                <span className="ml-0.5">▶</span>
-              </span>
-              {actions}
-            </div>
-          </div>
-        </div>
+        <CinemaHero
+          Title={Title}
+          title={title}
+          lede={lede}
+          actions={actions}
+          mediaSlot={mediaSlot}
+          image={image}
+          video={video}
+          poster={poster}
+          lottie={lottie}
+          titleClass={titleClass}
+          actionsClassName={actionsClassName}
+          mediaClassName={mediaClassName}
+        />
       ) : null}
 
       {layout === 'logos' ? (
@@ -192,9 +190,9 @@ export function Hero({
           </ul>
           <blockquote className="mx-auto mt-10 max-w-xl text-left">
             <p className="font-serif text-2xl">“The room finally feels finished.”</p>
-            <footer className="mt-2 flex items-center gap-3 text-sm text-nx-muted">
-              <MediaFrame src={media.people.anitha} alt="Ada Klein" grain={false} className="size-9 rounded-full" />
-              Ada Klein, Harbor
+            <footer className="mt-2 flex min-w-0 items-center gap-3 text-sm text-nx-muted">
+              <MediaFrame src={media.people.anitha} alt="Anitha Rao" grain={false} className="size-9 shrink-0 rounded-full" />
+              <span className="min-w-0">Anitha Rao, Harbor</span>
             </footer>
           </blockquote>
           <div className={cn('mt-6 flex justify-center', actionsClassName)}>{actions}</div>
@@ -286,7 +284,7 @@ export function Hero({
           <div className="mx-auto mt-4 max-w-lg">{lede}</div>
           <form className="mt-8 flex overflow-hidden rounded-full border border-nx-border bg-nx-card shadow-[var(--nx-shadow)]" action="#" onSubmit={(event) => event.preventDefault()}>
             <label className="sr-only" htmlFor="nexara-hero-search">Search</label>
-            <input id="nexara-hero-search" className="h-14 flex-1 bg-transparent px-5 text-nx-fg outline-none" placeholder="Search the library" />
+            <input id="nexara-hero-search" className={cn(focusRing, 'h-14 flex-1 rounded-full bg-transparent px-5 text-nx-fg')} placeholder="Search the library" />
             <button type="submit" className="m-1 rounded-full bg-nx-fg px-5 text-sm text-nx-bg">Search</button>
           </form>
           <div className={cn('mt-4 flex justify-center', actionsClassName)}>{actions}</div>
@@ -323,7 +321,7 @@ export function Hero({
       {layout === 'journal' ? (
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.85fr_1.15fr]">
           <div className={cn('relative min-h-72 overflow-hidden', mediaClassName)}>
-            <MediaFrame src={image ?? media.featured} video={video} poster={poster} lottie={lottie} alt="Issue cover" className="absolute inset-0">
+            <MediaFrame src={image ?? media.journal} video={video} poster={poster} lottie={lottie} alt="Issue 18 cover" className="absolute inset-0">
               {mediaSlot}
             </MediaFrame>
             {mediaSlot ? null : (
@@ -344,9 +342,9 @@ export function Hero({
 
       {layout === 'waitlist' ? (
         <div className="mx-auto max-w-xl text-center">
-          <div className="mb-4 flex justify-center -space-x-2">
-            {waitlistFaces.map((src) => (
-              <MediaFrame key={src} src={src} alt="" grain={false} className="size-10 rounded-full border-2 border-nx-bg" />
+          <div className="mb-4 flex justify-center -space-x-2" role="img" aria-label={waitlistFaces.map((person) => person.name).join(', ')}>
+            {waitlistFaces.map((person) => (
+              <MediaFrame key={person.src} src={person.src} alt={person.name} grain={false} className="size-10 shrink-0 rounded-full border-2 border-nx-bg" />
             ))}
           </div>
           <p className={cn('text-xs tracking-[0.18em] text-nx-muted uppercase', eyebrowClassName)}>{eyebrow ?? '2,400 already in'}</p>
@@ -354,13 +352,67 @@ export function Hero({
           <div className="mx-auto mt-4 max-w-md">{lede}</div>
           <form className="mt-6 flex gap-2" action="#" onSubmit={(event) => event.preventDefault()}>
             <label className="sr-only" htmlFor="nexara-waitlist">Email</label>
-            <input id="nexara-waitlist" type="email" placeholder="you@studio.com" className="h-12 flex-1 rounded-full border border-nx-border bg-nx-card px-4 text-nx-fg outline-none" />
+            <input id="nexara-waitlist" type="email" placeholder="you@studio.com" className={cn(focusRing, 'h-12 flex-1 rounded-full border border-nx-border bg-nx-card px-4 text-nx-fg')} />
             <button type="submit" className="h-12 rounded-full bg-nx-fg px-5 text-sm text-nx-bg">Join</button>
           </form>
-          <div className={cn('mt-4', actionsClassName)}>{actions}</div>
+          {actions ? <div className={cn('mt-4', actionsClassName)}>{actions}</div> : null}
         </div>
       ) : null}
     </section>
+  )
+}
+
+function CinemaHero({
+  Title,
+  title,
+  lede,
+  actions,
+  mediaSlot,
+  image,
+  video,
+  poster,
+  lottie,
+  titleClass,
+  actionsClassName,
+  mediaClassName,
+}: {
+  Title: 'h1' | 'h2' | 'h3'
+  title: ReactNode
+  lede: ReactNode
+  actions?: ReactNode
+  mediaSlot?: ReactNode
+  image?: string
+  video?: string
+  poster?: string
+  lottie?: string
+  titleClass: string
+  actionsClassName?: string
+  mediaClassName?: string
+}) {
+  const [playing, setPlaying] = useState(false)
+  return (
+    <div className="relative mx-auto min-h-[24rem] max-w-6xl overflow-hidden rounded-[1.8rem]">
+      <MediaFrame
+        src={image ?? media.cinema}
+        video={video ?? media.reel}
+        poster={poster ?? media.cinema}
+        lottie={lottie}
+        playing={playing}
+        alt=""
+        className={cn('absolute inset-0', mediaClassName)}
+      >
+        {mediaSlot}
+      </MediaFrame>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/10" />
+      <div className="relative z-10 flex min-h-[24rem] flex-col justify-end p-8 md:p-12">
+        <Title className={cn(titleClass, 'max-w-xl text-5xl text-white md:text-6xl')}>{title}</Title>
+        <div className="mt-3 max-w-lg text-white/75">{lede}</div>
+        <div className={cn('mt-6 flex items-center gap-3', actionsClassName)}>
+          <PlayControl playing={playing} onToggle={() => setPlaying((value) => !value)} />
+          {actions}
+        </div>
+      </div>
+    </div>
   )
 }
 

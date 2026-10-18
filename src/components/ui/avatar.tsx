@@ -1,6 +1,6 @@
 'use client'
 
-import { MediaFrame, media } from '@/lib/media.tsx'
+import { MediaFrame, faces, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -25,14 +25,14 @@ export interface AvatarProps {
   className?: string
 }
 
-const faces = [media.people.anitha, media.people.kiran, media.people.meera]
+const stack = faces.slice(0, 3)
 
 /**
  * Avatar
- * Ten identity constructions. Photographic defaults; initials only when asked.
+ * Ten identity constructions. Photographic portraits by default; initials only when asked.
  * Copy this file, `src/lib/media.tsx`, `src/lib/utils.ts`, and `public/media`.
  */
-export function Avatar({ variant = 'image', name = 'Ada Klein', src, className }: AvatarProps) {
+export function Avatar({ variant = 'image', name = 'Anitha Rao', src, className }: AvatarProps) {
   const initials = name
     .split(' ')
     .map((part) => part[0])
@@ -42,9 +42,15 @@ export function Avatar({ variant = 'image', name = 'Ada Klein', src, className }
 
   if (variant === 'group') {
     return (
-      <div data-nexara="avatar" data-variant="group" className={cn('flex -space-x-2', className)}>
-        {faces.map((shot) => (
-          <MediaFrame key={shot} src={shot} alt="" grain={false} className="size-9 rounded-full border-2 border-nx-bg" />
+      <div
+        data-nexara="avatar"
+        data-variant="group"
+        role="img"
+        aria-label={stack.map((person) => person.name).join(', ')}
+        className={cn('flex -space-x-2', className)}
+      >
+        {stack.map((person) => (
+          <MediaFrame key={person.src} src={person.src} alt={person.name} grain={false} className="size-9 shrink-0 rounded-full border-2 border-nx-bg" />
         ))}
       </div>
     )

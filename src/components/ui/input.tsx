@@ -143,7 +143,13 @@ function OtpField({ className, defaultValue = '418' }: { className?: string; def
   }
 
   return (
-    <div data-nexara="input" data-variant="otp" className={cn('flex gap-2', className)}>
+    <div
+      role="group"
+      aria-label="One-time code"
+      data-nexara="input"
+      data-variant="otp"
+      className={cn('flex gap-2', className)}
+    >
       {digits.map((digit, index) => (
         <input
           key={index}
@@ -158,7 +164,7 @@ function OtpField({ className, defaultValue = '418' }: { className?: string; def
           onChange={(event) => onChange(index, event.target.value)}
           onKeyDown={(event) => onKeyDown(index, event)}
           onPaste={onPaste}
-          className={cn(focusRing, 'size-12 rounded-xl border border-nx-border bg-nx-card text-center font-mono text-xl')}
+          className={cn(focusRing, 'size-12 rounded-xl border border-nx-fg/45 bg-nx-card text-center font-mono text-xl')}
         />
       ))}
     </div>

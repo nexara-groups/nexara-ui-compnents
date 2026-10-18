@@ -54,12 +54,12 @@ const why = [
 ]
 
 const discs = [
-  { name: 'Track', src: media.sports },
-  { name: 'Court', src: media.cases.track },
-  { name: 'Field', src: media.field },
-  { name: 'Pool', src: media.doors.therapy },
-  { name: 'Studio', src: media.featured },
-  { name: 'Climb', src: media.cases.build },
+  { name: 'Track', src: media.venues.track },
+  { name: 'Court', src: media.venues.court },
+  { name: 'Field', src: media.venues.field },
+  { name: 'Pool', src: media.venues.pool },
+  { name: 'Studio', src: media.venues.studio },
+  { name: 'Climb', src: media.venues.climb },
 ]
 
 /**

@@ -1419,7 +1419,7 @@
         {
           "name": "cinema",
           "title": "Cinema",
-          "description": "Full-bleed still with play.",
+          "description": "Full-bleed reel with a working play control.",
           "usage": "<Hero variant=\"cinema\" title=\"Watch the room\" />"
         },
         {
@@ -2149,13 +2149,13 @@
           "type": "registry:lib"
         }
       ],
-      "usage": "<Avatar variant=\"image\" />",
+      "usage": "<Avatar variant=\"image\" name=\"Anitha Rao\" />",
       "variants": [
         {
           "name": "image",
           "title": "Image",
           "description": "Photographic portrait default.",
-          "usage": "<Avatar variant=\"image\" />"
+          "usage": "<Avatar variant=\"image\" name=\"Anitha Rao\" />"
         },
         {
           "name": "initials",
@@ -3674,7 +3674,7 @@
         {
           "name": "dealers",
           "title": "Dealers",
-          "description": "Partner mark stills.",
+          "description": "Partner marks as flat originals.",
           "usage": "<LogoCloud variant=\"dealers\" />"
         },
         {

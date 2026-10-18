@@ -514,18 +514,18 @@ export function Example() {
     slug: 'avatar',
     name: 'Avatar',
     category: 'Identity',
-    description: 'Ten identity constructions with photographic defaults. Initials only when asked.',
+    description: 'Ten identity constructions with photographic portrait defaults. Initials only when asked.',
     path: 'src/components/ui/avatar.tsx',
     dependencies: styleDeps,
     registryDependencies: ['utils'],
     usage: `import { Avatar } from '@/components/ui/avatar'
 
 export function Example() {
-  return <Avatar variant="status" name="Ada Klein" />
+  return <Avatar variant="status" name="Anitha Rao" />
 }`,
     props: [
-      { name: 'variant', type: 'image | initials | status | group | square | ring | upload | icon | story | mention', defaultValue: 'image', description: 'Identity construction. image is photographic by default.' },
-      { name: 'name', type: 'string', defaultValue: 'Ada Klein', description: 'Used for initials and the mention label.' },
+      { name: 'variant', type: 'image | initials | status | group | square | ring | upload | icon | story | mention', defaultValue: 'image', description: 'Identity construction. image is a photographic portrait by default.' },
+      { name: 'name', type: 'string', defaultValue: 'Anitha Rao', description: 'Used for initials and the mention label.' },
       { name: 'src', type: 'string', description: 'Portrait URL. Defaults to a bundled original.' },
     ],
     Demo: AvatarDemo,

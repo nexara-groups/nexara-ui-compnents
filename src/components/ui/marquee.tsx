@@ -194,7 +194,7 @@ function samples(variant: MarqueeVariant): ReactNode {
       [media.people.meera, 'Mira Chen'],
     ].map(([src, name]) => (
       <span key={name} className="inline-flex items-center gap-2 rounded-full border border-nx-border bg-nx-card pr-3">
-        <MediaFrame src={src} alt="" grain={false} className="size-8 rounded-full" />
+        <MediaFrame src={src} alt={name} grain={false} className="size-8 shrink-0 rounded-full" />
         <span className="text-sm">{name}</span>
       </span>
     ))

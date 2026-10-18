@@ -1,6 +1,7 @@
 'use client'
 
-import { MediaFrame, media } from '@/lib/media.tsx'
+import { useState } from 'react'
+import { MediaFrame, PlayControl, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -130,18 +131,7 @@ export function News({ variant = 'bulletin', className }: NewsProps) {
         </ul>
       ) : null}
 
-      {variant === 'video' ? (
-        <article className="overflow-hidden rounded-[1.5rem] border border-nx-border">
-          <div className="relative grid h-40 place-items-center text-white">
-            <MediaFrame src={media.sports} alt="" className="absolute inset-0" />
-            <span className="relative grid size-12 place-items-center rounded-full bg-white text-[#0b1220]">▶</span>
-          </div>
-          <div className="p-4">
-            <p className="font-medium">{items[0]!.title}</p>
-            <p className="text-sm text-nx-muted">Match film · 4:12</p>
-          </div>
-        </article>
-      ) : null}
+      {variant === 'video' ? <MatchFilm title={items[0]!.title} /> : null}
 
       {variant === 'digest' ? (
         <div className="rounded-[1.4rem] bg-nx-elevated p-5">
@@ -161,5 +151,21 @@ export function News({ variant = 'bulletin', className }: NewsProps) {
         </div>
       ) : null}
     </section>
+  )
+}
+
+function MatchFilm({ title }: { title: string }) {
+  const [playing, setPlaying] = useState(false)
+  return (
+    <article className="overflow-hidden rounded-[1.5rem] border border-nx-border">
+      <div className="relative grid h-40 place-items-center text-white">
+        <MediaFrame src={media.sports} video={media.sportsReel} poster={media.sports} playing={playing} alt="" className="absolute inset-0" />
+        <PlayControl playing={playing} onToggle={() => setPlaying((value) => !value)} label="Play match film" className="relative" />
+      </div>
+      <div className="p-4">
+        <p className="font-medium">{title}</p>
+        <p className="text-sm text-nx-muted">Match film · 4:12</p>
+      </div>
+    </article>
   )
 }

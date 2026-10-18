@@ -169,11 +169,11 @@ export function ExtraHero({
               <MediaFrame
                 key={src}
                 src={src}
-                alt=""
+                alt={`Look ${index + 1}`}
                 className="mx-[-1.4rem] h-56 w-36 rounded-2xl border border-white/40 shadow-[var(--nx-shadow)]"
                 imgClassName="object-cover"
               >
-                <img src={src} alt="" className="size-full object-cover" style={{ transform: `rotate(${[-14, 0, 14][index]}deg)` }} />
+                <img src={src} alt={`Look ${index + 1}`} className="size-full object-cover" style={{ transform: `rotate(${[-14, 0, 14][index]}deg)` }} />
               </MediaFrame>
             ))}
         </div>
@@ -455,7 +455,7 @@ function Divisions({
   const rooms = [
     ['01', 'Academy', 'We grow people.', media.cases.voice],
     ['02', 'Labs', 'We build intelligence.', media.cases.lab],
-    ['03', 'Studio', 'We make brands move.', media.featured],
+    ['03', 'Studio', 'We make brands move.', media.venues.studio],
   ] as const
   return (
     <section data-nexara="hero" data-variant="divisions" className={cn('bg-[#07070a] px-6 py-20 text-white', className)}>
