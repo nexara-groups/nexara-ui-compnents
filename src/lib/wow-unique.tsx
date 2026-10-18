@@ -141,7 +141,7 @@ export function PeelCorner({
       {children}
       <motion.span
         aria-hidden="true"
-        className="absolute right-0 bottom-0 size-16 origin-bottom-right bg-gradient-to-br from-[#f3c27a] to-[#b45309]"
+        className="absolute right-0 bottom-0 size-9 origin-bottom-right bg-gradient-to-br from-[#f3c27a] to-[#b45309]"
         animate={reduced ? { scale: open ? 1 : 0.4 } : { rotate: open ? -18 : 0, x: open ? 6 : 0, y: open ? 6 : 0 }}
         style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%)' }}
       />
@@ -636,23 +636,20 @@ export function InfinityPath({ className, pauseable = true, playing }: { classNa
   const on = (playing ?? loop.playing) && !reduced
   return (
     <div className={cn('relative', className)}>
-      <svg viewBox="0 0 120 48" className="h-16 w-full text-[#8b87ff]">
-        <motion.path
-          d="M18 24 C 18 8, 42 8, 60 24 C 78 40, 102 40, 102 24 C 102 8, 78 8, 60 24 C 42 40, 18 40, 18 24"
+      <svg viewBox="0 0 120 56" className="h-20 w-full text-[#8b87ff]">
+        <path
+          d="M18 28 C 18 8, 42 8, 60 28 C 78 48, 102 48, 102 28 C 102 8, 78 8, 60 28 C 42 48, 18 48, 18 28"
           fill="none"
           stroke="currentColor"
           strokeWidth="3"
           strokeLinecap="round"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={on ? { duration: 2.4, repeat: Infinity, ease: 'linear' } : { duration: 0 }}
         />
         <motion.circle
           r="3.2"
           fill="#f3c27a"
           animate={on ? { offsetDistance: ['0%', '100%'] } : undefined}
           transition={{ duration: 2.4, repeat: Infinity, ease: 'linear' }}
-          style={{ offsetPath: 'path("M18 24 C 18 8, 42 8, 60 24 C 78 40, 102 40, 102 24 C 102 8, 78 8, 60 24 C 42 40, 18 40, 18 24")' }}
+          style={{ offsetPath: 'path("M18 28 C 18 8, 42 8, 60 28 C 78 48, 102 48, 102 28 C 102 8, 78 8, 60 28 C 42 48, 18 48, 18 28")' }}
         />
       </svg>
       {pauseable && !loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} /> : null}

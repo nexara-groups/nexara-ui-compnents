@@ -71,7 +71,7 @@ function HeroPin({ title, description, actions, eyebrow, className }: WowProps) 
           const lift = 120 - p * 210
           const showReel = chapter >= 2 && !loop.reduced
           return (
-            <div className="relative h-full min-h-[36rem] w-full overflow-hidden text-white">
+            <div data-pin-chapter={copy.k} className="relative h-full min-h-[36rem] w-full overflow-hidden text-white">
               <img src={media.glass} alt="" className="absolute inset-0 size-full object-cover opacity-35" />
               <div className="absolute inset-0 bg-[#07070c]/70" />
               <Grain />

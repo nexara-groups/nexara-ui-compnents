@@ -684,23 +684,29 @@ export function ScrollPin({
   height?: string
 }) {
   const track = useRef<HTMLDivElement | null>(null)
+  const frame = useRef<HTMLDivElement | null>(null)
   const [progress, setProgress] = useState(0)
+  const [nested, setNested] = useState(false)
   const reduced = usePrefersReducedMotion()
 
   useEffect(() => {
     if (reduced) return
     const node = track.current
+    const pane = frame.current
     if (!node) return
-    let parent: HTMLElement | null = node.parentElement
-    let scroller: HTMLElement | null = null
-    while (parent) {
-      const oy = getComputedStyle(parent).overflowY
-      if (oy === 'auto' || oy === 'scroll') {
-        scroller = parent
-        break
+    let scroller = node.closest('[data-pin-scroller]') as HTMLElement | null
+    if (!scroller) {
+      let parent: HTMLElement | null = node.parentElement
+      while (parent) {
+        const oy = getComputedStyle(parent).overflowY
+        if (oy === 'auto' || oy === 'scroll') {
+          scroller = parent
+          break
+        }
+        parent = parent.parentElement
       }
-      parent = parent.parentElement
     }
+    setNested(Boolean(scroller))
     const onScroll = () => {
       const rect = node.getBoundingClientRect()
       const viewH = scroller ? scroller.clientHeight : window.innerHeight
@@ -708,6 +714,11 @@ export function ScrollPin({
       const total = rect.height - viewH
       const next = total <= 0 ? 1 : Math.min(1, Math.max(0, (viewTop - rect.top) / total))
       setProgress(next)
+      if (pane && scroller) {
+        const start = rect.top - viewTop + scroller.scrollTop
+        const pinned = Math.min(Math.max(0, scroller.scrollTop - start), Math.max(0, node.offsetHeight - viewH))
+        pane.style.transform = `translateY(${pinned}px)`
+      }
     }
     onScroll()
     const target: EventTarget = scroller ?? window
@@ -725,7 +736,13 @@ export function ScrollPin({
 
   return (
     <div ref={track} className={cn('relative', className)} style={{ height }}>
-      <div className="sticky top-0 flex h-[min(36rem,80vh)] min-h-80 items-stretch overflow-hidden">{children(progress)}</div>
+      <div
+        ref={frame}
+        className="flex h-[min(36rem,80vh)] min-h-80 w-full items-stretch overflow-hidden"
+        style={{ position: nested ? 'absolute' : 'sticky', top: 0, left: 0, right: 0 }}
+      >
+        {children(progress)}
+      </div>
     </div>
   )
 }

@@ -6,7 +6,7 @@ Every catalog family keeps its sensible variants and adds 4–5 gold **Signature
 
 ## Proof
 
-Motion: `round12-motion.webm` / `.gif` (pin-scroll object + loaders). Earlier clips: `round11-motion.webm`, `signatures-motion.webm`, `shader-void-motion.webm`.
+Motion: `round12-motion.webm` / `.gif` (pin-scroll chapters 01→04 + loaders). Chapter stills: `hero-pin-scroll-ch2.png`, `hero-pin-scroll-ch4.png`. Earlier clips: `round11-motion.webm`, `signatures-motion.webm`, `shader-void-motion.webm`.
 
 Stills (1280, dark):
 

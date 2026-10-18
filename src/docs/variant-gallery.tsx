@@ -51,7 +51,10 @@ export function VariantGallery({
             </h3>
             <p className="max-w-xl text-sm text-nx-muted">{item.description}</p>
           </div>
-          <div className={PIN_IDS.has(item.id) ? 'max-h-[80vh] overflow-y-auto p-4 md:p-6' : `p-4 md:p-6 ${previewClassName}`}>
+          <div
+            data-pin-scroller={PIN_IDS.has(item.id) ? '' : undefined}
+            className={PIN_IDS.has(item.id) ? 'max-h-[80vh] overflow-y-auto p-4 md:p-6' : `p-4 md:p-6 ${previewClassName}`}
+          >
             {render(item.id)}
           </div>
           <Usage code={item.usage} />
