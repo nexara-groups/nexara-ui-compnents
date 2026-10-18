@@ -120,7 +120,7 @@ export function usePointerNorm() {
 /** Raw WebGL gradient-mesh. Pauses off-screen, on pause, and under reduced motion. */
 export function ShaderMesh({
   className,
-  paused = false,
+  paused,
 }: {
   className?: string
   paused?: boolean
@@ -129,6 +129,9 @@ export function ShaderMesh({
   const { ref, inView } = useInView<HTMLDivElement>()
   const pointer = usePointerNorm()
   const reduced = usePrefersReducedMotion()
+  const loop = useLoopControl(true)
+  const halt = paused ?? !loop.playing
+  const showPause = paused === undefined && !loop.reduced
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -171,7 +174,7 @@ export function ShaderMesh({
       gl.uniform2f(uRes, canvas.width, canvas.height)
       gl.uniform2f(uMouse, pointer.x.current, 1 - pointer.y.current)
       gl.uniform1f(uTime, (now - start) / 1000)
-      const live = !paused && !reduced && inView
+      const live = !halt && !reduced && inView
       gl.uniform1f(uPlay, live ? 1 : 0)
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
       if (live) frame = requestAnimationFrame(draw)
@@ -181,7 +184,7 @@ export function ShaderMesh({
       cancelAnimationFrame(frame)
       gl.deleteProgram(program)
     }
-  }, [inView, paused, pointer.x, pointer.y, reduced])
+  }, [halt, inView, pointer.x, pointer.y, reduced])
 
   return (
     <div
@@ -191,6 +194,7 @@ export function ShaderMesh({
       onPointerLeave={pointer.onPointerLeave}
     >
       <canvas ref={canvasRef} className="block size-full" aria-hidden="true" />
+      {showPause ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
     </div>
   )
 }
@@ -201,7 +205,7 @@ type Particle = { x: number; y: number; vx: number; vy: number; r: number }
 export function ParticleField({
   className,
   count = 70,
-  paused = false,
+  paused,
   color = '255,255,255',
 }: {
   className?: string
@@ -213,6 +217,9 @@ export function ParticleField({
   const { ref, inView } = useInView<HTMLDivElement>()
   const pointer = usePointerNorm()
   const reduced = usePrefersReducedMotion()
+  const loop = useLoopControl(true)
+  const halt = paused ?? !loop.playing
+  const showPause = paused === undefined && !loop.reduced
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -244,7 +251,7 @@ export function ParticleField({
       ctx.clearRect(0, 0, w, h)
       const mx = pointer.x.current
       const my = pointer.y.current
-      const live = !paused && !reduced && inView
+      const live = !halt && !reduced && inView
       for (const dot of dots) {
         if (live) {
           const dx = mx - dot.x
@@ -287,11 +294,12 @@ export function ParticleField({
     }
     frame = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(frame)
-  }, [color, count, inView, paused, pointer.x, pointer.y, reduced])
+  }, [color, count, halt, inView, pointer.x, pointer.y, reduced])
 
   return (
     <div ref={ref} className={cn('absolute inset-0', className)} onPointerMove={pointer.onPointerMove} onPointerLeave={pointer.onPointerLeave}>
       <canvas ref={canvasRef} className="block size-full" aria-hidden="true" />
+      {showPause ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
     </div>
   )
 }
@@ -299,7 +307,7 @@ export function ParticleField({
 /** Fibonacci-sphere globe, canvas projected, cursor-tilted. */
 export function GlobeField({
   className,
-  paused = false,
+  paused,
   count = 420,
 }: {
   className?: string
@@ -310,6 +318,9 @@ export function GlobeField({
   const { ref, inView } = useInView<HTMLDivElement>()
   const pointer = usePointerNorm()
   const reduced = usePrefersReducedMotion()
+  const loop = useLoopControl(true)
+  const halt = paused ?? !loop.playing
+  const showPause = paused === undefined && !loop.reduced
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -339,7 +350,7 @@ export function GlobeField({
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       ctx.clearRect(0, 0, w, h)
-      const live = !paused && !reduced && inView
+      const live = !halt && !reduced && inView
       if (live) rot += 0.004
       const tiltX = (pointer.y.current - 0.5) * 0.6
       const tiltY = (pointer.x.current - 0.5) * 0.8
@@ -366,11 +377,12 @@ export function GlobeField({
     }
     frame = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(frame)
-  }, [count, inView, paused, pointer.x, pointer.y, reduced])
+  }, [count, halt, inView, pointer.x, pointer.y, reduced])
 
   return (
     <div ref={ref} className={cn('absolute inset-0', className)} onPointerMove={pointer.onPointerMove} onPointerLeave={pointer.onPointerLeave}>
       <canvas ref={canvasRef} className="block size-full" aria-hidden="true" />
+      {showPause ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
     </div>
   )
 }
@@ -487,21 +499,26 @@ export function Odometer({
   className?: string
   digits?: number
 }) {
+  const reduced = usePrefersReducedMotion()
   const padded = String(Math.max(0, Math.round(value))).padStart(digits, '0').slice(-digits)
   return (
     <span className={cn('inline-flex font-mono tabular-nums tracking-tight', className)} aria-label={String(value)}>
       {padded.split('').map((digit, i) => (
         <span key={i} className="inline-block h-[1.05em] overflow-hidden leading-none">
-          <motion.span
-            key={digit}
-            aria-hidden="true"
-            className="inline-block"
-            initial={false}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 240, damping: 22 }}
-          >
-            {digit}
-          </motion.span>
+          {reduced ? (
+            <span aria-hidden="true">{digit}</span>
+          ) : (
+            <motion.span
+              key={digit}
+              aria-hidden="true"
+              className="inline-block"
+              initial={false}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 240, damping: 22 }}
+            >
+              {digit}
+            </motion.span>
+          )}
         </span>
       ))}
     </span>
@@ -617,7 +634,7 @@ export function OrbitRing({
   items,
   className,
   radius = 88,
-  paused = false,
+  paused,
 }: {
   items: ReactNode[]
   className?: string
@@ -626,7 +643,9 @@ export function OrbitRing({
 }) {
   const reduced = usePrefersReducedMotion()
   const { ref, inView } = useInView<HTMLDivElement>()
-  const halt = paused || reduced || !inView
+  const loop = useLoopControl(true)
+  const halt = (paused ?? !loop.playing) || reduced || !inView
+  const showPause = paused === undefined && !loop.reduced
   return (
     <div ref={ref} className={cn('relative mx-auto aspect-square', className)} style={{ width: radius * 2 + 48 }}>
       {items.map((item, i) => {
@@ -650,6 +669,7 @@ export function OrbitRing({
           </motion.div>
         )
       })}
+      {showPause ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-0 bottom-0 z-20" /> : null}
     </div>
   )
 }
@@ -668,6 +688,7 @@ export function ScrollPin({
   const reduced = usePrefersReducedMotion()
 
   useEffect(() => {
+    if (reduced) return
     const node = track.current
     if (!node) return
     let parent: HTMLElement | null = node.parentElement
@@ -686,13 +707,21 @@ export function ScrollPin({
       const viewTop = scroller ? scroller.getBoundingClientRect().top : 0
       const total = rect.height - viewH
       const next = total <= 0 ? 1 : Math.min(1, Math.max(0, (viewTop - rect.top) / total))
-      setProgress(reduced ? 1 : next)
+      setProgress(next)
     }
     onScroll()
     const target: EventTarget = scroller ?? window
     target.addEventListener('scroll', onScroll, { passive: true })
     return () => target.removeEventListener('scroll', onScroll)
   }, [reduced])
+
+  if (reduced) {
+    return (
+      <div className={cn('relative', className)}>
+        <div className="flex min-h-[min(28rem,100%)] items-center overflow-hidden">{children(1)}</div>
+      </div>
+    )
+  }
 
   return (
     <div ref={track} className={cn('relative', className)} style={{ height }}>
@@ -756,15 +785,17 @@ const Scene3D = lazy(() => import('@/components/ui/wow-scene.tsx'))
 export function LazyMesh3D({ className }: { className?: string }) {
   const { ref, inView } = useInView<HTMLDivElement>()
   const reduced = usePrefersReducedMotion()
+  const loop = useLoopControl(true)
   return (
     <div ref={ref} className={cn('relative min-h-56', className)}>
       {reduced || !inView ? (
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_40%,#7c6cff_0%,#07070c_58%)]" />
       ) : (
         <Suspense fallback={<div className="absolute inset-0 bg-[#07070c]" />}>
-          <Scene3D />
+          <Scene3D paused={!loop.playing} />
         </Suspense>
       )}
+      {!reduced && inView ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
     </div>
   )
 }

@@ -37,10 +37,11 @@ function Crystal() {
   )
 }
 
-export default function WowScene() {
+export default function WowScene({ paused = false }: { paused?: boolean }) {
   return (
     <Canvas
       className="absolute inset-0"
+      frameloop={paused ? 'demand' : 'always'}
       dpr={[1, 1.5]}
       camera={{ position: [0, 0, 3.4], fov: 42 }}
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}

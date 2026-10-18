@@ -38,7 +38,7 @@ import {
   wowBtn,
 } from '@/lib/wow.tsx'
 import { cn, focusRing, touchTarget, useCountUp, useLoopControl, usePrefersReducedMotion } from '@/lib/utils.ts'
-import type { WowProps } from './wow-signatures.tsx'
+import type { WowProps } from '@/lib/wow-variants.ts'
 
 function HeroCopy({ title, description, actions, eyebrow }: Pick<WowProps, 'title' | 'description' | 'actions' | 'eyebrow'>) {
   return (
@@ -329,9 +329,10 @@ function SpotlightScramble({ className }: { className?: string }) {
 function FlipWow({ variant, className }: { variant: string; className?: string }) {
   const [flipped, setFlipped] = useState(false)
   const id = useId().replace(/:/g, '')
+  const reduced = usePrefersReducedMotion()
   return (
     <button type="button" onClick={() => setFlipped((v) => !v)} className={cn(focusRing, 'h-52 w-full max-w-sm text-left', className)}>
-      <motion.div animate={{ rotateY: flipped ? 180 : 0 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} className="relative h-full" style={{ transformStyle: 'preserve-3d' }}>
+      <motion.div animate={{ rotateY: reduced ? 0 : flipped ? 180 : 0 }} transition={{ duration: reduced ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }} className="relative h-full" style={{ transformStyle: 'preserve-3d' }}>
         <div className="absolute inset-0 overflow-hidden rounded-3xl bg-[#111113] p-5 text-white" style={{ backfaceVisibility: 'hidden' }}>
           {variant === 'liquid-flip' || variant === 'hologram' ? <ShaderMesh /> : null}
           {variant === 'liquid-flip' ? <GooPuddle /> : null}
@@ -415,7 +416,7 @@ function GridWow({ variant, className, children }: WowProps) {
       {variant === 'perspective-fly' ? <PerspectiveFloor paused={!loop.playing || loop.reduced} /> : null}
       {variant === 'circuit-draw' ? <CircuitBoard playing={loop.playing && !loop.reduced} /> : null}
       {variant === 'topo-pulse' ? <TopoField paused={!loop.playing || loop.reduced} /> : null}
-      {variant === 'hex-orbit' ? <HexLattice /> : null}
+      {variant === 'hex-orbit' ? <HexLattice paused={!loop.playing || loop.reduced} /> : null}
       <div className="relative z-10 flex min-h-40 items-end p-5 text-white">{children ?? variant}</div>
       {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
     </div>
@@ -463,7 +464,14 @@ function TextWow({ family, variant, children, className }: WowProps) {
     return (
       <p className={cn('font-serif text-4xl', className)} aria-label={label}>
         {label.split('').map((ch, i) => (
-          <motion.span key={`${ch}-${i}`} className="inline-block" initial={{ y: 24, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: i * 0.03, type: 'spring', stiffness: 260, damping: 16 }}>
+          <motion.span
+            key={`${ch}-${i}`}
+            aria-hidden="true"
+            className="inline-block"
+            initial={loop.reduced ? false : { y: 24, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: i * 0.03, type: 'spring', stiffness: 260, damping: 16 }}
+          >
             {ch === ' ' ? '\u00a0' : ch}
           </motion.span>
         ))}
@@ -474,7 +482,12 @@ function TextWow({ family, variant, children, className }: WowProps) {
     return <SplitMask text={'Ship\nthe\nmast'} className={cn('font-serif text-5xl leading-[0.85]', className)} />
   }
   if (variant === 'variable-morph') {
-    return <VariableMorph text={label} className={cn('text-5xl', className)} />
+    return (
+      <span className={cn('relative inline-block', className)}>
+        <VariableMorph text={label} className="text-5xl" playing={loop.playing} />
+        {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="mt-3" /> : null}
+      </span>
+    )
   }
   return <p className={cn('font-serif text-4xl', className)}>{family} {variant}</p>
 }
@@ -635,6 +648,7 @@ function MarqueeWow({ variant, className }: WowProps) {
             <span key={i}>{t}</span>
           ))}
         </motion.div>
+        {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="ml-4 mt-3" /> : null}
       </div>
     )
   }
@@ -655,11 +669,16 @@ function InputWow({ variant, className }: WowProps) {
   const id = useId().replace(/:/g, '')
   if (variant === 'otp-flip') {
     return (
-      <div className={cn('flex gap-2', className)}>
-        {['4', '8', '0', '2'].map((n) => (
-          <span key={n} className="flex size-12 items-center justify-center rounded-xl bg-[#111113] font-mono text-2xl text-white">
-            <Odometer value={Number(n)} digits={1} />
-          </span>
+      <div className={cn('flex gap-2', className)} role="group" aria-label="One-time code">
+        {['4', '8', '0', '2'].map((n, i) => (
+          <input
+            key={`${n}-${i}`}
+            inputMode="numeric"
+            maxLength={1}
+            defaultValue={n}
+            aria-label={`Digit ${i + 1}`}
+            className={cn(focusRing, 'size-12 rounded-xl bg-[#111113] text-center font-mono text-2xl text-white')}
+          />
         ))}
       </div>
     )

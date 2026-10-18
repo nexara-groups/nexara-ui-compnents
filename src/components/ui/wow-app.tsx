@@ -22,7 +22,7 @@ import {
   wowBtn,
 } from '@/lib/wow.tsx'
 import { cn, focusRing, touchTarget, useCountUp } from '@/lib/utils.ts'
-import type { WowProps } from './wow-signatures.tsx'
+import type { WowProps } from '@/lib/wow-variants.ts'
 
 function ShellWow({ variant, className }: WowProps) {
   const [open, setOpen] = useState(true)
@@ -246,7 +246,11 @@ function ChartWow({ variant, className }: WowProps) {
         {(p) => (
           <div className="flex h-40 w-full items-end gap-2">
             {[40, 70, 55, 90, 62, 80].map((h, i) => (
-              <div key={i} className="flex-1 rounded-t-lg bg-[#4c46e0]" style={{ height: `${h * (0.3 + p * 0.7)}%` }} />
+              <div
+                key={i}
+                className="flex-1 origin-bottom rounded-t-lg bg-[#4c46e0]"
+                style={{ height: `${h}%`, transform: `scaleY(${0.3 + p * 0.7})` }}
+              />
             ))}
           </div>
         )}
@@ -331,8 +335,10 @@ function CommandWow({ variant, className }: WowProps) {
         {variant === 'scramble-search' ? <ScrambleText text={q || 'open atlas'} className="block px-2 text-xs text-current/50" /> : null}
         <ul className="mt-2">
           {items.map((item) => (
-            <li key={item} className={cn(touchTarget, 'flex items-center rounded-xl px-2 text-sm', variant === 'glare-row' && 'hover:bg-white/10')}>
-              {item}
+            <li key={item}>
+              <button type="button" className={cn(touchTarget, 'flex w-full items-center rounded-xl px-2 text-left text-sm', variant === 'glare-row' && 'hover:bg-white/10')}>
+                {item}
+              </button>
             </li>
           ))}
         </ul>

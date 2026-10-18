@@ -62,6 +62,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -159,7 +171,7 @@
         {
           "name": "physics-deck",
           "title": "Physics deck",
-          "description": "A plate that leans as you throw it.",
+          "description": "Drag the plate. It leans, then springs home.",
           "usage": "<DraggableCard variant=\"physics-deck\" bounds={stageRef}>Drag</DraggableCard>"
         },
         {
@@ -177,7 +189,7 @@
         {
           "name": "particle-toss",
           "title": "Particle toss",
-          "description": "The field reacts while you drag.",
+          "description": "Drag, then let go. The field bursts.",
           "usage": "<DraggableCard variant=\"particle-toss\" bounds={stageRef}>Drag</DraggableCard>"
         }
       ]
@@ -209,6 +221,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -361,6 +385,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -470,7 +506,7 @@
         {
           "name": "hologram",
           "title": "Hologram",
-          "description": "Shader field under a tilting plate.",
+          "description": "Iridescent shader on the front face.",
           "usage": "<FlipCard variant=\"hologram\" />"
         },
         {
@@ -508,6 +544,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -662,6 +710,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -888,6 +948,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -1003,7 +1075,7 @@
         {
           "name": "shatter",
           "title": "Shatter",
-          "description": "Tracking opens on hover.",
+          "description": "Letters explode on hover, then spring back.",
           "usage": "<MagneticButton magnet=\"shatter\">Come closer</MagneticButton>"
         }
       ]
@@ -1037,6 +1109,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -1184,6 +1268,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -1299,7 +1395,7 @@
         {
           "name": "hex-orbit",
           "title": "Hex orbit",
-          "description": "Cells on a ring.",
+          "description": "Honeycomb lattice that breathes.",
           "usage": "<GridBackground variant=\"hex-orbit\" />"
         }
       ]
@@ -1331,6 +1427,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -1430,7 +1538,7 @@
         {
           "name": "variable-morph",
           "title": "Variable morph",
-          "description": "Tracking breathes like a variable font.",
+          "description": "Geist weight axis 200–800, looping.",
           "usage": "<GradientText variant=\"variable-morph\">Night</GradientText>"
         },
         {
@@ -1476,6 +1584,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -1587,13 +1707,13 @@
         {
           "name": "matrix-rain",
           "title": "Matrix rain",
-          "description": "Particles behind a prompt.",
+          "description": "Falling glyph columns behind a prompt.",
           "usage": "<Typewriter variant=\"matrix-rain\" />"
         },
         {
           "name": "flap-3d",
           "title": "Flap 3d",
-          "description": "Split-flap tiles with depth.",
+          "description": "Split-flap tiles that cycle, then lock.",
           "usage": "<Typewriter variant=\"flap-3d\" />"
         }
       ]
@@ -1622,6 +1742,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -1772,6 +1904,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -1929,6 +2073,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -2083,6 +2239,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -2348,6 +2516,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -2445,7 +2625,7 @@
         {
           "name": "cylinder-3d",
           "title": "Cylinder 3d",
-          "description": "A perspective tape.",
+          "description": "Marks ride a spinning Y-axis cylinder.",
           "usage": "<Marquee variant=\"cylinder-3d\" />"
         },
         {
@@ -2491,6 +2671,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -2596,7 +2788,7 @@
         {
           "name": "magnetic-caret",
           "title": "Magnetic caret",
-          "description": "The field leans in.",
+          "description": "A custom caret follows the pointer, then the typed width.",
           "usage": "<Input variant=\"magnetic-caret\" />"
         },
         {
@@ -2636,6 +2828,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -2775,6 +2979,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -2912,6 +3128,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -2986,7 +3214,7 @@
           "name": "avatar",
           "title": "Avatar",
           "description": "Identity chip.",
-          "usage": "<Tooltip variant=\"avatar\" content=\"Ada Klein\">Hover</Tooltip>"
+          "usage": "<Tooltip variant=\"avatar\" content=\"Anitha Rao\">Hover</Tooltip>"
         },
         {
           "name": "metric",
@@ -3047,6 +3275,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -3186,6 +3426,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -3317,6 +3569,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -3456,6 +3720,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -3591,6 +3867,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -3730,6 +4018,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -3861,6 +4161,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -4008,6 +4320,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -4111,13 +4435,13 @@
         {
           "name": "shader-rings",
           "title": "Shader rings",
-          "description": "Cells on a mesh.",
+          "description": "A live countdown on a mesh.",
           "usage": "<Countdown variant=\"shader-rings\" />"
         },
         {
           "name": "analog-orbit",
           "title": "Analog orbit",
-          "description": "Hands as satellites.",
+          "description": "Clock hands plus a ticking remainder.",
           "usage": "<Countdown variant=\"analog-orbit\" />"
         },
         {
@@ -4155,6 +4479,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -4254,7 +4590,7 @@
         {
           "name": "heat-race",
           "title": "Heat race",
-          "description": "Bars grow into rank.",
+          "description": "Markers race along growing heat bars.",
           "usage": "<Leaderboard variant=\"heat-race\" />"
         },
         {
@@ -4304,6 +4640,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -4455,6 +4803,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -4602,6 +4962,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -4753,6 +5125,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -4902,6 +5286,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -5047,6 +5443,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -5190,6 +5598,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -5341,6 +5761,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -5488,6 +5920,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -5639,6 +6083,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -5782,6 +6238,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -5929,6 +6397,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -6072,6 +6552,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -6219,6 +6711,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -6364,6 +6868,18 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/wow-signatures.tsx",
           "type": "registry:ui"
         },
@@ -6479,7 +6995,7 @@
         {
           "name": "liquid-chat",
           "title": "Liquid chat",
-          "description": "Bubbles with a spring.",
+          "description": "Goo blobs inside the bubbles.",
           "usage": "<Activity variant=\"liquid-chat\" />"
         }
       ]
@@ -6507,6 +7023,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -6656,6 +7184,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",
@@ -6824,6 +7364,18 @@
         {
           "path": "src/lib/wow.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
         },
         {
           "path": "src/components/ui/wow-signatures.tsx",

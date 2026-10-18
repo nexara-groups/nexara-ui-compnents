@@ -1,6 +1,7 @@
 'use client'
 
-import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+import { isWowVariant } from '@/lib/wow-variants.ts'
+import { WowSignature } from './wow-lazy.tsx'
 
 import { type ComponentProps, type MouseEvent, type ReactNode, useState } from 'react'
 import { LoopPause } from '@/lib/media.tsx'

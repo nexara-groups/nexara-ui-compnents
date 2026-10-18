@@ -104,6 +104,9 @@ const itemsMeta = [
 const mediaFile = [{ path: 'src/lib/media.tsx', type: 'registry:lib' }]
 const wowFiles = [
   { path: 'src/lib/wow.tsx', type: 'registry:lib' },
+  { path: 'src/lib/wow-fx.tsx', type: 'registry:lib' },
+  { path: 'src/lib/wow-variants.ts', type: 'registry:lib' },
+  { path: 'src/components/ui/wow-lazy.tsx', type: 'registry:ui' },
   { path: 'src/components/ui/wow-signatures.tsx', type: 'registry:ui' },
   { path: 'src/components/ui/wow-core.tsx', type: 'registry:ui' },
   { path: 'src/components/ui/wow-blocks.tsx', type: 'registry:ui' },

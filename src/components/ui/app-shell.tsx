@@ -1,6 +1,7 @@
 'use client'
 
-import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+import { isWowVariant } from '@/lib/wow-variants.ts'
+import { WowSignature } from './wow-lazy.tsx'
 
 import { type ReactNode, useState } from 'react'
 import { MediaFrame, faces, media } from '@/lib/media.tsx'

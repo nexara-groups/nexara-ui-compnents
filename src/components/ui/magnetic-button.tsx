@@ -1,6 +1,7 @@
 'use client'
 
-import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+import { isWowVariant } from '@/lib/wow-variants.ts'
+import { WowSignature } from './wow-lazy.tsx'
 
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useRef, type PointerEvent, type ReactNode } from 'react'

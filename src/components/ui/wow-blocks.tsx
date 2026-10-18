@@ -24,17 +24,16 @@ import {
   wowBtn,
 } from '@/lib/wow.tsx'
 import { cn, focusRing, touchTarget, useCountUp, useLoopControl } from '@/lib/utils.ts'
-import type { WowProps } from './wow-signatures.tsx'
+import type { WowProps } from '@/lib/wow-variants.ts'
 
 function TabsWow({ variant, className }: WowProps) {
   const tabs = ['Rooms', 'Library', 'Export']
   const [active, setActive] = useState(tabs[0]!)
   return (
     <div className={cn('rounded-3xl border border-nx-border bg-nx-card p-4', className)}>
-      <div className={cn('flex flex-wrap gap-2', variant === 'orbit-pills' && 'justify-center')}>
-        {variant === 'orbit-pills' ? <OrbitRing items={tabs} radius={64} /> : null}
-        {variant !== 'orbit-pills'
-          ? tabs.map((tab) => (
+      {variant === 'orbit-pills' ? <OrbitRing items={tabs} radius={64} /> : null}
+      <div className="flex flex-wrap gap-2">
+        {tabs.map((tab) => (
               <button
                 key={tab}
                 type="button"
@@ -49,8 +48,7 @@ function TabsWow({ variant, className }: WowProps) {
                   {variant === 'scramble-label' ? <ScrambleText text={tab} trigger="hover" /> : tab}
                 </span>
               </button>
-            ))
-          : null}
+            ))}
       </div>
       <p className="mt-4 text-sm text-nx-muted">{active} stays in the room. The ink morphs; the panel does not remount a new chrome.</p>
     </div>
@@ -70,7 +68,13 @@ function AccordionWow({ variant, className }: WowProps) {
       <div className="relative z-10">
         {items.map((item, i) => (
           <div key={item.q} className="border-b border-current/10">
-            <button type="button" className={cn(focusRing, 'flex min-h-11 w-full items-center justify-between px-4 py-3 text-left')} onClick={() => setOpen(i)}>
+            <button
+              type="button"
+              aria-expanded={open === i}
+              aria-controls={`wow-acc-${i}`}
+              className={cn(focusRing, 'flex min-h-11 w-full items-center justify-between px-4 py-3 text-left')}
+              onClick={() => setOpen(i)}
+            >
               <span className="font-medium">{variant === 'kinetic-faq' ? <ScrambleText text={item.q} trigger="hover" /> : item.q}</span>
               {variant === 'path-plus' ? (
                 <PathDraw d={open === i ? 'M8 20 H 32 M 20 8 V 32' : 'M8 20 H 32'} className="h-6 w-6" />
@@ -78,9 +82,9 @@ function AccordionWow({ variant, className }: WowProps) {
                 <span>{open === i ? '–' : '+'}</span>
               )}
             </button>
-            <motion.div initial={false} animate={{ height: open === i ? 'auto' : 0 }} className="overflow-hidden">
-              <p className="px-4 pb-4 text-sm opacity-70">{item.a}</p>
-            </motion.div>
+            <div id={`wow-acc-${i}`} hidden={open !== i} className="overflow-hidden">
+              {open === i ? <p className="px-4 pb-4 text-sm opacity-70">{item.a}</p> : null}
+            </div>
           </div>
         ))}
       </div>
@@ -454,8 +458,9 @@ function LeaderboardWow({ variant, className }: WowProps) {
           <div key={item.name} className="flex w-24 flex-col items-center">
             <img src={item.src} alt={item.name} className="mb-2 size-12 rounded-full object-cover" />
             <motion.div
-              initial={{ height: 36 }}
-              animate={{ height: item.h }}
+              initial={{ scaleY: 0.2 }}
+              animate={{ scaleY: 1 }}
+              style={{ height: item.h, transformOrigin: 'bottom' }}
               className="flex w-full items-end justify-center rounded-t-2xl bg-[#111113] pb-3 font-serif text-2xl text-white"
             >
               {item.place}

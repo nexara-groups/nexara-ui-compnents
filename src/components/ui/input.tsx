@@ -1,6 +1,7 @@
 'use client'
 
-import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+import { isWowVariant } from '@/lib/wow-variants.ts'
+import { WowSignature } from './wow-lazy.tsx'
 
 import { type ClipboardEvent, type ComponentProps, type KeyboardEvent, type ReactNode, useRef, useState } from 'react'
 import { cn, fieldBorder, focusRing } from '@/lib/utils.ts'

@@ -236,7 +236,7 @@ export function VariableMorph({
   )
 }
 
-export function HexLattice({ className }: { className?: string }) {
+export function HexLattice({ className, paused = false }: { className?: string; paused?: boolean }) {
   return (
     <div className={cn('absolute inset-0 overflow-hidden bg-[#07070c]', className)} aria-hidden="true">
       <div className="absolute inset-[-20%] flex flex-wrap content-center justify-center gap-2">
@@ -245,7 +245,7 @@ export function HexLattice({ className }: { className?: string }) {
             key={i}
             className="size-14 bg-[#22c5b0]/25"
             style={{ clipPath: 'polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0 50%)' }}
-            animate={{ opacity: [0.2, 0.7, 0.2] }}
+            animate={paused ? { opacity: 0.4 } : { opacity: [0.2, 0.7, 0.2] }}
             transition={{ duration: 2.8, repeat: Infinity, delay: (i % 7) * 0.12 }}
           />
         ))}

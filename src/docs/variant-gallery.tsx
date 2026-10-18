@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from 'react'
-import { WOW_VARIANTS } from '@/components/ui/wow-signatures.tsx'
+import { WOW_VARIANTS } from '@/lib/wow-variants.ts'
 
 const PIN_IDS = new Set([
   'pin-scroll',

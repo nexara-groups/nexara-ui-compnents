@@ -1,6 +1,7 @@
 'use client'
 
-import { isWowVariant, WowSignature } from './wow-signatures.tsx'
+import { isWowVariant } from '@/lib/wow-variants.ts'
+import { WowSignature } from './wow-lazy.tsx'
 
 import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, fieldBorder, focusRing } from '@/lib/utils.ts'

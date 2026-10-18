@@ -1,7 +1,7 @@
 'use client'
 
 import { GlobeField, LazyMesh3D, ScrambleText, ScrollPin, SplitMask, WowStage } from '@/lib/wow.tsx'
-import { isWowVariant } from './wow-signatures.tsx'
+import { isWowVariant } from '@/lib/wow-variants.ts'
 
 import { Accordion } from './accordion.tsx'
 import { Activity } from './activity.tsx'
