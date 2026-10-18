@@ -55,7 +55,7 @@ Round 6 reviews the leftover-component pass (everything that was not in the cine
 
 | Lens | File | Round 6 |
 | --- | --- | --- |
-| Senior visual designer | `round-6-visual.md` | **Approve** leftover pass. Construction-first cells remain named. |
+| Senior visual designer | `round-6-visual.md` | **Approve** leftover pass ([visual critic](https://cursor.com/agents/bc-7cdfe0aa-4c28-5a26-93d3-cc0b6a36e499)). Named identity swaps and construction-first cells remain. |
 | Interaction / motion | `round-6-motion.md` | **Approve** leftover loops. Hero entrance still out of scope. |
 | Accessibility / responsive | `round-6-a11y.md` | **Approve** leftover fields / tabs / shells. Decorative faint on some heroes remains. |
 | Sceptical design lead | `round-6-lead.md` | **Approve** named leftovers. Not a claim that every cell is 21st.dev. |
