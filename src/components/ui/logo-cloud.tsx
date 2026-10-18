@@ -225,7 +225,7 @@ function Lockup({
         alt={name}
         grain={false}
         className={cn(tall ? 'h-28' : 'h-16')}
-        imgClassName="object-cover"
+        imgClassName="object-contain"
       />
     </figure>
   )

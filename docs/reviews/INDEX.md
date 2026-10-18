@@ -50,3 +50,12 @@ Round 5 reviews the photoreal people pack, flat marks, wired reels, and labelled
 | Interaction / motion | `round-5-motion.md` | Conditional ([motion critic](https://cursor.com/agents/bc-a2ed5fc8-49f3-5df3-8fbe-646d65624b8e)). Play is wired; ornamental loops and hero entrance remain. |
 | Accessibility / responsive | `round-5-a11y.md` | Conditional ([a11y critic](https://cursor.com/agents/bc-ad614f93-d848-5586-a040-0a5c15714207)). Named OTP/faces/rings/caption/disclosure pass; radios, tabpanel, and faint-as-content remain. |
 | Sceptical design lead | `round-5-lead.md` | **Approve** ([sceptical lead](https://cursor.com/agents/bc-1816708c-face-5378-ae7b-5d31e3047a12)). All five published bars hold after the Lumen / HVAC reshoot. Isolated `app-shell / agency` is still empty chrome. |
+
+Round 6 reviews the leftover-component pass (everything that was not in the cinematic hero / section / kit rebuild). Screenshots: `docs/audit/round-6/`. Coverage: `docs/audit/coverage.md`.
+
+| Lens | File | Round 6 |
+| --- | --- | --- |
+| Senior visual designer | `round-6-visual.md` | **Approve** leftover pass. Construction-first cells remain named. |
+| Interaction / motion | `round-6-motion.md` | **Approve** leftover loops. Hero entrance still out of scope. |
+| Accessibility / responsive | `round-6-a11y.md` | **Approve** leftover fields / tabs / shells. Decorative faint on some heroes remains. |
+| Sceptical design lead | `round-6-lead.md` | **Approve** named leftovers. Not a claim that every cell is 21st.dev. |
