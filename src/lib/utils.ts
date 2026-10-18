@@ -51,14 +51,18 @@ export function useKeyframes(id: string, css: string) {
   }, [id, css])
 }
 
-/** Count from 0 to `target` when `active`. Reduced motion snaps to the end. */
+/** Count from 0 to `target` when `active`. Reduced motion snaps to the end. Off-screen holds at 0. */
 export function useCountUp(target: number, duration = 1400, active = true) {
   const reduced = usePrefersReducedMotion()
   const [value, setValue] = useState(reduced ? target : 0)
 
   useEffect(() => {
-    if (reduced || !active) {
+    if (reduced) {
       setValue(target)
+      return
+    }
+    if (!active) {
+      setValue(0)
       return
     }
     const start = performance.now()

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { cn, focusRing } from '@/lib/utils.ts'
+import { cn, focusRing, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const VARIANTS = [
   'eight',
@@ -42,6 +42,7 @@ const rise = [
  * Copy this file plus `src/lib/utils.ts`.
  */
 export function Chapters({ variant = 'eight', className }: ChaptersProps) {
+  const reduced = usePrefersReducedMotion()
   const [active, setActive] = useState(0)
   const refs = useRef<Array<HTMLElement | null>>([])
 
@@ -73,7 +74,7 @@ export function Chapters({ variant = 'eight', className }: ChaptersProps) {
                 <button
                   type="button"
                   className={cn(focusRing, 'text-left', i === active ? 'text-nx-fg' : 'text-nx-muted')}
-                  onClick={() => refs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                  onClick={() => refs.current[i]?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' })}
                 >
                   {index} {title}
                 </button>
