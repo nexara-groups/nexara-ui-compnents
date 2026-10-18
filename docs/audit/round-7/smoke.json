@@ -1,0 +1,2189 @@
+{
+  "reduced": {
+    "hero": {
+      "canvasTotal": 3,
+      "pauseTotal": 2,
+      "cells": [
+        {
+          "id": "pin-scroll",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "SCROLL THE PLATE The hero is the transition A media plate that grows from a card to a field. Keep scrolling 100%"
+        },
+        {
+          "id": "shader-void",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "VOID FIELD The room opens. A WebGL mesh that follows the pointer. Enter the void"
+        },
+        {
+          "id": "scramble-mast",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "LETTERING HOLD THE MAST Hold the mast Read the folio"
+        },
+        {
+          "id": "globe-orbit",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Kite Solum Nimbus Vale Orbit ORBIT Studios in motion A projected sphere with orbiting marks. See the rooms"
+        },
+        {
+          "id": "morph-stage",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "SHARED ELEMENT Open the stage A wordmark that becomes a live mesh. Open the stage N"
+        }
+      ]
+    },
+    "aurora-background": {
+      "canvasTotal": 4,
+      "pauseTotal": 13,
+      "cells": [
+        {
+          "id": "shader-mesh",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "shader-mesh"
+        },
+        {
+          "id": "particle-field",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "particle-field"
+        },
+        {
+          "id": "liquid-glass",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "liquid-glass"
+        },
+        {
+          "id": "globe-field",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "globe-field"
+        }
+      ]
+    },
+    "button": {
+      "canvasTotal": 0,
+      "pauseTotal": 4,
+      "cells": [
+        {
+          "id": "liquid",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "Continue"
+        },
+        {
+          "id": "ink-path",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "Continue"
+        },
+        {
+          "id": "glare",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Continue"
+        },
+        {
+          "id": "burst",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Continue"
+        },
+        {
+          "id": "scramble",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Continue"
+        }
+      ]
+    },
+    "marquee": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "cylinder-3d",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Kite Solum Nimbus Vale Orbit Marble Kite Solum Nimbus Vale Orbit Marble"
+        },
+        {
+          "id": "logo-orbit",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Kite Solum Nimbus Vale Orbit Marble"
+        },
+        {
+          "id": "velocity-scroll",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Stay in the room. Move the furniture. Ship the mast. Stay in the room."
+        },
+        {
+          "id": "grain-tape",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Kite · live Solum · live Nimbus · live Vale · live Orbit · live Marble · live Kite · live Solum · live Nimbus · live Vale · live Orbit · live Marble · live"
+        }
+      ]
+    },
+    "grid-background": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "perspective-fly",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "perspective-fly"
+        },
+        {
+          "id": "circuit-draw",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "circuit-draw"
+        },
+        {
+          "id": "topo-pulse",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "topo-pulse"
+        },
+        {
+          "id": "hex-orbit",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "01 02 03 04 05 06 hex-orbit"
+        }
+      ]
+    },
+    "gradient-text": {
+      "canvasTotal": 0,
+      "pauseTotal": 6,
+      "cells": [
+        {
+          "id": "variable-morph",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Night, gold, and iris."
+        },
+        {
+          "id": "scramble",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Night, gold, and iris."
+        },
+        {
+          "id": "path-write",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "Night, gold, and iris."
+        },
+        {
+          "id": "split-mask",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Night, gold, iris."
+        }
+      ]
+    },
+    "typewriter": {
+      "canvasTotal": 1,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "odometer",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9"
+        },
+        {
+          "id": "scramble-line",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Night, gold, and iris."
+        },
+        {
+          "id": "matrix-rain",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "export const room = 4"
+        },
+        {
+          "id": "flap-3d",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "G A T E"
+        }
+      ]
+    },
+    "kit": {
+      "canvasTotal": 2,
+      "pauseTotal": 2,
+      "cells": [
+        {
+          "id": "shader-clinic",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "LUMEN CARE Heart care, considered. Four doors. A shader field instead of a stock navy hero. Book a chair"
+        },
+        {
+          "id": "globe-agency",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "NORTH STUDIO Move the furniture. A globe of rooms, not a logo strip. Work Labs Press"
+        },
+        {
+          "id": "pin-sports",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "FIELD ATHLETICS A season you can stand on. Scroll scrubs the medal book. 16 events in view."
+        },
+        {
+          "id": "liquid-portal",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "AGENCY OS The desk after dark."
+        },
+        {
+          "id": "scramble-academy",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "ATLAS ACADEMY We grow engineers. Hover the title. The letters refuse to sit still until they mean it."
+        }
+      ]
+    }
+  },
+  "full": {
+    "draggable-card": {
+      "canvasTotal": 2,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "physics-deck",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Physics-Deck Drag inside the frame. Physics deck. The plate leans as you throw it."
+        },
+        {
+          "id": "magnetic-stack",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Sheet 1 Sheet 2 Sheet 3"
+        },
+        {
+          "id": "hologram",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Hologram [object Object],[object Object] Pointer tilts the plate. The field is a shader, not a wash."
+        },
+        {
+          "id": "particle-toss",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Particle-Toss Drag inside the frame. The field reacts while you drag."
+        }
+      ]
+    },
+    "spotlight-card": {
+      "canvasTotal": 1,
+      "pauseTotal": 1,
+      "cells": [
+        {
+          "id": "glare-tilt",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Glare tilt Lamp 04 Specular highlight follows the pointer. Layers sit on Z."
+        },
+        {
+          "id": "shader-well",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Shader well Night desk Pause"
+        },
+        {
+          "id": "orbit-badge",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Live 99.9 NYC"
+        },
+        {
+          "id": "scramble-stat",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "UPTIME 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 .9%"
+        }
+      ]
+    },
+    "flip-card": {
+      "canvasTotal": 1,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "morph-face",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "morph-face Tap to turn. The reverse is a drawn mark, not a duplicate face."
+        },
+        {
+          "id": "liquid-flip",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 1,
+          "text": "liquid-flip Tap to turn. The reverse is a drawn mark, not a duplicate face."
+        },
+        {
+          "id": "hologram",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "hologram Tap to turn. The reverse is a drawn mark, not a duplicate face."
+        },
+        {
+          "id": "path-reveal",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "path-reveal Tap to turn. The reverse is a drawn mark, not a duplicate face."
+        }
+      ]
+    },
+    "bento-grid": {
+      "canvasTotal": 1,
+      "pauseTotal": 1,
+      "cells": [
+        {
+          "id": "depth-mosaic",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "depth-mosaic Mosaic tile with glare. Drop into any bento."
+        },
+        {
+          "id": "shader-tile",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "shader-tile Pause"
+        },
+        {
+          "id": "orbit-tile",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "A B C D"
+        },
+        {
+          "id": "ticker-tile",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Athletes 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9"
+        }
+      ]
+    },
+    "button": {
+      "canvasTotal": 0,
+      "pauseTotal": 4,
+      "cells": [
+        {
+          "id": "liquid",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "Continue"
+        },
+        {
+          "id": "ink-path",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "Continue"
+        },
+        {
+          "id": "glare",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Continue"
+        },
+        {
+          "id": "burst",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Continue"
+        },
+        {
+          "id": "scramble",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Continue"
+        }
+      ]
+    },
+    "magnetic-button": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "gravity-well",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "gravity-well"
+        },
+        {
+          "id": "comet-trail",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "comet-trail"
+        },
+        {
+          "id": "orbit-pull",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "N X · orbit-pull"
+        },
+        {
+          "id": "shatter",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "shatter"
+        }
+      ]
+    },
+    "aurora-background": {
+      "canvasTotal": 4,
+      "pauseTotal": 17,
+      "cells": [
+        {
+          "id": "shader-mesh",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "shader-mesh Pause"
+        },
+        {
+          "id": "particle-field",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "particle-field Pause"
+        },
+        {
+          "id": "liquid-glass",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "liquid-glass Pause"
+        },
+        {
+          "id": "globe-field",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "globe-field Pause"
+        }
+      ]
+    },
+    "grid-background": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "perspective-fly",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "perspective-fly"
+        },
+        {
+          "id": "circuit-draw",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "circuit-draw"
+        },
+        {
+          "id": "topo-pulse",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "topo-pulse"
+        },
+        {
+          "id": "hex-orbit",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "01 02 03 04 05 06 hex-orbit"
+        }
+      ]
+    },
+    "gradient-text": {
+      "canvasTotal": 0,
+      "pauseTotal": 6,
+      "cells": [
+        {
+          "id": "variable-morph",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Night, gold, and iris."
+        },
+        {
+          "id": "scramble",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Night, gold, and iris."
+        },
+        {
+          "id": "path-write",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "Night, gold, and iris."
+        },
+        {
+          "id": "split-mask",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Night, gold, iris."
+        }
+      ]
+    },
+    "typewriter": {
+      "canvasTotal": 1,
+      "pauseTotal": 1,
+      "cells": [
+        {
+          "id": "odometer",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9"
+        },
+        {
+          "id": "scramble-line",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Night, gold, and iris."
+        },
+        {
+          "id": "matrix-rain",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "export const —YZD 9 1 Pause"
+        },
+        {
+          "id": "flap-3d",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "G A T E"
+        }
+      ]
+    },
+    "text-reveal": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "line-mask",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Night, gold, iris."
+        },
+        {
+          "id": "letter-physics",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Night, gold, and iris."
+        },
+        {
+          "id": "kinetic-stack",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Ship the mast"
+        },
+        {
+          "id": "svg-draw",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "Night, gold, and iris."
+        }
+      ]
+    },
+    "floating-navbar": {
+      "canvasTotal": 1,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "magnetic-pill",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Nexara Work Notes"
+        },
+        {
+          "id": "morph-dock",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Work Notes Atlas"
+        },
+        {
+          "id": "orbit-nav",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Work Notes Atlas"
+        },
+        {
+          "id": "glass-liquid",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Nexara Work Start"
+        }
+      ]
+    },
+    "modal": {
+      "canvasTotal": 4,
+      "pauseTotal": 2,
+      "cells": [
+        {
+          "id": "shared-morph",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "N Shared morph The mark travels from the trigger into the panel. Open live shared-morph N Shared morph The mark travels from the trigger into the panel."
+        },
+        {
+          "id": "shader-veil",
+          "pauseCount": 2,
+          "pauseLabels": [
+            "Pause motion",
+            "Pause motion"
+          ],
+          "canvases": 2,
+          "svgs": 0,
+          "text": "Veil The overlay is a field. Not a dimmed card. The room itself changes material. Pause Open live shader-veil Veil The overlay is a field. Not a dimmed card. The room itself changes material. Pause"
+        },
+        {
+          "id": "liquid-sheet",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 2,
+          "text": "Liquid sheet Open live liquid-sheet Liquid sheet"
+        },
+        {
+          "id": "particle-confirm",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 2,
+          "svgs": 2,
+          "text": "Delete the room? Open live particle-confirm Delete the room?"
+        }
+      ]
+    },
+    "hero": {
+      "canvasTotal": 3,
+      "pauseTotal": 4,
+      "cells": [
+        {
+          "id": "pin-scroll",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "SCROLL THE PLATE The hero is the transition A media plate that grows from a card to a field. Keep scrolling 0%"
+        },
+        {
+          "id": "shader-void",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "VOID FIELD The room opensQ A WebGL mesh that follows the pointer. Enter the void Pause"
+        },
+        {
+          "id": "scramble-mast",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "LETTERING HOLD THE MAST Hold the mast Read the folio"
+        },
+        {
+          "id": "globe-orbit",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Kite Solum Nimbus Vale Orbit ORBIT Studios in motion A projected sphere with orbiting marks. See the rooms Pause"
+        },
+        {
+          "id": "morph-stage",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "SHARED ELEMENT Open the stage A wordmark that becomes a live mesh. Open the stage N"
+        }
+      ]
+    },
+    "marquee": {
+      "canvasTotal": 0,
+      "pauseTotal": 2,
+      "cells": [
+        {
+          "id": "cylinder-3d",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Kite Solum Nimbus Vale Orbit Marble Kite Solum Nimbus Vale Orbit Marble Pause"
+        },
+        {
+          "id": "logo-orbit",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Kite Solum Nimbus Vale Orbit Marble Pause"
+        },
+        {
+          "id": "velocity-scroll",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Stay in the room. Move the furniture. Ship the mast. Stay in the room."
+        },
+        {
+          "id": "grain-tape",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Kite · live Solum · live Nimbus · live Vale · live Orbit · live Marble · live Kite · live Solum · live Nimbus · live Vale · live Orbit · live Marble · live"
+        }
+      ]
+    },
+    "input": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "liquid-focus",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": ""
+        },
+        {
+          "id": "magnetic-caret",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": ""
+        },
+        {
+          "id": "path-underline",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "Studio"
+        },
+        {
+          "id": "otp-flip",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9"
+        }
+      ]
+    },
+    "tabs": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "layout-morph",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Rooms Library Export Rooms stays in the room. The ink morphs; the panel does not remount a new chrome."
+        },
+        {
+          "id": "liquid-ink",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Rooms Library Export Rooms stays in the room. The ink morphs; the panel does not remount a new chrome."
+        },
+        {
+          "id": "orbit-pills",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Rooms Library Export Rooms stays in the room. The ink morphs; the panel does not remount a new chrome."
+        },
+        {
+          "id": "scramble-label",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Rooms Library Export Rooms stays in the room. The ink morphs; the panel does not remount a new chrome."
+        }
+      ]
+    },
+    "accordion": {
+      "canvasTotal": 1,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "height-morph",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Do I install a package? – No. Copy the file and the wow helpers. Does motion pause? + Yes. Reduced motion and a visible pause control. Will this look normal? + If it does, it is not a signature variant."
+        },
+        {
+          "id": "path-plus",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 3,
+          "text": "Do I install a package? No. Copy the file and the wow helpers. Does motion pause? Yes. Reduced motion and a visible pause control. Will this look normal? If it does, it is not a signature variant."
+        },
+        {
+          "id": "kinetic-faq",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Do I install a package? – No. Copy the file and the wow helpers. Does motion pause? + Yes. Reduced motion and a visible pause control. Will this look normal? + If it does, it is not a signature variant."
+        },
+        {
+          "id": "shader-row",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Do I install a package? – No. Copy the file and the wow helpers. Does motion pause? + Yes. Reduced motion and a visible pause control. Will this look normal? + If it does, it is not a signature variant."
+        }
+      ]
+    },
+    "tooltip": {
+      "canvasTotal": 1,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "follow-glare",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Jump any room"
+        },
+        {
+          "id": "particle-hint",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Hover Jump any room"
+        },
+        {
+          "id": "scramble-tip",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Jump any room"
+        },
+        {
+          "id": "magnetic-tag",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Ada Klein"
+        }
+      ]
+    },
+    "toast": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "spring-stack",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Saved to Harbor Springs in, does not fade in place."
+        },
+        {
+          "id": "path-check",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "Saved to Harbor The mark draws itself."
+        },
+        {
+          "id": "liquid-slide",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Saved to Harbor The mark draws itself."
+        },
+        {
+          "id": "odometer-count",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Inbox 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 The mark draws itself."
+        }
+      ]
+    },
+    "avatar": {
+      "canvasTotal": 3,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "orbit-status",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Live"
+        },
+        {
+          "id": "shader-ring",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": ""
+        },
+        {
+          "id": "particle-presence",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": ""
+        },
+        {
+          "id": "holographic",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": ""
+        }
+      ]
+    },
+    "badge": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "beam-orbit",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Live"
+        },
+        {
+          "id": "scramble-live",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "LIVE"
+        },
+        {
+          "id": "liquid-pill",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Live"
+        },
+        {
+          "id": "path-ribbon",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "Sale"
+        }
+      ]
+    },
+    "pricing": {
+      "canvasTotal": 1,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "tilt-glare",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Hobby $0 The number ticks. The featured plate is a field. Studio $48 The number ticks. The featured plate is a field. Desk $110 The number ticks. The featured plate is a field."
+        },
+        {
+          "id": "odometer-price",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Hobby 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 The number ticks. The featured plate is a field. Studio 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 The number ticks. The featured plate is a field. Des"
+        },
+        {
+          "id": "morph-toggle",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Hobby $0 The number ticks. The featured plate is a field. Studio $48 Monthly Desk $110 The number ticks. The featured plate is a field."
+        },
+        {
+          "id": "shader-featured",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Hobby $0 The number ticks. The featured plate is a field. Studio $48 The number ticks. The featured plate is a field. Desk $110 The number ticks. The featured plate is a field."
+        }
+      ]
+    },
+    "testimonials": {
+      "canvasTotal": 1,
+      "pauseTotal": 1,
+      "cells": [
+        {
+          "id": "wall-parallax",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Stay in the room. Anitha Rao The furniture finally moved. Kiran Reddy We shipped the mast on Friday. Meera Shah"
+        },
+        {
+          "id": "video-shader",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "“The reel is the quote.” Harbor Review · Anitha Rao Pause"
+        },
+        {
+          "id": "orbit-quotes",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Anitha Kiran Meera"
+        },
+        {
+          "id": "scramble-pull",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Stay in the rG4ZZ Anitha Rao · Harbor"
+        }
+      ]
+    },
+    "footer": {
+      "canvasTotal": 0,
+      "pauseTotal": 1,
+      "cells": [
+        {
+          "id": "giant-marquee",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "NEXARA NEXARA NEXARA Pause"
+        },
+        {
+          "id": "grain-night",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Night closer Grain on a void. Not a legal row."
+        },
+        {
+          "id": "orbit-marks",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Work Notes Legal Press"
+        },
+        {
+          "id": "path-sitemap",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "The map draws itself."
+        }
+      ]
+    },
+    "stats": {
+      "canvasTotal": 1,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "odometer",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 Athletes 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 Uptime 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 Studios"
+        },
+        {
+          "id": "orbit-ring",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "1345 722 35 16"
+        },
+        {
+          "id": "particle-pulse",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 Athletes in the book"
+        },
+        {
+          "id": "glare-mosaic",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8"
+        }
+      ]
+    },
+    "countdown": {
+      "canvasTotal": 1,
+      "pauseTotal": 1,
+      "cells": [
+        {
+          "id": "flip-3d",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9"
+        },
+        {
+          "id": "shader-rings",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "12d 06h 18m 04s Pause"
+        },
+        {
+          "id": "analog-orbit",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "d h m s"
+        },
+        {
+          "id": "launch-scrub",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "T-MINUS 12d"
+        }
+      ]
+    },
+    "leaderboard": {
+      "canvasTotal": 1,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "heat-race",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "1 98 2 86 3 74"
+        },
+        {
+          "id": "podium-spring",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "1 2 3"
+        },
+        {
+          "id": "live-odometer",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "1 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 2 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 3 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9"
+        },
+        {
+          "id": "particle-rank",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Harbor 98 Atlas 86 Vale 74"
+        }
+      ]
+    },
+    "case-study": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "scroll-film",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Wren Horizontal film. Flick the reel. Farm Horizontal film. Flick the reel. Track Horizontal film. Flick the reel."
+        },
+        {
+          "id": "shared-morph",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Wren Build"
+        },
+        {
+          "id": "glare-stack",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Wren Farm"
+        },
+        {
+          "id": "path-index",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "01 Wren · 02 Farm · 03 Track"
+        }
+      ]
+    },
+    "services": {
+      "canvasTotal": 2,
+      "pauseTotal": 2,
+      "cells": [
+        {
+          "id": "tilt-doors",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Consult Lab Pharmacy Therapy"
+        },
+        {
+          "id": "orbit-crews",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Consult Lab Pharmacy Therapy"
+        },
+        {
+          "id": "shader-cards",
+          "pauseCount": 2,
+          "pauseLabels": [
+            "Pause motion",
+            "Pause motion"
+          ],
+          "canvases": 2,
+          "svgs": 0,
+          "text": "Consult Pause Lab Pause"
+        },
+        {
+          "id": "path-checklist",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 4,
+          "text": "Consult Lab Pharmacy Therapy"
+        }
+      ]
+    },
+    "process": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "scrub-timeline",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "01 Brief"
+        },
+        {
+          "id": "pin-steps",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "01 Brief"
+        },
+        {
+          "id": "path-rail",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "The rail draws the week."
+        },
+        {
+          "id": "orbit-rhythm",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Brief Build Review Handover"
+        }
+      ]
+    },
+    "team": {
+      "canvasTotal": 1,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "glare-portraits",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": ""
+        },
+        {
+          "id": "orbit-crew",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Anitha Kiran Meera Suresh"
+        },
+        {
+          "id": "holographic",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": ""
+        },
+        {
+          "id": "particle-grid",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": ""
+        }
+      ]
+    },
+    "contact": {
+      "canvasTotal": 1,
+      "pauseTotal": 1,
+      "cells": [
+        {
+          "id": "map-shader",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "13.08 · 80.27 Harbor Bay Pause"
+        },
+        {
+          "id": "liquid-form",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "Send the brief"
+        },
+        {
+          "id": "magnetic-branches",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Harbor Atlas Vale"
+        },
+        {
+          "id": "path-directions",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "Bay road, then the north door."
+        }
+      ]
+    },
+    "cta-band": {
+      "canvasTotal": 2,
+      "pauseTotal": 2,
+      "cells": [
+        {
+          "id": "liquid-wash",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Ask for a seat. Write the desk Pause"
+        },
+        {
+          "id": "scramble-cta",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Book the room. Continue"
+        },
+        {
+          "id": "particle-close",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Ask for a seat. Write the desk Pause"
+        },
+        {
+          "id": "glare-band",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "The closer tilts."
+        }
+      ]
+    },
+    "chapters": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "pin-story",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Chapter 01 Mast"
+        },
+        {
+          "id": "scrub-essay",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Chapter 01 Mast"
+        },
+        {
+          "id": "parallax-index",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "01 Mast 02 Harbor 03 Atlas 04 Night The night continues."
+        },
+        {
+          "id": "path-folio",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "Folio 18"
+        }
+      ]
+    },
+    "news": {
+      "canvasTotal": 1,
+      "pauseTotal": 1,
+      "cells": [
+        {
+          "id": "velocity-tape",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Lane change on Harbor · Atlas ships Friday · Vale opens a chair · Lane change on Harbor · Atlas ships Friday · Vale opens a chair ·"
+        },
+        {
+          "id": "flip-headlines",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Lane change on Harbor Atlas ships Friday Vale opens a chair"
+        },
+        {
+          "id": "shader-magazine",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Issue 18 The night desk Pause"
+        },
+        {
+          "id": "orbit-digest",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Mon Tue Wed Thu"
+        }
+      ]
+    },
+    "logo-cloud": {
+      "canvasTotal": 2,
+      "pauseTotal": 1,
+      "cells": [
+        {
+          "id": "orbit-3d",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Kite Solum Nimbus Vale"
+        },
+        {
+          "id": "magnetic-marks",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Kite Solum Nimbus Vale"
+        },
+        {
+          "id": "glare-lockups",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Kite Solum Nimbus Vale"
+        },
+        {
+          "id": "particle-press",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Harbor Review"
+        }
+      ]
+    },
+    "app-shell": {
+      "canvasTotal": 2,
+      "pauseTotal": 1,
+      "cells": [
+        {
+          "id": "morph-sidebar",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "North OS Leads · Board Morph sidebar The rail keeps identity while it collapses."
+        },
+        {
+          "id": "command-orbit",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Jump Create Atlas K"
+        },
+        {
+          "id": "shader-desk",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Rooms Library Night desk The chrome is a field, not a gray sidebar. Pause"
+        },
+        {
+          "id": "liquid-rail",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "N W A Rail on a mesh"
+        }
+      ]
+    },
+    "kpi": {
+      "canvasTotal": 1,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "odometer-spark",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Booked ₹ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9"
+        },
+        {
+          "id": "ring-draw",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "78%"
+        },
+        {
+          "id": "particle-live",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Live 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9"
+        },
+        {
+          "id": "glare-delta",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "WoW +18%"
+        }
+      ]
+    },
+    "data-table": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "row-stagger",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Job Amount Wren Build 48 Harbor Hall 12 Atlas Lab 86"
+        },
+        {
+          "id": "morph-cards",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": ""
+        },
+        {
+          "id": "heat-cells",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": ""
+        },
+        {
+          "id": "odometer-cells",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Job Amount Wren Build 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 Harbor Hall 12 Atlas Lab 86"
+        }
+      ]
+    },
+    "kanban-board": {
+      "canvasTotal": 1,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "spring-toss",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "BRIEF Wren Farm BUILD Remote REVIEW Atlas"
+        },
+        {
+          "id": "glare-cards",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "BRIEF Wren Farm BUILD Remote REVIEW Atlas"
+        },
+        {
+          "id": "orbit-wip",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "2/3 1/2 1/1"
+        },
+        {
+          "id": "particle-lane",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Review lane"
+        }
+      ]
+    },
+    "chart-block": {
+      "canvasTotal": 2,
+      "pauseTotal": 1,
+      "cells": [
+        {
+          "id": "path-draw",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": ""
+        },
+        {
+          "id": "particle-area",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": ""
+        },
+        {
+          "id": "scrub-bars",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": ""
+        },
+        {
+          "id": "shader-donut",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 1,
+          "text": "Pause"
+        }
+      ]
+    },
+    "activity": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "stagger-feed",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Anitha booked a chair Harbor exported a pack Atlas passed review"
+        },
+        {
+          "id": "path-rail",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": ""
+        },
+        {
+          "id": "live-odometer",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Events today 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9"
+        },
+        {
+          "id": "liquid-chat",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "The room is ready. On my way."
+        }
+      ]
+    },
+    "command-palette": {
+      "canvasTotal": 1,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "scramble-search",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "open atlas Open Harbor Jump Atlas Create brief"
+        },
+        {
+          "id": "morph-results",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Open Harbor Jump Atlas Create brief"
+        },
+        {
+          "id": "particle-jump",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "Open Harbor Jump Atlas Create brief"
+        },
+        {
+          "id": "glare-row",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Open Harbor Jump Atlas Create brief"
+        }
+      ]
+    },
+    "settings-panel": {
+      "canvasTotal": 0,
+      "pauseTotal": 0,
+      "cells": [
+        {
+          "id": "morph-sections",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Dark desk Appearance travels with the switch."
+        },
+        {
+          "id": "liquid-toggle",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Dark desk"
+        },
+        {
+          "id": "path-security",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 1,
+          "text": "SSO is drawn, not stamped."
+        },
+        {
+          "id": "glare-profile",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "Anitha Rao Harbor desk"
+        }
+      ]
+    },
+    "kit": {
+      "canvasTotal": 2,
+      "pauseTotal": 3,
+      "cells": [
+        {
+          "id": "shader-clinic",
+          "pauseCount": 1,
+          "pauseLabels": [
+            "Pause motion"
+          ],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "LUMEN CARE Heart care, considered. Four doors. A shader field instead of a stock navy hero. Book a chair Pause"
+        },
+        {
+          "id": "globe-agency",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 1,
+          "svgs": 0,
+          "text": "NORTH STUDIO Move the furniture. A globe of rooms, not a logo strip. Work Labs Press"
+        },
+        {
+          "id": "pin-sports",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "FIELD ATHLETICS A season you can stand on. Scroll scrubs the medal book. 0 events in view."
+        },
+        {
+          "id": "liquid-portal",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "AGENCY OS The desk after dark."
+        },
+        {
+          "id": "scramble-academy",
+          "pauseCount": 0,
+          "pauseLabels": [],
+          "canvases": 0,
+          "svgs": 0,
+          "text": "ATLAS ACADEMY We grow engine1YSY Hover the title. The letters refuse to sit still until they mean it."
+        }
+      ]
+    }
+  },
+  "pauseClick": {
+    "before": "Pause motion",
+    "after": {
+      "label": "Play motion",
+      "pressed": "false",
+      "text": "Play"
+    }
+  },
+  "shots": [
+    "/workspace/docs/audit/round-7/focus-hero-pin-scroll.png",
+    "/workspace/docs/audit/round-7/focus-hero-shader-void.png",
+    "/workspace/docs/audit/round-7/focus-hero-scramble-mast.png",
+    "/workspace/docs/audit/round-7/focus-hero-globe-orbit.png",
+    "/workspace/docs/audit/round-7/focus-hero-morph-stage.png",
+    "/workspace/docs/audit/round-7/focus-aurora-background-shader-mesh.png",
+    "/workspace/docs/audit/round-7/focus-aurora-background-particle-field.png",
+    "/workspace/docs/audit/round-7/focus-button-liquid.png",
+    "/workspace/docs/audit/round-7/focus-magnetic-button-shatter.png",
+    "/workspace/docs/audit/round-7/focus-typewriter-flap-3d.png",
+    "/workspace/docs/audit/round-7/focus-grid-background-perspective-fly.png",
+    "/workspace/docs/audit/round-7/focus-gradient-text-variable-morph.png",
+    "/workspace/docs/audit/round-7/focus-marquee-cylinder-3d.png",
+    "/workspace/docs/audit/round-7/focus-marquee-velocity-scroll.png",
+    "/workspace/docs/audit/round-7/focus-activity-liquid-chat.png",
+    "/workspace/docs/audit/round-7/focus-command-palette-glare-row.png",
+    "/workspace/docs/audit/round-7/focus-countdown-shader-rings.png",
+    "/workspace/docs/audit/round-7/focus-kit-liquid-portal.png",
+    "/workspace/docs/audit/round-7/focus-cta-band-liquid-wash.png",
+    "/workspace/docs/audit/round-7/focus-badge-beam-orbit.png",
+    "/workspace/docs/audit/round-7/focus-news-velocity-tape.png",
+    "/workspace/docs/audit/round-7/focus-footer-giant-marquee.png",
+    "/workspace/docs/audit/round-7/focus-data-table-heat-cells.png",
+    "/workspace/docs/audit/round-7/focus-toast-liquid-slide.png",
+    "/workspace/docs/audit/round-7/focus-flip-card-liquid-flip.png"
+  ]
+}

@@ -61,3 +61,12 @@ Round 6 reviews the leftover-component pass (everything that was not in the cine
 | Sceptical design lead | `round-6-lead.md` | **Approve** named leftovers ([sceptical lead](https://cursor.com/agents/bc-7f1a9580-c2ed-519b-8890-09d222396d10)). Not a claim that every cell is 21st.dev. |
 
 A variant is approved only when all four agree. Round 6 approves the leftover *pass* (pause, AA fields, furnished shells, distinct dealer lockups, empty-geometry cells). It does **not** approve grid / magnetic / badge / chart as cinematic scenes, and it does not approve `leaderboard / podium` as a labelled still.
+
+Round 7 reviews the signature wow pass (`src/lib/wow.tsx`, `wow-core` / `wow-blocks` / `wow-app`). Screenshots: `docs/audit/round-7/`.
+
+| Lens | File | Round 7 |
+| --- | --- | --- |
+| Senior visual designer | — | — |
+| Interaction / motion | `round-7-motion.md` | **Conditional** ([motion critic](https://cursor.com/agents/bc-28ecc41f-1ba1-5bb2-98e4-746b10d26a9a)). 47 keep; 140 fail wallpaper, named lies, missing Pause, or 2023 SaaS. |
+| Accessibility / responsive | — | — |
+| Sceptical design lead | — | — |
