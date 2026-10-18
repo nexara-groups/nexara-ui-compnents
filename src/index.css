@@ -11,6 +11,7 @@
   --color-nx-card: var(--nx-card);
   --color-nx-elevated: var(--nx-elevated);
   --color-nx-border: var(--nx-border);
+  --color-nx-field: var(--nx-field);
   --color-nx-line: var(--nx-line);
   --color-nx-accent: var(--nx-accent);
   --color-nx-accent-fg: var(--nx-accent-fg);
@@ -32,6 +33,7 @@
   --nx-elevated: #ffffff;
   --color-paper: #f4f4f1;
   --nx-border: rgba(17, 17, 16, 0.08);
+  --nx-field: rgba(17, 17, 16, 0.45);
   --nx-line: rgba(17, 17, 16, 0.14);
   --nx-accent: #4c46e0;
   --nx-accent-fg: #f6f6ff;
@@ -55,6 +57,7 @@
   --nx-elevated: #1b1b1f;
   --color-paper: #0a0a0c;
   --nx-border: rgba(255, 255, 255, 0.08);
+  --nx-field: rgba(243, 243, 238, 0.48);
   --nx-line: rgba(255, 255, 255, 0.14);
   --nx-accent: #8b87ff;
   --nx-accent-fg: #0c0c14;

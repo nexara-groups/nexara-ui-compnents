@@ -48,6 +48,10 @@
         {
           "path": "src/components/ui/draggable-card.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<DraggableCard variant=\"glass\" bounds={stageRef}>Drag</DraggableCard>",
@@ -145,6 +149,10 @@
         {
           "path": "src/components/ui/spotlight-card.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<SpotlightCard variant=\"profile\" />",
@@ -243,6 +251,10 @@
         {
           "path": "src/components/ui/flip-card.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<FlipCard variant=\"credit\" />",
@@ -340,6 +352,10 @@
         {
           "path": "src/components/ui/bento-grid.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<BentoItem variant=\"chart\" title=\"Uptime\" description=\"Last hour.\" />",
@@ -442,6 +458,10 @@
         {
           "path": "src/components/ui/button-extra.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Button variant=\"solid\">Continue</Button>",
@@ -509,13 +529,13 @@
         {
           "name": "shimmer",
           "title": "Shimmer",
-          "description": "Traveling sheen on a dark pill.",
+          "description": "Traveling sheen with a visible pause control.",
           "usage": "<Button variant=\"shimmer\">Continue</Button>"
         },
         {
           "name": "beam",
           "title": "Beam",
-          "description": "Spinning conic ring.",
+          "description": "Spinning conic ring with a visible pause control.",
           "usage": "<Button variant=\"beam\">Continue</Button>"
         },
         {
@@ -587,7 +607,7 @@
         {
           "name": "flow",
           "title": "Flow",
-          "description": "Moving gradient CTA.",
+          "description": "Moving gradient CTA with a visible pause control.",
           "usage": "<Button variant=\"flow\">Book a room</Button>"
         }
       ]
@@ -709,6 +729,10 @@
         {
           "path": "src/components/ui/aurora-background.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<AuroraBackground variant=\"aurora\" className=\"min-h-64\" />",
@@ -903,6 +927,10 @@
         {
           "path": "src/components/ui/gradient-text.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<GradientText variant=\"gradient\">Night</GradientText>",
@@ -1196,6 +1224,10 @@
         {
           "path": "src/components/ui/floating-navbar.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<FloatingNavbar variant=\"floating\" items={items} logo=\"Nexara\" />",
@@ -1288,11 +1320,20 @@
         "tailwind-merge"
       ],
       "registryDependencies": [
-        "utils"
+        "utils",
+        "input"
       ],
       "files": [
         {
           "path": "src/components/ui/modal.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/input.tsx",
           "type": "registry:ui"
         }
       ],
@@ -1888,6 +1929,10 @@
         {
           "path": "src/components/ui/accordion.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Accordion variant=\"plus\" items={items} />",
@@ -1973,6 +2018,10 @@
         {
           "path": "src/components/ui/tooltip.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Tooltip variant=\"default\" content=\"Hint\">Hover</Tooltip>",
@@ -2058,6 +2107,10 @@
         {
           "path": "src/components/ui/toast.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Toast variant=\"success\" />",
@@ -2491,6 +2544,10 @@
         {
           "path": "src/components/ui/footer.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<Footer variant=\"mega\" />",
@@ -3674,7 +3731,7 @@
         {
           "name": "dealers",
           "title": "Dealers",
-          "description": "Partner marks as flat originals.",
+          "description": "Six original color lockups with cities — not matching glyphs.",
           "usage": "<LogoCloud variant=\"dealers\" />"
         },
         {
@@ -3764,6 +3821,10 @@
         {
           "path": "src/components/ui/app-shell.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<AppShell variant=\"sidebar\" />",
@@ -3801,7 +3862,7 @@
         {
           "name": "agency",
           "title": "Agency",
-          "description": "Agency OS chrome.",
+          "description": "North OS desk with leads, board, and activity.",
           "usage": "<AppShell variant=\"agency\" />"
         },
         {
@@ -4443,6 +4504,10 @@
         {
           "path": "src/components/ui/settings-panel.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/media.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "<SettingsPanel variant=\"profile\" />",

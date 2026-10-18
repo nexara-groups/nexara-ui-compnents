@@ -44,7 +44,7 @@ export function Activity({ variant = 'feed', className }: ActivityProps) {
         <div className="space-y-2">
           {events.slice(0, 3).map((event) => (
             <article key={event.text} className="max-w-sm rounded-2xl bg-nx-elevated px-3 py-2 text-sm">
-              <p className="text-xs text-nx-faint">{event.who}</p>
+              <p className="text-xs text-nx-muted">{event.who}</p>
               <p>{event.text}</p>
             </article>
           ))}
@@ -67,7 +67,7 @@ export function Activity({ variant = 'feed', className }: ActivityProps) {
             <li key={event.text}>
               <span className="absolute -left-[5px] mt-1.5 size-2 rounded-full bg-nx-fg" />
               <p className="text-sm">{event.text}</p>
-              <p className="text-xs text-nx-faint">
+              <p className="text-xs text-nx-muted">
                 {event.who} · {event.time}
               </p>
             </li>
@@ -77,7 +77,7 @@ export function Activity({ variant = 'feed', className }: ActivityProps) {
 
       {variant === 'digest' ? (
         <div className="rounded-[1.3rem] border border-nx-border p-4">
-          <p className="text-xs text-nx-faint">Today</p>
+          <p className="text-xs text-nx-muted">Today</p>
           <p className="mt-2 font-serif text-2xl">{events.length} movements</p>
           <p className="mt-2 text-sm text-nx-muted">{events[0]!.text}</p>
         </div>
@@ -102,7 +102,7 @@ export function Activity({ variant = 'feed', className }: ActivityProps) {
                   </p>
                   {variant === 'tickets' ? <p className="text-xs text-nx-accent">Ticket NX-18</p> : null}
                 </div>
-                <span className="text-xs text-nx-faint">{event.time}</span>
+                <span className="text-xs text-nx-muted">{event.time}</span>
               </li>
             ))}
         </ul>

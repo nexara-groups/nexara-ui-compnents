@@ -1,7 +1,10 @@
 'use client'
 
 import { useState, type ReactNode } from 'react'
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, focusRing } from '@/lib/utils.ts'
+
+const wells = [media.journal, media.doors.consult, media.venues.studio]
 
 const VARIANTS = [
   'plus',
@@ -58,20 +61,30 @@ export function Accordion({ items, variant = 'plus', type = 'single', className 
             <h3>
               <button
                 type="button"
+                id={`nexara-acc-btn-${item.id}`}
                 aria-expanded={expanded}
+                aria-controls={`nexara-acc-${item.id}`}
                 className={cn(focusRing, 'flex w-full items-center gap-3 py-3 text-left text-sm font-medium')}
                 onClick={() => toggle(item.id)}
               >
-                {variant === 'numbered' ? <span className="font-mono text-xs text-nx-faint">{String(index + 1).padStart(2, '0')}</span> : null}
+                {variant === 'numbered' ? <span className="font-mono text-xs text-nx-muted">{String(index + 1).padStart(2, '0')}</span> : null}
                 {variant === 'icon' ? <span className="size-8 rounded-lg bg-nx-soft" aria-hidden="true" /> : null}
-                {variant === 'media' ? <span className="h-12 w-16 rounded-lg bg-[linear-gradient(135deg,#4c46e0,#22c5b0)]" aria-hidden="true" /> : null}
+                {variant === 'media' ? (
+                  <MediaFrame src={wells[index % wells.length]} alt="" className="h-12 w-16 rounded-lg" grain={false} />
+                ) : null}
                 <span className="flex-1">{variant === 'faq' ? `Q. ${item.title}` : item.title}</span>
                 <span aria-hidden="true" className="text-nx-muted">
                   {variant === 'chevron' ? (expanded ? '⌃' : '⌄') : expanded ? '−' : '+'}
                 </span>
               </button>
             </h3>
-            {expanded ? <div className="pb-4 text-sm leading-6 text-nx-muted">{item.content}</div> : null}
+            {expanded ? (
+              <div id={`nexara-acc-${item.id}`} className="pb-4 text-sm leading-6 text-nx-muted">
+                {item.content}
+              </div>
+            ) : (
+              <div id={`nexara-acc-${item.id}`} hidden />
+            )}
           </div>
         )
       })}

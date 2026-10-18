@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type MouseEvent, type ReactNode, type RefObject } from 'react'
 import { createPortal } from 'react-dom'
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
 export interface NavItem {
@@ -284,7 +285,7 @@ export function FloatingNavbar({
 
         {variant === 'transport' ? (
           <div className={cn('flex items-center gap-3 px-3 py-2', variantClass.transport, barClassName)}>
-            <span className="size-10 shrink-0 rounded-md bg-[linear-gradient(135deg,#4c46e0,#22c5b0)]" aria-hidden="true" />
+            <MediaFrame src={media.cinema} alt="" className="size-10 shrink-0 rounded-md" />
             <span className="min-w-0 flex-1">
               <span className="block truncate text-sm">{items[0]?.label ?? 'Night desk'}</span>
               <span className="mt-1 block h-1 rounded-full bg-nx-border"><span className="block h-1 w-1/3 rounded-full bg-nx-fg" /></span>

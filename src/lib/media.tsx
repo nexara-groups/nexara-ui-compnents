@@ -70,6 +70,20 @@ export const media = {
     orbit: '/media/mark-orbit.svg',
     marble: '/media/mark-marble.svg',
   },
+  lockups: {
+    kite: '/media/lockup-kite.svg',
+    solum: '/media/lockup-solum.svg',
+    nimbus: '/media/lockup-nimbus.svg',
+    vale: '/media/lockup-vale.svg',
+    orbit: '/media/lockup-orbit.svg',
+    marble: '/media/lockup-marble.svg',
+  },
+  press: {
+    harbor: '/media/lockup-harbor-review.svg',
+    field: '/media/lockup-field-notes.svg',
+    north: '/media/lockup-north-press.svg',
+    lumen: '/media/lockup-lumen-weekly.svg',
+  },
 } as const
 
 export const faces = [
@@ -223,6 +237,33 @@ export function PlayControl({
       className={cn(focusRing, 'inline-flex size-12 items-center justify-center rounded-full bg-white text-[#111]', className)}
     >
       <span className="ml-0.5">{playing ? '❚❚' : '▶'}</span>
+    </button>
+  )
+}
+
+/** Visible pause for infinite ornamental loops (WCAG 2.2.2). */
+export function LoopPause({
+  playing,
+  onToggle,
+  className,
+}: {
+  playing: boolean
+  onToggle: () => void
+  className?: string
+}) {
+  return (
+    <button
+      type="button"
+      aria-pressed={playing}
+      aria-label={playing ? 'Pause motion' : 'Play motion'}
+      onClick={onToggle}
+      className={cn(
+        focusRing,
+        'inline-flex items-center rounded-full border border-nx-field bg-nx-card px-2.5 py-1 text-[11px] font-medium text-nx-fg',
+        className,
+      )}
+    >
+      {playing ? 'Pause' : 'Play'}
     </button>
   )
 }

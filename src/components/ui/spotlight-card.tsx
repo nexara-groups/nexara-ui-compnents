@@ -1,6 +1,7 @@
 'use client'
 
 import { type CSSProperties, type PointerEvent, type ReactNode } from 'react'
+import { MediaFrame, faces, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -144,11 +145,11 @@ function Face({ variant }: { variant: SpotlightVariant }) {
   if (variant === 'product') {
     return (
       <div>
-        <div className="relative h-36 overflow-hidden rounded-[1.1rem] bg-[radial-gradient(circle_at_30%_20%,#d9d6ff,transparent_40%),linear-gradient(160deg,#1b1b22,#0e0e12)]">
+        <div className="relative h-36 overflow-hidden rounded-[1.1rem]">
+          <MediaFrame src={media.lamp} alt="Lamp 04" className="h-36" />
           <span className="absolute top-3 left-3 rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-medium text-[#16140f]">
             In stock
           </span>
-          <span className="absolute right-6 bottom-4 h-20 w-12 rounded-full bg-[linear-gradient(180deg,#f4efe6,#c4b7a4)] shadow-2xl" />
         </div>
         <div className="flex items-end justify-between px-2 pt-3 pb-1">
           <div>
@@ -167,11 +168,9 @@ function Face({ variant }: { variant: SpotlightVariant }) {
           “The registry finally feels like a product, not a folder of snippets.”
         </blockquote>
         <figcaption className="mt-4 flex items-center gap-3 text-sm">
-          <span className="inline-flex size-8 items-center justify-center rounded-full bg-nx-soft text-xs font-medium text-nx-accent">
-            AK
-          </span>
+          <MediaFrame src={faces[0].src} alt="" grain={false} className="size-8 rounded-full" />
           <span>
-            <span className="block font-medium">Ada Klein</span>
+            <span className="block font-medium">{faces[0].name}</span>
             <span className="text-nx-muted">Studio lead, Harbor</span>
           </span>
         </figcaption>
@@ -196,7 +195,7 @@ function Face({ variant }: { variant: SpotlightVariant }) {
   if (variant === 'player') {
     return (
       <div className="flex gap-4">
-        <div className="size-16 shrink-0 rounded-2xl bg-[conic-gradient(from_120deg,#4c46e0,#8b87ff,#22c5b0,#4c46e0)]" />
+        <MediaFrame src={media.cinema} alt="" className="size-16 shrink-0 rounded-2xl" />
         <div className="min-w-0 flex-1">
           <p className="text-sm font-medium">Night desk</p>
           <p className="text-xs text-white/50">Side A · Harbor Sessions</p>
@@ -228,13 +227,11 @@ function Face({ variant }: { variant: SpotlightVariant }) {
   if (variant === 'inbox') {
     return (
       <div className="flex gap-3">
-        <span className="inline-flex size-10 items-center justify-center rounded-xl bg-nx-soft text-sm font-medium text-nx-accent">
-          N
-        </span>
+        <MediaFrame src={faces[1].src} alt="" grain={false} className="size-10 rounded-xl" />
         <div className="min-w-0 flex-1">
           <div className="flex items-baseline justify-between gap-3">
             <p className="text-sm font-medium">Export ready</p>
-            <p className="text-[11px] text-nx-faint">2m</p>
+            <p className="text-[11px] text-nx-muted">2m</p>
           </div>
           <p className="mt-0.5 text-sm text-nx-muted">Harbor Hall pack · 128 components</p>
         </div>
@@ -279,11 +276,11 @@ function Face({ variant }: { variant: SpotlightVariant }) {
   if (variant === 'article') {
     return (
       <>
-        <div className="h-20 rounded-lg bg-[linear-gradient(140deg,#1c1630,#4c46e0_60%,#d7c4a4)]" />
+        <MediaFrame src={media.journal} alt="" className="h-20 rounded-lg" />
         <div>
           <p className="text-[11px] tracking-[0.16em] text-nx-accent uppercase">Essay · 6 min</p>
           <p className="mt-1 font-serif text-xl leading-tight">A quieter measure of the room</p>
-          <p className="mt-1 text-xs text-nx-muted">Issue 18 · Mira Chen</p>
+          <p className="mt-1 text-xs text-nx-muted">Issue 18 · Meera Shah</p>
         </div>
       </>
     )
@@ -291,10 +288,7 @@ function Face({ variant }: { variant: SpotlightVariant }) {
   if (variant === 'place') {
     return (
       <div>
-        <div className="relative h-24 bg-[linear-gradient(#d7e4dc,#eef3ea)]">
-          <span className="absolute inset-0 opacity-70 [background-image:linear-gradient(#b7c8bc_1px,transparent_1px),linear-gradient(90deg,#b7c8bc_1px,transparent_1px)] [background-size:18px_18px]" />
-          <span className="absolute top-1/2 left-1/3 size-3 -translate-y-1/2 rounded-full bg-nx-accent ring-4 ring-white" />
-        </div>
+        <MediaFrame src={media.venues.studio} alt="Harbor Hall" className="h-24" />
         <div className="p-4">
           <p className="text-sm font-medium">Harbor Hall</p>
           <p className="text-xs text-nx-muted">1.2 km · Open until 22:00</p>
@@ -304,11 +298,9 @@ function Face({ variant }: { variant: SpotlightVariant }) {
   }
   return (
     <div className="flex w-full items-center gap-3">
-      <span className="inline-flex size-10 items-center justify-center rounded-full bg-[linear-gradient(135deg,#4c46e0,#22c5b0)] text-xs font-semibold text-white">
-        AK
-      </span>
+      <MediaFrame src={faces[0].src} alt="" grain={false} className="size-10 rounded-full" />
       <div className="min-w-0">
-        <p className="text-sm font-medium">Ada Klein</p>
+        <p className="text-sm font-medium">{faces[0].name}</p>
         <p className="text-xs text-nx-muted">Studio lead · Harbor</p>
       </div>
       <span className="ml-auto rounded-full border border-nx-border px-3 py-1 text-xs">Follow</span>

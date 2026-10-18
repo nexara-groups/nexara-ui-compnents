@@ -1,6 +1,7 @@
 'use client'
 
 import { useId, useState, type ReactNode } from 'react'
+import { MediaFrame, faces } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -76,7 +77,7 @@ export function Tooltip({ content, children, variant = 'default', className, ope
             className,
           )}
         >
-          {variant === 'avatar' ? <span className="inline-flex size-6 items-center justify-center rounded-full bg-nx-soft text-[10px] text-nx-accent">AK</span> : null}
+          {variant === 'avatar' ? <MediaFrame src={faces[0].src} alt="" grain={false} className="size-6 rounded-full" /> : null}
           {content}
         </span>
       ) : null}

@@ -13,7 +13,9 @@ import {
   type ReactNode,
 } from 'react'
 import { createPortal } from 'react-dom'
-import { cn, focusRing, usePrefersReducedMotion } from '@/lib/utils.ts'
+import { MediaFrame, media } from '@/lib/media.tsx'
+import { Input } from './input.tsx'
+import { cn, fieldBorder, focusRing, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
@@ -412,20 +414,14 @@ export function ModalContent({
             </div>
             <div ref={bodyRef} className={cn('min-h-0 flex-1 overflow-y-auto px-6 pt-1 pb-6', variant === 'lightbox' && 'min-h-48', variant === 'sheet' && 'flex flex-col gap-2', variant === 'notice' && 'hidden')}>
               {variant === 'command' ? (
-                <label className="mb-3 flex h-11 items-center rounded-xl border border-nx-border bg-nx-bg px-3 text-sm text-nx-muted">
+                <label className={cn('mb-3 flex h-11 items-center rounded-xl bg-nx-bg px-3 text-sm text-nx-muted', fieldBorder)}>
                   <span className="sr-only">Command</span>
                   <input className={cn(focusRing, 'w-full rounded-lg bg-transparent text-nx-fg')} placeholder="Type a command" />
                 </label>
               ) : null}
               {variant === 'otp' ? (
                 <div className="mb-4 flex flex-col items-center gap-3">
-                  <div className="flex justify-center gap-2">
-                    {['4', '1', '8', ''].map((digit, index) => (
-                      <span key={index} className="inline-flex size-12 items-center justify-center rounded-xl border border-nx-border font-mono text-xl">
-                        {digit}
-                      </span>
-                    ))}
-                  </div>
+                  <Input variant="otp" defaultValue="4182" />
                   <button type="button" className="text-sm text-nx-accent">Resend code</button>
                 </div>
               ) : null}
@@ -433,11 +429,11 @@ export function ModalContent({
                 <form className="mb-4 space-y-3" onSubmit={(event) => event.preventDefault()}>
                   <label className="block text-xs text-nx-muted">
                     Name
-                    <input className="mt-1 h-11 w-full rounded-xl border border-nx-border bg-nx-bg px-3 text-nx-fg" defaultValue="Ada Klein" />
+                    <input className={cn('mt-1 h-11 w-full rounded-xl bg-nx-bg px-3 text-nx-fg', fieldBorder)} defaultValue="Anitha Rao" />
                   </label>
                   <label className="block text-xs text-nx-muted">
                     Studio
-                    <input className="mt-1 h-11 w-full rounded-xl border border-nx-border bg-nx-bg px-3 text-nx-fg" defaultValue="Harbor" />
+                    <input className={cn('mt-1 h-11 w-full rounded-xl bg-nx-bg px-3 text-nx-fg', fieldBorder)} defaultValue="Harbor" />
                   </label>
                 </form>
               ) : null}
@@ -457,14 +453,14 @@ export function ModalContent({
               {variant === 'auth' ? (
                 <form className="space-y-3" onSubmit={(event) => event.preventDefault()}>
                   <label className="block text-xs text-nx-muted">Email
-                    <input type="email" className="mt-1 h-11 w-full rounded-xl border border-nx-border bg-nx-bg px-3 text-nx-fg" placeholder="you@studio.com" />
+                    <input type="email" className={cn('mt-1 h-11 w-full rounded-xl bg-nx-bg px-3 text-nx-fg', fieldBorder)} placeholder="you@studio.com" />
                   </label>
                   <button type="submit" className="h-11 w-full rounded-full bg-nx-fg text-sm text-nx-bg">Continue</button>
-                  <p className="text-center text-xs text-nx-faint">or</p>
-                  <button type="button" className="h-11 w-full rounded-xl border border-nx-border">Continue with Atlas</button>
+                  <p className="text-center text-xs text-nx-muted">or</p>
+                  <button type="button" className={cn('h-11 w-full rounded-xl', fieldBorder)}>Continue with Atlas</button>
                 </form>
               ) : null}
-              {variant === 'lightbox' ? <div className="mb-4 min-h-40 rounded-xl bg-[linear-gradient(135deg,#1c1428,#3d1d16)]" /> : null}
+              {variant === 'lightbox' ? <MediaFrame src={media.cinema} alt="Harbor after dark" className="mb-4 min-h-40 rounded-xl" /> : null}
               {children}
             </div>
             {variant === 'notice' ? (

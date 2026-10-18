@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 72" fill="none">
+  <rect width="240" height="72" rx="12" fill="#E7D3A8"/>
+  <circle cx="38" cy="30" r="12" fill="#1A1610"/>
+  <path d="M18 48h40" stroke="#1A1610" stroke-width="4" stroke-linecap="round"/>
+  <text x="78" y="45" fill="#1A1610" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="650" letter-spacing="6">SOLUM</text>
+</svg>

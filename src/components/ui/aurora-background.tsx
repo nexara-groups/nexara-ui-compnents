@@ -1,7 +1,8 @@
 'use client'
 
 import { type ReactNode } from 'react'
-import { cn, useKeyframes, usePrefersReducedMotion } from '@/lib/utils.ts'
+import { LoopPause } from '@/lib/media.tsx'
+import { cn, useKeyframes, useLoopControl } from '@/lib/utils.ts'
 
 const AURORA_CSS = `
 @keyframes nexara-aurora-a {
@@ -77,15 +78,16 @@ export function AuroraBackground({
   pause = false,
   noise = true,
 }: AuroraBackgroundProps) {
-  const reduced = usePrefersReducedMotion()
+  const loop = useLoopControl(!pause)
   useKeyframes('nexara-aurora-2026', AURORA_CSS)
   const [a, b, c, d] = [colors[0] ?? '#4c46e0', colors[1] ?? '#8b87ff', colors[2] ?? '#22c5b0', colors[3] ?? '#f3c27a']
-  const moving = !reduced && !pause
+  const moving = loop.playing && !pause
 
   return (
     <div data-nexara="aurora-background" data-variant={variant} className={cn('relative isolate overflow-hidden bg-[#07070a] text-[#f3f3ee]', className)}>
       <Scene variant={variant} a={a} b={b} c={c} d={d} intensity={intensity} moving={moving} duration={duration} />
       {noise ? <span aria-hidden="true" className="nx-noise pointer-events-none absolute inset-0" /> : null}
+      <LoopPause playing={moving} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20 border-white/20 bg-white/10 text-white" />
       <div className={cn('relative z-10', contentClassName)}>{children}</div>
     </div>
   )

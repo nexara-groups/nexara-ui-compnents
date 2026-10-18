@@ -1,6 +1,7 @@
 'use client'
 
 import { type ReactNode, useState } from 'react'
+import { MediaFrame, faces, media } from '@/lib/media.tsx'
 import { cn, focusRing } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -35,8 +36,9 @@ const nav = {
 
 /**
  * App shell
- * Twelve portal layouts for Agency OS and industry desks.
- * Copy this file plus `src/lib/utils.ts`.
+ * Twelve portal layouts. Isolated canvases ship real furniture — leads, rooms,
+ * heats, briefs — not empty Open / Waiting / Done tiles.
+ * Copy this file, `src/lib/media.tsx`, `src/lib/utils.ts`, and `public/media`.
  */
 export function AppShell({ variant = 'sidebar', className, children }: AppShellProps) {
   const [open, setOpen] = useState(variant !== 'collapsed' && variant !== 'mobile')
@@ -51,6 +53,7 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
           : nav.agency
   const brand =
     variant === 'clinic' ? 'Lumen desk' : variant === 'sports' ? 'Field OS' : variant === 'academy' ? 'Atlas' : 'North OS'
+  const canvas = children ?? <Desk variant={variant} />
 
   if (variant === 'top') {
     return (
@@ -63,7 +66,7 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
             ))}
           </nav>
         </header>
-        <div className="p-4">{children ?? <Blank title="Top navigation" />}</div>
+        <div className="p-4">{canvas}</div>
       </div>
     )
   }
@@ -71,10 +74,12 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
   if (variant === 'split') {
     return (
       <div data-nexara="app-shell" data-variant={variant} className={cn('grid overflow-hidden rounded-[1.4rem] border border-nx-border md:grid-cols-[1fr_18rem]', className)}>
-        <div className="p-4">{children ?? <Blank title="Workspace" />}</div>
+        <div className="p-4">{canvas}</div>
         <aside className="border-t border-nx-border bg-nx-elevated p-4 md:border-t-0 md:border-l">
-          <p className="text-xs text-nx-faint">Inspector</p>
-          <p className="mt-2 text-sm">Lead · Wren Build</p>
+          <p className="text-xs text-nx-muted">Inspector</p>
+          <p className="mt-2 text-sm font-medium">Lead · Wren Build</p>
+          <p className="mt-1 text-xs text-nx-muted">Anitha Rao · quoted this morning</p>
+          <MediaFrame src={media.cases.build} alt="Wren Build still" className="mt-3 h-24 rounded-xl" />
         </aside>
       </div>
     )
@@ -83,11 +88,11 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
   if (variant === 'command') {
     return (
       <div data-nexara="app-shell" data-variant={variant} className={cn('rounded-[1.4rem] border border-nx-border bg-nx-card p-4', className)}>
-        <button type="button" className={cn(focusRing, 'flex h-10 w-full items-center justify-between rounded-xl border border-nx-line px-3 text-sm text-nx-muted')}>
+        <button type="button" className={cn(focusRing, 'flex h-10 w-full items-center justify-between rounded-xl border border-nx-field px-3 text-sm text-nx-muted')}>
           Jump to a room
           <kbd className="rounded bg-nx-elevated px-1.5 font-mono text-[10px]">⌘K</kbd>
         </button>
-        <div className="mt-4">{children ?? <Blank title="Command-first desk" />}</div>
+        <div className="mt-4">{canvas}</div>
       </div>
     )
   }
@@ -139,30 +144,138 @@ export function AppShell({ variant = 'sidebar', className, children }: AppShellP
             type="button"
             aria-expanded={menuOpen}
             aria-controls={navId}
-            className={cn(focusRing, 'mb-3 rounded-lg border border-nx-border px-3 py-1.5 text-xs md:hidden')}
+            className={cn(focusRing, 'mb-3 rounded-lg border border-nx-field px-3 py-1.5 text-xs md:hidden')}
             onClick={() => (variant === 'mobile' ? setOpen((value) => !value) : setMenu((value) => !value))}
           >
             {menuOpen ? 'Hide menu' : 'Menu'}
           </button>
         ) : null}
-        {children ?? <Blank title={`${brand} canvas`} />}
+        {canvas}
       </div>
     </div>
   )
 }
 
-function Blank({ title }: { title: string }) {
+function Desk({ variant }: { variant: AppShellVariant }) {
+  if (variant === 'clinic') return <ClinicDesk />
+  if (variant === 'sports') return <SportsDesk />
+  if (variant === 'academy') return <AcademyDesk />
+  return <AgencyDesk />
+}
+
+function AgencyDesk() {
   return (
     <div>
-      <p className="text-xs text-nx-faint">Canvas</p>
-      <p className="mt-2 font-serif text-2xl">{title}</p>
+      <p className="text-xs text-nx-muted">North OS · Overview</p>
+      <p className="mt-1 font-serif text-2xl">Leads that already have a room.</p>
       <div className="mt-4 grid gap-3 sm:grid-cols-3">
-        {['Open', 'Waiting', 'Done'].map((label) => (
-          <div key={label} className="rounded-xl border border-nx-border p-3 text-sm">
-            {label}
-          </div>
-        ))}
+        <Metric label="Open leads" value="24" note="Wren, Solum, Vale" />
+        <Metric label="Friday demos" value="7" note="This week" />
+        <Metric label="Booked" value="₹86L" note="Studio corridor" />
       </div>
+      <div className="mt-4 grid gap-3 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="rounded-2xl border border-nx-border">
+          <p className="border-b border-nx-border px-3 py-2 text-xs text-nx-muted">Board</p>
+          <ul className="grid gap-2 p-3 sm:grid-cols-3">
+            {[
+              { col: 'Brief', item: 'Wren Build mast' },
+              { col: 'Build', item: 'Harbor plant walk' },
+              { col: 'Review', item: 'Issue 18 index' },
+            ].map((row) => (
+              <li key={row.col} className="rounded-xl border border-nx-border bg-nx-elevated p-3 text-sm">
+                <p className="text-[11px] text-nx-muted">{row.col}</p>
+                <p className="mt-1 font-medium">{row.item}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <Activity />
+      </div>
+    </div>
+  )
+}
+
+function ClinicDesk() {
+  return (
+    <div>
+      <p className="text-xs text-nx-muted">Lumen desk · Today</p>
+      <p className="mt-1 font-serif text-2xl">Chairs that already have a name.</p>
+      <div className="mt-4 grid gap-3 sm:grid-cols-3">
+        <Metric label="Consults" value="16" note="Before noon walk-ins" />
+        <Metric label="Therapy" value="9" note="Named chairs" />
+        <Metric label="Scripts" value="4" note="Same-floor pharmacy" />
+      </div>
+      <ul className="mt-4 space-y-2">
+        {faces.slice(0, 3).map((face, index) => (
+          <li key={face.name} className="flex items-center gap-3 rounded-xl border border-nx-border px-3 py-2">
+            <MediaFrame src={face.src} alt={face.name} grain={false} className="size-10 rounded-full" />
+            <span className="min-w-0 flex-1">
+              <span className="block text-sm font-medium">{face.name}</span>
+              <span className="text-xs text-nx-muted">{['Consult · Room 2', 'Therapy · Chair 4', 'Pharmacy · Window'][index]}</span>
+            </span>
+            <span className="text-xs text-nx-muted">{['08:40', '09:10', '09:35'][index]}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+function SportsDesk() {
+  return (
+    <div>
+      <p className="text-xs text-nx-muted">Field OS · Season</p>
+      <p className="mt-1 font-serif text-2xl">Heats that post the same night.</p>
+      <div className="mt-4 grid gap-3 sm:grid-cols-3">
+        <Metric label="Gold" value="12" note="U19 book" />
+        <Metric label="Clubs" value="28" note="Named coaches" />
+        <Metric label="Lanes" value="8" note="Harbor Hall" />
+      </div>
+      <MediaFrame src={media.venues.track} alt="Harbor Hall track" className="mt-4 h-28 rounded-2xl" />
+    </div>
+  )
+}
+
+function AcademyDesk() {
+  return (
+    <div>
+      <p className="text-xs text-nx-muted">Atlas · Cohorts</p>
+      <p className="mt-1 font-serif text-2xl">Briefs that ship on Friday.</p>
+      <div className="mt-4 grid gap-3 sm:grid-cols-3">
+        <Metric label="In room" value="18" note="Cohort 07" />
+        <Metric label="Demos" value="3" note="This Friday" />
+        <Metric label="Leads" value="6" note="Named after handover" />
+      </div>
+      <MediaFrame src={media.journal} alt="Atlas brief" className="mt-4 h-28 rounded-2xl" />
+    </div>
+  )
+}
+
+function Metric({ label, value, note }: { label: string; value: string; note: string }) {
+  return (
+    <div className="rounded-2xl border border-nx-border bg-nx-elevated p-3">
+      <p className="text-[11px] text-nx-muted">{label}</p>
+      <p className="mt-1 font-serif text-3xl">{value}</p>
+      <p className="mt-1 text-xs text-nx-muted">{note}</p>
+    </div>
+  )
+}
+
+function Activity() {
+  return (
+    <div className="rounded-2xl border border-nx-border">
+      <p className="border-b border-nx-border px-3 py-2 text-xs text-nx-muted">Activity</p>
+      <ul className="space-y-2 p-3">
+        {faces.slice(0, 3).map((face, index) => (
+          <li key={face.name} className="flex items-center gap-3 text-sm">
+            <MediaFrame src={face.src} alt="" grain={false} className="size-8 rounded-full" />
+            <span>
+              <span className="font-medium">{face.name.split(' ')[0]}</span>
+              <span className="text-nx-muted"> {['moved Wren to Review', 'quoted Harbor plant', 'closed Issue 18 still'][index]}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

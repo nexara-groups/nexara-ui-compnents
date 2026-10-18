@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, type ReactNode } from 'react'
+import { useId, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { cn, focusRing } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -29,24 +29,41 @@ export interface TabsProps {
 
 /**
  * Tabs
- * Ten tab anatomies. Copy this file plus `src/lib/utils.ts`.
+ * Ten tab anatomies with APG keyboard and labelled panels.
+ * Copy this file plus `src/lib/utils.ts`.
  */
 export function Tabs({ items, variant = 'underline', defaultValue, className }: TabsProps) {
   const [value, setValue] = useState(defaultValue ?? items[0]?.id ?? '')
   const current = items.find((item) => item.id === value) ?? items[0]
   const vertical = variant === 'vertical' || variant === 'rail'
+  const uid = useId()
+
+  const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    const keys = vertical ? ['ArrowUp', 'ArrowDown'] : ['ArrowLeft', 'ArrowRight']
+    if (!keys.includes(event.key)) return
+    event.preventDefault()
+    const index = items.findIndex((item) => item.id === value)
+    const next = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? index + 1 : index - 1
+    const item = items[(next + items.length) % items.length]
+    if (!item) return
+    setValue(item.id)
+    document.getElementById(`${uid}-${item.id}`)?.focus()
+  }
 
   return (
     <div data-nexara="tabs" data-variant={variant} className={cn(vertical && 'grid gap-4 md:grid-cols-[10rem_1fr]', className)}>
-      <div role="tablist" aria-orientation={vertical ? 'vertical' : 'horizontal'} className={listClass(variant)}>
+      <div role="tablist" aria-orientation={vertical ? 'vertical' : 'horizontal'} className={listClass(variant)} onKeyDown={onKeyDown}>
         {items.map((item) => {
           const selected = item.id === value
           return (
             <button
               key={item.id}
+              id={`${uid}-${item.id}`}
               type="button"
               role="tab"
               aria-selected={selected}
+              aria-controls={`${uid}-panel-${item.id}`}
+              tabIndex={selected ? 0 : -1}
               className={cn(focusRing, tabClass(variant, selected))}
               onClick={() => setValue(item.id)}
             >
@@ -59,9 +76,16 @@ export function Tabs({ items, variant = 'underline', defaultValue, className }: 
           )
         })}
       </div>
-      <div role="tabpanel" className="min-h-16 text-sm leading-6 text-nx-muted">
-        {current?.panel}
-      </div>
+      {current ? (
+        <div
+          role="tabpanel"
+          id={`${uid}-panel-${current.id}`}
+          aria-labelledby={`${uid}-${current.id}`}
+          className="min-h-16 text-sm leading-6 text-nx-muted"
+        >
+          {current.panel}
+        </div>
+      ) : null}
     </div>
   )
 }

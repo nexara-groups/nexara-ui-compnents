@@ -27,7 +27,7 @@ export interface DataTableProps {
 
 const rows = [
   { name: 'Wren Build', kind: 'Lead', status: 'Open', amount: '₹2.4 L', owner: 'Latha' },
-  { name: 'Ada Klein', kind: 'Patient', status: 'Therapy', amount: '—', owner: 'Dr. Rao' },
+  { name: 'Meera Shah', kind: 'Patient', status: 'Therapy', amount: '—', owner: 'Dr. Rao' },
   { name: 'Harbor Hall', kind: 'Event', status: 'Booked', amount: '—', owner: 'Coach V' },
   { name: 'VRF Bay 04', kind: 'Job', status: 'Commission', amount: '₹18 L', owner: 'Suresh' },
   { name: 'Solum Q3', kind: 'Invoice', status: 'Due', amount: '₹86k', owner: 'Finance' },

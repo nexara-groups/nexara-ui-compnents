@@ -64,7 +64,7 @@ const itemsMeta = [
   ['typewriter', 'Typewriter', 'Text', 'Twelve devices that type and delete phrases.', ['clsx', 'tailwind-merge'], ['utils']],
   ['text-reveal', 'Text Reveal', 'Text', 'Twelve typographic compositions that stagger into view.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
   ['floating-navbar', 'Floating Navbar', 'Navigation', 'Twelve navigation products.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
-  ['modal', 'Modal', 'Overlays', 'Twelve dialog anatomies with a focus trap and scroll lock.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
+  ['modal', 'Modal', 'Overlays', 'Twelve dialog anatomies with a focus trap and scroll lock.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils', 'input']],
   ['hero', 'Hero', 'Sections', 'Thirty marketing page constructions with first-class image, video, and lottie slots.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
   ['marquee', 'Marquee', 'Sections', 'Twelve continuous tracks with pause control.', ['clsx', 'tailwind-merge'], ['utils']],
   ['input', 'Input', 'Forms', 'Twelve field constructions.', ['clsx', 'tailwind-merge'], ['utils']],
@@ -100,21 +100,37 @@ const itemsMeta = [
   ['kit', 'Kit', 'Kits', 'Twelve industry pages composed from the blocks.', ['clsx', 'tailwind-merge'], ['utils', 'hero', 'stats', 'services', 'process', 'team', 'contact', 'cta-band', 'chapters', 'news', 'logo-cloud', 'leaderboard', 'countdown', 'case-study', 'app-shell', 'kpi', 'data-table', 'kanban-board', 'activity', 'accordion', 'footer', 'button']],
 ]
 
+const mediaFile = [{ path: 'src/lib/media.tsx', type: 'registry:lib' }]
+
 const extraFiles = {
   hero: [
     { path: 'src/components/ui/hero-extra.tsx', type: 'registry:ui' },
-    { path: 'src/lib/media.tsx', type: 'registry:lib' },
+    ...mediaFile,
   ],
-  button: [{ path: 'src/components/ui/button-extra.tsx', type: 'registry:ui' }],
-  team: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
-  'logo-cloud': [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
-  'case-study': [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
-  services: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
-  testimonials: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
-  avatar: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
-  news: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
-  contact: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
-  marquee: [{ path: 'src/lib/media.tsx', type: 'registry:lib' }],
+  button: [{ path: 'src/components/ui/button-extra.tsx', type: 'registry:ui' }, ...mediaFile],
+  'aurora-background': mediaFile,
+  'gradient-text': mediaFile,
+  'draggable-card': mediaFile,
+  'spotlight-card': mediaFile,
+  'flip-card': mediaFile,
+  'bento-grid': mediaFile,
+  'floating-navbar': mediaFile,
+  modal: [...mediaFile, { path: 'src/components/ui/input.tsx', type: 'registry:ui' }],
+  accordion: mediaFile,
+  tooltip: mediaFile,
+  toast: mediaFile,
+  footer: mediaFile,
+  team: mediaFile,
+  'logo-cloud': mediaFile,
+  'case-study': mediaFile,
+  services: mediaFile,
+  testimonials: mediaFile,
+  avatar: mediaFile,
+  news: mediaFile,
+  contact: mediaFile,
+  marquee: mediaFile,
+  'app-shell': mediaFile,
+  'settings-panel': mediaFile,
 }
 
 const items = itemsMeta.map((entry) => {

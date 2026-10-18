@@ -1,5 +1,6 @@
 'use client'
 
+import { MediaFrame, faces } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -47,23 +48,26 @@ export function Toast({
       )}
     >
       {variant === 'stacked' ? <span aria-hidden="true" className="absolute inset-x-3 -bottom-1.5 h-3 rounded-b-2xl border border-nx-border bg-nx-elevated" /> : null}
-      <span
-        aria-hidden="true"
-        className={cn(
-          'mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full text-[11px]',
-          variant === 'success' && 'bg-nx-ok text-white',
-          variant === 'error' && 'bg-nx-danger text-white',
-          variant === 'warning' && 'bg-nx-warn text-[#1c1408]',
-          variant === 'info' && 'bg-nx-soft text-nx-accent',
-          variant === 'loading' && 'bg-nx-soft text-nx-accent',
-          variant === 'action' && 'bg-nx-fg text-nx-bg',
-          variant === 'progress' && 'bg-nx-soft text-nx-accent',
-          variant === 'avatar' && 'bg-[linear-gradient(135deg,#4c46e0,#22c5b0)] text-white',
-          variant === 'compact' && 'hidden',
-        )}
-      >
-        {mark(variant)}
-      </span>
+      {variant === 'avatar' ? (
+        <MediaFrame src={faces[0].src} alt="" grain={false} className="mt-0.5 size-6 shrink-0 rounded-full" />
+      ) : (
+        <span
+          aria-hidden="true"
+          className={cn(
+            'mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full text-[11px]',
+            variant === 'success' && 'bg-nx-ok text-white',
+            variant === 'error' && 'bg-nx-danger text-white',
+            variant === 'warning' && 'bg-nx-warn text-[#1c1408]',
+            variant === 'info' && 'bg-nx-soft text-nx-accent',
+            variant === 'loading' && 'bg-nx-soft text-nx-accent',
+            variant === 'action' && 'bg-nx-fg text-nx-bg',
+            variant === 'progress' && 'bg-nx-soft text-nx-accent',
+            variant === 'compact' && 'hidden',
+          )}
+        >
+          {mark(variant)}
+        </span>
+      )}
       <div className="min-w-0 flex-1">
         <p className="font-medium text-nx-fg">{title}</p>
         {variant !== 'compact' ? <p className="mt-0.5 text-xs text-nx-muted">{description}</p> : null}

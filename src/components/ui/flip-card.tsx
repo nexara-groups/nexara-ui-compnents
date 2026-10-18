@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useRef, useState, type MouseEvent, type ReactNode } from 'react'
+import { MediaFrame, faces, media } from '@/lib/media.tsx'
 import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -126,7 +127,7 @@ function pair(variant: FlipVariant): { front: ReactNode; back: ReactNode } {
     return {
       front: (
         <Face className="rounded-[1.4rem] border border-nx-border bg-nx-card">
-          <div className="h-24 rounded-2xl bg-[radial-gradient(circle_at_30%_20%,#d9d6ff,transparent_40%),linear-gradient(160deg,#1b1b22,#0e0e12)]" />
+          <MediaFrame src={media.lamp} alt="Lamp 04" className="h-24 rounded-2xl" />
           <p className="mt-3 text-lg font-medium">Lamp 04</p>
           <p className="text-sm text-nx-muted">$220 · brushed oak</p>
         </Face>
@@ -165,8 +166,8 @@ function pair(variant: FlipVariant): { front: ReactNode; back: ReactNode } {
     return {
       front: (
         <Face className="items-center rounded-[1.5rem] border border-nx-border bg-nx-card text-center">
-          <span className="inline-flex size-16 items-center justify-center rounded-full bg-[linear-gradient(135deg,#4c46e0,#22c5b0)] text-lg font-semibold text-white">AK</span>
-          <p className="mt-3 text-xl font-medium">Ada Klein</p>
+          <MediaFrame src={faces[0].src} alt="" grain={false} className="size-16 rounded-full" />
+          <p className="mt-3 text-xl font-medium">{faces[0].name}</p>
           <p className="text-sm text-nx-muted">Studio lead · Harbor</p>
         </Face>
       ),
@@ -255,7 +256,7 @@ function pair(variant: FlipVariant): { front: ReactNode; back: ReactNode } {
       ),
       back: (
         <Face className="rounded-none bg-transparent">
-          <p className="text-sm font-medium">Ada Klein</p>
+          <p className="text-sm font-medium">{faces[0].name}</p>
           <p className="text-sm text-nx-muted">Harbor · Issue 18</p>
         </Face>
       ),
@@ -283,8 +284,9 @@ function pair(variant: FlipVariant): { front: ReactNode; back: ReactNode } {
   if (variant === 'media') {
     return {
       front: (
-        <Face className="rounded-[1.4rem] bg-[linear-gradient(140deg,#1c1630,#4c46e0_60%,#d7c4a4)] p-0">
-          <p className="mt-auto p-5 text-lg font-medium text-white">Issue 18 cover</p>
+        <Face className="relative rounded-[1.4rem] p-0">
+          <MediaFrame src={media.journal} alt="Issue 18 cover" className="absolute inset-0" />
+          <p className="relative z-10 mt-auto p-5 text-lg font-medium text-white">Issue 18 cover</p>
         </Face>
       ),
       back: (

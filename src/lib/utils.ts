@@ -13,6 +13,20 @@ export function cn(...inputs: ClassValue[]) {
 export const focusRing =
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring focus-visible:ring-offset-2 focus-visible:ring-offset-nx-bg'
 
+/** Form-field border that holds ~3:1 against card surfaces (WCAG non-text). */
+export const fieldBorder = 'border border-nx-field'
+
+/** Playing unless the user paused or asked for reduced motion. */
+export function useLoopControl(startPlaying = true) {
+  const reduced = usePrefersReducedMotion()
+  const [playing, setPlaying] = useState(startPlaying)
+  return {
+    playing: playing && !reduced,
+    toggle: () => setPlaying((value) => !value),
+    reduced,
+  }
+}
+
 /** Tracks the user's reduced-motion preference. Safe to call in the browser only. */
 export function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(() => {

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 72" fill="none">
+  <rect width="240" height="72" rx="12" fill="#111113"/>
+  <circle cx="40" cy="36" r="6" fill="#F3F3EE"/>
+  <ellipse cx="40" cy="36" rx="20" ry="9" transform="rotate(-24 40 36)" stroke="#F3F3EE" stroke-width="2.4"/>
+  <text x="76" y="44" fill="#F3F3EE" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="600" letter-spacing="7">ORBIT</text>
+</svg>

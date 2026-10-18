@@ -1,8 +1,9 @@
 'use client'
 
 import { cva, type VariantProps } from 'class-variance-authority'
-import { type ComponentProps, type MouseEvent, type ReactNode } from 'react'
-import { cn, focusRing, useKeyframes } from '@/lib/utils.ts'
+import { type ComponentProps, type MouseEvent, type ReactNode, useState } from 'react'
+import { LoopPause } from '@/lib/media.tsx'
+import { cn, focusRing, useKeyframes, usePrefersReducedMotion } from '@/lib/utils.ts'
 import { EXTRA_BUTTON, ExtraButton, type ExtraButtonVariant } from './button-extra.tsx'
 
 const BUTTON_KEYFRAMES = `
@@ -150,6 +151,9 @@ export function Button({
   const kind = variant ?? 'solid'
   const busy = Boolean(loading || state === 'loading')
   const isInactive = Boolean(disabled || busy)
+  const reduced = usePrefersReducedMotion()
+  const [motionOn, setMotionOn] = useState(true)
+  const looping = (kind === 'shimmer' || kind === 'beam') && motionOn && !reduced
   useKeyframes('nexara-button-keyframes', BUTTON_KEYFRAMES)
   if ((EXTRA_BUTTON as readonly string[]).includes(kind)) {
     return (
@@ -215,14 +219,20 @@ export function Button({
       {kind === 'shimmer' ? (
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.28),transparent)] motion-safe:animate-[nexara-shimmer_2.4s_ease_infinite]"
+          className={cn(
+            'pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.28),transparent)]',
+            looping && 'motion-safe:animate-[nexara-shimmer_2.4s_ease_infinite]',
+          )}
         />
       ) : null}
       {kind === 'beam' ? (
         <>
           <span
             aria-hidden="true"
-            className="absolute top-1/2 left-1/2 h-[240%] w-[240%] -translate-x-1/2 -translate-y-1/2 bg-[conic-gradient(from_90deg,#4c46e0,#22c5b0,#8b87ff,#4c46e0)] motion-safe:animate-[nexara-beam_3.6s_linear_infinite]"
+            className={cn(
+              'absolute top-1/2 left-1/2 h-[240%] w-[240%] -translate-x-1/2 -translate-y-1/2 bg-[conic-gradient(from_90deg,#4c46e0,#22c5b0,#8b87ff,#4c46e0)]',
+              looping && 'motion-safe:animate-[nexara-beam_3.6s_linear_infinite]',
+            )}
           />
           <span aria-hidden="true" className="absolute inset-[1.5px] rounded-[inherit] bg-nx-card" />
         </>
@@ -282,33 +292,29 @@ export function Button({
     </>
   )
 
-  if (href) {
-    return (
-      <a
-        {...(rest as ComponentProps<'a'>)}
-        href={isInactive ? undefined : href}
-        target={target}
-        rel={rel}
-        download={download}
-        data-nexara="button"
-        data-variant={kind}
-        aria-disabled={isInactive || undefined}
-        aria-busy={busy || undefined}
-        className={cn(classes, isInactive && 'pointer-events-none opacity-45')}
-        onClick={(event) => {
-          if (isInactive) {
-            event.preventDefault()
-            return
-          }
-          onClick?.(event as unknown as MouseEvent<HTMLButtonElement>)
-        }}
-      >
-        {content}
-      </a>
-    )
-  }
-
-  return (
+  const control = href ? (
+    <a
+      {...(rest as ComponentProps<'a'>)}
+      href={isInactive ? undefined : href}
+      target={target}
+      rel={rel}
+      download={download}
+      data-nexara="button"
+      data-variant={kind}
+      aria-disabled={isInactive || undefined}
+      aria-busy={busy || undefined}
+      className={cn(classes, isInactive && 'pointer-events-none opacity-45')}
+      onClick={(event) => {
+        if (isInactive) {
+          event.preventDefault()
+          return
+        }
+        onClick?.(event as unknown as MouseEvent<HTMLButtonElement>)
+      }}
+    >
+      {content}
+    </a>
+  ) : (
     <button
       {...rest}
       type={type}
@@ -329,4 +335,15 @@ export function Button({
       {content}
     </button>
   )
+
+  if (kind === 'shimmer' || kind === 'beam') {
+    return (
+      <span className="inline-flex items-center gap-2">
+        {control}
+        <LoopPause playing={looping} onToggle={() => setMotionOn((value) => !value)} />
+      </span>
+    )
+  }
+
+  return control
 }

@@ -1,6 +1,7 @@
 'use client'
 
-import { cn, focusRing } from '@/lib/utils.ts'
+import { MediaFrame, media } from '@/lib/media.tsx'
+import { cn, fieldBorder, focusRing } from '@/lib/utils.ts'
 
 const VARIANTS = [
   'mega',
@@ -53,7 +54,7 @@ export function Footer({ variant = 'mega', className }: FooterProps) {
               </div>
             ))}
           </div>
-          <p className="mt-10 border-t border-nx-border pt-4 text-xs text-nx-faint">© 2026 Nexara. All rooms remain yours.</p>
+          <p className="mt-10 border-t border-nx-border pt-4 text-xs text-nx-muted">© 2026 Nexara. All rooms remain yours.</p>
         </div>
       ) : null}
 
@@ -84,7 +85,7 @@ export function Footer({ variant = 'mega', className }: FooterProps) {
       ) : null}
 
       {variant === 'legal' ? (
-        <div className="border-t border-nx-border py-6 text-xs leading-6 text-nx-faint">
+        <div className="border-t border-nx-border py-6 text-xs leading-6 text-nx-muted">
           <p>© 2026 Nexara Groups. Nexara UI is provided as source you copy. You own the files after paste.</p>
           <p className="mt-2">Privacy · Terms · DPA · Subprocessors · Status</p>
         </div>
@@ -105,6 +106,11 @@ export function Footer({ variant = 'mega', className }: FooterProps) {
         <div className="border-t border-nx-line pt-8">
           <p className="font-serif text-6xl leading-none tracking-tight md:text-8xl">Nexara</p>
           <p className="mt-4 text-nx-muted">A quieter measure of the room.</p>
+          <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {[media.lockups.kite, media.lockups.solum, media.lockups.nimbus, media.lockups.vale].map((src) => (
+              <MediaFrame key={src} src={src} alt="" grain={false} className="h-12 rounded-xl border border-nx-border" imgClassName="object-cover" />
+            ))}
+          </div>
         </div>
       ) : null}
 
@@ -116,7 +122,7 @@ export function Footer({ variant = 'mega', className }: FooterProps) {
           </div>
           <form className="flex flex-col gap-2 sm:flex-row" onSubmit={(event) => event.preventDefault()}>
             <label className="sr-only" htmlFor="nexara-footer-email">Email</label>
-            <input id="nexara-footer-email" type="email" placeholder="you@studio.com" className={cn(focusRing, 'h-11 flex-1 rounded-xl border border-nx-border bg-nx-card px-3')} />
+            <input id="nexara-footer-email" type="email" placeholder="you@studio.com" className={cn(focusRing, fieldBorder, 'h-11 flex-1 rounded-xl bg-nx-card px-3')} />
             <button type="submit" className={cn(focusRing, 'h-11 rounded-xl bg-nx-fg px-4 text-nx-bg')}>Join</button>
           </form>
         </div>

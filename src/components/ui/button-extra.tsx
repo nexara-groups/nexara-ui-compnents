@@ -1,7 +1,8 @@
 'use client'
 
 import { type ComponentProps, type MouseEvent, type ReactNode, useState } from 'react'
-import { cn, focusRing, useKeyframes } from '@/lib/utils.ts'
+import { LoopPause } from '@/lib/media.tsx'
+import { cn, focusRing, useKeyframes, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 export const EXTRA_BUTTON = [
   'toggle',
@@ -88,6 +89,9 @@ export function ExtraButton({
   ...rest
 }: ExtraButtonProps) {
   useKeyframes('nexara-flow-keyframes', FLOW_KEYFRAMES)
+  const reduced = usePrefersReducedMotion()
+  const [motionOn, setMotionOn] = useState(true)
+  const flowing = variant === 'flow' && motionOn && !reduced
   const [on, setOn] = useState(Boolean(pressed))
   const [dark, setDark] = useState(() =>
     typeof document !== 'undefined' ? document.documentElement.classList.contains('dark') : false,
@@ -185,7 +189,10 @@ export function ExtraButton({
       {variant === 'flow' ? (
         <span
           aria-hidden="true"
-          className="absolute inset-0 bg-[linear-gradient(90deg,#4c46e0,#22c5b0,#4c46e0)] bg-[length:200%_100%] motion-safe:animate-[nexara-flow_2.8s_linear_infinite]"
+          className={cn(
+            'absolute inset-0 bg-[linear-gradient(90deg,#4c46e0,#22c5b0,#4c46e0)] bg-[length:200%_100%]',
+            flowing && 'motion-safe:animate-[nexara-flow_2.8s_linear_infinite]',
+          )}
         />
       ) : null}
       <span className="relative z-10 inline-flex items-center gap-2">
@@ -226,33 +233,29 @@ export function ExtraButton({
     className,
   )
 
-  if (href) {
-    return (
-      <a
-        {...(rest as ComponentProps<'a'>)}
-        href={inactive ? undefined : href}
-        target={target}
-        rel={rel}
-        download={download}
-        data-nexara="button"
-        data-variant={variant}
-        aria-disabled={inactive || undefined}
-        aria-busy={busy || undefined}
-        className={cn(classes, inactive && 'pointer-events-none opacity-45')}
-        onClick={(event) => {
-          if (inactive) {
-            event.preventDefault()
-            return
-          }
-          onClick?.(event as unknown as MouseEvent<HTMLButtonElement>)
-        }}
-      >
-        {inner}
-      </a>
-    )
-  }
-
-  return (
+  const control = href ? (
+    <a
+      {...(rest as ComponentProps<'a'>)}
+      href={inactive ? undefined : href}
+      target={target}
+      rel={rel}
+      download={download}
+      data-nexara="button"
+      data-variant={variant}
+      aria-disabled={inactive || undefined}
+      aria-busy={busy || undefined}
+      className={cn(classes, inactive && 'pointer-events-none opacity-45')}
+      onClick={(event) => {
+        if (inactive) {
+          event.preventDefault()
+          return
+        }
+        onClick?.(event as unknown as MouseEvent<HTMLButtonElement>)
+      }}
+    >
+      {inner}
+    </a>
+  ) : (
     <button
       {...rest}
       type={type}
@@ -275,6 +278,17 @@ export function ExtraButton({
       {inner}
     </button>
   )
+
+  if (variant === 'flow') {
+    return (
+      <span className="inline-flex items-center gap-2">
+        {control}
+        <LoopPause playing={flowing} onToggle={() => setMotionOn((value) => !value)} />
+      </span>
+    )
+  }
+
+  return control
 }
 
 function defaultLabel(variant: ExtraButtonVariant) {

@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useContext, type PointerEvent, type ReactNode } from 'react'
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const BentoColumns = createContext(3)
@@ -271,7 +272,7 @@ export function BentoItem({
       {variant === 'media' ? (
         <span className="relative z-10 flex h-full flex-col">
           <span className="relative min-h-24 flex-1 overflow-hidden">
-            {children}
+            {children ?? <MediaFrame src={media.featured} alt="" className="absolute inset-0" />}
             <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#1a1420] to-transparent" />
           </span>
           <span className="px-5 pb-5">

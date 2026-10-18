@@ -18,6 +18,7 @@ import {
   type ReactNode,
   type RefObject,
 } from 'react'
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const variants = {
@@ -94,7 +95,7 @@ function CardChrome({ variant }: { variant: DraggableCardVariant }) {
     return <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-9 border-b border-nx-border bg-nx-bg/80" />
   }
   if (variant === 'media') {
-    return <span aria-hidden="true" className="pointer-events-none mb-3 block h-24 rounded-xl bg-[linear-gradient(140deg,#1c1630,#4c46e0_60%,#d7c4a4)]" />
+    return <MediaFrame src={media.journal} alt="" className="pointer-events-none mb-3 h-24 rounded-xl" />
   }
   if (variant === 'calendar') {
     return (

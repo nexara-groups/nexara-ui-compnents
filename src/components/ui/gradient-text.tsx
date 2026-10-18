@@ -1,7 +1,8 @@
 'use client'
 
 import { type ComponentPropsWithoutRef, type ElementType, type ReactNode } from 'react'
-import { cn, useKeyframes, usePrefersReducedMotion } from '@/lib/utils.ts'
+import { LoopPause } from '@/lib/media.tsx'
+import { cn, useKeyframes, useLoopControl } from '@/lib/utils.ts'
 
 const KEYFRAMES = `
 @keyframes nexara-text-pan {
@@ -57,10 +58,11 @@ export function GradientText({
   animate = true,
   duration = 8,
 }: GradientTextProps) {
-  const reduced = usePrefersReducedMotion()
+  const loop = useLoopControl(animate)
   useKeyframes('nexara-gradient-text', KEYFRAMES)
   const Tag = as as ElementType
-  const moving = animate && !reduced && (variant === 'gradient' || variant === 'shimmer' || variant === 'aurora')
+  const moving = animate && loop.playing && (variant === 'gradient' || variant === 'shimmer' || variant === 'aurora')
+  const kinetic = animate && loop.playing && variant === 'kinetic'
   const fill = `linear-gradient(90deg, ${from}, ${via}, ${to}, ${from})`
 
   if (variant === 'stroke') {
@@ -75,7 +77,7 @@ export function GradientText({
   if (variant === 'mask') {
     return (
       <Tag className={cn('relative inline-block font-serif', className)}>
-        <span className="text-nx-faint">{children}</span>
+        <span className="text-nx-muted">{children}</span>
         <span
           aria-hidden="true"
           className="absolute inset-0 bg-nx-fg"
@@ -121,12 +123,18 @@ export function GradientText({
   }
   if (variant === 'kinetic') {
     return (
-      <Tag
-        className={cn('inline-block font-serif tracking-tight text-nx-fg motion-safe:animate-[nexara-kinetic_3.2s_ease-in-out_infinite]', className)}
-        style={reduced ? undefined : undefined}
-      >
-        {children}
-      </Tag>
+      <span className="inline-flex items-center gap-2">
+        <Tag
+          className={cn(
+            'inline-block font-serif tracking-tight text-nx-fg',
+            kinetic ? 'motion-safe:animate-[nexara-kinetic_3.2s_ease-in-out_infinite]' : '',
+            className,
+          )}
+        >
+          {children}
+        </Tag>
+        <LoopPause playing={loop.playing} onToggle={loop.toggle} />
+      </span>
     )
   }
   if (variant === 'glow') {
@@ -155,15 +163,18 @@ export function GradientText({
         : fill
 
   return (
-    <Tag
-      className={cn('bg-clip-text font-serif text-transparent', className)}
-      style={{
-        backgroundImage: extra,
-        backgroundSize: moving ? '200% 100%' : '100% 100%',
-        animation: moving ? `nexara-text-pan ${duration}s linear infinite` : undefined,
-      } as ComponentPropsWithoutRef<'span'>['style']}
-    >
-      {children}
-    </Tag>
+    <span className="inline-flex items-center gap-2">
+      <Tag
+        className={cn('bg-clip-text font-serif text-transparent', className)}
+        style={{
+          backgroundImage: extra,
+          backgroundSize: moving ? '200% 100%' : '100% 100%',
+          animation: moving ? `nexara-text-pan ${duration}s linear infinite` : undefined,
+        } as ComponentPropsWithoutRef<'span'>['style']}
+      >
+        {children}
+      </Tag>
+      <LoopPause playing={loop.playing} onToggle={loop.toggle} />
+    </span>
   )
 }

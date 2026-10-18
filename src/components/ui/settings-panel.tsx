@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { cn, focusRing } from '@/lib/utils.ts'
+import { MediaFrame, faces } from '@/lib/media.tsx'
+import { cn, fieldBorder, focusRing } from '@/lib/utils.ts'
 
 const VARIANTS = [
   'profile',
@@ -37,14 +38,17 @@ export function SettingsPanel({ variant = 'profile', className }: SettingsPanelP
     <section data-nexara="settings-panel" data-variant={variant} className={cn('rounded-[1.4rem] border border-nx-border bg-nx-card p-5', className)}>
       {variant === 'profile' ? (
         <div className="grid gap-3">
-          <h3 className="font-serif text-2xl">Profile</h3>
+          <div className="flex items-center gap-3">
+            <MediaFrame src={faces[4].src} alt="Latha Iyer" grain={false} className="size-14 rounded-full" />
+            <h3 className="font-serif text-2xl">Profile</h3>
+          </div>
           <label className="text-sm">
             Name
-            <input className={cn(focusRing, 'mt-1 h-10 w-full rounded-lg border border-nx-line px-3')} defaultValue="Latha Iyer" />
+            <input className={cn(focusRing, fieldBorder, 'mt-1 h-10 w-full rounded-lg px-3')} defaultValue="Latha Iyer" />
           </label>
           <label className="text-sm">
             Desk
-            <input className={cn(focusRing, 'mt-1 h-10 w-full rounded-lg border border-nx-line px-3')} defaultValue="Atlas Academy" />
+            <input className={cn(focusRing, fieldBorder, 'mt-1 h-10 w-full rounded-lg px-3')} defaultValue="Atlas Academy" />
           </label>
         </div>
       ) : null}
@@ -54,7 +58,7 @@ export function SettingsPanel({ variant = 'profile', className }: SettingsPanelP
           {['Latha · Owner', 'Suresh · Plant', 'Dr. Rao · Care'].map((row) => (
             <li key={row} className="flex justify-between rounded-xl border border-nx-border px-3 py-2">
               {row}
-              <span className="text-nx-faint">Edit</span>
+              <span className="text-nx-muted">Edit</span>
             </li>
           ))}
         </ul>
@@ -62,7 +66,7 @@ export function SettingsPanel({ variant = 'profile', className }: SettingsPanelP
 
       {variant === 'billing' ? (
         <div>
-          <p className="text-xs text-nx-faint">Studio plan</p>
+          <p className="text-xs text-nx-muted">Studio plan</p>
           <p className="mt-2 font-serif text-4xl">$48</p>
           <p className="mt-1 text-sm text-nx-muted">Next invoice 12 Nov · Harbor</p>
         </div>
@@ -106,14 +110,14 @@ export function SettingsPanel({ variant = 'profile', className }: SettingsPanelP
 
       {variant === 'api' ? (
         <div className="font-mono text-xs">
-          <p className="text-nx-faint">Publishable key</p>
+          <p className="text-nx-muted">Publishable key</p>
           <p className="mt-2 rounded-lg bg-nx-elevated px-3 py-2">nx_pk_live_••••18</p>
         </div>
       ) : null}
 
       {variant === 'clinic' ? (
         <div>
-          <p className="text-xs tracking-[0.16em] text-nx-faint uppercase">Care desk</p>
+          <p className="text-xs tracking-[0.16em] text-nx-muted uppercase">Care desk</p>
           <p className="mt-2 font-serif text-2xl">16 specialists · 4 doors</p>
           <p className="mt-2 text-sm text-nx-muted">Therapy chairs publish to the public site after 20:00.</p>
         </div>

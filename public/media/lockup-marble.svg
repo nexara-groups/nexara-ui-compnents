@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 72" fill="none">
+  <rect width="240" height="72" rx="12" fill="#F3EBE0"/>
+  <rect x="20" y="16" width="40" height="40" rx="8" stroke="#2A2218" stroke-width="3"/>
+  <circle cx="46" cy="30" r="6" fill="#2A2218"/>
+  <text x="76" y="45" fill="#2A2218" font-family="ui-serif, Georgia, serif" font-size="20" letter-spacing="3">MARBLE</text>
+</svg>

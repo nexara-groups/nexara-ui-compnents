@@ -1,7 +1,7 @@
 'use client'
 
 import { type ClipboardEvent, type ComponentProps, type KeyboardEvent, type ReactNode, useRef, useState } from 'react'
-import { cn, focusRing } from '@/lib/utils.ts'
+import { cn, fieldBorder, focusRing } from '@/lib/utils.ts'
 
 const VARIANTS = [
   'outline',
@@ -46,7 +46,7 @@ export function Input({ variant = 'outline', label, hint, className, id, type, .
   }
   if (variant === 'tag') {
     return (
-      <div className={cn('flex min-h-11 flex-wrap items-center gap-1.5 rounded-xl border border-nx-border bg-nx-card px-2 py-1.5', className)}>
+      <div className={cn('flex min-h-11 flex-wrap items-center gap-1.5 rounded-xl border-nx-field bg-nx-card px-2 py-1.5', fieldBorder, className)}>
         <span className="rounded-full bg-nx-soft px-2 py-0.5 text-xs text-nx-accent">Harbor</span>
         <input id={fieldId} className={cn(focusRing, 'min-w-24 flex-1 bg-transparent text-sm outline-none')} placeholder="Add a tag" {...props} />
       </div>
@@ -61,16 +61,17 @@ export function Input({ variant = 'outline', label, hint, className, id, type, .
       data-variant={variant}
       className={cn(
         focusRing,
-        'w-full text-sm text-nx-fg placeholder:text-nx-faint',
-        variant === 'outline' && 'h-11 rounded-xl border border-nx-border bg-nx-card px-3',
+        'w-full text-sm text-nx-fg placeholder:text-nx-muted',
+        variant === 'outline' && 'h-11 rounded-xl border-nx-field bg-nx-card px-3',
+        variant === 'outline' && fieldBorder,
         variant === 'filled' && 'h-11 rounded-xl border border-transparent bg-nx-elevated px-3',
-        variant === 'underline' && 'h-11 rounded-none border-0 border-b border-nx-line bg-transparent px-0',
+        variant === 'underline' && 'h-11 rounded-none border-0 border-b border-nx-field bg-transparent px-0',
         variant === 'ghost' && 'h-11 rounded-xl border border-transparent bg-transparent px-3 hover:bg-nx-soft',
-        variant === 'search' && 'h-11 rounded-full border border-nx-border bg-nx-card px-10',
-        variant === 'password' && 'h-11 rounded-xl border border-nx-border bg-nx-card px-3',
-        variant === 'amount' && 'h-11 rounded-xl border border-nx-border bg-nx-card px-8 font-mono',
-        variant === 'command' && 'h-11 rounded-xl border border-nx-border bg-nx-bg px-9 font-mono',
-        variant === 'floating' && 'peer h-12 rounded-xl border border-nx-border bg-nx-card px-3 pt-4',
+        variant === 'search' && cn('h-11 rounded-full bg-nx-card px-10', fieldBorder),
+        variant === 'password' && cn('h-11 rounded-xl bg-nx-card px-3', fieldBorder),
+        variant === 'amount' && cn('h-11 rounded-xl bg-nx-card px-8 font-mono', fieldBorder),
+        variant === 'command' && cn('h-11 rounded-xl bg-nx-bg px-9 font-mono', fieldBorder),
+        variant === 'floating' && cn('peer h-12 rounded-xl bg-nx-card px-3 pt-4', fieldBorder),
         className,
       )}
       placeholder={variant === 'floating' ? ' ' : props.placeholder}
@@ -80,7 +81,7 @@ export function Input({ variant = 'outline', label, hint, className, id, type, .
 
   return (
     <div className="relative">
-      {variant === 'search' ? <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-nx-faint">⌕</span> : null}
+      {variant === 'search' ? <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-nx-muted">⌕</span> : null}
       {variant === 'amount' ? <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-nx-muted">$</span> : null}
       {variant === 'command' ? <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-nx-accent">❯</span> : null}
       {variant === 'floating' && label ? (
@@ -93,7 +94,7 @@ export function Input({ variant = 'outline', label, hint, className, id, type, .
         </label>
       ) : null}
       {field}
-      {hint ? <p className="mt-1.5 text-xs text-nx-faint">{hint}</p> : null}
+      {hint ? <p className="mt-1.5 text-xs text-nx-muted">{hint}</p> : null}
     </div>
   )
 }
@@ -164,7 +165,7 @@ function OtpField({ className, defaultValue = '418' }: { className?: string; def
           onChange={(event) => onChange(index, event.target.value)}
           onKeyDown={(event) => onKeyDown(index, event)}
           onPaste={onPaste}
-          className={cn(focusRing, 'size-12 rounded-xl border border-nx-fg/45 bg-nx-card text-center font-mono text-xl')}
+          className={cn(focusRing, fieldBorder, 'size-12 rounded-xl bg-nx-card text-center font-mono text-xl')}
         />
       ))}
     </div>
