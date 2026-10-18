@@ -57,5 +57,5 @@ Round 6 reviews the leftover-component pass (everything that was not in the cine
 | --- | --- | --- |
 | Senior visual designer | `round-6-visual.md` | **Approve** leftover pass. Construction-first cells remain named. |
 | Interaction / motion | `round-6-motion.md` | **Approve** leftover loops. Hero entrance still out of scope. |
-| Accessibility / responsive | `round-6-a11y.md` | **Approve** leftover fields / tabs / shells. Decorative faint on some heroes remains. |
+| Accessibility / responsive | `round-6-a11y.md` | **Approve** leftover fields / tabs / shells ([a11y critic](https://cursor.com/agents/bc-6a1e1748-f175-52fe-9df1-04bf0045c3e6)). Decorative faint on some heroes remains. |
 | Sceptical design lead | `round-6-lead.md` | **Approve** named leftovers. Not a claim that every cell is 21st.dev. |
