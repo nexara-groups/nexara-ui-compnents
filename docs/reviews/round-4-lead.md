@@ -38,7 +38,7 @@ I would put cinema, clinic, sports, shop, fashion, editorial, featured, wordmark
 
 | Claim | Found |
 | --- | --- |
-| Case-study pause | Yes, on `tabs` / `autoplay`. Not on `reel`. |
+| Case-study pause | Yes, on `tabs` / `autoplay` / `reel`. |
 | Count-up in-view | Yes. `useCountUp(..., active)` + observer `threshold: 0.35`. Holds at 0 off-screen. |
 | AC mode colours | Yes. Four distinct tones, not one selected chip. |
 | Healthcare CTA contrast | Yes. Cream / navy; form salmon on navy. |
@@ -60,4 +60,4 @@ I would put cinema, clinic, sports, shop, fashion, editorial, featured, wordmark
 
 Approve when: (1) people are photographic *or* the docs say illustrated and stop saying photographic, (2) `hero / logos` quote and mark row are intact, (3) Play either plays or the control is gone, (4) every labelled still matches the label, (5) waitlist is one Join. Until then this is a photographic library with a people-pack hangover and a few cells I would hide from a client walkthrough.
 
-**Consensus slot:** visual and a11y still pending. Motion already conditional. I do not approve the whole library. I do approve the stills that replaced the drawings.
+**Consensus slot:** visual approves the stills. Motion and a11y are already conditional. I do not approve the whole library. I do approve the stills that replaced the drawings.
