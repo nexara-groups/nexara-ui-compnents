@@ -17,7 +17,7 @@ const VARIANTS = [
   'icon',
   'story',
   'mention',
-  'orbit-status',
+  'radar-presence',
   'shader-ring',
   'particle-presence',
   'holographic',

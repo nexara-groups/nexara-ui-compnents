@@ -24,7 +24,7 @@ const VARIANTS = [
   'scrub-timeline',
   'pin-steps',
   'path-rail',
-  'orbit-rhythm',
+  'metronome-steps',
 ] as const
 
 export type ProcessVariant = (typeof VARIANTS)[number]

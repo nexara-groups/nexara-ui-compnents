@@ -3,7 +3,24 @@
 import { motion } from 'framer-motion'
 import { useId, useState } from 'react'
 import { faces, LoopPause, media } from '@/lib/media.tsx'
-import { AnalogClock, GooPuddle, PausedOrbit, SplitFlap, useLiveRemain } from '@/lib/wow-fx.tsx'
+import { AnalogClock, GooPuddle, SplitFlap, useLiveRemain } from '@/lib/wow-fx.tsx'
+import {
+  BarcodeScan,
+  BeamScan,
+  ConstellationMap,
+  DialGauge,
+  FilmSprocket,
+  FoldPanel,
+  LensHover,
+  MetronomeArm,
+  MorseBlink,
+  PolaroidFan,
+  PrismSplit,
+  RadarSweep,
+  StampInk,
+  TapeReels,
+  ZipperSplit,
+} from '@/lib/wow-unique.tsx'
 import {
   CHECK_PATH,
   GlobeField,
@@ -12,14 +29,12 @@ import {
   LiquidFilter,
   MagneticWell,
   Odometer,
-  OrbitRing,
   ParticleField,
   PathDraw,
   ScrambleText,
   ScrollPin,
   ShaderMesh,
   SplitMask,
-  TiltGlare,
   WowStage,
   wowBtn,
 } from '@/lib/wow.tsx'
@@ -31,7 +46,14 @@ function TabsWow({ variant, className }: WowProps) {
   const [active, setActive] = useState(tabs[0]!)
   return (
     <div className={cn('rounded-3xl border border-nx-border bg-nx-card p-4', className)}>
-      {variant === 'orbit-pills' ? <OrbitRing items={tabs} radius={64} /> : null}
+      {variant === 'zipper-tabs' ? (
+        <ZipperSplit
+          open
+          className="mb-4 h-16 rounded-2xl bg-[#111113] text-white"
+          left={<p className="p-4 font-serif text-2xl">{active}</p>}
+          right={<p className="p-4 text-sm text-white/50">The panel splits. The control stays.</p>}
+        />
+      ) : null}
       <div className="flex flex-wrap gap-2">
         {tabs.map((tab) => (
               <button
@@ -121,9 +143,9 @@ function TooltipWow({ variant, className }: WowProps) {
     )
   }
   return (
-    <TiltGlare className={cn('inline-flex rounded-2xl bg-[#111113] px-3 py-2 text-sm text-white', className)}>
+    <LensHover className={cn('inline-flex rounded-2xl bg-[#111113] px-3 py-2 text-sm text-white', className)}>
       Jump any room
-    </TiltGlare>
+    </LensHover>
   )
 }
 
@@ -149,11 +171,11 @@ function ToastWow({ variant, className }: WowProps) {
 
 function AvatarWow({ variant, className }: WowProps) {
   const face = faces[0]
-  if (variant === 'orbit-status') {
+  if (variant === 'radar-presence') {
     return (
-      <div className={cn('relative size-24', className)}>
-        <OrbitRing items={['Live']} radius={40} />
-        <img src={face?.src} alt={face?.name} className="absolute inset-6 size-12 rounded-full object-cover" />
+      <div className={cn('relative flex items-center justify-center', className)}>
+        <RadarSweep items={['Live', 'Desk', 'NYC']} />
+        <img src={face?.src} alt={face?.name} className="absolute size-12 rounded-full object-cover" />
       </div>
     )
   }
@@ -174,21 +196,9 @@ function AvatarWow({ variant, className }: WowProps) {
 }
 
 function BadgeWow({ variant, className, children }: WowProps) {
-  const loop = useLoopControl(true)
   const id = useId().replace(/:/g, '')
-  if (variant === 'beam-orbit') {
-    return (
-      <span className={cn('relative inline-flex min-h-11 items-center rounded-full bg-[#111113] px-3 text-sm text-white', className)}>
-        <motion.span
-          aria-hidden="true"
-          className="absolute inset-[-2px] rounded-full border border-[#7c6cff]"
-          animate={loop.playing ? { rotate: 360 } : undefined}
-          transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-          style={{ borderRightColor: 'transparent' }}
-        />
-        <span className="relative">{children ?? 'Live'}</span>
-      </span>
-    )
+  if (variant === 'morse-live') {
+    return <MorseBlink text={String(children ?? 'LIVE')} className={className} />
   }
   if (variant === 'scramble-live') return <span className={cn('rounded-full bg-[#4c46e0] px-3 py-2 text-sm text-white', className)}><ScrambleText text="LIVE" trigger="hover" /></span>
   if (variant === 'path-ribbon') {
@@ -219,12 +229,18 @@ function PricingWow({ variant, className }: WowProps) {
   return (
     <div className={cn('grid gap-4 md:grid-cols-3', className)}>
       {plans.map((plan, i) => (
-        <TiltGlare key={plan.name} className={cn('rounded-3xl border border-nx-border bg-nx-card p-5', i === 1 && variant === 'shader-featured' && 'overflow-hidden border-white/10 bg-[#07070c] text-white')}>
+        <div key={plan.name} className={cn('rounded-3xl border border-nx-border bg-nx-card p-5', i === 1 && variant === 'shader-featured' && 'overflow-hidden border-white/10 bg-[#07070c] text-white')}>
           {i === 1 && variant === 'shader-featured' ? <ShaderMesh /> : null}
           <div className="relative z-10">
             <p className="text-sm text-current/60">{plan.name}{i === 1 ? ' · recommended' : ''}</p>
             <p className="mt-2 font-serif text-4xl">
-              {variant === 'odometer-price' ? <Odometer value={i === 1 ? price : plan.n} digits={3} /> : `$${plan.n}`}
+              {variant === 'prism-price' && i === 1 ? (
+                <PrismSplit>${plan.n}</PrismSplit>
+              ) : variant === 'odometer-price' ? (
+                <Odometer value={i === 1 ? price : plan.n} digits={3} />
+              ) : (
+                `$${plan.n}`
+              )}
             </p>
             <ul className="mt-3 space-y-1 text-sm opacity-70">
               {plan.feats.map((feat) => (
@@ -237,7 +253,7 @@ function PricingWow({ variant, className }: WowProps) {
               </button>
             ) : null}
           </div>
-        </TiltGlare>
+        </div>
       ))}
     </div>
   )
@@ -249,19 +265,14 @@ function TestimonialsWow({ variant, className }: WowProps) {
     { q: 'The furniture finally moved.', who: 'Kiran Reddy' },
     { q: 'We shipped the mast on Friday.', who: 'Meera Shah' },
   ]
-  if (variant === 'orbit-quotes') {
+  if (variant === 'polaroid-quotes') {
     return (
-      <div className={cn('grid gap-4 rounded-[1.6rem] bg-[#07070c] p-5 text-white md:grid-cols-[auto_1fr]', className)}>
-        <div className="flex gap-2 md:flex-col">
-          {faces.slice(0, 3).map((face) => (
-            <img key={face.name} src={face.src} alt={face.name} className="size-14 rounded-full object-cover" />
-          ))}
-        </div>
-        <blockquote>
-          <p className="font-serif text-3xl">“{quotes[0]?.q}”</p>
-          <footer className="mt-3 text-sm text-white/50">{quotes[0]?.who} · Harbor Review</footer>
-        </blockquote>
-      </div>
+      <PolaroidFan
+        className={className}
+        faces={faces.slice(0, 3)}
+        quote={quotes[0]?.q ?? 'Stay in the room.'}
+        who={`${quotes[0]?.who ?? 'Anitha Rao'} · Harbor Review`}
+      />
     )
   }
   if (variant === 'video-shader') {
@@ -317,8 +328,8 @@ function FooterWow({ variant, className }: WowProps) {
       </div>
     )
   }
-  if (variant === 'orbit-marks') {
-    return <PausedOrbit items={['Work', 'Notes', 'Legal', 'Press']} radius={88} className={className} />
+  if (variant === 'barcode-marks') {
+    return <BarcodeScan labels={['Work', 'Notes', 'Legal', 'Press']} className={className} />
   }
   if (variant === 'path-sitemap') {
     return (
@@ -340,8 +351,8 @@ function StatsWow({ variant, className }: WowProps) {
   const a = useCountUp(1860, 1400, true)
   const b = useCountUp(998, 1400, true)
   const c = useCountUp(48, 1400, true)
-  if (variant === 'orbit-ring') {
-    return <PausedOrbit items={[String(a), String(b), String(c), '16']} radius={90} className={className} />
+  if (variant === 'dial-gauge') {
+    return <DialGauge value={Math.min(99, a % 100)} label="Athletes booked" className={className} />
   }
   if (variant === 'particle-pulse') {
     return (
@@ -354,15 +365,15 @@ function StatsWow({ variant, className }: WowProps) {
       </div>
     )
   }
-  if (variant === 'glare-mosaic') {
+  if (variant === 'film-mosaic') {
     return (
       <div className={cn('grid gap-3 sm:grid-cols-2', className)}>
         {[a, b, c, 16].map((n, i) => (
-          <TiltGlare key={i} className="rounded-3xl bg-[#111113] p-5 text-white">
+          <div key={i} className="rounded-3xl bg-[#111113] p-5 text-white">
             <p className="font-serif text-4xl">
               <Odometer value={n} digits={i === 0 ? 4 : 3} />
             </p>
-          </TiltGlare>
+          </div>
         ))}
       </div>
     )
@@ -518,10 +529,10 @@ function CaseWow({ variant, className }: WowProps) {
     return (
       <div className={cn('flex gap-4 overflow-x-auto pb-2', className)}>
         {['Wren', 'Farm', 'Track'].map((name) => (
-          <TiltGlare key={name} className="min-w-[14rem] rounded-3xl bg-[#111113] p-5 text-white">
+          <div key={name} className="min-w-[14rem] rounded-3xl bg-[#111113] p-5 text-white">
             <p className="font-serif text-2xl">{name}</p>
             <p className="mt-2 text-sm text-white/50">Horizontal film. Flick the reel.</p>
-          </TiltGlare>
+          </div>
         ))}
       </div>
     )
@@ -547,20 +558,27 @@ function CaseWow({ variant, className }: WowProps) {
     )
   }
   return (
-    <div className={cn('grid gap-3 sm:grid-cols-2', className)}>
-      {['Wren', 'Farm'].map((name) => (
-        <TiltGlare key={name} className="rounded-3xl bg-[#111113] p-5 text-white">
-          <p className="font-serif text-2xl">{name}</p>
-        </TiltGlare>
-      ))}
-    </div>
+    <FilmSprocket
+      className={className}
+      frames={[
+        { src: media.cases.build, caption: 'Wren Build' },
+        { src: media.cases.farm, caption: 'Harbor Farm' },
+        { src: media.cases.track, caption: 'Night Track' },
+      ]}
+    />
   )
 }
 
 function ServicesWow({ variant, className }: WowProps) {
   const doors = ['Consult', 'Lab', 'Pharmacy', 'Therapy']
-  if (variant === 'orbit-crews') {
-    return <PausedOrbit items={doors} radius={92} className={className} />
+  if (variant === 'stamp-crews') {
+    return (
+      <div className={cn('flex flex-wrap gap-3', className)}>
+        {doors.map((d) => (
+          <StampInk key={d}>{d}</StampInk>
+        ))}
+      </div>
+    )
   }
   if (variant === 'shader-cards') {
     return (
@@ -588,9 +606,12 @@ function ServicesWow({ variant, className }: WowProps) {
   return (
     <div className={cn('grid gap-3 sm:grid-cols-2', className)}>
       {doors.map((d) => (
-        <TiltGlare key={d} className="rounded-3xl border border-nx-border p-4">
-          <p className="font-serif text-2xl">{d}</p>
-        </TiltGlare>
+        <FoldPanel
+          key={d}
+          className="rounded-3xl border border-nx-border"
+          front={<p className="p-4 font-serif text-2xl">{d}</p>}
+          back={<p className="p-4 text-sm text-nx-muted">Book the {d.toLowerCase()} door.</p>}
+        />
       ))}
     </div>
   )
@@ -628,12 +649,8 @@ function ProcessWow({ variant, className }: WowProps) {
       </div>
     )
   }
-  if (variant === 'orbit-rhythm') {
-    return (
-      <div className={cn('relative min-h-52 overflow-hidden rounded-[1.6rem] bg-[#07070c]', className)}>
-        <OrbitRing items={steps} radius={90} />
-      </div>
-    )
+  if (variant === 'metronome-steps') {
+    return <MetronomeArm steps={steps} className={className} />
   }
   return (
     <div className={cn('rounded-3xl border border-nx-border p-5', className)}>
@@ -645,8 +662,13 @@ function ProcessWow({ variant, className }: WowProps) {
 
 function TeamWow({ variant, className }: WowProps) {
   const people = faces.slice(0, 4)
-  if (variant === 'orbit-crew') {
-    return <PausedOrbit items={people.map((p) => p.name.split(' ')[0]!)} radius={88} className={className} />
+  if (variant === 'constellation-crew') {
+    return (
+      <ConstellationMap
+        className={className}
+        nodes={people.map((p, i) => ({ name: p.name.split(' ')[0]!, x: 18 + i * 20, y: 16 + (i % 2) * 18 }))}
+      />
+    )
   }
   if (variant === 'particle-grid') {
     return (
@@ -661,10 +683,11 @@ function TeamWow({ variant, className }: WowProps) {
   return (
     <div className={cn('grid grid-cols-2 gap-3 md:grid-cols-4', className)}>
       {people.map((p) => (
-        <TiltGlare key={p.name} className="overflow-hidden rounded-3xl">
+        <figure key={p.name} className="overflow-hidden rounded-3xl">
           <img src={p.src} alt={p.name} className="aspect-[3/4] w-full object-cover" />
           {variant === 'holographic' ? <Grain /> : null}
-        </TiltGlare>
+          {variant === 'film-portraits' ? <figcaption className="bg-[#111113] px-2 py-1 text-[10px] text-white/60">{p.name}</figcaption> : null}
+        </figure>
       ))}
     </div>
   )
@@ -735,9 +758,9 @@ function CtaWow({ variant, className }: WowProps) {
     )
   }
   return (
-    <TiltGlare className={cn('rounded-[1.6rem] bg-[#4c46e0] px-6 py-12 text-white', className)}>
-      <p className="font-serif text-4xl">The closer tilts.</p>
-    </TiltGlare>
+    <BeamScan className={cn('rounded-[1.6rem] bg-[#4c46e0] px-6 py-12 text-white', className)}>
+      <p className="font-serif text-4xl">The closer scans.</p>
+    </BeamScan>
   )
 }
 
@@ -801,8 +824,8 @@ function NewsWow({ variant, className }: WowProps) {
       </WowStage>
     )
   }
-  if (variant === 'orbit-digest') {
-    return <PausedOrbit items={['Mon', 'Tue', 'Wed', 'Thu']} radius={80} className={className} />
+  if (variant === 'tape-digest') {
+    return <TapeReels items={['Mon', 'Tue', 'Wed', 'Thu']} className={className} />
   }
   if (variant === 'flip-headlines') {
     return (
@@ -835,7 +858,9 @@ function LogoWow({ variant, className }: WowProps) {
     return (
       <div className={cn('relative min-h-48 overflow-hidden rounded-[1.6rem] bg-[#07070c]', className)}>
         <GlobeField />
-        <PausedOrbit items={marks.map((m) => m.name)} radius={100} className="bg-transparent" />
+        <p className="absolute inset-x-0 bottom-4 text-center font-mono text-xs tracking-[0.2em] text-white/60">
+          {marks.map((m) => m.name).join(' · ')}
+        </p>
       </div>
     )
   }
@@ -863,9 +888,9 @@ function LogoWow({ variant, className }: WowProps) {
   return (
     <div className={cn('grid grid-cols-2 gap-3 md:grid-cols-4', className)}>
       {marks.map((m) => (
-        <TiltGlare key={m.name} className="rounded-2xl border border-nx-border bg-nx-card px-4 py-6">
-          <img src={m.src} alt={m.name} className="mx-auto h-8" />
-        </TiltGlare>
+        <StampInk key={m.name} className="flex items-center justify-center border-nx-border text-sm normal-case">
+          <img src={m.src} alt={m.name} className="h-8" />
+        </StampInk>
       ))}
     </div>
   )

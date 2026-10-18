@@ -17,6 +17,7 @@ import {
   TopoField,
   VariableMorph,
 } from '@/lib/wow-fx.tsx'
+import { CompassNeedle, InkWake, LensHover, PeelCorner, PrismSplit, TapeReels } from '@/lib/wow-unique.tsx'
 import {
   CHECK_PATH,
   GlobeField,
@@ -53,26 +54,65 @@ function HeroCopy({ title, description, actions, eyebrow }: Pick<WowProps, 'titl
 
 function HeroPin({ title, description, actions, eyebrow, className }: WowProps) {
   const loop = useLoopControl(true)
+  const chapters = [
+    { k: '01', t: 'A plate, not a banner', d: 'The product starts as a card on the desk.' },
+    { k: '02', t: 'Glass grows with the scroll', d: 'Weight, chip, and finish arrive as the plate fills the room.' },
+    { k: '03', t: 'Night material', d: 'The grade shifts. Callouts lock to the edge.' },
+    { k: '04', t: String(title ?? 'North Display'), d: String(description ?? 'The hero is the transition.') },
+  ]
   return (
     <div className={cn('rounded-[1.6rem] border border-white/10 bg-[#07070c]', className)}>
-      <ScrollPin height="240vh">
+      <ScrollPin height="420vh">
         {(p) => {
-          const scale = 0.48 + p * 0.52
-          const radius = 36 - p * 28
-          const inset = `${22 - p * 16}%`
+          const chapter = Math.min(3, Math.floor(p * 4))
+          const local = p * 4 - chapter
+          const scale = 0.42 + Math.min(1, p * 1.15) * 0.58
+          const radius = 32 - p * 26
+          const inset = `${20 - p * 18}%`
+          const copy = chapters[chapter]!
           return (
-            <div className="relative min-h-[28rem] w-full overflow-hidden">
-              <ShaderMesh paused={!loop.playing} />
+            <div className="relative min-h-[32rem] w-full overflow-hidden text-white">
+              <img src={media.device} alt="" className="absolute inset-0 size-full object-cover opacity-40" />
+              <div className="absolute inset-0 bg-[#07070c]/55" />
               <Grain />
-              <div className="relative z-10">
-                <HeroCopy title={title} description={description} actions={actions} eyebrow={eyebrow ?? 'Scroll the plate'} />
+              <div className="relative z-10 grid min-h-[32rem] items-end gap-6 px-5 py-8 md:grid-cols-[1fr_0.9fr] md:px-10">
+                <div>
+                  <p className="font-mono text-[11px] tracking-[0.22em] text-[#f3c27a] uppercase">{eyebrow ?? 'North Display'}</p>
+                  <p className="mt-2 font-mono text-[11px] text-white/50">{copy.k} / 04</p>
+                  <h3 className="mt-3 font-serif text-4xl leading-[0.95] md:text-6xl">{copy.t}</h3>
+                  <p className="mt-4 max-w-md text-sm text-white/70">{copy.d}</p>
+                  {chapter === 3 && actions ? <div className="mt-6">{actions}</div> : null}
+                  <ol className="mt-6 flex gap-2" aria-label="Story progress">
+                    {chapters.map((item, i) => (
+                      <li key={item.k} className={cn('h-1 w-10 rounded-full', i <= chapter ? 'bg-[#f3c27a]' : 'bg-white/15')} />
+                    ))}
+                  </ol>
+                </div>
+                <div className="relative hidden min-h-48 md:block">
+                  {chapter >= 1 ? (
+                    <ul className="absolute top-6 left-0 space-y-3 text-xs text-white/70">
+                      <li>612 g · milled aluminum</li>
+                      <li>Nano-etched glass</li>
+                      <li>Harbor chip · 16-core</li>
+                    </ul>
+                  ) : null}
+                  {chapter >= 2 ? (
+                    <ul className="absolute right-0 bottom-8 space-y-3 text-right text-xs text-[#f3c27a]">
+                      <li>Midnight</li>
+                      <li>Iris</li>
+                      <li>Paper</li>
+                    </ul>
+                  ) : null}
+                </div>
               </div>
               <motion.div
-                className="absolute right-0 bottom-6 left-0 mx-auto overflow-hidden shadow-[0_30px_80px_-30px_#000]"
-                style={{ scale, borderRadius: radius, left: inset, right: inset, transformOrigin: '50% 100%' }}
+                className="absolute right-0 bottom-0 left-0 mx-auto overflow-hidden shadow-[0_30px_80px_-30px_#000]"
+                style={{ scale, borderRadius: radius, left: inset, right: inset, transformOrigin: '50% 100%', opacity: 0.55 + local * 0.2 }}
               >
-                <img src={media.cinema} alt="" className="h-40 w-full object-cover md:h-52" />
-                <video src={media.reel} muted playsInline autoPlay loop className="absolute inset-0 size-full object-cover opacity-80" />
+                <img src={chapter >= 2 ? media.cinema : media.device} alt="" className="h-44 w-full object-cover md:h-56" />
+                {chapter >= 2 ? (
+                  <video src={media.reel} muted playsInline autoPlay loop className="absolute inset-0 size-full object-cover opacity-80" />
+                ) : null}
               </motion.div>
               {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
             </div>
@@ -249,15 +289,13 @@ function MagnetTrail({ children, className }: WowProps) {
   )
 }
 
-function MagnetOrbit({ className }: WowProps) {
-  const loop = useLoopControl(true)
+function MagnetOrbit({ className, children }: WowProps) {
   return (
-    <div className={cn('relative inline-flex size-28 items-center justify-center', className)}>
-      <OrbitRing items={['N', 'X', '·']} radius={46} paused={!loop.playing} />
-      <button type="button" className={cn(wowBtn, 'absolute size-14 bg-white text-[#111]')}>
-        Go
+    <InkWake className={cn('inline-flex rounded-full bg-[#111113] p-2', className)}>
+      <button type="button" className={cn(wowBtn, 'bg-white text-[#111]')}>
+        {children ?? 'Go'}
       </button>
-    </div>
+    </InkWake>
   )
 }
 
@@ -271,15 +309,17 @@ function MagnetShatter({ children, className }: WowProps) {
 
 function CardHolo({ title, className }: { title: string; className?: string }) {
   return (
-    <TiltGlare className={cn('max-w-sm overflow-hidden rounded-3xl border border-white/10 bg-[#111118] p-5 text-white', className)}>
+    <div className={cn('max-w-sm overflow-hidden rounded-3xl border border-white/10 bg-[#111118] p-5 text-white', className)}>
       <ShaderMesh />
       <Grain />
       <div className="relative z-10">
-        <p className="font-mono text-[11px] text-[#f3c27a]">Hologram</p>
-        <p className="mt-2 font-serif text-3xl">{title}</p>
-        <p className="mt-3 text-sm text-white/60">Pointer tilts the plate. The field is a shader, not a wash.</p>
+        <p className="font-mono text-[11px] text-[#f3c27a]">Prism plate</p>
+        <PrismSplit>
+          <p className="font-serif text-3xl">{title}</p>
+        </PrismSplit>
+        <p className="mt-3 text-sm text-white/60">The pointer splits the type into RGB.</p>
       </div>
-    </TiltGlare>
+    </div>
   )
 }
 
@@ -307,9 +347,11 @@ function SpotlightWell({ className }: { className?: string }) {
 
 function SpotlightOrbit({ className }: { className?: string }) {
   return (
-    <div className={cn('relative min-h-44 max-w-sm overflow-hidden rounded-3xl bg-[#07070c] p-5 text-white', className)}>
-      <OrbitRing items={['Live', '99.9', 'NYC']} radius={70} />
-    </div>
+    <LensHover className={cn('min-h-44 max-w-sm overflow-hidden rounded-3xl bg-[#111113] p-5 text-white', className)}>
+      <p className="font-mono text-[11px] text-[#f3c27a]">Lamp 04</p>
+      <p className="mt-2 font-serif text-3xl">Travertine · $220</p>
+      <p className="mt-3 text-sm text-white/60">Move the loupe over the spec. One bulb, one base.</p>
+    </LensHover>
   )
 }
 
@@ -334,9 +376,9 @@ function FlipWow({ variant, className }: { variant: string; className?: string }
     <button type="button" onClick={() => setFlipped((v) => !v)} className={cn(focusRing, 'h-52 w-full max-w-sm text-left', className)}>
       <motion.div animate={{ rotateY: reduced ? 0 : flipped ? 180 : 0 }} transition={{ duration: reduced ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }} className="relative h-full" style={{ transformStyle: 'preserve-3d' }}>
         <div className="absolute inset-0 overflow-hidden rounded-3xl bg-[#111113] p-5 text-white" style={{ backfaceVisibility: 'hidden' }}>
-          {variant === 'liquid-flip' || variant === 'hologram' ? <ShaderMesh /> : null}
+          {variant === 'liquid-flip' || variant === 'prism-face' ? <ShaderMesh /> : null}
           {variant === 'liquid-flip' ? <GooPuddle /> : null}
-          {variant === 'hologram' ? (
+          {variant === 'prism-face' ? (
             <div
               aria-hidden="true"
               className="absolute inset-0 mix-blend-screen"
@@ -368,9 +410,10 @@ function BentoWow({ variant, className, title }: { variant: string; className?: 
         <p className="relative z-10 font-serif text-2xl">{title ?? 'Harbor'}</p>
         <p className="relative z-10 mt-2 text-sm text-white/60">Feature tile.</p>
       </div>
-      <div className="relative min-h-40 overflow-hidden rounded-3xl bg-[#07070c] p-3 text-white">
-        {variant === 'orbit-tile' ? <OrbitRing items={['A', 'B', 'C']} radius={48} /> : <p className="font-serif text-xl">Atlas</p>}
-      </div>
+      <PeelCorner className="relative min-h-40 overflow-hidden rounded-3xl bg-[#07070c] p-3 text-white" label="Peel Atlas">
+        <p className="font-serif text-xl">Atlas</p>
+        <p className="mt-2 text-xs text-white/50">Peel the corner.</p>
+      </PeelCorner>
       <div className="min-h-40 rounded-3xl border border-nx-border bg-nx-card p-4">
         <p className="text-[11px] text-nx-muted">Athletes</p>
         <p className="mt-2 font-serif text-4xl">
@@ -416,7 +459,7 @@ function GridWow({ variant, className, children }: WowProps) {
       {variant === 'perspective-fly' ? <PerspectiveFloor paused={!loop.playing || loop.reduced} /> : null}
       {variant === 'circuit-draw' ? <CircuitBoard playing={loop.playing && !loop.reduced} /> : null}
       {variant === 'topo-pulse' ? <TopoField paused={!loop.playing || loop.reduced} /> : null}
-      {variant === 'hex-orbit' ? <HexLattice paused={!loop.playing || loop.reduced} /> : null}
+      {variant === 'hex-lattice' ? <HexLattice paused={!loop.playing || loop.reduced} /> : null}
       <div className="relative z-10 flex min-h-40 items-end p-5 text-white">{children ?? variant}</div>
       {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
     </div>
@@ -494,15 +537,15 @@ function TextWow({ family, variant, children, className }: WowProps) {
 
 function NavWow({ variant, className }: WowProps) {
   const [open, setOpen] = useState(true)
-  if (variant === 'orbit-nav') {
+  if (variant === 'compass-nav') {
     return (
-      <div className={cn('flex h-40 items-start justify-center rounded-2xl bg-[#07070c] pt-6', className)}>
+      <div className={cn('flex h-44 items-center justify-between gap-4 rounded-2xl bg-[#07070c] px-5', className)}>
         <nav className="flex min-h-11 items-center gap-4 rounded-full border border-white/15 bg-white/10 px-4 text-sm text-white backdrop-blur-xl">
           <span className="font-medium">Nexara</span>
           <span className="text-white/50">Work</span>
           <span className="text-white/50">Notes</span>
-          <span className="rounded-full bg-white px-3 py-1 text-[#111]">Atlas</span>
         </nav>
+        <CompassNeedle label="Atlas" />
       </div>
     )
   }
@@ -624,13 +667,8 @@ function ModalWow({ variant, className }: WowProps) {
 function MarqueeWow({ variant, className }: WowProps) {
   const loop = useLoopControl(true)
   const row = ['Kite', 'Solum', 'Nimbus', 'Vale', 'Orbit', 'Marble']
-  if (variant === 'logo-orbit') {
-    return (
-      <div className={cn('relative min-h-48 overflow-hidden rounded-2xl bg-[#07070c]', className)}>
-        <OrbitRing items={row} radius={90} paused={!loop.playing} />
-        {!loop.reduced ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
-      </div>
-    )
+  if (variant === 'tape-reels') {
+    return <TapeReels items={row} className={className} />
   }
   if (variant === 'cylinder-3d') {
     return (
@@ -738,7 +776,7 @@ function DragWow({ variant, className, children }: WowProps) {
       </div>
     )
   }
-  if (variant === 'hologram') return <CardHolo title={String(children ?? 'Hologram')} className={className} />
+  if (variant === 'prism-plate') return <CardHolo title={String(children ?? 'Prism')} className={className} />
   return (
     <DragPlate className={cn('max-w-[16rem]', className)}>
       <div className="rounded-3xl bg-[#111113] p-5 text-white shadow-[0_24px_50px_-28px_#7c6cff]">
@@ -768,14 +806,14 @@ export function WowCore(props: WowProps) {
   if (family === 'magnetic-button') {
     if (variant === 'gravity-well') return <MagnetGravity {...props} />
     if (variant === 'comet-trail') return <MagnetTrail {...props} />
-    if (variant === 'orbit-pull') return <MagnetOrbit {...props} />
+    if (variant === 'ink-wake') return <MagnetOrbit {...props} />
     return <MagnetShatter {...props} />
   }
   if (family === 'draggable-card') return <DragWow {...props} />
   if (family === 'spotlight-card') {
     if (variant === 'glare-tilt') return <SpotlightGlare className={props.className} />
     if (variant === 'shader-well') return <SpotlightWell className={props.className} />
-    if (variant === 'orbit-badge') return <SpotlightOrbit className={props.className} />
+    if (variant === 'lens-spec') return <SpotlightOrbit className={props.className} />
     return <SpotlightScramble className={props.className} />
   }
   if (family === 'flip-card') return <FlipWow variant={variant} className={props.className} />

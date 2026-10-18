@@ -18,7 +18,7 @@ const VARIANTS = [
   'plain',
   'avatar',
   'metric',
-  'follow-glare',
+  'follow-lens',
   'particle-hint',
   'scramble-tip',
   'magnetic-tag',

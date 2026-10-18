@@ -50,7 +50,7 @@ function ContactCore({ variant = 'branches', className }: ContactProps) {
         <div className="grid gap-4 md:grid-cols-3">
           {branches.map((branch) => (
             <article key={branch.city} className="rounded-[1.4rem] border border-nx-border bg-nx-card p-5">
-              <p className="text-xs text-nx-faint">Branch</p>
+              <p className="text-xs text-nx-muted">Branch</p>
               <h3 className="mt-2 font-serif text-2xl">{branch.city}</h3>
               <p className="mt-2 text-sm text-nx-muted">{branch.line}</p>
               <p className="mt-3 text-sm">{branch.phone}</p>
@@ -148,7 +148,7 @@ function ContactCore({ variant = 'branches', className }: ContactProps) {
 
       {variant === 'directions' ? (
         <article className="rounded-[1.4rem] border border-nx-border p-5">
-          <p className="text-xs text-nx-faint">From the harbor</p>
+          <p className="text-xs text-nx-muted">From the harbor</p>
           <p className="mt-2 font-serif text-2xl">12 minutes to the East bay.</p>
           <p className="mt-2 text-sm text-nx-muted">Coast road north, left after the park signal. Service gate on the east side.</p>
         </article>

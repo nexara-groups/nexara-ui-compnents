@@ -23,7 +23,7 @@ const VARIANTS = [
   'flashcard',
   'morph-face',
   'liquid-flip',
-  'hologram',
+  'prism-face',
   'path-reveal',
 ] as const
 

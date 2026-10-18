@@ -132,7 +132,7 @@ function TextRevealCore({
           {units.map((word, index) => (
             <li key={`${word}-${index}`} className="flex justify-between border-b border-nx-border pb-1">
               <span>{word}</span>
-              <span className="font-mono text-nx-faint">{String(index + 1).padStart(2, '0')}</span>
+              <span className="font-mono text-nx-muted">{String(index + 1).padStart(2, '0')}</span>
             </li>
           ))}
         </ol>

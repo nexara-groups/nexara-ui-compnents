@@ -19,7 +19,7 @@ const VARIANTS = [
   'split',
   'giant-marquee',
   'grain-night',
-  'orbit-marks',
+  'barcode-marks',
   'path-sitemap',
 ] as const
 

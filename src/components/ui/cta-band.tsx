@@ -21,7 +21,7 @@ const VARIANTS = [
   'liquid-wash',
   'scramble-cta',
   'particle-close',
-  'glare-band',
+  'beam-band',
 ] as const
 
 export type CtaBandVariant = (typeof VARIANTS)[number]

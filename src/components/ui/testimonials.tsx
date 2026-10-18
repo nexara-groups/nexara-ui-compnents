@@ -20,7 +20,7 @@ const VARIANTS = [
   'featured',
   'wall-parallax',
   'video-shader',
-  'orbit-quotes',
+  'polaroid-quotes',
   'scramble-pull',
 ] as const
 
@@ -112,11 +112,11 @@ function TestimonialsCore({ variant = 'quote', className }: TestimonialsProps) {
             <MediaFrame src={first.src} alt={first.name} grain={false} className="size-9 rounded-full" />
             <div>
               <p className="text-sm font-medium">{first.name}</p>
-              <p className="text-xs text-nx-faint">{first.handle}</p>
+              <p className="text-xs text-nx-muted">{first.handle}</p>
             </div>
           </div>
           <blockquote className="mt-3 text-sm leading-6">{first.text}</blockquote>
-          <p className="mt-3 text-xs text-nx-faint">12:04 · 17 Oct 2026</p>
+          <p className="mt-3 text-xs text-nx-muted">12:04 · 17 Oct 2026</p>
         </figure>
       ) : null}
 
@@ -150,7 +150,7 @@ function TestimonialsCore({ variant = 'quote', className }: TestimonialsProps) {
           {quotes.slice(0, 3).map((quote, index) => (
             <li key={quote.name} className="relative border-l border-nx-border pl-5">
               <span className="absolute top-1.5 -left-1 size-2 rounded-full bg-nx-accent" />
-              <p className="text-[11px] text-nx-faint">{String(index + 1).padStart(2, '0')}</p>
+              <p className="text-[11px] text-nx-muted">{String(index + 1).padStart(2, '0')}</p>
               <blockquote className="mt-1 text-sm leading-6">“{quote.text}”</blockquote>
               <p className="mt-2 text-xs text-nx-muted">{quote.name}</p>
             </li>

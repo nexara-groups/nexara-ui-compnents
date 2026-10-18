@@ -27,7 +27,7 @@ const VARIANTS = [
   'badges',
   'orbit-3d',
   'magnetic-marks',
-  'glare-lockups',
+  'stamp-lockups',
   'particle-press',
 ] as const
 

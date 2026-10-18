@@ -22,7 +22,7 @@ const VARIANTS = [
   'scramble-search',
   'morph-results',
   'particle-jump',
-  'glare-row',
+  'prism-row',
 ] as const
 
 export type CommandPaletteVariant = (typeof VARIANTS)[number]

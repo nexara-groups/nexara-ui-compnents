@@ -566,7 +566,7 @@ function FourDoors({
           <article key={name} className="overflow-hidden rounded-[1.4rem] border border-nx-border bg-nx-card">
             <MediaFrame src={src} alt={name} className="h-32" />
             <div className="p-5">
-              <p className="text-[11px] text-nx-faint">{String(index + 1).padStart(2, '0')}</p>
+              <p className="text-[11px] text-nx-muted">{String(index + 1).padStart(2, '0')}</p>
               <p className="mt-3 font-medium">{name}</p>
               <p className="mt-2 text-sm text-nx-muted">{line}</p>
             </div>

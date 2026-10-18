@@ -121,9 +121,9 @@ export function Hero({
             <div className="mt-5 max-w-md">{lede}</div>
             <div className={cn('mt-8 flex flex-wrap gap-3', actionsClassName)}>{actions}</div>
             <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 text-sm">
-              <div><dt className="text-nx-faint">Teams</dt><dd className="font-medium">2,400</dd></div>
-              <div><dt className="text-nx-faint">Variants</dt><dd className="font-medium">180+</dd></div>
-              <div><dt className="text-nx-faint">Copy time</dt><dd className="font-medium">12s</dd></div>
+              <div><dt className="text-nx-muted">Teams</dt><dd className="font-medium">2,400</dd></div>
+              <div><dt className="text-nx-muted">Variants</dt><dd className="font-medium">180+</dd></div>
+              <div><dt className="text-nx-muted">Copy time</dt><dd className="font-medium">12s</dd></div>
             </dl>
           </div>
           <div className={cn('overflow-hidden rounded-2xl border border-nx-border bg-nx-card p-3 shadow-[var(--nx-shadow)]', mediaClassName)}>
@@ -131,7 +131,7 @@ export function Hero({
               <span className="size-2.5 rounded-full bg-[#ff5f57]" />
               <span className="size-2.5 rounded-full bg-[#febc2e]" />
               <span className="size-2.5 rounded-full bg-[#28c840]" />
-              <span className="ml-2 font-mono text-[11px] text-nx-faint">harbor.studio/library</span>
+              <span className="ml-2 font-mono text-[11px] text-nx-muted">harbor.studio/library</span>
             </div>
             <MediaFrame src={image ?? media.device} video={video} poster={poster} lottie={lottie} alt="Product still" className="min-h-48 rounded-xl">
               {mediaSlot}
@@ -226,7 +226,7 @@ export function Hero({
         <div className="mx-auto max-w-6xl">
           <div className="flex items-end justify-between border-b border-nx-line pb-3">
             <p className={cn('text-xs tracking-[0.28em] text-nx-muted uppercase', eyebrowClassName)}>{eyebrow ?? 'Studio index'}</p>
-            <p className="text-xs text-nx-faint">04 — 12</p>
+            <p className="text-xs text-nx-muted">04 — 12</p>
           </div>
           <Title className={cn(titleClass, 'py-8 text-4xl leading-[0.95] sm:text-6xl md:py-10 md:text-8xl')}>{title}</Title>
           <div className="grid gap-6 border-t border-nx-line pt-6 lg:grid-cols-[1.4fr_0.6fr]">

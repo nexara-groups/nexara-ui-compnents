@@ -28,7 +28,7 @@ const VARIANTS = [
   'metrics',
   'awards',
   'cylinder-3d',
-  'logo-orbit',
+  'tape-reels',
   'velocity-scroll',
   'grain-tape',
 ] as const
@@ -179,7 +179,7 @@ function frameClass(variant: MarqueeVariant) {
 
 function FrameLabel({ variant }: { variant: MarqueeVariant }) {
   if (variant === 'ticker') return <p className="px-3 pb-1 text-xs tracking-[0.18em] text-[#fb7185]">LIVE · 18:04</p>
-  if (variant === 'changelog') return <p className="px-3 pb-1 text-nx-faint">~/nexara</p>
+  if (variant === 'changelog') return <p className="px-3 pb-1 text-nx-muted">~/nexara</p>
   return null
 }
 

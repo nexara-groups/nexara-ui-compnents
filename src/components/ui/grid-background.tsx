@@ -22,7 +22,7 @@ const VARIANTS = [
   'perspective-fly',
   'circuit-draw',
   'topo-pulse',
-  'hex-orbit',
+  'hex-lattice',
 ] as const
 
 export type GridVariant = (typeof VARIANTS)[number]

@@ -2,7 +2,16 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { AreaSpark, GooPuddle, HeatGrid, PausedOrbit } from '@/lib/wow-fx.tsx'
+import { AnalogClock, AreaSpark, GooPuddle, HeatGrid, SplitFlap } from '@/lib/wow-fx.tsx'
+import {
+  BarcodeScan,
+  FoldPanel,
+  InfinityPath,
+  PeelCorner,
+  PendulumCard,
+  PrismSplit,
+  RadarSweep,
+} from '@/lib/wow-unique.tsx'
 import {
   GlobeField,
   Grain,
@@ -10,14 +19,12 @@ import {
   LazyMesh3D,
   MagneticWell,
   Odometer,
-  OrbitRing,
   ParticleField,
   PathDraw,
   ScrambleText,
   ScrollPin,
   ShaderMesh,
   SplitMask,
-  TiltGlare,
   WowStage,
   wowBtn,
 } from '@/lib/wow.tsx'
@@ -43,8 +50,21 @@ function ShellWow({ variant, className }: WowProps) {
       </WowStage>
     )
   }
-  if (variant === 'command-orbit') {
-    return <PausedOrbit items={['Jump', 'Create', 'Atlas', 'K']} radius={88} className={cn('min-h-64', className)} />
+  if (variant === 'radar-jump') {
+    return (
+      <div className={cn('grid min-h-72 items-center gap-4 rounded-[1.6rem] bg-[#07070c] p-5 text-white md:grid-cols-[1fr_12rem]', className)}>
+        <div>
+          <p className="font-mono text-[11px] text-[#f3c27a]">JUMP</p>
+          <p className="mt-2 font-serif text-3xl">Find a room.</p>
+          <ul className="mt-4 space-y-2 text-sm text-white/70">
+            <li>Open Harbor</li>
+            <li>Create a brief</li>
+            <li>Jump Atlas</li>
+          </ul>
+        </div>
+        <RadarSweep items={['H', 'A', 'K']} />
+      </div>
+    )
   }
   if (variant === 'liquid-rail') {
     return (
@@ -113,12 +133,13 @@ function KpiWow({ variant, className }: WowProps) {
       </div>
     )
   }
-  if (variant === 'glare-delta') {
+  if (variant === 'spark-delta') {
     return (
-      <TiltGlare className={cn('rounded-3xl bg-[#111113] p-5 text-white', className)}>
-        <p className="text-sm text-white/50">WoW</p>
+      <div className={cn('rounded-3xl bg-[#111113] p-5 text-white', className)}>
+        <p className="text-sm text-white/50">Week over week</p>
         <p className="font-serif text-4xl">+18%</p>
-      </TiltGlare>
+        <AreaSpark className="mt-3" />
+      </div>
     )
   }
   return (
@@ -196,14 +217,21 @@ function KanbanWow({ variant, className }: WowProps) {
     { name: 'Build', cards: ['Remote'] },
     { name: 'Review', cards: ['Atlas'] },
   ]
-  if (variant === 'orbit-wip') {
-    return <PausedOrbit items={['2/3', '1/2', '1/1']} radius={86} className={className} />
+  if (variant === 'wip-pendulum') {
+    return (
+      <PendulumCard className={className}>
+        <p className="text-xs text-white/50">WIP</p>
+        <p className="font-serif text-3xl">2 / 3</p>
+        <p className="mt-1 text-sm text-white/60">Review hangs until Atlas lands.</p>
+      </PendulumCard>
+    )
   }
   if (variant === 'particle-lane') {
     return (
       <div className={cn('relative overflow-hidden rounded-[1.6rem] bg-[#07070c] p-4 text-white', className)}>
         <ParticleField count={40} />
         <p className="relative z-10 font-serif text-2xl">Review lane</p>
+        <p className="relative z-10 mt-2 text-sm text-white/60">Atlas waits. Two briefs in the queue.</p>
       </div>
     )
   }
@@ -214,7 +242,10 @@ function KanbanWow({ variant, className }: WowProps) {
           <p className="text-xs tracking-[0.16em] text-nx-muted uppercase">{col.name}</p>
           {col.cards.map((card) => (
             <MagneticWell key={card}>
-              <TiltGlare className="rounded-2xl border border-nx-border bg-nx-card p-3">{card}</TiltGlare>
+              <PeelCorner className="rounded-2xl border border-nx-border bg-nx-card p-3" label={card}>
+                <p className="font-medium">{card}</p>
+                <p className="text-xs text-nx-muted">{col.name} · Anitha</p>
+              </PeelCorner>
             </MagneticWell>
           ))}
         </div>
@@ -336,8 +367,8 @@ function CommandWow({ variant, className }: WowProps) {
         <ul className="mt-2">
           {items.map((item) => (
             <li key={item}>
-              <button type="button" className={cn(touchTarget, 'flex w-full items-center rounded-xl px-2 text-left text-sm', variant === 'glare-row' && 'hover:bg-white/10')}>
-                {item}
+              <button type="button" className={cn(touchTarget, 'flex w-full items-center rounded-xl px-2 text-left text-sm', variant === 'prism-row' && 'hover:bg-white/10')}>
+                {variant === 'prism-row' ? <PrismSplit>{item}</PrismSplit> : item}
               </button>
             </li>
           ))}
@@ -357,12 +388,18 @@ function SettingsWow({ variant, className }: WowProps) {
       </div>
     )
   }
-  if (variant === 'glare-profile') {
+  if (variant === 'fold-profile') {
     return (
-      <TiltGlare className={cn('rounded-3xl bg-[#111113] p-5 text-white', className)}>
-        <p className="font-serif text-3xl">Anitha Rao</p>
-        <p className="text-sm text-white/50">Harbor desk</p>
-      </TiltGlare>
+      <FoldPanel
+        className={className}
+        front={
+          <div className="rounded-3xl bg-[#111113] p-5 text-white">
+            <p className="font-serif text-3xl">Anitha Rao</p>
+            <p className="text-sm text-white/50">Harbor desk</p>
+          </div>
+        }
+        back={<p className="rounded-3xl border border-nx-border p-4 text-sm text-nx-muted">SSO, desk hours, and the Harbor branch.</p>}
+      />
     )
   }
   return (
@@ -408,7 +445,6 @@ function KitWow({ variant, className }: WowProps) {
           </div>
           <div className="relative min-h-64">
             <GlobeField />
-            <OrbitRing items={['Work', 'Labs', 'Press']} radius={90} />
           </div>
         </div>
       </div>
@@ -447,6 +483,50 @@ function KitWow({ variant, className }: WowProps) {
   )
 }
 
+function LoaderWow({ variant, className, title }: WowProps) {
+  const n = useCountUp(72, 1600, true)
+  const label = String(title ?? 'Loading Harbor')
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      aria-label={label}
+      className={cn('relative flex min-h-40 flex-col items-center justify-center overflow-hidden rounded-[1.6rem] bg-[#07070c] p-6 text-white', className)}
+    >
+      {variant === 'shader-fog' ? <ShaderMesh /> : null}
+      {variant === 'particle-drift' ? <ParticleField count={40} /> : null}
+      {variant === 'liquid-drop' ? <GooPuddle /> : null}
+      <div className="relative z-10">
+        {variant === 'orbit-beads' ? <RadarSweep items={['·', '·', '·']} /> : null}
+        {variant === 'path-infinity' ? <InfinityPath className="w-48" /> : null}
+        {variant === 'odometer-pct' ? (
+          <p className="font-serif text-5xl">
+            <Odometer value={n} digits={2} />%
+          </p>
+        ) : null}
+        {variant === 'scramble-hold' ? <ScrambleText text="HOLD THE DESK" className="block font-serif text-3xl" /> : null}
+        {variant === 'flap-wait' ? <SplitFlap text="WAIT" /> : null}
+        {variant === 'analog-sweep' ? <AnalogClock /> : null}
+        {variant === 'barcode-scan' ? <BarcodeScan labels={['PACK', 'HARBOR']} /> : null}
+        {variant === 'prism-bar' ? (
+          <PrismSplit>
+            <p className="font-serif text-4xl">Loading</p>
+          </PrismSplit>
+        ) : null}
+        {variant === 'pulse-halo' ? (
+          <motion.span
+            aria-hidden="true"
+            className="block size-16 rounded-full border-2 border-[#f3c27a]"
+            animate={{ scale: [0.8, 1.15, 0.8], opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 1.6, repeat: Infinity }}
+          />
+        ) : null}
+      </div>
+      <p className="relative z-10 mt-4 text-sm text-white/50">{label}</p>
+    </div>
+  )
+}
+
 export function WowApp(props: WowProps) {
   const { family } = props
   if (family === 'app-shell') return <ShellWow {...props} />
@@ -458,6 +538,7 @@ export function WowApp(props: WowProps) {
   if (family === 'command-palette') return <CommandWow {...props} />
   if (family === 'settings-panel') return <SettingsWow {...props} />
   if (family === 'kit') return <KitWow {...props} />
+  if (family === 'loader') return <LoaderWow {...props} />
   return (
     <WowStage className={props.className}>
       <Grain />

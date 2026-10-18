@@ -39,7 +39,7 @@ const variants = {
   calendar: 'rounded-2xl border border-nx-border bg-nx-card overflow-hidden p-0',
 } as const
 
-export type DraggableCardVariant = keyof typeof variants | 'physics-deck' | 'magnetic-stack' | 'hologram' | 'particle-toss'
+export type DraggableCardVariant = keyof typeof variants | 'physics-deck' | 'magnetic-stack' | 'prism-plate' | 'particle-toss'
 export type DraggableCardBounds = 'parent' | 'viewport' | RefObject<HTMLElement | null>
 
 export interface DraggableCardProps {

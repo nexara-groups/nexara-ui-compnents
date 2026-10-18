@@ -605,4 +605,4 @@ export function Example() {
   ...catalogMore,
 ]
 
-export const categories = ['Cards', 'Buttons', 'Backgrounds', 'Text', 'Navigation', 'Overlays', 'Forms', 'Feedback', 'Identity', 'Sections', 'App', 'Kits'] as const
+export const categories = ['Cards', 'Buttons', 'Backgrounds', 'Text', 'Navigation', 'Overlays', 'Forms', 'Feedback', 'Identity', 'Sections', 'App', 'Kits', 'Loaders'] as const

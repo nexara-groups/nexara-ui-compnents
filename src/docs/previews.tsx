@@ -27,6 +27,7 @@ import { KanbanBoard } from '@/components/ui/kanban-board.tsx'
 import { Kit } from '@/components/ui/kit.tsx'
 import { Kpi } from '@/components/ui/kpi.tsx'
 import { Leaderboard } from '@/components/ui/leaderboard.tsx'
+import { Loader } from '@/components/ui/loader.tsx'
 import { LogoCloud } from '@/components/ui/logo-cloud.tsx'
 import { MagneticButton, type MagnetStyle } from '@/components/ui/magnetic-button.tsx'
 import { Marquee, type MarqueeVariant } from '@/components/ui/marquee.tsx'
@@ -267,6 +268,7 @@ export function renderVariantPreview(slug: string, id: string): ReactNode {
     'command-palette': CommandPalette,
     'settings-panel': SettingsPanel,
     kit: Kit,
+    loader: Loader,
   } as const
   const Preview = simple[slug as keyof typeof simple]
   if (Preview) return <Preview variant={id as never} />

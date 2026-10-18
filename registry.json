@@ -36,7 +36,7 @@
       "name": "draggable-card",
       "type": "registry:ui",
       "title": "Draggable Card",
-      "description": "A movable card with spring tilt, optional snap-back, a drag handle, and keyboard nudging. Variants: glass, window, note, media, task, invite, file, widget, message, stack, compact, calendar, physics-deck, magnetic-stack, hologram, particle-toss.",
+      "description": "A movable card with spring tilt, optional snap-back, a drag handle, and keyboard nudging. Variants: glass, window, note, media, task, invite, file, widget, message, stack, compact, calendar, physics-deck, magnetic-stack, prism-plate, particle-toss.",
       "categories": [
         "Cards"
       ],
@@ -63,6 +63,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -181,10 +185,10 @@
           "usage": "<DraggableCard variant=\"magnetic-stack\" bounds={stageRef}>Drag</DraggableCard>"
         },
         {
-          "name": "hologram",
-          "title": "Hologram",
-          "description": "Shader field under a tilting plate.",
-          "usage": "<DraggableCard variant=\"hologram\" bounds={stageRef}>Drag</DraggableCard>"
+          "name": "prism-plate",
+          "title": "Prism plate",
+          "description": "RGB split follows the pointer on a night plate.",
+          "usage": "<DraggableCard variant=\"prism-plate\" bounds={stageRef}>Drag</DraggableCard>"
         },
         {
           "name": "particle-toss",
@@ -198,7 +202,7 @@
       "name": "spotlight-card",
       "type": "registry:ui",
       "title": "Spotlight Card",
-      "description": "Twelve product cards with a pointer wash on top of distinct anatomies. Variants: profile, pricing, product, testimonial, stat, player, weather, inbox, repo, task, article, place, glare-tilt, shader-well, orbit-badge, scramble-stat.",
+      "description": "Twelve product cards with a pointer wash on top of distinct anatomies. Variants: profile, pricing, product, testimonial, stat, player, weather, inbox, repo, task, article, place, glare-tilt, shader-well, lens-spec, scramble-stat.",
       "categories": [
         "Cards"
       ],
@@ -224,6 +228,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -342,10 +350,10 @@
           "usage": "<SpotlightCard variant=\"shader-well\" />"
         },
         {
-          "name": "orbit-badge",
-          "title": "Orbit badge",
-          "description": "Live marks on a ring.",
-          "usage": "<SpotlightCard variant=\"orbit-badge\" />"
+          "name": "lens-spec",
+          "title": "Lens spec",
+          "description": "A shop spec under a moving loupe.",
+          "usage": "<SpotlightCard variant=\"lens-spec\" />"
         },
         {
           "name": "scramble-stat",
@@ -359,7 +367,7 @@
       "name": "flip-card",
       "type": "registry:ui",
       "title": "Flip Card",
-      "description": "A two-sided card that turns on hover or click. Variants: credit, product, pricing, profile, metric, invite, auth, feature, quote, plan, media, flashcard, morph-face, liquid-flip, hologram, path-reveal.",
+      "description": "A two-sided card that turns on hover or click. Variants: credit, product, pricing, profile, metric, invite, auth, feature, quote, plan, media, flashcard, morph-face, liquid-flip, prism-face, path-reveal.",
       "categories": [
         "Cards"
       ],
@@ -386,6 +394,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -504,10 +516,10 @@
           "usage": "<FlipCard variant=\"liquid-flip\" />"
         },
         {
-          "name": "hologram",
-          "title": "Hologram",
-          "description": "Iridescent shader on the front face.",
-          "usage": "<FlipCard variant=\"hologram\" />"
+          "name": "prism-face",
+          "title": "Prism face",
+          "description": "The front face splits into RGB channels.",
+          "usage": "<FlipCard variant=\"prism-face\" />"
         },
         {
           "name": "path-reveal",
@@ -521,7 +533,7 @@
       "name": "bento-grid",
       "type": "registry:ui",
       "title": "Bento Grid",
-      "description": "A responsive mosaic of product tiles. Variants: chart, quote, editorial, terminal, schedule, scoreboard, stat, compare, media, calendar, kanban, invoice, depth-mosaic, shader-tile, orbit-tile, ticker-tile.",
+      "description": "A responsive mosaic of product tiles. Variants: chart, quote, editorial, terminal, schedule, scoreboard, stat, compare, media, calendar, kanban, invoice, depth-mosaic, shader-tile, peel-tile, ticker-tile.",
       "categories": [
         "Cards"
       ],
@@ -547,6 +559,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -665,10 +681,10 @@
           "usage": "<BentoItem variant=\"shader-tile\" title=\"Uptime\" description=\"Last hour.\" />"
         },
         {
-          "name": "orbit-tile",
-          "title": "Orbit tile",
-          "description": "Marks on a ring inside a cell.",
-          "usage": "<BentoItem variant=\"orbit-tile\" title=\"Uptime\" description=\"Last hour.\" />"
+          "name": "peel-tile",
+          "title": "Peel tile",
+          "description": "A bento cell whose corner peels back.",
+          "usage": "<BentoItem variant=\"peel-tile\" title=\"Uptime\" description=\"Last hour.\" />"
         },
         {
           "name": "ticker-tile",
@@ -713,6 +729,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -926,7 +946,7 @@
       "name": "magnetic-button",
       "type": "registry:ui",
       "title": "Magnetic Button",
-      "description": "Twelve product controls that lean toward a fine pointer. Variants: pill, orb, dock, fab, chip, glow, tilt, text, badge, glass, key, split, gravity-well, comet-trail, orbit-pull, shatter.",
+      "description": "Twelve product controls that lean toward a fine pointer. Variants: pill, orb, dock, fab, chip, glow, tilt, text, badge, glass, key, split, gravity-well, comet-trail, ink-wake, shatter.",
       "categories": [
         "Buttons"
       ],
@@ -949,6 +969,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -1067,10 +1091,10 @@
           "usage": "<MagneticButton magnet=\"comet-trail\">Come closer</MagneticButton>"
         },
         {
-          "name": "orbit-pull",
-          "title": "Orbit pull",
-          "description": "Satellites around the control.",
-          "usage": "<MagneticButton magnet=\"orbit-pull\">Come closer</MagneticButton>"
+          "name": "ink-wake",
+          "title": "Ink wake",
+          "description": "The pointer leaves a violet wake.",
+          "usage": "<MagneticButton magnet=\"ink-wake\">Come closer</MagneticButton>"
         },
         {
           "name": "shatter",
@@ -1112,6 +1136,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -1247,7 +1275,7 @@
       "name": "grid-background",
       "type": "registry:ui",
       "title": "Grid Background",
-      "description": "Twelve ruled and dotted surfaces. Variants: graph, dots, plus, isometric, hex, circuit, blueprint, notebook, perspective, topo, diagonal, fade, perspective-fly, circuit-draw, topo-pulse, hex-orbit.",
+      "description": "Twelve ruled and dotted surfaces. Variants: graph, dots, plus, isometric, hex, circuit, blueprint, notebook, perspective, topo, diagonal, fade, perspective-fly, circuit-draw, topo-pulse, hex-lattice.",
       "categories": [
         "Backgrounds"
       ],
@@ -1269,6 +1297,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -1393,10 +1425,10 @@
           "usage": "<GridBackground variant=\"topo-pulse\" />"
         },
         {
-          "name": "hex-orbit",
-          "title": "Hex orbit",
+          "name": "hex-lattice",
+          "title": "Hex lattice",
           "description": "Honeycomb lattice that breathes.",
-          "usage": "<GridBackground variant=\"hex-orbit\" />"
+          "usage": "<GridBackground variant=\"hex-lattice\" />"
         }
       ]
     },
@@ -1430,6 +1462,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -1587,6 +1623,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -1748,6 +1788,10 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-unique.tsx",
+          "type": "registry:lib"
+        },
+        {
           "path": "src/lib/wow-variants.ts",
           "type": "registry:lib"
         },
@@ -1880,7 +1924,7 @@
       "name": "floating-navbar",
       "type": "registry:ui",
       "title": "Floating Navbar",
-      "description": "Twelve navigation products. Variants: floating, dock, sidebar, overlay, command, transport, mega, app-bar, announcement, breadcrumb, segmented, wordmark, magnetic-pill, morph-dock, orbit-nav, glass-liquid.",
+      "description": "Twelve navigation products. Variants: floating, dock, sidebar, overlay, command, transport, mega, app-bar, announcement, breadcrumb, segmented, wordmark, magnetic-pill, morph-dock, compass-nav, glass-liquid.",
       "categories": [
         "Navigation"
       ],
@@ -1907,6 +1951,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -2025,10 +2073,10 @@
           "usage": "<FloatingNavbar variant=\"morph-dock\" items={items} logo=\"Nexara\" />"
         },
         {
-          "name": "orbit-nav",
-          "title": "Orbit nav",
-          "description": "Destinations on a ring.",
-          "usage": "<FloatingNavbar variant=\"orbit-nav\" items={items} logo=\"Nexara\" />"
+          "name": "compass-nav",
+          "title": "Compass nav",
+          "description": "A needle that tracks the pointer.",
+          "usage": "<FloatingNavbar variant=\"compass-nav\" items={items} logo=\"Nexara\" />"
         },
         {
           "name": "glass-liquid",
@@ -2074,6 +2122,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -2242,6 +2294,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -2491,7 +2547,7 @@
       "name": "marquee",
       "type": "registry:ui",
       "title": "Marquee",
-      "description": "Twelve continuous tracks with pause control. Variants: logos, quotes, ticker, avatars, stats, products, changelog, tags, reviews, apps, metrics, awards, cylinder-3d, logo-orbit, velocity-scroll, grain-tape.",
+      "description": "Twelve continuous tracks with pause control. Variants: logos, quotes, ticker, avatars, stats, products, changelog, tags, reviews, apps, metrics, awards, cylinder-3d, tape-reels, velocity-scroll, grain-tape.",
       "categories": [
         "Sections"
       ],
@@ -2517,6 +2573,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -2629,10 +2689,10 @@
           "usage": "<Marquee variant=\"cylinder-3d\" />"
         },
         {
-          "name": "logo-orbit",
-          "title": "Logo orbit",
-          "description": "Wordmarks on a ring.",
-          "usage": "<Marquee variant=\"logo-orbit\" />"
+          "name": "tape-reels",
+          "title": "Tape reels",
+          "description": "Twin reels spin a wordmark tape.",
+          "usage": "<Marquee variant=\"tape-reels\" />"
         },
         {
           "name": "velocity-scroll",
@@ -2674,6 +2734,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -2809,7 +2873,7 @@
       "name": "tabs",
       "type": "registry:ui",
       "title": "Tabs",
-      "description": "Ten tab anatomies. Variants: underline, pill, segmented, vertical, icon, card, folder, minimal, badge, rail, layout-morph, liquid-ink, orbit-pills, scramble-label.",
+      "description": "Ten tab anatomies. Variants: underline, pill, segmented, vertical, icon, card, folder, minimal, badge, rail, layout-morph, liquid-ink, zipper-tabs, scramble-label.",
       "categories": [
         "Forms"
       ],
@@ -2831,6 +2895,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -2937,10 +3005,10 @@
           "usage": "<Tabs variant=\"liquid-ink\" />"
         },
         {
-          "name": "orbit-pills",
-          "title": "Orbit pills",
-          "description": "Tabs on a ring.",
-          "usage": "<Tabs variant=\"orbit-pills\" />"
+          "name": "zipper-tabs",
+          "title": "Zipper tabs",
+          "description": "The panel splits open on the active tab.",
+          "usage": "<Tabs variant=\"zipper-tabs\" />"
         },
         {
           "name": "scramble-label",
@@ -2980,6 +3048,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -3103,7 +3175,7 @@
       "name": "tooltip",
       "type": "registry:ui",
       "title": "Tooltip",
-      "description": "Ten hint constructions. Variants: default, inverse, rich, kbd, success, warning, follow, plain, avatar, metric, follow-glare, particle-hint, scramble-tip, magnetic-tag.",
+      "description": "Ten hint constructions. Variants: default, inverse, rich, kbd, success, warning, follow, plain, avatar, metric, follow-lens, particle-hint, scramble-tip, magnetic-tag.",
       "categories": [
         "Feedback"
       ],
@@ -3129,6 +3201,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -3223,10 +3299,10 @@
           "usage": "<Tooltip variant=\"metric\" content=\"99.98\">Hover</Tooltip>"
         },
         {
-          "name": "follow-glare",
-          "title": "Follow glare",
-          "description": "A hint that tilts.",
-          "usage": "<Tooltip variant=\"follow-glare\" content=\"Hint\">Hover</Tooltip>"
+          "name": "follow-lens",
+          "title": "Follow lens",
+          "description": "A loupe hint that tracks the pointer.",
+          "usage": "<Tooltip variant=\"follow-lens\" content=\"Hint\">Hover</Tooltip>"
         },
         {
           "name": "particle-hint",
@@ -3278,6 +3354,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -3401,7 +3481,7 @@
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
-      "description": "Ten identity constructions. Variants: image, initials, status, group, square, ring, upload, icon, story, mention, orbit-status, shader-ring, particle-presence, holographic.",
+      "description": "Ten identity constructions. Variants: image, initials, status, group, square, ring, upload, icon, story, mention, radar-presence, shader-ring, particle-presence, holographic.",
       "categories": [
         "Identity"
       ],
@@ -3427,6 +3507,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -3521,10 +3605,10 @@
           "usage": "<Avatar variant=\"mention\" />"
         },
         {
-          "name": "orbit-status",
-          "title": "Orbit status",
-          "description": "A live ring around the face.",
-          "usage": "<Avatar variant=\"orbit-status\" />"
+          "name": "radar-presence",
+          "title": "Radar presence",
+          "description": "A sweep that finds the live face.",
+          "usage": "<Avatar variant=\"radar-presence\" />"
         },
         {
           "name": "shader-ring",
@@ -3550,7 +3634,7 @@
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
-      "description": "Ten status chips. Variants: solid, soft, outline, dot, count, status, removable, icon, glow, ribbon, beam-orbit, scramble-live, liquid-pill, path-ribbon.",
+      "description": "Ten status chips. Variants: solid, soft, outline, dot, count, status, removable, icon, glow, ribbon, morse-live, scramble-live, liquid-pill, path-ribbon.",
       "categories": [
         "Identity"
       ],
@@ -3572,6 +3656,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -3666,10 +3754,10 @@
           "usage": "<Badge variant=\"ribbon\">Sale</Badge>"
         },
         {
-          "name": "beam-orbit",
-          "title": "Beam orbit",
-          "description": "A conic ring around the chip.",
-          "usage": "<Badge variant=\"beam-orbit\">Live</Badge>"
+          "name": "morse-live",
+          "title": "Morse live",
+          "description": "The chip blinks a Morse LIVE.",
+          "usage": "<Badge variant=\"morse-live\">Live</Badge>"
         },
         {
           "name": "scramble-live",
@@ -3695,7 +3783,7 @@
       "name": "pricing",
       "type": "registry:ui",
       "title": "Pricing",
-      "description": "Ten pricing sections. Variants: cards, toggle, compare, featured, usage, compact, enterprise, hobby, table, stacked, tilt-glare, odometer-price, morph-toggle, shader-featured.",
+      "description": "Ten pricing sections. Variants: cards, toggle, compare, featured, usage, compact, enterprise, hobby, table, stacked, prism-price, odometer-price, morph-toggle, shader-featured.",
       "categories": [
         "Sections"
       ],
@@ -3721,6 +3809,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -3815,10 +3907,10 @@
           "usage": "<Pricing variant=\"stacked\" />"
         },
         {
-          "name": "tilt-glare",
-          "title": "Tilt glare",
-          "description": "Plans that tilt and shine.",
-          "usage": "<Pricing variant=\"tilt-glare\" />"
+          "name": "prism-price",
+          "title": "Prism price",
+          "description": "The featured price splits into RGB.",
+          "usage": "<Pricing variant=\"prism-price\" />"
         },
         {
           "name": "odometer-price",
@@ -3844,7 +3936,7 @@
       "name": "testimonials",
       "type": "registry:ui",
       "title": "Testimonials",
-      "description": "Ten social-proof constructions. Variants: quote, grid, wall, slider, tweet, video, stat, logo, stacked, featured, wall-parallax, video-shader, orbit-quotes, scramble-pull.",
+      "description": "Ten social-proof constructions. Variants: quote, grid, wall, slider, tweet, video, stat, logo, stacked, featured, wall-parallax, video-shader, polaroid-quotes, scramble-pull.",
       "categories": [
         "Sections"
       ],
@@ -3870,6 +3962,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -3976,10 +4072,10 @@
           "usage": "<Testimonials variant=\"video-shader\" />"
         },
         {
-          "name": "orbit-quotes",
-          "title": "Orbit quotes",
-          "description": "Names on a ring.",
-          "usage": "<Testimonials variant=\"orbit-quotes\" />"
+          "name": "polaroid-quotes",
+          "title": "Polaroid quotes",
+          "description": "Portraits fan into a quote.",
+          "usage": "<Testimonials variant=\"polaroid-quotes\" />"
         },
         {
           "name": "scramble-pull",
@@ -3993,7 +4089,7 @@
       "name": "footer",
       "type": "registry:ui",
       "title": "Footer",
-      "description": "Ten closing constructions. Variants: mega, compact, centered, newsletter, app, legal, social, sitemap, brand, split, giant-marquee, grain-night, orbit-marks, path-sitemap.",
+      "description": "Ten closing constructions. Variants: mega, compact, centered, newsletter, app, legal, social, sitemap, brand, split, giant-marquee, grain-night, barcode-marks, path-sitemap.",
       "categories": [
         "Sections"
       ],
@@ -4019,6 +4115,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -4125,10 +4225,10 @@
           "usage": "<Footer variant=\"grain-night\" />"
         },
         {
-          "name": "orbit-marks",
-          "title": "Orbit marks",
-          "description": "Sitemap on a ring.",
-          "usage": "<Footer variant=\"orbit-marks\" />"
+          "name": "barcode-marks",
+          "title": "Barcode marks",
+          "description": "A scan line reads the sitemap.",
+          "usage": "<Footer variant=\"barcode-marks\" />"
         },
         {
           "name": "path-sitemap",
@@ -4142,7 +4242,7 @@
       "name": "stats",
       "type": "registry:ui",
       "title": "Stats",
-      "description": "Twelve count-up constructions for climate, care, and sport desks. Variants: countup, ribbon, ticker, year, split, dark, sports, clinic, stacked, compare, mosaic, live, odometer, orbit-ring, particle-pulse, glare-mosaic.",
+      "description": "Twelve count-up constructions for climate, care, and sport desks. Variants: countup, ribbon, ticker, year, split, dark, sports, clinic, stacked, compare, mosaic, live, odometer, dial-gauge, particle-pulse, film-mosaic.",
       "categories": [
         "Sections"
       ],
@@ -4164,6 +4264,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -4276,10 +4380,10 @@
           "usage": "<Stats variant=\"odometer\" />"
         },
         {
-          "name": "orbit-ring",
-          "title": "Orbit ring",
-          "description": "Figures on a ring.",
-          "usage": "<Stats variant=\"orbit-ring\" />"
+          "name": "dial-gauge",
+          "title": "Dial gauge",
+          "description": "A needle sweeps the booked figure.",
+          "usage": "<Stats variant=\"dial-gauge\" />"
         },
         {
           "name": "particle-pulse",
@@ -4288,10 +4392,10 @@
           "usage": "<Stats variant=\"particle-pulse\" />"
         },
         {
-          "name": "glare-mosaic",
-          "title": "Glare mosaic",
-          "description": "Tilted metric tiles.",
-          "usage": "<Stats variant=\"glare-mosaic\" />"
+          "name": "film-mosaic",
+          "title": "Film mosaic",
+          "description": "Metrics on sprocketed frames.",
+          "usage": "<Stats variant=\"film-mosaic\" />"
         }
       ]
     },
@@ -4321,6 +4425,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -4485,6 +4593,10 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-unique.tsx",
+          "type": "registry:lib"
+        },
+        {
           "path": "src/lib/wow-variants.ts",
           "type": "registry:lib"
         },
@@ -4617,7 +4729,7 @@
       "name": "case-study",
       "type": "registry:ui",
       "title": "Case Study",
-      "description": "Twelve client-story constructions including a tabbed carousel. Variants: tabs, autoplay, stack, film, split, mosaic, quote, before, logo, index, featured, reel, scroll-film, shared-morph, glare-stack, path-index.",
+      "description": "Twelve client-story constructions including a tabbed carousel. Variants: tabs, autoplay, stack, film, split, mosaic, quote, before, logo, index, featured, reel, scroll-film, shared-morph, film-stack, path-index.",
       "categories": [
         "Sections"
       ],
@@ -4643,6 +4755,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -4761,10 +4877,10 @@
           "usage": "<CaseStudy variant=\"shared-morph\" />"
         },
         {
-          "name": "glare-stack",
-          "title": "Glare stack",
-          "description": "Cases that tilt.",
-          "usage": "<CaseStudy variant=\"glare-stack\" />"
+          "name": "film-stack",
+          "title": "Film stack",
+          "description": "Cases travel as a film strip.",
+          "usage": "<CaseStudy variant=\"film-stack\" />"
         },
         {
           "name": "path-index",
@@ -4778,7 +4894,7 @@
       "name": "services",
       "type": "registry:ui",
       "title": "Services",
-      "description": "Twelve service grids: HVAC checklists, four crews, clinic doors. Variants: checklist, four-crews, doors, cards, numbered, icons, rows, hover, compact, partner, why, disciplines, tilt-doors, orbit-crews, shader-cards, path-checklist.",
+      "description": "Twelve service grids: HVAC checklists, four crews, clinic doors. Variants: checklist, four-crews, doors, cards, numbered, icons, rows, hover, compact, partner, why, disciplines, fold-doors, stamp-crews, shader-cards, path-checklist.",
       "categories": [
         "Sections"
       ],
@@ -4804,6 +4920,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -4910,16 +5030,16 @@
           "usage": "<Services variant=\"disciplines\" />"
         },
         {
-          "name": "tilt-doors",
-          "title": "Tilt doors",
-          "description": "Clinic doors with glare.",
-          "usage": "<Services variant=\"tilt-doors\" />"
+          "name": "fold-doors",
+          "title": "Fold doors",
+          "description": "Clinic doors fold open on the hinge.",
+          "usage": "<Services variant=\"fold-doors\" />"
         },
         {
-          "name": "orbit-crews",
-          "title": "Orbit crews",
-          "description": "Crews on a ring.",
-          "usage": "<Services variant=\"orbit-crews\" />"
+          "name": "stamp-crews",
+          "title": "Stamp crews",
+          "description": "A press stamps each crew.",
+          "usage": "<Services variant=\"stamp-crews\" />"
         },
         {
           "name": "shader-cards",
@@ -4939,7 +5059,7 @@
       "name": "process",
       "type": "registry:ui",
       "title": "Process",
-      "description": "Twelve step constructions including the written Nexara process. Variants: written, three, timeline, numbered, rail, cards, brief, weekly, handover, rhythm, checklist, filmstrip, scrub-timeline, pin-steps, path-rail, orbit-rhythm.",
+      "description": "Twelve step constructions including the written Nexara process. Variants: written, three, timeline, numbered, rail, cards, brief, weekly, handover, rhythm, checklist, filmstrip, scrub-timeline, pin-steps, path-rail, metronome-steps.",
       "categories": [
         "Sections"
       ],
@@ -4965,6 +5085,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -5089,10 +5213,10 @@
           "usage": "<Process variant=\"path-rail\" />"
         },
         {
-          "name": "orbit-rhythm",
-          "title": "Orbit rhythm",
-          "description": "Steps on a ring.",
-          "usage": "<Process variant=\"orbit-rhythm\" />"
+          "name": "metronome-steps",
+          "title": "Metronome steps",
+          "description": "A swinging arm keeps the process.",
+          "usage": "<Process variant=\"metronome-steps\" />"
         }
       ]
     },
@@ -5100,7 +5224,7 @@
       "name": "team",
       "type": "registry:ui",
       "title": "Team",
-      "description": "Twelve people grids for doctors, crews, and coaches. Variants: doctors, grid, featured, list, crew, faculty, coaches, circle, directory, compact, editorial, hours, glare-portraits, orbit-crew, holographic, particle-grid.",
+      "description": "Twelve people grids for doctors, crews, and coaches. Variants: doctors, grid, featured, list, crew, faculty, coaches, circle, directory, compact, editorial, hours, film-portraits, constellation-crew, holographic, particle-grid.",
       "categories": [
         "Sections"
       ],
@@ -5126,6 +5250,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -5232,16 +5360,16 @@
           "usage": "<Team variant=\"hours\" />"
         },
         {
-          "name": "glare-portraits",
-          "title": "Glare portraits",
-          "description": "Faces that tilt.",
-          "usage": "<Team variant=\"glare-portraits\" />"
+          "name": "film-portraits",
+          "title": "Film portraits",
+          "description": "Portraits travel as film frames.",
+          "usage": "<Team variant=\"film-portraits\" />"
         },
         {
-          "name": "orbit-crew",
-          "title": "Orbit crew",
-          "description": "Names on a ring.",
-          "usage": "<Team variant=\"orbit-crew\" />"
+          "name": "constellation-crew",
+          "title": "Constellation crew",
+          "description": "Names light as a connected map.",
+          "usage": "<Team variant=\"constellation-crew\" />"
         },
         {
           "name": "holographic",
@@ -5287,6 +5415,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -5422,7 +5554,7 @@
       "name": "cta-band",
       "type": "registry:ui",
       "title": "Cta Band",
-      "description": "Twelve closing bands. Variants: appointment, lime, split, dark, form, store, partner, waitlist, quote, emergency, studio, event, liquid-wash, scramble-cta, particle-close, glare-band.",
+      "description": "Twelve closing bands. Variants: appointment, lime, split, dark, form, store, partner, waitlist, quote, emergency, studio, event, liquid-wash, scramble-cta, particle-close, beam-band.",
       "categories": [
         "Sections"
       ],
@@ -5444,6 +5576,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -5568,10 +5704,10 @@
           "usage": "<CtaBand variant=\"particle-close\" />"
         },
         {
-          "name": "glare-band",
-          "title": "Glare band",
-          "description": "A closer that tilts.",
-          "usage": "<CtaBand variant=\"glare-band\" />"
+          "name": "beam-band",
+          "title": "Beam band",
+          "description": "A scan beam crosses the closer.",
+          "usage": "<CtaBand variant=\"beam-band\" />"
         }
       ]
     },
@@ -5601,6 +5737,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -5736,7 +5876,7 @@
       "name": "news",
       "type": "registry:ui",
       "title": "News",
-      "description": "Twelve bulletin and notes constructions. Variants: bulletin, cards, list, featured, ticker, magazine, compact, video, digest, alert, editorial, feed, velocity-tape, flip-headlines, shader-magazine, orbit-digest.",
+      "description": "Twelve bulletin and notes constructions. Variants: bulletin, cards, list, featured, ticker, magazine, compact, video, digest, alert, editorial, feed, velocity-tape, flip-headlines, shader-magazine, tape-digest.",
       "categories": [
         "Sections"
       ],
@@ -5762,6 +5902,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -5886,10 +6030,10 @@
           "usage": "<News variant=\"shader-magazine\" />"
         },
         {
-          "name": "orbit-digest",
-          "title": "Orbit digest",
-          "description": "Days on a ring.",
-          "usage": "<News variant=\"orbit-digest\" />"
+          "name": "tape-digest",
+          "title": "Tape digest",
+          "description": "Twin reels play the week.",
+          "usage": "<News variant=\"tape-digest\" />"
         }
       ]
     },
@@ -5897,7 +6041,7 @@
       "name": "logo-cloud",
       "type": "registry:ui",
       "title": "Logo Cloud",
-      "description": "Twelve dealer and client strips. Variants: dealers, strip, grid, marquee, grayscale, partner, press, clients, compact, invert, stacked, badges, orbit-3d, magnetic-marks, glare-lockups, particle-press.",
+      "description": "Twelve dealer and client strips. Variants: dealers, strip, grid, marquee, grayscale, partner, press, clients, compact, invert, stacked, badges, orbit-3d, magnetic-marks, stamp-lockups, particle-press.",
       "categories": [
         "Sections"
       ],
@@ -5923,6 +6067,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -6041,10 +6189,10 @@
           "usage": "<LogoCloud variant=\"magnetic-marks\" />"
         },
         {
-          "name": "glare-lockups",
-          "title": "Glare lockups",
-          "description": "Marks that tilt.",
-          "usage": "<LogoCloud variant=\"glare-lockups\" />"
+          "name": "stamp-lockups",
+          "title": "Stamp lockups",
+          "description": "Each mark stamps in.",
+          "usage": "<LogoCloud variant=\"stamp-lockups\" />"
         },
         {
           "name": "particle-press",
@@ -6058,7 +6206,7 @@
       "name": "app-shell",
       "type": "registry:ui",
       "title": "App Shell",
-      "description": "Twelve portal layouts for Agency OS. Variants: sidebar, rail, top, split, dense, agency, clinic, sports, academy, collapsed, command, mobile, morph-sidebar, command-orbit, shader-desk, liquid-rail.",
+      "description": "Twelve portal layouts for Agency OS. Variants: sidebar, rail, top, split, dense, agency, clinic, sports, academy, collapsed, command, mobile, morph-sidebar, radar-jump, shader-desk, liquid-rail.",
       "categories": [
         "App"
       ],
@@ -6084,6 +6232,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -6196,10 +6348,10 @@
           "usage": "<AppShell variant=\"morph-sidebar\" />"
         },
         {
-          "name": "command-orbit",
-          "title": "Command orbit",
-          "description": "Jump targets on a ring.",
-          "usage": "<AppShell variant=\"command-orbit\" />"
+          "name": "radar-jump",
+          "title": "Radar jump",
+          "description": "A sweep reveals jump targets.",
+          "usage": "<AppShell variant=\"radar-jump\" />"
         },
         {
           "name": "shader-desk",
@@ -6219,7 +6371,7 @@
       "name": "kpi",
       "type": "registry:ui",
       "title": "Kpi",
-      "description": "Twelve dashboard metric tiles. Variants: metric, spark, delta, progress, ring, compare, live, currency, queue, health, target, stack, odometer-spark, ring-draw, particle-live, glare-delta.",
+      "description": "Twelve dashboard metric tiles. Variants: metric, spark, delta, progress, ring, compare, live, currency, queue, health, target, stack, odometer-spark, ring-draw, particle-live, spark-delta.",
       "categories": [
         "App"
       ],
@@ -6241,6 +6393,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -6365,10 +6521,10 @@
           "usage": "<Kpi variant=\"particle-live\" />"
         },
         {
-          "name": "glare-delta",
-          "title": "Glare delta",
-          "description": "A change that tilts.",
-          "usage": "<Kpi variant=\"glare-delta\" />"
+          "name": "spark-delta",
+          "title": "Spark delta",
+          "description": "A spark line under the change.",
+          "usage": "<Kpi variant=\"spark-delta\" />"
         }
       ]
     },
@@ -6398,6 +6554,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -6533,7 +6693,7 @@
       "name": "kanban-board",
       "type": "registry:ui",
       "title": "Kanban Board",
-      "description": "Twelve boards for agency, plant, and clinic. Variants: agency, jobs, care, events, studio, compact, swim, priority, owners, wip, simple, review, spring-toss, glare-cards, orbit-wip, particle-lane.",
+      "description": "Twelve boards for agency, plant, and clinic. Variants: agency, jobs, care, events, studio, compact, swim, priority, owners, wip, simple, review, spring-toss, peel-cards, wip-pendulum, particle-lane.",
       "categories": [
         "App"
       ],
@@ -6555,6 +6715,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -6667,16 +6831,16 @@
           "usage": "<KanbanBoard variant=\"spring-toss\" />"
         },
         {
-          "name": "glare-cards",
-          "title": "Glare cards",
-          "description": "Tickets that tilt.",
-          "usage": "<KanbanBoard variant=\"glare-cards\" />"
+          "name": "peel-cards",
+          "title": "Peel cards",
+          "description": "Tickets peel at the corner.",
+          "usage": "<KanbanBoard variant=\"peel-cards\" />"
         },
         {
-          "name": "orbit-wip",
-          "title": "Orbit wip",
-          "description": "WIP limits on a ring.",
-          "usage": "<KanbanBoard variant=\"orbit-wip\" />"
+          "name": "wip-pendulum",
+          "title": "Wip pendulum",
+          "description": "WIP hangs and swings on a line.",
+          "usage": "<KanbanBoard variant=\"wip-pendulum\" />"
         },
         {
           "name": "particle-lane",
@@ -6712,6 +6876,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -6872,6 +7040,10 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/wow-unique.tsx",
+          "type": "registry:lib"
+        },
+        {
           "path": "src/lib/wow-variants.ts",
           "type": "registry:lib"
         },
@@ -7004,7 +7176,7 @@
       "name": "command-palette",
       "type": "registry:ui",
       "title": "Command Palette",
-      "description": "Twelve jump menus. Variants: default, pages, jump, create, search, patients, jobs, athletes, settings, recent, empty, help, scramble-search, morph-results, particle-jump, glare-row.",
+      "description": "Twelve jump menus. Variants: default, pages, jump, create, search, patients, jobs, athletes, settings, recent, empty, help, scramble-search, morph-results, particle-jump, prism-row.",
       "categories": [
         "App"
       ],
@@ -7026,6 +7198,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -7150,10 +7326,10 @@
           "usage": "<CommandPalette variant=\"particle-jump\" />"
         },
         {
-          "name": "glare-row",
-          "title": "Glare row",
-          "description": "A row that shines.",
-          "usage": "<CommandPalette variant=\"glare-row\" />"
+          "name": "prism-row",
+          "title": "Prism row",
+          "description": "The hit splits into RGB.",
+          "usage": "<CommandPalette variant=\"prism-row\" />"
         }
       ]
     },
@@ -7161,7 +7337,7 @@
       "name": "settings-panel",
       "type": "registry:ui",
       "title": "Settings Panel",
-      "description": "Twelve settings constructions. Variants: profile, team, billing, appearance, notifications, security, api, clinic, branches, compact, danger, integrations, morph-sections, liquid-toggle, path-security, glare-profile.",
+      "description": "Twelve settings constructions. Variants: profile, team, billing, appearance, notifications, security, api, clinic, branches, compact, danger, integrations, morph-sections, liquid-toggle, path-security, fold-profile.",
       "categories": [
         "App"
       ],
@@ -7187,6 +7363,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -7311,10 +7491,10 @@
           "usage": "<SettingsPanel variant=\"path-security\" />"
         },
         {
-          "name": "glare-profile",
-          "title": "Glare profile",
-          "description": "A profile that tilts.",
-          "usage": "<SettingsPanel variant=\"glare-profile\" />"
+          "name": "fold-profile",
+          "title": "Fold profile",
+          "description": "The portrait folds to the desk.",
+          "usage": "<SettingsPanel variant=\"fold-profile\" />"
         }
       ]
     },
@@ -7367,6 +7547,10 @@
         },
         {
           "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
           "type": "registry:lib"
         },
         {
@@ -7501,6 +7685,144 @@
           "title": "Scramble academy",
           "description": "A title that settles.",
           "usage": "<Kit variant=\"scramble-academy\" />"
+        }
+      ]
+    },
+    {
+      "name": "loader",
+      "type": "registry:ui",
+      "title": "Loader",
+      "description": "Twelve waiting constructions with pause and reduced-motion stills. Variants: pulse-halo, orbit-beads, shader-fog, path-infinity, odometer-pct, scramble-hold, liquid-drop, particle-drift, flap-wait, analog-sweep, barcode-scan, prism-bar.",
+      "categories": [
+        "Loaders"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/loader.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/wow.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-fx.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-unique.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/wow-variants.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/components/ui/wow-lazy.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/wow-signatures.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/wow-core.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/wow-blocks.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/wow-app.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/wow-scene.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "<Loader variant=\"pulse-halo\" />",
+      "variants": [
+        {
+          "name": "pulse-halo",
+          "title": "Pulse halo",
+          "description": "A ring that breathes while Harbor loads.",
+          "usage": "<Loader variant=\"pulse-halo\" />"
+        },
+        {
+          "name": "orbit-beads",
+          "title": "Orbit beads",
+          "description": "The one allowed orbit: three beads on a sweep.",
+          "usage": "<Loader variant=\"orbit-beads\" />"
+        },
+        {
+          "name": "shader-fog",
+          "title": "Shader fog",
+          "description": "A mesh that waits.",
+          "usage": "<Loader variant=\"shader-fog\" />"
+        },
+        {
+          "name": "path-infinity",
+          "title": "Path infinity",
+          "description": "A drawn loop that never closes twice.",
+          "usage": "<Loader variant=\"path-infinity\" />"
+        },
+        {
+          "name": "odometer-pct",
+          "title": "Odometer pct",
+          "description": "Percent flips while the pack lands.",
+          "usage": "<Loader variant=\"odometer-pct\" />"
+        },
+        {
+          "name": "scramble-hold",
+          "title": "Scramble hold",
+          "description": "Letters settle on HOLD THE DESK.",
+          "usage": "<Loader variant=\"scramble-hold\" />"
+        },
+        {
+          "name": "liquid-drop",
+          "title": "Liquid drop",
+          "description": "Goo puddles behind the wait.",
+          "usage": "<Loader variant=\"liquid-drop\" />"
+        },
+        {
+          "name": "particle-drift",
+          "title": "Particle drift",
+          "description": "A field that refuses to sit still.",
+          "usage": "<Loader variant=\"particle-drift\" />"
+        },
+        {
+          "name": "flap-wait",
+          "title": "Flap wait",
+          "description": "Split-flap WAIT.",
+          "usage": "<Loader variant=\"flap-wait\" />"
+        },
+        {
+          "name": "analog-sweep",
+          "title": "Analog sweep",
+          "description": "A hand that keeps the second.",
+          "usage": "<Loader variant=\"analog-sweep\" />"
+        },
+        {
+          "name": "barcode-scan",
+          "title": "Barcode scan",
+          "description": "A scan line reads the pack.",
+          "usage": "<Loader variant=\"barcode-scan\" />"
+        },
+        {
+          "name": "prism-bar",
+          "title": "Prism bar",
+          "description": "Loading splits into RGB.",
+          "usage": "<Loader variant=\"prism-bar\" />"
         }
       ]
     }

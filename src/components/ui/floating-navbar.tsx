@@ -34,7 +34,7 @@ export interface FloatingNavbarProps {
   logo?: ReactNode
   items: NavItem[]
   actions?: ReactNode
-  variant?: keyof typeof variantClass | 'magnetic-pill' | 'morph-dock' | 'orbit-nav' | 'glass-liquid'
+  variant?: keyof typeof variantClass | 'magnetic-pill' | 'morph-dock' | 'compass-nav' | 'glass-liquid'
   shrinkOnScroll?: boolean
   contained?: boolean
   blur?: boolean

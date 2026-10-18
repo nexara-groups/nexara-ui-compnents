@@ -22,7 +22,7 @@ const VARIANTS = [
   'place',
   'glare-tilt',
   'shader-well',
-  'orbit-badge',
+  'lens-spec',
   'scramble-stat',
 ] as const
 

@@ -23,7 +23,7 @@ const VARIANTS = [
   'morph-sections',
   'liquid-toggle',
   'path-security',
-  'glare-profile',
+  'fold-profile',
 ] as const
 
 export type SettingsPanelVariant = (typeof VARIANTS)[number]

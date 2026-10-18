@@ -21,7 +21,7 @@ const VARIANTS = [
   'command',
   'mobile',
   'morph-sidebar',
-  'command-orbit',
+  'radar-jump',
   'shader-desk',
   'liquid-rail',
 ] as const

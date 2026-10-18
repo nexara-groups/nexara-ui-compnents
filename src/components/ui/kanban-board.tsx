@@ -19,8 +19,8 @@ const VARIANTS = [
   'simple',
   'review',
   'spring-toss',
-  'glare-cards',
-  'orbit-wip',
+  'peel-cards',
+  'wip-pendulum',
   'particle-lane',
 ] as const
 

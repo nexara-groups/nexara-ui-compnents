@@ -20,9 +20,9 @@ const VARIANTS = [
   'mosaic',
   'live',
   'odometer',
-  'orbit-ring',
+  'dial-gauge',
   'particle-pulse',
-  'glare-mosaic',
+  'film-mosaic',
 ] as const
 
 export type StatsVariant = (typeof VARIANTS)[number]

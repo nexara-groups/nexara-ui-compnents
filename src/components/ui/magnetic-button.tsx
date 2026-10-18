@@ -22,7 +22,7 @@ const MAGNET_STYLES = [
   'split',
   'gravity-well',
   'comet-trail',
-  'orbit-pull',
+  'ink-wake',
   'shatter',
 ] as const
 
@@ -183,7 +183,7 @@ function Shell({ magnet, children }: { magnet: MagnetStyle; children?: ReactNode
   if (magnet === 'key') {
     return (
       <span className="relative inline-flex h-14 min-w-14 flex-col items-center justify-center rounded-lg border border-nx-line bg-nx-card text-nx-fg shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_6px_0_var(--nx-line)]">
-        <span className="absolute top-1.5 left-2 text-[9px] text-nx-faint">⌘</span>
+        <span aria-hidden="true" className="absolute top-1.5 left-2 text-[9px] text-nx-muted">⌘</span>
         <span className="text-sm font-medium">{children}</span>
       </span>
     )

@@ -23,7 +23,7 @@ const VARIANTS = [
   'velocity-tape',
   'flip-headlines',
   'shader-magazine',
-  'orbit-digest',
+  'tape-digest',
 ] as const
 
 export type NewsVariant = (typeof VARIANTS)[number]
@@ -53,13 +53,13 @@ function NewsCore({ variant = 'bulletin', className }: NewsProps) {
         <div className="rounded-[1.4rem] border border-nx-border">
           <div className="flex items-center justify-between border-b border-nx-border px-4 py-3">
             <p className="text-[11px] tracking-[0.18em] text-nx-accent uppercase">Bulletin</p>
-            <p className="text-xs text-nx-faint">Field desk</p>
+            <p className="text-xs text-nx-muted">Field desk</p>
           </div>
           <ul>
             {items.slice(0, 4).map((item) => (
               <li key={item.title} className="flex justify-between gap-4 border-t border-nx-border px-4 py-3 text-sm first:border-t-0">
                 <span>{item.title}</span>
-                <span className="shrink-0 text-nx-faint">{item.date}</span>
+                <span className="shrink-0 text-nx-muted">{item.date}</span>
               </li>
             ))}
           </ul>
@@ -70,7 +70,7 @@ function NewsCore({ variant = 'bulletin', className }: NewsProps) {
         <div className="grid gap-4 md:grid-cols-3">
           {items.slice(0, 3).map((item) => (
             <article key={item.title} className="rounded-[1.4rem] border border-nx-border bg-nx-card p-5">
-              <p className="text-[11px] tracking-[0.16em] text-nx-faint uppercase">{item.kicker}</p>
+              <p className="text-[11px] tracking-[0.16em] text-nx-muted uppercase">{item.kicker}</p>
               <h3 className="mt-3 font-serif text-2xl">{item.title}</h3>
               <p className="mt-3 text-xs text-nx-muted">
                 {item.note} · {item.date}
@@ -84,7 +84,7 @@ function NewsCore({ variant = 'bulletin', className }: NewsProps) {
         <ol className="space-y-4">
           {items.map((item) => (
             <li key={item.title}>
-              <p className="text-xs text-nx-faint">
+              <p className="text-xs text-nx-muted">
                 {item.date} · {item.note}
               </p>
               <p className="mt-1 font-medium">{item.title}</p>
@@ -136,7 +136,7 @@ function NewsCore({ variant = 'bulletin', className }: NewsProps) {
           {items.slice(0, 3).map((item) => (
             <li key={item.title} className="flex justify-between gap-3 py-1">
               <span>{item.title}</span>
-              <span className="text-nx-faint">{item.date}</span>
+              <span className="text-nx-muted">{item.date}</span>
             </li>
           ))}
         </ul>
@@ -146,7 +146,7 @@ function NewsCore({ variant = 'bulletin', className }: NewsProps) {
 
       {variant === 'digest' ? (
         <div className="rounded-[1.4rem] bg-nx-elevated p-5">
-          <p className="text-xs tracking-[0.16em] text-nx-faint uppercase">This week</p>
+          <p className="text-xs tracking-[0.16em] text-nx-muted uppercase">This week</p>
           <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm">
             {items.slice(0, 4).map((item) => (
               <li key={item.title}>{item.title}</li>

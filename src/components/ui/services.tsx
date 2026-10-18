@@ -19,8 +19,8 @@ const VARIANTS = [
   'partner',
   'why',
   'disciplines',
-  'tilt-doors',
-  'orbit-crews',
+  'fold-doors',
+  'stamp-crews',
   'shader-cards',
   'path-checklist',
 ] as const
@@ -121,7 +121,7 @@ function ServicesCore({ variant = 'checklist', className }: ServicesProps) {
             <article key={door.name} className="overflow-hidden rounded-[1.5rem] border border-nx-border">
               <MediaFrame src={door.src} alt={door.name} className="h-32" />
               <div className="p-5">
-                <p className="text-[11px] text-nx-faint">{String(index + 1).padStart(2, '0')}</p>
+                <p className="text-[11px] text-nx-muted">{String(index + 1).padStart(2, '0')}</p>
                 <p className="mt-3 font-serif text-2xl">{door.name}</p>
                 <p className="mt-2 text-sm text-nx-muted">{door.line}</p>
               </div>
@@ -148,7 +148,7 @@ function ServicesCore({ variant = 'checklist', className }: ServicesProps) {
         <ol className="grid gap-4 md:grid-cols-2">
           {why.map(([index, name, line]) => (
             <li key={name} className="flex gap-4">
-              <span className="font-serif text-3xl text-nx-faint">{index}</span>
+              <span className="font-serif text-3xl text-nx-muted">{index}</span>
               <div>
                 <p className="font-medium">{name}</p>
                 <p className="mt-1 text-sm text-nx-muted">{line}</p>
@@ -215,7 +215,7 @@ function ServicesCore({ variant = 'checklist', className }: ServicesProps) {
         <div className="overflow-hidden rounded-[1.5rem] border border-nx-border">
           <MediaFrame src={media.climate} alt="" className="h-36" />
           <div className="p-6">
-            <p className="text-[11px] tracking-[0.18em] text-nx-faint uppercase">Partner collaboration</p>
+            <p className="text-[11px] tracking-[0.18em] text-nx-muted uppercase">Partner collaboration</p>
             <p className="mt-3 font-serif text-3xl">Partners stay on the job after handover.</p>
             <p className="mt-3 max-w-xl text-sm text-nx-muted">
               Harbor Climate runs the plant with the brand that sold the iron. Warranty and AMC stay in one book.

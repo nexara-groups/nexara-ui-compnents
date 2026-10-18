@@ -19,8 +19,8 @@ const VARIANTS = [
   'compact',
   'editorial',
   'hours',
-  'glare-portraits',
-  'orbit-crew',
+  'film-portraits',
+  'constellation-crew',
   'holographic',
   'particle-grid',
 ] as const
@@ -57,7 +57,7 @@ function TeamCore({ variant = 'doctors', className }: TeamProps) {
               <div className="p-5">
                 <p className="font-medium">{person.name}</p>
                 <p className="text-sm text-nx-muted">{person.role}</p>
-                <p className="mt-1 text-xs text-nx-faint">{person.place}</p>
+                <p className="mt-1 text-xs text-nx-muted">{person.place}</p>
               </div>
             </article>
           ))}
@@ -84,7 +84,7 @@ function TeamCore({ variant = 'doctors', className }: TeamProps) {
                 <span className="font-medium">{person.name}</span>
               </span>
               <span className="text-nx-muted">{person.role}</span>
-              <span className="text-nx-faint">{person.place}</span>
+              <span className="text-nx-muted">{person.place}</span>
             </li>
           ))}
         </ul>
@@ -96,7 +96,7 @@ function TeamCore({ variant = 'doctors', className }: TeamProps) {
             <article key={person.name} className="bg-nx-card">
               <MediaFrame src={person.src} alt={person.name} className="h-32" />
               <div className="p-4">
-                <p className="text-xs text-nx-faint">{person.place}</p>
+                <p className="text-xs text-nx-muted">{person.place}</p>
                 <p className="mt-2 font-medium">{person.name}</p>
                 <p className="text-sm text-nx-muted">{person.role}</p>
               </div>
@@ -181,7 +181,7 @@ function TeamCore({ variant = 'doctors', className }: TeamProps) {
 
       {variant === 'hours' ? (
         <table className="w-full text-left text-sm">
-          <thead className="text-xs tracking-[0.14em] text-nx-faint uppercase">
+          <thead className="text-xs tracking-[0.14em] text-nx-muted uppercase">
             <tr>
               <th className="py-2">Name</th>
               <th>Desk</th>

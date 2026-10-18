@@ -18,6 +18,7 @@ import {
   NewsDemo,
   ProcessDemo,
   ServicesDemo,
+  LoaderDemo,
   SettingsPanelDemo,
   StatsDemo,
   TeamDemo,
@@ -70,4 +71,5 @@ export const catalogMore: ReturnType<typeof entry>[] = [
   entry('command-palette', 'Command Palette', 'App', 'Jump menus for pages, patients, jobs, athletes.', 'default | pages | jump | create | search | patients | jobs | athletes | settings | recent | empty | help', CommandPaletteDemo),
   entry('settings-panel', 'Settings Panel', 'App', 'Profile, billing, clinic, and danger settings.', 'profile | team | billing | appearance | notifications | security | api | clinic | branches | compact | danger | integrations', SettingsPanelDemo),
   entry('kit', 'Kit', 'Kits', 'Industry pages: healthcare, HVAC, sports, agency, academy.', 'healthcare | hvac | sports | agency | academy | portal | pharmacy | events | dealer | lab | studio | association', KitDemo),
+  entry('loader', 'Loader', 'Loaders', 'Twelve waiting constructions with pause and reduced-motion stills.', 'pulse-halo | orbit-beads | shader-fog | path-infinity | odometer-pct | scramble-hold | liquid-drop | particle-drift | flap-wait | analog-sweep | barcode-scan | prism-bar', LoaderDemo),
 ]

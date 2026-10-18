@@ -21,7 +21,7 @@ const VARIANTS = [
   'odometer-spark',
   'ring-draw',
   'particle-live',
-  'glare-delta',
+  'spark-delta',
 ] as const
 
 export type KpiVariant = (typeof VARIANTS)[number]

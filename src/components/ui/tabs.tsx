@@ -19,7 +19,7 @@ const VARIANTS = [
   'rail',
   'layout-morph',
   'liquid-ink',
-  'orbit-pills',
+  'zipper-tabs',
   'scramble-label',
 ] as const
 

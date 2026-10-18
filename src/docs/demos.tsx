@@ -29,6 +29,7 @@ import {
   Kit,
   Kpi,
   Leaderboard,
+  Loader,
   LogoCloud,
   MagneticButton,
   Marquee,
@@ -174,7 +175,7 @@ export function SpotlightCardDemo() {
     <div className="grid gap-4 md:grid-cols-3">
       {cards.map((card) => (
         <SpotlightCard key={card.title} variant={card.variant} spotlightColor={card.color} spotlightSize={160} className="min-h-52">
-          <p className="text-xs tracking-[0.18em] text-nx-faint uppercase">{card.variant}</p>
+          <p className="text-xs tracking-[0.18em] text-nx-muted uppercase">{card.variant}</p>
           <h3 className="mt-3 font-serif text-3xl">{card.title}</h3>
           <p className="mt-3 text-sm leading-6 text-nx-muted">{card.copy}</p>
         </SpotlightCard>
@@ -541,7 +542,7 @@ export function FlipCardDemo() {
           flipOn="hover"
           front={
             <div className="flex h-full flex-col justify-between">
-              <p className="text-xs tracking-[0.18em] text-nx-faint uppercase">Front</p>
+              <p className="text-xs tracking-[0.18em] text-nx-muted uppercase">Front</p>
               <div>
                 <p className="font-serif text-3xl">Hover to turn</p>
                 <p className="mt-2 text-sm text-nx-muted">The back stays available to the keyboard.</p>
@@ -570,7 +571,7 @@ export function FlipCardDemo() {
           flipOn="click"
           front={
             <div className="flex h-full flex-col justify-end">
-              <p className="text-xs tracking-[0.18em] text-nx-faint uppercase">Click</p>
+              <p className="text-xs tracking-[0.18em] text-nx-muted uppercase">Click</p>
               <p className="mt-2 font-serif text-3xl">Press to flip</p>
             </div>
           }
@@ -755,4 +756,7 @@ export function SettingsPanelDemo() {
 }
 export function KitDemo() {
   return <Kit variant="healthcare" />
+}
+export function LoaderDemo() {
+  return <Loader variant="pulse-halo" />
 }

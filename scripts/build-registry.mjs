@@ -99,12 +99,14 @@ const itemsMeta = [
   ['command-palette', 'Command Palette', 'App', 'Twelve jump menus.', ['clsx', 'tailwind-merge'], ['utils']],
   ['settings-panel', 'Settings Panel', 'App', 'Twelve settings constructions.', ['clsx', 'tailwind-merge'], ['utils']],
   ['kit', 'Kit', 'Kits', 'Industry pages plus shader, globe, pin, liquid, and scramble signatures.', ['clsx', 'tailwind-merge', 'three', '@react-three/fiber'], ['utils', 'hero', 'stats', 'services', 'process', 'team', 'contact', 'cta-band', 'chapters', 'news', 'logo-cloud', 'leaderboard', 'countdown', 'case-study', 'app-shell', 'kpi', 'data-table', 'kanban-board', 'activity', 'accordion', 'footer', 'button']],
+  ['loader', 'Loader', 'Loaders', 'Twelve waiting constructions with pause and reduced-motion stills.', ['framer-motion', 'clsx', 'tailwind-merge'], ['utils']],
 ]
 
 const mediaFile = [{ path: 'src/lib/media.tsx', type: 'registry:lib' }]
 const wowFiles = [
   { path: 'src/lib/wow.tsx', type: 'registry:lib' },
   { path: 'src/lib/wow-fx.tsx', type: 'registry:lib' },
+  { path: 'src/lib/wow-unique.tsx', type: 'registry:lib' },
   { path: 'src/lib/wow-variants.ts', type: 'registry:lib' },
   { path: 'src/components/ui/wow-lazy.tsx', type: 'registry:ui' },
   { path: 'src/components/ui/wow-signatures.tsx', type: 'registry:ui' },

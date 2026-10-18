@@ -237,18 +237,26 @@ export function Kit(props: KitProps) {
         </div>
       ) : null}
       {props.variant === 'pin-sports' ? (
-        <ScrollPin height="180vh">
-          {(p) => (
-            <div className="relative w-full min-h-[22rem] overflow-hidden rounded-[1.6rem]">
-              <img src="/media/sports-hero.webp" alt="" className="absolute inset-0 size-full object-cover" />
-              <div className="absolute inset-0 bg-[#07070c]/45" />
-              <div className="relative z-10 p-6 text-white">
-                <p className="font-mono text-[11px] text-[#f3c27a]">FIELD ATHLETICS</p>
-                <p className="mt-3 font-serif text-5xl">A season you can stand on.</p>
-                <p className="mt-4 text-sm text-white/80">{Math.round(p * 16)} events in the medal book.</p>
+        <ScrollPin height="320vh">
+          {(p) => {
+            const chapter = Math.min(2, Math.floor(p * 3))
+            const copy = [
+              { t: 'A season you can stand on.', d: 'Sixteen events. One medal book.' },
+              { t: 'Heat, then handover.', d: 'Clubs, coaches, and a named lane.' },
+              { t: 'The book closes on Sunday.', d: `${Math.round(p * 16)} events in view.` },
+            ][chapter]!
+            return (
+              <div className="relative w-full min-h-[24rem] overflow-hidden rounded-[1.6rem]">
+                <img src="/media/sports-hero.webp" alt="" className="absolute inset-0 size-full object-cover" />
+                <div className="absolute inset-0 bg-[#07070c]/45" />
+                <div className="relative z-10 p-6 text-white md:p-10">
+                  <p className="font-mono text-[11px] text-[#f3c27a]">FIELD ATHLETICS · 0{chapter + 1}</p>
+                  <p className="mt-3 font-serif text-5xl">{copy.t}</p>
+                  <p className="mt-4 text-sm text-white/80">{copy.d}</p>
+                </div>
               </div>
-            </div>
-          )}
+            )
+          }}
         </ScrollPin>
       ) : null}
       {props.variant === 'liquid-portal' ? (

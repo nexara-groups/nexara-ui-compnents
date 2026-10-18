@@ -22,7 +22,7 @@ const VARIANTS = [
   'reel',
   'scroll-film',
   'shared-morph',
-  'glare-stack',
+  'film-stack',
   'path-index',
 ] as const
 
@@ -130,7 +130,7 @@ function CaseStudyCore({ variant = 'tabs', className }: CaseStudyProps) {
             >
               <MediaFrame src={study.src} alt="" className="h-24" />
               <div className="p-5">
-                <p className="text-xs text-nx-faint">{study.sector}</p>
+                <p className="text-xs text-nx-muted">{study.sector}</p>
                 <p className="mt-2 font-serif text-2xl">{study.client}</p>
               </div>
             </article>
@@ -156,7 +156,7 @@ function CaseStudyCore({ variant = 'tabs', className }: CaseStudyProps) {
         <div className="grid gap-6 md:grid-cols-2">
           <MediaFrame src={current.src} alt={current.client} className="min-h-52 rounded-[1.6rem]" />
           <div>
-            <p className="text-xs tracking-[0.18em] text-nx-faint uppercase">{current.sector}</p>
+            <p className="text-xs tracking-[0.18em] text-nx-muted uppercase">{current.sector}</p>
             <h3 className="mt-2 font-serif text-4xl">{current.client}</h3>
             <p className="mt-3 text-sm leading-6 text-nx-muted">{current.line}</p>
           </div>
@@ -169,7 +169,7 @@ function CaseStudyCore({ variant = 'tabs', className }: CaseStudyProps) {
             <article key={study.id} className={cn('overflow-hidden rounded-[1.2rem] border border-nx-border', index === 0 && 'md:col-span-2 md:row-span-2')}>
               <MediaFrame src={study.src} alt={study.client} className={index === 0 ? 'h-48' : 'h-28'} />
               <div className="p-4">
-                <p className="text-xs text-nx-faint">{study.sector}</p>
+                <p className="text-xs text-nx-muted">{study.sector}</p>
                 <p className={cn('mt-2 font-medium', index === 0 && 'font-serif text-3xl')}>{study.client}</p>
               </div>
             </article>
@@ -192,7 +192,7 @@ function CaseStudyCore({ variant = 'tabs', className }: CaseStudyProps) {
           <article className="overflow-hidden rounded-[1.3rem] border border-dashed border-nx-line">
             <MediaFrame src={media.editorial[2]} alt="" className="h-28 opacity-70 grayscale" />
             <div className="p-5">
-              <p className="text-xs text-nx-faint">Before</p>
+              <p className="text-xs text-nx-muted">Before</p>
               <p className="mt-2">Quotes lived in message threads.</p>
             </div>
           </article>
@@ -225,7 +225,7 @@ function CaseStudyCore({ variant = 'tabs', className }: CaseStudyProps) {
         <ol className="divide-y divide-nx-border">
           {studies.map((study, index) => (
             <li key={study.id} className="flex items-center justify-between gap-3 py-3">
-              <span className="text-nx-faint">{String(index + 1).padStart(2, '0')}</span>
+              <span className="text-nx-muted">{String(index + 1).padStart(2, '0')}</span>
               <MediaFrame src={study.src} alt="" className="size-10 rounded-lg" />
               <span className="flex-1">{study.client}</span>
               <span className="text-sm text-nx-muted">{study.sector}</span>

@@ -34,7 +34,7 @@ function Preview({ children, className }: { children: ReactNode; className?: str
           <span className="size-2.5 rounded-full bg-[#f5c16c]" />
           <span className="size-2.5 rounded-full bg-[#3ddec4]" />
         </div>
-        <span className="text-[11px] tracking-[0.16em] text-nx-faint uppercase">Live preview</span>
+        <span className="text-[11px] tracking-[0.16em] text-nx-muted uppercase">Live preview</span>
       </div>
       <div className={cn('p-5 md:p-8', className)}>{children}</div>
     </div>
@@ -57,7 +57,7 @@ function CodeBlock({ code }: { code: string }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-nx-border bg-nx-elevated">
       <div className="flex items-center justify-between border-b border-nx-border px-4 py-2">
-        <span className="text-[11px] tracking-[0.16em] text-nx-faint uppercase">Usage</span>
+        <span className="text-[11px] tracking-[0.16em] text-nx-muted uppercase">Usage</span>
         <button
           type="button"
           onClick={() => void copy()}
@@ -77,7 +77,7 @@ function PropsTable({ rows }: { rows: CatalogEntry['props'] }) {
   return (
     <div className="overflow-x-auto rounded-2xl border border-nx-border">
       <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
-        <thead className="bg-nx-elevated text-xs tracking-[0.14em] text-nx-faint uppercase">
+        <thead className="bg-nx-elevated text-xs tracking-[0.14em] text-nx-muted uppercase">
           <tr>
             <th className="px-4 py-3 font-medium">Prop</th>
             <th className="px-4 py-3 font-medium">Type</th>
@@ -90,7 +90,7 @@ function PropsTable({ rows }: { rows: CatalogEntry['props'] }) {
             <tr key={row.name} className="border-t border-nx-border align-top">
               <td className="px-4 py-3 font-mono text-[13px] text-nx-accent">{row.name}</td>
               <td className="px-4 py-3 font-mono text-[12px] text-nx-muted">{row.type}</td>
-              <td className="px-4 py-3 text-nx-faint">{row.defaultValue ?? '—'}</td>
+              <td className="px-4 py-3 text-nx-muted">{row.defaultValue ?? '—'}</td>
               <td className="px-4 py-3 text-nx-fg">{row.description}</td>
             </tr>
           ))}
@@ -196,7 +196,7 @@ export function DocsApp() {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Filter components"
-              className="h-11 w-full rounded-full border border-nx-border bg-transparent px-3 text-sm outline-none placeholder:text-nx-faint focus:ring-2 focus:ring-nx-ring"
+              className="h-11 w-full rounded-full border border-nx-border bg-transparent px-3 text-sm outline-none placeholder:text-nx-muted focus:ring-2 focus:ring-nx-ring"
             />
           </label>
           <nav className="hidden md:block" aria-label="Components">
@@ -205,7 +205,7 @@ export function DocsApp() {
               if (items.length === 0) return null
               return (
                 <div key={category} className="mb-5">
-                  <p className="mb-2 px-3 text-[11px] tracking-[0.18em] text-nx-faint uppercase">{category}</p>
+                  <p className="mb-2 px-3 text-[11px] tracking-[0.18em] text-nx-muted uppercase">{category}</p>
                   <ul className="space-y-1">
                     {items.map((item) => {
                       const current = item.slug === slug
@@ -254,7 +254,7 @@ function ComponentPage({ entry }: { entry: CatalogEntry }) {
         <h2 className="font-serif text-2xl">Variants</h2>
         <p className="text-sm leading-6 text-nx-muted">
           Ask for <span className="text-nx-fg">{entry.slug} / {variantDocs[entry.slug as keyof typeof variantDocs]?.[0]?.id ?? 'variant'}</span> or
-          any id below. Gold <span className="text-[#b45309]">Signature</span> cells are the ones built to stand next to 21st.dev / Aceternity / Awwwards — shaders, scramble, pin-scroll, globes, odometers, tilt-glare. The rest stay sensible.
+          any id below. Gold <span className="text-[#b45309]">Signature</span> cells are the ones built to stand next to 21st.dev / Aceternity / Awwwards — shaders, scramble, pin-scroll, globes, odometers, unique family motions. The rest stay sensible.
         </p>
         <VariantGallery
           family={entry.slug}

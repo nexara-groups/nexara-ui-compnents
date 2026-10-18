@@ -18,7 +18,7 @@ const VARIANTS = [
   'hobby',
   'table',
   'stacked',
-  'tilt-glare',
+  'prism-price',
   'odometer-price',
   'morph-toggle',
   'shader-featured',

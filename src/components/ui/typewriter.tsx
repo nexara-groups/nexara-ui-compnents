@@ -178,7 +178,7 @@ function TypewriterCore({
       ) : null}
       {variant === 'search' ? (
         <span className="flex h-11 w-full items-center rounded-full border border-nx-border bg-nx-card px-4 text-sm shadow-[var(--nx-shadow)]">
-          <span className="mr-2 text-nx-faint">⌕</span>
+          <span aria-hidden="true" className="mr-2 text-nx-muted">⌕</span>
           {glyphs}
         </span>
       ) : null}

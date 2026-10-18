@@ -17,7 +17,7 @@ const VARIANTS = [
   'icon',
   'glow',
   'ribbon',
-  'beam-orbit',
+  'morse-live',
   'scramble-live',
   'liquid-pill',
   'path-ribbon',

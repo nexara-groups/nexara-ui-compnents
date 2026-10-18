@@ -75,7 +75,7 @@ const itemVariants = {
   invoice: 'rounded-xl border border-dashed border-nx-line bg-nx-bg font-mono',
 } as const
 
-export type BentoVariant = keyof typeof itemVariants | 'depth-mosaic' | 'shader-tile' | 'orbit-tile' | 'ticker-tile'
+export type BentoVariant = keyof typeof itemVariants | 'depth-mosaic' | 'shader-tile' | 'peel-tile' | 'ticker-tile'
 
 export interface BentoItemProps {
   title: ReactNode
