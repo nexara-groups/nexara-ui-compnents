@@ -46,7 +46,7 @@ Round 5 reviews the photoreal people pack, flat marks, wired reels, and labelled
 
 | Lens | File | Round 5 |
 | --- | --- | --- |
-| Senior visual designer | `round-5-visual.md` | Pending. Round 4 approved the stills. |
-| Interaction / motion | `round-5-motion.md` | Pending. |
+| Senior visual designer | `round-5-visual.md` | **Approve** ([visual critic](https://cursor.com/agents/bc-2dfddc24-f0f8-5741-960f-47988dbd603a)). People and marks closed; leftover cheapness is polish. |
+| Interaction / motion | `round-5-motion.md` | Conditional ([motion critic](https://cursor.com/agents/bc-a2ed5fc8-49f3-5df3-8fbe-646d65624b8e)). Play is wired; ornamental loops and hero entrance remain. |
 | Accessibility / responsive | `round-5-a11y.md` | Conditional ([a11y critic](https://cursor.com/agents/bc-ad614f93-d848-5586-a040-0a5c15714207)). Named OTP/faces/rings/caption/disclosure pass; radios, tabpanel, and faint-as-content remain. |
-| Sceptical design lead | `round-5-lead.md` | Conditional ([sceptical lead](https://cursor.com/agents/bc-1816708c-face-5378-ae7b-5d31e3047a12)). People, logos, Play, and Join hold. Labelled stills fail: Lumen phone was Carewell; HVAC checklist wells missed their captions. |
+| Sceptical design lead | `round-5-lead.md` | Conditional ([sceptical lead](https://cursor.com/agents/bc-1816708c-face-5378-ae7b-5d31e3047a12)). People, logos, Play, and Join hold. Labelled stills failed on Carewell / HVAC captions — those wells were reshot after the verdict. |
