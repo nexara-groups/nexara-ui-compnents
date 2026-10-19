@@ -1,0 +1,136 @@
+{
+  "slugs": [
+    "draggable-card",
+    "spotlight-card",
+    "flip-card",
+    "bento-grid",
+    "button",
+    "magnetic-button",
+    "aurora-background",
+    "grid-background",
+    "gradient-text",
+    "typewriter",
+    "text-reveal",
+    "floating-navbar",
+    "modal",
+    "input",
+    "tabs",
+    "accordion",
+    "tooltip",
+    "toast",
+    "avatar",
+    "badge",
+    "hero",
+    "marquee",
+    "pricing",
+    "testimonials",
+    "footer",
+    "stats",
+    "countdown",
+    "leaderboard",
+    "case-study",
+    "services",
+    "process",
+    "team",
+    "contact",
+    "cta-band",
+    "chapters",
+    "news",
+    "logo-cloud",
+    "app-shell",
+    "kpi",
+    "data-table",
+    "kanban-board",
+    "chart-block",
+    "activity",
+    "command-palette",
+    "settings-panel",
+    "kit",
+    "loader"
+  ],
+  "covering": [],
+  "overflow": [],
+  "issues": [],
+  "preview": {
+    "1280-dark": {
+      "bag": {
+        "console": [],
+        "pageErrors": [],
+        "failed": [],
+        "http": []
+      }
+    },
+    "1280-light": {
+      "bag": {
+        "console": [],
+        "pageErrors": [],
+        "failed": [],
+        "http": []
+      }
+    },
+    "768-dark": {
+      "bag": {
+        "console": [],
+        "pageErrors": [],
+        "failed": [
+          {
+            "url": "http://127.0.0.1:4173/media/cinema-reel.webm",
+            "error": "net::ERR_ABORTED",
+            "page": "http://127.0.0.1:4173/#hero"
+          }
+        ],
+        "http": []
+      }
+    },
+    "768-light": {
+      "bag": {
+        "console": [],
+        "pageErrors": [],
+        "failed": [],
+        "http": []
+      }
+    },
+    "375-dark": {
+      "bag": {
+        "console": [],
+        "pageErrors": [],
+        "failed": [],
+        "http": []
+      }
+    },
+    "375-light": {
+      "bag": {
+        "console": [],
+        "pageErrors": [],
+        "failed": [],
+        "http": []
+      }
+    },
+    "skipClick": {
+      "hash": "http://127.0.0.1:4173/#button",
+      "h1": "Button"
+    },
+    "shotsBag": {
+      "console": [],
+      "pageErrors": [],
+      "failed": [],
+      "http": []
+    }
+  },
+  "dev": {
+    "home": {
+      "h1": "Draggable Card",
+      "covering": []
+    },
+    "skip": {
+      "hash": "http://127.0.0.1:5173/#hero",
+      "h1": "Hero"
+    },
+    "bag": {
+      "console": [],
+      "pageErrors": [],
+      "failed": [],
+      "http": []
+    }
+  }
+}
