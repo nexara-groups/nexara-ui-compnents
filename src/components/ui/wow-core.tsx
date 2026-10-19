@@ -408,7 +408,7 @@ function MagnetShatter({ children, className }: WowProps) {
 
 function CardHolo({ title, className }: { title: string; className?: string }) {
   return (
-    <div className={cn('max-w-sm overflow-hidden rounded-3xl border border-white/10 bg-[#111118] p-5 text-white', className)}>
+    <div className={cn('relative max-w-sm overflow-hidden rounded-3xl border border-white/10 bg-[#111118] p-5 text-white', className)}>
       <ShaderMesh />
       <Grain />
       <div className="relative z-10">
@@ -879,7 +879,7 @@ function DragWow({ variant, className, children }: WowProps) {
               window.setTimeout(() => setBurst(false), 900)
             }}
           >
-            <p className="font-serif text-xl">{children ?? 'Toss'}</p>
+            <div className="font-serif text-xl">{children ?? 'Toss'}</div>
             <p className="mt-1 text-sm text-white/60">Drag, then let go. The field bursts.</p>
           </div>
         </DragPlate>
@@ -903,7 +903,7 @@ function DragWow({ variant, className, children }: WowProps) {
   return (
     <DragPlate className={cn('max-w-[16rem]', className)}>
       <div className="rounded-3xl bg-[#111113] p-5 text-white shadow-[0_24px_50px_-28px_#7c6cff]">
-        <p className="font-serif text-2xl">{children ?? 'Deck'}</p>
+        <div className="font-serif text-2xl">{children ?? 'Deck'}</div>
         <p className="mt-2 text-sm text-white/60">Drag the plate. It leans, then springs home.</p>
       </div>
     </DragPlate>

@@ -229,7 +229,7 @@ function PricingWow({ variant, className }: WowProps) {
   return (
     <div className={cn('grid gap-4 md:grid-cols-3', className)}>
       {plans.map((plan, i) => (
-        <div key={plan.name} className={cn('rounded-3xl border border-nx-border bg-nx-card p-5', i === 1 && variant === 'shader-featured' && 'overflow-hidden border-white/10 bg-[#07070c] text-white')}>
+        <div key={plan.name} className={cn('rounded-3xl border border-nx-border bg-nx-card p-5', i === 1 && variant === 'shader-featured' && 'relative overflow-hidden border-white/10 bg-[#07070c] text-white')}>
           {i === 1 && variant === 'shader-featured' ? <ShaderMesh /> : null}
           <div className="relative z-10">
             <p className="text-sm text-current/60">{plan.name}{i === 1 ? ' · recommended' : ''}</p>

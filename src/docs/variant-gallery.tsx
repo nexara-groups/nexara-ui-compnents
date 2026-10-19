@@ -38,7 +38,7 @@ export function VariantGallery({
         <article
           key={item.id}
           id={item.id}
-          className={PIN_IDS.has(item.id) ? 'rounded-3xl border border-nx-border bg-nx-card' : 'overflow-hidden rounded-3xl border border-nx-border bg-nx-card'}
+          className={PIN_IDS.has(item.id) ? 'relative rounded-3xl border border-nx-border bg-nx-card' : 'relative overflow-hidden rounded-3xl border border-nx-border bg-nx-card'}
         >
           <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-nx-border px-4 py-3">
             <h3 className="font-mono text-sm text-nx-accent">

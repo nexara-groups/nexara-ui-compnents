@@ -436,7 +436,8 @@ export function AreaSpark({ className, withParticles = false }: { className?: st
                 cy={[36, 18, 44, 22, 10][i]}
                 r="2.2"
                 fill="#f3c27a"
-                animate={loop.playing && !reduced ? { opacity: [0.2, 1, 0.2], r: [1.4, 2.6, 1.4] } : undefined}
+                animate={loop.playing && !reduced ? { opacity: [0.2, 1, 0.2], scale: [0.64, 1.18, 0.64] } : undefined}
+                style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
                 transition={{ duration: 1.8, repeat: Infinity, delay: i * 0.15 }}
               />
             ))

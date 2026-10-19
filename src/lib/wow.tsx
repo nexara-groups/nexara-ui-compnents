@@ -10,6 +10,7 @@ import {
   type CSSProperties,
   type PointerEvent as ReactPointerEvent,
   type ReactNode,
+  type Ref,
 } from 'react'
 import { LoopPause } from '@/lib/media.tsx'
 import { cn, focusRing, touchTarget, useLoopControl, usePrefersReducedMotion } from '@/lib/utils.ts'
@@ -117,6 +118,34 @@ export function usePointerNorm() {
   return { x, y, onPointerMove, onPointerLeave }
 }
 
+/** Overlay host whose canvas is always contained by a relative box, never the viewport. */
+function FieldFrame({
+  className,
+  children,
+  hostRef,
+  onPointerMove,
+  onPointerLeave,
+}: {
+  className?: string
+  children: ReactNode
+  hostRef: Ref<HTMLDivElement>
+  onPointerMove: (event: ReactPointerEvent<HTMLElement>) => void
+  onPointerLeave: () => void
+}) {
+  return (
+    <div className={cn('absolute inset-0 isolate overflow-hidden', className)}>
+      <div
+        ref={hostRef}
+        className="relative size-full overflow-hidden"
+        onPointerMove={onPointerMove}
+        onPointerLeave={onPointerLeave}
+      >
+        {children}
+      </div>
+    </div>
+  )
+}
+
 /** Raw WebGL gradient-mesh. Pauses off-screen, on pause, and under reduced motion. */
 export function ShaderMesh({
   className,
@@ -187,15 +216,10 @@ export function ShaderMesh({
   }, [halt, inView, pointer.x, pointer.y, reduced])
 
   return (
-    <div
-      ref={ref}
-      className={cn('absolute inset-0 overflow-hidden', className)}
-      onPointerMove={pointer.onPointerMove}
-      onPointerLeave={pointer.onPointerLeave}
-    >
+    <FieldFrame className={className} hostRef={ref} onPointerMove={pointer.onPointerMove} onPointerLeave={pointer.onPointerLeave}>
       <canvas ref={canvasRef} className="block size-full" aria-hidden="true" />
       {showPause ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
-    </div>
+    </FieldFrame>
   )
 }
 
@@ -297,10 +321,10 @@ export function ParticleField({
   }, [color, count, halt, inView, pointer.x, pointer.y, reduced])
 
   return (
-    <div ref={ref} className={cn('absolute inset-0', className)} onPointerMove={pointer.onPointerMove} onPointerLeave={pointer.onPointerLeave}>
+    <FieldFrame className={className} hostRef={ref} onPointerMove={pointer.onPointerMove} onPointerLeave={pointer.onPointerLeave}>
       <canvas ref={canvasRef} className="block size-full" aria-hidden="true" />
       {showPause ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
-    </div>
+    </FieldFrame>
   )
 }
 
@@ -380,10 +404,10 @@ export function GlobeField({
   }, [count, halt, inView, pointer.x, pointer.y, reduced])
 
   return (
-    <div ref={ref} className={cn('absolute inset-0', className)} onPointerMove={pointer.onPointerMove} onPointerLeave={pointer.onPointerLeave}>
+    <FieldFrame className={className} hostRef={ref} onPointerMove={pointer.onPointerMove} onPointerLeave={pointer.onPointerLeave}>
       <canvas ref={canvasRef} className="block size-full" aria-hidden="true" />
       {showPause ? <LoopPause playing={loop.playing} onToggle={loop.toggle} className="absolute right-3 bottom-3 z-20" /> : null}
-    </div>
+    </FieldFrame>
   )
 }
 

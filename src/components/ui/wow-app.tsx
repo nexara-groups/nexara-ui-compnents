@@ -413,7 +413,7 @@ function CommandWow({ variant, className }: WowProps) {
   const [q, setQ] = useState('')
   const items = ['Open Harbor', 'Jump Atlas', 'Create brief'].filter((item) => item.toLowerCase().includes(q.toLowerCase()))
   return (
-    <div className={cn('overflow-hidden rounded-3xl border border-nx-border bg-nx-card', variant === 'particle-jump' && 'border-white/10 bg-[#07070c] text-white', className)}>
+    <div className={cn('relative overflow-hidden rounded-3xl border border-nx-border bg-nx-card', variant === 'particle-jump' && 'border-white/10 bg-[#07070c] text-white', className)}>
       {variant === 'particle-jump' ? <ParticleField count={30} /> : null}
       <div className="relative z-10 p-3">
         <input

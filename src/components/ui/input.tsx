@@ -3,7 +3,7 @@
 import { isWowVariant } from '@/lib/wow-variants.ts'
 import { WowSignature } from './wow-lazy.tsx'
 
-import { type ClipboardEvent, type ComponentProps, type KeyboardEvent, type ReactNode, useRef, useState } from 'react'
+import { type ClipboardEvent, type ComponentProps, type KeyboardEvent, type ReactNode, useId, useRef, useState } from 'react'
 import { cn, fieldBorder, focusRing } from '@/lib/utils.ts'
 
 const VARIANTS = [
@@ -38,7 +38,8 @@ export interface InputProps extends Omit<ComponentProps<'input'>, 'size'> {
  * Twelve field constructions. Copy this file plus `src/lib/utils.ts`.
  */
 function InputCore({ variant = 'outline', label, hint, className, id, type, ...props }: InputProps) {
-  const fieldId = id ?? `nexara-input-${variant}`
+  const autoId = useId()
+  const fieldId = id ?? autoId
   if (variant === 'otp') {
     return <OtpField className={className} defaultValue={typeof props.defaultValue === 'string' ? props.defaultValue : '418'} />
   }

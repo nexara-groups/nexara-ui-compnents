@@ -1,20 +1,32 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type MouseEvent, type ReactNode } from 'react'
 import { catalog, categories, type CatalogEntry } from '@/docs/catalog.tsx'
 import { VariantGallery } from '@/docs/variant-gallery.tsx'
 import { variantDocs } from '@/docs/variant-meta.ts'
 import { renderVariantPreview } from '@/docs/previews.tsx'
 import { cn } from '@/lib/utils.ts'
 
+const RESERVED_HASHES = new Set(['', 'component-main'])
+
 function readHash() {
   const value = window.location.hash.replace(/^#/, '')
-  return value || 'draggable-card'
+  return RESERVED_HASHES.has(value) ? 'draggable-card' : value
+}
+
+function skipToComponent(event: MouseEvent<HTMLAnchorElement>) {
+  event.preventDefault()
+  const main = document.getElementById('component-main')
+  if (!main) return
+  if (!main.hasAttribute('tabindex')) main.tabIndex = -1
+  main.focus({ preventScroll: true })
+  main.scrollIntoView({ block: 'start' })
 }
 
 function useSlug() {
   const [slug, setSlug] = useState(readHash)
 
   useEffect(() => {
-    if (!window.location.hash) {
+    const raw = window.location.hash.replace(/^#/, '')
+    if (RESERVED_HASHES.has(raw)) {
       window.history.replaceState(null, '', '#draggable-card')
     }
     const sync = () => setSlug(readHash())
@@ -141,30 +153,32 @@ export function DocsApp() {
   }, [query])
 
   return (
-    <div className="min-h-screen bg-nx-bg text-nx-fg">
+    <div className="min-h-screen overflow-x-clip bg-nx-bg text-nx-fg">
       <a
         href="#component-main"
+        onClick={skipToComponent}
         className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-nx-fg focus:px-4 focus:py-2 focus:text-nx-bg"
       >
         Skip to component
       </a>
       <header className="border-b border-nx-border">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 md:px-6">
-          <a href="#draggable-card" className="group flex items-center gap-3">
-            <span className="inline-flex size-11 items-center justify-center rounded-xl border border-nx-border bg-nx-card font-serif text-lg">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 md:px-6">
+          <a href="#draggable-card" className="group flex min-w-0 items-center gap-3">
+            <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl border border-nx-border bg-nx-card font-serif text-lg">
               N
             </span>
-            <span>
-              <span className="block font-serif text-xl leading-none tracking-tight">Nexara UI</span>
-              <span className="mt-1 block text-xs text-nx-muted">Copy-paste components for agents and people</span>
+            <span className="min-w-0">
+              <span className="block truncate font-serif text-xl leading-none tracking-tight">Nexara UI</span>
+              <span className="mt-1 hidden text-xs text-nx-muted sm:block">Copy-paste components for agents and people</span>
             </span>
           </a>
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-3">
             <p className="hidden text-sm text-nx-muted sm:block">{catalog.length} components</p>
             <button
               type="button"
+              aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="inline-flex min-h-11 items-center rounded-full border border-nx-border px-3 text-xs text-nx-fg hover:bg-nx-soft"
+              className="inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-full border border-nx-border px-3 text-xs text-nx-fg hover:bg-nx-soft"
             >
               {theme === 'dark' ? 'Light' : 'Dark'}
             </button>
@@ -233,7 +247,7 @@ export function DocsApp() {
           </nav>
         </aside>
 
-        <main id="component-main" className="min-w-0 px-4 py-8 md:px-8 md:py-10">
+        <main id="component-main" tabIndex={-1} className="min-w-0 px-4 py-8 md:px-8 md:py-10 outline-none">
           {entry ? <ComponentPage entry={entry} /> : <Missing slug={slug} />}
         </main>
       </div>
@@ -244,7 +258,7 @@ export function DocsApp() {
 function ComponentPage({ entry }: { entry: CatalogEntry }) {
   const Demo = entry.Demo
   return (
-    <article className="space-y-8">
+    <article className="min-w-0 space-y-8">
       <header className="max-w-3xl">
         <p className="text-[11px] tracking-[0.2em] text-nx-accent uppercase">{entry.category}</p>
         <h1 className="mt-2 font-serif text-4xl tracking-tight md:text-5xl">{entry.name}</h1>
