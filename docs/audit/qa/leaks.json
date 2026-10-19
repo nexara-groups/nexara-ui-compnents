@@ -1,0 +1,186 @@
+{
+  "pricing": [
+    {
+      "tag": "CANVAS",
+      "id": "",
+      "cls": "block size-full",
+      "pos": "static",
+      "top": 0,
+      "w": 1280,
+      "h": 800
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "cls": "absolute inset-0 overflow-hidden",
+      "pos": "absolute",
+      "top": 0,
+      "w": 1280,
+      "h": 800
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "cls": "rounded-3xl border p-5 overflow-hidden border-white/10 bg-[#07070c] text-white",
+      "pos": "static",
+      "top": 6409,
+      "w": 290,
+      "h": 190
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "cls": "grid gap-4 md:grid-cols-3",
+      "pos": "static",
+      "top": 6409,
+      "w": 902,
+      "h": 190
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "cls": "p-4 md:p-6 ",
+      "pos": "static",
+      "top": 6385,
+      "w": 950,
+      "h": 238
+    },
+    {
+      "tag": "ARTICLE",
+      "id": "shader-featured",
+      "cls": "overflow-hidden rounded-3xl border border-nx-border bg-nx-card",
+      "pos": "static",
+      "top": 6339,
+      "w": 952,
+      "h": 354
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "cls": "grid gap-4",
+      "pos": "static",
+      "top": 394,
+      "w": 952,
+      "h": 6299
+    },
+    {
+      "tag": "SECTION",
+      "id": "",
+      "cls": "space-y-3",
+      "pos": "static",
+      "top": 290,
+      "w": 952,
+      "h": 6403
+    },
+    {
+      "tag": "ARTICLE",
+      "id": "",
+      "cls": "space-y-8",
+      "pos": "static",
+      "top": 117,
+      "w": 952,
+      "h": 7587
+    },
+    {
+      "tag": "MAIN",
+      "id": "component-main",
+      "cls": "min-w-0 px-4 py-8 md:px-8 md:py-10",
+      "pos": "static",
+      "top": 77,
+      "w": 1016,
+      "h": 7667
+    }
+  ],
+  "command-palette": [
+    {
+      "tag": "CANVAS",
+      "id": "",
+      "cls": "block size-full",
+      "pos": "static",
+      "top": 0,
+      "w": 1280,
+      "h": 800
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "cls": "absolute inset-0",
+      "pos": "absolute",
+      "top": 0,
+      "w": 1280,
+      "h": 800
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "cls": "overflow-hidden rounded-3xl border border-white/10 bg-[#07070c] text-white",
+      "pos": "static",
+      "top": 5612,
+      "w": 902,
+      "h": 210
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "cls": "p-4 md:p-6 ",
+      "pos": "static",
+      "top": 5588,
+      "w": 950,
+      "h": 258
+    },
+    {
+      "tag": "ARTICLE",
+      "id": "particle-jump",
+      "cls": "overflow-hidden rounded-3xl border border-nx-border bg-nx-card",
+      "pos": "static",
+      "top": 5542,
+      "w": 952,
+      "h": 374
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "cls": "grid gap-4",
+      "pos": "static",
+      "top": 366,
+      "w": 952,
+      "h": 5940
+    },
+    {
+      "tag": "SECTION",
+      "id": "",
+      "cls": "space-y-3",
+      "pos": "static",
+      "top": 262,
+      "w": 952,
+      "h": 6044
+    },
+    {
+      "tag": "ARTICLE",
+      "id": "",
+      "cls": "space-y-8",
+      "pos": "static",
+      "top": 117,
+      "w": 952,
+      "h": 7193
+    },
+    {
+      "tag": "MAIN",
+      "id": "component-main",
+      "cls": "min-w-0 px-4 py-8 md:px-8 md:py-10",
+      "pos": "static",
+      "top": 77,
+      "w": 1016,
+      "h": 7273
+    },
+    {
+      "tag": "DIV",
+      "id": "",
+      "cls": "mx-auto grid max-w-7xl md:grid-cols-[16.5rem_minmax(0,1fr)]",
+      "pos": "static",
+      "top": 77,
+      "w": 1280,
+      "h": 7273
+    }
+  ]
+}
