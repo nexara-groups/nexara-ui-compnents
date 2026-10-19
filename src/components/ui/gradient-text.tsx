@@ -1,190 +1,203 @@
 'use client'
 
-import { useId, type CSSProperties, type ReactNode } from 'react'
-import { cn } from '@/lib/utils.ts'
+import { isWowVariant } from '@/lib/wow-variants.ts'
+import { WowSignature } from './wow-lazy.tsx'
 
-const tags = { p: 'p', h1: 'h1', h2: 'h2', h3: 'h3', span: 'span', div: 'div' } as const
+import { type ComponentPropsWithoutRef, type ElementType, type ReactNode } from 'react'
+import { LoopPause } from '@/lib/media.tsx'
+import { cn, useKeyframes, useLoopControl } from '@/lib/utils.ts'
+
+const KEYFRAMES = `
+@keyframes nexara-text-pan {
+  to { background-position: 200% center; }
+}
+@keyframes nexara-kinetic {
+  0%, 100% { letter-spacing: -0.04em; }
+  50% { letter-spacing: 0.06em; }
+}
+`
 
 const VARIANTS = [
   'gradient',
+  'shimmer',
   'stroke',
-  'marker',
-  'glitch',
-  'neon',
-  'engraved',
-  'ribbon',
-  'stencil',
+  'mask',
+  'aurora',
+  'italic',
+  'highlight',
+  'underline',
   'boxed',
-  'script',
-  'seal',
-  'halftone',
+  'kinetic',
+  'glow',
+  'fade',
+  'variable-morph',
+  'scramble',
+  'path-write',
+  'split-mask',
 ] as const
 
-export type GradientVariant = (typeof VARIANTS)[number]
+export type GradientTextVariant = (typeof VARIANTS)[number]
 
 export interface GradientTextProps {
   children: ReactNode
   className?: string
-  as?: keyof typeof tags
-  variant?: GradientVariant
+  as?: 'span' | 'p' | 'h1' | 'h2' | 'h3' | 'div'
+  variant?: GradientTextVariant
   from?: string
   via?: string
   to?: string
   animate?: boolean
   duration?: number
-  angle?: number
-  style?: CSSProperties
 }
 
 /**
  * GradientText
- * Twelve lettering models: gradient fill, stroke, marker, glitch layers,
- * neon tube, engraving, ribbon, stencil, boxed glyphs, script, seal, halftone.
- * Copy this file plus `src/lib/utils.ts`.
+ * Twelve lettering models. Copy this file plus `src/lib/utils.ts`.
  */
-export function GradientText({
+function GradientTextCore({
   children,
   className,
   as = 'span',
   variant = 'gradient',
-  from = '#ff6a3d',
-  via = '#f5c16c',
-  to = '#8b7cff',
-  angle = 105,
-  style,
+  from = '#4c46e0',
+  via = '#8b87ff',
+  to = '#22c5b0',
+  animate = true,
+  duration = 8,
 }: GradientTextProps) {
-  const Tag = tags[as]
-  const label = typeof children === 'string' ? children : 'Nexara'
-  const sealId = useId().replace(/:/g, '')
-  const shared = cn('inline-block', className)
+  const loop = useLoopControl(animate)
+  useKeyframes('nexara-gradient-text', KEYFRAMES)
+  const Tag = as as ElementType
+  const moving = animate && loop.playing && (variant === 'gradient' || variant === 'shimmer' || variant === 'aurora')
+  const kinetic = animate && loop.playing && variant === 'kinetic'
+  const fill = `linear-gradient(90deg, ${from}, ${via}, ${to}, ${from})`
 
   if (variant === 'stroke') {
     return (
-      <Tag data-nexara="gradient-text" data-variant="stroke" className={cn(shared, 'text-transparent')} style={{ WebkitTextStroke: `1.5px ${via}`, ...style }}>
-        {children}
-      </Tag>
-    )
-  }
-  if (variant === 'marker') {
-    return (
-      <Tag data-nexara="gradient-text" data-variant="marker" className={cn(shared, 'text-[#f6f3ec]')} style={style}>
-        <span className="box-decoration-clone px-1" style={{ backgroundImage: `linear-gradient(${from}, ${from})`, backgroundRepeat: 'no-repeat', backgroundSize: '100% 0.38em', backgroundPosition: '0 85%' }}>
+      <Tag className={cn('font-serif text-transparent', className)} style={{ WebkitTextStroke: '1.4px currentColor', color: 'transparent' }}>
+        <span className="text-nx-fg" style={{ WebkitTextStroke: '1.4px var(--nx-fg)', color: 'transparent' }}>
           {children}
         </span>
       </Tag>
     )
   }
-  if (variant === 'glitch') {
+  if (variant === 'mask') {
     return (
-      <Tag data-nexara="gradient-text" data-variant="glitch" className={cn(shared, 'relative text-[#f6f3ec]')} style={style}>
-        <span aria-hidden="true" className="absolute top-0 left-[2px] text-[#ff6a3d] opacity-80">{children}</span>
-        <span aria-hidden="true" className="absolute top-0 -left-[2px] text-[#3ddec4] opacity-80">{children}</span>
-        <span className="relative">{children}</span>
+      <Tag className={cn('relative inline-block font-serif', className)}>
+        <span className="text-nx-muted">{children}</span>
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 bg-nx-fg"
+          style={{ WebkitMaskImage: `linear-gradient(90deg, transparent 20%, #000 45%, #000 55%, transparent 80%)` }}
+        >
+          {children}
+        </span>
       </Tag>
     )
   }
-  if (variant === 'neon') {
+  if (variant === 'italic') {
     return (
-      <Tag data-nexara="gradient-text" data-variant="neon" className={cn(shared, 'text-[#d9fff6]')} style={{ textShadow: `0 0 8px ${to}, 0 0 22px ${via}`, ...style }}>
+      <Tag className={cn('font-serif italic tracking-tight text-nx-fg', className)}>{children}</Tag>
+    )
+  }
+  if (variant === 'highlight') {
+    return (
+      <Tag className={cn('font-serif', className)}>
+        <span className="bg-[linear-gradient(transparent_62%,color-mix(in_oklab,var(--nx-accent)_35%,transparent)_62%)] px-1">
+          {children}
+        </span>
+      </Tag>
+    )
+  }
+  if (variant === 'underline') {
+    return (
+      <Tag className={cn('font-serif text-nx-fg decoration-from-font underline decoration-nx-accent underline-offset-[0.18em]', className)}>
         {children}
-      </Tag>
-    )
-  }
-  if (variant === 'engraved') {
-    return (
-      <Tag data-nexara="gradient-text" data-variant="engraved" className={cn(shared, 'text-[#2a2833]')} style={{ textShadow: '0 1px 0 rgba(255,255,255,0.35), 0 -1px 0 rgba(0,0,0,0.65)', ...style }}>
-        {children}
-      </Tag>
-    )
-  }
-  if (variant === 'ribbon') {
-    return (
-      <Tag data-nexara="gradient-text" data-variant="ribbon" className={cn(shared, 'bg-[#ff6a3d] px-8 py-1 text-[#1a100c] [clip-path:polygon(8%_0,92%_0,100%_50%,92%_100%,8%_100%,0_50%)]')} style={style}>
-        {children}
-      </Tag>
-    )
-  }
-  if (variant === 'stencil') {
-    return (
-      <Tag data-nexara="gradient-text" data-variant="stencil" className={cn(shared, 'inline-grid text-[#f6f3ec]')} style={style}>
-        <span aria-hidden="true" className="col-start-1 row-start-1 [clip-path:inset(0_0_58%_0)]">{children}</span>
-        <span aria-hidden="true" className="col-start-1 row-start-1 [clip-path:inset(58%_0_0_0)]">{children}</span>
-        <span className="sr-only">{label}</span>
       </Tag>
     )
   }
   if (variant === 'boxed') {
+    const letters = String(children).split('')
     return (
-      <Tag data-nexara="gradient-text" data-variant="boxed" className={cn(shared, 'text-[#f6f3ec]')} style={style}>
-        <span className="sr-only">{label}</span>
-        <span aria-hidden="true" className="inline-flex gap-1">
-          {Array.from(label).map((char, index) => (
-            <span key={`${char}-${index}`} className="inline-flex h-[1.15em] min-w-[0.9em] items-center justify-center border border-current">
-              {char === ' ' ? '' : char}
-            </span>
-          ))}
-        </span>
+      <Tag className={cn('inline-flex gap-1 font-mono text-[0.7em] tracking-[0.18em] uppercase', className)}>
+        {letters.map((letter, index) => (
+          <span key={`${letter}-${index}`} className="inline-flex min-w-[1.15em] items-center justify-center rounded-md border border-nx-border bg-nx-card px-1 py-1">
+            {letter === ' ' ? '·' : letter}
+          </span>
+        ))}
       </Tag>
     )
   }
-  if (variant === 'script') {
+  if (variant === 'kinetic') {
     return (
-      <Tag data-nexara="gradient-text" data-variant="script" className={cn(shared, 'font-serif text-[#f5c16c] italic')} style={style}>
-        {children}
-        <span aria-hidden="true" className="mt-1 block h-px w-2/3 bg-[#f5c16c]" />
-      </Tag>
-    )
-  }
-  if (variant === 'seal') {
-    const ring = `${label} · ${label} · ${label} · `
-    return (
-      <Tag data-nexara="gradient-text" data-variant="seal" className={cn(shared, 'relative inline-flex size-40 items-center justify-center')} style={style}>
-        <svg viewBox="0 0 120 120" className="size-40" aria-hidden="true">
-          <defs>
-            <path id={sealId} d="M60 60 m-42 0 a42 42 0 1 1 84 0 a42 42 0 1 1 -84 0" />
-          </defs>
-          <circle cx="60" cy="60" r="36" fill="none" stroke="#f5c16c" strokeWidth="1" />
-          <text fill="#f5c16c" fontSize="9" letterSpacing="2">
-            <textPath href={`#${sealId}`}>{ring}</textPath>
-          </text>
-          <text x="60" y="66" textAnchor="middle" fill="#f5c16c" fontSize="18" fontFamily="serif">NX</text>
-        </svg>
-        <span className="sr-only">{label}</span>
-      </Tag>
-    )
-  }
-  if (variant === 'halftone') {
-    return (
-      <Tag data-nexara="gradient-text" data-variant="halftone" className={cn(shared, 'relative text-[#f6f3ec]')} style={style}>
-        <span
-          aria-hidden="true"
-          className="absolute inset-0 text-transparent"
-          style={{
-            WebkitTextStroke: '0',
-            backgroundImage: 'radial-gradient(#ff6a3d 1px, transparent 1.2px)',
-            backgroundSize: '4px 4px',
-            WebkitBackgroundClip: 'text',
-            backgroundClip: 'text',
-          }}
+      <span className="inline-flex items-center gap-2">
+        <Tag
+          className={cn(
+            'inline-block font-serif tracking-tight text-nx-fg',
+            kinetic ? 'motion-safe:animate-[nexara-kinetic_3.2s_ease-in-out_infinite]' : '',
+            className,
+          )}
         >
           {children}
-        </span>
-        <span className="text-transparent" style={{ WebkitTextStroke: '1px #f6f3ec' }}>{children}</span>
+        </Tag>
+        <LoopPause playing={loop.playing} onToggle={loop.toggle} />
+      </span>
+    )
+  }
+  if (variant === 'glow') {
+    return (
+      <Tag className={cn('font-serif text-nx-fg', className)} style={{ textShadow: '0 0 24px color-mix(in oklab, var(--nx-accent) 55%, transparent)' }}>
+        {children}
       </Tag>
     )
   }
+  if (variant === 'fade') {
+    return (
+      <Tag
+        className={cn('bg-clip-text font-serif text-transparent', className)}
+        style={{ backgroundImage: 'linear-gradient(90deg, var(--nx-fg) 0%, var(--nx-fg) 40%, transparent 100%)' }}
+      >
+        {children}
+      </Tag>
+    )
+  }
+
+  const extra =
+    variant === 'shimmer'
+      ? fill
+      : variant === 'aurora'
+        ? `linear-gradient(120deg, ${from}, ${via}, ${to}, ${via}, ${from})`
+        : fill
+
   return (
-    <Tag
-      data-nexara="gradient-text"
-      data-variant="gradient"
-      className={cn(shared, 'bg-clip-text text-transparent')}
-      style={{
-        backgroundImage: `linear-gradient(${angle}deg, ${from}, ${via}, ${to})`,
-        WebkitTextFillColor: 'transparent',
-        ...style,
-      }}
-    >
-      {children}
-    </Tag>
+    <span className="inline-flex items-center gap-2">
+      <Tag
+        className={cn('bg-clip-text font-serif text-transparent', className)}
+        style={{
+          backgroundImage: extra,
+          backgroundSize: moving ? '200% 100%' : '100% 100%',
+          animation: moving ? `nexara-text-pan ${duration}s linear infinite` : undefined,
+        } as ComponentPropsWithoutRef<'span'>['style']}
+      >
+        {children}
+      </Tag>
+      <LoopPause playing={loop.playing} onToggle={loop.toggle} />
+    </span>
   )
+}
+
+export function GradientText(props: GradientTextProps) {
+  if (isWowVariant('gradient-text', props.variant)) {
+    return (
+      <WowSignature
+        family="gradient-text"
+        variant={props.variant!}
+        className={props.className}
+        
+      >
+      {props.children}
+    </WowSignature>
+    )
+  }
+  return <GradientTextCore {...props} />
 }

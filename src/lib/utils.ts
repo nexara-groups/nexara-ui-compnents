@@ -9,6 +9,27 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+/** Shared focus ring that tracks the theme tokens. */
+export const focusRing =
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring focus-visible:ring-offset-2 focus-visible:ring-offset-nx-bg'
+
+/** Form-field border that holds ~3:1 against card surfaces (WCAG non-text). */
+export const fieldBorder = 'border border-nx-field'
+
+/** Minimum 44×44 touch target (owner bar; WCAG 2.5.5). */
+export const touchTarget = 'min-h-11 min-w-11'
+
+/** Playing unless the user paused or asked for reduced motion. */
+export function useLoopControl(startPlaying = true) {
+  const reduced = usePrefersReducedMotion()
+  const [playing, setPlaying] = useState(startPlaying)
+  return {
+    playing: playing && !reduced,
+    toggle: () => setPlaying((value) => !value),
+    reduced,
+  }
+}
+
 /** Tracks the user's reduced-motion preference. Safe to call in the browser only. */
 export function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(() => {
@@ -45,4 +66,33 @@ export function useKeyframes(id: string, css: string) {
   useEffect(() => {
     ensureKeyframes(id, css)
   }, [id, css])
+}
+
+/** Count from 0 to `target` when `active`. Reduced motion snaps to the end. Off-screen holds at 0. */
+export function useCountUp(target: number, duration = 1400, active = true) {
+  const reduced = usePrefersReducedMotion()
+  const [value, setValue] = useState(reduced ? target : 0)
+
+  useEffect(() => {
+    if (reduced) {
+      setValue(target)
+      return
+    }
+    if (!active) {
+      setValue(0)
+      return
+    }
+    const start = performance.now()
+    let frame = 0
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration)
+      const eased = 1 - (1 - t) ** 3
+      setValue(Math.round(target * eased))
+      if (t < 1) frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [active, duration, reduced, target])
+
+  return value
 }

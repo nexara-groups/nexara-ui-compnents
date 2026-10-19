@@ -1,8 +1,8 @@
 # Nexara UI
 
-Original, copy-paste React components inspired by the kinds of interactions on [21st.dev](https://21st.dev): movable cards, spotlight and flip surfaces, animated buttons, backgrounds, text effects, navigation, dialogs, and heroes.
+Original, copy-paste React components aimed at premium cinematic UI quality: heroes, behavioral buttons, marketing sections, portal chrome, and industry kits. Live sites were used only as a quality bar, not as templates. The catalogue uses fictional brands (Harbor Climate, Lumen Care, Field Athletics, North Studio, Atlas Academy, Solum Lab) and bundled original media.
 
-The code is written for this registry. It is not vendored from 21st, Aceternity, or shadcn. Components are React + TypeScript, styled with Tailwind CSS, and animated with Framer Motion where motion is doing real work. You copy a file into your app and own it.
+The code is written for this registry. It is not vendored from 21st, Aceternity, or shadcn. Components are React + TypeScript, styled with Tailwind CSS, and animated with Framer Motion where motion is doing real work. You copy a file into your app and own it. Heroes, teams, case studies, and logo clouds ship with photographic defaults in `public/media` and first-class `image` / `video` / `lottie` props.
 
 ## For agents
 
@@ -28,7 +28,7 @@ Do not rewrite the component from scratch if it already exists here.
 | Spotlight Card | `spotlight-card` | `src/components/ui/spotlight-card.tsx` | — |
 | Flip Card | `flip-card` | `src/components/ui/flip-card.tsx` | framer-motion |
 | Bento Grid | `bento-grid` | `src/components/ui/bento-grid.tsx` | — |
-| Button | `button` | `src/components/ui/button.tsx` | class-variance-authority |
+| Button (24 kinds, plus `button-extra.tsx`) | `button` | `src/components/ui/button.tsx` | class-variance-authority |
 | Magnetic Button | `magnetic-button` | `src/components/ui/magnetic-button.tsx` | framer-motion, button |
 | Aurora Background | `aurora-background` | `src/components/ui/aurora-background.tsx` | — |
 | Grid Background | `grid-background` | `src/components/ui/grid-background.tsx` | — |
@@ -37,10 +37,41 @@ Do not rewrite the component from scratch if it already exists here.
 | Text Reveal | `text-reveal` | `src/components/ui/text-reveal.tsx` | framer-motion |
 | Floating Navbar | `floating-navbar` | `src/components/ui/floating-navbar.tsx` | framer-motion |
 | Modal | `modal` | `src/components/ui/modal.tsx` | framer-motion |
-| Hero | `hero` | `src/components/ui/hero.tsx` | framer-motion |
+| Hero (30 models, plus `hero-extra.tsx` and `src/lib/media.tsx`) | `hero` | `src/components/ui/hero.tsx` | framer-motion |
 | Marquee | `marquee` | `src/components/ui/marquee.tsx` | — |
+| Input | `input` | `src/components/ui/input.tsx` | — |
+| Tabs | `tabs` | `src/components/ui/tabs.tsx` | — |
+| Accordion | `accordion` | `src/components/ui/accordion.tsx` | — |
+| Tooltip | `tooltip` | `src/components/ui/tooltip.tsx` | — |
+| Toast | `toast` | `src/components/ui/toast.tsx` | — |
+| Avatar | `avatar` | `src/components/ui/avatar.tsx` | — |
+| Badge | `badge` | `src/components/ui/badge.tsx` | — |
+| Pricing | `pricing` | `src/components/ui/pricing.tsx` | — |
+| Testimonials | `testimonials` | `src/components/ui/testimonials.tsx` | — |
+| Footer | `footer` | `src/components/ui/footer.tsx` | — |
+| Stats | `stats` | `src/components/ui/stats.tsx` | — |
+| Countdown | `countdown` | `src/components/ui/countdown.tsx` | — |
+| Leaderboard | `leaderboard` | `src/components/ui/leaderboard.tsx` | — |
+| Case Study | `case-study` | `src/components/ui/case-study.tsx` | — |
+| Services | `services` | `src/components/ui/services.tsx` | — |
+| Process | `process` | `src/components/ui/process.tsx` | — |
+| Team | `team` | `src/components/ui/team.tsx` | — |
+| Contact | `contact` | `src/components/ui/contact.tsx` | — |
+| CTA band | `cta-band` | `src/components/ui/cta-band.tsx` | — |
+| Chapters | `chapters` | `src/components/ui/chapters.tsx` | — |
+| News | `news` | `src/components/ui/news.tsx` | — |
+| Logo cloud | `logo-cloud` | `src/components/ui/logo-cloud.tsx` | — |
+| App shell | `app-shell` | `src/components/ui/app-shell.tsx` | — |
+| KPI | `kpi` | `src/components/ui/kpi.tsx` | — |
+| Data table | `data-table` | `src/components/ui/data-table.tsx` | — |
+| Kanban board | `kanban-board` | `src/components/ui/kanban-board.tsx` | — |
+| Chart block | `chart-block` | `src/components/ui/chart-block.tsx` | — |
+| Activity | `activity` | `src/components/ui/activity.tsx` | — |
+| Command palette | `command-palette` | `src/components/ui/command-palette.tsx` | — |
+| Settings panel | `settings-panel` | `src/components/ui/settings-panel.tsx` | — |
+| Industry kit | `kit` | `src/components/ui/kit.tsx` | composed blocks |
 
-Every component also needs `clsx` and `tailwind-merge` through `src/lib/utils.ts`. Each component has at least ten variants, and each variant is a different design, not a recolor or a different hover. The names are on the registry item (`variants[].name`) and on the docs page as `component / variant`, for example `button / social`. Research notes are in `docs/research/`. Critique notes are in `docs/reviews/`.
+Every component also needs `clsx` and `tailwind-merge` through `src/lib/utils.ts`. Copy `src/lib/media.tsx` and `public/media` with any item that shows a person, product, or brand mark. Each component has at least ten variants, and each variant is a different design, not a recolor or a different hover. The names are on the registry item (`variants[].name`) and on the docs page as `component / variant`. Look up `hero / ac-remote`, `section / stats-countup` as `stats / countup`, `button / toggle`, or `kit / healthcare`. The docs search matches those strings. The docs site has a light/dark toggle. Research notes are in `docs/research/`. Media attribution is in `docs/research/media.md`. Critique notes are in `docs/reviews/`. The scored visual audit is in `docs/audit/`. Remaining-component coverage (what the cinematic pass missed) is in `docs/audit/coverage.md`.
 
 ## Live preview
 
@@ -69,7 +100,7 @@ export function Board() {
 
   return (
     <div ref={stageRef} className="relative h-96">
-      <DraggableCard bounds={stageRef} variant="elevated" glowColor="rgba(255, 106, 61, 0.45)">
+      <DraggableCard bounds={stageRef} variant="window">
         <p>Drag me</p>
       </DraggableCard>
     </div>

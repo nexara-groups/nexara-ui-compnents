@@ -1,6 +1,10 @@
 'use client'
 
+import { isWowVariant } from '@/lib/wow-variants.ts'
+import { WowSignature } from './wow-lazy.tsx'
+
 import { createContext, useContext, type PointerEvent, type ReactNode } from 'react'
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const BentoColumns = createContext(3)
@@ -57,21 +61,21 @@ export function BentoGrid({ children, className, columns = 3, gap = 'md' }: Bent
 }
 
 const itemVariants = {
-  chart: 'rounded-3xl border-white/10 bg-[#10141c]',
+  chart: 'rounded-3xl border-nx-border bg-nx-card',
   quote: 'rounded-none border-0 bg-transparent',
-  editorial: 'rounded-none border-x-0 border-t-0 border-b border-white/20 bg-transparent',
-  terminal: 'rounded-lg border-[#3ddec4]/40 bg-[#07110f] font-mono',
-  schedule: 'rounded-2xl border-white/15 bg-[#14151f]',
-  scoreboard: 'rounded-3xl border-white/10 bg-[#10241f] font-mono',
-  stat: 'rounded-3xl border-white/10 bg-[#10131c]',
-  compare: 'rounded-3xl border-white/10 bg-[#12141c]',
-  media: 'rounded-[2rem] border-transparent bg-[#1a1420] p-0',
-  calendar: 'rounded-3xl border-white/10 bg-[#f6f3ec] text-[#1c1915]',
-  kanban: 'rounded-2xl border-white/10 bg-[#16141c]',
-  invoice: 'rounded-none border border-dashed border-white/25 bg-[#12110e] font-mono',
+  editorial: 'rounded-none border-x-0 border-t-0 border-b border-nx-line bg-transparent',
+  terminal: 'rounded-lg border-white/10 bg-[#0c0d10] font-mono text-[#9be7c4]',
+  schedule: 'rounded-2xl border-nx-border bg-nx-card',
+  scoreboard: 'rounded-3xl border-nx-border bg-[#10241f] font-mono text-[#d9fff6]',
+  stat: 'rounded-3xl border-nx-border bg-nx-elevated',
+  compare: 'rounded-3xl border-nx-border bg-nx-card',
+  media: 'rounded-[2rem] border-transparent bg-[#1a1420] p-0 text-white',
+  calendar: 'rounded-3xl border-nx-border bg-nx-card',
+  kanban: 'rounded-2xl border-nx-border bg-nx-card',
+  invoice: 'rounded-xl border border-dashed border-nx-line bg-nx-bg font-mono',
 } as const
 
-export type BentoVariant = keyof typeof itemVariants
+export type BentoVariant = keyof typeof itemVariants | 'depth-mosaic' | 'shader-tile' | 'peel-tile' | 'ticker-tile'
 
 export interface BentoItemProps {
   title: ReactNode
@@ -91,7 +95,7 @@ export interface BentoItemProps {
   children?: ReactNode
 }
 
-export function BentoItem({
+function BentoItemCore({
   title,
   description,
   icon,
@@ -123,7 +127,7 @@ export function BentoItem({
     'group relative flex h-full flex-col overflow-hidden border p-5 text-left',
     'transition-[transform,border-color] duration-300 motion-safe:hover:-translate-y-0.5',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]',
-    itemVariants[variant],
+    itemVariants[variant as keyof typeof itemVariants],
     colSpanClass[span],
     rowSpanClass[rowSpan],
     className,
@@ -271,7 +275,7 @@ export function BentoItem({
       {variant === 'media' ? (
         <span className="relative z-10 flex h-full flex-col">
           <span className="relative min-h-24 flex-1 overflow-hidden">
-            {children}
+            {children ?? <MediaFrame src={media.featured} alt="" className="absolute inset-0" />}
             <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#1a1420] to-transparent" />
           </span>
           <span className="px-5 pb-5">
@@ -323,4 +327,18 @@ export function BentoItem({
       {body}
     </div>
   )
+}
+
+export function BentoItem(props: BentoItemProps) {
+  if (isWowVariant('bento-grid', props.variant)) {
+    return (
+      <WowSignature
+        family="bento-grid"
+        variant={props.variant!}
+        className={props.className}
+        
+       title={props.title} />
+    )
+  }
+  return <BentoItemCore {...props} />
 }

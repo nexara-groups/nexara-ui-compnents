@@ -1,0 +1,184 @@
+'use client'
+
+import { isWowVariant } from '@/lib/wow-variants.ts'
+import { WowSignature } from './wow-lazy.tsx'
+
+import { useState } from 'react'
+import { MediaFrame, faces } from '@/lib/media.tsx'
+import { cn, fieldBorder, focusRing } from '@/lib/utils.ts'
+
+const VARIANTS = [
+  'profile',
+  'team',
+  'billing',
+  'appearance',
+  'notifications',
+  'security',
+  'api',
+  'clinic',
+  'branches',
+  'compact',
+  'danger',
+  'integrations',
+  'morph-sections',
+  'liquid-toggle',
+  'path-security',
+  'fold-profile',
+] as const
+
+export type SettingsPanelVariant = (typeof VARIANTS)[number]
+
+export interface SettingsPanelProps {
+  variant?: SettingsPanelVariant
+  className?: string
+}
+
+/**
+ * Settings panel
+ * Twelve settings constructions for Agency OS and clinic desks.
+ * Copy this file plus `src/lib/utils.ts`.
+ */
+function SettingsPanelCore({ variant = 'profile', className }: SettingsPanelProps) {
+  const [on, setOn] = useState(true)
+
+  return (
+    <section data-nexara="settings-panel" data-variant={variant} className={cn('rounded-[1.4rem] border border-nx-border bg-nx-card p-5', className)}>
+      {variant === 'profile' ? (
+        <div className="grid gap-3">
+          <div className="flex items-center gap-3">
+            <MediaFrame src={faces[4].src} alt="Latha Iyer" grain={false} className="size-14 rounded-full" />
+            <h3 className="font-serif text-2xl">Profile</h3>
+          </div>
+          <label className="text-sm">
+            Name
+            <input className={cn(focusRing, fieldBorder, 'mt-1 h-11 w-full rounded-lg px-3')} defaultValue="Latha Iyer" />
+          </label>
+          <label className="text-sm">
+            Desk
+            <input className={cn(focusRing, fieldBorder, 'mt-1 h-11 w-full rounded-lg px-3')} defaultValue="Atlas Academy" />
+          </label>
+        </div>
+      ) : null}
+
+      {variant === 'team' ? (
+        <ul className="space-y-2 text-sm">
+          {['Latha · Owner', 'Suresh · Plant', 'Dr. Rao · Care'].map((row) => (
+            <li key={row} className="flex justify-between rounded-xl border border-nx-border px-3 py-2">
+              {row}
+              <span className="text-nx-muted">Edit</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      {variant === 'billing' ? (
+        <div>
+          <p className="text-xs text-nx-muted">Studio plan</p>
+          <p className="mt-2 font-serif text-4xl">$48</p>
+          <p className="mt-1 text-sm text-nx-muted">Next invoice 12 Nov · Harbor</p>
+        </div>
+      ) : null}
+
+      {variant === 'appearance' ? (
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="font-medium">Dark desk</p>
+            <p className="text-sm text-nx-muted">Matches the docs theme token.</p>
+          </div>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={on}
+            className={cn(focusRing, 'h-11 w-16 rounded-full', on ? 'bg-nx-fg' : 'bg-nx-line')}
+            onClick={() => setOn((value) => !value)}
+          >
+            <span className={cn('block size-8 translate-x-1 rounded-full bg-nx-card transition', on && 'translate-x-7')} />
+          </button>
+        </div>
+      ) : null}
+
+      {variant === 'notifications' ? (
+        <ul className="space-y-3 text-sm">
+          {['Weekly demo reminder', 'Therapy chair alerts', 'Medal posts'].map((item) => (
+            <li key={item} className="flex items-center justify-between">
+              {item}
+              <span className="text-xs text-nx-ok">On</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      {variant === 'security' ? (
+        <div>
+          <p className="font-medium">SSO / SAML</p>
+          <p className="mt-2 text-sm text-nx-muted">Required on Enterprise. Audit log keeps seven years on the clinic desk.</p>
+        </div>
+      ) : null}
+
+      {variant === 'api' ? (
+        <div className="font-mono text-xs">
+          <p className="text-nx-muted">Publishable key</p>
+          <p className="mt-2 rounded-lg bg-nx-elevated px-3 py-2">nx_pk_live_••••18</p>
+        </div>
+      ) : null}
+
+      {variant === 'clinic' ? (
+        <div>
+          <p className="text-xs tracking-[0.16em] text-nx-muted uppercase">Care desk</p>
+          <p className="mt-2 font-serif text-2xl">16 specialists · 4 doors</p>
+          <p className="mt-2 text-sm text-nx-muted">Therapy chairs publish to the public site after 20:00.</p>
+        </div>
+      ) : null}
+
+      {variant === 'branches' ? (
+        <ul className="space-y-2 text-sm">
+          {['Harbor North plant', 'Harbor East bay', 'Harbor West collab'].map((item) => (
+            <li key={item} className="rounded-xl border border-nx-border px-3 py-2">
+              {item}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      {variant === 'compact' ? (
+        <p className="text-sm">
+          Theme, members, and billing sit in one panel. Copy this file and keep the tokens.
+        </p>
+      ) : null}
+
+      {variant === 'danger' ? (
+        <div>
+          <p className="font-medium text-nx-danger">Archive this desk</p>
+          <p className="mt-2 text-sm text-nx-muted">Leads stay in the audit log. Public pages go dark.</p>
+          <button type="button" className={cn(focusRing, 'mt-4 inline-flex min-h-11 items-center rounded-lg bg-nx-danger px-3 text-sm text-white')}>
+            Archive
+          </button>
+        </div>
+      ) : null}
+
+      {variant === 'integrations' ? (
+        <ul className="space-y-2 text-sm">
+          {['Google Calendar · OPD', 'WhatsApp · plant quotes', 'Stripe · studio'].map((item) => (
+            <li key={item} className="rounded-xl bg-nx-elevated px-3 py-2">
+              {item}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </section>
+  )
+}
+
+export function SettingsPanel(props: SettingsPanelProps) {
+  if (isWowVariant('settings-panel', props.variant)) {
+    return (
+      <WowSignature
+        family="settings-panel"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <SettingsPanelCore {...props} />
+}

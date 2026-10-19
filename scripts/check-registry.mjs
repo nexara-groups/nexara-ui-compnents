@@ -52,8 +52,9 @@ for (const item of registry.items ?? []) {
     errors.push(`${item.name} needs at least 10 variants`)
     continue
   }
-  const sourcePath = item.files?.[0]?.path
-  const source = sourcePath ? readFileSync(path.join(root, sourcePath), 'utf8') : ''
+  const source = (item.files ?? [])
+    .map((file) => (file.path ? readFileSync(path.join(root, file.path), 'utf8') : ''))
+    .join('\n')
   const seen = new Set()
   for (const variant of item.variants) {
     if (!variant.name || !variant.title || !variant.description || !variant.usage) {

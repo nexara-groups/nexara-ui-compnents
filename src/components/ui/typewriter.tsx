@@ -1,5 +1,8 @@
 'use client'
 
+import { isWowVariant } from '@/lib/wow-variants.ts'
+import { WowSignature } from './wow-lazy.tsx'
+
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { cn, useKeyframes, usePrefersReducedMotion } from '@/lib/utils.ts'
 
@@ -15,14 +18,18 @@ const VARIANTS = [
   'chat',
   'search',
   'editor',
-  'split-flap',
-  'news',
-  'lower-third',
-  'dispatch',
-  'shipping',
-  'redaction',
-  'script',
-  'teletype',
+  'flap',
+  'headline',
+  'caption',
+  'prompt',
+  'label',
+  'redact',
+  'italic',
+  'tape',
+  'odometer',
+  'scramble-line',
+  'matrix-rain',
+  'flap-3d',
 ] as const
 
 export type TypewriterVariant = (typeof VARIANTS)[number]
@@ -45,11 +52,9 @@ export interface TypewriterProps {
 
 /**
  * Typewriter
- * Twelve devices that type: terminal, chat, search, editor, split-flap,
- * newspaper, lower third, dispatch slip, shipping label, redaction, script, and a paper roll.
- * Copy this file plus `src/lib/utils.ts`.
+ * Twelve devices that type. Copy this file plus `src/lib/utils.ts`.
  */
-export function Typewriter({
+function TypewriterCore({
   phrases,
   className,
   cursorClassName,
@@ -60,7 +65,7 @@ export function Typewriter({
   loop = true,
   cursor = true,
   paused = false,
-  showControls = false,
+  showControls = true,
   onPhraseComplete,
   style,
 }: TypewriterProps) {
@@ -130,24 +135,23 @@ export function Typewriter({
   }, [deleteSpeed, loop, pause, phraseKey, reduced, typeSpeed])
 
   const shown = reduced ? (phrases[0] ?? '') : output
-  const visible = shown
   const caret = cursor && !reduced ? (
     <span className={cn('ml-0.5 inline-block h-[0.9em] w-px bg-current align-[-0.05em] motion-safe:animate-[nexara-blink_1s_step-end_infinite]', cursorClassName)} />
   ) : null
 
   const glyphs = (
-    <span className={cn(variant === 'script' && 'font-serif italic text-[#f5c16c]', variant === 'editor' && 'font-mono text-[#b7fff0]', variant === 'split-flap' && 'font-mono')}>
-      {variant === 'split-flap' ? (
+    <span className={cn(variant === 'italic' && 'font-serif italic', variant === 'editor' && 'font-mono', variant === 'flap' && 'font-mono')}>
+      {variant === 'flap' ? (
         <span className="inline-flex gap-0.5">
           {Array.from((shown || ' ').slice(0, 12)).map((glyph, index) => (
-            <span key={`${glyph}-${index}`} className="inline-flex h-8 w-6 items-center justify-center bg-[#111] text-[#f6f3ec] shadow-[inset_0_-6px_0_rgba(0,0,0,0.45)]">
+            <span key={`${glyph}-${index}`} className="inline-flex h-8 min-w-6 items-center justify-center rounded-sm bg-[#141416] text-[#f3f3ee] shadow-[inset_0_-6px_0_rgba(0,0,0,0.35)]">
               {glyph === ' ' ? '' : glyph}
             </span>
           ))}
         </span>
       ) : (
         <>
-          {visible}
+          {shown}
           {caret}
         </>
       )}
@@ -157,70 +161,83 @@ export function Typewriter({
   return (
     <span data-nexara="typewriter" data-variant={variant} className={cn('inline-flex max-w-full', className)} style={style}>
       {variant === 'terminal' ? (
-        <span className="w-full rounded-xl bg-[#07110f] p-3 font-mono text-sm text-[#3ddec4]">
-          <span className="mb-2 flex gap-1"><i className="size-2 rounded-full bg-[#ff6a3d]" /><i className="size-2 rounded-full bg-[#f5c16c]" /><i className="size-2 rounded-full bg-[#3ddec4]" /></span>
-          <span className="text-zinc-500">~/nexara </span>{glyphs}
-        </span>
-      ) : null}
-      {variant === 'chat' ? (
-        <span className="rounded-2xl rounded-bl-sm bg-[#1c2433] px-4 py-3 text-sm">{glyphs}</span>
-      ) : null}
-      {variant === 'search' ? (
-        <span className="flex h-11 w-full items-center rounded-full border border-white/15 bg-[#12131c] px-4 text-sm">
-          <span className="mr-2 text-zinc-500">⌕</span>{glyphs}
-        </span>
-      ) : null}
-      {variant === 'editor' ? (
-        <span className="flex w-full gap-3 rounded-lg bg-[#0c1020] p-3 font-mono text-sm">
-          <span className="text-zinc-600">12</span>
+        <span className="w-full overflow-hidden rounded-xl border border-white/10 bg-[#0c0d10] p-3 font-mono text-sm text-[#9be7c4]">
+          <span className="mb-2 flex gap-1.5">
+            <i className="size-2.5 rounded-full bg-[#ff5f57]" />
+            <i className="size-2.5 rounded-full bg-[#febc2e]" />
+            <i className="size-2.5 rounded-full bg-[#28c840]" />
+          </span>
+          <span className="text-white/70">~/nexara </span>
           {glyphs}
         </span>
       ) : null}
-      {variant === 'split-flap' ? <span className="rounded-md bg-[#1a120c] p-2">{glyphs}</span> : null}
-      {variant === 'news' ? (
-        <span className="block w-full border-y-4 border-[#f6f3ec] py-2">
-          <span className="block text-[10px] tracking-[0.2em] uppercase">Evening edition</span>
-          <span className="font-serif text-2xl">{glyphs}</span>
+      {variant === 'chat' ? (
+        <span className="max-w-sm rounded-2xl rounded-bl-md bg-nx-card px-4 py-3 text-sm text-nx-fg shadow-[var(--nx-shadow)] ring-1 ring-nx-border">
+          {glyphs}
         </span>
       ) : null}
-      {variant === 'lower-third' ? (
-        <span className="flex items-stretch bg-black/80">
-          <span className="w-2 bg-[#ff6a3d]" />
-          <span className="px-3 py-1">
+      {variant === 'search' ? (
+        <span className="flex h-11 w-full items-center rounded-full border border-nx-border bg-nx-card px-4 text-sm shadow-[var(--nx-shadow)]">
+          <span aria-hidden="true" className="mr-2 text-nx-muted">⌕</span>
+          {glyphs}
+        </span>
+      ) : null}
+      {variant === 'editor' ? (
+        <span className="flex w-full gap-3 rounded-lg border border-nx-border bg-[#0e1016] p-3 font-mono text-sm text-[#b7fff0]">
+          <span className="text-white/70">24</span>
+          {glyphs}
+        </span>
+      ) : null}
+      {variant === 'flap' ? <span className="rounded-md bg-[#0c0c0e] p-2">{glyphs}</span> : null}
+      {variant === 'headline' ? (
+        <span className="block font-serif text-4xl tracking-tight text-nx-fg md:text-5xl">{glyphs}</span>
+      ) : null}
+      {variant === 'caption' ? (
+        <span className="flex items-stretch overflow-hidden rounded-md bg-[#111113] text-white">
+          <span className="w-1.5 bg-nx-accent" />
+          <span className="px-3 py-1.5">
             <span className="block text-sm">{glyphs}</span>
-            <span className="block text-[10px] tracking-[0.16em] text-zinc-400 uppercase">Studio</span>
+            <span className="block text-[10px] tracking-[0.16em] text-white/70 uppercase">Live</span>
           </span>
         </span>
       ) : null}
-      {variant === 'dispatch' ? (
-        <span className="block w-full bg-[#f6f3ec] p-3 font-mono text-xs text-[#1c1915]">
-          <span className="block border-b border-[#1c1915]/20">TO · DESK</span>
-          <span className="block border-b border-[#1c1915]/20">FROM · PRESS</span>
-          <span className="mt-2 block">{glyphs}</span>
+      {variant === 'prompt' ? (
+        <span className="font-mono text-sm text-nx-muted">
+          <span className="text-nx-accent">❯</span> {glyphs}
         </span>
       ) : null}
-      {variant === 'shipping' ? (
-        <span className="flex w-full items-center gap-3 border border-[#1c1915] bg-[#f6f3ec] p-3 text-[#1c1915]">
-          <span className="h-12 w-24 bg-[repeating-linear-gradient(90deg,#1c1915_0_2px,transparent_2px_4px)]" />
-          <span className="font-mono text-sm">{glyphs}</span>
+      {variant === 'label' ? (
+        <span className="inline-flex items-center rounded-full border border-nx-border bg-nx-card px-3 py-1 text-xs tracking-[0.14em] text-nx-muted uppercase">
+          {glyphs}
         </span>
       ) : null}
-      {variant === 'redaction' ? (
-        <span className="block w-full border border-[#7f1d1d] bg-[#1c1915] p-3">
-          <span className="mb-2 block bg-[#7f1d1d] px-2 text-[10px] tracking-[0.16em] text-[#fecaca] uppercase">Restricted</span>
-          <span className="bg-black px-2 text-black">{glyphs}</span>
-        </span>
+      {variant === 'redact' ? (
+        <span className="bg-nx-fg px-1.5 font-mono text-sm text-nx-fg">{glyphs}</span>
       ) : null}
-      {variant === 'script' ? <span className="font-serif text-3xl">{glyphs}</span> : null}
-      {variant === 'teletype' ? (
-        <span className="bg-[#f6f3ec] px-4 py-3 font-mono text-sm text-[#1c1915] shadow-[0_8px_0_#d9d1c3]">{glyphs}</span>
+      {variant === 'italic' ? <span className="font-serif text-3xl text-nx-fg">{glyphs}</span> : null}
+      {variant === 'tape' ? (
+        <span className="rounded-sm bg-nx-card px-3 py-2 font-mono text-sm text-nx-fg shadow-[0_1px_0_var(--nx-border)] ring-1 ring-nx-border">
+          {glyphs}
+        </span>
       ) : null}
       {showControls && !reduced ? (
-        <button type="button" className="ml-2 h-8 rounded-full border border-current/30 px-2 text-xs" aria-pressed={held} onClick={() => setManualPause((value) => !value)}>
+        <button
+          type="button"
+          className="ml-2 inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-full border border-nx-border px-3 text-xs"
+          aria-pressed={held}
+          onClick={() => setManualPause((value) => !value)}
+        >
           {held ? 'Play' : 'Pause'}
         </button>
       ) : null}
       <span className="sr-only">{phrases.filter(Boolean).join('. ')}</span>
     </span>
   )
+}
+
+export function Typewriter(props: TypewriterProps) {
+  if (isWowVariant('typewriter', props.variant)) {
+    return <WowSignature family="typewriter" variant={props.variant!} className={props.className} />
+  }
+  return <TypewriterCore {...props} />
 }

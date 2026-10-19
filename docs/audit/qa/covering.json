@@ -1,0 +1,22 @@
+{
+  "covering": [
+    {
+      "slug": "draggable-card",
+      "count": 2
+    },
+    {
+      "slug": "pricing",
+      "count": 1
+    },
+    {
+      "slug": "command-palette",
+      "count": 1
+    }
+  ],
+  "tablet": {
+    "w": 768,
+    "h": 1024,
+    "top": 0,
+    "left": 0
+  }
+}

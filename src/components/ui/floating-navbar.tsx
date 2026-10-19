@@ -1,7 +1,11 @@
 'use client'
 
+import { isWowVariant } from '@/lib/wow-variants.ts'
+import { WowSignature } from './wow-lazy.tsx'
+
 import { useEffect, useId, useRef, useState, type MouseEvent, type ReactNode, type RefObject } from 'react'
 import { createPortal } from 'react-dom'
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn } from '@/lib/utils.ts'
 
 export interface NavItem {
@@ -12,14 +16,14 @@ export interface NavItem {
 }
 
 const variantClass = {
-  floating: 'rounded-full border border-white/12 bg-[#12131c]/80',
-  dock: 'rounded-[1.6rem] border border-white/12 bg-[#12131c]/90',
-  sidebar: 'h-full flex-col rounded-3xl border border-white/12 bg-[#12131c]',
-  overlay: 'rounded-full border border-white/12 bg-[#12131c]/90',
-  command: 'rounded-2xl border border-white/12 bg-[#101118]',
-  transport: 'rounded-2xl border border-white/12 bg-[#12131c]',
-  mega: 'rounded-none border-x-0 border-t-0 border-b border-white/10 bg-[#09090f]',
-  'app-bar': 'h-14 rounded-none border-b border-white/10 bg-[#101118]',
+  floating: 'rounded-full border border-nx-border bg-nx-glass/90 shadow-[var(--nx-shadow)]',
+  dock: 'rounded-[1.6rem] border border-nx-border bg-nx-glass/95 shadow-[var(--nx-shadow)]',
+  sidebar: 'h-full flex-col rounded-3xl border border-nx-border bg-nx-card shadow-[var(--nx-shadow)]',
+  overlay: 'rounded-full border border-nx-border bg-nx-glass/90',
+  command: 'rounded-2xl border border-nx-border bg-nx-card shadow-[var(--nx-shadow)]',
+  transport: 'rounded-2xl border border-nx-border bg-nx-card',
+  mega: 'rounded-none border-x-0 border-t-0 border-b border-nx-border bg-nx-bg',
+  'app-bar': 'h-14 rounded-none border-b border-nx-border bg-nx-card',
   announcement: 'rounded-none border-0 bg-transparent',
   breadcrumb: 'rounded-none border-0 bg-transparent',
   segmented: 'rounded-none border-0 bg-transparent',
@@ -30,7 +34,7 @@ export interface FloatingNavbarProps {
   logo?: ReactNode
   items: NavItem[]
   actions?: ReactNode
-  variant?: keyof typeof variantClass
+  variant?: keyof typeof variantClass | 'magnetic-pill' | 'morph-dock' | 'compass-nav' | 'glass-liquid'
   shrinkOnScroll?: boolean
   contained?: boolean
   blur?: boolean
@@ -47,7 +51,7 @@ export interface FloatingNavbarProps {
  * Twelve navigation products: pill, dock, sidebar, overlay, command field,
  * transport bar, mega menu, app bar, announcement, breadcrumb, segmented control, wordmark.
  */
-export function FloatingNavbar({
+function FloatingNavbarCore({
   logo,
   items,
   actions,
@@ -124,13 +128,13 @@ export function FloatingNavbar({
               href={item.href}
               aria-current={item.active ? 'page' : undefined}
               className={cn(
-                'inline-flex items-center text-zinc-200 hover:text-[#f6f3ec] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]',
-                variant === 'dock' && 'h-auto flex-col gap-1 px-3 py-1 text-[10px] motion-safe:hover:-translate-y-1 motion-safe:hover:scale-110',
-                variant === 'sidebar' && 'h-11 w-full justify-start rounded-xl px-3 hover:bg-white/10',
-                variant === 'overlay' && 'font-serif text-5xl',
-                variant === 'segmented' && 'h-9 rounded-full px-3',
-                item.active && variant === 'segmented' && 'bg-[#f6f3ec] text-[#16140f]',
-                item.active && variant !== 'segmented' && 'text-[#f6f3ec]',
+                'inline-flex min-h-11 min-w-11 items-center justify-center px-2.5 text-nx-muted hover:text-nx-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring',
+                variant === 'dock' && 'h-auto min-h-11 flex-col gap-1 px-3 py-1 text-[10px] motion-safe:hover:-translate-y-1 motion-safe:hover:scale-110',
+                variant === 'sidebar' && 'h-11 w-full justify-start rounded-xl px-3 hover:bg-nx-soft',
+                variant === 'overlay' && 'min-h-0 font-serif text-4xl text-nx-fg sm:text-5xl',
+                variant === 'segmented' && 'min-h-11 rounded-full px-3',
+                item.active && variant === 'segmented' && 'bg-nx-fg text-nx-bg',
+                item.active && variant !== 'segmented' && 'text-nx-fg',
               )}
               onClick={(event) => {
                 item.onClick?.(event)
@@ -184,13 +188,13 @@ export function FloatingNavbar({
 
         {variant === 'announcement' ? (
           <div className={barClassName}>
-            <div className="flex items-center justify-between bg-[#ff6a3d] px-4 py-2 text-sm text-[#1a100c]">
+            <div className="flex items-center justify-between bg-nx-accent px-4 py-2 text-sm text-nx-accent-fg">
               <span>{logo} is in preview</span>
               {actions}
             </div>
-            <div className={cn('flex items-center gap-4 border-b border-white/10 bg-[#09090f] px-4 py-3', blur && 'backdrop-blur')}>
+            <div className={cn('flex items-center gap-4 border-b border-nx-border bg-nx-bg px-4 py-3', blur && 'backdrop-blur')}>
               {links(cn('items-center gap-4', desktop))}
-              <button ref={toggleRef} type="button" className={cn('ml-auto h-10 rounded-full border border-white/15 px-3', mobileOnly)} aria-expanded={open} onClick={() => setOpen((value) => !value)}>
+              <button ref={toggleRef} type="button" className={cn('ml-auto inline-flex min-h-11 items-center rounded-full border border-nx-border px-3', mobileOnly)} aria-expanded={open} onClick={() => setOpen((value) => !value)}>
                 {menuLabel}
               </button>
             </div>
@@ -198,33 +202,36 @@ export function FloatingNavbar({
         ) : null}
 
         {variant === 'app-bar' ? (
-          <div className={cn('flex h-14 items-center gap-3 px-3', variantClass['app-bar'], barClassName)}>
+          <div className={cn('flex min-h-14 items-center gap-3 px-3', variantClass['app-bar'], barClassName)}>
             <div className="font-serif">{logo}</div>
             <label className="sr-only" htmlFor={`${menuId}-search`}>Search</label>
-            <input id={`${menuId}-search`} placeholder="Search" className="h-9 flex-1 rounded-lg border border-white/10 bg-black/30 px-3 text-sm outline-none" />
+            <input id={`${menuId}-search`} placeholder="Search" className="h-11 min-w-0 flex-1 rounded-lg border border-nx-border bg-nx-bg px-3 text-sm outline-none" />
             {links(cn('items-center gap-1', desktop))}
-            {actions}
+            <div className={desktop}>{actions}</div>
+            <button ref={toggleRef} type="button" className={cn('inline-flex min-h-11 items-center rounded-full border border-nx-border px-3', mobileOnly)} aria-expanded={open} aria-controls={menuId} onClick={() => setOpen((value) => !value)}>
+              {open ? 'Close' : menuLabel}
+            </button>
           </div>
         ) : null}
 
         {variant === 'command' ? (
           <div className={cn('flex items-center gap-3 px-3 py-2', variantClass.command, blur && 'backdrop-blur-xl', barClassName)}>
             <div className="font-serif">{logo}</div>
-            <div className="flex h-9 flex-1 items-center rounded-lg border border-white/10 bg-black/40 px-3 text-sm text-zinc-400">
+            <div className="flex h-11 min-w-0 flex-1 items-center rounded-lg border border-nx-border bg-nx-bg px-3 text-sm text-nx-muted">
               Search or jump
-              <kbd className="ml-auto rounded border border-white/15 px-1 text-[10px]">⌘K</kbd>
+              <kbd className="ml-auto rounded border border-nx-border px-1 text-[10px]">⌘K</kbd>
             </div>
             {actions}
           </div>
         ) : null}
 
         {variant === 'breadcrumb' ? (
-          <div className={cn('flex items-center gap-2 px-2 text-sm', barClassName)}>
+          <div className={cn('flex flex-wrap items-center gap-2 px-2 text-sm', barClassName)}>
             <span className="font-serif">{logo}</span>
             {items.map((item) => (
               <span key={item.label} className="inline-flex items-center gap-2">
                 <span aria-hidden="true" className="text-zinc-600">/</span>
-                <a href={item.href} aria-current={item.active ? 'page' : undefined} className={cn(item.active ? 'text-[#f6f3ec]' : 'text-zinc-400')} onClick={item.onClick}>
+                <a href={item.href} aria-current={item.active ? 'page' : undefined} className={cn('inline-flex min-h-11 min-w-11 items-center justify-center px-2', item.active ? 'text-nx-fg' : 'text-nx-muted')} onClick={item.onClick}>
                   {item.label}
                 </a>
               </span>
@@ -233,9 +240,11 @@ export function FloatingNavbar({
         ) : null}
 
         {variant === 'segmented' ? (
-          <div className={cn('flex items-center gap-3', barClassName)}>
-            <div className="font-serif">{logo}</div>
-            {links('flex items-center gap-1 rounded-full bg-black/40 p-1')}
+          <div className={cn('flex min-w-0 items-center gap-3', barClassName)}>
+            <div className="shrink-0 font-serif">{logo}</div>
+            <div className="min-w-0 flex-1 overflow-x-auto">
+              {links('flex items-center gap-1 rounded-full bg-black/40 p-1')}
+            </div>
             {actions}
           </div>
         ) : null}
@@ -244,24 +253,27 @@ export function FloatingNavbar({
           <div className={cn('relative flex items-center justify-between', barClassName)}>
             <div className="font-serif text-3xl tracking-tight">{logo}</div>
             <div className="flex items-center gap-3">
-              <button ref={toggleRef} type="button" className="text-sm text-zinc-300" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
+              <button ref={toggleRef} type="button" className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-sm text-zinc-300" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
                 Index
               </button>
               {actions}
             </div>
-            {open ? <div className={cn('absolute top-full right-0 mt-2 w-48 rounded-2xl border border-white/12 bg-[#12131c] p-2', menuClassName)}>{links('flex flex-col', true)}</div> : null}
+            {open ? <div className={cn('absolute top-full right-0 mt-2 w-48 rounded-2xl border border-nx-border bg-nx-card p-2 shadow-[var(--nx-shadow)]', menuClassName)}>{links('flex flex-col', true)}</div> : null}
           </div>
         ) : null}
 
         {variant === 'mega' ? (
           <div className={cn(variantClass.mega, barClassName)}>
-            <div className="mx-auto flex h-14 max-w-6xl items-center gap-6 px-4">
+            <div className="mx-auto flex min-h-14 max-w-6xl items-center gap-6 px-4">
               <div className="font-serif text-lg">{logo}</div>
               {links(cn('items-center gap-5', desktop))}
-              <div className="ml-auto">{actions}</div>
+              <div className={cn('ml-auto', desktop)}>{actions}</div>
+              <button ref={toggleRef} type="button" className={cn('ml-auto inline-flex min-h-11 items-center rounded-full border border-nx-border px-3', mobileOnly)} aria-expanded={open} aria-controls={menuId} onClick={() => setOpen((value) => !value)}>
+                {open ? 'Close' : menuLabel}
+              </button>
             </div>
             {mega ? (
-              <div className="border-t border-white/10 bg-[#12131c]">
+              <div className="border-t border-nx-border bg-nx-card">
                 <div className="mx-auto grid max-w-6xl gap-6 px-4 py-6 md:grid-cols-3">
                   {['Overview', 'Specs', 'Archive'].map((column) => (
                     <div key={column}>
@@ -277,17 +289,17 @@ export function FloatingNavbar({
         ) : null}
 
         {variant === 'dock' ? (
-          <div className={cn('flex items-end justify-center gap-1 px-3 py-2', variantClass.dock, blur && 'backdrop-blur-xl', barClassName)}>
+          <div className={cn('flex max-w-full items-end justify-center gap-1 overflow-x-auto px-3 py-2', variantClass.dock, blur && 'backdrop-blur-xl', barClassName)}>
             {links('flex items-end gap-1')}
           </div>
         ) : null}
 
         {variant === 'transport' ? (
           <div className={cn('flex items-center gap-3 px-3 py-2', variantClass.transport, barClassName)}>
-            <span className="size-10 shrink-0 rounded-md bg-[#ff6a3d]" aria-hidden="true" />
+            <MediaFrame src={media.cinema} alt="" className="size-10 shrink-0 rounded-md" />
             <span className="min-w-0 flex-1">
               <span className="block truncate text-sm">{items[0]?.label ?? 'Night desk'}</span>
-              <span className="mt-1 block h-1 rounded-full bg-white/15"><span className="block h-1 w-1/3 rounded-full bg-[#f6f3ec]" /></span>
+              <span className="mt-1 block h-1 rounded-full bg-nx-border"><span className="block h-1 w-1/3 rounded-full bg-nx-fg" /></span>
             </span>
             <span className="text-xs tracking-[0.2em]">◀ ▶</span>
           </div>
@@ -298,7 +310,7 @@ export function FloatingNavbar({
             <div className="px-2 font-serif">{logo}</div>
             {links(cn('items-center gap-1', desktop))}
             {actions ? <div className={cn('ml-auto', desktop)}>{actions}</div> : null}
-            <button ref={toggleRef} type="button" className={cn('ml-auto h-10 rounded-full border border-white/15 px-3', mobileOnly)} aria-expanded={open} aria-controls={menuId} onClick={() => setOpen((value) => !value)}>
+            <button ref={toggleRef} type="button" className={cn('ml-auto inline-flex min-h-11 items-center rounded-full border border-nx-border px-3', mobileOnly)} aria-expanded={open} aria-controls={menuId} onClick={() => setOpen((value) => !value)}>
               {open ? 'Close' : menuLabel}
             </button>
           </div>
@@ -307,7 +319,7 @@ export function FloatingNavbar({
         {variant === 'overlay' ? (
           <div className={cn('flex items-center px-3 py-2', variantClass.overlay, barClassName)}>
             <div className="font-serif">{logo}</div>
-            <button ref={toggleRef} type="button" className="ml-auto inline-flex h-11 items-center gap-2 rounded-full border border-white/15 px-3" aria-expanded={open} aria-controls={menuId} onClick={() => setOpen((value) => !value)}>
+            <button ref={toggleRef} type="button" className="ml-auto inline-flex h-11 items-center gap-2 rounded-full border border-nx-border px-3" aria-expanded={open} aria-controls={menuId} onClick={() => setOpen((value) => !value)}>
               {open ? 'Close' : menuLabel}
             </button>
           </div>
@@ -315,10 +327,10 @@ export function FloatingNavbar({
 
         {variant === 'overlay' && open && typeof document !== 'undefined'
           ? createPortal(
-              <div ref={overlayRef} id={menuId} role="dialog" aria-modal="true" aria-label={label} className="fixed inset-0 z-50 flex flex-col bg-[#09090f] p-8 text-[#f6f3ec]">
+              <div ref={overlayRef} id={menuId} role="dialog" aria-modal="true" aria-label={label} className="fixed inset-0 z-50 flex flex-col bg-nx-bg p-8 text-nx-fg">
                 <div className="flex items-center justify-between">
                   <div className="font-serif">{logo}</div>
-                  <button type="button" className="h-11 rounded-full border border-white/15 px-4" onClick={() => { setOpen(false); toggleRef.current?.focus() }}>Close</button>
+                  <button type="button" className="h-11 rounded-full border border-nx-border px-4" onClick={() => { setOpen(false); toggleRef.current?.focus() }}>Close</button>
                 </div>
                 {links('mt-12 flex flex-col gap-4', true)}
                 {actions ? <div className="mt-auto">{actions}</div> : null}
@@ -328,11 +340,25 @@ export function FloatingNavbar({
           : null}
 
         {open && variant !== 'overlay' && variant !== 'wordmark' ? (
-          <div id={menuId} className={cn('mt-2 rounded-3xl border border-white/12 bg-[#12131c] p-3', mobileOnly, menuClassName)}>
+          <div id={menuId} className={cn('mt-2 rounded-3xl border border-nx-border bg-nx-card p-3 shadow-[var(--nx-shadow)]', mobileOnly, menuClassName)}>
             {links('flex flex-col', true)}
           </div>
         ) : null}
       </nav>
     </div>
   )
+}
+
+export function FloatingNavbar(props: FloatingNavbarProps) {
+  if (isWowVariant('floating-navbar', props.variant)) {
+    return (
+      <WowSignature
+        family="floating-navbar"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
+    )
+  }
+  return <FloatingNavbarCore {...props} />
 }

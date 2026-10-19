@@ -1,4 +1,17 @@
 import { useState, type ReactNode } from 'react'
+import { WOW_VARIANTS } from '@/lib/wow-variants.ts'
+
+const PIN_IDS = new Set([
+  'pin-scroll',
+  'pin-steps',
+  'pin-story',
+  'scrub-essay',
+  'scrub-timeline',
+  'launch-scrub',
+  'scrub-bars',
+  'pin-sports',
+  'scroll-film',
+])
 
 export type VariantDoc = {
   id: string
@@ -11,22 +24,39 @@ export function VariantGallery({
   items,
   render,
   previewClassName = '',
+  family,
 }: {
-  items: VariantDoc[]
+  items: readonly VariantDoc[]
   render: (id: string) => ReactNode
   previewClassName?: string
+  family?: string
 }) {
+  const signatures = family ? new Set<string>(WOW_VARIANTS[family as keyof typeof WOW_VARIANTS] ?? []) : new Set<string>()
   return (
     <div className="grid gap-4">
       {items.map((item) => (
-        <article key={item.id} id={item.id} className="overflow-hidden rounded-3xl border border-white/10 bg-[#0c0d14]">
-          <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-white/10 px-4 py-3">
-            <h3 className="font-mono text-sm text-[#f5c16c]">
-              {item.name} <span className="text-zinc-500">/ {item.id}</span>
+        <article
+          key={item.id}
+          id={item.id}
+          className={PIN_IDS.has(item.id) ? 'relative rounded-3xl border border-nx-border bg-nx-card' : 'relative overflow-hidden rounded-3xl border border-nx-border bg-nx-card'}
+        >
+          <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-nx-border px-4 py-3">
+            <h3 className="font-mono text-sm text-nx-accent">
+              {item.name} <span className="text-nx-muted">/ {item.id}</span>
+              {signatures.has(item.id) ? (
+                <span className="ml-2 rounded-full bg-[#111113] px-2 py-0.5 text-[10px] tracking-[0.16em] text-[#f3c27a] uppercase">
+                  Signature
+                </span>
+              ) : null}
             </h3>
-            <p className="max-w-xl text-sm text-zinc-300">{item.description}</p>
+            <p className="max-w-xl text-sm text-nx-muted">{item.description}</p>
           </div>
-          <div className={`p-4 md:p-6 ${previewClassName}`}>{render(item.id)}</div>
+          <div
+            data-pin-scroller={PIN_IDS.has(item.id) ? '' : undefined}
+            className={PIN_IDS.has(item.id) ? 'min-h-[92vh] max-h-[92vh] overflow-y-auto p-4 md:p-6' : `p-4 md:p-6 ${previewClassName}`}
+          >
+            {render(item.id)}
+          </div>
           <Usage code={item.usage} />
         </article>
       ))}
@@ -37,13 +67,13 @@ export function VariantGallery({
 function Usage({ code }: { code: string }) {
   const [copied, setCopied] = useState(false)
   return (
-    <div className="flex items-start justify-between gap-3 border-t border-white/10 bg-black/30 px-4 py-3">
-      <pre className="overflow-x-auto text-xs leading-5 text-zinc-200">
+    <div className="flex items-start justify-between gap-3 border-t border-nx-border bg-nx-bg/50 px-4 py-3">
+      <pre className="overflow-x-auto text-xs leading-5 text-nx-muted">
         <code>{code}</code>
       </pre>
       <button
         type="button"
-        className="h-8 shrink-0 rounded-full border border-white/15 px-3 text-xs text-zinc-100 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]"
+        className="inline-flex min-h-11 shrink-0 items-center rounded-full border border-nx-border px-3 text-xs text-nx-fg hover:bg-nx-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nx-ring"
         onClick={() => {
           void navigator.clipboard.writeText(code).then(() => {
             setCopied(true)

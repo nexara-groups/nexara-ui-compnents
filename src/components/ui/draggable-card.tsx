@@ -1,5 +1,8 @@
 'use client'
 
+import { isWowVariant } from '@/lib/wow-variants.ts'
+import { WowSignature } from './wow-lazy.tsx'
+
 import {
   animate,
   motion,
@@ -18,25 +21,25 @@ import {
   type ReactNode,
   type RefObject,
 } from 'react'
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const variants = {
-  glass:
-    'border border-white/12 bg-white/[0.06] shadow-[0_24px_70px_-36px_rgba(0,0,0,0.85)] backdrop-blur-xl',
-  film: 'rounded-md border border-[#1c1915] bg-[#14110e]',
-  sticker: 'rotate-[-2deg] border border-white/20 bg-[#f6f3ec] text-[#1c1915] shadow-[0_12px_30px_-18px_rgba(0,0,0,0.8)]',
-  window: 'overflow-hidden rounded-xl border border-white/15 bg-[#10131a] p-0',
-  ticket: 'rounded-2xl border border-dashed border-white/30 bg-[#17151f]',
-  polaroid: 'rounded-md border border-[#efeae2] bg-[#f6f3ec] text-[#1c1915] shadow-[0_18px_40px_-24px_rgba(0,0,0,0.8)]',
-  dossier: 'rounded-sm border border-[#d8c7a2]/40 bg-[#1a1712]',
-  receipt: 'rounded-none border border-white/15 bg-[#12110e] font-mono shadow-none',
-  comic: 'rounded-md border-[3px] border-[#f6f3ec] bg-[#24180f] shadow-[6px_6px_0_0_#ff6a3d]',
-  playing: 'rounded-xl border border-[#efeae2] bg-[#f6f3ec] text-[#7f1d1d]',
-  boarding: 'rounded-none bg-[#f4efe4] font-mono text-[#1c1915]',
-  postcard: 'rounded-md border border-[#efeae2] bg-[#f6f3ec] text-[#1c1915]',
+  glass: 'rounded-3xl border border-nx-border bg-nx-glass shadow-[var(--nx-shadow)] backdrop-blur-xl',
+  window: 'overflow-hidden rounded-xl border border-nx-border bg-nx-card p-0',
+  note: 'rounded-xl border border-nx-border bg-[#fffbeb] text-[#1c1915] shadow-[var(--nx-shadow)]',
+  media: 'overflow-hidden rounded-2xl border border-nx-border bg-nx-card p-2',
+  task: 'rounded-xl border border-nx-border bg-nx-card',
+  invite: 'rounded-[1.4rem] border border-nx-border bg-nx-fg text-nx-bg',
+  file: 'rounded-lg border border-nx-border bg-nx-card',
+  widget: 'rounded-3xl border border-nx-border bg-nx-elevated',
+  message: 'rounded-2xl rounded-bl-md border border-nx-border bg-nx-card',
+  stack: 'rounded-2xl border border-nx-border bg-nx-card shadow-[8px_8px_0_-2px_var(--nx-elevated),16px_16px_0_-4px_var(--nx-bg)]',
+  compact: 'rounded-full border border-nx-border bg-nx-card px-4 py-2',
+  calendar: 'rounded-2xl border border-nx-border bg-nx-card overflow-hidden p-0',
 } as const
 
-export type DraggableCardVariant = keyof typeof variants
+export type DraggableCardVariant = keyof typeof variants | 'physics-deck' | 'magnetic-stack' | 'prism-plate' | 'particle-toss'
 export type DraggableCardBounds = 'parent' | 'viewport' | RefObject<HTMLElement | null>
 
 export interface DraggableCardProps {
@@ -91,93 +94,32 @@ function clamp(value: number, min: number, max: number) {
 let stackOrder = 10
 
 function CardChrome({ variant }: { variant: DraggableCardVariant }) {
-  if (variant === 'ticket') {
-    return (
-      <span aria-hidden="true" className="pointer-events-none absolute inset-y-4 left-5 border-l border-dashed border-white/30" />
-    )
-  }
-  if (variant === 'polaroid') {
-    return <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-[#efeae2]" />
-  }
-  if (variant === 'dossier') {
-    return (
-      <>
-        <span aria-hidden="true" className="pointer-events-none absolute inset-x-4 top-0 h-px bg-[repeating-linear-gradient(90deg,transparent_0_10px,rgba(216,199,162,0.35)_10px_11px)]" style={{ top: '38%' }} />
-        <span aria-hidden="true" className="pointer-events-none absolute top-3 right-3 inline-flex h-8 items-center rounded-full border border-[#ff6a3d] px-2 text-[10px] tracking-[0.16em] text-[#ff6a3d] uppercase">
-          File
-        </span>
-      </>
-    )
-  }
-  if (variant === 'film') {
-    return (
-      <>
-        <span aria-hidden="true" className="pointer-events-none absolute inset-y-2 left-1 w-3 bg-[radial-gradient(circle,#09090f_3px,transparent_3.5px)] bg-[length:12px_14px] bg-repeat-y" />
-        <span aria-hidden="true" className="pointer-events-none absolute inset-y-2 right-1 w-3 bg-[radial-gradient(circle,#09090f_3px,transparent_3.5px)] bg-[length:12px_14px] bg-repeat-y" />
-      </>
-    )
-  }
-  if (variant === 'sticker') {
-    return <span aria-hidden="true" className="pointer-events-none absolute -top-2 left-8 h-4 w-16 -rotate-2 bg-[#f5c16c]/80" />
-  }
   if (variant === 'window') {
-    return <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-9 border-b border-white/10 bg-white/5" />
+    return <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-9 border-b border-nx-border bg-nx-bg/80" />
   }
-  if (variant === 'receipt') {
-    return (
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-3"
-        style={{
-          background:
-            'radial-gradient(circle at 8px 12px, transparent 7px, #12110e 7.5px) left bottom / 16px 12px repeat-x',
-        }}
-      />
-    )
+  if (variant === 'media') {
+    return <MediaFrame src={media.journal} alt="" className="pointer-events-none mb-3 h-24 rounded-xl" />
   }
-  if (variant === 'playing') {
+  if (variant === 'calendar') {
     return (
-      <span aria-hidden="true" className="pointer-events-none absolute top-3 left-3 font-serif text-xl text-[#7f1d1d]">
-        A♥
+      <span aria-hidden="true" className="mb-0 block bg-nx-accent px-4 py-2 text-center text-[11px] tracking-[0.16em] text-nx-accent-fg uppercase">
+        November
       </span>
     )
   }
-  if (variant === 'boarding') {
+  if (variant === 'file') {
     return (
-      <span aria-hidden="true" className="mb-3 block border-b border-[#1c1915]/20 pb-3 text-[#1c1915]">
-        <span className="grid grid-cols-[1fr_auto_1fr] items-end gap-2">
-          <span>
-            <span className="block text-[10px] tracking-[0.16em] uppercase">From</span>
-            <span className="font-serif text-2xl">SFO</span>
-          </span>
-          <span className="pb-1 text-[10px] tracking-[0.14em]">NX 18</span>
-          <span className="text-right">
-            <span className="block text-[10px] tracking-[0.16em] uppercase">To</span>
-            <span className="font-serif text-2xl">LHR</span>
-          </span>
-        </span>
-        <span className="mt-2 flex justify-between text-[10px] tracking-[0.14em] uppercase">
-          <span>Gate C4</span>
-          <span>Seat 14A</span>
-        </span>
+      <span aria-hidden="true" className="mb-2 flex items-center gap-2 text-[11px] tracking-[0.14em] text-nx-muted uppercase">
+        <span className="size-3 rounded-sm bg-nx-accent/70" />
+        NX-18.md
       </span>
     )
   }
-  if (variant === 'postcard') {
+  if (variant === 'widget') {
     return (
-      <span aria-hidden="true" className="pointer-events-none absolute top-3 right-3 size-8 border border-dashed border-[#1c1915]/40" />
-    )
-  }
-  if (variant === 'comic') {
-    return (
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-30"
-        style={{
-          backgroundImage: 'radial-gradient(rgba(246,243,236,0.45) 0.8px, transparent 0.9px)',
-          backgroundSize: '6px 6px',
-        }}
-      />
+      <span aria-hidden="true" className="mb-2 block text-[11px] text-nx-muted">
+        Uptime
+      </span>
     )
   }
   return null
@@ -201,7 +143,7 @@ function GripIcon() {
  * A springy card you can throw inside a bounded area, with keyboard nudging.
  * Copy this file plus `src/lib/utils.ts`. Requires framer-motion.
  */
-export function DraggableCard({
+function DraggableCardCore({
   children,
   className,
   contentClassName,
@@ -358,7 +300,7 @@ export function DraggableCard({
     bounds === 'viewport' ? viewportBox : bounds === 'parent' ? stageRef : bounds
 
   const placed = bounds === 'parent' ? 'absolute top-4 left-4 w-72' : 'w-72'
-  const paper = variant === 'polaroid' || variant === 'receipt' || variant === 'sticker' || variant === 'comic' || variant === 'playing' || variant === 'postcard' || variant === 'boarding'
+  const paper = variant === 'note' || variant === 'invite'
 
   const card = (
     <div
@@ -399,14 +341,14 @@ export function DraggableCard({
           'pointer-events-auto relative max-w-full text-left outline-none',
           placed,
           !handle && !disabled && 'cursor-grab touch-none select-none',
-          'focus-visible:ring-2 focus-visible:ring-[#8b7cff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090f]',
+          'focus-visible:ring-2 focus-visible:ring-nx-ring focus-visible:ring-offset-2 focus-visible:ring-offset-nx-bg',
           disabled && 'cursor-default',
         )}
         onKeyDown={onKeyDown}
         onKeyUp={onKeyUp}
       >
         <motion.div
-          className={cn('relative rounded-3xl p-5', variants[variant], className)}
+          className={cn('relative rounded-3xl p-5', variants[variant as keyof typeof variants], className)}
           style={{
             rotateX: tilt && !reduced ? rotateX : 0,
             rotateY: tilt && !reduced ? rotateY : 0,
@@ -427,10 +369,9 @@ export function DraggableCard({
             className={cn(
               'relative z-10',
               handle && 'pr-12',
-              variant === 'polaroid' && 'mb-8 text-[#1c1915]',
-              variant === 'ticket' && 'pl-6',
               variant === 'window' && 'mt-9',
-              variant === 'dossier' && 'pt-6',
+              variant === 'calendar' && 'p-4',
+              variant === 'compact' && 'p-0',
               contentClassName,
             )}
           >
@@ -478,4 +419,20 @@ export function DraggableCard({
       {card}
     </div>
   )
+}
+
+export function DraggableCard(props: DraggableCardProps) {
+  if (isWowVariant('draggable-card', props.variant)) {
+    return (
+      <WowSignature
+        family="draggable-card"
+        variant={props.variant!}
+        className={props.className}
+        
+      >
+      {props.children}
+    </WowSignature>
+    )
+  }
+  return <DraggableCardCore {...props} />
 }

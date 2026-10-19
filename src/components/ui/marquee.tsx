@@ -1,6 +1,10 @@
 'use client'
 
+import { isWowVariant } from '@/lib/wow-variants.ts'
+import { WowSignature } from './wow-lazy.tsx'
+
 import { useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import { MediaFrame, media } from '@/lib/media.tsx'
 import { cn, useKeyframes, usePrefersReducedMotion } from '@/lib/utils.ts'
 
 const MARQUEE_CSS = `
@@ -14,15 +18,19 @@ const VARIANTS = [
   'logos',
   'quotes',
   'ticker',
-  'stubs',
-  'filmstrip',
-  'pills',
+  'avatars',
   'stats',
-  'hazard',
-  'profiles',
-  'log',
-  'tiles',
-  'medals',
+  'products',
+  'changelog',
+  'tags',
+  'reviews',
+  'apps',
+  'metrics',
+  'awards',
+  'cylinder-3d',
+  'tape-reels',
+  'velocity-scroll',
+  'grain-tape',
 ] as const
 
 export type MarqueeVariant = (typeof VARIANTS)[number]
@@ -47,11 +55,11 @@ export interface MarqueeProps {
 
 /**
  * Marquee
- * Twelve tracks: logos, quotes, news ticker, ticket stubs, filmstrip, pills,
- * stats, hazard tape, profiles, log, app tiles, and medals.
+ * Twelve tracks: logos, quotes, ticker, avatars, stats, products,
+ * changelog, tags, reviews, apps, metrics, awards.
  * Copy this file plus `src/lib/utils.ts`.
  */
-export function Marquee({
+function MarqueeCore({
   children,
   className,
   controlClassName,
@@ -147,7 +155,7 @@ export function Marquee({
       {showControls && !reduced ? (
         <button
           type="button"
-          className={cn('mt-3 inline-flex h-9 items-center rounded-full border border-current/25 px-3 text-xs', controlClassName)}
+          className={cn('mt-3 inline-flex min-h-11 items-center rounded-full border border-current/25 px-3 text-xs', controlClassName)}
           aria-pressed={pauseHeld}
           aria-controls={trackId}
           onClick={() => {
@@ -164,95 +172,104 @@ export function Marquee({
 }
 
 function frameClass(variant: MarqueeVariant) {
-  if (variant === 'ticker') return 'bg-[#111] py-2 font-mono text-xs text-[#f5c16c]'
-  if (variant === 'hazard') return 'bg-[#111] py-3'
-  if (variant === 'log') return 'rounded-xl bg-[#07110f] py-3 font-mono text-xs text-[#3ddec4]'
-  if (variant === 'filmstrip') return 'bg-[#14110e] py-3'
+  if (variant === 'ticker') return 'rounded-lg bg-[#111113] py-2 font-mono text-xs text-[#e8d48b]'
+  if (variant === 'changelog') return 'rounded-xl border border-nx-border bg-nx-card py-3 font-mono text-xs'
   return ''
 }
 
 function FrameLabel({ variant }: { variant: MarqueeVariant }) {
-  if (variant === 'ticker') return <p className="px-3 pb-1 text-[10px] tracking-[0.18em] text-[#ff6a3d]">LIVE · 18:04</p>
-  if (variant === 'hazard') return null
-  if (variant === 'log') return <p className="px-3 pb-1 text-zinc-500">~/nexara</p>
+  if (variant === 'ticker') return <p className="px-3 pb-1 text-xs tracking-[0.18em] text-[#fb7185]">LIVE · 18:04</p>
+  if (variant === 'changelog') return <p className="px-3 pb-1 text-nx-muted">~/nexara</p>
   return null
 }
 
 function samples(variant: MarqueeVariant): ReactNode {
   if (variant === 'quotes') {
-    return ['Quiet room.', 'Ship the lamp.', 'Stay late.'].map((line) => (
-      <span key={line} className="w-56 rounded-2xl border border-white/10 bg-[#14151f] p-4 text-sm">“{line}”</span>
+    return ['The registry finally feels like a product.', 'We shipped the mast in a week.', 'Quiet, and finished.'].map((line) => (
+      <span key={line} className="w-64 rounded-2xl border border-nx-border bg-nx-card p-4 text-sm shadow-[var(--nx-shadow)]">“{line}”</span>
     ))
   }
   if (variant === 'ticker') {
-    return ['Harbor opens', 'Export ready', 'Issue 18'].map((line) => (
+    return ['Harbor opens', 'Export ready', 'Issue 18 ships'].map((line) => (
       <span key={line} className="px-4">{line} —</span>
     ))
   }
-  if (variant === 'stubs') {
-    return ['C12', 'C13', 'C14'].map((serial) => (
-      <span key={serial} className="inline-flex items-stretch overflow-hidden bg-[#f6f3ec] text-[#1c1915]">
-        <span className="border-r border-dashed border-[#1c1915]/30 px-3 py-2 font-mono text-xs">{serial}</span>
-        <span className="px-3 py-2 text-xs">ADMIT</span>
+  if (variant === 'avatars') {
+    return [
+      [media.people.anitha, 'Anitha Rao'],
+      [media.people.kiran, 'Kiran Reddy'],
+      [media.people.meera, 'Meera Shah'],
+    ].map(([src, name]) => (
+      <span key={name} className="inline-flex items-center gap-2 rounded-full border border-nx-border bg-nx-card pr-3">
+        <MediaFrame src={src} alt={name} grain={false} className="size-8 shrink-0 rounded-full" />
+        <span className="text-sm">{name}</span>
       </span>
     ))
   }
-  if (variant === 'filmstrip') {
-    return ['01', '02', '03', '04'].map((frame) => (
-      <span key={frame} className="inline-flex h-16 w-24 items-end border-x-8 border-[#09090f] bg-[#3ddec4] p-1 text-xs text-[#06241d]">{frame}</span>
+  if (variant === 'tags') {
+    return ['Draggable', 'Aurora', 'Modal', 'Bento'].map((item) => (
+      <span key={item} className="inline-flex h-9 items-center rounded-full border border-nx-border bg-nx-card px-4 text-sm">{item}</span>
     ))
   }
-  if (variant === 'pills') {
-    return ['Draggable', 'Aurora', 'Modal'].map((item) => (
-      <span key={item} className="inline-flex h-9 items-center rounded-full border border-white/15 px-4 text-sm">{item}</span>
-    ))
-  }
-  if (variant === 'stats') {
+  if (variant === 'stats' || variant === 'metrics') {
     return [
       ['128', 'Rooms'],
       ['24', 'Open'],
       ['4', 'Studios'],
     ].map(([value, label]) => (
-      <span key={label} className="px-4 text-center"><span className="block font-serif text-2xl">{value}</span><span className="text-xs text-zinc-400">{label}</span></span>
+      <span key={label} className="px-4 text-center">
+        <span className="block font-serif text-2xl">{value}</span>
+        <span className="text-xs text-nx-muted">{label}</span>
+      </span>
     ))
   }
-  if (variant === 'hazard') {
-    return (
-      <span
-        className="px-8 py-2 text-sm font-semibold text-[#1a100c]"
-        style={{ backgroundImage: 'repeating-linear-gradient(135deg, #f5c16c 0 12px, #111 12px 24px)' }}
-      >
-        WET FLOOR
+  if (variant === 'products') {
+    return ['Lamp 04', 'Desk 12', 'Chair 03'].map((item) => (
+      <span key={item} className="inline-flex items-center gap-3 rounded-xl border border-nx-border bg-nx-card px-3 py-2">
+        <span className="size-8 rounded-lg bg-[linear-gradient(135deg,#4c46e0,#22c5b0)]" />
+        <span className="text-sm">{item}</span>
       </span>
+    ))
+  }
+  if (variant === 'changelog') {
+    return ['build ok', 'lint ok', 'preview up'].map((line) => <span key={line} className="px-3 text-nx-ok">› {line}</span>)
+  }
+  if (variant === 'reviews') {
+    return ['5.0 Harbor', '4.9 Atlas', '5.0 Field'].map((line) => (
+      <span key={line} className="rounded-full bg-nx-soft px-3 py-1 text-sm text-nx-accent">{line}</span>
+    ))
+  }
+  if (variant === 'apps') {
+    return ['Rooms', 'Library', 'Export', 'Notes'].map((name) => (
+      <span key={name} className="inline-flex size-14 flex-col items-center justify-center rounded-[1.1rem] bg-nx-card text-[10px] shadow-[var(--nx-shadow)] ring-1 ring-nx-border">
+        <span className="mb-1 size-5 rounded-md bg-nx-accent/80" />
+        {name}
+      </span>
+    ))
+  }
+  if (variant === 'awards') {
+    return ['Awwwards', 'CSS Design', 'Product Hunt'].map((name) => (
+      <span key={name} className="inline-flex items-center gap-2 rounded-full border border-nx-border px-3 py-1 text-xs tracking-[0.14em] uppercase">
+        <span className="size-1.5 rounded-full bg-nx-accent" />
+        {name}
+      </span>
+    ))
+  }
+  return ['Harbor', 'Atlas', 'Field', 'Lumen', 'North'].map((name) => (
+    <span key={name} className="px-4 text-sm font-medium tracking-[0.18em] text-nx-muted uppercase">{name}</span>
+  ))
+}
+
+export function Marquee(props: MarqueeProps) {
+  if (isWowVariant('marquee', props.variant)) {
+    return (
+      <WowSignature
+        family="marquee"
+        variant={props.variant!}
+        className={props.className}
+        
+       />
     )
   }
-  if (variant === 'profiles') {
-    return ['AK', 'NR', 'JL'].map((initials) => (
-      <span key={initials} className="inline-flex items-center gap-2 rounded-full bg-[#16141c] pr-3">
-        <span className="inline-flex size-8 items-center justify-center rounded-full bg-[#8b7cff] text-xs text-[#09090f]">{initials}</span>
-        {initials}
-      </span>
-    ))
-  }
-  if (variant === 'log') {
-    return ['build ok', 'lint ok', 'preview up'].map((line) => <span key={line} className="px-3">› {line}</span>)
-  }
-  if (variant === 'tiles') {
-    return ['#ff6a3d', '#8b7cff', '#3ddec4', '#f5c16c'].map((tone) => (
-      <span key={tone} className="inline-flex size-14 items-center justify-center rounded-[1.1rem]" style={{ background: tone }}>
-        <span className="size-4 rounded-sm bg-[#09090f]" />
-      </span>
-    ))
-  }
-  if (variant === 'medals') {
-    return ['Gold', 'Press', 'Type'].map((name) => (
-      <span key={name} className="inline-flex flex-col items-center px-3">
-        <span className="h-3 w-4 bg-[#ff6a3d]" />
-        <span className="inline-flex size-10 items-center justify-center rounded-full border-2 border-[#f5c16c] text-[10px] text-[#f5c16c]">{name}</span>
-      </span>
-    ))
-  }
-  return ['North', 'Kite', 'Field', 'Harbor', 'Lumen'].map((name) => (
-    <span key={name} className="px-4 text-sm tracking-[0.22em] text-zinc-300 uppercase">{name}</span>
-  ))
+  return <MarqueeCore {...props} />
 }
