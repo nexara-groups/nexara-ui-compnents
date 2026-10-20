@@ -3,11 +3,13 @@ import { catalog, categories, type CatalogEntry } from '@/docs/catalog.tsx'
 import { VariantGallery } from '@/docs/variant-gallery.tsx'
 import { variantDocs } from '@/docs/variant-meta.ts'
 import { renderVariantPreview } from '@/docs/previews.tsx'
+import { FamilyStudio } from '@/docs/studio.tsx'
+import { libraryMeta, renderLibrary } from '@/docs/library-meta.ts'
 import { cn } from '@/lib/utils.ts'
 
 function readHash() {
   const value = window.location.hash.replace(/^#/, '')
-  return value || 'draggable-card'
+  return value.split('/')[0] || 'hero'
 }
 
 function useSlug() {
@@ -15,7 +17,7 @@ function useSlug() {
 
   useEffect(() => {
     if (!window.location.hash) {
-      window.history.replaceState(null, '', '#draggable-card')
+      window.history.replaceState(null, '', '#hero')
     }
     const sync = () => setSlug(readHash())
     window.addEventListener('hashchange', sync)
@@ -123,7 +125,7 @@ export function DocsApp() {
       </a>
       <header className="border-b border-white/10">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 md:px-6">
-          <a href="#draggable-card" className="group flex items-center gap-3">
+          <a href="#hero" className="group flex items-center gap-3">
             <span className="inline-flex size-9 items-center justify-center rounded-xl border border-white/15 bg-white/[0.03] font-serif text-lg">
               N
             </span>
@@ -132,7 +134,15 @@ export function DocsApp() {
               <span className="mt-1 block text-xs text-zinc-400">Copy-paste components for agents and people</span>
             </span>
           </a>
-          <p className="hidden text-sm text-zinc-400 sm:block">{catalog.length} components</p>
+          <div className="flex items-center gap-3 text-sm">
+            <a
+              href="#flagship"
+              className="rounded-full border border-white/15 px-3 py-1.5 text-[#f6f3ec] hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]"
+            >
+              Helio flagship
+            </a>
+            <p className="hidden text-zinc-400 sm:block">{catalog.length} components</p>
+          </div>
         </div>
       </header>
 
@@ -141,7 +151,7 @@ export function DocsApp() {
           <label className="mb-4 block md:hidden">
             <span className="sr-only">Jump to a component</span>
             <select
-              value={entry?.slug ?? 'draggable-card'}
+              value={entry?.slug ?? 'hero'}
               onChange={(event) => {
                 window.location.hash = event.target.value
               }}
@@ -206,6 +216,23 @@ export function DocsApp() {
 }
 
 function ComponentPage({ entry }: { entry: CatalogEntry }) {
+  if (entry.studio) {
+    const meta = libraryMeta[entry.slug]
+    return (
+      <FamilyStudio
+        key={entry.slug}
+        family={entry.slug}
+        title={entry.name}
+        description={entry.description}
+        path={entry.path}
+        dependencies={entry.dependencies}
+        variants={meta?.variants ?? []}
+        props={entry.props}
+        render={(id) => renderLibrary(entry.slug, id)}
+        usage={(id) => meta?.usage(id) ?? entry.usage}
+      />
+    )
+  }
   const Demo = entry.Demo
   return (
     <article className="space-y-8">
@@ -214,17 +241,30 @@ function ComponentPage({ entry }: { entry: CatalogEntry }) {
         <h1 className="mt-2 font-serif text-4xl tracking-tight md:text-5xl">{entry.name}</h1>
         <p className="mt-3 text-base leading-7 text-zinc-300">{entry.description}</p>
       </header>
-      <section className="space-y-3">
-        <h2 className="font-serif text-2xl">Variants</h2>
-        <p className="text-sm leading-6 text-zinc-300">
-          Ask for <span className="text-[#f6f3ec]">{entry.slug} / {variantDocs[entry.slug as keyof typeof variantDocs]?.[0]?.id ?? 'variant'}</span> or
-          any id below. Each block is a live preview and a copyable usage line.
+      {variantDocs[entry.slug as keyof typeof variantDocs] ? (
+        <section className="space-y-3">
+          <h2 className="font-serif text-2xl">Variants</h2>
+          <p className="text-sm leading-6 text-zinc-300">
+            Ask for <span className="text-[#f6f3ec]">{entry.slug} / {variantDocs[entry.slug as keyof typeof variantDocs]?.[0]?.id ?? 'variant'}</span> or
+            any id below. Each block is a live preview and a copyable usage line.
+          </p>
+          <VariantGallery
+            items={variantDocs[entry.slug as keyof typeof variantDocs] ?? []}
+            render={(id) => renderVariantPreview(entry.slug, id)}
+          />
+        </section>
+      ) : (
+        <p className="text-sm text-zinc-300">
+          Full assembled site:{' '}
+          <a className="text-[#f5c16c] underline-offset-4 hover:underline" href="#flagship">
+            #flagship
+          </a>
+          {' · '}
+          <a className="text-[#f5c16c] underline-offset-4 hover:underline" href="#flagship-dashboard">
+            #flagship-dashboard
+          </a>
         </p>
-        <VariantGallery
-          items={variantDocs[entry.slug as keyof typeof variantDocs] ?? []}
-          render={(id) => renderVariantPreview(entry.slug, id)}
-        />
-      </section>
+      )}
       <Preview>
         <Demo />
       </Preview>
@@ -254,8 +294,8 @@ function Missing({ slug }: { slug: string }) {
       <h1 className="font-serif text-4xl">No component named {slug}</h1>
       <p className="mt-3 text-zinc-300">
         The registry names are the hash of each page. Start with the{' '}
-        <a className="text-[#f5c16c] underline-offset-4 hover:underline" href="#draggable-card">
-          draggable card
+        <a className="text-[#f5c16c] underline-offset-4 hover:underline" href="#hero">
+          hero
         </a>
         .
       </p>

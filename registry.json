@@ -25,6 +25,328 @@
       "usage": "import { cn, usePrefersReducedMotion } from '@/lib/utils'"
     },
     {
+      "name": "theme",
+      "type": "registry:lib",
+      "title": "Theme presets",
+      "description": "NxTheme wrapper and four brand-agnostic presets: heliograph, paper, ink, clinical.",
+      "categories": [
+        "Utilities"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/lib/theme.tsx",
+          "type": "registry:lib"
+        }
+      ],
+      "usage": "import { NxTheme } from '@/lib/theme'\n\n<NxTheme preset=\"paper\">{children}</NxTheme>"
+    },
+    {
+      "name": "kit",
+      "type": "registry:lib",
+      "title": "Library kit",
+      "description": "Springs, grain, magnetic, count, focus trap, and contained pointer used by library families.",
+      "categories": [
+        "Utilities"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/lib/kit.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/library.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "usage": "import { springs, Grain, useFocusTrap } from '@/lib/kit'"
+    },
+    {
+      "name": "flagship-primitives",
+      "type": "registry:lib",
+      "title": "Flagship primitives",
+      "namespace": "flagship",
+      "description": "Heliograph springs, grain, magnetic pull, and Helio mark used by every flagship block.",
+      "categories": [
+        "Flagship"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "lenis",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/flagship/primitives.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/flagship/assets.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "usage": "import { Grain, Magnetic, springs } from '@/components/flagship/primitives'"
+    },
+    {
+      "name": "flagship-cinematic-hero",
+      "type": "registry:block",
+      "title": "Cinematic Hero",
+      "namespace": "flagship",
+      "description": "Scroll-driven iris reveal of a night-desk instrument, with chapter ticks and contained product photography.",
+      "categories": [
+        "Flagship"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "flagship-primitives"
+      ],
+      "files": [
+        {
+          "path": "src/components/flagship/cinematic-hero.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "usage": "import { CinematicHero } from '@/components/flagship/cinematic-hero'\n\n<CinematicHero title=\"A desk that keeps the signal.\" />"
+    },
+    {
+      "name": "flagship-orbital-hero",
+      "type": "registry:block",
+      "title": "Orbital Hero",
+      "namespace": "flagship",
+      "description": "Contained WebGL heliograph that aims a brass crystal at the cursor. Orbit, beam, and focus modes.",
+      "categories": [
+        "Flagship"
+      ],
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "flagship-primitives"
+      ],
+      "files": [
+        {
+          "path": "src/components/flagship/orbital-hero.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/components/flagship/orbital-scene.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "usage": "import { OrbitalHero } from '@/components/flagship/orbital-hero'\n\n<OrbitalHero title=\"Aim the instrument.\" />"
+    },
+    {
+      "name": "flagship-kinetic-hero",
+      "type": "registry:block",
+      "title": "Kinetic Hero",
+      "namespace": "flagship",
+      "description": "Editorial letters with mass. Click to lock a glyph, scroll to shear the pair.",
+      "categories": [
+        "Flagship"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "flagship-primitives"
+      ],
+      "files": [
+        {
+          "path": "src/components/flagship/kinetic-hero.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "usage": "import { KineticHero } from '@/components/flagship/kinetic-hero'\n\n<KineticHero lines={['THE NIGHT', 'KEEPS SIGNAL']} />"
+    },
+    {
+      "name": "flagship-atelier-nav",
+      "type": "registry:block",
+      "title": "Atelier Nav",
+      "namespace": "flagship",
+      "description": "Morphing mega-menu navigation with a compact scroll state and a full-viewport mobile drawer.",
+      "categories": [
+        "Flagship"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "flagship-primitives"
+      ],
+      "files": [
+        {
+          "path": "src/components/flagship/atelier-nav.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "usage": "import { AtelierNav } from '@/components/flagship/atelier-nav'\n\n<AtelierNav logo=\"Helio\" />"
+    },
+    {
+      "name": "flagship-scroll-story",
+      "type": "registry:block",
+      "title": "Scroll Story",
+      "namespace": "flagship",
+      "description": "Sticky chaptered story with a synced instrument plate that changes mode as you scroll.",
+      "categories": [
+        "Flagship"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "flagship-primitives"
+      ],
+      "files": [
+        {
+          "path": "src/components/flagship/scroll-story.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "usage": "import { ScrollStory } from '@/components/flagship/scroll-story'\n\n<ScrollStory />"
+    },
+    {
+      "name": "flagship-live-bento",
+      "type": "registry:block",
+      "title": "Live Bento",
+      "namespace": "flagship",
+      "description": "Interactive bento of working micro-demos: sparkline, command filter, compare, lane, ping.",
+      "categories": [
+        "Flagship"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "flagship-primitives"
+      ],
+      "files": [
+        {
+          "path": "src/components/flagship/live-bento.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "usage": "import { LiveBento } from '@/components/flagship/live-bento'\n\n<LiveBento />"
+    },
+    {
+      "name": "flagship-pricing",
+      "type": "registry:block",
+      "title": "Pricing Atelier",
+      "namespace": "flagship",
+      "description": "Monthly/annual morph, spring plan highlight, comparison table, and seat calculator.",
+      "categories": [
+        "Flagship"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "flagship-primitives"
+      ],
+      "files": [
+        {
+          "path": "src/components/flagship/pricing-atelier.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "usage": "import { PricingAtelier } from '@/components/flagship/pricing-atelier'\n\n<PricingAtelier />"
+    },
+    {
+      "name": "flagship-testimonials",
+      "type": "registry:block",
+      "title": "Testimonial Wall",
+      "namespace": "flagship",
+      "description": "Shallow-depth masonry of studio voices with filters and a held quote.",
+      "categories": [
+        "Flagship"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "flagship-primitives"
+      ],
+      "files": [
+        {
+          "path": "src/components/flagship/testimonial-wall.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "usage": "import { TestimonialWall } from '@/components/flagship/testimonial-wall'\n\n<TestimonialWall />"
+    },
+    {
+      "name": "flagship-dashboard",
+      "type": "registry:block",
+      "title": "Atelier Dashboard",
+      "namespace": "flagship",
+      "description": "Product console: sidebar, command palette, live chart, sortable table, empty and loading states.",
+      "categories": [
+        "Flagship"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "flagship-primitives"
+      ],
+      "files": [
+        {
+          "path": "src/components/flagship/atelier-dashboard.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "usage": "import { AtelierDashboard } from '@/components/flagship/atelier-dashboard'\n\n<AtelierDashboard />"
+    },
+    {
       "name": "draggable-card",
       "type": "registry:ui",
       "title": "Draggable Card",
@@ -1301,104 +1623,6 @@
       ]
     },
     {
-      "name": "hero",
-      "type": "registry:ui",
-      "title": "Hero",
-      "description": "A centered or split marketing intro with staggered entrance and slots for actions and media. Variants: saas, download, video, logos, pricing, agency, commerce, event, search, dashboard, editorial, waitlist.",
-      "categories": [
-        "Sections"
-      ],
-      "dependencies": [
-        "framer-motion",
-        "clsx",
-        "tailwind-merge"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
-      "files": [
-        {
-          "path": "src/components/ui/hero.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "usage": "import { Hero } from '@/components/ui/hero'\n\n<Hero align=\"split\" eyebrow=\"New\" title=\"A room with movable parts\" description=\"Compose this freely.\" />",
-      "variants": [
-        {
-          "name": "saas",
-          "title": "SaaS",
-          "description": "Gradient product window beside the pitch.",
-          "usage": "<Hero variant=\"saas\" title=\"Move the furniture\" />"
-        },
-        {
-          "name": "download",
-          "title": "Download",
-          "description": "Phone mockups and store badges.",
-          "usage": "<Hero variant=\"download\" title=\"Take the room with you\" />"
-        },
-        {
-          "name": "video",
-          "title": "Video",
-          "description": "Full-bleed picture with a play control.",
-          "usage": "<Hero variant=\"video\" title=\"Watch the room\" />"
-        },
-        {
-          "name": "logos",
-          "title": "Logos",
-          "description": "A logo row and a testimonial.",
-          "usage": "<Hero variant=\"logos\" title=\"Studios already here\" />"
-        },
-        {
-          "name": "pricing",
-          "title": "Pricing",
-          "description": "A price card leads the page.",
-          "usage": "<Hero variant=\"pricing\" title=\"One plan\" />"
-        },
-        {
-          "name": "agency",
-          "title": "Agency",
-          "description": "A typographic masthead and an index.",
-          "usage": "<Hero variant=\"agency\" title=\"Move the furniture\" />"
-        },
-        {
-          "name": "commerce",
-          "title": "Commerce",
-          "description": "A product stage, price, and swatches.",
-          "usage": "<Hero variant=\"commerce\" title=\"Lamp 04\" />"
-        },
-        {
-          "name": "event",
-          "title": "Event",
-          "description": "Date, place, and a countdown.",
-          "usage": "<Hero variant=\"event\" title=\"Harbor Hall\" />"
-        },
-        {
-          "name": "search",
-          "title": "Search",
-          "description": "The search field is the primary action.",
-          "usage": "<Hero variant=\"search\" title=\"Find a component\" />"
-        },
-        {
-          "name": "dashboard",
-          "title": "Dashboard",
-          "description": "App chrome: a sidebar and metric tiles.",
-          "usage": "<Hero variant=\"dashboard\" title=\"This week\" />"
-        },
-        {
-          "name": "editorial",
-          "title": "Editorial",
-          "description": "A magazine cover beside the feature.",
-          "usage": "<Hero variant=\"editorial\" title=\"Issue 18\" />"
-        },
-        {
-          "name": "waitlist",
-          "title": "Waitlist",
-          "description": "Avatars, a count, and an email field.",
-          "usage": "<Hero variant=\"waitlist\" title=\"Ask for a seat\" />"
-        }
-      ]
-    },
-    {
       "name": "marquee",
       "type": "registry:ui",
       "title": "Marquee",
@@ -1492,6 +1716,640 @@
           "title": "Medals",
           "description": "Ribbon medals.",
           "usage": "<Marquee variant=\"medals\" />"
+        }
+      ]
+    },
+    {
+      "name": "hero",
+      "type": "registry:ui",
+      "title": "Hero",
+      "description": "Eleven first-screen mechanisms from a still caption to a kinetic rail. Brand-agnostic and themeable.",
+      "categories": [
+        "Library"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme",
+        "kit"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/hero.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/hero-scene.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { Hero } from '@/components/ui/hero'\n\n<Hero variant=\"stack\" title=\"Ship the first screen.\" />",
+      "variants": [
+        {
+          "name": "still",
+          "title": "Still",
+          "tier": "basic",
+          "description": "Full-bleed media. Type as caption.",
+          "usage": "<Hero variant=\"still\" title=\"Ship the first screen.\" />"
+        },
+        {
+          "name": "folio",
+          "title": "Folio",
+          "tier": "basic",
+          "description": "Paper claim cut into a photograph.",
+          "usage": "<Hero variant=\"folio\" title=\"Ship the first screen.\" />"
+        },
+        {
+          "name": "frame",
+          "title": "Frame",
+          "tier": "basic",
+          "description": "Working surface gets the pixels.",
+          "usage": "<Hero variant=\"frame\" title=\"Ship the first screen.\" />"
+        },
+        {
+          "name": "stack",
+          "title": "Stack",
+          "tier": "basic",
+          "description": "Sentence and two doors.",
+          "usage": "<Hero variant=\"stack\" title=\"Ship the first screen.\" />"
+        },
+        {
+          "name": "command",
+          "title": "Command",
+          "tier": "intermediate",
+          "description": "The field is the composition.",
+          "usage": "<Hero variant=\"command\" title=\"Ship the first screen.\" />"
+        },
+        {
+          "name": "fan",
+          "title": "Fan",
+          "tier": "intermediate",
+          "description": "Overlapping plates. Click brings one forward.",
+          "usage": "<Hero variant=\"fan\" title=\"Ship the first screen.\" />"
+        },
+        {
+          "name": "board",
+          "title": "Board",
+          "tier": "intermediate",
+          "description": "Split-flap wall spells the claim.",
+          "usage": "<Hero variant=\"board\" title=\"Ship the first screen.\" />"
+        },
+        {
+          "name": "cover",
+          "title": "Cover",
+          "tier": "intermediate",
+          "description": "Type as architecture plus an index.",
+          "usage": "<Hero variant=\"cover\" title=\"Ship the first screen.\" />"
+        },
+        {
+          "name": "iris",
+          "title": "Iris",
+          "tier": "advanced",
+          "description": "Mechanical aperture onto their media.",
+          "usage": "<Hero variant=\"iris\" title=\"Ship the first screen.\" />"
+        },
+        {
+          "name": "orbit",
+          "title": "Orbit",
+          "tier": "advanced",
+          "description": "Aimed instrument in a clipped plate.",
+          "usage": "<Hero variant=\"orbit\" title=\"Ship the first screen.\" fallback={<Still />} />"
+        },
+        {
+          "name": "kinetic",
+          "title": "Kinetic",
+          "tier": "advanced",
+          "description": "Letters have mass. CTA in the rail.",
+          "usage": "<Hero variant=\"kinetic\" title=\"SHIP THE FIRST SCREEN\" />"
+        }
+      ]
+    },
+    {
+      "name": "navbar",
+      "type": "registry:ui",
+      "title": "Navbar",
+      "description": "Eleven navigation mechanisms from a full-bleed rail to a morphing island.",
+      "categories": [
+        "Library"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme",
+        "kit"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/navbar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { Navbar } from '@/components/ui/navbar'\n\n<Navbar variant=\"rail\" logo=\"Mark\" items={items} />",
+      "variants": [
+        {
+          "name": "rail",
+          "title": "Rail",
+          "tier": "basic",
+          "description": "Full-bleed bar. Wordmark, destinations, one action.",
+          "usage": "<Navbar variant=\"rail\" items={items} />"
+        },
+        {
+          "name": "capsule",
+          "title": "Capsule",
+          "tier": "basic",
+          "description": "Detached pill. Four destinations.",
+          "usage": "<Navbar variant=\"capsule\" items={items} />"
+        },
+        {
+          "name": "column",
+          "title": "Column",
+          "tier": "basic",
+          "description": "Vertical index with section labels.",
+          "usage": "<Navbar variant=\"column\" items={items} />"
+        },
+        {
+          "name": "path",
+          "title": "Path",
+          "tier": "basic",
+          "description": "Crumb trail. Last node is here.",
+          "usage": "<Navbar variant=\"path\" items={items} />"
+        },
+        {
+          "name": "map",
+          "title": "Map",
+          "tier": "intermediate",
+          "description": "Multi-column destination panel.",
+          "usage": "<Navbar variant=\"map\" columns={columns} />"
+        },
+        {
+          "name": "command",
+          "title": "Command",
+          "tier": "intermediate",
+          "description": "The field is the navigation.",
+          "usage": "<Navbar variant=\"command\" items={items} />"
+        },
+        {
+          "name": "dock",
+          "title": "Dock",
+          "tier": "intermediate",
+          "description": "Icons over captions from an edge.",
+          "usage": "<Navbar variant=\"dock\" items={items} />"
+        },
+        {
+          "name": "mast",
+          "title": "Mast",
+          "tier": "intermediate",
+          "description": "Large mark plus index disclosure.",
+          "usage": "<Navbar variant=\"mast\" logo=\"Mark\" items={items} />"
+        },
+        {
+          "name": "curtain",
+          "title": "Curtain",
+          "tier": "advanced",
+          "description": "Viewport of type. Focus trap.",
+          "usage": "<Navbar variant=\"curtain\" items={items} />"
+        },
+        {
+          "name": "island",
+          "title": "Island",
+          "tier": "advanced",
+          "description": "One surface morphs job.",
+          "usage": "<Navbar variant=\"island\" items={items} />"
+        },
+        {
+          "name": "galley",
+          "title": "Galley",
+          "tier": "advanced",
+          "description": "Ruled editorial cells. Fill, not glow.",
+          "usage": "<Navbar variant=\"galley\" items={items} />"
+        }
+      ]
+    },
+    {
+      "name": "bento",
+      "type": "registry:ui",
+      "title": "Bento",
+      "description": "Eleven feature-section mechanisms. Ranked mosaics and working docks, not icon cards.",
+      "categories": [
+        "Library"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme",
+        "kit"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/bento.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { Bento } from '@/components/ui/bento'\n\n<Bento variant=\"mosaic\" tiles={tiles} />",
+      "variants": [
+        {
+          "name": "mosaic",
+          "title": "Mosaic",
+          "tier": "basic",
+          "description": "Ranked spans. One cell is twice the others.",
+          "usage": "<Bento variant=\"mosaic\" tiles={tiles} />"
+        },
+        {
+          "name": "reel",
+          "title": "Reel",
+          "tier": "basic",
+          "description": "Equal proof cells in a strip.",
+          "usage": "<Bento variant=\"reel\" tiles={tiles} />"
+        },
+        {
+          "name": "sheet",
+          "title": "Sheet",
+          "tier": "basic",
+          "description": "Paper compartments. Type and rules.",
+          "usage": "<Bento variant=\"sheet\" tiles={tiles} />"
+        },
+        {
+          "name": "well",
+          "title": "Well",
+          "tier": "basic",
+          "description": "Evidence crops. Caption is a caption.",
+          "usage": "<Bento variant=\"well\" tiles={tiles} />"
+        },
+        {
+          "name": "dock",
+          "title": "Dock",
+          "tier": "intermediate",
+          "description": "Cells host working instruments.",
+          "usage": "<Bento variant=\"dock\" tiles={tiles} />"
+        },
+        {
+          "name": "stage",
+          "title": "Stage",
+          "tier": "intermediate",
+          "description": "An index drives one shared plate.",
+          "usage": "<Bento variant=\"stage\" tiles={tiles} />"
+        },
+        {
+          "name": "spec",
+          "title": "Spec",
+          "tier": "intermediate",
+          "description": "The figure occupies the cell.",
+          "usage": "<Bento variant=\"spec\" tiles={tiles} />"
+        },
+        {
+          "name": "expand",
+          "title": "Expand",
+          "tier": "intermediate",
+          "description": "The selected cell becomes the detail.",
+          "usage": "<Bento variant=\"expand\" tiles={tiles} />"
+        },
+        {
+          "name": "inspect",
+          "title": "Inspect",
+          "tier": "advanced",
+          "description": "A control scrubs media inside one cell.",
+          "usage": "<Bento variant=\"inspect\" tiles={tiles} />"
+        },
+        {
+          "name": "desk",
+          "title": "Desk",
+          "tier": "advanced",
+          "description": "Named objects. They do not share a radius.",
+          "usage": "<Bento variant=\"desk\" tiles={tiles} />"
+        },
+        {
+          "name": "reflow",
+          "title": "Reflow",
+          "tier": "advanced",
+          "description": "Focus reweights the mosaic.",
+          "usage": "<Bento variant=\"reflow\" tiles={tiles} />"
+        }
+      ]
+    },
+    {
+      "name": "pricing",
+      "type": "registry:ui",
+      "title": "Pricing",
+      "description": "Eleven pricing mechanisms. Published figures, sliders, and tables. No baked prices.",
+      "categories": [
+        "Library"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme",
+        "kit"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/pricing.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { Pricing } from '@/components/ui/pricing'\n\n<Pricing variant=\"slab\" plans={plans} />",
+      "variants": [
+        {
+          "name": "offer",
+          "title": "Offer",
+          "tier": "basic",
+          "description": "One published figure. Two actions.",
+          "usage": "<Pricing variant=\"offer\" plans={plans} />"
+        },
+        {
+          "name": "pair",
+          "title": "Pair",
+          "tier": "basic",
+          "description": "Two opposed rooms.",
+          "usage": "<Pricing variant=\"pair\" plans={plans} />"
+        },
+        {
+          "name": "slab",
+          "title": "Slab",
+          "tier": "basic",
+          "description": "Plan radios. Selection is a ring.",
+          "usage": "<Pricing variant=\"slab\" plans={plans} />"
+        },
+        {
+          "name": "ledger",
+          "title": "Ledger",
+          "tier": "basic",
+          "description": "Boxless ruled columns.",
+          "usage": "<Pricing variant=\"ledger\" plans={plans} />"
+        },
+        {
+          "name": "toggle",
+          "title": "Toggle",
+          "tier": "intermediate",
+          "description": "Period control is the composition.",
+          "usage": "<Pricing variant=\"toggle\" plans={plans} />"
+        },
+        {
+          "name": "seats",
+          "title": "Seats",
+          "tier": "intermediate",
+          "description": "Headcount slider. Live total.",
+          "usage": "<Pricing variant=\"seats\" plans={plans} />"
+        },
+        {
+          "name": "meter",
+          "title": "Meter",
+          "tier": "intermediate",
+          "description": "Usage unit. Included band plus overage.",
+          "usage": "<Pricing variant=\"meter\" plans={plans} />"
+        },
+        {
+          "name": "table",
+          "title": "Table",
+          "tier": "intermediate",
+          "description": "Feature matrix as the section.",
+          "usage": "<Pricing variant=\"table\" plans={plans} rows={rows} />"
+        },
+        {
+          "name": "quote",
+          "title": "Quote",
+          "tier": "advanced",
+          "description": "Working calculator. Breakdown to total.",
+          "usage": "<Pricing variant=\"quote\" plans={plans} />"
+        },
+        {
+          "name": "morph",
+          "title": "Morph",
+          "tier": "advanced",
+          "description": "Slab and table are one layout.",
+          "usage": "<Pricing variant=\"morph\" plans={plans} rows={rows} />"
+        },
+        {
+          "name": "dossier",
+          "title": "Dossier",
+          "tier": "advanced",
+          "description": "Filter, chapters, sticky summary.",
+          "usage": "<Pricing variant=\"dossier\" plans={plans} rows={rows} />"
+        }
+      ]
+    },
+    {
+      "name": "testimonials",
+      "type": "registry:ui",
+      "title": "Testimonials",
+      "description": "Eleven voice mechanisms. No default quotes, no gold stars.",
+      "categories": [
+        "Library"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme",
+        "kit"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/testimonials.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { Testimonials } from '@/components/ui/testimonials'\n\n<Testimonials variant=\"pull\" items={voices} />",
+      "variants": [
+        {
+          "name": "pull",
+          "title": "Pull",
+          "tier": "basic",
+          "description": "Type is the voice. Hanging mark and rule.",
+          "usage": "<Testimonials variant=\"pull\" items={voices} />"
+        },
+        {
+          "name": "plate",
+          "title": "Plate",
+          "tier": "basic",
+          "description": "Photograph gets the plate.",
+          "usage": "<Testimonials variant=\"plate\" items={voices} />"
+        },
+        {
+          "name": "stack",
+          "title": "Stack",
+          "tier": "basic",
+          "description": "A deck. Top card speaks.",
+          "usage": "<Testimonials variant=\"stack\" items={voices} />"
+        },
+        {
+          "name": "ledger",
+          "title": "Ledger",
+          "tier": "basic",
+          "description": "Numbered entries in a document.",
+          "usage": "<Testimonials variant=\"ledger\" items={voices} />"
+        },
+        {
+          "name": "cast",
+          "title": "Cast",
+          "tier": "intermediate",
+          "description": "Portrait index drives the quote.",
+          "usage": "<Testimonials variant=\"cast\" items={voices} />"
+        },
+        {
+          "name": "pin",
+          "title": "Pin",
+          "tier": "intermediate",
+          "description": "Pinboard. CSS columns.",
+          "usage": "<Testimonials variant=\"pin\" items={voices} />"
+        },
+        {
+          "name": "film",
+          "title": "Film",
+          "tier": "intermediate",
+          "description": "Sprocket strip. Visitor drags.",
+          "usage": "<Testimonials variant=\"film\" items={voices} />"
+        },
+        {
+          "name": "held",
+          "title": "Held",
+          "tier": "intermediate",
+          "description": "One card opens into a plate.",
+          "usage": "<Testimonials variant=\"held\" items={voices} />"
+        },
+        {
+          "name": "wall",
+          "title": "Wall",
+          "tier": "advanced",
+          "description": "Shallow 3D masonry. One key light.",
+          "usage": "<Testimonials variant=\"wall\" items={voices} />"
+        },
+        {
+          "name": "reel",
+          "title": "Reel",
+          "tier": "advanced",
+          "description": "Physics reel. Cards have mass.",
+          "usage": "<Testimonials variant=\"reel\" items={voices} />"
+        },
+        {
+          "name": "voice",
+          "title": "Voice",
+          "tier": "advanced",
+          "description": "Waveform and transcript.",
+          "usage": "<Testimonials variant=\"voice\" items={voices} />"
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "type": "registry:ui",
+      "title": "Stats",
+      "description": "Eleven figure mechanisms. Reduced motion shows the number at rest.",
+      "categories": [
+        "Library"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme",
+        "kit"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/stats.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "usage": "import { Stats } from '@/components/ui/stats'\n\n<Stats variant=\"strip\" items={figures} />",
+      "variants": [
+        {
+          "name": "strip",
+          "title": "Strip",
+          "tier": "basic",
+          "description": "Hairline tape of figures. No cards.",
+          "usage": "<Stats variant=\"strip\" items={figures} />"
+        },
+        {
+          "name": "sentence",
+          "title": "Sentence",
+          "tier": "basic",
+          "description": "Figures are words in the claim.",
+          "usage": "<Stats variant=\"sentence\" items={figures} />"
+        },
+        {
+          "name": "ring",
+          "title": "Ring",
+          "tier": "basic",
+          "description": "Completeness as a circle.",
+          "usage": "<Stats variant=\"ring\" items={figures} />"
+        },
+        {
+          "name": "bar",
+          "title": "Bar",
+          "tier": "basic",
+          "description": "Share as length.",
+          "usage": "<Stats variant=\"bar\" items={figures} />"
+        },
+        {
+          "name": "wall",
+          "title": "Wall",
+          "tier": "intermediate",
+          "description": "Spring wall of plates.",
+          "usage": "<Stats variant=\"wall\" items={figures} />"
+        },
+        {
+          "name": "barrel",
+          "title": "Barrel",
+          "tier": "intermediate",
+          "description": "Digit barrels. The odometer is the object.",
+          "usage": "<Stats variant=\"barrel\" items={figures} />"
+        },
+        {
+          "name": "ledger",
+          "title": "Ledger",
+          "tier": "intermediate",
+          "description": "Paper rows: label, figure, note.",
+          "usage": "<Stats variant=\"ledger\" items={figures} />"
+        },
+        {
+          "name": "versus",
+          "title": "Versus",
+          "tier": "intermediate",
+          "description": "Two figures face across a rule.",
+          "usage": "<Stats variant=\"versus\" items={figures} />"
+        },
+        {
+          "name": "cascade",
+          "title": "Cascade",
+          "tier": "advanced",
+          "description": "Stations of figures on native scroll.",
+          "usage": "<Stats variant=\"cascade\" items={figures} />"
+        },
+        {
+          "name": "dial",
+          "title": "Dial",
+          "tier": "advanced",
+          "description": "Aimed instrument in a clipped plate.",
+          "usage": "<Stats variant=\"dial\" items={figures} />"
+        },
+        {
+          "name": "plot",
+          "title": "Plot",
+          "tier": "advanced",
+          "description": "One field of data. Numbers are captions.",
+          "usage": "<Stats variant=\"plot\" items={figures} />"
         }
       ]
     }
