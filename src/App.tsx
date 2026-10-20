@@ -26,7 +26,7 @@ export default function App() {
     const variant = HERO_VARIANTS.includes(id) ? id : 'aurora'
     return (
       <div data-nexara-shot={variant} className="min-h-svh bg-black">
-        <Hero variant={variant} />
+        <Hero variant={variant} className="min-h-svh" />
       </div>
     )
   }

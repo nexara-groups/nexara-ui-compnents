@@ -42,8 +42,8 @@ function chromeShot(url, dest, size, index) {
         `--user-data-dir=${profile}`,
         `--window-size=${w},${h}`,
         '--force-device-scale-factor=1',
-        '--virtual-time-budget=12000',
-        '--timeout=25000',
+        '--virtual-time-budget=8000',
+        '--timeout=20000',
         `--screenshot=${dest}`,
         url,
       ],
@@ -64,12 +64,22 @@ function chromeShot(url, dest, size, index) {
   })
 }
 
-for (let i = 0; i < variants.length; i++) {
-  const id = variants[i]
-  await chromeShot(`${origin}/#shot/${id}`, resolve(out, `${id}-desktop.png`), [1440, 900], i)
+async function batch(items, size) {
+  for (let i = 0; i < items.length; i += size) {
+    await Promise.all(items.slice(i, i + size).map((item) => item()))
+  }
 }
 
-for (let i = 0; i < phones.length; i++) {
-  const id = phones[i]
-  await chromeShot(`${origin}/#shot/${id}`, resolve(out, `${id}-phone.png`), [390, 844], 100 + i)
-}
+await batch(
+  variants.map(
+    (id, i) => () => chromeShot(`${origin}/#shot/${id}`, resolve(out, `${id}-desktop.png`), [1440, 900], i),
+  ),
+  3,
+)
+
+await batch(
+  phones.map(
+    (id, i) => () => chromeShot(`${origin}/#shot/${id}`, resolve(out, `${id}-phone.png`), [390, 844], 100 + i),
+  ),
+  3,
+)

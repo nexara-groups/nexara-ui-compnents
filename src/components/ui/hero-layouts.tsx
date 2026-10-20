@@ -175,7 +175,7 @@ function AuroraHero(props: LayoutProps) {
   return (
     <Shell
       variant="aurora"
-      className={cn('min-h-[38rem] bg-[#04060f] text-[#eef7ff] md:min-h-[46rem]', props.className)}
+      className={cn('min-h-svh bg-[#04060f] text-[#eef7ff]', props.className)}
       style={props.style}
     >
       <div className="pointer-events-none absolute -inset-[20%] blur-[70px]" aria-hidden="true">
@@ -299,15 +299,15 @@ function AuroraHero(props: LayoutProps) {
 
 function BrutalHero(props: LayoutProps) {
   return (
-    <Shell variant="brutal" className={cn('bg-[#F4D738] p-3 text-[#111] md:p-4', props.className)} style={props.style}>
-      <div className="grid min-h-[36rem] border-[6px] border-black bg-[#F4D738] shadow-[14px_14px_0_#111] md:min-h-[44rem] md:grid-cols-[1.1fr_0.9fr]">
+    <Shell variant="brutal" className={cn('min-h-svh bg-[#F4D738] p-3 text-[#111] md:p-4', props.className)} style={props.style}>
+      <div className="grid min-h-[calc(100svh-1.5rem)] border-[6px] border-black bg-[#F4D738] shadow-[14px_14px_0_#111] md:grid-cols-[1.1fr_0.9fr]">
         <div className="flex flex-col border-b-[6px] border-black md:border-r-[6px] md:border-b-0">
           <div className="flex items-center justify-between border-b-[6px] border-black px-4 py-3 font-black">
             <span className="text-2xl tracking-tight">STAMP.</span>
             <span className="hidden text-xs tracking-[0.12em] md:block">ISSUE 07 · STUDIO MANUAL</span>
             <span className="rotate-[-8deg] border-4 border-black bg-[#FF2E9A] px-2 py-1 text-xs text-white">NEW</span>
           </div>
-          <div className="flex flex-1 flex-col justify-center px-5 py-8 md:px-8">
+          <div className="flex flex-1 flex-col justify-start px-5 py-8 md:px-8">
             <Heading
               as={props.Title}
               className={cn('text-[clamp(3.2rem,8vw,6.8rem)] leading-[0.82] font-black tracking-[-0.05em]', props.titleClassName)}
@@ -379,7 +379,7 @@ function PastelHero(props: LayoutProps) {
     ['Sam Okonkwo', 'Interviews', 'Thu 9:30'],
   ]
   return (
-    <Shell variant="pastel" className={cn('min-h-[38rem] bg-[#f7f1ea] text-[#2a211c] md:min-h-[46rem]', props.className)} style={props.style}>
+    <Shell variant="pastel" className={cn('flex min-h-svh flex-col bg-[#f7f1ea] text-[#2a211c]', props.className)} style={props.style}>
       <motion.span
         className="pointer-events-none absolute -top-20 -left-16 size-[420px] rounded-full bg-[#f8c9d4] opacity-70 blur-[40px]"
         animate={reduced ? undefined : { x: [0, 16, 0] }}
@@ -404,7 +404,7 @@ function PastelHero(props: LayoutProps) {
           Get Bloom
         </a>
       </nav>
-      <div className="relative z-10 grid items-center gap-8 px-5 pb-10 md:grid-cols-[1fr_1.15fr] md:px-10">
+      <div className="relative z-10 grid flex-1 items-center gap-8 px-5 pb-10 md:grid-cols-[1fr_1.15fr] md:px-10">
         <div>
           <Heading as={props.Title} className={cn('text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.96] font-bold tracking-[-0.05em]', props.titleClassName)}>
             {props.title ?? (
@@ -491,13 +491,13 @@ function PastelHero(props: LayoutProps) {
 
 function EditorialHero(props: LayoutProps) {
   return (
-    <Shell variant="editorial" className={cn('min-h-[38rem] bg-[#efe6d4] px-6 py-5 text-[#1a1612] md:min-h-[46rem] md:px-9', props.className)} style={props.style}>
+    <Shell variant="editorial" className={cn('flex min-h-svh flex-col bg-[#efe6d4] px-6 py-5 text-[#1a1612] md:px-9', props.className)} style={props.style}>
       <header className="flex items-baseline justify-between border-b border-[#1a1612] pb-2">
         <strong className="font-serif text-xl tracking-[0.18em]">{props.kicker ?? 'ATLAS REVIEW'}</strong>
         <span className="hidden font-mono text-[11px] tracking-[0.16em] md:block">VOL. 04 · NO. 11 · ARCHITECTURE</span>
         <span className="font-mono text-[11px] tracking-[0.16em]">EST. 2019</span>
       </header>
-      <div className="grid gap-7 py-5 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="grid flex-1 gap-7 py-5 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
           <Heading as={props.Title} className={cn('font-serif text-[clamp(3.2rem,8vw,7.4rem)] leading-[0.82] font-bold tracking-[-0.04em]', props.titleClassName)}>
             {props.title ?? (
@@ -551,7 +551,7 @@ function EditorialHero(props: LayoutProps) {
 function SpotlightHero(props: LayoutProps) {
   const reduced = usePrefersReducedMotion()
   return (
-    <Shell variant="spotlight" className={cn('min-h-[40rem] bg-black text-[#f4f6fb] md:min-h-[48rem]', props.className)} style={props.style}>
+    <Shell variant="spotlight" className={cn('flex min-h-svh flex-col bg-black text-[#f4f6fb]', props.className)} style={props.style}>
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -591,8 +591,8 @@ function SpotlightHero(props: LayoutProps) {
           Launch console
         </a>
       </nav>
-      <div className="relative z-10 px-5 pb-8 text-center">
-        <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-[#c7d2fe]">
+      <div className="relative z-10 flex flex-1 flex-col px-5 pb-0 text-center">
+        <p className="mx-auto inline-flex items-center gap-2 self-center rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-[#c7d2fe]">
           ● 14 agents live · incident-free 11d
         </p>
         <Heading as={props.Title} className={cn('mx-auto mt-5 max-w-[16ch] text-[clamp(2.6rem,6vw,5.2rem)] leading-[0.94] font-bold tracking-[-0.06em]', props.titleClassName)}>
@@ -611,56 +611,16 @@ function SpotlightHero(props: LayoutProps) {
             />
           )}
         </div>
-        <div className={cn('relative mx-auto mt-6 h-[26rem] max-w-[76rem] md:h-[30rem]', props.mediaClassName)}>
-          <div className="absolute inset-x-[4%] top-[22%] bottom-0 overflow-hidden rounded-t-[22px] border border-white/10 bg-[#0b0d12] shadow-[0_40px_80px_-24px_#000]">
+        <div className={cn('relative mx-auto mt-auto w-full max-w-[72rem] flex-1 px-2 pt-8 md:px-6', props.mediaClassName)}>
+          <motion.div
+            className="h-full min-h-[18rem] overflow-hidden rounded-t-[22px] border border-white/10 bg-[#0b0d12] shadow-[0_50px_90px_-24px_#000]"
+            style={{ transform: reduced ? undefined : 'perspective(1400px) rotateX(8deg)' }}
+            initial={reduced ? false : { y: 28, opacity: 0.7 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={springs.heavy}
+          >
             {props.media === null ? null : (props.media ?? <OpsConsole />)}
-          </div>
-          <CardFrame className="absolute top-6 left-[1%] z-10 hidden w-[min(100%,20rem)] rotate-[-8deg] md:block" delay={0} reduced={reduced}>
-            {[
-              ['INC-204 · API p95', 'PAGE'],
-              ['Checkout 5xx', 'ACK'],
-              ['EU-west saturation', 'WATCH'],
-              ['Agent “Mira” claimed', 'AUTO'],
-            ].map(([l, t]) => (
-              <div key={l} className="flex justify-between border-b border-[#1c2030] px-3.5 py-2.5 text-left text-[13px]">
-                <span>{l}</span>
-                <span className="font-mono text-[10px] text-[#a5b4fc]">{t}</span>
-              </div>
-            ))}
-          </CardFrame>
-          <CardFrame className="absolute top-0 left-1/2 z-20 w-[min(100%,23rem)] -translate-x-1/2" delay={0.08} reduced={reduced}>
-            <div className="flex justify-between px-3.5 py-2.5 text-left text-[13px]">
-              <strong>Latency · last 15m</strong>
-              <span className="font-mono text-[10px] text-[#a5b4fc]">142ms</span>
-            </div>
-            <div
-              className="mx-3.5 mb-3 h-24 rounded-[10px] bg-[#0b0d12]"
-              style={{
-                backgroundImage:
-                  'linear-gradient(#1d4ed8 0 0),linear-gradient(#6366f1 0 0),linear-gradient(#22d3ee 0 0),linear-gradient(#818cf8 0 0),linear-gradient(#38bdf8 0 0)',
-                backgroundSize: '12px 40%,12px 70%,12px 52%,12px 88%,12px 60%',
-                backgroundPosition: '12% bottom,32% bottom,52% bottom,72% bottom,92% bottom',
-                backgroundRepeat: 'no-repeat',
-              }}
-            />
-            <div className="flex justify-between border-t border-[#1c2030] px-3.5 py-2.5 text-left text-[13px]">
-              <span>Mira posted a patch</span>
-              <span className="font-mono text-[10px] text-[#a5b4fc]">PR #883</span>
-            </div>
-          </CardFrame>
-          <CardFrame className="absolute top-10 right-[2%] w-[min(100%,21rem)] rotate-[7deg]" delay={0.14} reduced={reduced}>
-            {[
-              ['On-call', 'A. Okonkwo'],
-              ['Secondary', 'J. Park'],
-              ['SLO', '99.95%'],
-              ['Burn', '0.12x'],
-            ].map(([l, t]) => (
-              <div key={l} className="flex justify-between border-b border-[#1c2030] px-3.5 py-2.5 text-left text-[13px]">
-                <span>{l}</span>
-                <span>{t}</span>
-              </div>
-            ))}
-          </CardFrame>
+          </motion.div>
         </div>
       </div>
     </Shell>
@@ -675,13 +635,15 @@ function OpsConsole() {
     ['Agents', '14'],
   ]
   const rows = [
-    ['INC-204', 'API p95 above 400ms', 'PAGE', '2m'],
-    ['INC-198', 'Checkout 5xx burst', 'ACK', '11m'],
-    ['INC-190', 'EU-west saturation', 'WATCH', '31m'],
-    ['CHG-883', 'Mira posted a patch', 'AUTO', '1h'],
+    ['INC-204', 'API p95 above 400ms on checkout-edge', 'PAGE', '2m'],
+    ['INC-198', 'Checkout 5xx burst · EU-west', 'ACK', '11m'],
+    ['INC-190', 'EU-west CPU saturation 92%', 'WATCH', '31m'],
+    ['CHG-883', 'Mira posted a patch to rate-limit', 'AUTO', '1h'],
+    ['INC-176', 'Webhooks delayed 8s p95', 'WATCH', '2h'],
+    ['CHG-801', 'Canary 12% · error budget intact', 'AUTO', '3h'],
   ]
   return (
-    <div className="grid h-full min-h-[16rem] grid-cols-[9.5rem_1fr] text-left text-[#e8edf7]">
+    <div className="grid h-full min-h-[18rem] grid-cols-[9.5rem_1fr] text-left text-[#e8edf7]">
       <aside className="border-r border-white/8 bg-[#08090e] p-3">
         <p className="mb-3 flex items-center gap-2 text-[13px] font-semibold">
           <span className="size-2 rounded-full bg-[#818cf8]" />
@@ -712,34 +674,6 @@ function OpsConsole() {
   )
 }
 
-function CardFrame({
-  children,
-  className,
-  delay,
-  reduced,
-}: {
-  children: ReactNode
-  className?: string
-  delay: number
-  reduced: boolean
-}) {
-  return (
-    <motion.article
-      className={cn('overflow-hidden rounded-[18px] border border-white/10 bg-[#11131a] text-left shadow-[0_30px_80px_-30px_#000]', className)}
-      initial={reduced ? false : { y: 28, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ ...springs.heavy, delay }}
-    >
-      <div className="flex gap-1.5 border-b border-[#1e2230] bg-[#0b0d12] px-3 py-2.5">
-        <i className="block size-2 rounded-full bg-[#f87171]" />
-        <i className="block size-2 rounded-full bg-[#fbbf24]" />
-        <i className="block size-2 rounded-full bg-[#34d399]" />
-      </div>
-      {children}
-    </motion.article>
-  )
-}
-
 function BentoHero(props: LayoutProps) {
   const reduced = usePrefersReducedMotion()
   const [tick, setTick] = useState(0)
@@ -756,7 +690,7 @@ function BentoHero(props: LayoutProps) {
   ]
   const shown = chats.slice(0, reduced ? chats.length : 2 + (tick % 3))
   return (
-    <Shell variant="bento" className={cn('min-h-[40rem] bg-[#f3f1ec] px-4 py-4 text-[#171717] md:min-h-[48rem] md:px-5', props.className)} style={props.style}>
+    <Shell variant="bento" className={cn('flex min-h-svh flex-col bg-[#f3f1ec] px-4 py-4 text-[#171717] md:px-5', props.className)} style={props.style}>
       <nav className="mb-3 flex items-center justify-between">
         <strong className="text-xl tracking-tight">Forge</strong>
         <div className="hidden gap-4 text-sm md:flex">
@@ -768,7 +702,7 @@ function BentoHero(props: LayoutProps) {
           Start free
         </a>
       </nav>
-      <div className="grid gap-3 lg:grid-cols-12">
+      <div className="grid flex-1 gap-3 lg:grid-cols-12">
         <div className="flex flex-col justify-between rounded-[22px] border border-[#e4dfd4] bg-white p-5 lg:col-span-4">
           <div>
             <p className="font-mono text-[11px] tracking-[0.12em] text-[#7a7468]">{props.eyebrow ?? 'LIVE PRODUCT HERO'}</p>
@@ -821,6 +755,7 @@ function BentoHero(props: LayoutProps) {
             <polyline fill="rgba(22,163,74,.12)" stroke="none" points="4,56 4,40 28,36 52,42 76,22 100,26 124,12 156,18 156,56" />
           </svg>
           <p className="text-[12px] text-[#16a34a]">+18% vs last quarter</p>
+          <p className="mt-2 text-[12px] text-[#7a7468]">Studio plan · 18 seats · invoiced monthly</p>
         </article>
         <article className="rounded-[22px] border border-[#e4dfd4] bg-white p-4 lg:col-span-3">
           <p className="font-mono text-[11px] tracking-[0.12em] text-[#7a7468]">THIS WEEK</p>
@@ -891,7 +826,7 @@ function TerminalHero(props: LayoutProps) {
     setSent(true)
   }
   return (
-    <Shell variant="terminal" className={cn('flex min-h-[40rem] flex-col bg-[#0b0d10] text-[#e7edf3] md:min-h-[48rem]', props.className)} style={props.style}>
+    <Shell variant="terminal" className={cn('flex min-h-svh flex-col bg-[#0b0d10] text-[#e7edf3]', props.className)} style={props.style}>
       <nav className="flex items-center justify-between border-b border-[#1c232c] px-5 py-3">
         <strong className="font-mono text-sm">
           <span className="text-[#4ade80]">●</span> relay
@@ -915,24 +850,38 @@ function TerminalHero(props: LayoutProps) {
             <span className="px-3 py-2">diff</span>
           </div>
           <pre className="overflow-auto p-4 font-mono text-[12.5px] leading-[1.55]">
-            <span className="text-slate-500">{`// original — not a port`}</span>
+            <span className="text-slate-500">{`  1  // original — not a port`}</span>
             {'\n'}
+            <span className="text-slate-500">  2  </span>
             <span className="text-purple-400">export const</span> HERO_VARIANTS = [{'\n'}
-            {'  '}
+            <span className="text-slate-500">  3    </span>
             <span className="text-green-300">'aurora'</span>, <span className="text-green-300">'spotlight'</span>, <span className="text-green-300">'helix'</span>,{'\n'}
-            {'  '}
-            <span className="text-green-300">'brutal'</span>, <span className="text-green-300">'bento'</span>, <span className="text-green-300">'cinema'</span>,{'\n'}]
-            {'\n\n'}
+            <span className="text-slate-500">  4    </span>
+            <span className="text-green-300">'brutal'</span>, <span className="text-green-300">'bento'</span>, <span className="text-green-300">'cinema'</span>,{'\n'}
+            <span className="text-slate-500">  5    </span>
+            <span className="text-green-300">'terminal'</span>, <span className="text-green-300">'cursor'</span>, <span className="text-green-300">'reveal'</span>,{'\n'}
+            <span className="text-slate-500">  6  </span>]{'\n'}
+            <span className="text-slate-500">  7  </span>
+            {'\n'}
+            <span className="text-slate-500">  8  </span>
             <span className="text-purple-400">export function</span> Hero({'{'} variant = <span className="text-green-300">'aurora'</span> {'}'}) {'{'}
-            {'\n  '}
-            <span className="text-purple-400">if</span> (variant === <span className="text-green-300">'terminal'</span>) {'{'}
-            {'\n    return <RelayDesk />\n  }\n  return <HeroScene variant={variant} />\n}'}
-            {'\n\n'}
-            <span className="text-slate-500">{`+ filled with a real product by default`}</span>
             {'\n'}
-            <span className="text-slate-500">{`+ reduced-motion keeps the last frame`}</span>
+            <span className="text-slate-500">  9    </span>
+            <span className="text-purple-400">const</span> Layout = layouts[variant]{'\n'}
+            <span className="text-slate-500"> 10    </span>
+            <span className="text-purple-400">return</span> {'<Layout filled product chrome />'}
             {'\n'}
-            <span className="text-slate-500">{`+ WebGL pauses when the plate leaves view`}</span>
+            <span className="text-slate-500"> 11  </span>{'}'}
+            {'\n'}
+            <span className="text-slate-500"> 12  </span>
+            {'\n'}
+            <span className="text-green-400">{` 13  + filled with a real product by default`}</span>
+            {'\n'}
+            <span className="text-green-400">{` 14  + reduced-motion keeps the last frame`}</span>
+            {'\n'}
+            <span className="text-green-400">{` 15  + WebGL pauses when the plate leaves view`}</span>
+            {'\n'}
+            <span className="text-green-400">{` 16  + BASIC is never an empty gradient oval`}</span>
           </pre>
         </div>
         <div className="flex min-w-0 flex-col">
@@ -991,7 +940,7 @@ function CursorHero(props: LayoutProps) {
   return (
     <Shell
       variant="cursor"
-      className={cn('min-h-[40rem] bg-[#0c1018] text-[#edf1f7] md:min-h-[48rem]', props.className)}
+      className={cn('min-h-svh bg-[#0c1018] text-[#edf1f7]', props.className)}
       style={props.style}
     >
       <div
@@ -1019,7 +968,7 @@ function CursorHero(props: LayoutProps) {
       </div>
       <section
         ref={field}
-        className="relative min-h-[40rem] md:min-h-[48rem]"
+        className="relative min-h-svh"
         onPointerMove={(event) => {
           const box = event.currentTarget.getBoundingClientRect()
           setCursor({ x: event.clientX - box.left, y: event.clientY - box.top })
@@ -1128,7 +1077,7 @@ function HelixHero(props: LayoutProps) {
   return (
     <Shell
       variant="helix"
-      className={cn('grid min-h-[40rem] bg-[#050506] text-[#f6f1ea] lg:grid-cols-2', props.className)}
+      className={cn('grid min-h-svh bg-[#050506] text-[#f6f1ea] lg:grid-cols-2', props.className)}
       style={props.style}
     >
       <div className="flex flex-col justify-between px-6 py-8 md:px-10 md:py-10">
@@ -1174,12 +1123,13 @@ function HelixHero(props: LayoutProps) {
         <p className="mt-8 font-mono text-[11px] tracking-[0.16em] text-[#8a7f74]">HELIX / CONTAINED WEBGL / 09 OF 12</p>
       </div>
       <div ref={root} className={cn('relative min-h-[24rem] overflow-hidden bg-[#050506]', props.mediaClassName)}>
+        {props.scene ?? (Scene ? <Scene active={!offscreen && !reduced} className="z-0" /> : null)}
         {props.media === null
           ? null
-          : props.fallback ??
-            props.media ??
-            ((reduced || !Scene) && <Still src={heroAsset(HERO_STILLS.helix)} alt="Iridescent helix sculpture" />)}
-        {props.scene ?? (Scene ? <Scene active={!offscreen && !reduced} /> : null)}
+          : (props.fallback ??
+            props.media ?? (
+              <Still src={heroAsset(HERO_STILLS.helix)} alt="Iridescent helix sculpture" className="relative z-[1]" />
+            ))}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,transparent_40%,#050506_78%)]" />
         <span className="absolute top-[18%] left-[8%] font-mono text-[11px] tracking-[0.12em] text-[#ffd29a]">KEY 3200K</span>
         <span className="absolute top-[28%] right-[12%] font-mono text-[11px] tracking-[0.12em] text-[#ffd29a]">ORBIT 24°</span>
@@ -1197,9 +1147,9 @@ function CinemaHero(props: LayoutProps) {
     { id: '3', label: '03 Tunnel', time: '04:02' },
   ]
   return (
-    <Shell variant="cinema" className={cn('min-h-[40rem] bg-black text-[#f4ead6] md:min-h-[48rem]', props.className)} style={props.style}>
+    <Shell variant="cinema" className={cn('flex min-h-svh flex-col bg-black text-[#f4ead6]', props.className)} style={props.style}>
       <div className="h-12 bg-black" />
-      <div className="relative min-h-[32rem] overflow-hidden md:min-h-[40rem]">
+      <div className="relative min-h-0 flex-1 overflow-hidden">
         <motion.div
           className="absolute inset-0"
           animate={reduced ? undefined : { scale: [1, 1.08], x: ['0%', '-2%'] }}
@@ -1211,7 +1161,7 @@ function CinemaHero(props: LayoutProps) {
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-transparent to-black/35" />
         <Grain className="opacity-25" />
-        <div className="relative z-10 flex min-h-[32rem] flex-col justify-end px-6 pb-16 md:min-h-[40rem] md:px-12">
+        <div className="relative z-10 flex h-full min-h-[32rem] flex-col justify-end px-6 pb-16 md:px-12">
           <p className="font-mono text-[11px] tracking-[0.28em] text-[#e8c36a] uppercase">{props.eyebrow ?? 'Nocturne · episode 04'}</p>
           <Heading as={props.Title} className={cn('mt-2 max-w-xl [font-family:"Bebas Neue",sans-serif] text-[clamp(3rem,8vw,7.4rem)] leading-[0.82] tracking-[0.02em]', props.titleClassName)}>
             {props.title ?? (
@@ -1264,7 +1214,7 @@ function AtlasHero(props: LayoutProps) {
     { id: '4', label: 'Singapore bunkering ok', time: '22m' },
   ]
   return (
-    <Shell variant="atlas" className={cn('min-h-[40rem] bg-[#06101c] text-[#e8f1ff] md:min-h-[48rem]', props.className)} style={props.style}>
+    <Shell variant="atlas" className={cn('min-h-svh bg-[#06101c] text-[#e8f1ff]', props.className)} style={props.style}>
       <div className="absolute inset-0">
         {props.media === null ? null : (
           (props.media ?? <Still src={heroAsset(HERO_STILLS.globe)} alt="Earth at night" />)
@@ -1286,7 +1236,7 @@ function AtlasHero(props: LayoutProps) {
           <circle cx="1240" cy="500" r="5" fill="#fbbf24" />
         </svg>
       </div>
-      <div className="relative z-10 flex min-h-[40rem] flex-col justify-between px-6 py-8 md:min-h-[48rem] md:px-10">
+      <div className="relative z-10 flex min-h-svh flex-col justify-between px-6 py-8 md:px-10">
         <div>
           <p className="font-mono text-[11px] tracking-[0.22em] text-[#7dd3fc] uppercase">{props.eyebrow ?? 'Meridian · live logistics'}</p>
           <Heading as={props.Title} className={cn('mt-3 max-w-[12ch] text-[clamp(2.5rem,5.4vw,4.7rem)] leading-[0.94] tracking-[-0.05em]', props.titleClassName)}>
@@ -1349,7 +1299,7 @@ function RevealHero(props: LayoutProps) {
       className={cn('relative isolate bg-[#f6f7fb] text-[#111827]', props.className)}
       style={{ height: props.progress === 'scroll' && !reduced ? '160vh' : undefined, ...props.style }}
     >
-      <div className={cn(props.progress === 'scroll' && !reduced ? 'sticky top-0 min-h-svh' : 'min-h-[40rem] md:min-h-[46rem]')}>
+      <div className={cn(props.progress === 'scroll' && !reduced ? 'sticky top-0 min-h-svh' : 'min-h-svh')}>
         <nav className="flex items-center justify-between px-6 py-5 md:px-10">
           <strong className="tracking-tight">Prism</strong>
           <span className="hidden text-sm text-[#4b5563] md:block">Hardware · Software · Specs</span>

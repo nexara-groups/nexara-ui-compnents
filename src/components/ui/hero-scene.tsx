@@ -11,6 +11,7 @@ export type HeroSceneProps = {
   className?: string
   mode?: string
   active?: boolean
+  onReady?: () => void
 }
 
 function HelixMesh({ aim }: { aim: { current: { x: number; y: number } } }) {
@@ -48,10 +49,12 @@ function HelixMesh({ aim }: { aim: { current: { x: number; y: number } } }) {
  * Contained WebGL plate for `hero / helix`.
  * Pauses offscreen. Never covers the viewport. Fallback still lives in the layout.
  */
-export function HeroScene({ className, active = true }: HeroSceneProps) {
+export function HeroScene({ className, active = true, onReady }: HeroSceneProps) {
   const reduced = usePrefersReducedMotion()
   const pointer = useContainedPointer<HTMLDivElement>()
   const aim = useRef({ x: 0, y: 0 })
+  const ready = useRef(onReady)
+  ready.current = onReady
   if (reduced || !active) return null
   return (
     <div
@@ -77,13 +80,15 @@ export function HeroScene({ className, active = true }: HeroSceneProps) {
         gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true, powerPreference: 'high-performance' }}
         onCreated={({ gl }) => {
           gl.setClearColor(0x000000, 0)
+          requestAnimationFrame(() => ready.current?.())
         }}
         style={{ width: '100%', height: '100%' }}
       >
-        <ambientLight intensity={0.28} />
-        <directionalLight position={[3.4, 4.2, 2]} intensity={2.2} color="#ffd29a" />
-        <directionalLight position={[-3, 1.4, -2]} intensity={1.6} color="#e9a8ff" />
-        <pointLight position={[0, -1.4, 2]} intensity={0.6} color="#7c5cff" />
+        <ambientLight intensity={0.55} />
+        <hemisphereLight args={['#ffe4c2', '#1b1233', 1.1]} />
+        <directionalLight position={[3.4, 4.2, 2]} intensity={4.2} color="#ffd29a" />
+        <directionalLight position={[-3, 1.4, -2]} intensity={3.2} color="#e9a8ff" />
+        <pointLight position={[0, -1.4, 2]} intensity={1.4} color="#7c5cff" />
         <HelixMesh aim={aim} />
         <ContactShadows position={[0, -1.45, 0]} opacity={0.45} blur={2.4} far={4} color="#000" />
       </Canvas>

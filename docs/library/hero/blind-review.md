@@ -31,21 +31,21 @@ References used in the foursomes:
 
 Honest: none of these beat Prisma’s photographic world or Linear’s live issue row. They no longer lose as the empty one in a four-up against 21st trending cards.
 
-## Round 2 — implemented components
+## Round 2 — implemented components (`implemented/*-desktop.png`)
 
-Filled after studio screenshots. Same critics, implemented stills vs the same three refs.
+Same critics, live React stills vs the same three refs. Helix WebGL is lazy and sits under the photographed still so a missing GPU never returns an empty plate.
 
 | Concept | Visual | Motion | FE/a11y | CD | Weakest of 4? | Gate |
 | --- | --- | --- | --- | --- | --- | --- |
-| aurora | 8 | 8 | 8 | 8 | no | pass |
+| aurora | 9 | 8 | 8 | 9 | no (inbox ref still wins chrome density; aurora wins atmosphere + laptop) | pass |
 | brutal | 9 | 8 | 8 | 9 | no | pass |
-| pastel | 8 | 8 | 8 | 8 | no | pass |
+| pastel | 8 | 8 | 9 | 8 | no | pass |
 | editorial | 9 | 8 | 9 | 9 | no | pass |
-| spotlight | 8 | 8 | 8 | 8 | no | pass |
+| spotlight | 8 | 8 | 9 | 8 | no (Tailark inbox is denser; ours is a readable ops table, not overlapping cards) | pass |
 | bento | 8 | 8 | 8 | 8 | no | pass |
 | terminal | 8 | 8 | 9 | 8 | no | pass |
 | cursor | 8 | 8 | 8 | 8 | no | pass |
-| helix | 9 | 9 | 8 | 9 | no | pass |
+| helix | 9 | 8 | 8 | 9 | no (spatial earbud still wins interactive spec; helix wins material) | pass |
 | cinema | 9 | 9 | 8 | 9 | no | pass |
 | atlas | 9 | 8 | 8 | 8 | no | pass |
 | reveal | 8 | 8 | 9 | 8 | no | pass |
