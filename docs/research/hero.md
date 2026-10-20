@@ -1,20 +1,48 @@
 # Hero — structural audit
 
-The previous set (center, split, mast, cinematic, statement, bento, overlap, index, band, asymmetric, stacked, rail) rearranged the same eyebrow, title, lede, actions, and media. Those were removed.
+Product contract: [`docs/families/hero.md`](../families/hero.md).
 
-| Variant | Reference | What is structurally different |
+This family failed twice. Geometry variants rearranged one slot list. Industry variants baked twelve product pages into the component. The flagship Helio iris / orbit / kinetic pieces are a quality floor, not the kit.
+
+## What a reuser is asking for
+
+| Query | Job |
+| --- | --- |
+| `hero / split` | Claim beside proof. Default paste. |
+| `hero / iris` | Aperture onto their media. CTA already hittable. |
+
+Anything that cannot answer a job without saying “split, but the columns moved” is not a variant.
+
+## Eleven variants (jobs, not costumes)
+
+| Variant | Tier | Structural difference |
 | --- | --- | --- |
-| saas | [shadcn blocks](https://ui.shadcn.com/blocks) heroes and [Aceternity Hero Highlight](https://ui.aceternity.com/components/hero-highlight) | Copy beside a product window with traffic lights. |
-| download | App-store heroes catalogued on [21st.dev](https://21st.dev/) | Two phone mockups and store badges. |
-| video | [Magic UI Hero Video Dialog](https://magicui.design/docs/components/hero-video-dialog) | Full-bleed picture and a play control. |
-| logos | Logo clouds built with [Magic UI Marquee](https://magicui.design/docs/components/marquee) | A logo row and a testimonial, not a media slot. |
-| pricing | Pricing heroes in [shadcn blocks](https://ui.shadcn.com/blocks) | A price, a feature list, and one choice. |
-| agency | Typographic studio headers on [21st.dev](https://21st.dev/) | An index line, a full-width title, and a rule. |
-| commerce | Product heroes on [21st.dev](https://21st.dev/) | A product stage, a price, and finish swatches. |
-| event | Countdown heroes on [21st.dev](https://21st.dev/) | Date, place, and four countdown cells. |
-| search | Search-led marketing pages (Algolia-style), surveyed via [21st.dev](https://21st.dev/) | The search field is the primary control. |
-| dashboard | [shadcn dashboard example](https://ui.shadcn.com/examples/dashboard) | A sidebar and metric tiles. |
-| editorial | Magazine covers, distinct from the agency masthead | A cover panel with an issue number beside the feature. |
-| waitlist | Email-capture heroes in [shadcn blocks](https://ui.shadcn.com/blocks) | Avatar stack, a count, and an email field. |
+| split | BASIC | Copy + media as peers. `mediaSide` is a prop. |
+| stack | BASIC | Centered claim + CTA. Optional capped media below. |
+| capture | BASIC | The control is the primary action. Form states. |
+| video | BASIC | Poster + play. Dialog or href, not wallpaper. |
+| frame | INTERMEDIATE | Cropped product UI gets more pixels than the pitch. |
+| proof | INTERMEDIATE | Logos rail + optional quote. Static, not a marquee. |
+| stage | INTERMEDIATE | Object + optional option picker. Not a PDP. |
+| cover | INTERMEDIATE | Type as object: kicker, index, rule. |
+| iris | ADVANCED | Contained aperture. Control-first; scroll opt-in. |
+| orbit | ADVANCED | Optional WebGL plate with a required still. |
+| kinetic | ADVANCED | Glyphs with mass **and** a CTA row. |
 
-Ideas were reimplemented. No source was copied.
+## Dead names (do not rebuild)
+
+center, mast, statement, overlap, rail, band, asymmetric, stacked, index, bento, saas, download, logos, pricing, agency, commerce, event, search, dashboard, editorial, waitlist, cinematic-as-geometry.
+
+Helio `CinematicHero`, `OrbitalHero`, `KineticHero` stay under `src/components/flagship/`.
+
+## References (principles, not source files)
+
+- Split / frame: Stripe sentence-as-hero; Linear product crop without fake traffic lights.
+- Capture: search-led and invite-led first screens (Algolia-style, shadcn waitlist blocks).
+- Video: Magic UI hero video dialog — poster and a play control.
+- Cover: typographic studio headers, magazine covers — one job, not two variants.
+- Iris: Apple / Serve / Temper product reveal. Scroll is a camera assistant. First paint still has a sentence.
+- Orbit: pointer-consequential object (Bruno Simon as a floor). Canvas is a plate.
+- Kinetic: FORMAT-adjacent type-as-object, with a way through.
+
+Ideas are reimplemented. No source is copied. No Helio copy or hex is the library default.
