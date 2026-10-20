@@ -46,3 +46,5 @@ Helio `CinematicHero`, `OrbitalHero`, `KineticHero` stay under `src/components/f
 - Kinetic: FORMAT-adjacent type-as-object, with a way through.
 
 Ideas are reimplemented. No source is copied. No Helio copy or hex is the library default.
+
+Motion thesis (one idea per id, springs, reduced = end state, fights): [`hero-motion.md`](./hero-motion.md).
