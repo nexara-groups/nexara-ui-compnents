@@ -62,6 +62,7 @@ export interface NavbarProps {
   magnify?: boolean
   morph?: 'none' | 'control' | 'scroll'
   compact?: boolean
+  defaultOpen?: string
   className?: string
 }
 
@@ -89,9 +90,10 @@ export function Navbar({
   magnify = false,
   morph = 'none',
   compact,
+  defaultOpen,
   className,
 }: NavbarProps) {
-  const props = { logo, items, columns, sections, action, results, onQuery, query, edge, magnify, morph, compact, className }
+  const props = { logo, items, columns, sections, action, results, onQuery, query, edge, magnify, morph, compact, defaultOpen, className }
   if (variant === 'capsule') return <CapsuleNav {...props} />
   if (variant === 'column') return <ColumnNav {...props} />
   if (variant === 'path') return <PathNav {...props} />
@@ -254,8 +256,8 @@ function PathNav({ items = [], logo, action, className }: Base) {
   )
 }
 
-function MapNav({ logo, items = [], columns, action, className }: Base) {
-  const [open, setOpen] = useState<string | null>(null)
+function MapNav({ logo, items = [], columns, action, defaultOpen, className }: Base) {
+  const [open, setOpen] = useState<string | null>(defaultOpen ?? null)
   const reduced = usePrefersReducedMotion()
   const groups = columns && columns.length > 0 ? columns : items.filter((item) => item.children?.length).map((item) => ({
     id: item.id,

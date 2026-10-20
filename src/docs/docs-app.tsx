@@ -220,6 +220,7 @@ function ComponentPage({ entry }: { entry: CatalogEntry }) {
     const meta = libraryMeta[entry.slug]
     return (
       <FamilyStudio
+        key={entry.slug}
         family={entry.slug}
         title={entry.name}
         description={entry.description}

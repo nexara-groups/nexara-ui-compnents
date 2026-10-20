@@ -33,10 +33,20 @@ function Ghost({ children, href = '#hero' }: { children: ReactNode; href?: strin
   )
 }
 
-function Plate({ label }: { label: string }) {
+function Plate({ label, tone = 0 }: { label: string; tone?: number }) {
+  const gels = [
+    'linear-gradient(135deg, var(--nx-metal), transparent 42%), linear-gradient(210deg, var(--nx-cool), var(--nx-elev))',
+    'linear-gradient(160deg, var(--nx-accent), transparent 55%), linear-gradient(var(--nx-elev), var(--nx-bg))',
+    'repeating-linear-gradient(90deg, var(--nx-line) 0 1px, transparent 1px 28px), linear-gradient(var(--nx-elev), var(--nx-bg))',
+  ]
   return (
-    <div className="grid h-full min-h-48 w-full place-items-end p-4" style={{ background: 'var(--nx-elev)' }}>
-      <span className="font-mono text-[11px] tracking-[0.16em] uppercase" style={{ color: 'var(--nx-muted)' }}>
+    <div className="relative grid h-full min-h-48 w-full place-items-end overflow-hidden p-4" style={{ background: gels[tone % gels.length] }}>
+      <span
+        className="absolute top-6 left-6 size-16 rounded-full"
+        style={{ background: 'var(--nx-accent)', opacity: 0.85 }}
+        aria-hidden="true"
+      />
+      <span className="relative font-mono text-[11px] tracking-[0.16em] uppercase" style={{ color: 'var(--nx-fg)' }}>
         {label}
       </span>
     </div>
@@ -53,9 +63,9 @@ const actions = (
 export function renderHero(id: string) {
   const variant = id as HeroVariant
   const frames = [
-    { id: 'a', media: <Plate label="North" />, label: '01' },
-    { id: 'b', media: <Plate label="East" />, label: '02' },
-    { id: 'c', media: <Plate label="West" />, label: '03' },
+    { id: 'a', media: <Plate label="North" tone={0} />, label: '01' },
+    { id: 'b', media: <Plate label="East" tone={1} />, label: '02' },
+    { id: 'c', media: <Plate label="West" tone={2} />, label: '03' },
   ]
   return (
     <Hero
@@ -65,7 +75,8 @@ export function renderHero(id: string) {
       eyebrow="Opening"
       description="A reusable first viewport. Swap copy, media, and tokens."
       actions={actions}
-      media={<Plate label="Media" />}
+      media={<Plate label="Media" tone={1} />}
+      className={variant === 'iris' ? '[&_[data-variant=iris]]:min-h-0' : undefined}
       frames={variant === 'fan' ? frames : undefined}
       index={
         variant === 'cover'
@@ -119,6 +130,7 @@ export function renderNavbar(id: string) {
       ]}
       sections={[{ id: 'main', label: 'Navigate', items: navItems }]}
       magnify
+      defaultOpen={id === 'map' ? 'work' : undefined}
     />
   )
 }

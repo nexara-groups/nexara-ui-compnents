@@ -72,6 +72,10 @@ body {
   color: var(--nx-fg);
 }
 
+.nx-scope input[type='range'] {
+  accent-color: var(--nx-accent);
+}
+
 [data-nx-theme="heliograph"] {
   --nx-bg: #07060b;
   --nx-fg: #f3ead8;

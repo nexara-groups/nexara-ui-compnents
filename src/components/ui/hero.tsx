@@ -801,7 +801,7 @@ function IrisHero({
         height: progress === 'scroll' && !reduced ? '180vh' : undefined,
       }}
     >
-      <div className={cn('overflow-hidden', progress === 'scroll' && !reduced ? 'sticky top-0 h-svh' : 'min-h-[min(100svh,40rem)]')}>
+      <div className={cn('overflow-hidden', progress === 'scroll' && !reduced ? 'sticky top-0 h-svh' : 'min-h-[28rem] md:min-h-[32rem]')}>
         <div className="absolute inset-0" style={{ clipPath: `circle(${hole} at 50% 54%)` }}>
           <MediaWell
             media={props.media}
@@ -823,7 +823,7 @@ function IrisHero({
             />
           ))}
         </svg>
-        <div className="relative z-10 flex min-h-[min(100svh,40rem)] flex-col justify-between px-4 py-8 md:px-10">
+        <div className="relative z-10 flex min-h-[28rem] flex-col justify-between px-4 py-8 md:min-h-[32rem] md:px-10">
           <Eyebrow className={props.eyebrowClassName}>{props.eyebrow}</Eyebrow>
           <div className="max-w-2xl space-y-4">
             <Heading as={props.Title} className={props.titleClassName}>

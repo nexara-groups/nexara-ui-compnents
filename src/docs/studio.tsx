@@ -32,9 +32,11 @@ export function FamilyStudio({
   const [scheme, setScheme] = useState<NxScheme | undefined>(undefined)
 
   useEffect(() => {
+    const next = readVariant(family)
+    if (next && variants.some((item) => item.id === next)) setVariant(next)
     const sync = () => {
-      const next = readVariant(family)
-      if (next && variants.some((item) => item.id === next)) setVariant(next)
+      const found = readVariant(family)
+      if (found && variants.some((item) => item.id === found)) setVariant(found)
     }
     window.addEventListener('hashchange', sync)
     return () => window.removeEventListener('hashchange', sync)
@@ -48,14 +50,25 @@ export function FamilyStudio({
   const code = current ? usage(current.id) : ''
 
   return (
-    <article className="space-y-8">
-      <header className="max-w-3xl">
-        <p className="text-[11px] tracking-[0.2em] text-[#f5c16c] uppercase">Library · {family}</p>
-        <h1 className="mt-2 font-serif text-4xl tracking-tight md:text-5xl">{title}</h1>
-        <p className="mt-3 text-base leading-7 text-zinc-300">{description}</p>
+    <article className="space-y-6">
+      <header className="flex flex-wrap items-end justify-between gap-4">
+        <div className="max-w-2xl">
+          <p className="text-[11px] tracking-[0.2em] text-[#f5c16c] uppercase">Library · {family}</p>
+          <h1 className="mt-1 font-serif text-3xl tracking-tight md:text-4xl">{title}</h1>
+          <p className="mt-2 text-sm leading-6 text-zinc-300">{description}</p>
+        </div>
+        {current ? (
+          <p className="text-sm text-zinc-400">
+            <span className="font-mono text-[#f5c16c]">
+              {family} / {current.id}
+            </span>
+            <span className="mx-2 text-zinc-600">·</span>
+            {current.note}
+          </p>
+        ) : null}
       </header>
 
-      <div className="flex flex-wrap gap-2" role="group" aria-label="Tier filter">
+      <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Tier filter">
         {(['all', ...NX_TIERS] as const).map((item) => (
           <button
             key={item}
@@ -63,16 +76,35 @@ export function FamilyStudio({
             aria-pressed={tier === item}
             onClick={() => setTier(item)}
             className={cn(
-              'h-10 rounded-full border border-white/15 px-3 text-xs tracking-[0.14em] uppercase',
+              'h-8 rounded-full border border-white/15 px-2.5 text-[10px] tracking-[0.14em] uppercase',
               tier === item && 'bg-white/10',
             )}
           >
             {item}
           </button>
         ))}
+        <span className="mx-1 h-4 w-px bg-white/10" aria-hidden="true" />
+        {NX_PRESETS.map((item) => (
+          <button
+            key={item}
+            type="button"
+            aria-pressed={preset === item}
+            onClick={() => setPreset(item)}
+            className={cn('h-8 rounded-full border border-white/15 px-2.5 text-[10px]', preset === item && 'bg-white/10')}
+          >
+            {NX_PRESET_META[item].title}
+          </button>
+        ))}
+        <button
+          type="button"
+          className="h-8 rounded-full border border-white/15 px-2.5 text-[10px]"
+          onClick={() => setScheme((value) => (value === 'light' ? 'dark' : value === 'dark' ? undefined : 'light'))}
+        >
+          {scheme ?? 'token'}
+        </button>
       </div>
 
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Variants">
+      <div className="flex flex-wrap gap-1.5" role="tablist" aria-label="Variants">
         {visible.map((item) => (
           <a
             key={item.id}
@@ -81,52 +113,24 @@ export function FamilyStudio({
             aria-selected={current?.id === item.id}
             onClick={() => setVariant(item.id)}
             className={cn(
-              'h-10 rounded-full border border-white/15 px-3 text-sm',
-              current?.id === item.id && 'bg-white/10',
+              'h-8 rounded-full border border-white/15 px-2.5 font-mono text-[11px]',
+              current?.id === item.id ? 'bg-white/10 text-[#f5c16c]' : 'text-zinc-300',
             )}
           >
-            <span className="font-mono text-[#f5c16c]">{family} / {item.id}</span>
-            <span className="ml-2 text-[10px] tracking-[0.14em] text-zinc-500 uppercase">{item.tier}</span>
+            {item.id}
           </a>
         ))}
       </div>
 
-      <div className="flex flex-wrap items-center gap-2">
-        {NX_PRESETS.map((item) => (
-          <button
-            key={item}
-            type="button"
-            aria-pressed={preset === item}
-            onClick={() => setPreset(item)}
-            className={cn('h-10 rounded-full border border-white/15 px-3 text-xs', preset === item && 'bg-white/10')}
-          >
-            {NX_PRESET_META[item].title}
-          </button>
-        ))}
-        <button
-          type="button"
-          className="h-10 rounded-full border border-white/15 px-3 text-xs"
-          onClick={() => setScheme((value) => (value === 'light' ? 'dark' : value === 'dark' ? undefined : 'light'))}
-        >
-          Scheme {scheme ?? 'token'}
-        </button>
-      </div>
-
-      {current ? (
-        <p className="text-sm text-zinc-400">
-          <span className="text-zinc-200">{current.title}</span> · {current.note}
-        </p>
-      ) : null}
-
-      <div className="overflow-hidden rounded-3xl border border-white/10">
-        <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
+      <div id="nx-preview" className="overflow-hidden rounded-3xl border border-white/10">
+        <div className="flex items-center justify-between border-b border-white/10 px-4 py-2">
           <span className="text-[11px] tracking-[0.16em] text-zinc-400 uppercase">Live preview</span>
           <span className="font-mono text-[11px] text-zinc-500">
-            {family} / {current?.id}
+            {family} / {current?.id} · {current?.tier}
           </span>
         </div>
         <NxTheme preset={preset} scheme={scheme}>
-          <div className="min-h-[28rem]">{current ? render(current.id) : null}</div>
+          <div className="min-h-[22rem]">{current ? render(current.id) : null}</div>
         </NxTheme>
       </div>
 
