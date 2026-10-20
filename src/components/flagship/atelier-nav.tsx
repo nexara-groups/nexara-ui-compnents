@@ -97,6 +97,7 @@ export function AtelierNav({
 
   useMotionValueEvent(scrollY, 'change', (value) => {
     setCompact(value > 24)
+    setOpen(null)
   })
 
   useEffect(() => {

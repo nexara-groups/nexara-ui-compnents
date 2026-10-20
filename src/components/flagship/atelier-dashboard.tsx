@@ -67,7 +67,9 @@ export function AtelierDashboard({ className }: AtelierDashboardProps) {
   const [selected, setSelected] = useState<string[]>([])
   const [focusId, setFocusId] = useState('HX-18')
   const [live, setLive] = useState(128)
-  const [points, setPoints] = useState(() => Array.from({ length: 24 }, (_, i) => 30 + ((i * 17) % 50)))
+  const [points, setPoints] = useState(() =>
+    Array.from({ length: 24 }, (_, i) => 46 + Math.round(Math.sin(i / 2.4) * 18 + Math.cos(i / 5.1) * 8)),
+  )
   const drawerRef = useRef<HTMLElement>(null)
   const paletteRef = useRef<HTMLDivElement>(null)
   const closeDrawer = useCallback(() => setMobileOpen(false), [])
@@ -84,7 +86,11 @@ export function AtelierDashboard({ className }: AtelierDashboardProps) {
   useEffect(() => {
     const id = window.setInterval(() => {
       setLive((value) => value + (Math.random() > 0.55 ? 1 : 0))
-      setPoints((current) => current.slice(1).concat(20 + Math.round(Math.random() * 70)))
+      setPoints((current) => {
+        const last = current[current.length - 1] ?? 46
+        const next = Math.max(22, Math.min(78, last + (Math.random() - 0.48) * 10))
+        return current.slice(1).concat(next)
+      })
     }, 1400)
     return () => window.clearInterval(id)
   }, [])
@@ -256,15 +262,15 @@ export function AtelierDashboard({ className }: AtelierDashboardProps) {
       </header>
 
       <main className="relative px-4 py-6 md:px-6">
-        <div className="grid items-start gap-5 xl:grid-cols-12">
+        <div className="grid items-start gap-5 lg:grid-cols-12">
           <IrisRadar
             rows={loading ? [] : rows}
             focusId={focusId}
             onFocus={setFocusId}
             reduced={reduced}
-            className="xl:col-span-7"
+            className="lg:col-span-7"
           />
-          <div className="grid gap-5 xl:col-span-5">
+          <div className="grid gap-5 lg:col-span-5">
             <div className="grid grid-cols-3 gap-3">
               <BrassCounter label="Open" value={openCount} />
               <BrassCounter label="Held" value={heldCount} />
@@ -408,7 +414,7 @@ function IrisRadar({
         </div>
         <p className="font-mono text-[10px] tracking-[0.16em] text-fog uppercase">{rows.length} in beam</p>
       </div>
-      <div className="relative mx-auto mt-4 aspect-square max-w-[34rem]">
+      <div className="relative mx-auto mt-4 aspect-square max-w-[28rem]">
         <svg viewBox="0 0 100 100" className="h-full w-full">
           <defs>
             <radialGradient id="irisWell" cx="50%" cy="50%" r="50%">

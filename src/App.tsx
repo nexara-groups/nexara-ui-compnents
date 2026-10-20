@@ -16,6 +16,10 @@ export default function App() {
     return () => window.removeEventListener('hashchange', sync)
   }, [])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [hash])
+
   if (hash === 'flagship' || hash === 'atelier') {
     return <FlagshipLanding />
   }

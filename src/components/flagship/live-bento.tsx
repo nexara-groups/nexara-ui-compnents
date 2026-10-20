@@ -55,7 +55,10 @@ export function LiveBento({ className }: LiveBentoProps) {
     }
   }, [slx, sly])
 
-  const spark = useMemo(() => Array.from({ length: 22 }, (_, i) => 16 + ((tick + i * 11) % 68)), [tick])
+  const spark = useMemo(
+    () => Array.from({ length: 48 }, (_, i) => 38 + Math.round(Math.sin((tick + i * 9) / 7) * 26 + Math.cos((tick + i) / 4) * 8)),
+    [tick],
+  )
   const bars = useMemo(() => Array.from({ length: 9 }, (_, i) => 28 + ((tick * 3 + i * 17) % 62)), [tick])
   const hits = commands.filter((item) => item.label.toLowerCase().includes(query.trim().toLowerCase()))
 
@@ -166,7 +169,7 @@ function Oscilloscope({
   night: boolean
   className?: string
 }) {
-  const line = spark.map((y, x) => `${8 + x * 8.4},${78 - y * 0.82}`).join(' ')
+  const line = spark.map((y, x) => `${6 + x * (188 / (spark.length - 1))},${80 - y * 0.72}`).join(' ')
   return (
     <article
       className={cn(
