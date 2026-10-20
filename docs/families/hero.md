@@ -2,6 +2,8 @@
 
 Owner: product. Audience: Visual, Motion, Front-end. This is not a Helio demo.
 
+Visual dissent (objects, not jobs-that-paint-as-split): [`docs/families/hero-visual.md`](./hero-visual.md).
+
 A reuser pastes a Hero to convert a stranger on the first screen. They arrive with a headline, a CTA, and usually one proof asset. They do not arrive with a night desk, a brass crystal, or four chapters named Closed / First light / Instrument / Open desk.
 
 **Default paste is `hero / split`.** Signature paste is `hero / iris`. If those two cannot ship on a Monday in a product that is not ours, the family has failed.

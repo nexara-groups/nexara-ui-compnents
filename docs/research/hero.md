@@ -1,6 +1,6 @@
 # Hero — structural audit
 
-Product contract: [`docs/families/hero.md`](../families/hero.md). Front-end API: [`docs/families/hero-api.md`](../families/hero-api.md).
+Product contract: [`docs/families/hero.md`](../families/hero.md). Visual counter-brief: [`docs/families/hero-visual.md`](../families/hero-visual.md). Front-end API: [`docs/families/hero-api.md`](../families/hero-api.md). Motion thesis: [`hero-motion.md`](./hero-motion.md).
 
 This family failed twice. Geometry variants rearranged one slot list. Industry variants baked twelve product pages into the component. The flagship Helio iris / orbit / kinetic pieces are a quality floor, not the kit.
 
@@ -13,7 +13,9 @@ This family failed twice. Geometry variants rearranged one slot list. Industry v
 
 Anything that cannot answer a job without saying “split, but the columns moved” is not a variant.
 
-## Eleven variants (jobs, not costumes)
+## Eleven variants (Product: jobs)
+
+Visual rejects this list as a rhyming shelf. Object ids and lighting: [`hero-visual.md`](../families/hero-visual.md) (`editorial-split`, `magazine-folio`, `terminal`, `prompt-well`, `flip-board`, `card-fan`, `clipped-mask`, `aperture`, `instrument-plate`, `type-mass`, `chapter-scroll`).
 
 | Variant | Tier | Structural difference |
 | --- | --- | --- |

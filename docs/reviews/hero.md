@@ -1,6 +1,6 @@
 # Hero
 
-Family contract: [`docs/families/hero.md`](../families/hero.md). Front-end API: [`docs/families/hero-api.md`](../families/hero-api.md). The notes below are history. Do not rebuild the approved-then-killed lists.
+Family contract: [`docs/families/hero.md`](../families/hero.md). Visual: [`docs/families/hero-visual.md`](../families/hero-visual.md). Front-end API: [`docs/families/hero-api.md`](../families/hero-api.md). The notes below are history. Do not rebuild the approved-then-killed lists.
 
 ## Round 1
 The heading level was fixed, centered media stretched full width, and the entrance finished on mount even when the section was below the fold.
@@ -23,3 +23,5 @@ They were replaced by twelve pages: saas, download, video, logos, pricing, agenc
 
 ## Family rewrite
 Product brief resets the family to eleven jobs: split, stack, capture, video, frame, proof, stage, cover, iris, orbit, kinetic. Helio cinematic / orbital / kinetic remain flagship references, not defaults. Headline + CTA must read at 375 without scroll-theater.
+
+Visual disputes the jobs list as eleven splits with wigs, and proposes eleven objects (aperture, instrument plate, type as mass, prompt well, flip-board, card fan, magazine folio, terminal, clipped mask, editorial split, chapter scroll) on `--nx-bg/fg/muted/accent/elev/line/metal/cool`. Heliograph is a preset, not the kit.
