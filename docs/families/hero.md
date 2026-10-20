@@ -395,4 +395,4 @@ Stop. Do not add a twelfth. Do not add parallax, spotlight-as-hero, or a “mega
 | --- | --- |
 | Visual | Draw split, stack, capture, video at 375/768/1280 in tokens, not Helio stills. Then frame, proof, stage, cover. Iris last, as a plate that already contains the split’s type+CTA. |
 | Motion | Propose **one** idea per advanced variant, with the reduced-motion still first. BASIC gets in-view stagger or nothing. |
-| Front-end | Types from this contract. File split as specified. Port Helio only as a docs demo wrapping the library iris, not the other way around. |
+| Front-end | Types, files, tokens, reduced-motion, and fights: [`hero-api.md`](./hero-api.md). Port Helio only as a docs demo wrapping the library iris, not the other way around. |

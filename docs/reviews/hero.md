@@ -1,6 +1,6 @@
 # Hero
 
-Family contract: [`docs/families/hero.md`](../families/hero.md). The notes below are history. Do not rebuild the approved-then-killed lists.
+Family contract: [`docs/families/hero.md`](../families/hero.md). Front-end API: [`docs/families/hero-api.md`](../families/hero-api.md). The notes below are history. Do not rebuild the approved-then-killed lists.
 
 ## Round 1
 The heading level was fixed, centered media stretched full width, and the entrance finished on mount even when the section was below the fold.

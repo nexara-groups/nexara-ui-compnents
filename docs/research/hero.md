@@ -1,6 +1,6 @@
 # Hero — structural audit
 
-Product contract: [`docs/families/hero.md`](../families/hero.md).
+Product contract: [`docs/families/hero.md`](../families/hero.md). Front-end API: [`docs/families/hero-api.md`](../families/hero-api.md).
 
 This family failed twice. Geometry variants rearranged one slot list. Industry variants baked twelve product pages into the component. The flagship Helio iris / orbit / kinetic pieces are a quality floor, not the kit.
 
