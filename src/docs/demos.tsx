@@ -70,14 +70,6 @@ function Segmented<T extends string>({
   )
 }
 
-function ArrowIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-      <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
-
 export function DraggableCardDemo() {
   const stageRef = useRef<HTMLDivElement>(null)
   const [snapBack, setSnapBack] = useState(false)
@@ -378,46 +370,22 @@ export function ModalDemo() {
 }
 
 export function HeroDemo() {
-  const [align, setAlign] = useState<'center' | 'split'>('split')
   return (
-    <div>
-      <div className="px-1">
-        <Segmented label="Hero layout" value={align} options={['split', 'center'] as const} onChange={setAlign} />
-      </div>
-      <AuroraBackground className="rounded-3xl">
-        <Hero
-          key={align}
-          align={align}
-          titleAs="h2"
-          eyebrow="Nexara atlas"
-          title={
-            <>
-              Build the room, then <GradientText>move the furniture.</GradientText>
-            </>
-          }
-          description="A hero is a layout, not a locked illustration. Swap the title, the actions, and the media without rewriting the section."
-          actions={
-            <>
-              <Button variant="gradient" rightIcon={<ArrowIcon />}>
-                Browse the registry
-              </Button>
-              <Button variant="glow-outline" href="#draggable-card">
-                Draggable card
-              </Button>
-            </>
-          }
-          media={
-            <SpotlightCard className="p-6" spotlightColor="rgba(245, 193, 108, 0.45)">
-              <p className="text-xs tracking-[0.18em] text-zinc-400 uppercase">Media slot</p>
-              <p className="mt-3 font-serif text-3xl">Any node can sit here.</p>
-              <p className="mt-3 text-sm leading-6 text-zinc-300">
-                This preview composes the hero with the aurora background and a spotlight card.
-              </p>
-            </SpotlightCard>
-          }
-        />
-      </AuroraBackground>
-    </div>
+    <Hero
+      variant="stack"
+      titleAs="h2"
+      eyebrow="Opening"
+      title="Ship the first screen."
+      description="A reusable first viewport. Swap copy, media, and tokens."
+      actions={
+        <>
+          <Button variant="gradient">Read the docs</Button>
+          <Button variant="glow-outline" href="#navbar">
+            Next family
+          </Button>
+        </>
+      }
+    />
   )
 }
 

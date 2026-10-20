@@ -46,12 +46,15 @@ export type CatalogEntry = {
   usage: string
   props: PropRow[]
   Demo: ComponentType
+  studio?: boolean
 }
 
 const motionDeps = ['framer-motion', 'clsx', 'tailwind-merge']
 const styleDeps = ['clsx', 'tailwind-merge']
 
 const flagshipDeps = ['framer-motion', 'clsx', 'tailwind-merge']
+
+const libraryDeps = ['framer-motion', 'clsx', 'tailwind-merge']
 
 export const catalog: CatalogEntry[] = [
   {
@@ -596,36 +599,131 @@ export function Example() {
   {
     slug: 'hero',
     name: 'Hero',
-    category: 'Sections',
-    description: 'A centered or split intro with staggered entrance. Title, actions, and media are slots.',
+    category: 'Library',
+    studio: true,
+    description: 'Eleven first-screen mechanisms from a still caption to a kinetic rail. Brand-agnostic, themeable, no Helio defaults.',
     path: 'src/components/ui/hero.tsx',
-    dependencies: motionDeps,
-    registryDependencies: ['utils'],
+    dependencies: libraryDeps,
+    registryDependencies: ['utils', 'theme', 'kit'],
     usage: `import { Hero } from '@/components/ui/hero'
-import { Button } from '@/components/ui/button'
 
-export function Example() {
-  return (
-    <Hero
-      align="split"
-      eyebrow="New"
-      title="A room with movable parts"
-      description="Compose this with any background or media."
-      actions={<Button>Begin</Button>}
-      media={<img alt="" src="/cover.jpg" />}
-    />
-  )
-}`,
+<Hero variant="stack" title="Ship the first screen." actions={<a href="#docs">Read the docs</a>} />`,
     props: [
-      { name: 'variant', type: 'saas | download | video | logos | pricing | agency | commerce | event | search | dashboard | editorial | waitlist', description: 'Hero product. When omitted, align center selects saas and align split selects dashboard.' },
-      { name: 'align', type: "'center' | 'split'", defaultValue: 'center', description: 'Used when variant is omitted.' },
-      { name: 'eyebrow', type: 'ReactNode', description: 'Small label above the title.' },
-      { name: 'title', type: 'ReactNode', description: 'Rendered in an h2. Pass text or a gradient span.' },
-      { name: 'description', type: 'ReactNode', description: 'Supporting paragraph.' },
-      { name: 'actions', type: 'ReactNode', description: 'Button row.' },
-      { name: 'media', type: 'ReactNode', description: 'Right column in split layout. Hidden when omitted.' },
-      { name: 'className', type: 'string', description: 'Section padding and background overrides.' },
-      { name: 'titleClassName / descriptionClassName / actionsClassName / mediaClassName / eyebrowClassName', type: 'string', description: 'Per-slot Tailwind classes.' },
+      { name: 'variant', type: 'still | folio | frame | stack | command | fan | board | cover | iris | orbit | kinetic', defaultValue: 'stack', description: 'Mechanism. Ask for hero / iris.' },
+      { name: 'title', type: 'ReactNode', description: 'Headline. Named heading via titleAs (default h1).' },
+      { name: 'actions', type: 'ReactNode', description: 'Way through. Slot for buttons.' },
+      { name: 'media', type: 'ReactNode', description: 'Proof asset. Empty does not invent chrome.' },
+      { name: 'mediaState', type: 'ready | loading | empty | error', description: 'Well state. Defaults from media presence.' },
+      { name: 'frames', type: 'HeroFrame[]', description: 'Fan plates.' },
+      { name: 'index', type: 'HeroIndexItem[]', description: 'Cover destinations.' },
+      { name: 'control / onSubmit / status', type: 'slot | callback | idle…', description: 'Command field. Prefer a control slot.' },
+      { name: 'scene / fallback / modes', type: 'ReactNode / ReactNode / HeroMode[]', description: 'Orbit instrument. Fallback is the still.' },
+      { name: 'lines / lockable', type: 'string[] / boolean', description: 'Kinetic glyphs.' },
+      { name: 'progress / opened', type: 'none | control | scroll / boolean', description: 'Iris. Control-first. Scroll opt-in.' },
+      { name: 'className', type: 'string', description: 'Section classes.' },
+    ],
+    Demo: HeroDemo,
+  },
+  {
+    slug: 'navbar',
+    name: 'Navbar',
+    category: 'Library',
+    studio: true,
+    description: 'Eleven navigation mechanisms from a full-bleed rail to a morphing island. Not a glowing pill rack.',
+    path: 'src/components/ui/navbar.tsx',
+    dependencies: libraryDeps,
+    registryDependencies: ['utils', 'theme', 'kit'],
+    usage: `import { Navbar } from '@/components/ui/navbar'
+
+<Navbar variant="rail" logo="Mark" items={[{ id: 'work', label: 'Work', href: '/work' }]} />`,
+    props: [
+      { name: 'variant', type: 'rail | capsule | column | path | map | command | dock | mast | curtain | island | galley', defaultValue: 'rail', description: 'Mechanism. Ask for navbar / island.' },
+      { name: 'logo', type: 'ReactNode', description: 'Wordmark slot. Empty omits chrome.' },
+      { name: 'items', type: 'NavItem[]', description: 'Destinations.' },
+      { name: 'columns / sections', type: 'NavColumn[] / NavSection[]', description: 'Map columns and column-nav groups.' },
+      { name: 'action', type: 'ReactNode', description: 'Trailing control.' },
+      { name: 'edge / magnify', type: 'top | bottom / boolean', description: 'Dock placement and pointer magnify.' },
+      { name: 'morph', type: 'none | control | scroll', description: 'Island. Control-first.' },
+    ],
+    Demo: HeroDemo,
+  },
+  {
+    slug: 'bento',
+    name: 'Bento',
+    category: 'Library',
+    studio: true,
+    description: 'Eleven feature-section mechanisms. Ranked mosaics, paper sheets, working docks — not icon cards.',
+    path: 'src/components/ui/bento.tsx',
+    dependencies: libraryDeps,
+    registryDependencies: ['utils', 'theme', 'kit'],
+    usage: `import { Bento } from '@/components/ui/bento'
+
+<Bento variant="mosaic" title="Show the work." tiles={[{ id: 'a', title: 'Proof' }]} />`,
+    props: [
+      { name: 'variant', type: 'mosaic | reel | sheet | well | dock | stage | spec | expand | inspect | desk | reflow', defaultValue: 'mosaic', description: 'Mechanism. Ask for bento / desk.' },
+      { name: 'tiles', type: 'BentoTile[]', description: 'Cells. Empty omits the grid.' },
+      { name: 'selected / onSelect', type: 'string / callback', description: 'Stage and expand.' },
+      { name: 'inspect / onInspect', type: 'number / callback', description: 'Scrub 0–1 inside inspect.' },
+    ],
+    Demo: HeroDemo,
+  },
+  {
+    slug: 'pricing',
+    name: 'Pricing',
+    category: 'Library',
+    studio: true,
+    description: 'Eleven pricing mechanisms. Published figures, sliders, tables — no neon Recommended cards.',
+    path: 'src/components/ui/pricing.tsx',
+    dependencies: libraryDeps,
+    registryDependencies: ['utils', 'theme', 'kit'],
+    usage: `import { Pricing } from '@/components/ui/pricing'
+
+<Pricing variant="slab" plans={[{ id: 'solo', name: 'Solo', price: '24' }]} />`,
+    props: [
+      { name: 'variant', type: 'offer | pair | slab | ledger | toggle | seats | meter | table | quote | morph | dossier', defaultValue: 'slab', description: 'Mechanism. Ask for pricing / quote.' },
+      { name: 'plans', type: 'PricePlan[]', description: 'Offers. Empty omits cards. No baked amounts.' },
+      { name: 'rows', type: 'PriceRow[]', description: 'Comparison matrix.' },
+      { name: 'period / seats / usage', type: 'month | year / number / number', description: 'Working controls.' },
+      { name: 'formula', type: 'fn', description: 'Quote total. Reuser owns the math.' },
+    ],
+    Demo: HeroDemo,
+  },
+  {
+    slug: 'testimonials',
+    name: 'Testimonials',
+    category: 'Library',
+    studio: true,
+    description: 'Eleven voice mechanisms. Pull quotes to a physics reel. No default names, no gold stars.',
+    path: 'src/components/ui/testimonials.tsx',
+    dependencies: libraryDeps,
+    registryDependencies: ['utils', 'theme', 'kit'],
+    usage: `import { Testimonials } from '@/components/ui/testimonials'
+
+<Testimonials variant="pull" items={[{ id: 'a', quote: 'The first screen held still.' }]} />`,
+    props: [
+      { name: 'variant', type: 'pull | plate | stack | ledger | cast | pin | film | held | wall | reel | voice', defaultValue: 'pull', description: 'Mechanism. Ask for testimonials / wall.' },
+      { name: 'items', type: 'Voice[]', description: 'Quotes. Empty is empty.' },
+      { name: 'held / onHeldChange', type: 'string / callback', description: 'Held plate.' },
+    ],
+    Demo: HeroDemo,
+  },
+  {
+    slug: 'stats',
+    name: 'Stats',
+    category: 'Library',
+    studio: true,
+    description: 'Eleven figure mechanisms from a hairline strip to a plotted field. Reduced motion shows the number at rest.',
+    path: 'src/components/ui/stats.tsx',
+    dependencies: libraryDeps,
+    registryDependencies: ['utils', 'theme', 'kit'],
+    usage: `import { Stats } from '@/components/ui/stats'
+
+<Stats variant="strip" items={[{ id: 'a', value: 128, label: 'rooms' }]} />`,
+    props: [
+      { name: 'variant', type: 'strip | sentence | ring | bar | wall | barrel | ledger | versus | cascade | dial | plot', defaultValue: 'strip', description: 'Mechanism. Ask for stats / dial.' },
+      { name: 'items', type: 'StatItem[]', description: 'Figures. Empty is empty.' },
+      { name: 'sentence', type: 'ReactNode', description: 'Optional claim for sentence variant.' },
+      { name: 'progress', type: 'none | control | scroll', description: 'Cascade. Control-first.' },
     ],
     Demo: HeroDemo,
   },
@@ -663,4 +761,4 @@ export function Example() {
   },
 ]
 
-export const categories = ['Flagship', 'Cards', 'Buttons', 'Backgrounds', 'Text', 'Navigation', 'Overlays', 'Sections'] as const
+export const categories = ['Library', 'Flagship', 'Cards', 'Buttons', 'Backgrounds', 'Text', 'Navigation', 'Overlays', 'Sections'] as const
