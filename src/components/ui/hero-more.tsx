@@ -2,6 +2,7 @@
 
 import { Grain, Magnetic, springs } from '@/lib/kit.tsx'
 import { DEFAULT_LOGOS, HERO_STILLS, heroAsset } from '@/lib/hero-media.ts'
+import { asText } from '@/lib/library.ts'
 import {
   CountStat,
   DefaultActions,
@@ -22,7 +23,7 @@ import {
 } from '@/lib/hero-motion.tsx'
 import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
-import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
+import { useEffect, useId, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
 
 export function HeroMore(props: LayoutProps) {
   switch (props.variant) {
@@ -170,6 +171,9 @@ function RotateHero(props: LayoutProps) {
 
 function VeilHero(props: LayoutProps) {
   const reduced = usePrefersReducedMotion()
+  const maskId = `veil-knock-${useId().replaceAll(':', '')}`
+  const word = (asText(props.title) || 'VEIL').toUpperCase()
+  const Title = props.Title
   return (
     <Shell variant="veil" className={cn('flex min-h-svh flex-col bg-black text-[#f7efe2]', props.className)} style={props.style}>
       <div className="absolute inset-0">
@@ -188,43 +192,58 @@ function VeilHero(props: LayoutProps) {
             />
           ))
         )}
-        <div className="absolute inset-0 bg-black/25" />
       </div>
-      <Grain className="opacity-30" />
-      <Sweep />
+      <Grain className="z-[1] opacity-30" />
+      <svg className="pointer-events-none absolute inset-0 z-[2] h-full w-full" aria-hidden="true">
+        <defs>
+          <mask id={maskId} maskUnits="userSpaceOnUse">
+            <rect width="100%" height="100%" fill="white" />
+            <text
+              x="50%"
+              y="78%"
+              textAnchor="middle"
+              fill="black"
+              style={{
+                fontFamily: '"Bebas Neue", "Arial Black", sans-serif',
+                fontSize: 'clamp(4.6rem, 18vw, 12rem)',
+                letterSpacing: '0.06em',
+                fontWeight: 400,
+              }}
+            >
+              {word}
+            </text>
+          </mask>
+        </defs>
+        <rect width="100%" height="100%" fill="#050505" fillOpacity="0.86" mask={`url(#${maskId})`} />
+      </svg>
+      <Sweep className="z-[1] via-white/10" />
       <nav className="relative z-10 flex items-center justify-between px-6 py-5 md:px-10">
         <strong className="tracking-[0.28em]">KIN</strong>
         <span className="hidden font-mono text-[11px] tracking-[0.2em] md:block">FASHION FILM · SS26</span>
-        <Magnetic href="#hero" className="inline-flex h-10 items-center rounded-full border border-[#f7efe2]/40 px-4 text-sm">
+        <Magnetic href="#hero" className="inline-flex h-10 items-center rounded-full border border-[#f7efe2]/40 bg-black/55 px-4 text-sm mix-blend-normal">
           Book a slot
         </Magnetic>
       </nav>
       <div className="relative z-10 flex flex-1 flex-col justify-end px-6 pb-16 md:px-10">
         <p className="font-mono text-[11px] tracking-[0.28em] text-[#e8c36a] uppercase">{props.eyebrow ?? 'Kin pictures · reel 04'}</p>
-        {props.title ? (
-          <Heading as={props.Title} className={cn('mt-2 text-[clamp(4rem,18vw,12rem)] leading-[0.78] tracking-[0.04em] text-white mix-blend-difference', props.titleClassName)}>
-            {props.title}
-          </Heading>
-        ) : (
-          <Lines
-            as={props.Title}
-            className={cn('mt-2 text-[clamp(4rem,18vw,12rem)] leading-[0.78] tracking-[0.04em] text-white mix-blend-difference', props.titleClassName)}
-            lines={['VEIL']}
-          />
-        )}
+        <Title className={cn('sr-only', props.titleClassName)}>{word}</Title>
         <Rise>
-          <p className={cn('mt-4 max-w-md font-serif text-lg text-[#f7efe2]/85 italic', props.descriptionClassName)}>
+          <p className={cn('mt-4 max-w-md font-serif text-lg text-[#f7efe2]/90 italic', props.descriptionClassName)}>
             {props.description ??
               'The type is a window. Rain, sodium lamps, and a coat that moves — Kin cuts fashion films where the headline is the mask.'}
           </p>
         </Rise>
-        <Rise delay={0.16} className={cn('mt-6', props.actionsClassName)}>
+        <div className={cn('relative z-30 isolate mt-6', props.actionsClassName)}>
           {props.actions ?? (
-            <Magnetic href="#hero" className="grid size-16 place-items-center rounded-full border border-[#f7efe2] bg-black/30 text-lg" strength={12}>
+            <Magnetic
+              href="#hero"
+              className="grid size-16 place-items-center rounded-full bg-[#f7efe2] text-lg font-bold text-black shadow-[0_12px_32px_rgba(0,0,0,.45)] mix-blend-normal"
+              strength={12}
+            >
               ▶
             </Magnetic>
           )}
-        </Rise>
+        </div>
       </div>
     </Shell>
   )
@@ -481,11 +500,11 @@ function GlyphHero(props: LayoutProps) {
 function FanHero(props: LayoutProps) {
   const reduced = usePrefersReducedMotion()
   const cards = [
-    { title: 'Harbor Athletic', meta: 'Identity · 2026', src: HERO_STILLS.athlete },
-    { title: 'Vesper Pulse', meta: 'Device · 12s read', src: HERO_STILLS.puck },
-    { title: 'Hearth 4B', meta: 'Interior · loft', src: HERO_STILLS.after },
-    { title: 'Playfield', meta: 'Academy · spring', src: HERO_STILLS.academy },
-    { title: 'Kin Veil', meta: 'Fashion film', src: HERO_STILLS.cinema },
+    { title: 'Harbor', meta: 'Athletic · 2026', src: HERO_STILLS.athlete },
+    { title: 'Pulse', meta: 'Device · 12s', src: HERO_STILLS.puck },
+    { title: 'Hearth', meta: 'Loft 4B', src: HERO_STILLS.after },
+    { title: 'Playfield', meta: 'Academy', src: HERO_STILLS.academy },
+    { title: 'Kin', meta: 'Fashion film', src: HERO_STILLS.cinema },
   ]
   return (
     <Shell variant="fan" className={cn('flex min-h-svh flex-col bg-[#f6f3ec] text-[#171412]', props.className)} style={props.style}>
@@ -531,25 +550,25 @@ function FanHero(props: LayoutProps) {
             )}
           </Rise>
         </div>
-        <div className={cn('relative mx-auto h-[22rem] w-full max-w-2xl md:h-[28rem]', props.mediaClassName)}>
+        <div className={cn('relative mx-auto h-[26rem] w-full max-w-3xl overflow-visible md:h-[32rem]', props.mediaClassName)}>
           {cards.map((card, i) => (
             <motion.article
               key={card.title}
-              className="absolute top-6 left-1/2 w-[10.5rem] overflow-hidden rounded-2xl border border-[#171412]/10 bg-white shadow-[0_24px_50px_-28px_rgba(23,20,18,.5)] md:w-[12.5rem]"
-              style={{ transformOrigin: '50% 120%', zIndex: i }}
+              className="absolute top-4 left-1/2 w-[9.25rem] overflow-hidden rounded-2xl border border-[#171412]/10 bg-white shadow-[0_24px_50px_-28px_rgba(23,20,18,.5)] md:w-[10.75rem]"
+              style={{ transformOrigin: '50% 0%', zIndex: 4 - Math.abs(i - 2) }}
               initial={reduced ? false : { x: '-50%', rotate: 0, y: 36, opacity: 0.4 }}
               animate={{
-                x: `calc(-50% + ${(i - 2) * 92}px)`,
-                rotate: -12 + i * 6,
-                y: Math.abs(i - 2) * 10,
+                x: `calc(-50% + ${(i - 2) * 118}px)`,
+                rotate: -16 + i * 8,
+                y: 8 + Math.abs(i - 2) * 18,
                 opacity: 1,
               }}
               transition={{ ...springs.heavy, delay: 0.06 * i }}
             >
-              {props.media === null ? null : <Still src={heroAsset(card.src)} alt={card.title} className="h-44 md:h-52" />}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-3 text-white">
-                <b className="block text-sm">{card.title}</b>
-                <span className="font-mono text-[10px] tracking-[0.12em] text-white/80">{card.meta}</span>
+              {props.media === null ? null : <Still src={heroAsset(card.src)} alt={card.title} className="h-40 md:h-48" />}
+              <div className="border-t border-[#171412]/10 bg-[#171412] px-2.5 py-2 text-[#f6f3ec]">
+                <b className="block truncate text-[13px] leading-tight tracking-tight">{card.title}</b>
+                <span className="font-mono text-[9px] tracking-[0.14em] text-[#f6f3ec]/70 uppercase">{card.meta}</span>
               </div>
             </motion.article>
           ))}
@@ -746,15 +765,23 @@ function ConverseHero(props: LayoutProps) {
 
 function AssembleHero(props: LayoutProps) {
   const tiles = [
-    { id: 'arr', title: 'ARR' },
-    { id: 'lat', title: 'Latency' },
-    { id: 'reg', title: 'Regions' },
-    { id: 'live', title: 'Live' },
+    { id: 'arr', title: 'ARR', span: 'col-span-2 md:col-span-6' },
+    { id: 'lat', title: 'p95 latency', span: 'col-span-1 md:col-span-3' },
+    { id: 'err', title: 'Error budget', span: 'col-span-1 md:col-span-3' },
+    { id: 'inc', title: 'Incidents', span: 'col-span-2 md:col-span-6' },
+    { id: 'reg', title: 'Regions', span: 'col-span-2 md:col-span-6' },
+    { id: 'live', title: 'Live agents', span: 'col-span-1 md:col-span-6' },
+    { id: 'desk', title: 'Desk cam', span: 'col-span-1 md:col-span-6' },
+  ]
+  const incidents = [
+    ['14:02', 'checkout-edge', 'watch'],
+    ['13:51', 'ingest-eu', 'clear'],
+    ['13:12', 'auth-apac', 'page'],
   ]
   return (
     <Shell variant="assemble" className={cn('flex min-h-svh flex-col bg-[#071018] text-[#e8f4ff]', props.className)} style={props.style}>
       <Dust count={28} color="rgba(34,211,238,.55)" />
-      <Sweep className="via-cyan-200/20" />
+      <Sweep className="z-[1] via-cyan-200/20" />
       <nav className="relative z-10 flex items-center justify-between px-6 py-5 md:px-10">
         <strong>Nimbus</strong>
         <div className="hidden gap-5 text-[13px] text-[#9ec4d8] md:flex">
@@ -762,11 +789,11 @@ function AssembleHero(props: LayoutProps) {
           <span>Regions</span>
           <span>Status</span>
         </div>
-        <Magnetic href="#hero" className="inline-flex h-10 items-center rounded-full bg-[#22d3ee] px-4 text-sm font-bold text-[#04202a]">
+        <Magnetic href="#hero" className="inline-flex h-10 items-center rounded-full bg-[#22d3ee] px-4 text-sm font-bold text-[#04202a] mix-blend-normal">
           Open the desk
         </Magnetic>
       </nav>
-      <div className="relative z-10 grid flex-1 items-start gap-8 px-6 py-10 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
+      <div className="relative z-10 grid flex-1 items-start gap-6 px-6 py-8 lg:grid-cols-[0.85fr_1.15fr] lg:px-10">
         <div>
           <p className="font-mono text-[11px] tracking-[0.22em] text-[#22d3ee] uppercase">{props.eyebrow ?? 'Nimbus · glass ops'}</p>
           {props.title ? (
@@ -783,54 +810,85 @@ function AssembleHero(props: LayoutProps) {
           <Rise>
             <p className={cn('mt-4 max-w-md leading-7 text-[#b7d4e6]', props.descriptionClassName)}>
               {props.description ??
-                'Tiles fly in, numbers count, the sparkline keeps moving. Nimbus is the glass console for regional ops — revenue, latency, and the live board in one first screen.'}
+                'Seven widgets fly in, numbers count, the sparkline keeps moving. Nimbus is the glass console for regional ops — revenue, latency, incidents, and the live board in one first screen.'}
             </p>
           </Rise>
-          <Rise delay={0.14} className={cn('mt-6 flex flex-wrap gap-3', props.actionsClassName)}>
+          <div className={cn('relative z-30 isolate mt-6 flex flex-wrap gap-3', props.actionsClassName)}>
             {props.actions ?? (
               <DefaultActions
                 primary="Launch Nimbus"
                 secondary="Read status"
-                primaryClass="inline-flex h-11 items-center rounded-full bg-[#22d3ee] px-4 text-sm font-bold text-[#04202a]"
-                secondaryClass="inline-flex h-11 items-center rounded-full border border-white/15 px-4 text-sm font-bold"
+                primaryClass="inline-flex h-11 items-center rounded-full bg-[#22d3ee] px-5 text-sm font-bold text-[#04202a] shadow-[0_10px_28px_rgba(34,211,238,.4)] ring-2 ring-[#04202a] mix-blend-normal"
+                secondaryClass="inline-flex h-11 items-center rounded-full border border-cyan-200/40 bg-[#071018] px-5 text-sm font-bold text-[#e8f4ff] mix-blend-normal"
               />
             )}
-          </Rise>
+          </div>
         </div>
-        <div className={cn('grid grid-cols-2 gap-3', props.mediaClassName)}>
+        <div className={cn('grid grid-cols-2 gap-2 overflow-visible md:grid-cols-12 md:gap-2.5', props.mediaClassName)}>
           {tiles.map((tile, i) => (
             <motion.article
               key={tile.id}
-              className={cn(
-                'rounded-2xl border border-cyan-200/30 bg-[#0b2530] p-4',
-                tile.id === 'arr' && 'col-span-2',
-              )}
-              initial={{ y: 24, opacity: 0.2 }}
-              animate={{ y: 0, opacity: 1 }}
+              className={cn('rounded-2xl border border-cyan-200/30 bg-[#0b2530] p-3', tile.span)}
+              initial={{ y: 28, opacity: 0.15, scale: 0.96 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
               transition={{ ...springs.heavy, delay: 0.05 * i }}
             >
               <small className="block font-mono text-[10px] tracking-[0.16em] text-[#67e8f9] uppercase">{tile.title}</small>
               {tile.id === 'arr' ? (
-                <div className="grid gap-3 md:grid-cols-[auto_1fr] md:items-end">
-                  <CountStat to={248} suffix="k" label="this quarter" valueClass="text-3xl text-white" className="text-[12px] text-[#9ec4d8]" />
-                  <LiveSpark className="h-14 w-full" stroke="#22d3ee" />
+                <div className="mt-1 grid gap-2 md:grid-cols-[auto_1fr] md:items-end">
+                  <CountStat to={248} suffix="k" label="this quarter" valueClass="text-2xl text-white md:text-3xl" className="text-[11px] text-[#9ec4d8]" />
+                  <LiveSpark className="h-12 w-full" stroke="#22d3ee" />
                 </div>
               ) : null}
               {tile.id === 'lat' ? (
-                <CountStat to={98} suffix="ms" label="p95 edge" valueClass="text-2xl text-white" className="text-[12px] text-[#9ec4d8]" />
+                <CountStat to={98} suffix="ms" label="p95 edge" valueClass="text-2xl text-white" className="mt-1 text-[11px] text-[#9ec4d8]" />
+              ) : null}
+              {tile.id === 'err' ? (
+                <div className="mt-1">
+                  <CountStat to={99} suffix=".95%" label="30d remaining" valueClass="text-2xl text-white" className="text-[11px] text-[#9ec4d8]" />
+                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
+                    <motion.i
+                      className="block h-full rounded-full bg-[#22d3ee]"
+                      initial={{ width: 0 }}
+                      animate={{ width: '86%' }}
+                      transition={{ ...springs.heavy, delay: 0.35 }}
+                    />
+                  </div>
+                </div>
+              ) : null}
+              {tile.id === 'inc' ? (
+                <table className="mt-2 w-full text-left font-mono text-[11px] text-[#d7eef8]">
+                  <tbody>
+                    {incidents.map((row) => (
+                      <tr key={row[0]} className="border-t border-white/10 first:border-0">
+                        <td className="py-1 pr-2 text-[#67e8f9]">{row[0]}</td>
+                        <td className="py-1 pr-2">{row[1]}</td>
+                        <td className={cn('py-1 text-right', row[2] === 'clear' ? 'text-[#5eead4]' : row[2] === 'page' ? 'text-[#fda4af]' : 'text-[#facc15]')}>
+                          {row[2]}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               ) : null}
               {tile.id === 'reg' ? (
                 <div>
-                  <p className="mt-1 text-lg font-semibold text-white">EU · US · APAC</p>
-                  <LiveBars className="mt-3 h-14" colors={['#22d3ee', '#38bdf8', '#818cf8', '#67e8f9', '#5eead4']} />
+                  <p className="mt-1 text-sm font-semibold text-white">EU · US · APAC</p>
+                  <LiveBars className="mt-2 h-12" colors={['#22d3ee', '#38bdf8', '#818cf8', '#67e8f9', '#5eead4']} />
                 </div>
               ) : null}
               {tile.id === 'live' ? (
-                <p className="mt-2 text-sm leading-5 text-white">
-                  14 agents
-                  <br />
-                  <TypeLine text="canary 12% on checkout-edge" delay={0.4} speed={18} />
-                </p>
+                <div className="mt-1">
+                  <p className="text-lg font-semibold text-white">14 on desk</p>
+                  <p className="mt-1 font-mono text-[11px] text-[#9ec4d8]">
+                    <TypeLine text="canary 12% on checkout-edge" delay={0.4} speed={18} />
+                  </p>
+                </div>
+              ) : null}
+              {tile.id === 'desk' ? (
+                <div className="mt-2 overflow-hidden rounded-xl">
+                  {props.media === null ? null : <Still src={heroAsset(HERO_STILLS.loft)} alt="Nimbus ops loft" className="h-20 md:h-24" />}
+                </div>
               ) : null}
             </motion.article>
           ))}
@@ -874,16 +932,16 @@ function IsoHero(props: LayoutProps) {
                 'Kiln runs rooftop plants for hospitals and schools. The isometric is the first screen: coils, ducts, and live temperatures from plant 03.'}
             </p>
           </Rise>
-          <Rise delay={0.14} className={cn('mt-6 flex flex-wrap gap-3', props.actionsClassName)}>
+          <div className={cn('relative z-30 isolate mt-6 flex flex-wrap gap-3', props.actionsClassName)}>
             {props.actions ?? (
               <DefaultActions
                 primary="Open plant 03"
                 secondary="Service window"
-                primaryClass="inline-flex h-11 items-center rounded-full bg-[#c2410c] px-4 text-sm font-semibold text-white"
-                secondaryClass="inline-flex h-11 items-center rounded-full border border-[#123043]/15 px-4 text-sm font-semibold"
+                primaryClass="inline-flex h-11 items-center rounded-full bg-[#c2410c] px-5 text-sm font-semibold text-white shadow-[0_10px_28px_rgba(194,65,12,.45)] ring-2 ring-white mix-blend-normal"
+                secondaryClass="inline-flex h-11 items-center rounded-full border border-[#123043]/20 bg-white px-5 text-sm font-semibold text-[#123043] mix-blend-normal"
               />
             )}
-          </Rise>
+          </div>
           <div className="mt-8 flex gap-8">
             <CountStat to={64} suffix="°" label="supply air" valueClass="text-2xl" className="text-[11px] text-[#4b6473]" />
             <CountStat to={18} suffix=" min" label="to setpoint" valueClass="text-2xl" className="text-[11px] text-[#4b6473]" />
@@ -917,8 +975,8 @@ function LeagueHero(props: LayoutProps) {
         {props.media === null ? null : (props.media ?? <Still src={heroAsset(HERO_STILLS.athlete)} alt="Night track athlete" />)}
         <div className="absolute inset-0 bg-gradient-to-r from-[#04150f] via-[#04150f]/55 to-transparent" />
       </div>
-      <Sweep className="via-[#facc15]/25" />
-      <Grain className="opacity-20" />
+      <Sweep className="z-[1] via-[#facc15]/25" />
+      <Grain className="z-[1] opacity-20" />
       <nav className="relative z-10 flex items-center justify-between px-6 py-5 md:px-10">
         <strong className="tracking-[0.14em]">HARBOR ATHLETIC</strong>
         <div className="hidden gap-5 text-[13px] text-[#b8e0b4] md:flex">
@@ -926,7 +984,7 @@ function LeagueHero(props: LayoutProps) {
           <span>Clubs</span>
           <span>Tickets</span>
         </div>
-        <Magnetic href="#hero" className="inline-flex h-10 items-center rounded-full bg-[#facc15] px-4 text-sm font-bold text-[#04150f]">
+        <Magnetic href="#hero" className="inline-flex h-10 items-center rounded-full bg-[#facc15] px-4 text-sm font-bold text-[#04150f] mix-blend-normal">
           Buy a ticket
         </Magnetic>
       </nav>
@@ -953,16 +1011,16 @@ function LeagueHero(props: LayoutProps) {
           <CountStat to={48} suffix=".02" label="women’s 400" valueClass="text-3xl text-[#facc15]" className="text-[11px] tracking-[0.12em] uppercase" />
           <CountStat to={12} suffix=" clubs" label="on the card" valueClass="text-3xl" className="text-[11px] tracking-[0.12em] uppercase" />
         </div>
-        <Rise delay={0.16} className={cn('mt-7', props.actionsClassName)}>
+        <div className={cn('relative z-30 isolate mt-7 flex flex-wrap gap-3', props.actionsClassName)}>
           {props.actions ?? (
             <DefaultActions
               primary="Get tickets"
               secondary="Club list"
-              primaryClass="inline-flex h-11 items-center rounded-full bg-[#facc15] px-4 text-sm font-bold text-[#04150f]"
-              secondaryClass="inline-flex h-11 items-center rounded-full border border-white/20 px-4 text-sm font-bold"
+              primaryClass="inline-flex h-12 items-center rounded-full bg-[#facc15] px-6 text-sm font-bold text-[#04150f] shadow-[0_10px_28px_rgba(250,204,21,.5)] ring-2 ring-[#04150f] mix-blend-normal"
+              secondaryClass="inline-flex h-12 items-center rounded-full border-2 border-[#facc15] bg-[#04150f] px-6 text-sm font-bold text-[#facc15] mix-blend-normal"
             />
           )}
-        </Rise>
+        </div>
       </div>
     </Shell>
   )

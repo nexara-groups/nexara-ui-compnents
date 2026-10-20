@@ -23,7 +23,7 @@ export function Grain({ className }: { className?: string }) {
   const id = useId().replaceAll(':', '')
   return (
     <svg
-      className={cn('pointer-events-none absolute inset-0 z-20 h-full w-full opacity-[0.12] mix-blend-overlay', className)}
+      className={cn('pointer-events-none absolute inset-0 z-[1] h-full w-full opacity-[0.12] mix-blend-overlay', className)}
       aria-hidden="true"
     >
       <filter id={`nx-grain-${id}`}>

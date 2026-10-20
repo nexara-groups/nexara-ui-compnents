@@ -149,7 +149,7 @@ export function Shell({
     >
       {reduced ? null : (
         <motion.div
-          className="pointer-events-none absolute inset-0 z-[3] mix-blend-soft-light"
+          className="pointer-events-none absolute inset-0 z-[1] mix-blend-soft-light"
           style={{
             background:
               'radial-gradient(28rem 20rem at var(--mx) var(--my), color-mix(in srgb, var(--hero-accent) 28%, transparent), transparent 70%)',
