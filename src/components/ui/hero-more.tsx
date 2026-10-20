@@ -438,19 +438,19 @@ function GlyphHero(props: LayoutProps) {
             {props.title}
           </Heading>
         ) : (
-          <props.Title className={cn('mt-4 flex justify-center gap-[0.02em] text-[clamp(3.4rem,12vw,9rem)] leading-none font-extrabold tracking-[-0.06em]', props.titleClassName)}>
+          <props.Title className={cn('mx-auto mt-6 grid w-full max-w-5xl grid-cols-5 gap-1 px-4 text-center text-[clamp(3.2rem,10vw,7.2rem)] leading-none font-extrabold tracking-[-0.06em]', props.titleClassName)}>
             {letters.map((letter, i) => (
               <motion.span
                 key={letter.ch}
-                className="relative inline-block overflow-hidden bg-clip-text text-transparent"
+                className="block bg-cover bg-center bg-clip-text text-transparent"
                 style={{
                   backgroundImage: `url(${heroAsset(letter.src)})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: '50% 40%',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
                 }}
-                initial={reduced ? false : { y: '110%', opacity: 0 }}
+                initial={reduced ? false : { y: 36, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.08 * i, ease: loadEase }}
+                transition={{ duration: 0.7, delay: 0.07 * i, ease: loadEase }}
               >
                 {letter.ch}
               </motion.span>
@@ -531,20 +531,25 @@ function FanHero(props: LayoutProps) {
             )}
           </Rise>
         </div>
-        <div className={cn('relative mx-auto h-[22rem] w-full max-w-xl md:h-[28rem]', props.mediaClassName)}>
+        <div className={cn('relative mx-auto h-[22rem] w-full max-w-2xl md:h-[28rem]', props.mediaClassName)}>
           {cards.map((card, i) => (
             <motion.article
               key={card.title}
-              className="absolute top-8 left-1/2 w-[11.5rem] overflow-hidden rounded-2xl border border-[#171412]/10 bg-white shadow-[0_24px_50px_-28px_rgba(23,20,18,.5)] md:w-[13.5rem]"
-              style={{ transformOrigin: '50% 110%', zIndex: i }}
+              className="absolute top-6 left-1/2 w-[10.5rem] overflow-hidden rounded-2xl border border-[#171412]/10 bg-white shadow-[0_24px_50px_-28px_rgba(23,20,18,.5)] md:w-[12.5rem]"
+              style={{ transformOrigin: '50% 120%', zIndex: i }}
               initial={reduced ? false : { x: '-50%', rotate: 0, y: 36, opacity: 0.4 }}
-              animate={{ x: `calc(-50% + ${(i - 2) * 42}px)`, rotate: -22 + i * 11, y: 0, opacity: 1 }}
+              animate={{
+                x: `calc(-50% + ${(i - 2) * 92}px)`,
+                rotate: -12 + i * 6,
+                y: Math.abs(i - 2) * 10,
+                opacity: 1,
+              }}
               transition={{ ...springs.heavy, delay: 0.06 * i }}
             >
-              {props.media === null ? null : <Still src={heroAsset(card.src)} alt={card.title} className="h-40 md:h-48" />}
-              <div className="p-3">
+              {props.media === null ? null : <Still src={heroAsset(card.src)} alt={card.title} className="h-44 md:h-52" />}
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-3 text-white">
                 <b className="block text-sm">{card.title}</b>
-                <span className="font-mono text-[10px] tracking-[0.12em] text-[#7a7368]">{card.meta}</span>
+                <span className="font-mono text-[10px] tracking-[0.12em] text-white/80">{card.meta}</span>
               </div>
             </motion.article>
           ))}
@@ -647,7 +652,7 @@ function ConverseHero(props: LayoutProps) {
   const reduced = usePrefersReducedMotion()
   const script = props.lines ?? [
     { id: '1', role: 'user' as const, text: 'I’d like a follow-up for my knee. Thursday if Dr. Okonkwo is in.' },
-    { id: '2', role: 'agent' as const, text: 'Thursday 9:20 is open on Dr. Okonkwo’s list. I’ll hold it for Harbor Clinic, room 2.' },
+    { id: '2', role: 'agent' as const, text: 'Thursday 9:20 is open with Dr. Okonkwo. Holding room 2 at Harbor Clinic.' },
     { id: '3', role: 'user' as const, text: 'Please send the pre-visit note to my phone.' },
     { id: '4', role: 'agent' as const, text: 'Sent. Bring the Pulse ring if you still have last week’s reading.' },
   ]
@@ -655,8 +660,14 @@ function ConverseHero(props: LayoutProps) {
   useEffect(() => {
     if (reduced) return
     const id = window.setInterval(() => {
-      setN((count) => (count >= script.length ? 1 : count + 1))
-    }, 1600)
+      setN((count) => {
+        if (count >= script.length) {
+          window.clearInterval(id)
+          return count
+        }
+        return count + 1
+      })
+    }, 1100)
     return () => window.clearInterval(id)
   }, [reduced, script.length])
   const shown = script.slice(0, n)
@@ -735,11 +746,10 @@ function ConverseHero(props: LayoutProps) {
 
 function AssembleHero(props: LayoutProps) {
   const tiles = [
-    { id: 'arr', title: 'ARR', wide: true },
+    { id: 'arr', title: 'ARR' },
     { id: 'lat', title: 'Latency' },
     { id: 'reg', title: 'Regions' },
     { id: 'live', title: 'Live' },
-    { id: 'desk', title: 'Desk' },
   ]
   return (
     <Shell variant="assemble" className={cn('flex min-h-svh flex-col bg-[#071018] text-[#e8f4ff]', props.className)} style={props.style}>
@@ -756,7 +766,7 @@ function AssembleHero(props: LayoutProps) {
           Open the desk
         </Magnetic>
       </nav>
-      <div className="relative z-10 grid flex-1 items-center gap-8 px-6 pb-10 lg:grid-cols-[0.85fr_1.15fr] lg:px-10">
+      <div className="relative z-10 grid flex-1 items-start gap-8 px-6 py-10 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
         <div>
           <p className="font-mono text-[11px] tracking-[0.22em] text-[#22d3ee] uppercase">{props.eyebrow ?? 'Nimbus · glass ops'}</p>
           {props.title ? (
@@ -792,29 +802,35 @@ function AssembleHero(props: LayoutProps) {
             <motion.article
               key={tile.id}
               className={cn(
-                'overflow-hidden rounded-2xl border border-white/12 bg-white/8 p-4 backdrop-blur-md',
-                tile.wide && 'col-span-2',
+                'rounded-2xl border border-cyan-200/30 bg-[#0b2530] p-4',
+                tile.id === 'arr' && 'col-span-2',
               )}
-              initial={{ opacity: 0, y: 28, scale: 0.94 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ ...springs.heavy, delay: 0.08 * i }}
+              initial={{ y: 24, opacity: 0.2 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ ...springs.heavy, delay: 0.05 * i }}
             >
               <small className="block font-mono text-[10px] tracking-[0.16em] text-[#67e8f9] uppercase">{tile.title}</small>
               {tile.id === 'arr' ? (
-                <>
-                  <CountStat to={248} suffix="k" label="this quarter" valueClass="text-3xl" className="text-[12px] text-[#9ec4d8]" />
-                  <LiveSpark className="mt-2 h-14 w-full" stroke="#22d3ee" />
-                </>
+                <div className="grid gap-3 md:grid-cols-[auto_1fr] md:items-end">
+                  <CountStat to={248} suffix="k" label="this quarter" valueClass="text-3xl text-white" className="text-[12px] text-[#9ec4d8]" />
+                  <LiveSpark className="h-14 w-full" stroke="#22d3ee" />
+                </div>
               ) : null}
-              {tile.id === 'lat' ? <CountStat to={98} suffix="ms" label="p95 edge" valueClass="text-2xl" className="text-[12px] text-[#9ec4d8]" /> : null}
-              {tile.id === 'reg' ? <LiveBars className="mt-3 h-16" colors={['#22d3ee', '#38bdf8', '#818cf8', '#67e8f9', '#155e75']} /> : null}
+              {tile.id === 'lat' ? (
+                <CountStat to={98} suffix="ms" label="p95 edge" valueClass="text-2xl text-white" className="text-[12px] text-[#9ec4d8]" />
+              ) : null}
+              {tile.id === 'reg' ? (
+                <div>
+                  <p className="mt-1 text-lg font-semibold text-white">EU · US · APAC</p>
+                  <LiveBars className="mt-3 h-14" colors={['#22d3ee', '#38bdf8', '#818cf8', '#67e8f9', '#5eead4']} />
+                </div>
+              ) : null}
               {tile.id === 'live' ? (
-                <p className="mt-2 text-sm">
-                  14 agents · <TypeLine text="canary 12% on checkout-edge" delay={0.6} speed={18} />
+                <p className="mt-2 text-sm leading-5 text-white">
+                  14 agents
+                  <br />
+                  <TypeLine text="canary 12% on checkout-edge" delay={0.4} speed={18} />
                 </p>
-              ) : null}
-              {tile.id === 'desk' ? (
-                props.media === null ? null : (props.media ?? <Still src={heroAsset(HERO_STILLS.laptop)} alt="Nimbus desk" className="mt-2 h-24 rounded-xl" />)
               ) : null}
             </motion.article>
           ))}

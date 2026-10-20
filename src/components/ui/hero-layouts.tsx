@@ -708,9 +708,9 @@ function BentoHero(props: LayoutProps) {
           <p className="font-mono text-[11px] tracking-[0.12em] text-[#7a7468]">BOARD</p>
           <div className="mt-2 flex gap-2 text-[12px]">
             {[
-              ['Todo', 'Iris stills', 'Type samples'],
-              ['Doing', 'Hero family', 'Blind gate'],
-              ['Done', 'Refs', 'Mockups'],
+              ['Todo', 'Pricing stills', 'Type samples'],
+              ['Doing', 'Checkout edge', 'Seats slider'],
+              ['Done', 'Brand tokens', 'Calendar'],
             ].map(([title, ...items]) => (
               <div key={title} className="flex-1 rounded-xl bg-[#f6f3ec] p-2">
                 {title}
