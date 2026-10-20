@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>03 Helix — 3D object</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Instrument+Serif:ital@1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #050506; }
+    body { font-family: Outfit, sans-serif; color: #f6f1ea; overflow: hidden; }
+    .stage { min-height: 900px; height: 100vh; position: relative; display: grid; grid-template-columns: 1fr 1.1fr; }
+    .copy { padding: 40px 48px; display: flex; flex-direction: column; justify-content: space-between; }
+    .kicker { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .24em; color: #e9a8ff; text-transform: uppercase; }
+    h1 { font-size: clamp(52px, 6vw, 92px); line-height: .88; letter-spacing: -.05em; font-weight: 700; }
+    h1 i { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; color: #ffd29a; }
+    .lede { color: #c8bdb0; max-width: 28rem; line-height: 1.55; margin-top: 18px; }
+    .specs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 32px; max-width: 28rem; }
+    .spec { border: 1px solid rgba(255,210,154,.18); padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,.03); }
+    .spec small { display: block; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .16em; color: #e9a8ff; }
+    .spec b { font-size: 18px; font-weight: 500; }
+    .cta { display: flex; gap: 12px; margin-top: 28px; }
+    button { height: 46px; padding: 0 18px; border-radius: 999px; border: 0; font: 600 14px Outfit, sans-serif; }
+    .gold { background: linear-gradient(90deg,#ffd29a,#e9a8ff); color: #1a1010; }
+    .ghost { background: transparent; color: #f6f1ea; border: 1px solid rgba(255,255,255,.16); }
+    .scene { position: relative; overflow: hidden; min-height: 900px; background: #050506; }
+    .scene img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 55%, transparent 40%, #050506 78%); }
+    .float { position: absolute; font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .12em; color: #ffd29a; }
+    .f1 { top: 18%; left: 8%; } .f2 { bottom: 22%; right: 10%; } .f3 { top: 28%; right: 12%; }
+    .line { position: absolute; width: 72px; height: 1px; background: linear-gradient(90deg, #e9a8ff, transparent); }
+  </style>
+</head>
+<body>
+  <section class="stage">
+    <div class="copy">
+      <div>
+        <p class="kicker">Material lab · object 08</p>
+        <h1>A helix<br>you can <i>hold.</i></h1>
+        <p class="lede">Studio-lit WebGL, contained in the plate. Iridescent chrome with a magenta key and a gold rim — the object is the product, not a spinning candy sphere.</p>
+        <div class="specs">
+          <div class="spec"><small>Alloy</small><b>Iridescent chrome</b></div>
+          <div class="spec"><small>Lights</small><b>Key + rim + bounce</b></div>
+          <div class="spec"><small>Loop</small><b>12s, paused offscreen</b></div>
+          <div class="spec"><small>Fallback</small><b>Photographed still</b></div>
+        </div>
+        <div class="cta">
+          <button class="gold">Inspect the object</button>
+          <button class="ghost">Download USDZ</button>
+        </div>
+      </div>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:#8a7f74">HELIX / CONTAINED WEBGL / 01 OF 12</p>
+    </div>
+    <div class="scene">
+      <img src="./assets/hero-3d-helix.jpg" alt="Iridescent helix sculpture" />
+      <div class="vignette"></div>
+      <span class="float f1">KEY 3200K</span>
+      <span class="float f2">RIM MAGENTA</span>
+      <span class="float f3">ORBIT 24°</span>
+    </div>
+  </section>
+</body>
+</html>

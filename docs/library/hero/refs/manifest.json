@@ -1,0 +1,411 @@
+{
+  "capturedAt": "2026-10-20T13:48:18.510Z",
+  "items": [
+    {
+      "file": "21st-scroll-expansion.png",
+      "url": "https://cdn.21st.dev/user_2wfnj4jcSPR8JWRk7tpzrihdDV8/scroll-expansion-hero/default/preview.1746632883284.png",
+      "kind": "preview-still",
+      "ok": true,
+      "bytes": 850221
+    },
+    {
+      "file": "21st-scroll-morph.png",
+      "url": "https://cdn.21st.dev/prashantsom75/scroll-morph-hero/default/preview.1765164297799.png",
+      "kind": "preview-still",
+      "ok": true,
+      "bytes": 1212564
+    },
+    {
+      "file": "21st-smooth-scroll.png",
+      "url": "https://cdn.21st.dev/ishamsu/smooth-scroll-hero/default/preview.1747142616016.png",
+      "kind": "preview-still",
+      "ok": true,
+      "bytes": 2458671
+    },
+    {
+      "file": "21st-shape-landing.png",
+      "url": "https://cdn.21st.dev/kokonutd/shape-landing-hero/default/preview.1785431272869-4471b98b-d626-4c8e-979f-e8f3ec494409.png",
+      "kind": "preview-still",
+      "ok": true,
+      "bytes": 1208980
+    },
+    {
+      "file": "21st-horizon.png",
+      "url": "https://cdn.21st.dev/user_2y0orG0S3NPUGUs5U6oQCBMLMkR/horizon-hero-section/default/preview.1750811163361.png",
+      "kind": "preview-still",
+      "ok": true,
+      "bytes": 1117080
+    },
+    {
+      "file": "21st-futuristic.png",
+      "url": "https://cdn.21st.dev/larsen66/hero-futuristic/default/preview.1747063193351.png",
+      "kind": "preview-still",
+      "ok": true,
+      "bytes": 1526120
+    },
+    {
+      "file": "21st-prisma.png",
+      "url": "https://cdn.21st.dev/rahil1202/prisma-hero/default/preview.1776747545948.png",
+      "kind": "preview-still",
+      "ok": true,
+      "bytes": 2940015
+    },
+    {
+      "file": "21st-hero-section-1.png",
+      "url": "https://cdn.21st.dev/user_2tUYFzCDCVfrMrVC3TfB9DUBAyx/hero-section-1/default/preview.png?v=1",
+      "kind": "preview-still",
+      "ok": true,
+      "bytes": 651974
+    },
+    {
+      "file": "21st-hero-section-9.png",
+      "url": "https://cdn.21st.dev/user_2tUYFzCDCVfrMrVC3TfB9DUBAyx/hero-section-9/default/preview.png?v=1",
+      "kind": "preview-still",
+      "ok": true,
+      "bytes": 304731
+    },
+    {
+      "file": "21st-hero-195.png",
+      "url": "https://cdn.21st.dev/shadcnblockscom/hero-195/default/preview.1747616025475.png",
+      "kind": "preview-still",
+      "ok": true,
+      "bytes": 193827
+    },
+    {
+      "file": "21st-waitlist.png",
+      "url": "https://cdn.21st.dev/minhxthanh/waitlist-hero/default/preview.1764083294693.png",
+      "kind": "preview-still",
+      "ok": true,
+      "bytes": 689472
+    },
+    {
+      "file": "magicui-hero-video-dark.png",
+      "url": "https://startup-template-sage.vercel.app/hero-dark.png",
+      "kind": "preview-still",
+      "ok": true,
+      "bytes": 201027
+    },
+    {
+      "file": "magicui-hero-video-light.png",
+      "url": "https://startup-template-sage.vercel.app/hero-light.png",
+      "kind": "preview-still",
+      "ok": true,
+      "bytes": 199924
+    },
+    {
+      "file": "21st-home.png",
+      "url": "https://21st.dev",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 418128
+    },
+    {
+      "file": "21st-hero-gallery.png",
+      "url": "https://21st.dev/community/components/s/hero",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 583375
+    },
+    {
+      "file": "21st-animated-hero.png",
+      "url": "https://21st.dev/community/components/s/animated-hero",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 635547
+    },
+    {
+      "file": "21st-hero-section-gallery.png",
+      "url": "https://21st.dev/community/components/s/hero-section",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 539635
+    },
+    {
+      "file": "21st-animated-hero-section.png",
+      "url": "https://21st.dev/community/components/s/animated-hero-section",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 536047
+    },
+    {
+      "file": "aceternity-home.png",
+      "url": "https://ui.aceternity.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 236855
+    },
+    {
+      "file": "aceternity-hero-section.png",
+      "url": "https://ui.aceternity.com/hero-section",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 321853
+    },
+    {
+      "file": "aceternity-hero-blocks.png",
+      "url": "https://ui.aceternity.com/blocks/hero-sections",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 381504
+    },
+    {
+      "file": "aceternity-hero-highlight.png",
+      "url": "https://ui.aceternity.com/components/hero-highlight",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 214991
+    },
+    {
+      "file": "aceternity-hero-parallax.png",
+      "url": "https://ui.aceternity.com/components/hero-parallax",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 215446
+    },
+    {
+      "file": "aceternity-github-globe.png",
+      "url": "https://ui.aceternity.com/components/github-globe",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 230013
+    },
+    {
+      "file": "aceternity-spotlight.png",
+      "url": "https://ui.aceternity.com/components/spotlight-new",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 437511
+    },
+    {
+      "file": "magicui-home.png",
+      "url": "https://magicui.design",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 124805
+    },
+    {
+      "file": "magicui-hero-video.png",
+      "url": "https://magicui.design/docs/components/hero-video-dialog",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 199649
+    },
+    {
+      "file": "magicui-animated-beam.png",
+      "url": "https://magicui.design/docs/components/animated-beam",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 148847
+    },
+    {
+      "file": "framer-home.png",
+      "url": "https://www.framer.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 464755
+    },
+    {
+      "file": "framer-marketplace.png",
+      "url": "https://www.framer.com/marketplace/",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 333811
+    },
+    {
+      "file": "awwwards-home.png",
+      "url": "https://www.awwwards.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 206706
+    },
+    {
+      "file": "awwwards-sotd.png",
+      "url": "https://www.awwwards.com/websites/sites_of_the_day/",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 501895
+    },
+    {
+      "file": "godly.png",
+      "url": "https://godly.website",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 596187
+    },
+    {
+      "file": "recent-design.png",
+      "url": "https://www.recent.design",
+      "kind": "page-screenshot",
+      "ok": false,
+      "bytes": 0
+    },
+    {
+      "file": "lapa.png",
+      "url": "https://www.lapa.ninja",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 40397
+    },
+    {
+      "file": "dribbble-web.png",
+      "url": "https://dribbble.com/shots/popular/web-design",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 606743
+    },
+    {
+      "file": "pinterest-hero-ui.png",
+      "url": "https://www.pinterest.com/search/pins/?q=saas%20landing%20hero%20ui",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 495008
+    },
+    {
+      "file": "linear.png",
+      "url": "https://linear.app",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 332391
+    },
+    {
+      "file": "vercel.png",
+      "url": "https://vercel.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 51069
+    },
+    {
+      "file": "cursor.png",
+      "url": "https://cursor.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 336404
+    },
+    {
+      "file": "openai.png",
+      "url": "https://openai.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 118833
+    },
+    {
+      "file": "anthropic.png",
+      "url": "https://www.anthropic.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 342214
+    },
+    {
+      "file": "perplexity.png",
+      "url": "https://www.perplexity.ai",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 112308
+    },
+    {
+      "file": "runway.png",
+      "url": "https://runwayml.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 533542
+    },
+    {
+      "file": "lovable.png",
+      "url": "https://lovable.dev",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 41386
+    },
+    {
+      "file": "stripe.png",
+      "url": "https://stripe.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 584899
+    },
+    {
+      "file": "clerk.png",
+      "url": "https://clerk.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 136492
+    },
+    {
+      "file": "resend.png",
+      "url": "https://resend.com",
+      "kind": "page-screenshot",
+      "ok": false,
+      "bytes": 0
+    },
+    {
+      "file": "raycast.png",
+      "url": "https://www.raycast.com",
+      "kind": "page-screenshot",
+      "ok": false,
+      "bytes": 0
+    },
+    {
+      "file": "apple.png",
+      "url": "https://www.apple.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 195092
+    },
+    {
+      "file": "nextjs.png",
+      "url": "https://nextjs.org",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 77002
+    },
+    {
+      "file": "v0.png",
+      "url": "https://v0.dev",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 111038
+    },
+    {
+      "file": "figma.png",
+      "url": "https://www.figma.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 323688
+    },
+    {
+      "file": "suno.png",
+      "url": "https://suno.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 854937
+    },
+    {
+      "file": "midjourney.png",
+      "url": "https://www.midjourney.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 42035
+    },
+    {
+      "file": "bruno-simon.png",
+      "url": "https://bruno-simon.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 138909
+    },
+    {
+      "file": "cosmos.png",
+      "url": "https://www.cosmos.so",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 74886
+    },
+    {
+      "file": "paper.png",
+      "url": "https://paper.design",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 334813
+    }
+  ]
+}

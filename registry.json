@@ -1723,14 +1723,17 @@
       "name": "hero",
       "type": "registry:ui",
       "title": "Hero",
-      "description": "Eleven first-screen mechanisms from a still caption to a kinetic rail. Brand-agnostic and themeable.",
+      "description": "Twelve first-screen visual languages, filled with product chrome by default. Themeable, original, not a Helio recolor.",
       "categories": [
         "Library"
       ],
       "dependencies": [
         "framer-motion",
         "clsx",
-        "tailwind-merge"
+        "tailwind-merge",
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei"
       ],
       "registryDependencies": [
         "utils",
@@ -1743,88 +1746,103 @@
           "type": "registry:ui"
         },
         {
+          "path": "src/components/ui/hero-layouts.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/hero-scene.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/hero-media.ts",
+          "type": "registry:lib"
         }
       ],
-      "usage": "import { Hero } from '@/components/ui/hero'\n\n<Hero variant=\"stack\" title=\"Ship the first screen.\" />",
+      "usage": "import { Hero } from '@/components/ui/hero'\n\n<Hero variant=\"aurora\" />",
       "variants": [
         {
-          "name": "still",
-          "title": "Still",
+          "name": "aurora",
+          "title": "Aurora",
           "tier": "basic",
-          "description": "Full-bleed media. Type as caption.",
-          "usage": "<Hero variant=\"still\" title=\"Ship the first screen.\" />"
+          "description": "Glass product shot in a teal-violet nebula.",
+          "usage": "<Hero variant=\"aurora\" />"
         },
         {
-          "name": "folio",
-          "title": "Folio",
+          "name": "brutal",
+          "title": "Brutal",
           "tier": "basic",
-          "description": "Paper claim cut into a photograph.",
-          "usage": "<Hero variant=\"folio\" title=\"Ship the first screen.\" />"
+          "description": "Neo-brutal yellow, thick rules, taped photos.",
+          "usage": "<Hero variant=\"brutal\" />"
         },
         {
-          "name": "frame",
-          "title": "Frame",
+          "name": "pastel",
+          "title": "Pastel",
           "tier": "basic",
-          "description": "Working surface gets the pixels.",
-          "usage": "<Hero variant=\"frame\" title=\"Ship the first screen.\" />"
+          "description": "Light SaaS desk with a real people-ops mock.",
+          "usage": "<Hero variant=\"pastel\" />"
         },
         {
-          "name": "stack",
-          "title": "Stack",
+          "name": "editorial",
+          "title": "Editorial",
           "tier": "basic",
-          "description": "Sentence and two doors.",
-          "usage": "<Hero variant=\"stack\" title=\"Ship the first screen.\" />"
+          "description": "Magazine cover: huge type over a still.",
+          "usage": "<Hero variant=\"editorial\" />"
         },
         {
-          "name": "command",
-          "title": "Command",
+          "name": "spotlight",
+          "title": "Spotlight",
           "tier": "intermediate",
-          "description": "The field is the composition.",
-          "usage": "<Hero variant=\"command\" title=\"Ship the first screen.\" />"
+          "description": "Beam frame and three floating ops cards.",
+          "usage": "<Hero variant=\"spotlight\" />"
         },
         {
-          "name": "fan",
-          "title": "Fan",
+          "name": "bento",
+          "title": "Bento",
           "tier": "intermediate",
-          "description": "Overlapping plates. Click brings one forward.",
-          "usage": "<Hero variant=\"fan\" title=\"Ship the first screen.\" />"
+          "description": "Live mini-product mosaic as the first screen.",
+          "usage": "<Hero variant=\"bento\" />"
         },
         {
-          "name": "board",
-          "title": "Board",
+          "name": "terminal",
+          "title": "Terminal",
           "tier": "intermediate",
-          "description": "Split-flap wall spells the claim.",
-          "usage": "<Hero variant=\"board\" title=\"Ship the first screen.\" />"
+          "description": "AI coding desk: tree, diff, prompt.",
+          "usage": "<Hero variant=\"terminal\" />"
         },
         {
-          "name": "cover",
-          "title": "Cover",
+          "name": "cursor",
+          "title": "Cursor",
           "tier": "intermediate",
-          "description": "Type as architecture plus an index.",
-          "usage": "<Hero variant=\"cover\" title=\"Ship the first screen.\" />"
+          "description": "Named pointers on a collaborative field.",
+          "usage": "<Hero variant=\"cursor\" />"
         },
         {
-          "name": "iris",
-          "title": "Iris",
+          "name": "helix",
+          "title": "Helix",
           "tier": "advanced",
-          "description": "Mechanical aperture onto their media.",
-          "usage": "<Hero variant=\"iris\" title=\"Ship the first screen.\" />"
+          "description": "Contained iridescent WebGL object plus a photographed still.",
+          "usage": "<Hero variant=\"helix\" />"
         },
         {
-          "name": "orbit",
-          "title": "Orbit",
+          "name": "cinema",
+          "title": "Cinema",
           "tier": "advanced",
-          "description": "Aimed instrument in a clipped plate.",
-          "usage": "<Hero variant=\"orbit\" title=\"Ship the first screen.\" fallback={<Still />} />"
+          "description": "Letterbox, grain, ken-burns reel.",
+          "usage": "<Hero variant=\"cinema\" />"
         },
         {
-          "name": "kinetic",
-          "title": "Kinetic",
+          "name": "atlas",
+          "title": "Atlas",
           "tier": "advanced",
-          "description": "Letters have mass. CTA in the rail.",
-          "usage": "<Hero variant=\"kinetic\" title=\"SHIP THE FIRST SCREEN\" />"
+          "description": "Night globe, arcs, live logistics feed.",
+          "usage": "<Hero variant=\"atlas\" />"
+        },
+        {
+          "name": "reveal",
+          "title": "Reveal",
+          "tier": "advanced",
+          "description": "Scroll-pinned device. Screens swap as progress. No wheel hijack.",
+          "usage": "<Hero variant=\"reveal\" progress=\"scroll\" />"
         }
       ]
     },

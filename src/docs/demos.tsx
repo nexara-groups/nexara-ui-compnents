@@ -370,23 +370,7 @@ export function ModalDemo() {
 }
 
 export function HeroDemo() {
-  return (
-    <Hero
-      variant="stack"
-      titleAs="h2"
-      eyebrow="Opening"
-      title="Ship the first screen."
-      description="A reusable first viewport. Swap copy, media, and tokens."
-      actions={
-        <>
-          <Button variant="gradient">Read the docs</Button>
-          <Button variant="glow-outline" href="#navbar">
-            Next family
-          </Button>
-        </>
-      }
-    />
-  )
+  return <Hero variant="aurora" titleAs="h2" />
 }
 
 export function MarqueeDemo() {

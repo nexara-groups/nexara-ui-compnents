@@ -137,9 +137,20 @@ export function FamilyStudio({
       <section className="space-y-3">
         <h2 className="font-serif text-2xl">Copy</h2>
         <p className="text-sm text-zinc-300">
-          Copy <code className="text-[#f6f3ec]">{path}</code>, <code className="text-[#f6f3ec]">src/lib/utils.ts</code>,{' '}
-          <code className="text-[#f6f3ec]">src/lib/library.ts</code>, and <code className="text-[#f6f3ec]">src/lib/theme.tsx</code>.
+          Copy <code className="text-[#f6f3ec]">{path}</code>
+          {family === 'hero'
+            ? ', hero-layouts.tsx, hero-scene.tsx, src/lib/hero-media.ts,'
+            : ','}{' '}
+          <code className="text-[#f6f3ec]">src/lib/utils.ts</code>,{' '}
+          <code className="text-[#f6f3ec]">src/lib/library.ts</code>,{' '}
+          <code className="text-[#f6f3ec]">src/lib/kit.tsx</code>, and <code className="text-[#f6f3ec]">src/lib/theme.tsx</code>.
           Dependencies: {dependencies.join(', ')}.
+          {family === 'hero' ? (
+            <>
+              {' '}
+              Packaged stills live in <code className="text-[#f6f3ec]">public/library/hero/</code>.
+            </>
+          ) : null}
         </p>
         <CodeBlock code={code} />
       </section>

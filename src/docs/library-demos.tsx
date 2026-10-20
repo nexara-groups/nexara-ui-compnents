@@ -1,5 +1,4 @@
 import { Hero } from '@/components/ui/hero.tsx'
-import { HeroScene } from '@/components/ui/hero-scene.tsx'
 import { Navbar } from '@/components/ui/navbar.tsx'
 import { Bento } from '@/components/ui/bento.tsx'
 import { Pricing } from '@/components/ui/pricing.tsx'
@@ -53,61 +52,9 @@ function Plate({ label, tone = 0 }: { label: string; tone?: number }) {
   )
 }
 
-const actions = (
-  <>
-    <Door>Read the docs</Door>
-    <Ghost>See variants</Ghost>
-  </>
-)
-
 export function renderHero(id: string) {
   const variant = id as HeroVariant
-  const frames = [
-    { id: 'a', media: <Plate label="North" tone={0} />, label: '01' },
-    { id: 'b', media: <Plate label="East" tone={1} />, label: '02' },
-    { id: 'c', media: <Plate label="West" tone={2} />, label: '03' },
-  ]
-  return (
-    <Hero
-      variant={variant}
-      title={variant === 'kinetic' ? 'SHIP THE FIRST SCREEN' : 'Ship the first screen.'}
-      lines={variant === 'kinetic' ? ['SHIP THE', 'FIRST SCREEN'] : undefined}
-      eyebrow="Opening"
-      description="A reusable first viewport. Swap copy, media, and tokens."
-      actions={actions}
-      media={<Plate label="Media" tone={1} />}
-      className={variant === 'iris' ? '[&_[data-variant=iris]]:min-h-0' : undefined}
-      frames={variant === 'fan' ? frames : undefined}
-      index={
-        variant === 'cover'
-          ? [
-              { id: 'a', label: 'Work', href: '#hero' },
-              { id: 'b', label: 'Notes', href: '#navbar' },
-              { id: 'c', label: 'Index', href: '#bento' },
-            ]
-          : undefined
-      }
-      results={
-        variant === 'command' ? (
-          <ul className="px-4 py-3 text-sm">
-            <li>Hero / still</li>
-            <li>Hero / iris</li>
-          </ul>
-        ) : undefined
-      }
-      modes={
-        variant === 'orbit'
-          ? [
-              { id: 'aim', label: 'Aim' },
-              { id: 'still', label: 'Still' },
-            ]
-          : undefined
-      }
-      fallback={<Plate label="Instrument still" />}
-      scene={variant === 'orbit' ? <HeroScene /> : undefined}
-      lockable={variant === 'kinetic'}
-    />
-  )
+  return <Hero variant={variant} progress={variant === 'reveal' ? 'none' : undefined} />
 }
 
 const navItems = [

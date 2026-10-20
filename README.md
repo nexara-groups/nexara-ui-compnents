@@ -37,10 +37,10 @@ Do not rewrite the component from scratch if it already exists here.
 | Text Reveal | `text-reveal` | `src/components/ui/text-reveal.tsx` | framer-motion |
 | Floating Navbar | `floating-navbar` | `src/components/ui/floating-navbar.tsx` | framer-motion |
 | Modal | `modal` | `src/components/ui/modal.tsx` | framer-motion |
-| Hero | `hero` | `src/components/ui/hero.tsx` | framer-motion |
+| Hero | `hero` | `src/components/ui/hero.tsx` (+ layouts, scene, media) | framer-motion, three |
 | Marquee | `marquee` | `src/components/ui/marquee.tsx` | — |
 
-Every component also needs `clsx` and `tailwind-merge` through `src/lib/utils.ts`. Each component has at least ten variants, and each variant is a different design, not a recolor or a different hover. The names are on the registry item (`variants[].name`) and on the docs page as `component / variant`, for example `button / social`. Research notes are in `docs/research/`. Critique notes are in `docs/reviews/`.
+Every component also needs `clsx` and `tailwind-merge` through `src/lib/utils.ts`. Each component has at least ten variants, and each variant is a different design, not a recolor or a different hover. The names are on the registry item (`variants[].name`) and on the docs page as `component / variant`, for example `hero / aurora`. Hero visual research is in `docs/library/hero/`. Other research notes are in `docs/research/`. Critique notes are in `docs/reviews/`.
 
 ## Flagship (Helio)
 

@@ -28,7 +28,7 @@ export const libraryMeta: Record<
 > = {
   hero: {
     variants: metaFrom(HERO_VARIANTS, HERO_TIER_META),
-    usage: (id) => `<Hero variant="${id}" title="Ship the first screen." actions={<a href="#docs">Read the docs</a>} />`,
+    usage: (id) => `<Hero variant="${id}" />`,
   },
   navbar: {
     variants: metaFrom(NAVBAR_VARIANTS, NAVBAR_TIER_META),

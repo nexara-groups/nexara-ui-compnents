@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>02 Spotlight — Beacon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #000; }
+    body { font-family: Geist, ui-sans-serif, system-ui, sans-serif; color: #f4f6fb; overflow: hidden; }
+    .stage { position: relative; min-height: 900px; height: 100vh; isolation: isolate; }
+    .spot { position: absolute; inset: 0; background:
+      radial-gradient(ellipse 70% 55% at 50% -10%, rgba(255,255,255,.22), transparent 55%),
+      radial-gradient(ellipse 40% 30% at 70% 80%, rgba(79,70,229,.18), transparent 60%); }
+    .grid { position: absolute; inset: 0; background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 48px 48px; mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%); }
+    .beam { position: absolute; inset: 18px; border-radius: 28px; padding: 1px;
+      background: conic-gradient(from 180deg, transparent 40%, #818cf8, #22d3ee, transparent 62%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; }
+    nav { position: relative; z-index: 4; display: flex; justify-content: space-between; align-items: center; padding: 28px 56px; }
+    .logo { font-weight: 700; letter-spacing: -.04em; font-size: 18px; }
+    nav span { font-size: 13px; color: #9aa3b8; margin: 0 16px; }
+    .wrap { position: relative; z-index: 3; text-align: center; padding: 28px 24px 0; }
+    .kicker { display: inline-flex; gap: 8px; align-items: center; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: 6px 12px; font-size: 12px; color: #c7d2fe; background: rgba(255,255,255,.04); }
+    h1 { font-size: clamp(48px, 6vw, 86px); letter-spacing: -.06em; line-height: .94; margin: 22px auto 14px; max-width: 16ch; }
+    p.lede { color: #b8c0d4; max-width: 38rem; margin: 0 auto; line-height: 1.55; }
+    .cta { margin: 28px 0 40px; display: flex; gap: 12px; justify-content: center; }
+    .btn { height: 46px; padding: 0 18px; border-radius: 10px; border: 0; font-weight: 600; cursor: pointer; }
+    .w { background: #fff; color: #0b0d12; }
+    .g { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.18); }
+    .deck { position: relative; height: 360px; max-width: 1100px; margin: 0 auto; }
+    .card { position: absolute; width: 340px; border-radius: 18px; background: #11131a; border: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 30px 80px -30px #000, 0 0 0 1px rgba(129,140,248,.15); overflow: hidden; }
+    .c1 { left: 4%; top: 28px; transform: rotate(-8deg); }
+    .c2 { left: 50%; top: 0; transform: translateX(-50%) rotate(1deg); z-index: 3; width: 380px; }
+    .c3 { right: 4%; top: 40px; transform: rotate(7deg); }
+    .bar { display: flex; gap: 6px; padding: 10px 12px; background: #0b0d12; border-bottom: 1px solid #1e2230; }
+    .bar i { width: 8px; height: 8px; border-radius: 50%; background: #333; display: block; }
+    .bar i:first-child { background: #f87171; } .bar i:nth-child(2){background:#fbbf24;} .bar i:nth-child(3){background:#34d399;}
+    .row { display: flex; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid #1c2030; font-size: 13px; }
+    .tag { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: #a5b4fc; }
+    .chart { height: 88px; margin: 14px; border-radius: 10px; background:
+      linear-gradient(#1d4ed8 0 0) 12% / 12px 40% no-repeat,
+      linear-gradient(#6366f1 0 0) 32% / 12px 70% no-repeat,
+      linear-gradient(#22d3ee 0 0) 52% / 12px 52% no-repeat,
+      linear-gradient(#818cf8 0 0) 72% / 12px 88% no-repeat,
+      linear-gradient(#38bdf8 0 0) 92% / 12px 60% no-repeat,
+      #0b0d12; }
+    .av { width: 22px; height: 22px; border-radius: 50%; display: inline-grid; place-items: center; font-size: 10px; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <section class="stage">
+    <div class="spot"></div>
+    <div class="grid"></div>
+    <div class="beam"></div>
+    <nav>
+      <div class="logo">Beacon</div>
+      <div><span>Ops</span><span>Agents</span><span>Inbox</span><span>Docs</span></div>
+      <button class="btn w" style="height:36px">Launch console</button>
+    </nav>
+    <div class="wrap">
+      <div class="kicker">● 14 agents live · incident-free 11d</div>
+      <h1>Ops that stay in the beam.</h1>
+      <p class="lede">Beacon is the night console for on-call teams. Spotlight the queue, float the cards that matter, and keep the rest in the dark.</p>
+      <div class="cta"><button class="btn w">Open Beacon</button><button class="btn g">Read the runbook</button></div>
+      <div class="deck">
+        <article class="card c1">
+          <div class="bar"><i></i><i></i><i></i></div>
+          <div class="row"><span>INC-204 · API p95</span><span class="tag">PAGE</span></div>
+          <div class="row"><span>Checkout 5xx</span><span class="tag">ACK</span></div>
+          <div class="row"><span>EU-west saturation</span><span class="tag">WATCH</span></div>
+          <div class="row"><span>Agent “Mira” claimed</span><span class="tag">AUTO</span></div>
+        </article>
+        <article class="card c2">
+          <div class="bar"><i></i><i></i><i></i></div>
+          <div class="row"><strong>Latency · last 15m</strong><span class="tag">142ms</span></div>
+          <div class="chart"></div>
+          <div class="row"><span><span class="av" style="background:#312e81">MK</span> Mira posted a patch</span><span class="tag">PR #883</span></div>
+        </article>
+        <article class="card c3">
+          <div class="bar"><i></i><i></i><i></i></div>
+          <div class="row"><span>On-call</span><span>A. Okonkwo</span></div>
+          <div class="row"><span>Secondary</span><span>J. Park</span></div>
+          <div class="row"><span>SLO</span><span class="tag">99.95%</span></div>
+          <div class="row"><span>Burn</span><span>0.12x</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

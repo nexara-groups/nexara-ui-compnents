@@ -1,3 +1,4 @@
+import { Hero, HERO_VARIANTS, type HeroVariant } from '@/components/ui/hero.tsx'
 import { DocsApp } from '@/docs/docs-app.tsx'
 import { FlagshipDashboardPage } from '@/flagship/dashboard-page.tsx'
 import { FlagshipLanding } from '@/flagship/landing.tsx'
@@ -20,6 +21,15 @@ export default function App() {
     window.scrollTo(0, 0)
   }, [hash])
 
+  if (hash.startsWith('shot/')) {
+    const id = hash.slice(5).split('/')[0] as HeroVariant
+    const variant = HERO_VARIANTS.includes(id) ? id : 'aurora'
+    return (
+      <div data-nexara-shot={variant} className="min-h-svh bg-black">
+        <Hero variant={variant} />
+      </div>
+    )
+  }
   if (hash === 'flagship' || hash === 'atelier') {
     return <FlagshipLanding />
   }

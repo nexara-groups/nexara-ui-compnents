@@ -109,15 +109,7 @@ export function renderVariantPreview(slug: string, id: string): ReactNode {
   if (slug === 'hero') {
     return (
       <div className="overflow-hidden rounded-2xl border border-white/10">
-        <Hero
-          variant={id as HeroProps['variant']}
-          titleAs="h3"
-          title="Ship the first screen."
-          description="A short line for the layout."
-          actions={<Button size="sm">Read the docs</Button>}
-          className="px-4 py-8 md:py-10"
-          titleClassName="text-3xl md:text-4xl"
-        />
+        <Hero variant={id as HeroProps['variant']} titleAs="h3" />
       </div>
     )
   }
