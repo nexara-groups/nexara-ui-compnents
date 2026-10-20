@@ -25,6 +25,132 @@
       "usage": "import { cn, usePrefersReducedMotion } from '@/lib/utils'"
     },
     {
+      "name": "flagship-primitives",
+      "type": "registry:lib",
+      "title": "Flagship primitives",
+      "namespace": "flagship",
+      "description": "Heliograph springs, grain, magnetic pull, and Helio mark used by every flagship block.",
+      "categories": ["Flagship"],
+      "dependencies": ["framer-motion", "lenis", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils"],
+      "files": [
+        { "path": "src/components/flagship/primitives.tsx", "type": "registry:lib" },
+        { "path": "src/flagship/assets.ts", "type": "registry:lib" }
+      ],
+      "usage": "import { Grain, Magnetic, springs } from '@/components/flagship/primitives'"
+    },
+    {
+      "name": "flagship-cinematic-hero",
+      "type": "registry:block",
+      "title": "Cinematic Hero",
+      "namespace": "flagship",
+      "description": "Scroll-driven iris reveal of a night-desk instrument, with chapter ticks and contained product photography.",
+      "categories": ["Flagship"],
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils", "flagship-primitives"],
+      "files": [{ "path": "src/components/flagship/cinematic-hero.tsx", "type": "registry:block" }],
+      "usage": "import { CinematicHero } from '@/components/flagship/cinematic-hero'\n\n<CinematicHero title=\"A desk that keeps the signal.\" />"
+    },
+    {
+      "name": "flagship-orbital-hero",
+      "type": "registry:block",
+      "title": "Orbital Hero",
+      "namespace": "flagship",
+      "description": "Contained WebGL heliograph that aims a brass crystal at the cursor. Orbit, beam, and focus modes.",
+      "categories": ["Flagship"],
+      "dependencies": ["three", "@react-three/fiber", "@react-three/drei", "framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils", "flagship-primitives"],
+      "files": [
+        { "path": "src/components/flagship/orbital-hero.tsx", "type": "registry:block" },
+        { "path": "src/components/flagship/orbital-scene.tsx", "type": "registry:block" }
+      ],
+      "usage": "import { OrbitalHero } from '@/components/flagship/orbital-hero'\n\n<OrbitalHero title=\"Aim the instrument.\" />"
+    },
+    {
+      "name": "flagship-kinetic-hero",
+      "type": "registry:block",
+      "title": "Kinetic Hero",
+      "namespace": "flagship",
+      "description": "Editorial letters with mass. Click to lock a glyph, scroll to shear the pair.",
+      "categories": ["Flagship"],
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils", "flagship-primitives"],
+      "files": [{ "path": "src/components/flagship/kinetic-hero.tsx", "type": "registry:block" }],
+      "usage": "import { KineticHero } from '@/components/flagship/kinetic-hero'\n\n<KineticHero lines={['THE NIGHT', 'KEEPS SIGNAL']} />"
+    },
+    {
+      "name": "flagship-atelier-nav",
+      "type": "registry:block",
+      "title": "Atelier Nav",
+      "namespace": "flagship",
+      "description": "Morphing mega-menu navigation with a compact scroll state and a full-viewport mobile drawer.",
+      "categories": ["Flagship"],
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils", "flagship-primitives"],
+      "files": [{ "path": "src/components/flagship/atelier-nav.tsx", "type": "registry:block" }],
+      "usage": "import { AtelierNav } from '@/components/flagship/atelier-nav'\n\n<AtelierNav logo=\"Helio\" />"
+    },
+    {
+      "name": "flagship-scroll-story",
+      "type": "registry:block",
+      "title": "Scroll Story",
+      "namespace": "flagship",
+      "description": "Sticky chaptered story with a synced instrument plate that changes mode as you scroll.",
+      "categories": ["Flagship"],
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils", "flagship-primitives"],
+      "files": [{ "path": "src/components/flagship/scroll-story.tsx", "type": "registry:block" }],
+      "usage": "import { ScrollStory } from '@/components/flagship/scroll-story'\n\n<ScrollStory />"
+    },
+    {
+      "name": "flagship-live-bento",
+      "type": "registry:block",
+      "title": "Live Bento",
+      "namespace": "flagship",
+      "description": "Interactive bento of working micro-demos: sparkline, command filter, compare, lane, ping.",
+      "categories": ["Flagship"],
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils", "flagship-primitives"],
+      "files": [{ "path": "src/components/flagship/live-bento.tsx", "type": "registry:block" }],
+      "usage": "import { LiveBento } from '@/components/flagship/live-bento'\n\n<LiveBento />"
+    },
+    {
+      "name": "flagship-pricing",
+      "type": "registry:block",
+      "title": "Pricing Atelier",
+      "namespace": "flagship",
+      "description": "Monthly/annual morph, spring plan highlight, comparison table, and seat calculator.",
+      "categories": ["Flagship"],
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils", "flagship-primitives"],
+      "files": [{ "path": "src/components/flagship/pricing-atelier.tsx", "type": "registry:block" }],
+      "usage": "import { PricingAtelier } from '@/components/flagship/pricing-atelier'\n\n<PricingAtelier />"
+    },
+    {
+      "name": "flagship-testimonials",
+      "type": "registry:block",
+      "title": "Testimonial Wall",
+      "namespace": "flagship",
+      "description": "Shallow-depth masonry of studio voices with filters and a held quote.",
+      "categories": ["Flagship"],
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils", "flagship-primitives"],
+      "files": [{ "path": "src/components/flagship/testimonial-wall.tsx", "type": "registry:block" }],
+      "usage": "import { TestimonialWall } from '@/components/flagship/testimonial-wall'\n\n<TestimonialWall />"
+    },
+    {
+      "name": "flagship-dashboard",
+      "type": "registry:block",
+      "title": "Atelier Dashboard",
+      "namespace": "flagship",
+      "description": "Product console: sidebar, command palette, live chart, sortable table, empty and loading states.",
+      "categories": ["Flagship"],
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "registryDependencies": ["utils", "flagship-primitives"],
+      "files": [{ "path": "src/components/flagship/atelier-dashboard.tsx", "type": "registry:block" }],
+      "usage": "import { AtelierDashboard } from '@/components/flagship/atelier-dashboard'\n\n<AtelierDashboard />"
+    },
+    {
       "name": "draggable-card",
       "type": "registry:ui",
       "title": "Draggable Card",

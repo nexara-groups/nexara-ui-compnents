@@ -42,6 +42,15 @@ for (const file of componentFiles) {
   if (!registered.has(rel)) errors.push(`Unregistered component file: ${rel}`)
 }
 
+const flagshipDir = path.join(root, 'src/components/flagship')
+if (existsSync(flagshipDir)) {
+  const flagshipFiles = readdirSync(flagshipDir).filter((file) => file.endsWith('.tsx') && file !== 'index.ts')
+  for (const file of flagshipFiles) {
+    const rel = `src/components/flagship/${file}`
+    if (!registered.has(rel)) errors.push(`Unregistered component file: ${rel}`)
+  }
+}
+
 if (!registered.has('src/lib/utils.ts')) {
   errors.push('src/lib/utils.ts is not in the registry')
 }

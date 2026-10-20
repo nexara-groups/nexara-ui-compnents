@@ -42,6 +42,21 @@ Do not rewrite the component from scratch if it already exists here.
 
 Every component also needs `clsx` and `tailwind-merge` through `src/lib/utils.ts`. Each component has at least ten variants, and each variant is a different design, not a recolor or a different hover. The names are on the registry item (`variants[].name`) and on the docs page as `component / variant`, for example `button / social`. Research notes are in `docs/research/`. Critique notes are in `docs/reviews/`.
 
+## Flagship (Helio)
+
+Depth-over-breadth work lives under the `flagship` namespace. The assembled site is a fictional night-desk product called Helio.
+
+```bash
+npm install && npm run dev
+```
+
+Then open:
+
+- [http://localhost:5173/#flagship](http://localhost:5173/#flagship) — landing (iris, story, bento, kinetic type, WebGL instrument, voices, pricing)
+- [http://localhost:5173/#flagship-dashboard](http://localhost:5173/#flagship-dashboard) — night desk console (`⌘K` command palette)
+
+Art direction, research, critic notes, and proof clips: [`docs/flagship/`](./docs/flagship/).
+
 ## Live preview
 
 [Live preview](https://nexara-groups.github.io/nexara-ui-compnents/)

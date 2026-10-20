@@ -132,7 +132,15 @@ export function DocsApp() {
               <span className="mt-1 block text-xs text-zinc-400">Copy-paste components for agents and people</span>
             </span>
           </a>
-          <p className="hidden text-sm text-zinc-400 sm:block">{catalog.length} components</p>
+          <div className="flex items-center gap-3 text-sm">
+            <a
+              href="#flagship"
+              className="rounded-full border border-white/15 px-3 py-1.5 text-[#f6f3ec] hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]"
+            >
+              Helio flagship
+            </a>
+            <p className="hidden text-zinc-400 sm:block">{catalog.length} components</p>
+          </div>
         </div>
       </header>
 
@@ -214,17 +222,30 @@ function ComponentPage({ entry }: { entry: CatalogEntry }) {
         <h1 className="mt-2 font-serif text-4xl tracking-tight md:text-5xl">{entry.name}</h1>
         <p className="mt-3 text-base leading-7 text-zinc-300">{entry.description}</p>
       </header>
-      <section className="space-y-3">
-        <h2 className="font-serif text-2xl">Variants</h2>
-        <p className="text-sm leading-6 text-zinc-300">
-          Ask for <span className="text-[#f6f3ec]">{entry.slug} / {variantDocs[entry.slug as keyof typeof variantDocs]?.[0]?.id ?? 'variant'}</span> or
-          any id below. Each block is a live preview and a copyable usage line.
+      {variantDocs[entry.slug as keyof typeof variantDocs] ? (
+        <section className="space-y-3">
+          <h2 className="font-serif text-2xl">Variants</h2>
+          <p className="text-sm leading-6 text-zinc-300">
+            Ask for <span className="text-[#f6f3ec]">{entry.slug} / {variantDocs[entry.slug as keyof typeof variantDocs]?.[0]?.id ?? 'variant'}</span> or
+            any id below. Each block is a live preview and a copyable usage line.
+          </p>
+          <VariantGallery
+            items={variantDocs[entry.slug as keyof typeof variantDocs] ?? []}
+            render={(id) => renderVariantPreview(entry.slug, id)}
+          />
+        </section>
+      ) : (
+        <p className="text-sm text-zinc-300">
+          Full assembled site:{' '}
+          <a className="text-[#f5c16c] underline-offset-4 hover:underline" href="#flagship">
+            #flagship
+          </a>
+          {' · '}
+          <a className="text-[#f5c16c] underline-offset-4 hover:underline" href="#flagship-dashboard">
+            #flagship-dashboard
+          </a>
         </p>
-        <VariantGallery
-          items={variantDocs[entry.slug as keyof typeof variantDocs] ?? []}
-          render={(id) => renderVariantPreview(entry.slug, id)}
-        />
-      </section>
+      )}
       <Preview>
         <Demo />
       </Preview>
