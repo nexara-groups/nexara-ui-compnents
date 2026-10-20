@@ -539,36 +539,44 @@ function FanHero(props: LayoutProps) {
                 'Five campaigns, one stack. Folio is the independent studio behind Harbor Athletic, Vesper, and Hearth — cards fan on load so the work is the first screen.'}
             </p>
           </Rise>
-          <Rise delay={0.14} className={cn('mt-6 flex flex-wrap gap-3', props.actionsClassName)}>
+          <div className={cn('relative z-30 isolate mt-6 flex flex-wrap gap-3', props.actionsClassName)}>
             {props.actions ?? (
               <DefaultActions
                 primary="Browse the index"
                 secondary="Write a brief"
-                primaryClass="inline-flex h-11 items-center rounded-full bg-[#be123c] px-4 text-sm font-semibold text-white"
-                secondaryClass="inline-flex h-11 items-center rounded-full border border-[#171412]/15 px-4 text-sm font-semibold"
+                primaryClass="inline-flex h-11 items-center rounded-full bg-[#be123c] px-5 text-sm font-semibold text-white shadow-[0_10px_28px_rgba(190,18,60,.35)] mix-blend-normal"
+                secondaryClass="inline-flex h-11 items-center rounded-full border border-[#171412]/15 bg-white px-5 text-sm font-semibold mix-blend-normal"
               />
             )}
-          </Rise>
+          </div>
         </div>
         <div className={cn('relative mx-auto h-[26rem] w-full max-w-3xl overflow-visible md:h-[32rem]', props.mediaClassName)}>
           {cards.map((card, i) => (
             <motion.article
               key={card.title}
-              className="absolute top-4 left-1/2 w-[9.25rem] overflow-hidden rounded-2xl border border-[#171412]/10 bg-white shadow-[0_24px_50px_-28px_rgba(23,20,18,.5)] md:w-[10.75rem]"
+              className="absolute top-4 left-1/2 w-[9.5rem] overflow-visible md:w-[11rem]"
               style={{ transformOrigin: '50% 0%', zIndex: 4 - Math.abs(i - 2) }}
               initial={reduced ? false : { x: '-50%', rotate: 0, y: 36, opacity: 0.4 }}
               animate={{
-                x: `calc(-50% + ${(i - 2) * 118}px)`,
+                x: `calc(-50% + ${(i - 2) * 132}px)`,
                 rotate: -16 + i * 8,
                 y: 8 + Math.abs(i - 2) * 18,
                 opacity: 1,
               }}
               transition={{ ...springs.heavy, delay: 0.06 * i }}
             >
-              {props.media === null ? null : <Still src={heroAsset(card.src)} alt={card.title} className="h-40 md:h-48" />}
-              <div className="border-t border-[#171412]/10 bg-[#171412] px-2.5 py-2 text-[#f6f3ec]">
-                <b className="block truncate text-[13px] leading-tight tracking-tight">{card.title}</b>
-                <span className="font-mono text-[9px] tracking-[0.14em] text-[#f6f3ec]/70 uppercase">{card.meta}</span>
+              <div className="overflow-hidden rounded-2xl border border-[#171412]/10 bg-white shadow-[0_24px_50px_-28px_rgba(23,20,18,.5)]">
+                {props.media === null ? null : <Still src={heroAsset(card.src)} alt={card.title} className="h-44 md:h-52" />}
+              </div>
+              <div
+                className={cn(
+                  'absolute top-full mt-3 w-max rounded-lg bg-[#171412] px-2.5 py-1.5 text-[#f6f3ec] shadow-md',
+                  i < 2 ? 'left-0 origin-top-left' : i > 2 ? 'right-0 origin-top-right' : 'left-1/2 origin-top',
+                )}
+                style={{ transform: i === 2 ? `translateX(-50%) rotate(${16 - i * 8}deg)` : `rotate(${16 - i * 8}deg)` }}
+              >
+                <b className="block text-[13px] leading-tight tracking-tight">{card.title}</b>
+                <span className="block font-mono text-[9px] tracking-[0.14em] text-[#f6f3ec]/70 uppercase">{card.meta}</span>
               </div>
             </motion.article>
           ))}

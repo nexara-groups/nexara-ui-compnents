@@ -50,15 +50,18 @@ export async function waitDevtools(profile, timeout = 12000) {
 }
 
 export async function connectCdp(port, tries = 40) {
-  let last = 'no version'
+  let last = 'no page'
   for (let i = 0; i < tries; i++) {
     try {
-      const res = await fetch(`http://127.0.0.1:${port}/json/version`)
+      const res = await fetch(`http://127.0.0.1:${port}/json/list`)
       if (res.ok) {
-        const info = await res.json()
-        return openCdp(info.webSocketDebuggerUrl)
+        const list = await res.json()
+        const page = list.find((t) => t.type === 'page' && t.webSocketDebuggerUrl)
+        if (page) return openCdp(page.webSocketDebuggerUrl)
+        last = `targets ${list.length}`
+      } else {
+        last = `HTTP ${res.status}`
       }
-      last = `HTTP ${res.status}`
     } catch (err) {
       last = err.message
     }
@@ -133,7 +136,18 @@ export async function attachPage(cdp, url) {
     }),
     sleep(8000),
   ])
-  await sleep(200)
+  await cdp.send('Runtime.evaluate', {
+    expression: `new Promise((ok) => {
+      const tick = () => {
+        if (document.querySelector('[data-nexara="hero"]')) return ok(true)
+        requestAnimationFrame(tick)
+      }
+      tick()
+      setTimeout(() => ok(false), 8000)
+    })`,
+    awaitPromise: true,
+  })
+  await sleep(80)
 }
 
 export function killChrome(child, profile) {

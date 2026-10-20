@@ -77,14 +77,8 @@ async function recordClip(id, index) {
         /* ignore */
       }
     })
-    await cdp.send('Page.enable')
-    await cdp.send('Runtime.enable')
-    await cdp.send('Emulation.setDeviceMetricsOverride', {
-      width: 1440,
-      height: 900,
-      deviceScaleFactor: 1,
-      mobile: false,
-    })
+    await attachPage(cdp, `${origin}/#shot/${id}`)
+    await sleep(280)
     await cdp.send('Page.startScreencast', {
       format: 'jpeg',
       quality: 72,
@@ -92,7 +86,6 @@ async function recordClip(id, index) {
       maxWidth: 1440,
       maxHeight: 900,
     })
-    await cdp.send('Page.navigate', { url: `${origin}/#shot/${id}` })
     await sleep(4200)
     try {
       await cdp.send('Page.stopScreencast')

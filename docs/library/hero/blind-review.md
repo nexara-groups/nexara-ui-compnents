@@ -63,14 +63,40 @@ Same critics, live React stills vs the same three refs. Motion-richness judged f
 | league | 9 | 8 | 8 | 9 | 8 | no | pass |
 | pop | 9 | 8 | 8 | 8 | 8 | no | pass |
 
+## Polish pass (CTAs, fan, veil, assemble)
+
+Stills recaptured after the named gaps. Clips are CDP page-surface 1440×900 (no OS window chrome).
+
+| Concept | Visual | Motion | FE/a11y | CD | Motion-rich | Gap closed |
+| --- | --- | --- | --- | --- | --- | --- |
+| league | 9 | 8 | 9 | 9 | 8 | Get tickets is solid gold on the plate (~12:1 vs `#04150f`) |
+| iso | 9 | 8 | 9 | 8 | 8 | Open plant 03 is opaque rust with a white ring |
+| assemble | 9 | 8 | 8 | 8 | 8 | Seven widgets + isolated cyan CTA |
+| fan | 8 | 8 | 9 | 8 | 8 | Upright chips under the fan, not kissing |
+| veil | 9 | 9 | 9 | 9 | 8 | SVG mask knockout; video/poster shows through VEIL |
+
+## CPU throttle (4×, 4s after first paint)
+
+From `perf.json`. Headless Chrome, rAF fps + `longtask` observer.
+
+| Variant | fps | long tasks | max long |
+| --- | --- | --- | --- |
+| cursor, atlas, fan, ribbon, converse, assemble, veil, rotate, pop, iso, glyph | ~60 | 0 | — |
+| league | 59 | 0 | — |
+| cinema | 58.4 | 0 | — |
+| mesh | 17.2 | 0 | compositor blur, main thread idle |
+| aurora | 14.0 | 0 | compositor blur, main thread idle |
+| helix | 5.8 | 22 | 385ms (contained WebGL on 4× CPU) |
+
+Mean 50.9 fps across the 16 measured plates. Aurora/mesh drop frames on the GPU path (big blurs) without long tasks. Helix is the only main-thread tax.
+
 ## Honest weaker-than-refs
 
 - **Prisma / cinematic photography.** Cinema, veil, league, and editorial stills are generated. Prisma’s lived-in world (weather, figure, hut) we cannot match without a real shoot.
 - **Linear / Cursor product motion.** Filled mocks and counting numbers, not a running issue graph or a real editor.
 - **21st spatial earbud.** Rotate is a photographed puck with CSS 3D, not spec sliders tied to a recognizable SKU.
-- **True video-in-type.** Veil uses mix-blend-difference over a loop, not an SVG text mask punching a 4K plate.
-- **Hero 195 dashboard.** Assemble is four glass tiles, not a six-widget admin shell.
-- **Fan captions.** Titles sit on the photographs and still kiss each other at the overlap. Readable, not as clean as a Kokonut collage.
-- **Washed content CTAs** on league, iso, assemble, converse: the nav way-through is solid; in-body magnetic pills lose contrast against the plate. Reduced-motion keeps last frames; we did not measure real 60fps on a low-end GPU.
+- **4K fashion plate.** Veil’s knockout is real (SVG mask, video in the letters) on a generated loop, not a Kin/Runway shoot.
+- **Hero 195 density.** Assemble is seven widgets, still a hero split — not a full admin shell.
+- **Helix at 4× CPU.** Contained WebGL falls to ~6fps with long tasks; reduced-motion keeps the photographed still.
 
 Stop after heroes. Do not merge.

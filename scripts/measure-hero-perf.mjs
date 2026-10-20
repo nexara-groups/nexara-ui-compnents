@@ -22,7 +22,7 @@ const probe = `(() => {
   try {
     new PerformanceObserver((list) => {
       for (const entry of list.getEntries()) state.longs.push({ d: entry.duration, t: entry.startTime })
-    }).observe({ type: 'longtask', buffered: true })
+    }).observe({ type: 'longtask', buffered: false })
   } catch (e) {}
   window.__heroPerf = state
   return true
@@ -52,7 +52,7 @@ try {
   await cdp.send('Runtime.enable')
   await cdp.send('Emulation.setCPUThrottlingRate', { rate: throttle })
   for (const id of variants) {
-    await attachPage(cdp, `${origin}/#shot/${id}`)
+    await attachPage(cdp, `${origin}/?h=${id}#shot/${id}`)
     await cdp.send('Runtime.evaluate', { expression: probe, returnByValue: true })
     await sleep(sampleMs)
     const result = await cdp.send('Runtime.evaluate', { expression: read, returnByValue: true })

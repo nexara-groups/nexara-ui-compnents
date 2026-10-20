@@ -1,0 +1,169 @@
+{
+  "cpuThrottle": 4,
+  "sampleMs": 4000,
+  "measuredAt": "2026-10-20T15:57:00.680Z",
+  "rows": [
+    {
+      "variant": "aurora",
+      "cpuThrottle": 4,
+      "fps": 14,
+      "frames": 56,
+      "elapsedMs": 4004,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "cinema",
+      "cpuThrottle": 4,
+      "fps": 58.4,
+      "frames": 234,
+      "elapsedMs": 4004,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "cursor",
+      "cpuThrottle": 4,
+      "fps": 60,
+      "frames": 240,
+      "elapsedMs": 4002,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "atlas",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 241,
+      "elapsedMs": 4002,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "mesh",
+      "cpuThrottle": 4,
+      "fps": 17.2,
+      "frames": 69,
+      "elapsedMs": 4003,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "fan",
+      "cpuThrottle": 4,
+      "fps": 59.9,
+      "frames": 240,
+      "elapsedMs": 4003,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "ribbon",
+      "cpuThrottle": 4,
+      "fps": 60,
+      "frames": 240,
+      "elapsedMs": 4002,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "converse",
+      "cpuThrottle": 4,
+      "fps": 60,
+      "frames": 240,
+      "elapsedMs": 4002,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "assemble",
+      "cpuThrottle": 4,
+      "fps": 59.9,
+      "frames": 240,
+      "elapsedMs": 4005,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "veil",
+      "cpuThrottle": 4,
+      "fps": 60,
+      "frames": 240,
+      "elapsedMs": 4003,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "rotate",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 241,
+      "elapsedMs": 4003,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "pop",
+      "cpuThrottle": 4,
+      "fps": 60,
+      "frames": 240,
+      "elapsedMs": 4002,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "league",
+      "cpuThrottle": 4,
+      "fps": 59,
+      "frames": 236,
+      "elapsedMs": 4002,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "iso",
+      "cpuThrottle": 4,
+      "fps": 60,
+      "frames": 240,
+      "elapsedMs": 4003,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "helix",
+      "cpuThrottle": 4,
+      "fps": 5.8,
+      "frames": 24,
+      "elapsedMs": 4173,
+      "longTasks": 22,
+      "maxLongMs": 385,
+      "sumLongMs": 4082
+    },
+    {
+      "variant": "glyph",
+      "cpuThrottle": 4,
+      "fps": 59.7,
+      "frames": 239,
+      "elapsedMs": 4003,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    }
+  ],
+  "meanFps": 50.9,
+  "totalLongTasks": 22
+}
