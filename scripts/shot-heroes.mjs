@@ -21,6 +21,18 @@ const variants = [
   'cinema',
   'atlas',
   'reveal',
+  'rotate',
+  'veil',
+  'splice',
+  'mesh',
+  'glyph',
+  'fan',
+  'ribbon',
+  'converse',
+  'assemble',
+  'iso',
+  'league',
+  'pop',
 ]
 
 const phones = ['aurora', 'brutal', 'pastel']

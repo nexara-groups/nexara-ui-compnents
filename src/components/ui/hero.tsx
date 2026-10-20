@@ -17,6 +17,18 @@ export const HERO_VARIANTS = [
   'cinema',
   'atlas',
   'reveal',
+  'rotate',
+  'veil',
+  'splice',
+  'mesh',
+  'glyph',
+  'fan',
+  'ribbon',
+  'converse',
+  'assemble',
+  'iso',
+  'league',
+  'pop',
 ] as const
 
 export type HeroVariant = (typeof HERO_VARIANTS)[number]
@@ -26,14 +38,26 @@ export const HERO_TIER_META: Record<HeroVariant, { tier: NxTier; title: string; 
   brutal: { tier: 'basic', title: 'Brutal', note: 'Neo-brutal yellow, thick rules, taped photos.' },
   pastel: { tier: 'basic', title: 'Pastel', note: 'Light SaaS desk with a real people-ops mock.' },
   editorial: { tier: 'basic', title: 'Editorial', note: 'Magazine cover: huge type over a still.' },
-  spotlight: { tier: 'intermediate', title: 'Spotlight', note: 'Beam frame and three floating ops cards.' },
+  spotlight: { tier: 'intermediate', title: 'Spotlight', note: 'Night ops console with a live incident table.' },
   bento: { tier: 'intermediate', title: 'Bento', note: 'Live mini-product mosaic as the first screen.' },
   terminal: { tier: 'intermediate', title: 'Terminal', note: 'AI coding desk: tree, diff, prompt.' },
   cursor: { tier: 'intermediate', title: 'Cursor', note: 'Named pointers on a collaborative field.' },
-  helix: { tier: 'advanced', title: 'Helix', note: 'Contained iridescent WebGL object + still.' },
+  helix: { tier: 'advanced', title: 'Helix', note: 'Contained iridescent object plus a photographed still.' },
   cinema: { tier: 'advanced', title: 'Cinema', note: 'Letterbox, grain, ken-burns reel.' },
   atlas: { tier: 'advanced', title: 'Atlas', note: 'Night globe, arcs, live logistics feed.' },
   reveal: { tier: 'advanced', title: 'Reveal', note: 'Scroll-pinned device, screens as progress.' },
+  rotate: { tier: 'advanced', title: 'Rotate', note: 'Healthcare diagnostic puck that turns with scroll.' },
+  veil: { tier: 'advanced', title: 'Veil', note: 'Cinematic loop with masked display type.' },
+  splice: { tier: 'intermediate', title: 'Splice', note: 'Interactive before/after renovation split.' },
+  mesh: { tier: 'basic', title: 'Mesh', note: 'Morphing gradient mesh with product proof.' },
+  glyph: { tier: 'advanced', title: 'Glyph', note: 'Kinetic type with photography inside the letters.' },
+  fan: { tier: 'intermediate', title: 'Fan', note: 'Agency card stack that fans on load.' },
+  ribbon: { tier: 'basic', title: 'Ribbon', note: 'Infinite marquee of studio work.' },
+  converse: { tier: 'intermediate', title: 'Converse', note: 'Clinic intake chat that plays out.' },
+  assemble: { tier: 'advanced', title: 'Assemble', note: 'Glass dashboard tiles assembling themselves.' },
+  iso: { tier: 'intermediate', title: 'Iso', note: 'HVAC plant room as an isometric scene.' },
+  league: { tier: 'basic', title: 'League', note: 'Sports association night track.' },
+  pop: { tier: 'basic', title: 'Pop', note: 'Playful colourful academy courtyard.' },
 }
 
 export type HeroStat = { label: string; value: string }
@@ -71,10 +95,10 @@ export interface HeroProps {
 
 /**
  * Hero
- * Twelve visual languages, each filled with product chrome by default.
- * Copy this file plus `hero-layouts.tsx`, `hero-scene.tsx`, `src/lib/hero-media.ts`,
- * `src/lib/utils.ts`, `src/lib/library.ts`, and `src/lib/kit.tsx`.
- * Helix WebGL lives in `hero-scene.tsx` and is never imported from layouts until asked.
+ * Twenty-four visual languages, each filled with product chrome by default.
+ * Copy this file plus `hero-layouts.tsx`, `hero-more.tsx`, `hero-scene.tsx`,
+ * `src/lib/hero-media.ts`, `src/lib/hero-motion.tsx`, `src/lib/utils.ts`,
+ * `src/lib/library.ts`, and `src/lib/kit.tsx`.
  */
 export function Hero({ variant = 'aurora', titleAs = 'h1', ...rest }: HeroProps) {
   return (

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>20 Converse — Harbor Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;800&family=Bebas+Neue&family=DM+Sans:wght@400;700&family=Fraunces:ital,wght@0,600;1,520&family=IBM+Plex+Sans:wght@400;600&family=Newsreader:ital,wght@1,400&family=Outfit:wght@400;700&family=Plus+Jakarta+Sans:wght@600;800&family=Space+Grotesk:wght@500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+<style>
+      html,body{height:100%;margin:0;background:#f7f5f2;font-family:"IBM Plex Sans",sans-serif;color:#1c1917}
+      nav{display:flex;justify-content:space-between;padding:22px 40px}
+      .grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;padding:20px 48px;align-items:center;height:calc(100vh - 72px)}
+      h1{font-size:52px;line-height:.94}
+      .chat{background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -32px rgba(28,25,23,.35)}
+      .bubble{margin:8px 16px;padding:10px 12px;border-radius:16px;font-size:13px}
+      .user{margin-left:48px;background:#0369a1;color:#fff}
+      .agent{margin-right:48px;background:#f3efe9}
+      .lobby{height:120px;width:100%;object-fit:cover;display:block}
+    </style>
+    <nav><strong>Harbor Clinic</strong><span>Visit · Doctors · Records</span></nav>
+    <div class="grid">
+      <div>
+        <p style="font-family:monospace;letter-spacing:.2em;color:#0369a1;font-size:11px">HARBOR CLINIC · INTAKE</p>
+        <h1>The visit<br>starts as a chat.</h1>
+        <p>Named doctors, real rooms, a Pulse reading from last week if you have one.</p>
+      </div>
+      <div class="chat">
+        <img class="lobby" src="./assets/hero-clinic-lobby.jpg" alt="">
+        <div class="bubble user">I’d like a follow-up for my knee. Thursday if Dr. Okonkwo is in.</div>
+        <div class="bubble agent">Thursday 9:20 is open on Dr. Okonkwo’s list. I’ll hold it for Harbor Clinic, room 2.</div>
+        <div class="bubble user">Please send the pre-visit note to my phone.</div>
+        <div class="bubble agent">Sent. Bring the Pulse ring if you still have last week’s reading.</div>
+      </div>
+    </div>
+</body>
+</html>

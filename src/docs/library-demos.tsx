@@ -54,7 +54,7 @@ function Plate({ label, tone = 0 }: { label: string; tone?: number }) {
 
 export function renderHero(id: string) {
   const variant = id as HeroVariant
-  return <Hero variant={variant} progress={variant === 'reveal' ? 'none' : undefined} />
+  return <Hero variant={variant} progress={variant === 'reveal' || variant === 'rotate' ? 'none' : undefined} />
 }
 
 const navItems = [

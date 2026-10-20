@@ -18,6 +18,18 @@ const files = [
   '10-pastel.html',
   '11-cursor.html',
   '12-reveal.html',
+  '13-rotate.html',
+  '14-veil.html',
+  '15-splice.html',
+  '16-mesh.html',
+  '17-glyph.html',
+  '18-fan.html',
+  '19-ribbon.html',
+  '20-converse.html',
+  '21-assemble.html',
+  '22-iso.html',
+  '23-league.html',
+  '24-pop.html',
 ]
 
 function shot(url, dest, index) {

@@ -139,7 +139,7 @@ export function FamilyStudio({
         <p className="text-sm text-zinc-300">
           Copy <code className="text-[#f6f3ec]">{path}</code>
           {family === 'hero'
-            ? ', hero-layouts.tsx, hero-scene.tsx, src/lib/hero-media.ts,'
+            ? ', hero-layouts.tsx, hero-more.tsx, hero-scene.tsx, src/lib/hero-media.ts, src/lib/hero-motion.tsx,'
             : ','}{' '}
           <code className="text-[#f6f3ec]">src/lib/utils.ts</code>,{' '}
           <code className="text-[#f6f3ec]">src/lib/library.ts</code>,{' '}

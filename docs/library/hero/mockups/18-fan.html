@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>18 Fan — Folio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;800&family=Bebas+Neue&family=DM+Sans:wght@400;700&family=Fraunces:ital,wght@0,600;1,520&family=IBM+Plex+Sans:wght@400;600&family=Newsreader:ital,wght@1,400&family=Outfit:wght@400;700&family=Plus+Jakarta+Sans:wght@600;800&family=Space+Grotesk:wght@500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+<style>
+      html,body{height:100%;margin:0;background:#f6f3ec;font-family:"Plus Jakarta Sans",sans-serif;color:#171412}
+      nav{display:flex;justify-content:space-between;padding:22px 40px}
+      .grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:32px;padding:20px 48px;align-items:center;height:calc(100vh - 72px)}
+      h1{font-size:56px;line-height:.94}
+      .fan{position:relative;height:480px}
+      .card{position:absolute;top:40px;left:50%;width:210px;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 24px 50px -28px rgba(23,20,18,.5)}
+      .card img{height:180px;width:100%;object-fit:cover;display:block}
+      .card p{padding:10px 12px;margin:0;font-size:13px}
+    </style>
+    <nav><strong>Folio</strong><span>Work · People · Journal</span></nav>
+    <div class="grid">
+      <div>
+        <p style="font-family:monospace;letter-spacing:.2em;color:#be123c;font-size:11px">FOLIO · INDEPENDENT AGENCY</p>
+        <h1>Work that<br>lands in a fan.</h1>
+        <p>Five campaigns, one stack. Harbor Athletic, Vesper, and Hearth.</p>
+      </div>
+      <div class="fan">
+        <article class="card" style="transform:translateX(-50%) rotate(-22deg) translateX(-84px)"><img src="./assets/hero-athlete.jpg"><p>Harbor Athletic</p></article>
+        <article class="card" style="transform:translateX(-50%) rotate(-11deg) translateX(-42px)"><img src="./assets/hero-device-puck.jpg"><p>Vesper Pulse</p></article>
+        <article class="card" style="transform:translateX(-50%) rotate(0)"><img src="./assets/hero-room-after.jpg"><p>Hearth 4B</p></article>
+        <article class="card" style="transform:translateX(-50%) rotate(11deg) translateX(42px)"><img src="./assets/hero-academy.jpg"><p>Playfield</p></article>
+        <article class="card" style="transform:translateX(-50%) rotate(22deg) translateX(84px)"><img src="./assets/hero-cinema-night.jpg"><p>Kin Veil</p></article>
+      </div>
+    </div>
+</body>
+</html>

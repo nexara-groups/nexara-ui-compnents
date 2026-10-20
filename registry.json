@@ -1723,7 +1723,7 @@
       "name": "hero",
       "type": "registry:ui",
       "title": "Hero",
-      "description": "Twelve first-screen visual languages, filled with product chrome by default. Themeable, original, not a Helio recolor.",
+      "description": "Twenty-four first-screen visual languages, filled with product chrome and motion by default. Themeable, original, not a Helio recolor.",
       "categories": [
         "Library"
       ],
@@ -1750,11 +1750,19 @@
           "type": "registry:ui"
         },
         {
+          "path": "src/components/ui/hero-more.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/hero-scene.tsx",
           "type": "registry:ui"
         },
         {
           "path": "src/lib/hero-media.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/hero-motion.tsx",
           "type": "registry:lib"
         }
       ],
@@ -1843,6 +1851,90 @@
           "tier": "advanced",
           "description": "Scroll-pinned device. Screens swap as progress. No wheel hijack.",
           "usage": "<Hero variant=\"reveal\" progress=\"scroll\" />"
+        },
+        {
+          "name": "rotate",
+          "title": "Rotate",
+          "tier": "advanced",
+          "description": "Healthcare diagnostic puck that turns with scroll.",
+          "usage": "<Hero variant=\"rotate\" />"
+        },
+        {
+          "name": "veil",
+          "title": "Veil",
+          "tier": "advanced",
+          "description": "Cinematic loop with masked display type.",
+          "usage": "<Hero variant=\"veil\" />"
+        },
+        {
+          "name": "splice",
+          "title": "Splice",
+          "tier": "intermediate",
+          "description": "Interactive before/after renovation split.",
+          "usage": "<Hero variant=\"splice\" />"
+        },
+        {
+          "name": "mesh",
+          "title": "Mesh",
+          "tier": "basic",
+          "description": "Morphing gradient mesh with product proof.",
+          "usage": "<Hero variant=\"mesh\" />"
+        },
+        {
+          "name": "glyph",
+          "title": "Glyph",
+          "tier": "advanced",
+          "description": "Kinetic type with photography inside the letters.",
+          "usage": "<Hero variant=\"glyph\" />"
+        },
+        {
+          "name": "fan",
+          "title": "Fan",
+          "tier": "intermediate",
+          "description": "Agency card stack that fans on load.",
+          "usage": "<Hero variant=\"fan\" />"
+        },
+        {
+          "name": "ribbon",
+          "title": "Ribbon",
+          "tier": "basic",
+          "description": "Infinite marquee of studio work.",
+          "usage": "<Hero variant=\"ribbon\" />"
+        },
+        {
+          "name": "converse",
+          "title": "Converse",
+          "tier": "intermediate",
+          "description": "Clinic intake chat that plays out.",
+          "usage": "<Hero variant=\"converse\" />"
+        },
+        {
+          "name": "assemble",
+          "title": "Assemble",
+          "tier": "advanced",
+          "description": "Glass dashboard tiles assembling themselves.",
+          "usage": "<Hero variant=\"assemble\" />"
+        },
+        {
+          "name": "iso",
+          "title": "Iso",
+          "tier": "intermediate",
+          "description": "HVAC plant room as an isometric scene.",
+          "usage": "<Hero variant=\"iso\" />"
+        },
+        {
+          "name": "league",
+          "title": "League",
+          "tier": "basic",
+          "description": "Sports association night track.",
+          "usage": "<Hero variant=\"league\" />"
+        },
+        {
+          "name": "pop",
+          "title": "Pop",
+          "tier": "basic",
+          "description": "Playful colourful academy courtyard.",
+          "usage": "<Hero variant=\"pop\" />"
         }
       ]
     },

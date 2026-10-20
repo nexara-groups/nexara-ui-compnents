@@ -15,6 +15,19 @@ export const HERO_STILLS = {
   phone: 'hero-phone-pastel.jpg',
   mountains: 'hero-print-mountains.jpg',
   magazine: 'hero-magazine-spread.jpg',
+  clinic: 'hero-clinic-lobby.jpg',
+  puck: 'hero-device-puck.jpg',
+  hvac: 'hero-hvac-roof.jpg',
+  athlete: 'hero-athlete.jpg',
+  academy: 'hero-academy.jpg',
+  agency: 'hero-agency-wall.jpg',
+  before: 'hero-room-before.jpg',
+  after: 'hero-room-after.jpg',
+  loft: 'hero-startup-loft.jpg',
+  leaf: 'hero-leaf-texture.jpg',
+  ring: 'hero-health-ring.jpg',
+  iso: 'hero-iso-plant.jpg',
+  veil: 'hero-veil.mp4',
 } as const
 
 export const DEFAULT_LOGOS = ['Northstar', 'Vale', 'Harbor', 'Ampere', 'Folio'] as const

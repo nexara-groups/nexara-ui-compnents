@@ -601,7 +601,7 @@ export function Example() {
     name: 'Hero',
     category: 'Library',
     studio: true,
-    description: 'Twelve first-screen visual languages, filled with product chrome by default. Themeable, original, not a Helio recolor.',
+    description: 'Twenty-four first-screen visual languages, filled with product chrome and motion by default. Themeable, original, not a Helio recolor.',
     path: 'src/components/ui/hero.tsx',
     dependencies: [...libraryDeps, 'three', '@react-three/fiber', '@react-three/drei'],
     registryDependencies: ['utils', 'theme', 'kit'],
@@ -609,7 +609,7 @@ export function Example() {
 
 <Hero variant="aurora" />`,
     props: [
-      { name: 'variant', type: 'aurora | brutal | pastel | editorial | spotlight | bento | terminal | cursor | helix | cinema | atlas | reveal', defaultValue: 'aurora', description: 'Visual language. Ask for hero / aurora.' },
+      { name: 'variant', type: 'aurora | brutal | pastel | editorial | spotlight | bento | terminal | cursor | helix | cinema | atlas | reveal | rotate | veil | splice | mesh | glyph | fan | ribbon | converse | assemble | iso | league | pop', defaultValue: 'aurora', description: 'Visual language. Ask for hero / aurora.' },
       { name: 'title', type: 'ReactNode', description: 'Headline. Default copy ships filled; pass your own to restyle.' },
       { name: 'actions', type: 'ReactNode', description: 'Way through. Slot for buttons. Defaults are included.' },
       { name: 'media', type: 'ReactNode | null', description: 'Proof asset. Undefined uses packaged stills. null hides media.' },

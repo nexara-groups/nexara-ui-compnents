@@ -1,38 +1,27 @@
 'use client'
 
-import { Grain, springs } from '@/lib/kit.tsx'
+import { HeroMore } from '@/components/ui/hero-more.tsx'
+import { Grain, Magnetic, springs } from '@/lib/kit.tsx'
 import { DEFAULT_LOGOS, HERO_STILLS, heroAsset } from '@/lib/hero-media.ts'
+import {
+  CountStat,
+  DefaultActions,
+  Float,
+  Heading,
+  Lines,
+  LiveSpark,
+  Rise,
+  Shell,
+  Still,
+  Sweep,
+  Tilt,
+  TypeLine,
+  type LayoutProps,
+} from '@/lib/hero-motion.tsx'
 import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
-import {
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-  type FormEvent,
-  type ReactNode,
-} from 'react'
-import type { HeroChapter, HeroChatLine, HeroEvent, HeroLogo, HeroProps, HeroVariant } from '@/components/ui/hero.tsx'
-
-const TIER: Record<HeroVariant, 'basic' | 'intermediate' | 'advanced'> = {
-  aurora: 'basic',
-  brutal: 'basic',
-  pastel: 'basic',
-  editorial: 'basic',
-  spotlight: 'intermediate',
-  bento: 'intermediate',
-  terminal: 'intermediate',
-  cursor: 'intermediate',
-  helix: 'advanced',
-  cinema: 'advanced',
-  atlas: 'advanced',
-  reveal: 'advanced',
-}
-
-type LayoutProps = HeroProps & {
-  variant: HeroVariant
-  Title: 'h1' | 'h2' | 'h3'
-}
+import { useEffect, useRef, useState, type FormEvent } from 'react'
+import type { HeroChapter, HeroChatLine, HeroEvent, HeroLogo } from '@/components/ui/hero.tsx'
 
 const logosDefault: HeroLogo[] = [...DEFAULT_LOGOS]
 
@@ -60,104 +49,11 @@ export function HeroLayouts(props: LayoutProps) {
       return <CinemaHero {...props} />
     case 'atlas':
       return <AtlasHero {...props} />
-    default:
+    case 'reveal':
       return <RevealHero {...props} />
+    default:
+      return <HeroMore {...props} />
   }
-}
-
-const TONE: Record<HeroVariant, CSSProperties> = {
-  aurora: { ['--hero-bg' as never]: '#04060f', ['--hero-fg' as never]: '#eef7ff', ['--hero-accent' as never]: '#2ee6c7' },
-  brutal: { ['--hero-bg' as never]: '#F4D738', ['--hero-fg' as never]: '#111111', ['--hero-accent' as never]: '#FF2E9A' },
-  pastel: { ['--hero-bg' as never]: '#f7f1ea', ['--hero-fg' as never]: '#2a211c', ['--hero-accent' as never]: '#c45c7a' },
-  editorial: { ['--hero-bg' as never]: '#efe6d4', ['--hero-fg' as never]: '#1a1612', ['--hero-accent' as never]: '#b33a12' },
-  spotlight: { ['--hero-bg' as never]: '#000000', ['--hero-fg' as never]: '#f4f6fb', ['--hero-accent' as never]: '#818cf8' },
-  bento: { ['--hero-bg' as never]: '#f3f1ec', ['--hero-fg' as never]: '#171717', ['--hero-accent' as never]: '#171717' },
-  terminal: { ['--hero-bg' as never]: '#0b0d10', ['--hero-fg' as never]: '#e7edf3', ['--hero-accent' as never]: '#4ade80' },
-  cursor: { ['--hero-bg' as never]: '#0c1018', ['--hero-fg' as never]: '#edf1f7', ['--hero-accent' as never]: '#67e8f9' },
-  helix: { ['--hero-bg' as never]: '#050506', ['--hero-fg' as never]: '#f6f1ea', ['--hero-accent' as never]: '#e9a8ff' },
-  cinema: { ['--hero-bg' as never]: '#000000', ['--hero-fg' as never]: '#f4ead6', ['--hero-accent' as never]: '#e8c36a' },
-  atlas: { ['--hero-bg' as never]: '#06101c', ['--hero-fg' as never]: '#e8f1ff', ['--hero-accent' as never]: '#7dd3fc' },
-  reveal: { ['--hero-bg' as never]: '#f6f7fb', ['--hero-fg' as never]: '#111827', ['--hero-accent' as never]: '#111827' },
-}
-
-function Shell({
-  variant,
-  className,
-  style,
-  children,
-}: {
-  variant: HeroVariant
-  className?: string
-  style?: CSSProperties
-  children: ReactNode
-}) {
-  return (
-    <section
-      data-nexara="hero"
-      data-variant={variant}
-      data-tier={TIER[variant]}
-      className={cn(
-        'relative isolate overflow-hidden',
-        {
-          aurora: '[font-family:Syne,sans-serif]',
-          brutal: '[font-family:Archivo,sans-serif]',
-          pastel: '[font-family:Outfit,sans-serif]',
-          editorial: '[font-family:Newsreader,serif]',
-          spotlight: '[font-family:"DM Sans",sans-serif]',
-          bento: '[font-family:"Plus Jakarta Sans",sans-serif]',
-          terminal: '[font-family:"IBM Plex Sans",sans-serif]',
-          cursor: '[font-family:"DM Sans",sans-serif]',
-          helix: '[font-family:Outfit,sans-serif]',
-          cinema: '[font-family:Newsreader,serif]',
-          atlas: '[font-family:"Space Grotesk",sans-serif]',
-          reveal: '[font-family:"Plus Jakarta Sans",sans-serif]',
-        }[variant],
-        className,
-      )}
-      style={{ ...TONE[variant], ...style }}
-    >
-      {children}
-    </section>
-  )
-}
-
-function Heading({
-  as: Title,
-  className,
-  children,
-}: {
-  as: 'h1' | 'h2' | 'h3'
-  className?: string
-  children: ReactNode
-}) {
-  return <Title className={className}>{children}</Title>
-}
-
-function DefaultActions({
-  primary,
-  secondary,
-  primaryClass,
-  secondaryClass,
-}: {
-  primary: string
-  secondary: string
-  primaryClass: string
-  secondaryClass: string
-}) {
-  return (
-    <>
-      <a href="#hero" className={primaryClass}>
-        {primary}
-      </a>
-      <a href="#hero" className={secondaryClass}>
-        {secondary}
-      </a>
-    </>
-  )
-}
-
-function Still({ src, alt, className }: { src: string; alt: string; className?: string }) {
-  return <img src={src} alt={alt} className={cn('h-full w-full object-cover', className)} />
 }
 
 function AuroraHero(props: LayoutProps) {
@@ -204,6 +100,7 @@ function AuroraHero(props: LayoutProps) {
         aria-hidden="true"
       />
       <Grain className="opacity-[0.16]" />
+      <Sweep />
       <nav className="relative z-10 flex items-center justify-between px-5 py-5 md:px-10">
         <div className="flex items-center gap-2.5 text-sm font-bold tracking-tight">
           <span className="size-2.5 rounded-full" style={{ background: 'conic-gradient(#2ee6c7,#7c5cff,#5b8cff,#2ee6c7)' }} />
@@ -221,20 +118,41 @@ function AuroraHero(props: LayoutProps) {
           <p className={cn('font-mono text-[11px] tracking-[0.22em] text-[#8ef0dc] uppercase', props.eyebrowClassName)}>
             {props.eyebrow ?? props.kicker ?? 'Design OS · v2.4'}
           </p>
-          <Heading
-            as={props.Title}
-            className={cn(
-              'mt-4 text-[clamp(2.6rem,6vw,5.1rem)] leading-[0.92] font-extrabold tracking-[-0.05em]',
-              props.titleClassName,
-            )}
-          >
-            {title}
-          </Heading>
-          <p className={cn('mt-4 max-w-md text-[17px] leading-7 text-[#c5d4ea]', props.descriptionClassName)}>
-            {props.description ??
-              'Lumen is the glass desk for product studios. Aurora lighting, live tokens, and a product window that actually shows the software — not a gradient oval.'}
-          </p>
-          <div className={cn('mt-7 flex flex-wrap gap-3', props.actionsClassName)}>
+          {props.title ? (
+            <Heading
+              as={props.Title}
+              className={cn(
+                'mt-4 text-[clamp(2.6rem,6vw,5.1rem)] leading-[0.92] font-extrabold tracking-[-0.05em]',
+                props.titleClassName,
+              )}
+            >
+              {title}
+            </Heading>
+          ) : (
+            <Lines
+              as={props.Title}
+              className={cn(
+                'mt-4 text-[clamp(2.6rem,6vw,5.1rem)] leading-[0.92] font-extrabold tracking-[-0.05em]',
+                props.titleClassName,
+              )}
+              lines={[
+                'Light the work',
+                <>
+                  <em className="font-serif font-normal italic bg-gradient-to-r from-[#b9f3ff] via-[#c5b8ff] to-[#7ff0d4] bg-clip-text text-transparent">
+                    before
+                  </em>{' '}
+                  the brief.
+                </>,
+              ]}
+            />
+          )}
+          <Rise>
+            <p className={cn('mt-4 max-w-md text-[17px] leading-7 text-[#c5d4ea]', props.descriptionClassName)}>
+              {props.description ??
+                'Lumen is the glass desk for product studios. Aurora lighting, live tokens, and a laptop that already shows tonight’s canvas.'}
+            </p>
+          </Rise>
+          <Rise delay={0.14} className={cn('mt-7 flex flex-wrap gap-3', props.actionsClassName)}>
             {props.actions ?? (
               <DefaultActions
                 primary="Start a canvas"
@@ -243,55 +161,60 @@ function AuroraHero(props: LayoutProps) {
                 secondaryClass="inline-flex h-12 items-center rounded-full border border-white/15 bg-white/10 px-5 text-sm font-bold backdrop-blur"
               />
             )}
-          </div>
+          </Rise>
           <div className="mt-8 flex flex-wrap gap-8">
-            {(props.stats ?? [
-              { value: '12.4k', label: 'nightly deploys' },
-              { value: '98ms', label: 'token roundtrip' },
-              { value: '4.9', label: 'studio rating' },
-            ]).map((item) => (
-              <div key={item.label}>
-                <b className="block text-[28px] tracking-[-0.04em]">{item.value}</b>
-                <span className="font-mono text-[11px] tracking-[0.08em] text-[#93a7c2]">{item.label}</span>
-              </div>
-            ))}
+            {props.stats ? (
+              props.stats.map((item) => (
+                <div key={item.label}>
+                  <b className="block text-[28px] tracking-[-0.04em]">{item.value}</b>
+                  <span className="font-mono text-[11px] tracking-[0.08em] text-[#93a7c2]">{item.label}</span>
+                </div>
+              ))
+            ) : (
+              <>
+                <CountStat to={12400} label="nightly deploys" valueClass="text-[28px] tracking-[-0.04em]" className="font-mono text-[11px] tracking-[0.08em] text-[#93a7c2]" />
+                <CountStat to={98} suffix="ms" label="token roundtrip" valueClass="text-[28px] tracking-[-0.04em]" className="font-mono text-[11px] tracking-[0.08em] text-[#93a7c2]" />
+                <CountStat to={5} suffix=".0" label="studio rating" valueClass="text-[28px] tracking-[-0.04em]" className="font-mono text-[11px] tracking-[0.08em] text-[#93a7c2]" />
+              </>
+            )}
           </div>
           <p className="mt-6 text-xs tracking-[0.16em] text-[#9fb3cc] uppercase">
             {(props.logos ?? logosDefault).join(' · ')}
           </p>
         </div>
-        <motion.div
-          className={cn(
-            'relative overflow-hidden rounded-[28px] border border-white/20 shadow-[0_40px_80px_-32px_rgba(0,0,0,0.7)]',
-            props.mediaClassName,
-          )}
-          style={{
-            background: 'linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.04))',
-            transform: reduced ? undefined : 'perspective(1200px) rotateY(-8deg) rotateX(4deg)',
-          }}
-          initial={reduced ? false : { y: 24, opacity: 0.7 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={springs.heavy}
-        >
-          {props.media === null ? null : (
-            (props.media ?? <Still src={heroAsset(HERO_STILLS.laptop)} alt="Lumen dashboard on a laptop" className="h-[22rem] md:h-[28rem]" />)
-          )}
-          <span
-            className="absolute top-4 right-4 size-20 rounded-full blur-[0.2px]"
-            style={{ background: 'conic-gradient(from 200deg, #2ee6c7, #7c5cff, #5b8cff, #2ee6c7)', boxShadow: '0 0 40px #7c5cff88' }}
-            aria-hidden="true"
-          />
-          <div className="absolute inset-x-4 bottom-4 grid grid-cols-2 gap-2.5">
-            <div className="rounded-2xl border border-white/15 bg-[#080c18]/75 p-3 backdrop-blur-md">
-              <small className="block font-mono text-[10px] tracking-[0.14em] text-[#8ef0dc] uppercase">Revenue</small>
-              <strong className="text-lg">$24.8k</strong>
+        <Tilt className={props.mediaClassName} strength={8}>
+          <motion.div
+            className="relative overflow-hidden rounded-[28px] border border-white/20 shadow-[0_40px_80px_-32px_rgba(0,0,0,0.7)]"
+            style={{
+              background: 'linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.04))',
+              transform: reduced ? undefined : 'perspective(1200px) rotateY(-8deg) rotateX(4deg)',
+            }}
+            initial={reduced ? false : { y: 28, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={springs.heavy}
+          >
+            {props.media === null ? null : (
+              (props.media ?? <Still src={heroAsset(HERO_STILLS.laptop)} alt="Lumen dashboard on a laptop" className="h-[22rem] md:h-[28rem]" />)
+            )}
+            <motion.span
+              className="absolute top-4 right-4 size-20 rounded-full blur-[0.2px]"
+              style={{ background: 'conic-gradient(from 200deg, #2ee6c7, #7c5cff, #5b8cff, #2ee6c7)', boxShadow: '0 0 40px #7c5cff88' }}
+              animate={reduced ? undefined : { rotate: [0, 360] }}
+              transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+              aria-hidden="true"
+            />
+            <div className="absolute inset-x-4 bottom-4 grid grid-cols-2 gap-2.5">
+              <Float className="rounded-2xl border border-white/15 bg-[#080c18]/75 p-3 backdrop-blur-md" amplitude={6}>
+                <small className="block font-mono text-[10px] tracking-[0.14em] text-[#8ef0dc] uppercase">Revenue</small>
+                <CountStat to={24800} suffix="" label="" valueClass="text-lg" />
+              </Float>
+              <Float className="rounded-2xl border border-white/15 bg-[#080c18]/75 p-3 backdrop-blur-md" delay={0.3} amplitude={7}>
+                <small className="block font-mono text-[10px] tracking-[0.14em] text-[#8ef0dc] uppercase">Live sessions</small>
+                <CountStat to={1462} label="" valueClass="text-lg" />
+              </Float>
             </div>
-            <div className="rounded-2xl border border-white/15 bg-[#080c18]/75 p-3 backdrop-blur-md">
-              <small className="block font-mono text-[10px] tracking-[0.14em] text-[#8ef0dc] uppercase">Live sessions</small>
-              <strong className="text-lg">1,462</strong>
-            </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </Tilt>
       </div>
     </Shell>
   )
@@ -308,23 +231,32 @@ function BrutalHero(props: LayoutProps) {
             <span className="rotate-[-8deg] border-4 border-black bg-[#FF2E9A] px-2 py-1 text-xs text-white">NEW</span>
           </div>
           <div className="flex flex-1 flex-col justify-start px-5 py-8 md:px-8">
-            <Heading
-              as={props.Title}
-              className={cn('text-[clamp(3.2rem,8vw,6.8rem)] leading-[0.82] font-black tracking-[-0.05em]', props.titleClassName)}
-            >
-              {props.title ?? (
-                <>
-                  MAKE IT
-                  <br />
-                  <span className="bg-black px-[0.08em] text-[#F4D738]">LOUDER.</span>
-                </>
-              )}
-            </Heading>
-            <p className={cn('mt-4 max-w-lg text-lg font-semibold', props.descriptionClassName)}>
-              {props.description ??
-                'Neo-brutalist first screen: thick rules, offset shadows, one hot pink punch, and photographs that look like they were taped to the wall this morning.'}
-            </p>
-            <div className={cn('mt-6 flex flex-wrap gap-3', props.actionsClassName)}>
+            {props.title ? (
+              <Heading
+                as={props.Title}
+                className={cn('text-[clamp(3.2rem,8vw,6.8rem)] leading-[0.82] font-black tracking-[-0.05em]', props.titleClassName)}
+              >
+                {props.title}
+              </Heading>
+            ) : (
+              <Lines
+                as={props.Title}
+                className={cn('text-[clamp(3.2rem,8vw,6.8rem)] leading-[0.82] font-black tracking-[-0.05em]', props.titleClassName)}
+                lines={[
+                  'MAKE IT',
+                  <span key="loud" className="bg-black px-[0.08em] text-[#F4D738]">
+                    LOUDER.
+                  </span>,
+                ]}
+              />
+            )}
+            <Rise>
+              <p className={cn('mt-4 max-w-lg text-lg font-semibold', props.descriptionClassName)}>
+                {props.description ??
+                  'Stamp is a studio magazine for people who still paste type on the wall. Issue 07 ships with two prints, a sticker sheet, and a pink punch that does not apologize.'}
+              </p>
+            </Rise>
+            <Rise delay={0.12} className={cn('mt-6 flex flex-wrap gap-3', props.actionsClassName)}>
               {props.actions ?? (
                 <DefaultActions
                   primary="Buy the issue — $28"
@@ -333,18 +265,20 @@ function BrutalHero(props: LayoutProps) {
                   secondaryClass="inline-flex h-12 items-center border-[5px] border-black bg-white px-4 text-sm font-extrabold shadow-[6px_6px_0_#111]"
                 />
               )}
-            </div>
+            </Rise>
             <div className="mt-7 flex flex-wrap gap-2">
-              {['NO GRADIENTS', 'OFFSET 6PX', 'FLASH ON'].map((label, i) => (
-                <span
+              {['ISSUE 07', 'OFFSET 6PX', 'FLASH ON'].map((label, i) => (
+                <motion.span
                   key={label}
                   className={cn(
                     'border-4 border-black px-2 py-1 font-mono text-[12px]',
                     i === 1 ? 'bg-black text-[#F4D738] rotate-3' : i === 2 ? 'bg-[#00E5A8] rotate-[-6deg]' : 'bg-white rotate-[-3deg]',
                   )}
+                  animate={{ rotate: i === 1 ? [3, 6, 3] : i === 2 ? [-6, -2, -6] : [-3, 1, -3] }}
+                  transition={{ duration: 3.4 + i, repeat: Infinity }}
                 >
                   {label}
-                </span>
+                </motion.span>
               ))}
             </div>
           </div>
@@ -413,11 +347,13 @@ function PastelHero(props: LayoutProps) {
               </>
             )}
           </Heading>
-          <p className={cn('mt-4 max-w-md leading-7 text-[#5c524c]', props.descriptionClassName)}>
-            {props.description ??
-              'Cream, blush, sky. A real calendar on a phone, a table of time-off, named humans. Light SaaS that is full, not empty beige.'}
-          </p>
-          <div className={cn('mt-6 flex flex-wrap gap-3', props.actionsClassName)}>
+          <Rise>
+            <p className={cn('mt-4 max-w-md leading-7 text-[#5c524c]', props.descriptionClassName)}>
+              {props.description ??
+                'Bloom keeps time-off, 1:1s, and pulse in one cream desk. Named people, a real calendar, and a Friday that already has a plan.'}
+            </p>
+          </Rise>
+          <Rise delay={0.12} className={cn('mt-6 flex flex-wrap gap-3', props.actionsClassName)}>
             {props.actions ?? (
               <DefaultActions
                 primary="Start a workspace"
@@ -426,10 +362,10 @@ function PastelHero(props: LayoutProps) {
                 secondaryClass="inline-flex h-11 items-center rounded-full bg-white px-4 text-sm font-semibold shadow-[0_10px_30px_-18px_rgba(80,40,40,.4)]"
               />
             )}
-          </div>
+          </Rise>
           <p className="mt-6 text-xs tracking-[0.12em] text-[#8a7e76] uppercase">{(props.logos ?? logosDefault.slice(0, 4)).join(' · ')}</p>
         </div>
-        <div className={cn('grid gap-3 rounded-[28px] bg-white p-3 shadow-[0_30px_60px_-36px_rgba(80,40,40,.35)] md:grid-cols-[8.5rem_1fr_190px]', props.mediaClassName)}>
+        <Tilt className={cn('grid gap-3 rounded-[28px] bg-white p-3 shadow-[0_30px_60px_-36px_rgba(80,40,40,.35)] md:grid-cols-[8.5rem_1fr_190px]', props.mediaClassName)} strength={6}>
           <aside className="hidden rounded-[20px] bg-[#f7f1ea] p-3 text-[13px] md:block">
             <p className="mb-3 font-semibold">Bloom</p>
             {['Home', 'People', 'Time off', 'Reviews', 'Payroll'].map((item, i) => (
@@ -464,18 +400,9 @@ function PastelHero(props: LayoutProps) {
               </tbody>
             </table>
             <div className="mt-3 grid grid-cols-3 gap-2 text-center text-[11px]">
-              <div className="rounded-2xl bg-[#f7f1ea] p-2">
-                <b className="block text-lg">12</b>
-                PTO days
-              </div>
-              <div className="rounded-2xl bg-[#f7f1ea] p-2">
-                <b className="block text-lg">4</b>
-                1:1s
-              </div>
-              <div className="rounded-2xl bg-[#f7f1ea] p-2">
-                <b className="block text-lg">98%</b>
-                pulse
-              </div>
+              <CountStat to={12} label="PTO days" valueClass="text-lg" className="rounded-2xl bg-[#f7f1ea] p-2" />
+              <CountStat to={4} label="1:1s" valueClass="text-lg" className="rounded-2xl bg-[#f7f1ea] p-2" />
+              <CountStat to={98} suffix="%" label="pulse" valueClass="text-lg" className="rounded-2xl bg-[#f7f1ea] p-2" />
             </div>
           </div>
           {props.media === null ? null : (
@@ -483,7 +410,7 @@ function PastelHero(props: LayoutProps) {
               <Still src={heroAsset(HERO_STILLS.phone)} alt="Bloom people ops on a phone" className="h-56 rounded-[22px] md:h-full" />
             ))
           )}
-        </div>
+        </Tilt>
       </div>
     </Shell>
   )
@@ -499,45 +426,53 @@ function EditorialHero(props: LayoutProps) {
       </header>
       <div className="grid flex-1 gap-7 py-5 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
-          <Heading as={props.Title} className={cn('font-serif text-[clamp(3.2rem,8vw,7.4rem)] leading-[0.82] font-bold tracking-[-0.04em]', props.titleClassName)}>
-            {props.title ?? (
-              <>
-                The quiet
-                <br />
-                museum
-                <br />
-                <i className="font-medium text-[#b33a12] italic">at noon.</i>
-              </>
-            )}
-          </Heading>
+          {props.title ? (
+            <Heading as={props.Title} className={cn('font-serif text-[clamp(3.2rem,8vw,7.4rem)] leading-[0.82] font-bold tracking-[-0.04em]', props.titleClassName)}>
+              {props.title}
+            </Heading>
+          ) : (
+            <Lines
+              as={props.Title}
+              className={cn('font-serif text-[clamp(3.2rem,8vw,7.4rem)] leading-[0.82] font-bold tracking-[-0.04em]', props.titleClassName)}
+              lines={[
+                'The quiet',
+                'museum',
+                <i key="noon" className="font-medium text-[#b33a12] italic">
+                  at noon.
+                </i>,
+              ]}
+            />
+          )}
           <p className="mt-4 max-w-md font-serif text-[22px] text-[#b33a12] italic">
             “A shaft of light is a headline. Everything else is a caption.”
           </p>
-          <div className={cn('mt-4 max-w-xl columns-2 gap-6 text-[15px] leading-[1.45]', props.descriptionClassName)}>
-            {props.description ?? (
-              <>
-                <p>
-                  Atlas Review treats the first viewport like a cover: a photograph with weight, type large enough to collide with it, a folio number, a byline, and a way through that is a sentence, not a pill.
-                </p>
-                <p className="mt-3">This is cream paper and vermillion italic. The still is a concrete atrium, not a gradient plate.</p>
-              </>
-            )}
-          </div>
-          <div className={cn('mt-5', props.actionsClassName)}>
+          <Rise>
+            <div className={cn('mt-4 max-w-xl columns-2 gap-6 text-[15px] leading-[1.45]', props.descriptionClassName)}>
+              {props.description ?? (
+                <>
+                  <p>
+                    Atlas Review opens on a concrete atrium at noon. Type large enough to collide with the photograph, a folio number, a byline, and a sentence that sends you into the essay.
+                  </p>
+                  <p className="mt-3">Cream paper, vermillion italic, twelve minutes. The still is the building, shot from the stair.</p>
+                </>
+              )}
+            </div>
+          </Rise>
+          <Rise delay={0.12} className={cn('mt-5', props.actionsClassName)}>
             {props.actions ?? (
-              <a href="#hero" className="font-mono text-xs tracking-[0.16em] uppercase underline-offset-4 hover:underline">
+              <Magnetic href="#hero" className="font-mono text-xs tracking-[0.16em] uppercase underline-offset-4 hover:underline" strength={6}>
                 Read the essay — 12 min
-              </a>
+              </Magnetic>
             )}
-          </div>
+          </Rise>
         </div>
-        <div className={cn('relative min-h-[22rem]', props.mediaClassName)}>
+        <Tilt className={cn('relative min-h-[22rem]', props.mediaClassName)} strength={6}>
           {props.media === null ? null : (
             (props.media ?? <Still src={heroAsset(HERO_STILLS.atrium)} alt="Brutalist museum atrium" className="h-full min-h-[22rem]" />)
           )}
           <span className="pointer-events-none absolute inset-2.5 border border-[#efe6d4]/50" aria-hidden="true" />
           <span className="absolute bottom-6 left-2 font-serif text-7xl tracking-[-0.06em] text-[#efe6d4] mix-blend-difference">04</span>
-        </div>
+        </Tilt>
       </div>
       <footer className="flex justify-between border-t border-[#1a1612] pt-2.5 font-mono text-[11px] tracking-[0.14em]">
         <span>WORDS · A. OKONKWO</span>
@@ -587,10 +522,11 @@ function SpotlightHero(props: LayoutProps) {
           <span>Inbox</span>
           <span>Docs</span>
         </div>
-        <a href="#hero" className="inline-flex h-9 items-center rounded-[10px] bg-white px-3 text-sm font-semibold text-[#0b0d12]">
+        <Magnetic href="#hero" className="inline-flex h-9 items-center rounded-[10px] bg-white px-3 text-sm font-semibold text-[#0b0d12]">
           Launch console
-        </a>
+        </Magnetic>
       </nav>
+      <Sweep />
       <div className="relative z-10 flex flex-1 flex-col px-5 pb-0 text-center">
         <p className="mx-auto inline-flex items-center gap-2 self-center rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-[#c7d2fe]">
           ● 14 agents live · incident-free 11d
@@ -598,10 +534,12 @@ function SpotlightHero(props: LayoutProps) {
         <Heading as={props.Title} className={cn('mx-auto mt-5 max-w-[16ch] text-[clamp(2.6rem,6vw,5.2rem)] leading-[0.94] font-bold tracking-[-0.06em]', props.titleClassName)}>
           {props.title ?? 'Ops that stay in the beam.'}
         </Heading>
-        <p className={cn('mx-auto mt-3 max-w-xl leading-7 text-[#b8c0d4]', props.descriptionClassName)}>
-          {props.description ?? 'Beacon is the night console for on-call teams. Spotlight the queue, float the cards that matter, and keep the rest in the dark.'}
-        </p>
-        <div className={cn('mt-6 flex flex-wrap justify-center gap-3', props.actionsClassName)}>
+        <Rise>
+          <p className={cn('mx-auto mt-3 max-w-xl leading-7 text-[#b8c0d4]', props.descriptionClassName)}>
+            {props.description ?? 'Beacon is the night console for on-call teams. The queue stays in the beam, the rest of the desk stays dark, and the table is already paging.'}
+          </p>
+        </Rise>
+        <Rise delay={0.12} className={cn('mt-6 flex flex-wrap justify-center gap-3', props.actionsClassName)}>
           {props.actions ?? (
             <DefaultActions
               primary="Open Beacon"
@@ -610,7 +548,7 @@ function SpotlightHero(props: LayoutProps) {
               secondaryClass="inline-flex h-11 items-center rounded-[10px] border border-white/20 px-4 text-sm font-semibold"
             />
           )}
-        </div>
+        </Rise>
         <div className={cn('relative mx-auto mt-auto w-full max-w-[72rem] flex-1 px-2 pt-8 md:px-6', props.mediaClassName)}>
           <motion.div
             className="h-full min-h-[18rem] overflow-hidden rounded-t-[22px] border border-white/10 bg-[#0b0d12] shadow-[0_50px_90px_-24px_#000]"
@@ -711,7 +649,7 @@ function BentoHero(props: LayoutProps) {
             </Heading>
             <p className={cn('mt-3 max-w-md text-[15px] leading-6 text-[#4a4a4a]', props.descriptionClassName)}>
               {props.description ??
-                'Forge opens on a live desk: chat streaming, a sparkline ticking, a week of calendar, a three-lane board, and the product window itself.'}
+                'Forge opens on a live desk: chat streaming, a sparkline ticking, a week of calendar, a three-lane board, and the laptop already showing tonight’s canvas.'}
             </p>
           </div>
           <div>
@@ -749,11 +687,8 @@ function BentoHero(props: LayoutProps) {
         </article>
         <article className="rounded-[22px] border border-[#e4dfd4] bg-white p-4 lg:col-span-3">
           <p className="font-mono text-[11px] tracking-[0.12em] text-[#7a7468]">ARR · 12W</p>
-          <b className="text-[28px] tracking-[-0.04em]">$184k</b>
-          <svg viewBox="0 0 160 56" className="mt-2 h-16 w-full" aria-hidden="true">
-            <polyline fill="none" stroke="#16a34a" strokeWidth="2.4" points="4,40 28,36 52,42 76,22 100,26 124,12 156,18" />
-            <polyline fill="rgba(22,163,74,.12)" stroke="none" points="4,56 4,40 28,36 52,42 76,22 100,26 124,12 156,18 156,56" />
-          </svg>
+          <CountStat to={184} suffix="k" label="" valueClass="text-[28px] tracking-[-0.04em]" />
+          <LiveSpark className="mt-2 h-16 w-full" />
           <p className="text-[12px] text-[#16a34a]">+18% vs last quarter</p>
           <p className="mt-2 text-[12px] text-[#7a7468]">Studio plan · 18 seats · invoiced monthly</p>
         </article>
@@ -817,9 +752,9 @@ function TerminalHero(props: LayoutProps) {
   const reduced = usePrefersReducedMotion()
   const [sent, setSent] = useState(false)
   const chats: HeroChatLine[] = props.lines ?? [
-    { id: '1', role: 'user', text: 'Rewrite the hero family. Visuals first. 12 languages, not one Helio.' },
-    { id: '2', role: 'agent', text: 'Captured 40+ stills. Prisma, inbox-in-hero, dashboard blocks, fashion collage. Empty plates fail the gate.' },
-    { id: '3', role: 'agent', text: 'Drafting aurora, brutal, cinema with default product chrome so BASIC is never a void.' },
+    { id: '1', role: 'user', text: 'Summarize the failing test in checkout.test.ts and draft a fix.' },
+    { id: '2', role: 'agent', text: 'The p95 assertion trips on EU-west. I’ll open the rate-limit patch and keep the laptop still pinned in the right pane.' },
+    { id: '3', role: 'agent', text: 'Diff is green on the variant map. Prompt is ready when you are.' },
   ]
   function onSubmit(event: FormEvent) {
     event.preventDefault()
@@ -827,6 +762,7 @@ function TerminalHero(props: LayoutProps) {
   }
   return (
     <Shell variant="terminal" className={cn('flex min-h-svh flex-col bg-[#0b0d10] text-[#e7edf3]', props.className)} style={props.style}>
+      <Sweep className="via-emerald-300/10" />
       <nav className="flex items-center justify-between border-b border-[#1c232c] px-5 py-3">
         <strong className="font-mono text-sm">
           <span className="text-[#4ade80]">●</span> relay
@@ -850,38 +786,24 @@ function TerminalHero(props: LayoutProps) {
             <span className="px-3 py-2">diff</span>
           </div>
           <pre className="overflow-auto p-4 font-mono text-[12.5px] leading-[1.55]">
-            <span className="text-slate-500">{`  1  // original — not a port`}</span>
+            <span className="text-slate-500">{`  1  // relay · checkout edge`}</span>
             {'\n'}
             <span className="text-slate-500">  2  </span>
-            <span className="text-purple-400">export const</span> HERO_VARIANTS = [{'\n'}
+            <span className="text-purple-400">export async function</span> runAgent(task: Task) {'{'}
+            {'\n'}
             <span className="text-slate-500">  3    </span>
-            <span className="text-green-300">'aurora'</span>, <span className="text-green-300">'spotlight'</span>, <span className="text-green-300">'helix'</span>,{'\n'}
+            <span className="text-purple-400">const</span> session = <span className="text-purple-400">await</span> relay.open(task.repo){'\n'}
             <span className="text-slate-500">  4    </span>
-            <span className="text-green-300">'brutal'</span>, <span className="text-green-300">'bento'</span>, <span className="text-green-300">'cinema'</span>,{'\n'}
-            <span className="text-slate-500">  5    </span>
-            <span className="text-green-300">'terminal'</span>, <span className="text-green-300">'cursor'</span>, <span className="text-green-300">'reveal'</span>,{'\n'}
-            <span className="text-slate-500">  6  </span>]{'\n'}
-            <span className="text-slate-500">  7  </span>
+            <span className="text-purple-400">return</span> session.stream(task.prompt){'\n'}
+            <span className="text-slate-500">  5  </span>{'}'}
             {'\n'}
-            <span className="text-slate-500">  8  </span>
-            <span className="text-purple-400">export function</span> Hero({'{'} variant = <span className="text-green-300">'aurora'</span> {'}'}) {'{'}
+            <span className="text-slate-500">  6  </span>
             {'\n'}
-            <span className="text-slate-500">  9    </span>
-            <span className="text-purple-400">const</span> Layout = layouts[variant]{'\n'}
-            <span className="text-slate-500"> 10    </span>
-            <span className="text-purple-400">return</span> {'<Layout filled product chrome />'}
+            <span className="text-green-400">{`  7  + pin the laptop still in the right pane`}</span>
             {'\n'}
-            <span className="text-slate-500"> 11  </span>{'}'}
+            <span className="text-green-400">{`  8  + keep the last frame when motion is reduced`}</span>
             {'\n'}
-            <span className="text-slate-500"> 12  </span>
-            {'\n'}
-            <span className="text-green-400">{` 13  + filled with a real product by default`}</span>
-            {'\n'}
-            <span className="text-green-400">{` 14  + reduced-motion keeps the last frame`}</span>
-            {'\n'}
-            <span className="text-green-400">{` 15  + WebGL pauses when the plate leaves view`}</span>
-            {'\n'}
-            <span className="text-green-400">{` 16  + BASIC is never an empty gradient oval`}</span>
+            <span className="text-green-400">{`  9  + pause the stream when the desk leaves view`}</span>
           </pre>
         </div>
         <div className="flex min-w-0 flex-col">
@@ -890,7 +812,7 @@ function TerminalHero(props: LayoutProps) {
             <span className="px-3 py-2">logs</span>
           </div>
           <div className="flex flex-1 flex-col gap-3 p-4 text-sm leading-6">
-            {chats.map((line) => (
+            {chats.map((line, i) => (
               <div
                 key={line.id}
                 className={cn(
@@ -898,7 +820,7 @@ function TerminalHero(props: LayoutProps) {
                   line.role === 'user' ? 'border-[#1d4a32] bg-[#102018]' : 'border-[#243041] bg-[#141a22]',
                 )}
               >
-                {line.text}
+                {i === chats.length - 1 && !reduced ? <TypeLine text={line.text} delay={0.4} speed={14} /> : line.text}
               </div>
             ))}
             {sent ? <div className="rounded-xl border border-[#1d4a32] bg-[#102018] px-3.5 py-3">Queued. Pin the product screenshot in the hero.</div> : null}
@@ -911,7 +833,7 @@ function TerminalHero(props: LayoutProps) {
         </label>
         <input
           id="relay-prompt"
-          defaultValue={props.prompt ?? 'Pin the product screenshot in the hero, not a gradient circle.'}
+          defaultValue={props.prompt ?? 'Summarize the failing test in checkout.test.ts and draft a fix.'}
           className="h-11 min-w-0 flex-1 rounded-[10px] border border-[#2a3544] bg-[#0b0d10] px-3 font-mono text-sm outline-none"
         />
         <button type="submit" className="h-11 rounded-[10px] bg-[#4ade80] px-4 font-semibold text-[#052e16]">
@@ -921,7 +843,7 @@ function TerminalHero(props: LayoutProps) {
       <p className="flex justify-between border-t border-[#1c232c] px-4 py-2 font-mono text-[11px] text-slate-500">
         <span>gpt-relay · {reduced ? '0' : '42'} tok/s</span>
         <span>context 18%</span>
-        <span>reduced-motion: {reduced ? 'on' : 'off'}</span>
+        <span>main · 4 files dirty</span>
       </p>
     </Shell>
   )
@@ -1008,14 +930,14 @@ function CursorHero(props: LayoutProps) {
             </span>
           </motion.div>
         ))}
-        <div className="absolute top-[38%] left-[8%] z-10 w-52 rounded-xl border border-[#2a3446] bg-[#151b26] p-3 text-[13px] shadow-2xl">
+        <Float className="absolute top-[38%] left-[8%] z-10 w-52 rounded-xl border border-[#2a3446] bg-[#151b26] p-3 text-[13px] shadow-2xl" amplitude={8}>
           <p className="mb-1 text-[11px] font-bold text-[#f472b6]">Amina</p>
-          Lock the headline. Tracking -0.06, not Helio serif.
-        </div>
-        <div className="absolute top-[34%] right-[8%] z-10 w-52 rounded-xl border border-[#2a3446] bg-[#151b26] p-3 text-[13px] shadow-2xl">
+          Lock the headline at –0.06. The artboard is 1440.
+        </Float>
+        <Float className="absolute top-[34%] right-[8%] z-10 w-52 rounded-xl border border-[#2a3446] bg-[#151b26] p-3 text-[13px] shadow-2xl" delay={0.3} amplitude={7}>
           <p className="mb-1 text-[11px] font-bold text-[#67e8f9]">Jules</p>
-          Cursor trails stay inside the canvas. Reduced motion: static names.
-        </div>
+          Trails stay inside the frame. Noor is on the print still.
+        </Float>
         <div className="absolute bottom-[22%] left-[28%] hidden h-28 w-56 rounded-lg border-[1.5px] border-dashed border-[#67e8f9] bg-[#67e8f9]/10 md:block" />
         <div className="relative z-10 px-5 pt-[12vh] text-center">
           <p className="font-mono text-[11px] tracking-[0.22em] text-[#67e8f9] uppercase">{props.eyebrow ?? 'Field · multiplayer canvas'}</p>
@@ -1024,13 +946,13 @@ function CursorHero(props: LayoutProps) {
           </Heading>
           <p className={cn('mx-auto mt-3 max-w-xl leading-7 text-[#b7c2d4]', props.descriptionClassName)}>
             {props.description ??
-              'A spatial hero: grid, named pointers, live comments, frames, a print still. The product is collaboration, so the first screen is a room with people in it.'}
+              'Field is a room with people already in it. Named pointers, live comments, a print still, and a frame someone is still drawing.'}
           </p>
           <div className={cn('mt-7', props.actionsClassName)}>
             {props.actions ?? (
-              <a href="#hero" className="inline-flex h-11 items-center rounded-[10px] bg-[#67e8f9] px-4 text-sm font-bold text-[#06202a]">
+              <Magnetic href="#hero" className="inline-flex h-11 items-center rounded-[10px] bg-[#67e8f9] px-4 text-sm font-bold text-[#06202a]">
                 Join the canvas
-              </a>
+              </Magnetic>
             )}
           </div>
         </div>
@@ -1094,7 +1016,7 @@ function HelixHero(props: LayoutProps) {
           </Heading>
           <p className={cn('mt-4 max-w-md leading-7 text-[#c8bdb0]', props.descriptionClassName)}>
             {props.description ??
-              'Studio-lit WebGL, contained in the plate. Iridescent chrome with a magenta key and a gold rim — the object is the product, not a spinning candy sphere.'}
+              'Studio-lit object 08. Iridescent chrome, a magenta key, a gold rim. Inspect it, download USDZ, or keep the photographed still.'}
           </p>
           <div className="mt-7 grid max-w-md grid-cols-2 gap-2.5">
             {[
@@ -1120,7 +1042,7 @@ function HelixHero(props: LayoutProps) {
             )}
           </div>
         </div>
-        <p className="mt-8 font-mono text-[11px] tracking-[0.16em] text-[#8a7f74]">HELIX / CONTAINED WEBGL / 09 OF 12</p>
+        <p className="mt-8 font-mono text-[11px] tracking-[0.16em] text-[#8a7f74]">HELIX / OBJECT 08 / MATERIAL LAB</p>
       </div>
       <div ref={root} className={cn('relative min-h-[24rem] overflow-hidden bg-[#050506]', props.mediaClassName)}>
         {props.scene ?? (Scene ? <Scene active={!offscreen && !reduced} className="z-0" /> : null)}
@@ -1148,6 +1070,7 @@ function CinemaHero(props: LayoutProps) {
   ]
   return (
     <Shell variant="cinema" className={cn('flex min-h-svh flex-col bg-black text-[#f4ead6]', props.className)} style={props.style}>
+      <Sweep className="via-[#e8c36a]/20" />
       <div className="h-12 bg-black" />
       <div className="relative min-h-0 flex-1 overflow-hidden">
         <motion.div
@@ -1174,7 +1097,7 @@ function CinemaHero(props: LayoutProps) {
           </Heading>
           <p className={cn('mt-3 max-w-md font-serif text-lg text-[#e8dcc4] italic', props.descriptionClassName)}>
             {props.description ??
-              'A cinematic first screen: letterbox, grain, a still that moves, captions, chapters. The product is a film platform, so the hero is a reel.'}
+              'Letterbox, grain, a still that still moves. Nocturne is a film platform, so the first screen is a reel — rain, sodium lamps, and a fare that never arrives.'}
           </p>
           <div className={cn('mt-5', props.actionsClassName)}>
             {props.actions ?? (
@@ -1215,6 +1138,7 @@ function AtlasHero(props: LayoutProps) {
   ]
   return (
     <Shell variant="atlas" className={cn('min-h-svh bg-[#06101c] text-[#e8f1ff]', props.className)} style={props.style}>
+      <Sweep className="via-[#7dd3fc]/20" />
       <div className="absolute inset-0">
         {props.media === null ? null : (
           (props.media ?? <Still src={heroAsset(HERO_STILLS.globe)} alt="Earth at night" />)
@@ -1243,25 +1167,29 @@ function AtlasHero(props: LayoutProps) {
             {props.title ?? 'Every lane, one night map.'}
           </Heading>
           <p className={cn('mt-3 max-w-md leading-6 text-[#c5d4ea]', props.descriptionClassName)}>
-            {props.description ?? 'Arcs for flights, gold for ocean, a live event feed. The globe is a data surface, not a decorative marble.'}
+            {props.description ?? 'Arcs for flights, gold for ocean freight, a live feed from the desk in Rotterdam. Every lane on one night map.'}
           </p>
           <div className="mt-6 flex flex-wrap gap-6">
-            {(props.stats ?? [
-              { value: '128', label: 'air corridors' },
-              { value: '46', label: 'ports on watch' },
-              { value: '2.1s', label: 'event latency' },
-            ]).map((item) => (
-              <div key={item.label}>
-                <b className="block text-[28px] text-[#7dd3fc]">{item.value}</b>
-                <span className="font-mono text-[11px] text-[#93a7c2]">{item.label}</span>
-              </div>
-            ))}
+            {props.stats ? (
+              props.stats.map((item) => (
+                <div key={item.label}>
+                  <b className="block text-[28px] text-[#7dd3fc]">{item.value}</b>
+                  <span className="font-mono text-[11px] text-[#93a7c2]">{item.label}</span>
+                </div>
+              ))
+            ) : (
+              <>
+                <CountStat to={128} label="air corridors" valueClass="text-[28px] text-[#7dd3fc]" className="font-mono text-[11px] text-[#93a7c2]" />
+                <CountStat to={46} label="ports on watch" valueClass="text-[28px] text-[#7dd3fc]" className="font-mono text-[11px] text-[#93a7c2]" />
+                <CountStat to={2} suffix=".1s" label="event latency" valueClass="text-[28px] text-[#7dd3fc]" className="font-mono text-[11px] text-[#93a7c2]" />
+              </>
+            )}
           </div>
           <div className={cn('mt-6', props.actionsClassName)}>
             {props.actions ?? (
-              <a href="#hero" className="inline-flex h-11 items-center rounded-full bg-[#7dd3fc] px-4 text-sm font-bold text-[#062033]">
+              <Magnetic href="#hero" className="inline-flex h-11 items-center rounded-full bg-[#7dd3fc] px-4 text-sm font-bold text-[#062033]">
                 Open the map
-              </a>
+              </Magnetic>
             )}
           </div>
         </div>
@@ -1288,6 +1216,13 @@ function RevealHero(props: LayoutProps) {
     if (props.progress !== 'scroll' || reduced) return
     setAmount(value)
   })
+  useEffect(() => {
+    if (reduced || props.progress === 'scroll') return
+    const id = window.setInterval(() => {
+      setAmount((value) => (value >= 0.99 ? 0 : value + 0.012))
+    }, 50)
+    return () => window.clearInterval(id)
+  }, [props.progress, reduced])
   const screens = ['Home calendar', 'Team map', 'Insights board']
   const index = Math.min(2, Math.floor(amount * 3))
   return (
@@ -1315,13 +1250,13 @@ function RevealHero(props: LayoutProps) {
             </Heading>
             <p className={cn('mt-3 max-w-md leading-6 text-[#4b5563]', props.descriptionClassName)}>
               {props.description ??
-                'Native sticky pin, 160vh max, screens swap as you scroll. Reduced motion shows screen 03 immediately. The device is photographed, the UI is real.'}
+                'Prism is a pocket computer for studio teams. Scroll the pin and the screens turn: calendar, map, insights. The device is photographed; the UI is live.'}
             </p>
             <div className={cn('mt-5', props.actionsClassName)}>
               {props.actions ?? (
-                <a href="#hero" className="inline-flex h-11 items-center rounded-xl bg-[#111827] px-4 text-sm font-semibold text-white">
+                <Magnetic href="#hero" className="inline-flex h-11 items-center rounded-xl bg-[#111827] px-4 text-sm font-semibold text-white">
                   See the sequence
-                </a>
+                </Magnetic>
               )}
             </div>
           </div>

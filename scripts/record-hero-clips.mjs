@@ -7,7 +7,20 @@ const origin = process.env.HERO_SHOT_ORIGIN ?? 'http://127.0.0.1:5173'
 const out = resolve('docs/library/hero/implemented')
 mkdirSync(out, { recursive: true })
 
-const clips = ['aurora', 'cinema', 'cursor', 'atlas']
+const clips = [
+  'aurora',
+  'cinema',
+  'cursor',
+  'atlas',
+  'mesh',
+  'fan',
+  'ribbon',
+  'converse',
+  'assemble',
+  'veil',
+  'rotate',
+  'pop',
+]
 
 function run(cmd, args, extra = {}) {
   return new Promise((done, fail) => {
