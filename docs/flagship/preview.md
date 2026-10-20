@@ -14,7 +14,7 @@ Vite prints a local URL, usually `http://localhost:5173/`.
 | Route | What you see |
 | --- | --- |
 | `/#flagship` | Full landing: iris hero, story, live bento, kinetic type, WebGL instrument, voices, pricing |
-| `/#flagship-dashboard` | Night desk: sidebar, `⌘K` palette, live chart, table |
+| `/#flagship-dashboard` | Night observatory: iris lock, brass counters, paper ledger, `⌘K` |
 | `/#flagship-cinematic-hero` | Isolated piece in the docs catalogue |
 | `/#draggable-card` | Original registry docs |
 

@@ -11,6 +11,8 @@ export type OrbitalSceneProps = {
   pointer: { x: number; y: number }
   mode: Mode
   pulse: number
+  active?: boolean
+  onReady?: () => void
 }
 
 function Instrument({ pointer, mode, pulse }: OrbitalSceneProps) {
@@ -42,17 +44,18 @@ function Instrument({ pointer, mode, pulse }: OrbitalSceneProps) {
       }
     }
     if (beam.current) {
-      aim.set(pointer.x * 2.4, -pointer.y * 1.6, 1)
+      aim.set(pointer.x * 2.6, -pointer.y * 1.8, 2.2)
       beam.current.lookAt(aim)
-      beam.current.scale.z = mode === 'beam' ? 1.35 : 0.7
+      beam.current.scale.z = mode === 'beam' ? 1.7 : mode === 'focus' ? 0.85 : 1.1
       const material = beam.current.material
       if (material instanceof MeshPhysicalMaterial) {
-        material.opacity = mode === 'focus' ? 0.12 : 0.38 + pulse * 0.3
+        material.opacity = mode === 'focus' ? 0.22 : 0.72 + pulse * 0.28
+        material.emissiveIntensity = 2.8 + pulse * 2.4
       }
     }
     if (lamp.current) {
       lamp.current.position.set(pointer.x * 2.2, 1.4 - pointer.y, 2.2)
-      lamp.current.intensity = 8 + pulse * 10
+      lamp.current.intensity = 14 + pulse * 16
     }
   })
 
@@ -85,38 +88,50 @@ function Instrument({ pointer, mode, pulse }: OrbitalSceneProps) {
         <ringGeometry args={[2.05, 2.08, 64]} />
         <meshBasicMaterial color="#d9a85a" transparent opacity={0.35} />
       </mesh>
-      <mesh ref={beam} position={[0, 0, 0.2]}>
-        <coneGeometry args={[0.08, 2.8, 16, 1, true]} />
+      <mesh ref={beam} position={[0, 0, 0.35]}>
+        <coneGeometry args={[0.22, 3.6, 24, 1, true]} />
         <meshPhysicalMaterial
           color="#ffb089"
           transparent
-          opacity={0.32}
-          roughness={0.1}
+          opacity={0.7}
+          roughness={0.08}
           metalness={0}
           emissive="#ff4d1c"
-          emissiveIntensity={1.4}
+          emissiveIntensity={3.2}
+          depthWrite={false}
         />
       </mesh>
-      <pointLight ref={lamp} color="#ffb089" distance={8} />
+      <mesh position={[0, 0, 0.9]} rotation={[Math.PI / 2, 0, 0]}>
+        <coneGeometry args={[0.055, 3.2, 12, 1, true]} />
+        <meshBasicMaterial color="#ffe7c4" transparent opacity={0.85} depthWrite={false} />
+      </mesh>
+      <mesh position={[0, -0.05, 1.8]}>
+        <sphereGeometry args={[0.09, 16, 16]} />
+        <meshBasicMaterial color="#ff4d1c" />
+      </mesh>
+      <pointLight ref={lamp} color="#ffb089" distance={10} intensity={14} />
     </group>
   )
 }
 
-export function OrbitalScene({ pointer, mode, pulse }: OrbitalSceneProps) {
+export function OrbitalScene({ pointer, mode, pulse, active = true, onReady }: OrbitalSceneProps) {
   return (
     <Canvas
       dpr={[1, 1.5]}
+      frameloop={active ? 'always' : 'demand'}
       camera={{ position: [0, 0.35, 4.4], fov: 34 }}
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance', preserveDrawingBuffer: true }}
       style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
       onCreated={({ gl }) => {
         gl.setClearColor('#07060b', 0)
+        gl.domElement.setAttribute('data-helio-webgl', 'ready')
+        onReady?.()
       }}
     >
       <color attach="background" args={['#07060b']} />
-      <hemisphereLight args={['#f3ead8', '#1a1722', 0.45]} />
-      <directionalLight position={[3.2, 4.2, 2.4]} intensity={2.4} color="#f6d7a8" />
-      <directionalLight position={[-3.6, 1.2, -2]} intensity={0.9} color="#3ee0c6" />
+      <hemisphereLight args={['#f3ead8', '#1a1722', 0.7]} />
+      <directionalLight position={[3.2, 4.2, 2.4]} intensity={3.1} color="#f6d7a8" />
+      <directionalLight position={[-3.6, 1.2, -2]} intensity={1.3} color="#3ee0c6" />
       <Instrument pointer={pointer} mode={mode} pulse={pulse} />
       <ContactShadows position={[0, -1.35, 0]} opacity={0.45} scale={8} blur={2.4} far={3} color="#000000" />
     </Canvas>

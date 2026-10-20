@@ -11,6 +11,7 @@ import {
   type PointerEvent as ReactPointerEvent,
   type ReactNode,
   type Ref,
+  type RefObject,
 } from 'react'
 
 export const springs = {
@@ -177,6 +178,48 @@ export function useCount(value: number, active = true) {
   }, [spring])
 
   return node
+}
+
+const FOCUSABLE = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+
+export function useFocusTrap(active: boolean, root: RefObject<HTMLElement | null>, onEscape?: () => void) {
+  useEffect(() => {
+    if (!active) return
+    const node = root.current
+    if (!node) return
+
+    const items = () =>
+      Array.from(node.querySelectorAll<HTMLElement>(FOCUSABLE)).filter((el) => !el.hasAttribute('disabled') && el.tabIndex !== -1)
+
+    const previous = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    window.setTimeout(() => items()[0]?.focus(), 20)
+
+    function onKey(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        onEscape?.()
+        return
+      }
+      if (event.key !== 'Tab') return
+      const list = items()
+      if (list.length === 0) return
+      const first = list[0]
+      const last = list[list.length - 1]
+      if (!first || !last) return
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      previous?.focus()
+    }
+  }, [active, onEscape, root])
 }
 
 export { cn }

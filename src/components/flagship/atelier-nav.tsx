@@ -1,8 +1,8 @@
 'use client'
 
-import { Grain, HelioMark, cn, springs } from '@/components/flagship/primitives.tsx'
+import { Grain, HelioMark, cn, springs, useFocusTrap } from '@/components/flagship/primitives.tsx'
 import { AnimatePresence, LayoutGroup, motion, useMotionValueEvent, useScroll } from 'framer-motion'
-import { useEffect, useId, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
 
 export type MegaColumn = {
   title: string
@@ -32,7 +32,7 @@ const defaultLinks: NavLink[] = [
         title: 'Desk',
         items: [
           { label: 'Story', href: '#story', note: 'Pinned chapters' },
-          { label: 'Bento', href: '#bento', note: 'Live tiles' },
+          { label: 'Bento', href: '#bento', note: 'Desk objects' },
           { label: 'Signals', href: '#flagship-dashboard', note: 'Console' },
         ],
       },
@@ -89,8 +89,11 @@ export function AtelierNav({
   const [compact, setCompact] = useState(false)
   const [drawerSection, setDrawerSection] = useState<string | null>(null)
   const bar = useRef<HTMLDivElement>(null)
+  const drawerRef = useRef<HTMLDivElement>(null)
   const panelId = useId()
   const { scrollY } = useScroll()
+  const closeDrawer = useCallback(() => setDrawer(false), [])
+  useFocusTrap(drawer, drawerRef, closeDrawer)
 
   useMotionValueEvent(scrollY, 'change', (value) => {
     setCompact(value > 24)
@@ -244,6 +247,7 @@ export function AtelierNav({
       <AnimatePresence>
         {drawer ? (
           <motion.div
+            ref={drawerRef}
             className="fixed inset-0 z-40 bg-void lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -254,6 +258,13 @@ export function AtelierNav({
           >
             <Grain />
             <div className="relative flex h-full flex-col justify-end px-6 pt-24 pb-10">
+              <button
+                type="button"
+                onClick={closeDrawer}
+                className="absolute top-6 right-6 h-10 rounded-full border border-ivory/15 px-4 text-sm text-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ion"
+              >
+                Close
+              </button>
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>

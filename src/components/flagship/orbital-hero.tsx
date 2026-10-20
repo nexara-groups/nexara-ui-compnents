@@ -31,15 +31,16 @@ export function OrbitalHero({
   const plate = useRef<HTMLDivElement>(null)
   const inView = useInView(host, { amount: 0.35 })
   const [pointer, setPointer] = useState({ x: 0, y: 0 })
-  const [mode, setMode] = useState<Mode>('orbit')
+  const [mode, setMode] = useState<Mode>('beam')
   const [pulse, setPulse] = useState(0)
   const [ready, setReady] = useState(false)
+  const [webgl, setWebgl] = useState(false)
 
   useEffect(() => {
-    if (!inView || reduced) return
-    const timer = window.setTimeout(() => setReady(true), 80)
+    if (reduced) return
+    const timer = window.setTimeout(() => setReady(true), 40)
     return () => window.clearTimeout(timer)
-  }, [inView, reduced])
+  }, [reduced])
 
   useEffect(() => {
     if (pulse <= 0) return
@@ -119,6 +120,7 @@ export function OrbitalHero({
 
         <div
           ref={plate}
+          data-helio-webgl={webgl ? 'ready' : ready ? 'mounting' : 'pending'}
           className="relative aspect-[5/4] overflow-hidden rounded-[2rem] border border-ivory/10 bg-carbon shadow-[0_40px_80px_-48px_rgba(0,0,0,0.9)]"
           onPointerMove={onMove}
           onPointerLeave={() => setPointer({ x: 0, y: 0 })}
@@ -149,7 +151,13 @@ export function OrbitalHero({
                 />
               }
             >
-              <OrbitalScene pointer={pointer} mode={mode} pulse={pulse} />
+              <OrbitalScene
+                pointer={pointer}
+                mode={mode}
+                pulse={pulse}
+                active={inView}
+                onReady={() => setWebgl(true)}
+              />
             </Suspense>
           )}
           <Grain className="opacity-[0.1]" />

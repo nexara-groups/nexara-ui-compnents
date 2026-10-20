@@ -15,7 +15,7 @@ The name is a signalling instrument: a mirror that throws a concentrated beam. T
 | `ember` | `#ff4d1c` | The signal. One accent per view. CTAs, live dots, selected plan. |
 | `brass` | `#d9a85a` | Metal, price figures, seals, 3D crystal. Luxury, not gold-gradient kitsch. |
 | `ion` | `#3ee0c6` | Instrument readouts, charts, success. Cool counterweight to ember. |
-| `fog` | `#8f897e` | Secondary copy. Never `#a1a1aa`. |
+| `fog` | `#c6bba8` | Secondary copy. Warm paper-dust, ≥4.5:1 on void. Never `#a1a1aa`. |
 
 Rules:
 
@@ -90,10 +90,10 @@ Motion is a character. Each flagship piece owns **one** unexpected idea and refu
 | Kinetic hero | Letters are physical and can be locked. |
 | Navbar | The bar and the mega-panel are one morphing plate. |
 | Scroll story | The instrument on the right is the same object changing mode. |
-| Live bento | Every tile is a working tool, not a picture of a tool. |
+| Live bento | Instruments sit on a desk. The lamp lights the room. |
 | Pricing | The highlight ring is a spring that walks between plans. |
 | Testimonials | A shallow wall of cards with a shared light. |
-| Dashboard | The product is fast. Motion is ≤180ms unless it is a chart draw. |
+| Dashboard | The iris locks a signal. Paper holds the ledger. |
 
 ### Curves
 
@@ -129,7 +129,7 @@ If `prefers-reduced-motion: reduce`:
 ## Interaction voice
 
 - Pointer: magnetic pull ≤ 10px on primary CTAs. The object leans, it does not chase.
-- Keyboard: every control that looks clickable is a button or a link. Mega-menu and command palette trap focus. Escape closes.
+- Keyboard: every control that looks clickable is a button or a link. Mega-menu, mobile drawer, and command palette trap focus. Escape closes.
 - States: idle, hover, active, selected, loading, empty, error. If a tile cannot show three of these, it is a poster.
 
 ## What we will not do
