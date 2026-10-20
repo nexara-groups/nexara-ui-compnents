@@ -107,7 +107,7 @@ export function OrbitalScene({ pointer, mode, pulse }: OrbitalSceneProps) {
     <Canvas
       dpr={[1, 1.5]}
       camera={{ position: [0, 0.35, 4.4], fov: 34 }}
-      gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+      gl={{ antialias: true, alpha: true, powerPreference: 'high-performance', preserveDrawingBuffer: true }}
       style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
       onCreated={({ gl }) => {
         gl.setClearColor('#07060b', 0)

@@ -41,6 +41,7 @@ export type AtelierDashboardProps = {
 
 export function AtelierDashboard({ className }: AtelierDashboardProps) {
   const [collapsed, setCollapsed] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
   const [nav, setNav] = useState('Signals')
   const [query, setQuery] = useState('')
   const [status, setStatus] = useState<Status | 'all'>('all')
@@ -135,10 +136,20 @@ export function AtelierDashboard({ className }: AtelierDashboardProps) {
 
   return (
     <div className={cn('flex min-h-svh bg-void text-ivory', className)}>
+      {mobileOpen ? (
+        <button
+          type="button"
+          className="fixed inset-0 z-20 bg-void/60 md:hidden"
+          aria-label="Close navigation"
+          onClick={() => setMobileOpen(false)}
+        />
+      ) : null}
       <aside
         className={cn(
-          'sticky top-0 flex h-svh flex-col border-r border-ivory/8 bg-carbon transition-[width] duration-300',
-          collapsed ? 'w-[4.5rem]' : 'w-60',
+          'fixed inset-y-0 left-0 z-30 flex h-svh flex-col border-r border-ivory/8 bg-carbon transition-[transform,width] duration-300 md:sticky md:translate-x-0',
+          collapsed ? 'md:w-[4.5rem]' : 'md:w-60',
+          'w-60',
+          mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
         )}
       >
         <div className="flex h-16 items-center gap-2 px-4">
@@ -150,7 +161,10 @@ export function AtelierDashboard({ className }: AtelierDashboardProps) {
             <button
               key={item}
               type="button"
-              onClick={() => setNav(item)}
+              onClick={() => {
+                setNav(item)
+                setMobileOpen(false)
+              }}
               className={cn(
                 'flex h-10 w-full items-center gap-3 rounded-xl px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ion',
                 nav === item ? 'bg-ivory/8 text-ivory' : 'text-ivory/55 hover:text-ivory',
@@ -174,14 +188,22 @@ export function AtelierDashboard({ className }: AtelierDashboardProps) {
         <header className="flex h-16 items-center justify-between gap-3 border-b border-ivory/8 px-4 md:px-6">
           <button
             type="button"
+            className="inline-flex size-10 items-center justify-center rounded-full border border-ivory/15 md:hidden"
+            onClick={() => setMobileOpen(true)}
+            aria-label="Open navigation"
+          >
+            ☰
+          </button>
+          <button
+            type="button"
             onClick={() => setPalette(true)}
             className="flex h-10 min-w-0 flex-1 items-center justify-between rounded-full border border-ivory/10 bg-carbon px-4 text-sm text-fog md:max-w-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ion"
           >
             <span>Search the desk</span>
-            <kbd className="font-mono text-[10px] tracking-[0.14em] text-ivory/40">⌘K</kbd>
+            <kbd className="hidden font-mono text-[10px] tracking-[0.14em] text-ivory/40 sm:inline">⌘K</kbd>
           </button>
-          <a href="#flagship" className="text-sm text-ivory/60 hover:text-ivory">
-            Back to site
+          <a href="#flagship" className="shrink-0 text-sm text-ivory/60 hover:text-ivory">
+            Site
           </a>
         </header>
 
@@ -291,7 +313,18 @@ export function AtelierDashboard({ className }: AtelierDashboardProps) {
                             <td className="px-4 py-3 font-mono text-brass">{row.id}</td>
                             <td className="px-4 py-3 text-ivory">{row.title}</td>
                             <td className="px-4 py-3 text-fog">{row.owner}</td>
-                            <td className="px-4 py-3 capitalize text-ivory/80">{row.status}</td>
+                            <td className="px-4 py-3">
+              <span
+                className={cn(
+                  'rounded-full px-2 py-0.5 font-mono text-[10px] tracking-[0.14em] uppercase',
+                  row.status === 'open' && 'bg-ember/15 text-ember',
+                  row.status === 'held' && 'bg-brass/15 text-brass',
+                  row.status === 'archived' && 'bg-ivory/8 text-fog',
+                )}
+              >
+                {row.status}
+              </span>
+            </td>
                             <td className="px-4 py-3 text-ion">{row.strength}</td>
                           </tr>
                         )
@@ -407,7 +440,14 @@ function Chart({ path, points }: { path: string; points: number[] }) {
           setHover(Math.min(points.length - 1, Math.max(0, Math.round(x * (points.length - 1)))))
         }}
       >
-        <path d={path} fill="none" stroke="currentColor" strokeWidth="1.2" vectorEffect="non-scaling-stroke" />
+        <path d={`${path} L 100 40 L 0 40 Z`} fill="url(#strengthFill)" opacity="0.28" />
+        <path d={path} fill="none" stroke="currentColor" strokeWidth="1.4" vectorEffect="non-scaling-stroke" />
+        <defs>
+          <linearGradient id="strengthFill" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor="#3ee0c6" />
+            <stop offset="100%" stopColor="#3ee0c6" stopOpacity="0" />
+          </linearGradient>
+        </defs>
         {hover !== null ? (
           <circle
             cx={(hover / (points.length - 1)) * 100}

@@ -67,12 +67,22 @@ export function LiveBento({ className }: LiveBentoProps) {
 
         <div className="mt-12 grid gap-4 md:grid-cols-6">
           <Tile className="md:col-span-3" title="Live spark" note={`${tick} open`}>
-            <svg viewBox="0 0 160 64" className="mt-6 h-20 w-full text-ion" aria-hidden="true">
+            <svg viewBox="0 0 160 72" className="mt-4 h-28 w-full text-ion" aria-hidden="true">
+              <defs>
+                <linearGradient id="sparkFill" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stopColor="#3ee0c6" stopOpacity="0.45" />
+                  <stop offset="100%" stopColor="#3ee0c6" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <polygon
+                fill="url(#sparkFill)"
+                points={`0,72 ${spark.map((y, x) => `${x * 10.5},${68 - y * 0.72}`).join(' ')} 157.5,72`}
+              />
               <polyline
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
-                points={spark.map((y, x) => `${x * 10.5},${64 - y * 0.7}`).join(' ')}
+                points={spark.map((y, x) => `${x * 10.5},${68 - y * 0.72}`).join(' ')}
               />
             </svg>
           </Tile>

@@ -211,7 +211,7 @@ export function AtelierNav({
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={springs.ui}
-                className="overflow-hidden border-t border-ivory/8"
+                className="hidden overflow-hidden border-t border-ivory/8 lg:block"
                 onPointerLeave={() => setOpen(null)}
               >
                 <div className="grid gap-6 px-6 py-6 md:grid-cols-3">
@@ -253,8 +253,8 @@ export function AtelierNav({
             aria-label="Menu"
           >
             <Grain />
-            <div className="relative flex h-full flex-col justify-end px-6 pb-10">
-              <ul className="space-y-2">
+            <div className="relative flex h-full flex-col justify-end px-6 pt-24 pb-10">
+              <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
                     {link.mega ? (

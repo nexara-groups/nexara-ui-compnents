@@ -133,7 +133,8 @@ export function TestimonialWall({ voices = defaultVoices, className }: Testimoni
             <p className="col-span-full rounded-[1.6rem] border border-ivory/10 p-8 text-fog">No studio in this filter.</p>
           ) : (
             visible.map((voice, index) => {
-              const wide = index % 5 === 0
+              const featuredCard = index === 0
+              const wide = featuredCard || index % 5 === 0
               return (
                 <motion.article
                   key={voice.id}
@@ -146,7 +147,7 @@ export function TestimonialWall({ voices = defaultVoices, className }: Testimoni
                   tabIndex={0}
                   className={cn(
                     'relative overflow-hidden rounded-[1.6rem] border border-ivory/10 bg-carbon p-5 outline-none focus-visible:ring-2 focus-visible:ring-ion',
-                    wide ? 'md:col-span-7' : 'md:col-span-5',
+                    featuredCard ? 'md:col-span-12 md:grid md:grid-cols-[18rem_minmax(0,1fr)] md:gap-8 md:p-0' : wide ? 'md:col-span-7' : 'md:col-span-5',
                   )}
                   style={{ transformStyle: 'preserve-3d' }}
                   whileHover={{
@@ -168,20 +169,20 @@ export function TestimonialWall({ voices = defaultVoices, className }: Testimoni
                       ['--ly' as string]: `${24 + pointer.ny.get() * 30}%`,
                     }}
                   />
-                  <div className="relative flex items-start gap-4">
+                  <div className={cn('relative flex items-start gap-4', featuredCard && 'md:contents')}>
                     <img
                       src={voice.portrait}
                       alt=""
-                      className="size-16 rounded-2xl object-cover"
+                      className={cn('size-16 rounded-2xl object-cover', featuredCard && 'md:size-auto md:h-full md:w-full md:rounded-none')}
                     />
-                    <div>
-                      <p className="font-serif text-2xl leading-tight text-ivory">{voice.name}</p>
+                    <div className={featuredCard ? 'md:self-center md:pr-10 md:py-8' : undefined}>
+                      <p className="font-serif text-2xl leading-tight text-ivory md:text-[2rem]">{voice.name}</p>
                       <p className="mt-1 font-mono text-[10px] tracking-[0.16em] text-fog uppercase">
                         {voice.role} · {voice.studio}
                       </p>
+                      <blockquote className="relative mt-5 text-lg leading-7 text-ivory/85 md:text-2xl">“{voice.quote}”</blockquote>
                     </div>
                   </div>
-                  <blockquote className="relative mt-5 text-lg leading-7 text-ivory/85">“{voice.quote}”</blockquote>
                 </motion.article>
               )
             })

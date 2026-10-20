@@ -55,9 +55,9 @@ export function CinematicHero({
   const bloom = useTransform(progress, [0, 1], [0.15, 0.85])
   const imageScale = useTransform(progress, [0, 1], [1.22, 1])
   const imageY = useTransform(progress, [0, 1], [40, -10])
-  const typeY = useTransform(progress, [0.18, 0.5], [36, 0])
-  const typeFade = useTransform(progress, [0.16, 0.42], [0, 1])
-  const ctaFade = useTransform(progress, [0.62, 0.86], [0, 1])
+  const typeY = useTransform(progress, [0, 0.45], [18, 0])
+  const typeFade = useTransform(progress, [0, 0.12], [0.92, 1])
+  const ctaFade = useTransform(progress, [0.55, 0.82], [0, 1])
   const deskFade = useTransform(progress, [0, 0.4], [0.35, 0])
 
   function jump(at: number) {
@@ -111,11 +111,11 @@ export function CinematicHero({
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#07060b_78%)]" />
         <Grain />
 
-        <div className="relative z-30 flex h-full flex-col justify-between px-5 py-6 md:px-10 md:py-8">
+        <div className="relative z-30 flex h-full flex-col justify-between px-5 pt-24 pb-6 md:px-10 md:pt-28 md:pb-8">
           <div className="flex items-center justify-between text-[11px] tracking-[0.22em] text-ivory/55 uppercase">
             <span className="inline-flex items-center gap-3">
               <HelioMark className="size-7" />
-              <span className="font-mono">{eyebrow}</span>
+              <span className="hidden font-mono sm:inline">{eyebrow}</span>
             </span>
             <span className="hidden font-mono md:block">Fig 0.1 · Iris</span>
           </div>
@@ -147,11 +147,11 @@ export function CinematicHero({
             </motion.div>
           </motion.div>
 
-          <div className="flex items-end justify-between gap-6">
-            <p className="max-w-[14rem] font-mono text-[10px] leading-5 tracking-[0.16em] text-ivory/40 uppercase">
+          <div className="flex flex-col-reverse items-stretch justify-between gap-5 sm:flex-row sm:items-end">
+            <p className="max-w-[16rem] font-mono text-[10px] leading-5 tracking-[0.16em] text-ivory/40 uppercase">
               Scroll to open the iris. The instrument stays in the plate.
             </p>
-            <ol className="flex flex-col items-end gap-2" aria-label="Reveal chapters">
+            <ol className="flex flex-row flex-wrap justify-end gap-x-4 gap-y-2 sm:flex-col sm:items-end" aria-label="Reveal chapters">
               {chapters.map((item, index) => {
                 const current = index === chapter
                 return (
