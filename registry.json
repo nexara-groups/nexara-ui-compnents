@@ -1942,7 +1942,7 @@
       "name": "navbar",
       "type": "registry:ui",
       "title": "Navbar",
-      "description": "Eleven navigation mechanisms from a full-bleed rail to a morphing island.",
+      "description": "Eighteen navigation languages, each sitting on a sample hero. Original chrome, designed mobile, not a glowing pill rack.",
       "categories": [
         "Library"
       ],
@@ -1960,86 +1960,151 @@
         {
           "path": "src/components/ui/navbar.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/navbar-layouts.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/navbar-more.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/navbar-motion.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/hero-media.ts",
+          "type": "registry:lib"
         }
       ],
-      "usage": "import { Navbar } from '@/components/ui/navbar'\n\n<Navbar variant=\"rail\" logo=\"Mark\" items={items} />",
+      "usage": "import { Navbar } from '@/components/ui/navbar'\n\n<Navbar variant=\"pill\" />",
       "variants": [
         {
-          "name": "rail",
-          "title": "Rail",
+          "name": "pill",
+          "title": "Pill",
           "tier": "basic",
-          "description": "Full-bleed bar. Wordmark, destinations, one action.",
-          "usage": "<Navbar variant=\"rail\" items={items} />"
+          "description": "Frosted floating capsule. Magnetic links.",
+          "usage": "<Navbar variant=\"pill\" />"
         },
         {
-          "name": "capsule",
-          "title": "Capsule",
+          "name": "banner",
+          "title": "Banner",
           "tier": "basic",
-          "description": "Detached pill. Four destinations.",
-          "usage": "<Navbar variant=\"capsule\" items={items} />"
+          "description": "Announcement strip the bar absorbs on scroll.",
+          "usage": "<Navbar variant=\"banner\" />"
         },
         {
-          "name": "column",
-          "title": "Column",
+          "name": "tabs",
+          "title": "Tabs",
           "tier": "basic",
-          "description": "Vertical index with section labels.",
-          "usage": "<Navbar variant=\"column\" items={items} />"
+          "description": "Liquid physics indicator on a mesh.",
+          "usage": "<Navbar variant=\"tabs\" />"
         },
         {
-          "name": "path",
-          "title": "Path",
+          "name": "clinic",
+          "title": "Clinic",
           "tier": "basic",
-          "description": "Crumb trail. Last node is here.",
-          "usage": "<Navbar variant=\"path\" items={items} />"
+          "description": "Named doctor, live status, hold a visit.",
+          "usage": "<Navbar variant=\"clinic\" />"
         },
         {
-          "name": "map",
-          "title": "Map",
+          "name": "league",
+          "title": "League",
+          "tier": "basic",
+          "description": "Night-meet scoreboard strip.",
+          "usage": "<Navbar variant=\"league\" />"
+        },
+        {
+          "name": "pop",
+          "title": "Pop",
+          "tier": "basic",
+          "description": "Academy chips and a spring CTA.",
+          "usage": "<Navbar variant=\"pop\" />"
+        },
+        {
+          "name": "mega",
+          "title": "Mega",
           "tier": "intermediate",
-          "description": "Multi-column destination panel.",
-          "usage": "<Navbar variant=\"map\" columns={columns} />"
+          "description": "Live campaign previews in the panel.",
+          "usage": "<Navbar variant=\"mega\" />"
         },
         {
           "name": "command",
           "title": "Command",
           "tier": "intermediate",
           "description": "The field is the navigation.",
-          "usage": "<Navbar variant=\"command\" items={items} />"
+          "usage": "<Navbar variant=\"command\" />"
         },
         {
-          "name": "dock",
-          "title": "Dock",
+          "name": "follow",
+          "title": "Follow",
           "tier": "intermediate",
-          "description": "Icons over captions from an edge.",
-          "usage": "<Navbar variant=\"dock\" items={items} />"
+          "description": "Cursor spotlight across the index.",
+          "usage": "<Navbar variant=\"follow\" />"
         },
         {
-          "name": "mast",
-          "title": "Mast",
+          "name": "crumb",
+          "title": "Crumb",
           "tier": "intermediate",
-          "description": "Large mark plus index disclosure.",
-          "usage": "<Navbar variant=\"mast\" logo=\"Mark\" items={items} />"
+          "description": "Docs path and a reading hairline.",
+          "usage": "<Navbar variant=\"crumb\" />"
+        },
+        {
+          "name": "kiln",
+          "title": "Kiln",
+          "tier": "intermediate",
+          "description": "Plant selector and live supply air.",
+          "usage": "<Navbar variant=\"kiln\" />"
+        },
+        {
+          "name": "split",
+          "title": "Split",
+          "tier": "intermediate",
+          "description": "Bar that splits on scroll.",
+          "usage": "<Navbar variant=\"split\" />"
+        },
+        {
+          "name": "island",
+          "title": "Island",
+          "tier": "advanced",
+          "description": "Notch console that morphs job.",
+          "usage": "<Navbar variant=\"island\" />"
         },
         {
           "name": "curtain",
           "title": "Curtain",
           "tier": "advanced",
           "description": "Viewport of type. Focus trap.",
-          "usage": "<Navbar variant=\"curtain\" items={items} />"
+          "usage": "<Navbar variant=\"curtain\" />"
         },
         {
-          "name": "island",
-          "title": "Island",
+          "name": "dock",
+          "title": "Dock",
           "tier": "advanced",
-          "description": "One surface morphs job.",
-          "usage": "<Navbar variant=\"island\" items={items} />"
+          "description": "Magnifying tool rack on a sill.",
+          "usage": "<Navbar variant=\"dock\" />"
         },
         {
-          "name": "galley",
-          "title": "Galley",
+          "name": "rail",
+          "title": "Rail",
           "tier": "advanced",
-          "description": "Ruled editorial cells. Fill, not glow.",
-          "usage": "<Navbar variant=\"galley\" items={items} />"
+          "description": "Vertical index with a live pip.",
+          "usage": "<Navbar variant=\"rail\" />"
+        },
+        {
+          "name": "folio",
+          "title": "Folio",
+          "tier": "advanced",
+          "description": "Numbered work index.",
+          "usage": "<Navbar variant=\"folio\" />"
+        },
+        {
+          "name": "portal",
+          "title": "Portal",
+          "tier": "advanced",
+          "description": "Agency OS: workspace, agents, command.",
+          "usage": "<Navbar variant=\"portal\" />"
         }
       ]
     },

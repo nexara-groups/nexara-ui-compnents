@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>18 Portal — Agency OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    button, a { font: inherit; color: inherit; text-decoration: none; }
+    
+    body { font-family: "DM Sans", sans-serif; color: #e8f4ff; background: #071018; overflow: hidden; }
+    nav { display: flex; align-items: center; gap: 16px; padding: 12px 20px; background: #0b2530; border-bottom: 1px solid #16313c; }
+    .ws { font-size: 13px; padding: 6px 10px; border-radius: 8px; background: #071018; border: 1px solid #22d3ee33; }
+    .search { flex: 1; height: 36px; border-radius: 8px; background: #071018; border: 1px solid #16313c; color: #9ec4d8; font-family: "IBM Plex Mono", monospace; font-size: 12px; padding: 0 12px; display: flex; align-items: center; }
+    .live { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: #67e8f9; }
+    .live i { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #22d3ee; margin-right: 6px; }
+    .grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 12px; padding: 20px; }
+    .tile { background: #0b2530; border: 1px solid #22d3ee33; border-radius: 16px; padding: 16px; min-height: 160px; }
+    .tile small { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .16em; color: #67e8f9; }
+    img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-top: 12px; }
+    
+  </style>
+</head>
+<body>
+<nav aria-label="Portal">
+      <strong>Nimbus</strong>
+      <span class="ws">Folio ▾</span>
+      <div class="search">Jump to incident, agent, region… ⌘K</div>
+      <span class="live"><i></i>14 on desk</span>
+      <span class="live">watch checkout-edge</span>
+    </nav>
+    <div class="grid">
+      <div class="tile"><small>INCIDENTS</small><p style="margin-top:12px;font-family:IBM Plex Mono,monospace;font-size:13px">14:02 checkout-edge · watch<br>13:51 ingest-eu · clear</p></div>
+      <div class="tile"><small>DESK CAM</small><img src="./assets/hero-startup-loft.jpg" alt="" /></div>
+    </div>
+</body>
+</html>

@@ -140,12 +140,14 @@ export function FamilyStudio({
           Copy <code className="text-[#f6f3ec]">{path}</code>
           {family === 'hero'
             ? ', hero-layouts.tsx, hero-more.tsx, hero-scene.tsx, src/lib/hero-media.ts, src/lib/hero-motion.tsx,'
-            : ','}{' '}
+            : family === 'navbar'
+              ? ', navbar-layouts.tsx, navbar-more.tsx, src/lib/navbar-motion.tsx, src/lib/hero-media.ts,'
+              : ','}{' '}
           <code className="text-[#f6f3ec]">src/lib/utils.ts</code>,{' '}
           <code className="text-[#f6f3ec]">src/lib/library.ts</code>,{' '}
           <code className="text-[#f6f3ec]">src/lib/kit.tsx</code>, and <code className="text-[#f6f3ec]">src/lib/theme.tsx</code>.
           Dependencies: {dependencies.join(', ')}.
-          {family === 'hero' ? (
+          {family === 'hero' || family === 'navbar' ? (
             <>
               {' '}
               Packaged stills live in <code className="text-[#f6f3ec]">public/library/hero/</code>.

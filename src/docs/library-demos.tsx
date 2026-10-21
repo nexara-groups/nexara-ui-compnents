@@ -57,29 +57,10 @@ export function renderHero(id: string) {
   return <Hero variant={variant} progress={variant === 'reveal' || variant === 'rotate' ? 'none' : undefined} />
 }
 
-const navItems = [
-  { id: 'work', label: 'Work', href: '#hero', current: true },
-  { id: 'notes', label: 'Notes', href: '#bento' },
-  { id: 'index', label: 'Index', href: '#stats' },
-  { id: 'contact', label: 'Contact', href: '#pricing' },
-]
-
 export function renderNavbar(id: string) {
-  return (
-    <Navbar
-      variant={id as NavbarVariant}
-      logo={<span className="font-serif text-xl">Mark</span>}
-      items={navItems}
-      action={<Ghost href="#navbar">Start</Ghost>}
-      columns={[
-        { id: 'a', title: 'Product', items: navItems.slice(0, 2) },
-        { id: 'b', title: 'Library', items: navItems.slice(2) },
-      ]}
-      sections={[{ id: 'main', label: 'Navigate', items: navItems }]}
-      magnify
-      defaultOpen={id === 'map' ? 'work' : undefined}
-    />
-  )
+  const variant = id as NavbarVariant
+  const opened = variant === 'mega' || variant === 'curtain' || variant === 'island'
+  return <Navbar variant={variant} defaultOpen={opened} />
 }
 
 const tiles = [

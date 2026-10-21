@@ -32,7 +32,7 @@ export const libraryMeta: Record<
   },
   navbar: {
     variants: metaFrom(NAVBAR_VARIANTS, NAVBAR_TIER_META),
-    usage: (id) => `<Navbar variant="${id}" logo="Mark" items={items} action={<a href="#start">Start</a>} />`,
+    usage: (id) => `<Navbar variant="${id}" />`,
   },
   bento: {
     variants: metaFrom(BENTO_VARIANTS, BENTO_TIER_META),
