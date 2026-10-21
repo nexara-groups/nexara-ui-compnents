@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>11 Cursor field — Field</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #0c1018; }
+    body { font-family: "DM Sans", sans-serif; color: #edf1f7; overflow: hidden; }
+    .stage { min-height: 900px; height: 100vh; position: relative; }
+    .field { position: absolute; inset: 0; background-image:
+      linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 40px 40px; }
+    .copy { position: relative; z-index: 2; text-align: center; padding-top: 12vh; }
+    .kicker { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .22em; color: #67e8f9; }
+    h1 { font-size: clamp(48px, 6vw, 88px); letter-spacing: -.06em; line-height: .92; margin: 14px auto 12px; max-width: 14ch; }
+    .lede { color: #b7c2d4; max-width: 34rem; margin: 0 auto; line-height: 1.55; }
+    .cursors { position: absolute; inset: 0; }
+    .cur { position: absolute; display: flex; align-items: flex-start; gap: 6px; }
+    .ptr { width: 0; height: 0; border-left: 10px solid currentColor; border-top: 4px solid transparent; border-bottom: 12px solid transparent; }
+    .name { font-size: 11px; padding: 3px 7px; border-radius: 6px; color: #061016; font-weight: 700; }
+    .note { position: absolute; width: 200px; background: #151b26; border: 1px solid #2a3446; border-radius: 12px; padding: 10px 12px; font-size: 13px; box-shadow: 0 16px 40px -24px #000; }
+    .sel { position: absolute; border: 1.5px dashed #67e8f9; background: rgba(103,232,249,.06); border-radius: 8px; }
+    .toolbar { position: absolute; left: 24px; bottom: 28px; display: flex; gap: 8px; background: #151b26; border: 1px solid #2a3446; border-radius: 12px; padding: 8px; font-size: 12px; }
+    .toolbar span { padding: 6px 10px; border-radius: 8px; background: #0c1018; }
+    .cta { margin-top: 28px; }
+    button { height: 46px; padding: 0 18px; border-radius: 10px; border: 0; font-weight: 700; background: #67e8f9; color: #06202a; }
+  </style>
+</head>
+<body>
+  <section class="stage">
+    <div class="field"></div>
+    <div class="cursors" aria-hidden="true">
+      <div class="cur" style="left:18%;top:28%;color:#f472b6">
+        <div class="ptr"></div><div class="name" style="background:#f472b6">Amina</div>
+      </div>
+      <div class="cur" style="left:62%;top:22%;color:#67e8f9">
+        <div class="ptr"></div><div class="name" style="background:#67e8f9">Jules</div>
+      </div>
+      <div class="cur" style="left:72%;top:58%;color:#a78bfa">
+        <div class="ptr"></div><div class="name" style="background:#a78bfa">Kenji</div>
+      </div>
+      <div class="cur" style="left:28%;top:64%;color:#fbbf24">
+        <div class="ptr"></div><div class="name" style="background:#fbbf24">Noor</div>
+      </div>
+      <div class="sel" style="left:12%;top:58%;width:220px;height:110px"></div>
+      <div class="sel" style="right:16%;top:62%;width:180px;height:90px;border-color:#f472b6;background:rgba(244,114,182,.06)"></div>
+      <div class="note" style="left:16%;top:34%">Lock the headline. Tracking -0.06, not Helio serif.</div>
+      <div class="note" style="right:12%;top:30%">Cursor trails stay inside the canvas. Reduced motion: static names.</div>
+      <div class="toolbar"><span>Select</span><span>Comment</span><span>Frame</span><span>4 online</span></div>
+    </div>
+    <div class="copy">
+      <p class="kicker">FIELD · MULTIplayer CANVAS</p>
+      <h1>Where the cursors already are.</h1>
+      <p class="lede">A spatial hero: grid, named pointers, live comments. The product is collaboration, so the first screen is a room with people in it.</p>
+      <div class="cta"><button>Join the canvas</button></div>
+    </div>
+  </section>
+</body>
+</html>

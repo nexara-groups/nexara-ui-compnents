@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>01 Aurora — Lumen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #04060f; }
+    body { font-family: Syne, sans-serif; color: #eef7ff; overflow: hidden; }
+    .stage { position: relative; height: 100vh; min-height: 900px; overflow: hidden; isolation: isolate; }
+    .aurora { position: absolute; inset: -20%; filter: blur(60px); opacity: .95; }
+    .blob { position: absolute; border-radius: 50%; mix-blend-mode: screen; }
+    .b1 { width: 55vw; height: 55vw; left: -8%; top: -18%; background: radial-gradient(circle, #5b8cff 0%, transparent 62%); }
+    .b2 { width: 48vw; height: 48vw; right: -12%; top: 8%; background: radial-gradient(circle, #7c5cff 0%, transparent 64%); }
+    .b3 { width: 42vw; height: 42vw; left: 28%; bottom: -22%; background: radial-gradient(circle, #2ee6c7 0%, transparent 60%); }
+    .stars { position: absolute; inset: 0; background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 52px 52px; opacity: .12; }
+    .grain { position: absolute; inset: 0; opacity: .18; mix-blend-mode: overlay; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); }
+    nav { position: relative; z-index: 4; display: flex; align-items: center; justify-content: space-between; padding: 22px 40px; }
+    .mark { display: flex; gap: 10px; align-items: center; font-weight: 800; letter-spacing: -.03em; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: conic-gradient(#2ee6c7, #7c5cff, #5b8cff, #2ee6c7); }
+    nav a { color: #c9d7ea; text-decoration: none; font-size: 13px; margin: 0 14px; }
+    .pill { border: 1px solid rgba(255,255,255,.18); padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.06); backdrop-filter: blur(12px); }
+    .grid { position: relative; z-index: 3; display: grid; grid-template-columns: 1.05fr .95fr; gap: 32px; padding: 12px 48px 40px; align-items: center; height: calc(100% - 76px); }
+    .kicker { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #8ef0dc; }
+    h1 { font-size: clamp(48px, 5.6vw, 84px); line-height: .92; letter-spacing: -.05em; font-weight: 800; margin: 18px 0 16px; }
+    h1 em { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; background: linear-gradient(90deg,#b9f3ff,#c5b8ff 55%,#7ff0d4); -webkit-background-clip: text; color: transparent; }
+    .lede { max-width: 34rem; color: #c5d4ea; font-size: 17px; line-height: 1.55; font-weight: 500; }
+    .cta { display: flex; gap: 12px; margin-top: 28px; align-items: center; }
+    .btn { height: 48px; padding: 0 20px; border-radius: 999px; border: 0; font: 700 14px Syne, sans-serif; cursor: pointer; }
+    .primary { background: #eef7ff; color: #08101c; }
+    .ghost { background: rgba(255,255,255,.08); color: #eef7ff; border: 1px solid rgba(255,255,255,.16); backdrop-filter: blur(10px); }
+    .stats { display: flex; gap: 28px; margin-top: 36px; }
+    .stat b { display: block; font-size: 28px; letter-spacing: -.04em; }
+    .stat span { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: #93a7c2; letter-spacing: .08em; }
+    .logos { display: flex; gap: 22px; margin-top: 28px; opacity: .72; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #9fb3cc; }
+    .glass { position: relative; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255,255,255,.2);
+      background: linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.04));
+      box-shadow: 0 40px 80px -32px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.28);
+      transform: perspective(1200px) rotateY(-8deg) rotateX(4deg); }
+    .glass img { width: 100%; height: 460px; object-fit: cover; object-position: 50% 40%; display: block; filter: saturate(1.15); }
+    .hud { position: absolute; left: 18px; right: 18px; bottom: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .chip { background: rgba(8,12,24,.72); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,.14); border-radius: 16px; padding: 12px 14px; }
+    .chip small { display: block; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .14em; color: #8ef0dc; }
+    .chip strong { font-size: 18px; }
+    .orb { position: absolute; top: 18px; right: 18px; width: 92px; height: 92px; border-radius: 50%;
+      background: conic-gradient(from 200deg, #2ee6c7, #7c5cff, #5b8cff, #2ee6c7); filter: blur(.2px);
+      box-shadow: 0 0 40px #7c5cff88; }
+  </style>
+</head>
+<body>
+  <section class="stage">
+    <div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+    <div class="stars"></div>
+    <div class="grain"></div>
+    <nav>
+      <div class="mark"><span class="dot"></span> Lumen</div>
+      <div>
+        <a href="#">Product</a><a href="#">Studio</a><a href="#">Pricing</a>
+        <a class="pill" href="#">Open the desk</a>
+      </div>
+    </nav>
+    <div class="grid">
+      <div>
+        <p class="kicker">Design OS · v2.4</p>
+        <h1>Light the work<br><em>before</em> the brief.</h1>
+        <p class="lede">Lumen is the glass desk for product studios. Aurora lighting, live tokens, and a product window that actually shows the software — not a gradient oval.</p>
+        <div class="cta">
+          <button class="btn primary">Start a canvas</button>
+          <button class="btn ghost">Watch 48s tour</button>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>12.4k</b><span>nightly deploys</span></div>
+          <div class="stat"><b>98ms</b><span>token roundtrip</span></div>
+          <div class="stat"><b>4.9</b><span>studio rating</span></div>
+        </div>
+        <div class="logos">Northstar · Vale · Harbor · Ampere · Folio</div>
+      </div>
+      <div class="glass">
+        <img src="./assets/hero-glass-laptop.jpg" alt="Lumen dashboard on a laptop" />
+        <div class="orb" aria-hidden="true"></div>
+        <div class="hud">
+          <div class="chip"><small>Revenue</small><strong>$24.8k</strong></div>
+          <div class="chip"><small>Live sessions</small><strong>1,462</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

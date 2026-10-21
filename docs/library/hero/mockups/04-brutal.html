@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>04 Brutal — STAMP.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body { font-family: Archivo, sans-serif; background: #F4D738; color: #111; overflow: hidden; }
+    .stage { min-height: 900px; height: 100vh; padding: 18px; }
+    .sheet { height: 100%; border: 6px solid #111; background: #F4D738; display: grid; grid-template-columns: 1.15fr .85fr; box-shadow: 14px 14px 0 #111; }
+    nav { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-bottom: 6px solid #111; font-family: "Archivo Black", sans-serif; }
+    nav b { font-size: 28px; letter-spacing: -.04em; }
+    .stamp { background: #FF2E9A; color: #fff; border: 4px solid #111; padding: 6px 12px; transform: rotate(-8deg); font-family: "Archivo Black", sans-serif; }
+    .left { padding: 28px 32px; }
+    h1 { font-family: "Archivo Black", sans-serif; font-size: clamp(56px, 8vw, 118px); line-height: .82; letter-spacing: -.05em; }
+    h1 span { background: #111; color: #F4D738; padding: 0 .08em; }
+    .lede { font-size: 20px; max-width: 34rem; margin: 18px 0 24px; font-weight: 600; }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { border: 5px solid #111; background: #fff; padding: 12px 18px; font: 800 16px Archivo, sans-serif; box-shadow: 6px 6px 0 #111; }
+    .btn.hot { background: #FF2E9A; color: #fff; }
+    .stickers { display: flex; gap: 10px; margin-top: 28px; }
+    .st { border: 4px solid #111; padding: 8px 10px; font-family: "IBM Plex Mono", monospace; font-size: 12px; background: #fff; transform: rotate(-3deg); }
+    .st:nth-child(2) { background: #111; color: #F4D738; transform: rotate(4deg); }
+    .st:nth-child(3) { background: #00E5A8; transform: rotate(-6deg); }
+    .right { border-left: 6px solid #111; display: grid; grid-template-rows: 1.2fr .8fr; }
+    .right img { width: 100%; height: 100%; min-height: 220px; object-fit: cover; display: block; filter: contrast(1.08); }
+    .cap { position: absolute; background: #fff; border: 4px solid #111; padding: 6px 10px; font-family: "IBM Plex Mono", monospace; font-size: 12px; box-shadow: 5px 5px 0 #111; }
+    .p1 { position: relative; overflow: hidden; border-bottom: 6px solid #111; }
+    .p2 { position: relative; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <section class="stage">
+    <div class="sheet">
+      <nav>
+        <b>STAMP.</b>
+        <div>ISSUE 07 · STUDIO MANUAL</div>
+        <div class="stamp">NEW</div>
+      </nav>
+      <div class="left">
+        <h1>MAKE IT<br><span>LOUDER.</span></h1>
+        <p class="lede">Neo-brutalist first screen: thick rules, offset shadows, one hot pink punch, and photographs that look like they were taped to the wall this morning.</p>
+        <div class="row">
+          <button class="btn hot">Buy the issue — $28</button>
+          <button class="btn">See the paste-up</button>
+        </div>
+        <div class="stickers">
+          <div class="st">NO GRADIENTS</div>
+          <div class="st">OFFSET 6PX</div>
+          <div class="st">FLASH ON</div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="p1">
+          <img src="./assets/hero-brutal-portrait.jpg" alt="Designer in a yellow jacket" />
+          <div class="cap" style="left:12px;bottom:12px">FIG. 04 · YELLOW JACKET</div>
+        </div>
+        <div class="p2">
+          <img src="./assets/hero-brutal-desk.jpg" alt="Studio table with prints and tape" />
+          <div class="cap" style="right:12px;top:12px;transform:rotate(3deg)">PASTE-UP 11:42</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

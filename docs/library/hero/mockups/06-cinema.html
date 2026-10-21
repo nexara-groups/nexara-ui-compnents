@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>06 Cinema — Nocturne</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #050505; }
+    body { color: #f4ead6; overflow: hidden; font-family: Newsreader, serif; }
+    .stage { min-height: 900px; height: 100vh; position: relative; }
+    .bars { position: absolute; left: 0; right: 0; height: 64px; background: #000; z-index: 5; }
+    .top { top: 0; } .bot { bottom: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .18em; }
+    .frame { position: absolute; inset: 64px 0; overflow: hidden; }
+    .frame img { width: 110%; height: 110%; object-fit: cover; animation: ken 18s ease-in-out infinite alternate; filter: saturate(1.1) contrast(1.05); }
+    @keyframes ken { from { transform: scale(1) translate(0,0); } to { transform: scale(1.08) translate(-2%, -1%); } }
+    .grade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,5,5,.55), transparent 40%, rgba(5,5,5,.35)), linear-gradient(transparent, rgba(5,5,5,.4)); }
+    .grain { position: absolute; inset: 0; opacity: .22; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .copy { position: absolute; left: 56px; bottom: 110px; z-index: 4; max-width: 38rem; }
+    .kicker { font-family: "IBM Plex Mono", monospace; letter-spacing: .28em; font-size: 11px; color: #e8c36a; }
+    h1 { font-family: "Bebas Neue", sans-serif; font-size: clamp(64px, 9vw, 128px); line-height: .82; letter-spacing: .02em; margin: 8px 0 12px; }
+    .lede { font-size: 20px; font-style: italic; color: #e8dcc4; max-width: 28rem; }
+    .play { margin-top: 22px; width: 64px; height: 64px; border-radius: 50%; border: 1.5px solid #f4ead6; background: rgba(0,0,0,.35); color: #f4ead6; font-size: 18px; }
+    .chapters { position: absolute; right: 40px; bottom: 110px; z-index: 4; width: 220px; }
+    .ch { display: flex; justify-content: space-between; border-top: 1px solid rgba(244,234,214,.25); padding: 10px 0; font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .12em; }
+    .ch.on { color: #e8c36a; }
+  </style>
+</head>
+<body>
+  <section class="stage">
+    <div class="bars top"></div>
+    <div class="frame">
+      <img src="./assets/hero-cinema-night.jpg" alt="Rain-soaked night street" />
+      <div class="grade"></div>
+      <div class="grain"></div>
+    </div>
+    <div class="copy">
+      <p class="kicker">NOCTURNE · EPISODE 04</p>
+      <h1>AFTER THE<br>YELLOW LIGHT.</h1>
+      <p class="lede">A cinematic first screen: letterbox, grain, a still that moves, captions, chapters. The product is a film platform, so the hero is a reel.</p>
+      <button class="play" aria-label="Play">▶</button>
+    </div>
+    <div class="chapters">
+      <div class="ch on"><span>01 Rain street</span><span>00:48</span></div>
+      <div class="ch"><span>02 The fare</span><span>02:11</span></div>
+      <div class="ch"><span>03 Tunnel</span><span>04:02</span></div>
+    </div>
+    <div class="bars bot">
+      <span>REC ● 24FPS · 2.39:1</span>
+      <span>TIMECODE 01:12:08:21</span>
+      <span>NOCTURNE PICTURES</span>
+    </div>
+  </section>
+</body>
+</html>

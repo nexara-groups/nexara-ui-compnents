@@ -16,6 +16,17 @@ import {
   TextRevealDemo,
   TypewriterDemo,
 } from '@/docs/demos.tsx'
+import {
+  FlagshipBentoDemo,
+  FlagshipCinematicDemo,
+  FlagshipDashboardDemo,
+  FlagshipKineticDemo,
+  FlagshipNavDemo,
+  FlagshipOrbitalDemo,
+  FlagshipPricingDemo,
+  FlagshipStoryDemo,
+  FlagshipVoicesDemo,
+} from '@/docs/flagship-demos.tsx'
 
 export type PropRow = {
   name: string
@@ -35,12 +46,156 @@ export type CatalogEntry = {
   usage: string
   props: PropRow[]
   Demo: ComponentType
+  studio?: boolean
 }
 
 const motionDeps = ['framer-motion', 'clsx', 'tailwind-merge']
 const styleDeps = ['clsx', 'tailwind-merge']
 
+const flagshipDeps = ['framer-motion', 'clsx', 'tailwind-merge']
+
+const libraryDeps = ['framer-motion', 'clsx', 'tailwind-merge']
+
 export const catalog: CatalogEntry[] = [
+  {
+    slug: 'flagship-cinematic-hero',
+    name: 'Cinematic Hero',
+    category: 'Flagship',
+    description: 'Scroll-driven iris reveal of the Helio instrument. Chapters, bloom, and a contained product still.',
+    path: 'src/components/flagship/cinematic-hero.tsx',
+    dependencies: flagshipDeps,
+    registryDependencies: ['utils'],
+    usage: `import { CinematicHero } from '@/components/flagship/cinematic-hero'
+
+<CinematicHero title="A desk that keeps the signal." />`,
+    props: [
+      { name: 'title', type: 'string', description: 'Display headline.' },
+      { name: 'lede', type: 'string', description: 'Supporting sentence.' },
+      { name: 'primaryHref', type: 'string', description: 'Primary CTA target.' },
+    ],
+    Demo: FlagshipCinematicDemo,
+  },
+  {
+    slug: 'flagship-orbital-hero',
+    name: 'Orbital Hero',
+    category: 'Flagship',
+    description: 'Contained WebGL heliograph that aims at the cursor. Orbit, beam, and focus modes.',
+    path: 'src/components/flagship/orbital-hero.tsx',
+    dependencies: [...flagshipDeps, 'three', '@react-three/fiber', '@react-three/drei'],
+    registryDependencies: ['utils'],
+    usage: `import { OrbitalHero } from '@/components/flagship/orbital-hero'
+
+<OrbitalHero title="Aim the instrument." />`,
+    props: [
+      { name: 'title', type: 'string', description: 'Section headline.' },
+      { name: 'lede', type: 'string', description: 'How to use the scene.' },
+    ],
+    Demo: FlagshipOrbitalDemo,
+  },
+  {
+    slug: 'flagship-kinetic-hero',
+    name: 'Kinetic Hero',
+    category: 'Flagship',
+    description: 'Editorial letters with mass. Click to lock, scroll to shear.',
+    path: 'src/components/flagship/kinetic-hero.tsx',
+    dependencies: flagshipDeps,
+    registryDependencies: ['utils'],
+    usage: `import { KineticHero } from '@/components/flagship/kinetic-hero'
+
+<KineticHero lines={['THE NIGHT', 'KEEPS SIGNAL']} />`,
+    props: [
+      { name: 'lines', type: 'string[]', description: 'Two display lines.' },
+      { name: 'lede', type: 'string', description: 'Instruction under the type.' },
+    ],
+    Demo: FlagshipKineticDemo,
+  },
+  {
+    slug: 'flagship-atelier-nav',
+    name: 'Atelier Nav',
+    category: 'Flagship',
+    description: 'Morphing mega-menu bar and a full-viewport mobile drawer.',
+    path: 'src/components/flagship/atelier-nav.tsx',
+    dependencies: flagshipDeps,
+    registryDependencies: ['utils'],
+    usage: `import { AtelierNav } from '@/components/flagship/atelier-nav'
+
+<AtelierNav logo="Helio" />`,
+    props: [
+      { name: 'logo', type: 'string', defaultValue: 'Helio', description: 'Wordmark.' },
+      { name: 'links', type: 'NavLink[]', description: 'Primary links, optional mega columns.' },
+    ],
+    Demo: FlagshipNavDemo,
+  },
+  {
+    slug: 'flagship-scroll-story',
+    name: 'Scroll Story',
+    category: 'Flagship',
+    description: 'Pinned copy and a synced instrument plate that changes mode by chapter.',
+    path: 'src/components/flagship/scroll-story.tsx',
+    dependencies: flagshipDeps,
+    registryDependencies: ['utils'],
+    usage: `import { ScrollStory } from '@/components/flagship/scroll-story'
+
+<ScrollStory />`,
+    props: [{ name: 'chapters', type: 'StoryChapter[]', description: 'Kicker, title, body, mode.' }],
+    Demo: FlagshipStoryDemo,
+  },
+  {
+    slug: 'flagship-live-bento',
+    name: 'Live Bento',
+    category: 'Flagship',
+    description: 'Working tiles: sparkline, command filter, compare slider, lane, ping.',
+    path: 'src/components/flagship/live-bento.tsx',
+    dependencies: flagshipDeps,
+    registryDependencies: ['utils'],
+    usage: `import { LiveBento } from '@/components/flagship/live-bento'
+
+<LiveBento />`,
+    props: [{ name: 'className', type: 'string', description: 'Section classes.' }],
+    Demo: FlagshipBentoDemo,
+  },
+  {
+    slug: 'flagship-pricing',
+    name: 'Pricing Atelier',
+    category: 'Flagship',
+    description: 'Monthly/annual morph, spring highlight, comparison table, seat math.',
+    path: 'src/components/flagship/pricing-atelier.tsx',
+    dependencies: flagshipDeps,
+    registryDependencies: ['utils'],
+    usage: `import { PricingAtelier } from '@/components/flagship/pricing-atelier'
+
+<PricingAtelier />`,
+    props: [{ name: 'className', type: 'string', description: 'Section classes.' }],
+    Demo: FlagshipPricingDemo,
+  },
+  {
+    slug: 'flagship-testimonials',
+    name: 'Testimonial Wall',
+    category: 'Flagship',
+    description: 'Shallow 3D masonry of studio voices with filters and a held quote.',
+    path: 'src/components/flagship/testimonial-wall.tsx',
+    dependencies: flagshipDeps,
+    registryDependencies: ['utils'],
+    usage: `import { TestimonialWall } from '@/components/flagship/testimonial-wall'
+
+<TestimonialWall />`,
+    props: [{ name: 'voices', type: 'Voice[]', description: 'Quotes, portraits, studio tags.' }],
+    Demo: FlagshipVoicesDemo,
+  },
+  {
+    slug: 'flagship-dashboard',
+    name: 'Atelier Dashboard',
+    category: 'Flagship',
+    description: 'Sidebar, command palette, live chart, sortable filtered table, empty and loading states.',
+    path: 'src/components/flagship/atelier-dashboard.tsx',
+    dependencies: flagshipDeps,
+    registryDependencies: ['utils'],
+    usage: `import { AtelierDashboard } from '@/components/flagship/atelier-dashboard'
+
+<AtelierDashboard />`,
+    props: [{ name: 'className', type: 'string', description: 'Shell classes.' }],
+    Demo: FlagshipDashboardDemo,
+  },
   {
     slug: 'draggable-card',
     name: 'Draggable Card',
@@ -444,36 +599,129 @@ export function Example() {
   {
     slug: 'hero',
     name: 'Hero',
-    category: 'Sections',
-    description: 'A centered or split intro with staggered entrance. Title, actions, and media are slots.',
+    category: 'Library',
+    studio: true,
+    description: 'Twenty-four first-screen visual languages, filled with product chrome and motion by default. Themeable, original, not a Helio recolor.',
     path: 'src/components/ui/hero.tsx',
-    dependencies: motionDeps,
-    registryDependencies: ['utils'],
+    dependencies: [...libraryDeps, 'three', '@react-three/fiber', '@react-three/drei'],
+    registryDependencies: ['utils', 'theme', 'kit'],
     usage: `import { Hero } from '@/components/ui/hero'
-import { Button } from '@/components/ui/button'
 
-export function Example() {
-  return (
-    <Hero
-      align="split"
-      eyebrow="New"
-      title="A room with movable parts"
-      description="Compose this with any background or media."
-      actions={<Button>Begin</Button>}
-      media={<img alt="" src="/cover.jpg" />}
-    />
-  )
-}`,
+<Hero variant="aurora" />`,
     props: [
-      { name: 'variant', type: 'saas | download | video | logos | pricing | agency | commerce | event | search | dashboard | editorial | waitlist', description: 'Hero product. When omitted, align center selects saas and align split selects dashboard.' },
-      { name: 'align', type: "'center' | 'split'", defaultValue: 'center', description: 'Used when variant is omitted.' },
-      { name: 'eyebrow', type: 'ReactNode', description: 'Small label above the title.' },
-      { name: 'title', type: 'ReactNode', description: 'Rendered in an h2. Pass text or a gradient span.' },
-      { name: 'description', type: 'ReactNode', description: 'Supporting paragraph.' },
-      { name: 'actions', type: 'ReactNode', description: 'Button row.' },
-      { name: 'media', type: 'ReactNode', description: 'Right column in split layout. Hidden when omitted.' },
-      { name: 'className', type: 'string', description: 'Section padding and background overrides.' },
-      { name: 'titleClassName / descriptionClassName / actionsClassName / mediaClassName / eyebrowClassName', type: 'string', description: 'Per-slot Tailwind classes.' },
+      { name: 'variant', type: 'aurora | brutal | pastel | editorial | spotlight | bento | terminal | cursor | helix | cinema | atlas | reveal | rotate | veil | splice | mesh | glyph | fan | ribbon | converse | assemble | iso | league | pop', defaultValue: 'aurora', description: 'Visual language. Ask for hero / aurora.' },
+      { name: 'title', type: 'ReactNode', description: 'Headline. Default copy ships filled; pass your own to restyle.' },
+      { name: 'actions', type: 'ReactNode', description: 'Way through. Slot for buttons. Defaults are included.' },
+      { name: 'media', type: 'ReactNode | null', description: 'Proof asset. Undefined uses packaged stills. null hides media.' },
+      { name: 'logos / stats', type: 'string[] / HeroStat[]', description: 'Proof row. Defaults are realistic.' },
+      { name: 'lines / prompt', type: 'HeroChatLine[] / string', description: 'Terminal chat and field.' },
+      { name: 'chapters / events', type: 'HeroChapter[] / HeroEvent[]', description: 'Cinema chapters and atlas event feed.' },
+      { name: 'scene / fallback', type: 'ReactNode / ReactNode', description: 'Helix WebGL plate and photographed still.' },
+      { name: 'progress', type: 'none | scroll', description: 'Reveal. Scroll pin is opt-in, 160vh max, no wheel hijack.' },
+      { name: 'className', type: 'string', description: 'Section classes. CSS variables --hero-* retint a language.' },
+    ],
+    Demo: HeroDemo,
+  },
+  {
+    slug: 'navbar',
+    name: 'Navbar',
+    category: 'Library',
+    studio: true,
+    description: 'Eleven navigation mechanisms from a full-bleed rail to a morphing island. Not a glowing pill rack.',
+    path: 'src/components/ui/navbar.tsx',
+    dependencies: libraryDeps,
+    registryDependencies: ['utils', 'theme', 'kit'],
+    usage: `import { Navbar } from '@/components/ui/navbar'
+
+<Navbar variant="rail" logo="Mark" items={[{ id: 'work', label: 'Work', href: '/work' }]} />`,
+    props: [
+      { name: 'variant', type: 'rail | capsule | column | path | map | command | dock | mast | curtain | island | galley', defaultValue: 'rail', description: 'Mechanism. Ask for navbar / island.' },
+      { name: 'logo', type: 'ReactNode', description: 'Wordmark slot. Empty omits chrome.' },
+      { name: 'items', type: 'NavItem[]', description: 'Destinations.' },
+      { name: 'columns / sections', type: 'NavColumn[] / NavSection[]', description: 'Map columns and column-nav groups.' },
+      { name: 'action', type: 'ReactNode', description: 'Trailing control.' },
+      { name: 'edge / magnify', type: 'top | bottom / boolean', description: 'Dock placement and pointer magnify.' },
+      { name: 'morph', type: 'none | control | scroll', description: 'Island. Control-first.' },
+    ],
+    Demo: HeroDemo,
+  },
+  {
+    slug: 'bento',
+    name: 'Bento',
+    category: 'Library',
+    studio: true,
+    description: 'Eleven feature-section mechanisms. Ranked mosaics, paper sheets, working docks — not icon cards.',
+    path: 'src/components/ui/bento.tsx',
+    dependencies: libraryDeps,
+    registryDependencies: ['utils', 'theme', 'kit'],
+    usage: `import { Bento } from '@/components/ui/bento'
+
+<Bento variant="mosaic" title="Show the work." tiles={[{ id: 'a', title: 'Proof' }]} />`,
+    props: [
+      { name: 'variant', type: 'mosaic | reel | sheet | well | dock | stage | spec | expand | inspect | desk | reflow', defaultValue: 'mosaic', description: 'Mechanism. Ask for bento / desk.' },
+      { name: 'tiles', type: 'BentoTile[]', description: 'Cells. Empty omits the grid.' },
+      { name: 'selected / onSelect', type: 'string / callback', description: 'Stage and expand.' },
+      { name: 'inspect / onInspect', type: 'number / callback', description: 'Scrub 0–1 inside inspect.' },
+    ],
+    Demo: HeroDemo,
+  },
+  {
+    slug: 'pricing',
+    name: 'Pricing',
+    category: 'Library',
+    studio: true,
+    description: 'Eleven pricing mechanisms. Published figures, sliders, tables — no neon Recommended cards.',
+    path: 'src/components/ui/pricing.tsx',
+    dependencies: libraryDeps,
+    registryDependencies: ['utils', 'theme', 'kit'],
+    usage: `import { Pricing } from '@/components/ui/pricing'
+
+<Pricing variant="slab" plans={[{ id: 'solo', name: 'Solo', price: '24' }]} />`,
+    props: [
+      { name: 'variant', type: 'offer | pair | slab | ledger | toggle | seats | meter | table | quote | morph | dossier', defaultValue: 'slab', description: 'Mechanism. Ask for pricing / quote.' },
+      { name: 'plans', type: 'PricePlan[]', description: 'Offers. Empty omits cards. No baked amounts.' },
+      { name: 'rows', type: 'PriceRow[]', description: 'Comparison matrix.' },
+      { name: 'period / seats / usage', type: 'month | year / number / number', description: 'Working controls.' },
+      { name: 'formula', type: 'fn', description: 'Quote total. Reuser owns the math.' },
+    ],
+    Demo: HeroDemo,
+  },
+  {
+    slug: 'testimonials',
+    name: 'Testimonials',
+    category: 'Library',
+    studio: true,
+    description: 'Eleven voice mechanisms. Pull quotes to a physics reel. No default names, no gold stars.',
+    path: 'src/components/ui/testimonials.tsx',
+    dependencies: libraryDeps,
+    registryDependencies: ['utils', 'theme', 'kit'],
+    usage: `import { Testimonials } from '@/components/ui/testimonials'
+
+<Testimonials variant="pull" items={[{ id: 'a', quote: 'The first screen held still.' }]} />`,
+    props: [
+      { name: 'variant', type: 'pull | plate | stack | ledger | cast | pin | film | held | wall | reel | voice', defaultValue: 'pull', description: 'Mechanism. Ask for testimonials / wall.' },
+      { name: 'items', type: 'Voice[]', description: 'Quotes. Empty is empty.' },
+      { name: 'held / onHeldChange', type: 'string / callback', description: 'Held plate.' },
+    ],
+    Demo: HeroDemo,
+  },
+  {
+    slug: 'stats',
+    name: 'Stats',
+    category: 'Library',
+    studio: true,
+    description: 'Eleven figure mechanisms from a hairline strip to a plotted field. Reduced motion shows the number at rest.',
+    path: 'src/components/ui/stats.tsx',
+    dependencies: libraryDeps,
+    registryDependencies: ['utils', 'theme', 'kit'],
+    usage: `import { Stats } from '@/components/ui/stats'
+
+<Stats variant="strip" items={[{ id: 'a', value: 128, label: 'rooms' }]} />`,
+    props: [
+      { name: 'variant', type: 'strip | sentence | ring | bar | wall | barrel | ledger | versus | cascade | dial | plot', defaultValue: 'strip', description: 'Mechanism. Ask for stats / dial.' },
+      { name: 'items', type: 'StatItem[]', description: 'Figures. Empty is empty.' },
+      { name: 'sentence', type: 'ReactNode', description: 'Optional claim for sentence variant.' },
+      { name: 'progress', type: 'none | control | scroll', description: 'Cascade. Control-first.' },
     ],
     Demo: HeroDemo,
   },
@@ -511,4 +759,4 @@ export function Example() {
   },
 ]
 
-export const categories = ['Cards', 'Buttons', 'Backgrounds', 'Text', 'Navigation', 'Overlays', 'Sections'] as const
+export const categories = ['Library', 'Flagship', 'Cards', 'Buttons', 'Backgrounds', 'Text', 'Navigation', 'Overlays', 'Sections'] as const

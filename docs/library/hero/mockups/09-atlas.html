@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>09 Atlas — Meridian</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #06101c; }
+    body { font-family: "Space Grotesk", sans-serif; color: #e8f1ff; overflow: hidden; }
+    .stage { min-height: 900px; height: 100vh; position: relative; }
+    .earth { position: absolute; inset: 0; background: #06101c; }
+    .earth img { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.15) contrast(1.05); }
+    .veil { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,16,28,.82) 0%, rgba(6,16,28,.25) 48%, rgba(6,16,28,.55) 100%); }
+    svg.arcs { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hud { position: relative; z-index: 3; padding: 28px 40px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+    .kicker { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .22em; color: #7dd3fc; }
+    h1 { font-size: clamp(44px, 5.4vw, 78px); letter-spacing: -.05em; line-height: .94; max-width: 12ch; margin: 12px 0; }
+    .lede { max-width: 28rem; color: #c5d4ea; line-height: 1.5; }
+    .metrics { display: flex; gap: 22px; margin-top: 24px; }
+    .m b { display: block; font-size: 28px; color: #7dd3fc; }
+    .m span { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: #93a7c2; }
+    .feed { width: 320px; background: rgba(6,16,28,.72); border: 1px solid rgba(125,211,252,.2); border-radius: 16px; padding: 12px; backdrop-filter: blur(12px); align-self: flex-end; }
+    .ev { display: flex; justify-content: space-between; font-size: 13px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .ev em { font-style: normal; color: #fbbf24; font-family: "IBM Plex Mono", monospace; font-size: 11px; }
+    button { height: 44px; padding: 0 16px; border-radius: 999px; border: 0; background: #7dd3fc; color: #062033; font-weight: 700; margin-top: 22px; }
+  </style>
+</head>
+<body>
+  <section class="stage">
+    <div class="earth">
+      <img src="./assets/hero-globe-night.jpg" alt="Earth at night" />
+      <div class="veil"></div>
+      <svg class="arcs" viewBox="0 0 1440 900" aria-hidden="true">
+        <path d="M220 520 C 480 180, 820 180, 1180 420" fill="none" stroke="#7dd3fc" stroke-width="1.4" opacity=".75" />
+        <path d="M260 610 C 520 300, 900 240, 1240 500" fill="none" stroke="#fbbf24" stroke-width="1.2" opacity=".65" />
+        <circle cx="220" cy="520" r="5" fill="#7dd3fc" />
+        <circle cx="1180" cy="420" r="5" fill="#7dd3fc" />
+        <circle cx="1240" cy="500" r="5" fill="#fbbf24" />
+      </svg>
+    </div>
+    <div class="hud">
+      <div>
+        <p class="kicker">MERIDIAN · LIVE LOGISTICS</p>
+        <h1>Every lane, one night map.</h1>
+        <p class="lede">Arcs for flights, gold for ocean, a live event feed. The globe is a data surface, not a decorative marble.</p>
+        <div class="metrics">
+          <div class="m"><b>128</b><span>air corridors</span></div>
+          <div class="m"><b>46</b><span>ports on watch</span></div>
+          <div class="m"><b>2.1s</b><span>event latency</span></div>
+        </div>
+        <button>Open the map</button>
+      </div>
+      <div class="feed">
+        <p class="kicker" style="margin-bottom:8px">EVENT STREAM</p>
+        <div class="ev"><span>DXB → FRA 8842 airborne</span><em>now</em></div>
+        <div class="ev"><span>Rotterdam gate 12 delay</span><em>4m</em></div>
+        <div class="ev"><span>LAX customs cleared</span><em>9m</em></div>
+        <div class="ev"><span>Singapore bunkering ok</span><em>22m</em></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

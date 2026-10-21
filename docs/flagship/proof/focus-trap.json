@@ -1,0 +1,32 @@
+[
+  {
+    "tag": "BUTTON",
+    "text": "Product",
+    "inside": true
+  },
+  {
+    "tag": "BUTTON",
+    "text": "Studio",
+    "inside": true
+  },
+  {
+    "tag": "A",
+    "text": "Signal",
+    "inside": true
+  },
+  {
+    "tag": "A",
+    "text": "Plans",
+    "inside": true
+  },
+  {
+    "tag": "A",
+    "text": "Open desk",
+    "inside": true
+  },
+  {
+    "tag": "BUTTON",
+    "text": "Close",
+    "inside": true
+  }
+]

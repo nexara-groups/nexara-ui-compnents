@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>07 Editorial — Atlas Review</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #efe6d4; }
+    body { font-family: Newsreader, serif; color: #1a1612; }
+    .stage { min-height: 900px; height: 100vh; padding: 22px 36px 28px; display: grid; grid-template-rows: auto 1fr auto; }
+    .mast { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #1a1612; padding-bottom: 8px; }
+    .mast b { font-family: "Playfair Display", serif; font-size: 22px; letter-spacing: .18em; font-weight: 500; }
+    .mast span { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .16em; }
+    .body { display: grid; grid-template-columns: 1.15fr .85fr; gap: 28px; padding-top: 18px; }
+    h1 { font-family: "Playfair Display", serif; font-size: clamp(64px, 8.4vw, 128px); line-height: .82; letter-spacing: -.04em; font-weight: 700; }
+    h1 i { font-weight: 500; font-style: italic; color: #b33a12; }
+    .photo { position: relative; min-height: 620px; }
+    .photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.15) contrast(1.05); }
+    .rule { position: absolute; inset: 10px; border: 1px solid rgba(239,230,212,.5); pointer-events: none; }
+    .folio { position: absolute; left: -8px; bottom: 24px; font-family: "Playfair Display", serif; font-size: 92px; color: #efe6d4; mix-blend-mode: difference; letter-spacing: -.06em; }
+    .cols { columns: 2; column-gap: 24px; font-size: 15px; line-height: 1.45; margin-top: 16px; max-width: 38rem; }
+    .pull { font-family: "Playfair Display", serif; font-style: italic; font-size: 22px; color: #b33a12; margin: 18px 0; max-width: 28rem; }
+    .foot { display: flex; justify-content: space-between; border-top: 1px solid #1a1612; padding-top: 10px; font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .14em; }
+    .cta { display: inline-block; margin-top: 16px; border-bottom: 1px solid #1a1612; padding-bottom: 2px; font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; color: inherit; }
+  </style>
+</head>
+<body>
+  <section class="stage">
+    <header class="mast">
+      <b>ATLAS REVIEW</b>
+      <span>VOL. 04 · NO. 11 · ARCHITECTURE</span>
+      <span>EST. 2019</span>
+    </header>
+    <div class="body">
+      <div>
+        <h1>The quiet<br>museum<br><i>at noon.</i></h1>
+        <p class="pull">“A shaft of light is a headline. Everything else is a caption.”</p>
+        <div class="cols">
+          <p>Atlas Review treats the first viewport like a cover: a photograph with weight, type large enough to collide with it, a folio number, a byline, and a way through that is a sentence, not a pill.</p>
+          <p>This is not Helio. Cream paper, vermillion italic, Playfair at 128. The still is a concrete atrium, not a gradient plate.</p>
+        </div>
+        <a class="cta" href="#">Read the essay — 12 min</a>
+      </div>
+      <div class="photo">
+        <img src="./assets/hero-editorial-architecture.jpg" alt="Brutalist museum atrium" />
+        <div class="rule"></div>
+        <div class="folio">04</div>
+      </div>
+    </div>
+    <footer class="foot">
+      <span>WORDS · A. OKONKWO</span>
+      <span>PHOTO · STUDIO NORTH</span>
+      <span>PAGE 01 / 24</span>
+    </footer>
+  </section>
+</body>
+</html>

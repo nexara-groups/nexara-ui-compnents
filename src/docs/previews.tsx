@@ -108,18 +108,8 @@ export function renderVariantPreview(slug: string, id: string): ReactNode {
   if (slug === 'modal') return <ModalPreview variant={id as ModalVariant} />
   if (slug === 'hero') {
     return (
-      <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#09090f]">
-        <Hero
-          variant={id as HeroProps['variant']}
-          titleAs="h3"
-          eyebrow="Nexara"
-          title="Move the furniture"
-          description="A short line for the layout."
-          actions={<Button size="sm">Begin</Button>}
-          media={<div className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-zinc-200">Media slot</div>}
-          className="px-4 py-8 md:py-10"
-          titleClassName="text-3xl md:text-4xl"
-        />
+      <div className="overflow-hidden rounded-2xl border border-white/10">
+        <Hero variant={id as HeroProps['variant']} titleAs="h3" />
       </div>
     )
   }

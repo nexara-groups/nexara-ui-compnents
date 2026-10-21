@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>12 Reveal — Prism</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #f6f7fb; }
+    body { font-family: Inter, sans-serif; color: #111827; overflow: hidden; }
+    .stage { min-height: 900px; height: 100vh; display: grid; grid-template-rows: auto 1fr auto; }
+    nav { display: flex; justify-content: space-between; padding: 20px 40px; align-items: center; }
+    .mark { font-weight: 800; letter-spacing: -.05em; }
+    .hero { display: grid; grid-template-columns: 1fr 1.05fr 1fr; align-items: center; padding: 0 36px; }
+    h1 { font-size: clamp(40px, 4.4vw, 62px); letter-spacing: -.055em; line-height: .95; }
+    .lede { color: #4b5563; margin: 12px 0 18px; line-height: 1.5; }
+    button { height: 44px; padding: 0 16px; border-radius: 12px; border: 0; background: #111827; color: #fff; font-weight: 600; }
+    .device { position: relative; justify-self: center; }
+    .phone { width: 280px; border-radius: 36px; overflow: hidden; box-shadow: 0 40px 80px -32px rgba(17,24,39,.45); border: 10px solid #111827; transform: perspective(1200px) rotateY(-12deg) rotateX(6deg); }
+    .phone img { width: 100%; display: block; }
+    .chip { position: absolute; background: #fff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 10px 12px; font-size: 12px; box-shadow: 0 12px 30px -18px #111827; }
+    .c1 { left: -90px; top: 18%; } .c2 { right: -100px; top: 38%; } .c3 { left: -70px; bottom: 16%; }
+    .mono { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .14em; color: #6b7280; display: block; }
+    .scroll { text-align: center; padding: 16px; font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .2em; color: #6b7280; }
+    .rail { display: flex; justify-content: center; gap: 8px; margin-top: 8px; }
+    .dot { width: 36px; height: 4px; background: #d1d5db; border-radius: 99px; }
+    .dot.on { background: #111827; }
+  </style>
+</head>
+<body>
+  <section class="stage">
+    <nav>
+      <div class="mark">Prism</div>
+      <div style="font-size:14px;color:#4b5563">Hardware · Software · Specs</div>
+      <button>Preorder</button>
+    </nav>
+    <div class="hero">
+      <div>
+        <p class="mono">SCROLL-PINNED REVEAL</p>
+        <h1>The product turns. You don’t hijack the wheel.</h1>
+        <p class="lede">Native sticky pin, 160vh max, screens swap as you scroll. Reduced motion shows screen 03 immediately. The device is photographed, the UI is real.</p>
+        <button>See the sequence</button>
+      </div>
+      <div class="device">
+        <div class="phone">
+          <img src="./assets/hero-phone-pastel.jpg" alt="Prism device screen" />
+        </div>
+        <div class="chip c1"><span class="mono">SCREEN 01</span>Calendar as proof</div>
+        <div class="chip c2"><span class="mono">OLED 120</span>Pinned, not hijacked</div>
+        <div class="chip c3"><span class="mono">FALLBACK</span>Still of screen 03</div>
+      </div>
+      <div>
+        <p class="mono">SEQUENCE</p>
+        <p style="margin:10px 0;font-weight:600">01 Home calendar</p>
+        <p style="margin:10px 0;color:#6b7280">02 Team map</p>
+        <p style="margin:10px 0;color:#6b7280">03 Insights board</p>
+        <p class="mono" style="margin-top:18px">PROGRESS 18%</p>
+      </div>
+    </div>
+    <div class="scroll">
+      SCROLL TO REVEAL
+      <div class="rail"><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+    </div>
+  </section>
+</body>
+</html>
