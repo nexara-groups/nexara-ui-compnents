@@ -195,29 +195,12 @@ function SplitNav(props: NavbarProps) {
   ]
   const menu = useMenu()
   const tray = useId()
-  const reduced = usePrefersReducedMotion()
   const scroller = useRef<HTMLElement>(null)
-  const held = useRef(false)
   const { scrollYProgress } = useScroll({ container: scroller, offset: ['start start', 'end start'] })
   const xLeft = useTransform(scrollYProgress, [0, 0.28], [0, -36])
   const xRight = useTransform(scrollYProgress, [0, 0.28], [0, 36])
   const fade = useTransform(scrollYProgress, [0, 0.18], [1, 0])
   const pad = useTransform(scrollYProgress, [0, 0.22], [20, 10])
-  useEffect(() => {
-    const node = scroller.current
-    if (!node || reduced) return
-    let dir = 1
-    const id = window.setInterval(() => {
-      if (held.current) return
-      const max = node.scrollHeight - node.clientHeight
-      if (max <= 0) return
-      const next = node.scrollTop + dir * 10
-      if (next >= max - 4) dir = -1
-      if (next <= 2) dir = 1
-      node.scrollTop = Math.max(0, Math.min(max, next))
-    }, 32)
-    return () => window.clearInterval(id)
-  }, [reduced])
   return (
     <Shell
       variant="split"
@@ -228,12 +211,6 @@ function SplitNav(props: NavbarProps) {
         aria-label="Primary"
         className="sticky top-0 z-20 flex items-center justify-between border-b border-[#1c1914]/10 bg-[#f4f1ea]/88 px-4 backdrop-blur-md md:px-12"
         style={{ paddingTop: pad, paddingBottom: pad }}
-        onPointerDown={() => {
-          held.current = true
-        }}
-        onWheel={() => {
-          held.current = true
-        }}
       >
         <motion.strong className="text-[13px] font-semibold tracking-[-0.02em]" style={{ x: xLeft }}>
           {props.logo ?? 'Vesper'}
