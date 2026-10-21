@@ -466,7 +466,7 @@ function MegaNav(props: NavbarProps) {
         ))}
       </Tray>
       {props.scene === false ? null : (
-        <div className="px-6 py-10 md:px-10">
+        <div className={cn('px-6 py-10 md:px-10', menu.open && 'max-md:invisible')}>
           <h1 className="text-[clamp(2.2rem,5vw,3.6rem)] leading-[0.94] font-extrabold tracking-[-0.05em]">Work that lands in a fan.</h1>
         </div>
       )}
@@ -489,6 +489,9 @@ function CommandNav(props: NavbarProps) {
     { k: 'src/', v: 'checkout-edge.ts', a: 'open' },
     { k: 'ops/', v: 'canary 12% on checkout-edge', a: 'status' },
     { k: 'doc/', v: 'Auth sessions', a: 'jump' },
+    { k: 'run/', v: 'replay last deploy', a: 'run' },
+    { k: 'log/', v: 'ingest-eu 13:51 clear', a: 'tail' },
+    { k: 'ppl/', v: 'Ada Klein · on desk', a: 'page' },
   ]
   const [q, setQ] = useState(props.query ?? 'checkout-edge canary')
   const [hi, setHi] = useState(0)

@@ -8,20 +8,10 @@ const origin = process.env.NAV_SHOT_ORIGIN ?? 'http://127.0.0.1:5173'
 const out = resolve('docs/library/navbar/implemented')
 mkdirSync(out, { recursive: true })
 
-const clips = [
-  'pill',
-  'tabs',
-  'league',
-  'mega',
-  'command',
-  'follow',
-  'split',
-  'island',
-  'curtain',
-  'dock',
-  'rail',
-  'portal',
-]
+const clips = (
+  process.argv[2] ??
+  'pill,tabs,league,mega,command,follow,split,island,curtain,dock,rail,portal'
+).split(',')
 
 function ffmpegFrames(dir, dest, fps) {
   return new Promise((done, fail) => {
@@ -65,37 +55,71 @@ async function recordClip(id, index) {
   try {
     const cdp = await connectCdp(port)
     const frames = []
-    const off = cdp.on(async (msg) => {
+    const off = cdp.on((msg) => {
       if (msg.method !== 'Page.screencastFrame') return
       const { data, sessionId } = msg.params
       const n = frames.length
       frames.push(n)
-      writeFileSync(resolve(framesDir, `${String(n + 1).padStart(4, '0')}.jpg`), Buffer.from(data, 'base64'))
       try {
-        await cdp.send('Page.screencastFrameAck', { sessionId })
+        cdp.send('Page.screencastFrameAck', { sessionId })
       } catch {
         /* ignore */
       }
+      writeFileSync(resolve(framesDir, `${String(n + 1).padStart(4, '0')}.jpg`), Buffer.from(data, 'base64'))
     })
     await attachPage(cdp, `${origin}/#navshot/${id}`)
-    await sleep(280)
+    await sleep(120)
     await cdp.send('Page.startScreencast', {
       format: 'jpeg',
-      quality: 72,
+      quality: 55,
       everyNthFrame: 1,
-      maxWidth: 1440,
-      maxHeight: 900,
+      maxWidth: 1280,
+      maxHeight: 800,
     })
-    await sleep(4200)
+    const nudge = (async () => {
+      for (let i = 0; i < 16; i++) {
+        await cdp.send('Input.dispatchMouseEvent', {
+          type: 'mouseMoved',
+          x: 280 + (i % 8) * 90,
+          y: 36 + (i % 3) * 10,
+        })
+        if (id === 'command' || id === 'portal') {
+          await cdp.send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'ArrowDown', windowsVirtualKeyCode: 40 })
+          await cdp.send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'ArrowDown', windowsVirtualKeyCode: 40 })
+        }
+        await sleep(220)
+      }
+    })()
+    const deadline = Date.now() + 5200
+    while (frames.length < 36 && Date.now() < deadline) {
+      await sleep(60)
+    }
+    await Promise.race([nudge, sleep(100)])
     try {
       await cdp.send('Page.stopScreencast')
     } catch {
       /* ignore */
     }
     off()
+    let count = readdirSync(framesDir).filter((f) => f.endsWith('.jpg')).length
+    if (count < 12) {
+      for (let i = count; i < 24; i++) {
+        const shot = await cdp.send('Page.captureScreenshot', { format: 'jpeg', quality: 55 })
+        writeFileSync(
+          resolve(framesDir, `${String(i + 1).padStart(4, '0')}.jpg`),
+          Buffer.from(shot.data, 'base64'),
+        )
+        await cdp.send('Input.dispatchMouseEvent', {
+          type: 'mouseMoved',
+          x: 320 + (i % 10) * 70,
+          y: 40,
+        })
+        await sleep(140)
+      }
+      count = readdirSync(framesDir).filter((f) => f.endsWith('.jpg')).length
+    }
     cdp.close()
-    const count = readdirSync(framesDir).filter((f) => f.endsWith('.jpg')).length
-    if (count < 12) throw new Error(`only ${count} frames`)
+    if (count < 10) throw new Error(`only ${count} frames`)
     const fps = Math.round(count / 4)
     await ffmpegFrames(framesDir, dest, fps)
   } finally {

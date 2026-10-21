@@ -1,0 +1,167 @@
+{
+  "cpuThrottle": 4,
+  "sampleMs": 4000,
+  "recordedAt": "2026-10-21T14:57:21.952Z",
+  "rows": [
+    {
+      "variant": "pill",
+      "cpuThrottle": 4,
+      "fps": 58.7,
+      "frames": 235,
+      "elapsedMs": 4004,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "tabs",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 241,
+      "elapsedMs": 4003,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "league",
+      "cpuThrottle": 4,
+      "fps": 60,
+      "frames": 240,
+      "elapsedMs": 4003,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "mega",
+      "cpuThrottle": 4,
+      "fps": 59.9,
+      "frames": 240,
+      "elapsedMs": 4004,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "command",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 241,
+      "elapsedMs": 4003,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "follow",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 241,
+      "elapsedMs": 4002,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "split",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 241,
+      "elapsedMs": 4001,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "island",
+      "cpuThrottle": 4,
+      "fps": 60,
+      "frames": 240,
+      "elapsedMs": 4001,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "curtain",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 241,
+      "elapsedMs": 4003,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "dock",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 241,
+      "elapsedMs": 4004,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "rail",
+      "cpuThrottle": 4,
+      "fps": 60,
+      "frames": 240,
+      "elapsedMs": 4002,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "portal",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 241,
+      "elapsedMs": 4003,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "banner",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 241,
+      "elapsedMs": 4002,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "clinic",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 241,
+      "elapsedMs": 4002,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "folio",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 241,
+      "elapsedMs": 4002,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    },
+    {
+      "variant": "crumb",
+      "cpuThrottle": 4,
+      "fps": 59.9,
+      "frames": 240,
+      "elapsedMs": 4003,
+      "longTasks": 0,
+      "maxLongMs": 0,
+      "sumLongMs": 0
+    }
+  ]
+}

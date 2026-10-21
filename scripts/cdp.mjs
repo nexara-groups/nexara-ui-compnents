@@ -139,7 +139,7 @@ export async function attachPage(cdp, url) {
   await cdp.send('Runtime.evaluate', {
     expression: `new Promise((ok) => {
       const tick = () => {
-        if (document.querySelector('[data-nexara="hero"]')) return ok(true)
+        if (document.querySelector('[data-nexara="hero"], [data-nexara="navbar"]')) return ok(true)
         requestAnimationFrame(tick)
       }
       tick()

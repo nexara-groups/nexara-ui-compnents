@@ -110,7 +110,7 @@ export function Tray({
           aria-modal="true"
           aria-label={title}
           className={cn('absolute inset-x-3 top-[4.5rem] z-40 overflow-auto rounded-3xl p-5 md:hidden', className)}
-          initial={reduced ? false : { y: 16, opacity: 0 }}
+          initial={reduced ? false : { y: 16 }}
           animate={{ y: 0, opacity: 1 }}
           exit={reduced ? undefined : { y: 12, opacity: 0 }}
           transition={springs.heavy}

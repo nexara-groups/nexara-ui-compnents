@@ -336,9 +336,14 @@ function IslandNav(props: NavbarProps) {
         </a>
       </Tray>
       {props.scene === false ? null : (
-        <div className="relative z-10 mt-auto px-6 pb-16 text-center">
-          <h1 className="text-[clamp(2.2rem,5vw,4rem)] tracking-[-0.05em]">The desk assembles itself.</h1>
-          <p className="mt-3 text-[#9ec4d8]">A notch that morphs: mark → live tray → command. Not an iPhone screenshot.</p>
+        <div className="relative z-10 mt-auto px-6 pb-10">
+          <h1 className="text-center text-[clamp(2.2rem,5vw,3.6rem)] tracking-[-0.05em]">The desk assembles itself.</h1>
+          <p className="mt-2 text-center text-[#9ec4d8]">A notch that morphs: mark → live tray → command. Not an iPhone screenshot.</p>
+          <div className="mx-auto mt-8 grid max-w-4xl gap-3 sm:grid-cols-3">
+            <Tile k="CANARY" v="12%" />
+            <Tile k="AGENTS" v="14" />
+            <Tile k="P95" v="98ms" />
+          </div>
         </div>
       )}
     </Shell>
@@ -377,19 +382,18 @@ function CurtainNav(props: NavbarProps) {
             role="dialog"
             aria-modal="true"
             aria-label="Kin menu"
-            className="relative z-10 flex flex-1 flex-col justify-center px-6 pb-10"
-            initial={reduced ? false : { opacity: 0 }}
+            className="relative z-10 flex flex-1 flex-col justify-center px-6 pb-8"
+            initial={false}
             animate={{ opacity: 1 }}
-            exit={reduced ? undefined : { opacity: 0 }}
           >
             {items.map((item, i) => (
               <motion.a
                 key={item.id}
                 href={item.href ?? '#navbar'}
-                className="block text-[clamp(4.5rem,14vw,9rem)] leading-[0.78] tracking-[0.04em]"
-                initial={reduced ? false : { y: 28, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ ...springs.heavy, delay: reduced ? 0 : i * 0.08 }}
+                className="block text-[clamp(3.2rem,10vw,6.4rem)] leading-[0.8] tracking-[0.04em] text-[#f7efe2] outline-none drop-shadow-[0_8px_24px_#000a] focus-visible:text-[#facc15]"
+                initial={reduced ? false : { y: 24 }}
+                animate={{ y: 0 }}
+                transition={{ ...springs.heavy, delay: reduced ? 0 : i * 0.06 }}
               >
                 {item.label}{' '}
                 <small className="ml-4 align-middle font-[Newsreader,serif] text-[1.2rem] tracking-normal italic opacity-70">
@@ -547,6 +551,10 @@ function RailNav(props: NavbarProps) {
               <Tile k="P95" v="98ms" />
               <Tile k="CANARY" v="12%" />
               <Tile k="AGENTS" v="14" />
+            </div>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              <Tile k="EU-WEST" v="healthy" />
+              <Tile k="US-EAST" v="watch" />
             </div>
           </div>
         )}
@@ -716,6 +724,10 @@ function PortalNav(props: NavbarProps) {
               13:51 ingest-eu · clear
               <br />
               13:40 billing-canary · page
+              <br />
+              13:12 auth-sessions · ack
+              <br />
+              12:58 replay last deploy · run
             </p>
           </div>
           <div className="rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-4">
