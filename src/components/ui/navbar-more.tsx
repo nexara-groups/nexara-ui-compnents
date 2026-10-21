@@ -14,8 +14,8 @@ import {
 } from '@/lib/navbar-motion.tsx'
 import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
 import type { NavbarProps, NavbarVariant } from '@/components/ui/navbar.tsx'
-import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { useEffect, useId, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react'
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
+import { useEffect, useId, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react'
 
 export function NavbarMore({ variant, ...props }: NavbarProps & { variant: NavbarVariant }) {
   switch (variant) {
@@ -62,21 +62,21 @@ function CrumbNav(props: NavbarProps) {
   const here = items.find((item) => item.current)?.label ?? 'Sessions'
   return (
     <Shell variant="crumb" className={cn('flex min-h-[36rem] flex-col bg-[#f6f7fb] text-[#111827]', props.className)}>
-      <nav aria-label="Docs" className="relative z-10 grid grid-cols-[auto_1fr_auto] items-center gap-4 px-4 pt-4 md:px-8">
-        <strong>{props.logo ?? 'Prism'}</strong>
-        <p className="hidden font-mono text-[12px] text-[#6b7280] md:block">
+      <nav aria-label="Docs" className="relative z-10 grid grid-cols-[auto_1fr_auto] items-center gap-4 px-4 pt-3 md:px-8">
+        <strong className="text-[13px] font-semibold tracking-[-0.02em]">{props.logo ?? 'Prism'}</strong>
+        <p className="hidden font-mono text-[11px] tracking-[-0.01em] text-[#6b7280] md:block">
           Product / Auth / <b className="text-[#111827]">{here}</b>
         </p>
-        <span className="font-mono text-[12px] text-[#6b7280]">{pct}%</span>
+        <span className="font-mono text-[11px] text-[#6b7280]">{pct}%</span>
         <OpenTrigger
           open={menu.open}
           onClick={() => menu.setOpen((v) => !v)}
           controls={tray}
           label="Here"
-          className="col-start-3 row-start-1 h-9 justify-self-end rounded-full border border-[#111827]/10 px-3 text-sm md:hidden"
+          className="col-start-3 row-start-1 h-8 justify-self-end rounded-full border border-[#111827]/10 px-3 text-[12px] md:hidden"
         />
       </nav>
-      <div className="mt-3 h-0.5 bg-[#e5e7eb]" aria-hidden="true">
+      <div className="mt-2 h-px bg-[#e5e7eb]" aria-hidden="true">
         <motion.i
           className="block h-full bg-[#111827]"
           animate={{ width: `${pct}%` }}
@@ -196,33 +196,56 @@ function SplitNav(props: NavbarProps) {
   const menu = useMenu()
   const tray = useId()
   const reduced = usePrefersReducedMotion()
-  const split = useMotionValue(0.45)
-  const spring = useSpring(split, springs.heavy)
-  const xLeft = useTransform(spring, [0, 1], [0, -42])
-  const xRight = useTransform(spring, [0, 1], [0, 42])
-  const fade = useTransform(spring, [0, 1], [1, 0.25])
+  const scroller = useRef<HTMLElement>(null)
+  const held = useRef(false)
+  const { scrollYProgress } = useScroll({ container: scroller, offset: ['start start', 'end start'] })
+  const xLeft = useTransform(scrollYProgress, [0, 0.28], [0, -36])
+  const xRight = useTransform(scrollYProgress, [0, 0.28], [0, 36])
+  const fade = useTransform(scrollYProgress, [0, 0.18], [1, 0])
+  const pad = useTransform(scrollYProgress, [0, 0.22], [20, 10])
   useEffect(() => {
-    if (reduced) {
-      split.set(0.45)
-      return
-    }
+    const node = scroller.current
+    if (!node || reduced) return
+    let dir = 1
     const id = window.setInterval(() => {
-      split.set(split.get() > 0.6 ? 0.12 : 0.82)
-    }, 1800)
+      if (held.current) return
+      const max = node.scrollHeight - node.clientHeight
+      if (max <= 0) return
+      const next = node.scrollTop + dir * 10
+      if (next >= max - 4) dir = -1
+      if (next <= 2) dir = 1
+      node.scrollTop = Math.max(0, Math.min(max, next))
+    }, 32)
     return () => window.clearInterval(id)
-  }, [reduced, split])
+  }, [reduced])
   return (
-    <Shell variant="split" className={cn('flex min-h-[36rem] flex-col bg-[#f4f1ea] text-[#1c1914]', props.className)}>
-      <nav aria-label="Primary" className="relative z-10 flex items-center justify-between px-4 py-5 md:px-12">
-        <motion.strong style={{ x: xLeft }}>{props.logo ?? 'Vesper'}</motion.strong>
-        <motion.div className="hidden gap-5 text-sm md:flex" style={{ opacity: fade }}>
+    <Shell
+      variant="split"
+      rootRef={scroller}
+      className={cn('flex max-h-svh min-h-[36rem] flex-col overflow-x-hidden overflow-y-auto bg-[#f4f1ea] text-[#1c1914]', props.className)}
+    >
+      <motion.nav
+        aria-label="Primary"
+        className="sticky top-0 z-20 flex items-center justify-between border-b border-[#1c1914]/10 bg-[#f4f1ea]/88 px-4 backdrop-blur-md md:px-12"
+        style={{ paddingTop: pad, paddingBottom: pad }}
+        onPointerDown={() => {
+          held.current = true
+        }}
+        onWheel={() => {
+          held.current = true
+        }}
+      >
+        <motion.strong className="text-[13px] font-semibold tracking-[-0.02em]" style={{ x: xLeft }}>
+          {props.logo ?? 'Vesper'}
+        </motion.strong>
+        <motion.div className="hidden gap-6 text-[12px] tracking-[-0.01em] md:flex" style={{ opacity: fade }}>
           {items.map((item) => (
             <ItemLink key={item.id} item={item} />
           ))}
         </motion.div>
         {props.action ?? (
           <motion.div style={{ x: xRight }}>
-            <Magnetic href="#navbar" className="hidden h-10 items-center rounded-full bg-[#0f766e] px-4 text-sm font-bold text-white md:inline-flex">
+            <Magnetic href="#navbar" className="hidden h-8 items-center rounded-full bg-[#0f766e] px-3.5 text-[12px] font-semibold text-white md:inline-flex">
               Book a demo
             </Magnetic>
           </motion.div>
@@ -232,11 +255,11 @@ function SplitNav(props: NavbarProps) {
           onClick={() => menu.setOpen((v) => !v)}
           controls={tray}
           label="Menu"
-          className="h-10 rounded-full bg-[#0f766e] px-3 text-sm font-bold text-white md:hidden"
+          className="h-8 rounded-full bg-[#0f766e] px-3 text-[12px] font-semibold text-white md:hidden"
         />
-      </nav>
+      </motion.nav>
       <Tray open={menu.open} id={tray} trapRef={menu.root} title="Vesper" className="border border-[#1c1914]/10 bg-white">
-        <p className="mb-2 font-mono text-[11px] tracking-[0.16em] text-[#0f766e] uppercase">Wordmark left · CTA right</p>
+        <p className="mb-2 font-mono text-[11px] tracking-[0.16em] text-[#0f766e] uppercase">Scroll splits the bar</p>
         {items.map((item) => (
           <ItemLink key={item.id} item={item} className="block py-3 text-lg" />
         ))}
@@ -244,24 +267,40 @@ function SplitNav(props: NavbarProps) {
           Book a demo
         </a>
       </Tray>
-      {props.scene === false ? null : (
-        <div className="grid flex-1 items-center gap-8 px-5 py-8 md:grid-cols-2 md:px-12">
-          <div>
-            <p className="font-mono text-[11px] tracking-[0.2em] text-[#0f766e] uppercase">Vesper · clinic device</p>
-            <h1 className="mt-3 text-[clamp(2.2rem,5vw,3.6rem)] leading-[0.92] font-extrabold tracking-[-0.05em]">
-              A clinic device you can turn.
-            </h1>
-            <p className="mt-4 max-w-md leading-7 text-[#5c574e]">
-              On scroll the bar splits: wordmark to the left edge, CTA to the right, links dissolve.
-            </p>
+      {props.scene === false ? (
+        <div className="h-[120vh]" />
+      ) : (
+        <>
+          <div className="grid flex-none items-center gap-8 px-5 py-10 md:grid-cols-2 md:px-12">
+            <div>
+              <p className="font-mono text-[11px] tracking-[0.2em] text-[#0f766e] uppercase">Vesper · clinic device</p>
+              <h1 className="mt-3 text-[clamp(2.2rem,5vw,3.6rem)] leading-[0.92] font-extrabold tracking-[-0.05em]">
+                A clinic device you can turn.
+              </h1>
+              <p className="mt-4 max-w-md leading-7 text-[#5c574e]">
+                Scroll this column. The wordmark walks left, the CTA walks right, the links dissolve. It is tied to scroll, not a timer.
+              </p>
+            </div>
+            <motion.div
+              className="overflow-hidden rounded-[36px] shadow-[0_40px_80px_-36px_#0005]"
+              style={{ rotateY: 18, transformPerspective: 1200 }}
+            >
+              <Plate still={STILL.puck} alt="Vesper puck" className="h-[16rem] md:h-[22rem]" />
+            </motion.div>
           </div>
-          <motion.div
-            className="overflow-hidden rounded-[36px] shadow-[0_40px_80px_-36px_#0005]"
-            style={{ rotateY: 18, transformPerspective: 1200 }}
-          >
-            <Plate still={STILL.puck} alt="Vesper puck" className="h-[16rem] md:h-[22rem]" />
-          </motion.div>
-        </div>
+          <div className="grid gap-6 px-5 pb-24 md:grid-cols-3 md:px-12">
+            {[
+              ['Pulse', '12s to a reading. The puck stays in the room.'],
+              ['Trials', 'Harbor Clinic, week twelve. Named rooms.'],
+              ['Hold', 'Thursday 9:20 is a real slot, not a calendar myth.'],
+            ].map(([k, v]) => (
+              <div key={k} className="rounded-2xl border border-[#1c1914]/10 bg-white/70 p-5">
+                <b className="block text-sm">{k}</b>
+                <p className="mt-2 text-[13px] leading-6 text-[#5c574e]">{v}</p>
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </Shell>
   )
@@ -291,26 +330,66 @@ function IslandNav(props: NavbarProps) {
         <motion.nav
           layout
           aria-label="Island"
-          className="flex min-w-[min(92vw,26rem)] items-center gap-3 rounded-[22px] border border-[#22d3ee]/30 bg-[#0b2530] px-3.5 py-2.5 shadow-[0_20px_40px_-24px_#000]"
+          className="flex min-w-[min(92vw,32rem)] max-w-[38rem] items-center gap-2 rounded-[22px] border border-[#22d3ee]/30 bg-[#0b2530] px-3 py-2 shadow-[0_20px_40px_-24px_#000]"
           onPointerDown={() => setHeld(true)}
         >
           <i className="size-2 shrink-0 rounded-full bg-[#22d3ee] shadow-[0_0_12px_#22d3ee]" aria-hidden="true" />
-          <strong>{props.logo ?? here.label}</strong>
-          <span className="hidden font-mono text-[11px] tracking-[0.14em] text-[#67e8f9] sm:inline">{here.meta}</span>
-          {here.id === 'live' ? (
-            <span className="ml-auto flex">
-              {['A', 'K', 'M'].map((ch) => (
-                <b key={ch} className="-ml-1.5 grid size-6 place-items-center rounded-full border-2 border-[#0b2530] bg-[#16313c] text-[9px] first:ml-0">
-                  {ch}
-                </b>
-              ))}
-            </span>
-          ) : null}
-          {here.id === 'cmd' ? (
-            <span className="ml-auto hidden rounded-md border border-[#22d3ee]/25 px-2 py-0.5 font-mono text-[11px] text-[#9ec4d8] md:inline">
-              ⌘K
-            </span>
-          ) : null}
+          <button
+            type="button"
+            className="flex min-w-0 flex-1 items-center gap-2 text-left"
+            aria-live="polite"
+            onClick={() => setJob((n) => (n + 1) % jobs.length)}
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={here.id}
+                className="flex min-w-0 flex-1 items-center gap-2"
+                initial={reduced ? false : { y: 8 }}
+                animate={{ y: 0 }}
+                exit={reduced ? undefined : { y: -8 }}
+                transition={springs.ui}
+              >
+                {here.id === 'mark' ? (
+                  <>
+                    <strong className="text-[13px] font-semibold">{props.logo ?? 'Nimbus'}</strong>
+                    <span className="font-mono text-[11px] tracking-[0.12em] text-[#67e8f9]">idle</span>
+                    <span className="ml-auto hidden font-mono text-[11px] text-[#9ec4d8] sm:inline">99.98%</span>
+                  </>
+                ) : null}
+                {here.id === 'live' ? (
+                  <>
+                    <strong className="text-[13px] font-semibold">{props.logo ?? 'Nimbus'}</strong>
+                    <span className="hidden font-mono text-[11px] text-[#67e8f9] sm:inline">14 · 12%</span>
+                    <span className="ml-auto flex">
+                      {['A', 'K', 'M'].map((ch) => (
+                        <b
+                          key={ch}
+                          className="-ml-1.5 grid size-6 place-items-center rounded-full border-2 border-[#0b2530] bg-[#16313c] text-[9px] first:ml-0"
+                        >
+                          {ch}
+                        </b>
+                      ))}
+                    </span>
+                    <span className="hidden h-1 w-14 overflow-hidden rounded-full bg-[#071018] sm:block">
+                      <motion.i
+                        className="block h-full bg-[#22d3ee]"
+                        animate={{ width: reduced ? '12%' : ['8%', '18%', '12%'] }}
+                        transition={{ duration: 2.2, repeat: Infinity }}
+                      />
+                    </span>
+                  </>
+                ) : null}
+                {here.id === 'cmd' ? (
+                  <>
+                    <span className="rounded-md border border-[#22d3ee]/25 px-1.5 py-0.5 font-mono text-[10px] text-[#9ec4d8]">⌘K</span>
+                    <span className="min-w-0 flex-1 truncate rounded-md border border-[#16313c] bg-[#071018] px-2 py-1 font-mono text-[12px] text-[#9ec4d8]">
+                      watch checkout-edge
+                    </span>
+                  </>
+                ) : null}
+              </motion.span>
+            </AnimatePresence>
+          </button>
           <OpenTrigger
             open={menu.open}
             onClick={() => {
@@ -336,14 +415,57 @@ function IslandNav(props: NavbarProps) {
         </a>
       </Tray>
       {props.scene === false ? null : (
-        <div className="relative z-10 mt-auto px-6 pb-10">
-          <h1 className="text-center text-[clamp(2.2rem,5vw,3.6rem)] tracking-[-0.05em]">The desk assembles itself.</h1>
-          <p className="mt-2 text-center text-[#9ec4d8]">A notch that morphs: mark → live tray → command. Not an iPhone screenshot.</p>
-          <div className="mx-auto mt-8 grid max-w-4xl gap-3 sm:grid-cols-3">
-            <Tile k="CANARY" v="12%" />
-            <Tile k="AGENTS" v="14" />
-            <Tile k="P95" v="98ms" />
-          </div>
+        <div className="relative z-10 mx-auto mt-8 w-full max-w-4xl flex-1 px-4 pb-8">
+          <AnimatePresence mode="wait">
+            {here.id === 'mark' ? (
+              <motion.div key="mark" initial={reduced ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="grid gap-3 md:grid-cols-2">
+                <div className="rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-5">
+                  <p className="font-mono text-[10px] tracking-[0.16em] text-[#67e8f9]">IDLE</p>
+                  <h1 className="mt-3 text-[clamp(1.8rem,4vw,2.6rem)] tracking-[-0.05em]">The desk is waiting.</h1>
+                  <p className="mt-2 text-sm text-[#9ec4d8]">Mark state. No agents paged. Canary holds 12%.</p>
+                </div>
+                <Tile k="UPTIME" v="99.98" s="%" />
+              </motion.div>
+            ) : null}
+            {here.id === 'live' ? (
+              <motion.div key="live" initial={reduced ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
+                <div className="grid gap-3 sm:grid-cols-3">
+                  <Tile k="CANARY" v="12%" />
+                  <Tile k="AGENTS" v="14" />
+                  <Tile k="P95" v="98ms" />
+                </div>
+                <div className="mt-3 grid gap-3 md:grid-cols-[1.2fr_0.8fr]">
+                  <div className="rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-4">
+                    <p className="font-mono text-[10px] tracking-[0.16em] text-[#67e8f9]">ON DESK</p>
+                    <ul className="mt-3 grid gap-2 font-mono text-[13px]">
+                      <li className="flex justify-between"><span>Ada Klein</span><span className="text-[#67e8f9]">watch</span></li>
+                      <li className="flex justify-between"><span>Jon Reed</span><span className="text-[#9ec4d8]">ack</span></li>
+                      <li className="flex justify-between"><span>Mina Park</span><span className="text-[#67e8f9]">page</span></li>
+                      <li className="flex justify-between"><span>Chris Vale</span><span className="text-[#9ec4d8]">idle</span></li>
+                    </ul>
+                  </div>
+                  <div className="rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-4">
+                    <p className="font-mono text-[10px] tracking-[0.16em] text-[#67e8f9]">INCIDENT</p>
+                    <p className="mt-3 font-mono text-[13px] leading-6">14:02 checkout-edge · watch<br />canary 12% · eu-west</p>
+                    <span className="mt-4 block h-1.5 overflow-hidden rounded-full bg-[#071018]">
+                      <motion.i className="block h-full bg-[#22d3ee]" animate={{ width: reduced ? '12%' : ['8%', '18%', '12%'] }} transition={{ duration: 2.4, repeat: Infinity }} />
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ) : null}
+            {here.id === 'cmd' ? (
+              <motion.div key="cmd" initial={reduced ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-4">
+                <p className="font-mono text-[10px] tracking-[0.16em] text-[#67e8f9]">ASK NIMBUS</p>
+                <p className="mt-3 rounded-lg border border-[#16313c] bg-[#071018] px-3 py-2 font-mono text-[13px] text-[#9ec4d8]">watch checkout-edge</p>
+                <ul className="mt-3 grid gap-2 font-mono text-[13px]">
+                  <li className="rounded-lg bg-[#071018] px-3 py-2">canary 12% · hold</li>
+                  <li className="rounded-lg px-3 py-2">replay last deploy · eu-west</li>
+                  <li className="rounded-lg px-3 py-2">page Ada Klein</li>
+                </ul>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
         </div>
       )}
     </Shell>
@@ -445,13 +567,10 @@ function DockNav(props: NavbarProps) {
     setHot(i)
   }
   return (
-    <Shell variant="dock" className={cn('relative flex min-h-[36rem] flex-col bg-[#111] text-[#f5f1ea]', props.className)}>
-      <div className="absolute inset-0">
-        <Plate still={STILL.loft} alt="" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-[#111]/20" />
-      </div>
+    <Shell variant="dock" className={cn('relative flex min-h-[36rem] flex-col bg-[#14110c] text-[#f5f1ea]', props.className)}>
+      <YardPlate hot={items[hot]?.id ?? 'film'} />
       {props.scene === false ? null : (
-        <h1 className="relative z-10 px-6 pt-16 text-[clamp(3rem,10vw,4.6rem)] leading-[0.88] font-extrabold tracking-[-0.06em] md:px-10">
+        <h1 className="relative z-10 px-6 pt-14 text-[clamp(3rem,10vw,4.6rem)] leading-[0.88] font-extrabold tracking-[-0.06em] md:px-10">
           SEE THE WORK.
         </h1>
       )}
@@ -563,6 +682,50 @@ function RailNav(props: NavbarProps) {
   )
 }
 
+function YardPlate({ hot }: { hot: string }) {
+  const frames = [
+    { id: 'index', src: STILL.magazine, label: 'Index 04' },
+    { id: 'print', src: STILL.agency, label: 'Print 11' },
+    { id: 'film', src: STILL.cinema, label: 'Film 18' },
+    { id: 'yard', src: STILL.desk, label: 'Yard 09' },
+    { id: 'book', src: STILL.athlete, label: 'Book 22' },
+  ]
+  return (
+    <div className="absolute inset-0 bg-[#1a1610]" aria-hidden="true">
+      <div className="absolute inset-x-0 top-0 h-[62%] bg-[#241e16]" />
+      <p className="absolute top-5 left-6 font-mono text-[11px] tracking-[0.22em] text-[#c4b49a] uppercase">Yard · print / film / book</p>
+      <div className="absolute top-[18%] left-[5%] grid w-[72%] grid-cols-3 gap-2 md:w-[70%] md:grid-cols-5 md:gap-3">
+        {frames.map((frame) => (
+          <figure
+            key={frame.id}
+            className={cn(
+              'overflow-hidden rounded-sm border-[6px] border-[#3a3228] bg-[#0e0c09] shadow-[0_18px_30px_-18px_#000]',
+              hot === frame.id && 'border-[#facc15]',
+            )}
+          >
+            <Plate still={frame.src} alt="" className="h-28 md:h-36" />
+            <figcaption className="bg-[#2a241c] px-2 py-1 font-mono text-[10px] tracking-[0.12em] text-[#c4b49a] uppercase">{frame.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <div
+        className={cn(
+          'absolute top-[16%] right-[4%] hidden h-[46%] w-14 flex-col overflow-hidden rounded-sm border bg-[#0e0c09] md:flex',
+          hot === 'film' ? 'border-[#facc15]' : 'border-[#3a3228]',
+        )}
+      >
+        {Array.from({ length: 8 }).map((_, i) => (
+          <span key={i} className="relative flex-1 border-b border-[#3a3228]">
+            <i className="absolute top-1/2 left-0 size-1.5 -translate-y-1/2 rounded-full bg-[#c4b49a]" />
+            <i className="absolute top-1/2 right-0 size-1.5 -translate-y-1/2 rounded-full bg-[#c4b49a]" />
+          </span>
+        ))}
+      </div>
+      <div className="absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-b from-[#2c261c] to-[#0e0c09]" />
+    </div>
+  )
+}
+
 function Tile({ k, v, s }: { k: string; v: ReactNode; s?: string }) {
   return (
     <div className="rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-4">
@@ -656,20 +819,66 @@ function FolioNav(props: NavbarProps) {
 function PortalNav(props: NavbarProps) {
   const menu = useMenu()
   const tray = useId()
+  const notesId = useId()
+  const wsId = useId()
   const reduced = usePrefersReducedMotion()
   const spaces = ['Folio', 'Harbor', 'Kin']
+  const notes = [
+    { t: '14:02', m: 'checkout-edge watch' },
+    { t: '13:51', m: 'ingest-eu clear' },
+    { t: '13:40', m: 'billing-canary page' },
+  ]
   const [ws, setWs] = useState(0)
   const [q, setQ] = useState('')
+  const [openWs, setOpenWs] = useState(false)
+  const [openNotes, setOpenNotes] = useState(false)
+  const p95 = useCount(98, true)
+  const shown = notes.filter(
+    (note) => !q.trim() || `${note.t} ${note.m}`.toLowerCase().includes(q.trim().toLowerCase()),
+  )
   useEffect(() => {
-    if (reduced) return
-    const id = window.setInterval(() => setWs((n) => (n + 1) % spaces.length), 2600)
+    if (reduced || openWs || openNotes) return
+    const id = window.setInterval(() => setWs((n) => (n + 1) % spaces.length), 3200)
     return () => window.clearInterval(id)
-  }, [reduced, spaces.length])
+  }, [openNotes, openWs, reduced, spaces.length])
   return (
     <Shell variant="portal" className={cn('flex min-h-[36rem] flex-col bg-[#071018] text-[#e8f4ff]', props.className)}>
-      <nav aria-label="Portal" className="relative z-10 flex items-center gap-3 border-b border-[#16313c] bg-[#0b2530] px-3 py-2.5 md:px-5">
-        <strong>{props.logo ?? 'Nimbus'}</strong>
-        <span className="hidden rounded-lg border border-[#22d3ee]/20 bg-[#071018] px-2.5 py-1 text-[13px] md:inline">{spaces[ws]} ▾</span>
+      <nav aria-label="Portal" className="relative z-20 flex flex-wrap items-center gap-2 border-b border-[#16313c] bg-[#0b2530] px-3 py-2 md:px-4">
+        <strong className="text-[13px] font-semibold tracking-[-0.02em]">{props.logo ?? 'Nimbus'}</strong>
+        <div className="relative hidden md:block">
+          <button
+            type="button"
+            className="rounded-lg border border-[#22d3ee]/20 bg-[#071018] px-2.5 py-1 text-[12px]"
+            aria-expanded={openWs}
+            aria-controls={wsId}
+            onClick={() => {
+              setOpenWs((v) => !v)
+              setOpenNotes(false)
+            }}
+          >
+            {spaces[ws]} ▾
+          </button>
+          {openWs ? (
+            <ul id={wsId} role="listbox" className="absolute top-9 left-0 z-30 min-w-[8rem] rounded-xl border border-[#16313c] bg-[#071018] p-1">
+              {spaces.map((space, i) => (
+                <li key={space}>
+                  <button
+                    type="button"
+                    role="option"
+                    aria-selected={i === ws}
+                    className={cn('w-full rounded-lg px-2 py-1.5 text-left text-[12px]', i === ws && 'bg-[#0b2530]')}
+                    onClick={() => {
+                      setWs(i)
+                      setOpenWs(false)
+                    }}
+                  >
+                    {space}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
         <label className="sr-only" htmlFor="nimbus-jump">
           Jump
         </label>
@@ -680,59 +889,123 @@ function PortalNav(props: NavbarProps) {
             setQ(event.target.value)
             props.onQuery?.(event.target.value)
           }}
-          placeholder="Jump to incident, agent, region… ⌘K"
-          className="hidden h-9 flex-1 rounded-lg border border-[#16313c] bg-[#071018] px-3 font-mono text-[12px] text-[#9ec4d8] outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] md:block"
+          placeholder="Jump to incident, agent, region…"
+          className="hidden h-8 min-w-[10rem] flex-1 rounded-lg border border-[#16313c] bg-[#071018] px-3 font-mono text-[12px] text-[#9ec4d8] outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] md:block"
         />
-        <span className="hidden items-center gap-1.5 font-mono text-[11px] text-[#67e8f9] md:flex">
-          <i className="size-1.5 rounded-full bg-[#22d3ee]" />
-          14 on desk
+        <span className="hidden items-center gap-1.5 rounded-lg border border-[#16313c] px-2 py-1 font-mono text-[10px] text-[#67e8f9] lg:flex">
+          P95 <b ref={p95} className="text-[#e8f4ff]">{reduced ? '98' : '0'}</b>ms
         </span>
-        <span className="hidden font-mono text-[11px] text-[#67e8f9] lg:inline">watch checkout-edge</span>
+        <span className="hidden items-center gap-1.5 rounded-lg border border-[#16313c] px-2 py-1 font-mono text-[10px] text-[#67e8f9] md:flex">
+          <i className="size-1.5 rounded-full bg-[#22d3ee]" />
+          14
+        </span>
+        <span className="hidden rounded-lg border border-[#16313c] px-2 py-1 font-mono text-[10px] text-[#67e8f9] xl:inline">canary 12%</span>
+        <div className="relative ml-auto md:ml-0">
+          <button
+            type="button"
+            className="relative rounded-lg border border-[#16313c] px-2 py-1 text-[12px]"
+            aria-expanded={openNotes}
+            aria-controls={notesId}
+            onClick={() => {
+              setOpenNotes((v) => !v)
+              setOpenWs(false)
+            }}
+          >
+            Notes
+            <b className="ml-1 inline-grid size-4 place-items-center rounded-full bg-[#22d3ee] text-[9px] text-[#071018]">3</b>
+          </button>
+          {openNotes ? (
+            <ul id={notesId} className="absolute top-9 right-0 z-30 w-56 rounded-xl border border-[#16313c] bg-[#071018] p-2 font-mono text-[11px]">
+              {notes.map((note) => (
+                <li key={note.t} className="rounded-lg px-2 py-1.5">
+                  <span className="text-[#67e8f9]">{note.t}</span> {note.m}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
         <OpenTrigger
           open={menu.open}
           onClick={() => menu.setOpen((v) => !v)}
           controls={tray}
-          label="Status"
-          className="ml-auto h-9 rounded-full bg-[#22d3ee] px-3 text-[12px] font-bold text-[#071018] md:hidden"
+          label="Desk"
+          className="h-8 rounded-full bg-[#22d3ee] px-3 text-[12px] font-bold text-[#071018] md:hidden"
         />
       </nav>
       <Tray open={menu.open} id={tray} trapRef={menu.root} title="Nimbus portal" className="border border-[#22d3ee]/25 bg-[#0b2530]">
+        <p className="font-mono text-[12px] text-[#67e8f9]">{spaces[ws]} · 14 on desk · 3 notes</p>
         <input
           value={q}
           onChange={(event) => setQ(event.target.value)}
           placeholder="Jump…"
-          className="h-11 w-full rounded-xl border border-[#16313c] bg-[#071018] px-3 font-mono text-[13px]"
+          className="mt-3 h-11 w-full rounded-xl border border-[#16313c] bg-[#071018] px-3 font-mono text-[13px]"
         />
-        <p className="mt-3 font-mono text-[12px] text-[#67e8f9]">14 on desk · {spaces[ws]}</p>
-        <a href="#navbar" className="mt-2 block py-3">
-          Incidents
-        </a>
-        <a href="#navbar" className="block py-3">
-          Agents
-        </a>
-        <a href="#navbar" className="block py-3">
-          Regions
-        </a>
+        {notes.map((note) => (
+          <p key={note.t} className="mt-2 font-mono text-[13px]">
+            {note.t} {note.m}
+          </p>
+        ))}
       </Tray>
       {props.scene === false ? null : (
-        <div className="grid flex-1 gap-3 p-4 md:grid-cols-[1.2fr_0.8fr] md:p-5">
-          <div className="rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-4">
+        <div className="grid flex-1 grid-cols-2 gap-3 p-3 md:grid-cols-12 md:p-4">
+          <div className="col-span-2 rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-4 md:col-span-5">
             <small className="font-mono text-[10px] tracking-[0.16em] text-[#67e8f9]">INCIDENTS</small>
-            <p className="mt-3 font-mono text-[13px] leading-7">
-              14:02 checkout-edge · watch
-              <br />
-              13:51 ingest-eu · clear
-              <br />
-              13:40 billing-canary · page
-              <br />
-              13:12 auth-sessions · ack
-              <br />
-              12:58 replay last deploy · run
-            </p>
+            <ul className="mt-3 grid gap-2 font-mono text-[12px] leading-5">
+              {shown.length === 0 ? (
+                <li className="text-[#9ec4d8]">No match for “{q}”.</li>
+              ) : (
+                shown.map((note) => (
+                  <li key={note.t} className="flex justify-between gap-3">
+                    <span>
+                      {note.t} {note.m}
+                    </span>
+                    <span className="text-[#67e8f9]">live</span>
+                  </li>
+                ))
+              )}
+              {q.trim() ? null : (
+                <li className="flex justify-between gap-3 text-[#9ec4d8]">
+                  <span>13:12 auth-sessions ack</span>
+                  <span>ok</span>
+                </li>
+              )}
+            </ul>
           </div>
-          <div className="rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-4">
-            <small className="font-mono text-[10px] tracking-[0.16em] text-[#67e8f9]">DESK CAM</small>
-            <Plate still={STILL.loft} alt="Desk" className="mt-3 h-40 rounded-xl md:h-48" />
+          <div className="rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-4 md:col-span-3">
+            <small className="font-mono text-[10px] tracking-[0.16em] text-[#67e8f9]">AGENTS</small>
+            <ul className="mt-3 grid gap-2 text-[12px]">
+              {['Ada · watch', 'Jon · ack', 'Mina · page', 'Chris · idle'].map((row) => (
+                <li key={row} className="flex items-center gap-2">
+                  <i className="size-1.5 rounded-full bg-[#22d3ee]" />
+                  {row}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-4 md:col-span-4">
+            <small className="font-mono text-[10px] tracking-[0.16em] text-[#67e8f9]">CANARY</small>
+            <b className="mt-2 block text-2xl">12%</b>
+            <span className="mt-3 block h-1.5 overflow-hidden rounded-full bg-[#071018]">
+              <motion.i className="block h-full w-[12%] bg-[#22d3ee]" animate={reduced ? undefined : { width: ['10%', '16%', '12%'] }} transition={{ duration: 2.8, repeat: Infinity }} />
+            </span>
+            <p className="mt-2 font-mono text-[11px] text-[#9ec4d8]">checkout-edge · eu-west</p>
+          </div>
+          <div className="col-span-2 rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-4 md:col-span-4">
+            <small className="font-mono text-[10px] tracking-[0.16em] text-[#67e8f9]">REGIONS</small>
+            <div className="mt-3 grid grid-cols-2 gap-2 font-mono text-[12px]">
+              <p>eu-west · healthy</p>
+              <p>us-east · watch</p>
+              <p>ap-south · idle</p>
+              <p>us-west · clear</p>
+            </div>
+          </div>
+          <div className="col-span-2 rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-3 md:col-span-8">
+            <small className="font-mono text-[10px] tracking-[0.16em] text-[#67e8f9]">DESK CAM · {spaces[ws]}</small>
+            <div className="mt-2 grid grid-cols-3 gap-2">
+              <Plate still={STILL.desk} alt="" className="h-24 rounded-lg md:h-28" />
+              <Plate still={STILL.agency} alt="" className="h-24 rounded-lg md:h-28" />
+              <Plate still={STILL.laptop} alt="" className="h-24 rounded-lg md:h-28" />
+            </div>
           </div>
         </div>
       )}

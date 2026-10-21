@@ -11,6 +11,7 @@ import {
   SampleHero,
   Shell,
   Tray,
+  fuzzyScore,
   useMenu,
 } from '@/lib/navbar-motion.tsx'
 import { cn, usePrefersReducedMotion } from '@/lib/utils.ts'
@@ -60,30 +61,30 @@ function PillNav(props: NavbarProps) {
         <i className="absolute top-[8%] right-[-12%] size-[46vw] rounded-full bg-[#7c5cff]" />
       </div>
       <div className="relative z-10 flex justify-center px-4 pt-5">
-        <nav aria-label="Primary" className="flex w-full max-w-3xl items-center justify-between gap-3 rounded-full border border-white/18 bg-[#080c18]/70 px-3 py-2 shadow-[0_18px_40px_-24px_#000] backdrop-blur-xl md:justify-start md:gap-6">
-          <strong className="flex items-center gap-2 px-2 text-sm font-extrabold">
-            <span className="size-2.5 rounded-full" style={{ background: 'conic-gradient(#2ee6c7,#7c5cff,#5b8cff,#2ee6c7)' }} />
+        <nav aria-label="Primary" className="flex w-full max-w-3xl items-center justify-between gap-2 rounded-full border border-white/[0.08] bg-[#080c18]/55 px-1.5 py-1 shadow-[0_12px_28px_-22px_#000] backdrop-blur-md md:justify-start md:gap-4">
+          <strong className="flex items-center gap-2 px-2.5 text-[13px] font-semibold tracking-[-0.02em]">
+            <span className="size-1.5 rounded-full bg-[#eef7ff]" />
             {props.logo ?? 'Lumen'}
           </strong>
-          <div className="hidden flex-1 items-center justify-center gap-1 md:flex">
+          <div className="hidden flex-1 items-center justify-center gap-0.5 md:flex">
             {items.map((item) => (
               <ItemLink
                 key={item.id}
                 item={item}
                 magnetic
                 className={cn(
-                  'inline-flex h-9 items-center rounded-full px-3 text-[13px] text-[#c9d7ea] mix-blend-normal',
-                  item.current && 'bg-white/10 text-white',
+                  'inline-flex h-8 items-center rounded-full px-3 text-[12px] tracking-[-0.01em] text-[#c9d7ea] mix-blend-normal',
+                  item.current && 'bg-white/[0.08] text-white',
                 )}
               />
             ))}
           </div>
           {props.action ?? (
-            <Magnetic href="#navbar" className="hidden h-9 items-center rounded-full bg-[#eef7ff] px-4 text-[13px] font-extrabold text-[#08101c] mix-blend-normal md:inline-flex">
+            <Magnetic href="#navbar" className="hidden h-8 items-center rounded-full bg-[#eef7ff] px-3.5 text-[12px] font-semibold tracking-[-0.01em] text-[#08101c] mix-blend-normal md:inline-flex">
               Open the desk
             </Magnetic>
           )}
-          <OpenTrigger open={menu.open} onClick={() => menu.setOpen((v) => !v)} controls={tray} label="Menu" className="h-9 rounded-full bg-white/10 px-3 text-[13px] md:hidden" />
+          <OpenTrigger open={menu.open} onClick={() => menu.setOpen((v) => !v)} controls={tray} label="Menu" className="h-8 rounded-full bg-white/[0.08] px-3 text-[12px] md:hidden" />
         </nav>
       </div>
       <Tray open={menu.open} id={tray} trapRef={menu.root} title="Lumen menu" className="border border-white/15 bg-[#080c18]/95 text-white backdrop-blur-xl">
@@ -132,19 +133,19 @@ function BannerNav(props: NavbarProps) {
           Reserve a desk
         </a>
       </motion.div>
-      <nav aria-label="Primary" className="relative z-10 flex items-center justify-between border-b border-[#e4ddd0] bg-[#f4f1ea]/92 px-4 py-3 md:px-10">
-        <strong>{props.logo ?? 'Lumen'}</strong>
-        <div className="hidden gap-5 text-sm text-[#4a453c] md:flex">
+      <nav aria-label="Primary" className="relative z-10 flex items-center justify-between border-b border-[#e4ddd0]/80 bg-[#f4f1ea]/80 px-4 py-2 backdrop-blur-md md:px-10">
+        <strong className="text-[13px] font-semibold tracking-[-0.02em]">{props.logo ?? 'Lumen'}</strong>
+        <div className="hidden gap-6 text-[12px] tracking-[-0.01em] text-[#4a453c] md:flex">
           {items.map((item) => (
             <ItemLink key={item.id} item={item} className="hover:text-[#10141c]" />
           ))}
         </div>
         {props.action ?? (
-          <Magnetic href="#navbar" className="hidden h-10 items-center rounded-full bg-[#111] px-4 text-sm font-bold text-[#f4f1ea] md:inline-flex">
+          <Magnetic href="#navbar" className="hidden h-8 items-center rounded-full bg-[#111] px-3.5 text-[12px] font-semibold text-[#f4f1ea] md:inline-flex">
             Open the desk
           </Magnetic>
         )}
-        <OpenTrigger open={menu.open} onClick={() => menu.setOpen((v) => !v)} controls={tray} label="Menu" className="h-10 rounded-full border border-[#111]/15 px-3 text-sm md:hidden" />
+        <OpenTrigger open={menu.open} onClick={() => menu.setOpen((v) => !v)} controls={tray} label="Menu" className="h-8 rounded-full border border-[#111]/12 px-3 text-[12px] md:hidden" />
       </nav>
       <Tray open={menu.open} id={tray} trapRef={menu.root} title="Lumen menu" className="border border-[#111]/10 bg-white text-[#10141c]">
         <p className="mb-3 rounded-2xl bg-[#111] px-3 py-2 font-mono text-[11px] text-[#facc15] uppercase">Studio 12 · Thursday</p>
@@ -192,9 +193,9 @@ function TabsNav(props: NavbarProps) {
         <i className="absolute top-[-10%] left-[8%] size-[48vw] rounded-[40%] bg-[#f472b6]" />
         <i className="absolute top-[20%] right-[-8%] size-[42vw] rounded-[42%] bg-[#818cf8]" />
       </div>
-      <nav aria-label="Primary" className="relative z-10 flex items-center justify-between px-4 py-5 md:px-10">
-        <strong>{props.logo ?? 'Iris'}</strong>
-        <div className="hidden rounded-full border border-white/12 bg-white/6 p-1 md:flex">
+      <nav aria-label="Primary" className="relative z-10 flex items-center justify-between px-4 py-3 md:px-10">
+        <strong className="text-[13px] font-semibold tracking-[-0.02em]">{props.logo ?? 'Iris'}</strong>
+        <div className="hidden rounded-full border border-white/[0.08] bg-white/[0.04] p-0.5 md:flex">
           {items.map((item) => (
             <a
               key={item.id}
@@ -204,7 +205,7 @@ function TabsNav(props: NavbarProps) {
                 setHeld(true)
                 setHere(item.id)
               }}
-              className="relative px-4 py-2 text-[13px]"
+              className="relative px-3.5 py-1.5 text-[12px] tracking-[-0.01em]"
             >
               {here === item.id ? (
                 <motion.span
@@ -213,16 +214,16 @@ function TabsNav(props: NavbarProps) {
                   transition={springs.ui}
                 />
               ) : null}
-              <span className={cn('relative z-10', here === item.id && 'font-extrabold text-[#12081c]')}>{item.label}</span>
+              <span className={cn('relative z-10', here === item.id && 'font-semibold text-[#12081c]')}>{item.label}</span>
             </a>
           ))}
         </div>
         {props.action ?? (
-          <Magnetic href="#navbar" className="hidden h-10 items-center rounded-full bg-white px-4 text-sm font-extrabold text-[#12081c] md:inline-flex">
+          <Magnetic href="#navbar" className="hidden h-8 items-center rounded-full bg-white px-3.5 text-[12px] font-semibold text-[#12081c] md:inline-flex">
             Open Iris
           </Magnetic>
         )}
-        <OpenTrigger open={menu.open} onClick={() => menu.setOpen((v) => !v)} controls={tray} label="Canvas" className="h-10 rounded-full bg-white px-3 text-sm font-bold text-[#12081c] md:hidden" />
+        <OpenTrigger open={menu.open} onClick={() => menu.setOpen((v) => !v)} controls={tray} label="Canvas" className="h-8 rounded-full bg-white px-3 text-[12px] font-semibold text-[#12081c] md:hidden" />
       </nav>
       <Tray open={menu.open} id={tray} trapRef={menu.root} title="Iris" className="border border-white/15 bg-[#1a0c28] text-white">
         <p className="mb-2 font-mono text-[11px] tracking-[0.16em] text-[#f9a8d4] uppercase">Swipe the chips</p>
@@ -252,9 +253,9 @@ function ClinicNav(props: NavbarProps) {
   const tray = useId()
   return (
     <Shell variant="clinic" className={cn('flex min-h-[36rem] flex-col bg-[#f7f5f2] text-[#1c1917]', props.className)}>
-      <nav aria-label="Primary" className="relative z-10 flex items-center justify-between border-b border-[#ece7e0] bg-white px-4 py-3 md:px-10">
-        <strong>{props.logo ?? 'Harbor Clinic'}</strong>
-        <div className="hidden gap-5 text-sm text-[#57534e] md:flex">
+      <nav aria-label="Primary" className="relative z-10 flex items-center justify-between border-b border-[#ece7e0] bg-white/90 px-4 py-2 backdrop-blur-md md:px-10">
+        <strong className="text-[13px] font-semibold tracking-[-0.02em]">{props.logo ?? 'Harbor Clinic'}</strong>
+        <div className="hidden gap-6 text-[12px] tracking-[-0.01em] text-[#57534e] md:flex">
           {items.map((item) => (
             <ItemLink key={item.id} item={item} />
           ))}
@@ -264,11 +265,11 @@ function ClinicNav(props: NavbarProps) {
           Dr. Okonkwo · in clinic
         </span>
         {props.action ?? (
-          <Magnetic href="#navbar" className="hidden h-10 items-center rounded-full bg-[#0369a1] px-4 text-sm font-semibold text-white md:inline-flex">
+          <Magnetic href="#navbar" className="hidden h-8 items-center rounded-full bg-[#0369a1] px-3.5 text-[12px] font-semibold text-white md:inline-flex">
             Hold Thursday 9:20
           </Magnetic>
         )}
-        <OpenTrigger open={menu.open} onClick={() => menu.setOpen((v) => !v)} controls={tray} label="Visit" className="h-10 rounded-full bg-[#0369a1] px-3 text-sm text-white md:hidden" />
+        <OpenTrigger open={menu.open} onClick={() => menu.setOpen((v) => !v)} controls={tray} label="Visit" className="h-8 rounded-full bg-[#0369a1] px-3 text-[12px] text-white md:hidden" />
       </nav>
       <Tray open={menu.open} id={tray} trapRef={menu.root} title="Harbor visit" className="border border-[#1c1917]/10 bg-white">
         <p className="rounded-2xl bg-[#f3efe9] px-3 py-3 text-sm">
@@ -405,68 +406,168 @@ function PopNav(props: NavbarProps) {
   )
 }
 
+const TOUR: Record<string, { title: string; meta: string; beat: string; src: string }[]> = {
+  work: [
+    { title: 'Harbor Athletic', meta: 'Identity · 2026', beat: 'Night-meet titles over wet track.', src: STILL.athlete },
+    { title: 'Vesper Pulse', meta: 'Device · 12s', beat: 'The puck turns. The clinic follows.', src: STILL.puck },
+    { title: 'Kin Veil', meta: 'Fashion film', beat: 'SS26 reel, yellow cab, rain.', src: STILL.cinema },
+  ],
+  people: [
+    { title: 'Ada Klein', meta: 'Studio lead', beat: 'Holds the first frame still.', src: STILL.clinic },
+    { title: 'Jon Reed', meta: 'Product', beat: 'Pastes one opening. The page follows.', src: STILL.academy },
+    { title: 'Mina Park', meta: 'Systems', beat: 'Empty stayed empty.', src: STILL.agency },
+  ],
+  journal: [
+    { title: 'Sessions', meta: 'Note · 04', beat: 'A hairline instead of a CTA rack.', src: STILL.magazine },
+    { title: 'After dark', meta: 'Note · 11', beat: 'The association, after the gun.', src: STILL.athlete },
+    { title: 'Yard', meta: 'Note · 18', beat: 'Print, film, book. One sill.', src: STILL.cinema },
+  ],
+}
+
 function MegaNav(props: NavbarProps) {
   const items = props.items ?? [
     { id: 'work', label: 'Work', href: '#navbar', current: true },
     { id: 'people', label: 'People', href: '#navbar' },
     { id: 'journal', label: 'Journal', href: '#navbar' },
   ]
-  const cards = [
-    { title: 'Harbor Athletic', meta: 'Identity · 2026', src: STILL.athlete },
-    { title: 'Vesper Pulse', meta: 'Device · 12s', src: STILL.puck },
-    { title: 'Kin Veil', meta: 'Fashion film', src: STILL.cinema },
-  ]
   const menu = useMenu(props.defaultOpen ?? true)
   const tray = useId()
   const reduced = usePrefersReducedMotion()
+  const [section, setSection] = useState(items.find((item) => item.current)?.id ?? 'work')
+  const cards = TOUR[section] ?? TOUR.work
+  const [hi, setHi] = useState(0)
+  const [held, setHeld] = useState(false)
+  useEffect(() => {
+    setHi(0)
+  }, [section])
+  useEffect(() => {
+    if (reduced || held || !menu.open) return
+    const id = window.setInterval(() => {
+      setHi((n) => {
+        const next = n + 1
+        if (next >= cards.length) {
+          const keys = Object.keys(TOUR)
+          const i = keys.indexOf(section)
+          setSection(keys[(i + 1) % keys.length] ?? 'work')
+          return 0
+        }
+        return next
+      })
+    }, 2200)
+    return () => window.clearInterval(id)
+  }, [cards.length, held, menu.open, reduced, section])
+  const live = cards[hi] ?? cards[0]
+  function openSection(id: string) {
+    setHeld(true)
+    setSection(id)
+    menu.setOpen(true)
+  }
   return (
     <Shell variant="mega" className={cn('flex min-h-[36rem] flex-col bg-[#f6f3ec] text-[#171412]', props.className)}>
-      <nav aria-label="Primary" className="relative z-10 flex items-center justify-between px-4 py-4 md:px-10">
-        <strong>{props.logo ?? 'Folio'}</strong>
-        <div className="hidden gap-5 text-sm text-[#6b645c] md:flex">
+      <nav aria-label="Primary" className="relative z-10 flex items-center justify-between px-4 py-3 md:px-10">
+        <strong className="text-[13px] font-semibold tracking-[-0.02em]">{props.logo ?? 'Folio'}</strong>
+        <div className="hidden gap-6 text-[12px] tracking-[-0.01em] text-[#6b645c] md:flex">
           {items.map((item) => (
             <button
               key={item.id}
               type="button"
-              className={cn(item.current && 'font-extrabold text-[#be123c]')}
-              aria-expanded={item.id === 'work' ? menu.open : undefined}
-              onClick={() => item.id === 'work' && menu.setOpen((v) => !v)}
+              className={cn(section === item.id && menu.open && 'font-semibold text-[#be123c]')}
+              aria-expanded={section === item.id ? menu.open : undefined}
+              onMouseEnter={() => openSection(item.id)}
+              onFocus={() => openSection(item.id)}
+              onClick={() => {
+                if (section === item.id) menu.setOpen((v) => !v)
+                else openSection(item.id)
+              }}
             >
               {item.label}
             </button>
           ))}
         </div>
         {props.action ?? (
-          <Magnetic href="#navbar" className="hidden h-10 items-center rounded-full bg-[#be123c] px-4 text-sm font-semibold text-white md:inline-flex">
+          <Magnetic href="#navbar" className="hidden h-8 items-center rounded-full bg-[#be123c] px-3.5 text-[12px] font-semibold text-white md:inline-flex">
             Start a project
           </Magnetic>
         )}
-        <OpenTrigger open={menu.open} onClick={() => menu.setOpen((v) => !v)} controls={tray} label="Work" className="h-10 rounded-full bg-[#be123c] px-3 text-sm text-white md:hidden" />
+        <OpenTrigger open={menu.open} onClick={() => menu.setOpen((v) => !v)} controls={tray} label="Work" className="h-8 rounded-full bg-[#be123c] px-3 text-[12px] text-white md:hidden" />
       </nav>
       <div className="hidden px-10 md:block">
-        <AnimatePanel open={menu.open} reduced={reduced}>
-          <div className="grid grid-cols-3 gap-3 rounded-[24px] border border-[#171412]/10 bg-white p-4 shadow-[0_30px_60px_-36px_#0006]">
-            {cards.map((card) => (
-              <a key={card.title} href="#navbar" className="overflow-hidden rounded-2xl">
-                <Plate still={card.src} alt={card.title} className="h-40" />
-                <b className="mt-2 block text-sm">{card.title}</b>
-                <span className="text-[12px] text-[#6b645c]">{card.meta}</span>
-              </a>
-            ))}
-          </div>
-        </AnimatePanel>
+        {menu.open ? (
+          <motion.div
+            initial={reduced ? false : { y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={springs.heavy}
+            className="grid grid-cols-[minmax(14rem,0.9fr)_1.4fr] gap-4 rounded-[22px] border border-[#171412]/10 bg-white/95 p-3 shadow-[0_24px_48px_-36px_#0005]"
+            onPointerEnter={() => setHeld(true)}
+          >
+            <ul className="grid content-start gap-1 p-2">
+              {cards.map((card, i) => (
+                <li key={card.title}>
+                  <button
+                    type="button"
+                    className={cn(
+                      'w-full rounded-xl px-3 py-2.5 text-left',
+                      i === hi ? 'bg-[#171412] text-white' : 'text-[#6b645c] hover:bg-[#171412]/5',
+                    )}
+                    onMouseEnter={() => {
+                      setHeld(true)
+                      setHi(i)
+                    }}
+                    onFocus={() => {
+                      setHeld(true)
+                      setHi(i)
+                    }}
+                  >
+                    <b className="block text-[13px]">{card.title}</b>
+                    <span className="text-[11px] opacity-70">{card.meta}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <a href="#navbar" className="relative overflow-hidden rounded-[18px]" aria-label={live.title}>
+              <motion.div
+                key={live.src}
+                className="h-full min-h-[16rem]"
+                initial={reduced ? false : { scale: 1.08 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: reduced ? 0 : 4, ease: 'linear' }}
+              >
+                <Plate still={live.src} alt={live.title} className="h-full min-h-[16rem]" />
+              </motion.div>
+              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#171412] to-transparent p-4 text-white">
+                <b className="block text-sm">{live.title}</b>
+                <span className="text-[12px] text-white/75">{live.beat}</span>
+              </span>
+            </a>
+          </motion.div>
+        ) : null}
       </div>
       <Tray open={menu.open} id={tray} trapRef={menu.root} title="Folio work" className="border border-[#171412]/10 bg-white">
-        {cards.map((card) => (
-          <a key={card.title} href="#navbar" className="mb-3 block overflow-hidden rounded-2xl">
-            <Plate still={card.src} alt={card.title} className="h-36" />
-            <b className="mt-2 block">{card.title}</b>
-            <span className="text-[12px] text-[#6b645c]">{card.meta}</span>
-          </a>
+        <div className="mb-3 flex gap-2 overflow-x-auto">
+          {items.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className={cn('shrink-0 rounded-full px-3 py-1 text-[12px]', section === item.id ? 'bg-[#be123c] text-white' : 'bg-[#171412]/10')}
+              onClick={() => openSection(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+        <div className="overflow-hidden rounded-2xl">
+          <Plate still={live.src} alt={live.title} className="h-40" />
+          <b className="mt-2 block">{live.title}</b>
+          <span className="text-[12px] text-[#6b645c]">{live.beat}</span>
+        </div>
+        {cards.map((card, i) => (
+          <button key={card.title} type="button" className="mt-2 block w-full py-2 text-left text-sm" onClick={() => setHi(i)}>
+            {card.title}
+          </button>
         ))}
       </Tray>
       {props.scene === false ? null : (
-        <div className={cn('px-6 py-10 md:px-10', menu.open && 'max-md:invisible')}>
+        <div className={cn('px-6 py-8 md:px-10', menu.open && 'max-md:invisible')}>
           <h1 className="text-[clamp(2.2rem,5vw,3.6rem)] leading-[0.94] font-extrabold tracking-[-0.05em]">Work that lands in a fan.</h1>
         </div>
       )}
@@ -474,85 +575,147 @@ function MegaNav(props: NavbarProps) {
   )
 }
 
-function AnimatePanel({ open, reduced, children }: { open: boolean; reduced: boolean; children: React.ReactNode }) {
-  if (!open) return null
-  return (
-    <motion.div initial={reduced ? false : { y: 12, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={springs.heavy}>
-      {children}
-    </motion.div>
-  )
-}
+const RELAY_GROUPS = ['Files', 'Ops', 'Docs', 'People', 'Actions'] as const
+
+const RELAY = [
+  { id: 'f1', group: 'Files', label: 'checkout-edge.ts', hint: 'src/edge', action: 'Open', keys: 'checkout edge ts src file' },
+  { id: 'f2', group: 'Files', label: 'auth-sessions.ts', hint: 'src/auth', action: 'Open', keys: 'auth sessions ts file' },
+  { id: 'o1', group: 'Ops', label: 'canary 12% on checkout-edge', hint: 'watch', action: 'Status', keys: 'canary checkout ops watch' },
+  { id: 'o2', group: 'Ops', label: 'replay last deploy', hint: 'eu-west', action: 'Run', keys: 'replay deploy run ops' },
+  { id: 'o3', group: 'Ops', label: 'ingest-eu 13:51 clear', hint: 'log', action: 'Tail', keys: 'ingest eu log clear' },
+  { id: 'd1', group: 'Docs', label: 'Auth sessions', hint: 'product / auth', action: 'Jump', keys: 'docs auth sessions' },
+  { id: 'd2', group: 'Docs', label: 'Webhooks', hint: 'product / webhooks', action: 'Jump', keys: 'docs webhooks' },
+  { id: 'p1', group: 'People', label: 'Ada Klein', hint: 'on desk', action: 'Page', keys: 'ada klein people' },
+  { id: 'p2', group: 'People', label: 'Jon Reed', hint: 'away', action: 'Page', keys: 'jon reed people' },
+  { id: 'a1', group: 'Actions', label: 'Copy last incident', hint: 'clipboard', action: 'Copy', keys: 'copy incident clipboard' },
+  { id: 'a2', group: 'Actions', label: 'Mute ingest-eu', hint: 'alerts', action: 'Mute', keys: 'mute ingest alerts' },
+]
 
 function CommandNav(props: NavbarProps) {
   const reduced = usePrefersReducedMotion()
-  const rows = [
-    { k: 'src/', v: 'checkout-edge.ts', a: 'open' },
-    { k: 'ops/', v: 'canary 12% on checkout-edge', a: 'status' },
-    { k: 'doc/', v: 'Auth sessions', a: 'jump' },
-    { k: 'run/', v: 'replay last deploy', a: 'run' },
-    { k: 'log/', v: 'ingest-eu 13:51 clear', a: 'tail' },
-    { k: 'ppl/', v: 'Ada Klein · on desk', a: 'page' },
-  ]
-  const [q, setQ] = useState(props.query ?? 'checkout-edge canary')
+  const onQuery = props.onQuery
+  const [q, setQ] = useState(props.query ?? '')
   const [hi, setHi] = useState(0)
   const [held, setHeld] = useState(false)
-  const shown = rows.filter((row) => row.v.toLowerCase().includes(q.toLowerCase()) || row.k.includes(q.toLowerCase()))
-  const list = shown.length ? shown : rows
+  const [ran, setRan] = useState<string | null>(null)
+  const ranked = RELAY.map((row) => ({ row, score: fuzzyScore(q, row.label, row.hint, row.group, row.action, row.keys) }))
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score)
+  const list = ranked.map((item) => item.row)
+  const groups = RELAY_GROUPS.map((group) => ({ group, rows: list.filter((row) => row.group === group) })).filter((g) => g.rows.length)
+  const listRef = useRef(list)
+  const hiRef = useRef(hi)
+  listRef.current = list
+  hiRef.current = hi
+  useEffect(() => {
+    setHi(0)
+  }, [q])
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
+      const rows = listRef.current
       if (event.key === 'ArrowDown') {
         event.preventDefault()
         setHeld(true)
-        setHi((n) => Math.min(list.length - 1, n + 1))
+        setHi((n) => Math.min(Math.max(rows.length - 1, 0), n + 1))
       }
       if (event.key === 'ArrowUp') {
         event.preventDefault()
         setHeld(true)
         setHi((n) => Math.max(0, n - 1))
       }
+      if (event.key === 'Enter') {
+        const row = rows[hiRef.current]
+        if (row) {
+          event.preventDefault()
+          setHeld(true)
+          setRan(`${row.action} · ${row.label}`)
+        }
+      }
+      if (event.key === 'Escape' && q) {
+        event.preventDefault()
+        setQ('')
+        onQuery?.('')
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [list.length])
+  }, [onQuery, q])
   useEffect(() => {
-    if (reduced || held) return
-    const id = window.setInterval(() => setHi((n) => (n + 1) % list.length), 1800)
+    if (reduced || held || list.length < 2) return
+    const id = window.setInterval(() => setHi((n) => (n + 1) % list.length), 1600)
     return () => window.clearInterval(id)
   }, [held, list.length, reduced])
   return (
     <Shell variant="command" className={cn('flex min-h-[36rem] flex-col bg-[#0b0d10] text-[#e7edf3]', props.className)}>
-      <nav aria-label="Command" className="flex items-center gap-3 border-b border-[#1e242c] px-4 py-3 md:px-6">
-        <strong>{props.logo ?? 'Relay'}</strong>
+      <nav aria-label="Command" className="flex items-center gap-3 border-b border-[#1e242c] px-4 py-2.5 md:px-6">
+        <strong className="text-[13px] font-semibold tracking-[-0.02em]">{props.logo ?? 'Relay'}</strong>
         <label className="sr-only" htmlFor="relay-q">
-          Ask Relay
+          Jump
         </label>
         <input
           id="relay-q"
           value={q}
           onChange={(event) => {
+            setHeld(true)
             setQ(event.target.value)
             props.onQuery?.(event.target.value)
           }}
-          placeholder="Ask Relay…"
-          className="h-11 flex-1 rounded-xl border border-[#2a3340] bg-[#141a22] px-3 font-mono text-[13px] text-[#e7edf3] outline-none focus-visible:ring-2 focus-visible:ring-[#4ade80]"
+          placeholder="Jump to file, agent, doc…"
+          autoComplete="off"
+          aria-controls="relay-list"
+          aria-activedescendant={list[hi] ? `relay-${list[hi].id}` : undefined}
+          className="h-10 flex-1 rounded-lg border border-[#2a3340] bg-[#141a22] px-3 font-mono text-[13px] text-[#e7edf3] outline-none focus-visible:ring-2 focus-visible:ring-[#4ade80]"
         />
         <span className="hidden rounded-md border border-[#2a3340] px-2 py-1 font-mono text-[11px] text-[#8b9aab] md:inline">⌘K</span>
       </nav>
-      <div className="mx-auto mt-6 w-full max-w-xl px-4">
-        <ul className="overflow-hidden rounded-2xl border border-[#2a3340] bg-[#141a22]" role="listbox" aria-label="Results">
-          {list.map((row, i) => (
-            <li key={row.v} role="option" aria-selected={i === hi} className={cn('grid grid-cols-[4.5rem_1fr_auto] gap-3 px-4 py-3 font-mono text-[13px]', i === hi && 'bg-[#1a2430]')}>
-              <span className="text-[#4ade80]">{row.k}</span>
-              <span>{row.v}</span>
-              <span className="text-[#8b9aab]">{row.a}</span>
-            </li>
-          ))}
-        </ul>
+      <div className="mx-auto mt-5 w-full max-w-xl px-4">
+        {props.results ?? (
+          <div id="relay-list" role="listbox" aria-label="Results" className="overflow-hidden rounded-2xl border border-[#2a3340] bg-[#141a22]">
+            {groups.length === 0 ? (
+              <p className="px-4 py-6 font-mono text-[13px] text-[#8b9aab]">No match for “{q}”.</p>
+            ) : (
+              groups.map((block) => (
+                <div key={block.group}>
+                  <p className="px-4 pt-3 pb-1 font-mono text-[10px] tracking-[0.16em] text-[#8b9aab] uppercase">{block.group}</p>
+                  {block.rows.map((row) => {
+                    const i = list.findIndex((item) => item.id === row.id)
+                    return (
+                      <button
+                        key={row.id}
+                        id={`relay-${row.id}`}
+                        type="button"
+                        role="option"
+                        aria-selected={i === hi}
+                        className={cn('grid w-full grid-cols-[1fr_auto] gap-3 px-4 py-2.5 text-left font-mono text-[13px]', i === hi && 'bg-[#1a2430]')}
+                        onMouseEnter={() => {
+                          setHeld(true)
+                          setHi(i)
+                        }}
+                        onClick={() => {
+                          setHeld(true)
+                          setHi(i)
+                          setRan(`${row.action} · ${row.label}`)
+                        }}
+                      >
+                        <span>
+                          <span className="text-[#4ade80]">{row.label}</span>
+                          <span className="mt-0.5 block text-[11px] text-[#8b9aab]">{row.hint}</span>
+                        </span>
+                        <span className="self-center text-[11px] text-[#8b9aab]">{row.action}</span>
+                      </button>
+                    )
+                  })}
+                </div>
+              ))
+            )}
+          </div>
+        )}
+        <p className="mt-3 font-mono text-[12px] text-[#8b9aab]" aria-live="polite">
+          {ran ?? '↑↓ to move · Enter to run · Esc to clear'}
+        </p>
       </div>
       {props.scene === false ? null : (
-        <h1 className="mt-auto px-6 pb-12 text-center text-[clamp(1.8rem,4vw,2.8rem)] tracking-[-0.04em]">
-          {reduced ? 'The field is the navigation.' : 'The field is the navigation.'}
-        </h1>
+        <h1 className="mt-auto px-6 pb-10 text-center text-[clamp(1.8rem,4vw,2.6rem)] tracking-[-0.04em]">The field is the navigation.</h1>
       )}
     </Shell>
   )
@@ -599,18 +762,18 @@ function FollowNav(props: NavbarProps) {
           setSpot({ x: ((event.clientX - box.left) / box.width) * 100, y: ((event.clientY - box.top) / box.height) * 100 })
         }}
       >
-        <strong className="tracking-[0.2em]">{props.logo ?? 'NORTH'}</strong>
-        <div className="hidden gap-6 text-sm text-[#b5aea2] md:flex">
+        <strong className="text-[12px] font-semibold tracking-[0.22em]">{props.logo ?? 'NORTH'}</strong>
+        <div className="hidden gap-7 text-[12px] tracking-[-0.01em] text-[#b5aea2] md:flex">
           {items.map((item) => (
             <ItemLink key={item.id} item={item} className={cn(item.current && 'text-white')} />
           ))}
         </div>
         {props.action ?? (
-          <Magnetic href="#navbar" className="hidden h-10 items-center rounded-full bg-[#f97316] px-4 text-sm font-bold text-[#1a0b00] md:inline-flex">
+          <Magnetic href="#navbar" className="hidden h-8 items-center rounded-full bg-[#f97316] px-3.5 text-[12px] font-semibold text-[#1a0b00] md:inline-flex">
             Start a brief
           </Magnetic>
         )}
-        <OpenTrigger open={menu.open} onClick={() => menu.setOpen((v) => !v)} controls={tray} label="Index" className="h-10 rounded-full bg-[#f97316] px-3 text-sm font-bold text-[#1a0b00] md:hidden" />
+        <OpenTrigger open={menu.open} onClick={() => menu.setOpen((v) => !v)} controls={tray} label="Index" className="h-8 rounded-full bg-[#f97316] px-3 text-[12px] font-semibold text-[#1a0b00] md:hidden" />
       </nav>
       <Tray open={menu.open} id={tray} trapRef={menu.root} title="Northbound" className="border border-white/10 bg-[#14110e] text-[#f5f1e8]">
         {items.map((item) => (

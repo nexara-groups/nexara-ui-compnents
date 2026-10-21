@@ -9,6 +9,24 @@ import { useEffect, useRef, useState, type CSSProperties, type MutableRefObject,
 
 export const loadEase = [0.16, 1, 0.3, 1] as const
 
+/** Original subsequence scorer. Not Fuse, not cmdk. */
+export function fuzzyScore(query: string, ...parts: Array<string | number | undefined>) {
+  const q = String(query).trim().toLowerCase()
+  if (!q) return 1
+  const hay = parts
+    .filter((part) => part != null)
+    .join(' ')
+    .toLowerCase()
+  if (!hay) return 0
+  if (hay.includes(q)) return hay.startsWith(q) ? 5 : hay.split(/\s+/).some((word) => word.startsWith(q)) ? 4 : 3
+  let i = 0
+  for (const ch of hay) {
+    if (ch === q[i]) i += 1
+    if (i === q.length) return 1
+  }
+  return 0
+}
+
 export const FACE: Record<NavbarVariant, string> = {
   pill: '[font-family:Syne,sans-serif]',
   banner: '[font-family:Syne,sans-serif]',

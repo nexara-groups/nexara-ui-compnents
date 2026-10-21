@@ -81,11 +81,16 @@ async function recordClip(id, index) {
         await cdp.send('Input.dispatchMouseEvent', {
           type: 'mouseMoved',
           x: 280 + (i % 8) * 90,
-          y: 36 + (i % 3) * 10,
+          y: id === 'mega' ? 88 + (i % 5) * 36 : id === 'dock' ? 720 : 36 + (i % 3) * 10,
         })
         if (id === 'command' || id === 'portal') {
           await cdp.send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'ArrowDown', windowsVirtualKeyCode: 40 })
           await cdp.send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'ArrowDown', windowsVirtualKeyCode: 40 })
+        }
+        if (id === 'command' && i === 3) {
+          await cdp.send('Input.dispatchMouseEvent', { type: 'mousePressed', x: 560, y: 42, button: 'left', clickCount: 1 })
+          await cdp.send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: 560, y: 42, button: 'left', clickCount: 1 })
+          await cdp.send('Input.insertText', { text: 'can' })
         }
         await sleep(220)
       }
