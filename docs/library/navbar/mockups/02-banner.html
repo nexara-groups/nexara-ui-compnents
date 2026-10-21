@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>02 Banner — Lumen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    button, a { font: inherit; color: inherit; text-decoration: none; }
+    
+    body { font-family: Syne, sans-serif; color: #10141c; background: #f4f1ea; overflow: hidden; }
+    .note { background: #111; color: #facc15; display: flex; justify-content: center; gap: 18px; align-items: center;
+      font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; height: 36px; }
+    .note b { color: #fff; font-weight: 500; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; background: rgba(244,241,234,.92); border-bottom: 1px solid #e4ddd0; }
+    .mark { font-weight: 800; }
+    nav a { margin: 0 14px; font-size: 14px; color: #4a453c; }
+    .cta { height: 38px; padding: 0 16px; border-radius: 999px; border: 0; background: #111; color: #f4f1ea; font-weight: 800; }
+    .hero { padding: 72px 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    h1 { font-size: 64px; line-height: .92; letter-spacing: -.05em; }
+    p { margin-top: 16px; color: #5c574e; line-height: 1.6; max-width: 28rem; }
+    img { width: 100%; height: 380px; object-fit: cover; border-radius: 28px; }
+    
+  </style>
+</head>
+<body>
+<div class="note">Studio 12 opens Thursday · 18 seats left <b>Reserve a desk</b></div>
+    <nav aria-label="Primary">
+      <strong class="mark">Lumen</strong>
+      <div><a href="#">Product</a><a href="#">Studio</a><a href="#">Pricing</a></div>
+      <button class="cta" type="button">Open the desk</button>
+    </nav>
+    <div class="hero">
+      <div>
+        <h1>The bar absorbs the news.</h1>
+        <p>A live announcement strip sits on the bar. On scroll it collapses into a yellow pip beside the wordmark — not a second header.</p>
+      </div>
+      <img src="./assets/hero-glass-laptop.jpg" alt="" />
+    </div>
+</body>
+</html>

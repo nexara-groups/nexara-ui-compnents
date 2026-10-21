@@ -1,0 +1,369 @@
+{
+  "capturedAt": "2026-10-21T14:18:57.398Z",
+  "items": [
+    {
+      "file": "hero-linear.png",
+      "url": "copied:linear.png",
+      "kind": "copied-hero-ref",
+      "ok": true,
+      "bytes": 332391
+    },
+    {
+      "file": "hero-vercel.png",
+      "url": "copied:vercel.png",
+      "kind": "copied-hero-ref",
+      "ok": true,
+      "bytes": 51069
+    },
+    {
+      "file": "hero-apple.png",
+      "url": "copied:apple.png",
+      "kind": "copied-hero-ref",
+      "ok": true,
+      "bytes": 195092
+    },
+    {
+      "file": "hero-stripe.png",
+      "url": "copied:stripe.png",
+      "kind": "copied-hero-ref",
+      "ok": true,
+      "bytes": 584899
+    },
+    {
+      "file": "hero-framer-home.png",
+      "url": "copied:framer-home.png",
+      "kind": "copied-hero-ref",
+      "ok": true,
+      "bytes": 464755
+    },
+    {
+      "file": "hero-raycast.png",
+      "url": "copied:raycast.png",
+      "kind": "copied-hero-ref",
+      "ok": false,
+      "bytes": 0
+    },
+    {
+      "file": "hero-cursor.png",
+      "url": "copied:cursor.png",
+      "kind": "copied-hero-ref",
+      "ok": true,
+      "bytes": 336404
+    },
+    {
+      "file": "hero-aceternity-home.png",
+      "url": "copied:aceternity-home.png",
+      "kind": "copied-hero-ref",
+      "ok": true,
+      "bytes": 236855
+    },
+    {
+      "file": "hero-magicui-home.png",
+      "url": "copied:magicui-home.png",
+      "kind": "copied-hero-ref",
+      "ok": true,
+      "bytes": 124805
+    },
+    {
+      "file": "hero-21st-home.png",
+      "url": "copied:21st-home.png",
+      "kind": "copied-hero-ref",
+      "ok": true,
+      "bytes": 418128
+    },
+    {
+      "file": "hero-awwwards-home.png",
+      "url": "copied:awwwards-home.png",
+      "kind": "copied-hero-ref",
+      "ok": true,
+      "bytes": 206706
+    },
+    {
+      "file": "hero-godly.png",
+      "url": "copied:godly.png",
+      "kind": "copied-hero-ref",
+      "ok": true,
+      "bytes": 596187
+    },
+    {
+      "file": "hero-clerk.png",
+      "url": "copied:clerk.png",
+      "kind": "copied-hero-ref",
+      "ok": true,
+      "bytes": 136492
+    },
+    {
+      "file": "hero-resend.png",
+      "url": "copied:resend.png",
+      "kind": "copied-hero-ref",
+      "ok": false,
+      "bytes": 0
+    },
+    {
+      "file": "hero-openai.png",
+      "url": "copied:openai.png",
+      "kind": "copied-hero-ref",
+      "ok": true,
+      "bytes": 118833
+    },
+    {
+      "file": "hero-anthropic.png",
+      "url": "copied:anthropic.png",
+      "kind": "copied-hero-ref",
+      "ok": true,
+      "bytes": 342214
+    },
+    {
+      "file": "21st-navbar-gallery.png",
+      "url": "https://21st.dev/community/components/s/navbar",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 343423
+    },
+    {
+      "file": "21st-header-gallery.png",
+      "url": "https://21st.dev/community/components/s/header",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 263872
+    },
+    {
+      "file": "21st-floating-navbar.png",
+      "url": "https://21st.dev/community/components/explore/floating-navbar",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 109299
+    },
+    {
+      "file": "21st-navigation-menu.png",
+      "url": "https://21st.dev/community/components/s/navigation-menu",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 181767
+    },
+    {
+      "file": "21st-mega-menu.png",
+      "url": "https://21st.dev/@anelkabag/components/navbar2",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 42420
+    },
+    {
+      "file": "21st-efferd-nav.png",
+      "url": "https://21st.dev/@efferd/components/navigation-menu",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 30213
+    },
+    {
+      "file": "21st-wensity-nav.png",
+      "url": "https://21st.dev/@wensity/components/navigation-menu",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 59408
+    },
+    {
+      "file": "aceternity-floating-navbar.png",
+      "url": "https://ui.aceternity.com/components/floating-navbar",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 173446
+    },
+    {
+      "file": "aceternity-navbar-menu.png",
+      "url": "https://ui.aceternity.com/components/navbar-menu",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 173598
+    },
+    {
+      "file": "aceternity-resizable-navbar.png",
+      "url": "https://ui.aceternity.com/components/resizable-navbar",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 196323
+    },
+    {
+      "file": "aceternity-floating-dock.png",
+      "url": "https://ui.aceternity.com/components/floating-dock",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 169619
+    },
+    {
+      "file": "aceternity-sidebar.png",
+      "url": "https://ui.aceternity.com/components/sidebar",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 169209
+    },
+    {
+      "file": "magicui-dock.png",
+      "url": "https://magicui.design/docs/components/dock",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 127170
+    },
+    {
+      "file": "magicui-home-nav.png",
+      "url": "https://magicui.design",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 124959
+    },
+    {
+      "file": "linear-nav.png",
+      "url": "https://linear.app",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 332391
+    },
+    {
+      "file": "vercel-nav.png",
+      "url": "https://vercel.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 52820
+    },
+    {
+      "file": "raycast-nav.png",
+      "url": "https://www.raycast.com",
+      "kind": "page-screenshot",
+      "ok": false,
+      "bytes": 0
+    },
+    {
+      "file": "arc-nav.png",
+      "url": "https://arc.net",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 325756
+    },
+    {
+      "file": "framer-nav.png",
+      "url": "https://www.framer.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 460840
+    },
+    {
+      "file": "stripe-nav.png",
+      "url": "https://stripe.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 593021
+    },
+    {
+      "file": "apple-nav.png",
+      "url": "https://www.apple.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 195092
+    },
+    {
+      "file": "nextjs-nav.png",
+      "url": "https://nextjs.org",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 77076
+    },
+    {
+      "file": "cursor-nav.png",
+      "url": "https://cursor.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 332340
+    },
+    {
+      "file": "notion-nav.png",
+      "url": "https://www.notion.so",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 178202
+    },
+    {
+      "file": "figma-nav.png",
+      "url": "https://www.figma.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 323592
+    },
+    {
+      "file": "awwwards-nav.png",
+      "url": "https://www.awwwards.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 478323
+    },
+    {
+      "file": "godly-nav.png",
+      "url": "https://godly.website",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 613456
+    },
+    {
+      "file": "landbook.png",
+      "url": "https://land-book.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 447223
+    },
+    {
+      "file": "mobbin.png",
+      "url": "https://mobbin.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 92014
+    },
+    {
+      "file": "lapa-nav.png",
+      "url": "https://www.lapa.ninja",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 40498
+    },
+    {
+      "file": "dribbble-navbar.png",
+      "url": "https://dribbble.com/search/shots/popular/web-design?q=navbar%20ui",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 480430
+    },
+    {
+      "file": "pinterest-navbar.png",
+      "url": "https://www.pinterest.com/search/pins/?q=website%20navbar%20ui%20saas",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 443778
+    },
+    {
+      "file": "paper-nav.png",
+      "url": "https://paper.design",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 544025
+    },
+    {
+      "file": "cosmos-nav.png",
+      "url": "https://www.cosmos.so",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 290267
+    },
+    {
+      "file": "runway-nav.png",
+      "url": "https://runwayml.com",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 442465
+    },
+    {
+      "file": "perplexity-nav.png",
+      "url": "https://www.perplexity.ai",
+      "kind": "page-screenshot",
+      "ok": true,
+      "bytes": 43097
+    }
+  ]
+}
