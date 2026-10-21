@@ -45,6 +45,7 @@ function chromeShot(url, dest, size, index) {
         '--disable-dev-shm-usage',
         '--run-all-compositor-stages-before-draw',
         `--user-data-dir=${profile}`,
+        `--remote-debugging-port=${9600 + index}`,
         `--window-size=${w},${h}`,
         '--force-device-scale-factor=1',
         '--virtual-time-budget=8000',

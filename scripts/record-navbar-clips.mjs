@@ -92,6 +92,11 @@ async function recordClip(id, index) {
           await cdp.send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: 560, y: 42, button: 'left', clickCount: 1 })
           await cdp.send('Input.insertText', { text: 'can' })
         }
+        if (id === 'split') {
+          await cdp.send('Runtime.evaluate', {
+            expression: `(() => { const n = document.querySelector('[data-variant="split"]'); if (n) n.scrollTop = Math.min(n.scrollHeight - n.clientHeight, ${40 * (i + 1)}); return n ? n.scrollTop : 0 })()`,
+          })
+        }
         await sleep(220)
       }
     })()
