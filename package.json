@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/pages-fallback.mjs",
     "lint": "oxlint && node scripts/check-registry.mjs",
     "preview": "vite preview"
   },

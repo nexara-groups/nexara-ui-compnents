@@ -61,7 +61,9 @@ Art direction, research, critic notes, and proof clips: [`docs/flagship/`](./doc
 
 [Live preview](https://nexara-groups.github.io/nexara-ui-compnents/)
 
-That URL is the GitHub Pages site for this repo. Component pages are hash routes, for example [button](https://nexara-groups.github.io/nexara-ui-compnents/#button). The deploy workflow is [`.github/workflows/pages.yml`](./.github/workflows/pages.yml). It publishes on every push to `main`.
+That URL is the GitHub Pages site for this repo. Component pages are hash routes, for example [button](https://nexara-groups.github.io/nexara-ui-compnents/#button) and [hero / helix](https://nexara-groups.github.io/nexara-ui-compnents/#hero/helix). The deploy workflow is [`.github/workflows/pages.yml`](./.github/workflows/pages.yml). It publishes on every push to `main`.
+
+In the repository, open **Settings → Pages** and set **Source** to **GitHub Actions**. The deploy cannot publish until that source is selected. After saving it, re-run the workflow from the Actions tab.
 
 ## Docs site
 
