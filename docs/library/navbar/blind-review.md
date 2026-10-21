@@ -80,3 +80,40 @@ All 16 measured variants hold ~60 fps with **zero long tasks**. Pill is the slow
 - **Dock plate.** Reuses `hero-startup-loft` — cheerful couple, not a studio sill.
 
 Do not merge.
+
+## Round 3 — gap fix (`gaps/after/*-desktop.png`, recaptured phones, 8 page-only webms)
+
+Same four critics, now against the post-fix React stills. Motion-richness from the new clips. All changed languages ≥8, none weakest of the four refs.
+
+| Concept | Visual | Motion | FE/a11y | CD | Motion-rich | Weakest of 4? | Gate |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| pill | 8 | 8 | 8 | 8 | 8 | no | pass |
+| banner | 8 | 8 | 8 | 8 | 8 | no | pass |
+| tabs | 8 | 9 | 8 | 8 | 9 | no | pass |
+| clinic | 8 | 8 | 9 | 8 | 8 | no | pass |
+| follow | 8 | 8 | 8 | 8 | 8 | no | pass |
+| crumb | 8 | 8 | 9 | 8 | 8 | no | pass |
+| mega | 8 | 9 | 8 | 8 | 9 | no (Framer still denser; Folio is a named tour) | pass |
+| command | 8 | 8 | 9 | 8 | 8 | no | pass |
+| dock | 8 | 9 | 8 | 8 | 9 | no (Magic UI wins Finder likeness; Yard is a workshop) | pass |
+| island | 8 | 9 | 8 | 8 | 9 | no (Apple wins hardware; this is an ops morph) | pass |
+| split | 8 | 9 | 8 | 8 | 9 | no | pass |
+| portal | 8 | 8 | 8 | 8 | 8 | no | pass |
+
+What changed in the picture: quieter bars dropped to 12–13px / hairline borders / blur. Mega is a left-list + ken-burns preview that cycles Work / People / Journal. Command is grouped Files/Ops/Docs/People/Actions with a live highlight. Dock sits on framed prints and a film strip. Island’s pill carries idle / 14·12% / ⌘K and the desk below stays opaque. Split stills rest at the top of a long column; the clip is the scroll. Portal is a top bar plus a 12-col incident/agent/canary/region/desk-cam grid.
+
+## Perf (round 3, 4× CPU)
+
+All 16 measured variants hold ~60 fps with **zero long tasks**. Pill 58.9, mega 59.7 (retried after a probe miss), crumb 59.9. No compositor-blur disaster.
+
+## Honest remaining gaps
+
+- **Apple / Linear hairline.** Quieter now. Still objects, not 1px OS chrome.
+- **Raycast.** The palette is a real in-page catalog with fuzzy scoring. It is not a live filesystem indexer.
+- **Dock.** Magnify is original. Finder icons stay killed.
+- **Island.** Morphing ops desk, not Apple hardware. Phone stills show the designed tray, not the desktop desk.
+- **Portal.** Nimbus widget desk, not macOS Notification Center / Linear’s product density.
+- **Curtain stills.** Focus trap can still paint FILM gold on first paint (unchanged this round).
+- **crumb-phone.** Light docs page compresses under 20kb; the file is valid.
+
+Do not merge.
