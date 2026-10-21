@@ -676,7 +676,7 @@ function CommandNav(props: NavbarProps) {
             ) : (
               groups.map((block) => (
                 <div key={block.group}>
-                  <p className="px-4 pt-3 pb-1 font-mono text-[10px] tracking-[0.16em] text-[#8b9aab] uppercase">{block.group}</p>
+                  <p className="px-4 pt-2 pb-0.5 font-mono text-[10px] tracking-[0.16em] text-[#8b9aab] uppercase">{block.group}</p>
                   {block.rows.map((row) => {
                     const i = list.findIndex((item) => item.id === row.id)
                     return (
@@ -686,7 +686,7 @@ function CommandNav(props: NavbarProps) {
                         type="button"
                         role="option"
                         aria-selected={i === hi}
-                        className={cn('grid w-full grid-cols-[1fr_auto] gap-3 px-4 py-2.5 text-left font-mono text-[13px]', i === hi && 'bg-[#1a2430]')}
+                        className={cn('grid w-full grid-cols-[1fr_auto] gap-3 px-4 py-1.5 text-left font-mono text-[13px]', i === hi && 'bg-[#1a2430]')}
                         onMouseEnter={() => {
                           setHeld(true)
                           setHi(i)
@@ -715,7 +715,7 @@ function CommandNav(props: NavbarProps) {
         </p>
       </div>
       {props.scene === false ? null : (
-        <h1 className="mt-auto px-6 pb-10 text-center text-[clamp(1.8rem,4vw,2.6rem)] tracking-[-0.04em]">The field is the navigation.</h1>
+        <h1 className="mt-auto px-6 py-5 text-center text-lg tracking-[-0.04em] text-[#8b9aab]">The field is the navigation.</h1>
       )}
     </Shell>
   )

@@ -403,7 +403,12 @@ function IslandNav(props: NavbarProps) {
         </motion.nav>
       </div>
       <Tray open={menu.open} id={tray} trapRef={menu.root} title="Nimbus island" className="border border-[#22d3ee]/25 bg-[#0b2530] text-[#e8f4ff]">
-        <p className="font-mono text-[12px] text-[#67e8f9]">14 agents · canary 12%</p>
+        <p className="font-mono text-[12px] text-[#67e8f9]">{here.meta}</p>
+        <div className="mt-3 grid grid-cols-3 gap-2">
+          <Tile k="CANARY" v="12%" />
+          <Tile k="AGENTS" v="14" />
+          <Tile k="P95" v="98ms" />
+        </div>
         <a href="#navbar" className="mt-3 block rounded-2xl bg-[#071018] px-3 py-3">
           Ops
         </a>
@@ -415,10 +420,10 @@ function IslandNav(props: NavbarProps) {
         </a>
       </Tray>
       {props.scene === false ? null : (
-        <div className="relative z-10 mx-auto mt-8 w-full max-w-4xl flex-1 px-4 pb-8">
-          <AnimatePresence mode="wait">
+        <div className="relative z-10 mx-auto mt-8 hidden w-full max-w-4xl flex-1 px-4 pb-8 md:block">
+          <AnimatePresence mode="wait" initial={false}>
             {here.id === 'mark' ? (
-              <motion.div key="mark" initial={reduced ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="grid gap-3 md:grid-cols-2">
+              <motion.div key="mark" initial={false} animate={{ y: 0 }} exit={reduced ? undefined : { y: -8 }} className="grid gap-3 md:grid-cols-2">
                 <div className="rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-5">
                   <p className="font-mono text-[10px] tracking-[0.16em] text-[#67e8f9]">IDLE</p>
                   <h1 className="mt-3 text-[clamp(1.8rem,4vw,2.6rem)] tracking-[-0.05em]">The desk is waiting.</h1>
@@ -428,7 +433,7 @@ function IslandNav(props: NavbarProps) {
               </motion.div>
             ) : null}
             {here.id === 'live' ? (
-              <motion.div key="live" initial={reduced ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
+              <motion.div key="live" initial={false} animate={{ y: 0 }} exit={reduced ? undefined : { y: -8 }}>
                 <div className="grid gap-3 sm:grid-cols-3">
                   <Tile k="CANARY" v="12%" />
                   <Tile k="AGENTS" v="14" />
@@ -455,7 +460,7 @@ function IslandNav(props: NavbarProps) {
               </motion.div>
             ) : null}
             {here.id === 'cmd' ? (
-              <motion.div key="cmd" initial={reduced ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-4">
+              <motion.div key="cmd" initial={false} animate={{ y: 0 }} exit={reduced ? undefined : { y: -8 }} className="rounded-2xl border border-[#22d3ee]/20 bg-[#0b2530] p-4">
                 <p className="font-mono text-[10px] tracking-[0.16em] text-[#67e8f9]">ASK NIMBUS</p>
                 <p className="mt-3 rounded-lg border border-[#16313c] bg-[#071018] px-3 py-2 font-mono text-[13px] text-[#9ec4d8]">watch checkout-edge</p>
                 <ul className="mt-3 grid gap-2 font-mono text-[13px]">
