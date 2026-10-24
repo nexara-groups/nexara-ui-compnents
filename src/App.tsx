@@ -4,6 +4,7 @@ import { DocsApp } from '@/docs/docs-app.tsx'
 import { ThemesApp } from '@/docs/themes-app.tsx'
 import { FlagshipDashboardPage } from '@/flagship/dashboard-page.tsx'
 import { FlagshipLanding } from '@/flagship/landing.tsx'
+import { BoldShot } from '@/themes/kit/shots.tsx'
 import { ThemeShot } from '@/themes/pages.tsx'
 import { useEffect, useState } from 'react'
 
@@ -30,8 +31,13 @@ export default function App() {
 
   if (hash.startsWith('themes/shot/')) {
     const parts = hash.split('/')
-    const scheme = parts[3] === 'dark' ? 'dark' : 'light'
-    return <ThemeShot id={parts[2] || 'fieldnote'} scheme={scheme} />
+    const id = parts[2] || 'fieldnote'
+    const scheme = parts[3] === 'dark' || parts[4] === 'dark' ? 'dark' : 'light'
+    const bold = ['lagoon', 'strike', 'orrery', 'rally', 'array', 'editor', 'animations', 'compare'].includes(id)
+    const extra = parts[4]
+    const mode = extra === 'form' || extra === 'dashboard' || extra === 'kit' ? extra : undefined
+    if (bold) return <BoldShot id={id} scheme={scheme} mode={mode} />
+    return <ThemeShot id={id} scheme={scheme} />
   }
   if (hash === '' || hash === 'themes' || hash.startsWith('themes/')) {
     return <ThemesApp />

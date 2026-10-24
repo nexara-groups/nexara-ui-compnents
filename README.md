@@ -44,11 +44,13 @@ Every component also needs `clsx` and `tailwind-merge` through `src/lib/utils.ts
 
 ## Themes
 
-The library is a set of complete themes. Each theme is a design language: color (light and dark), type, radius, texture, and a motion preset. Components read one token contract, so a navbar from one theme can sit beside a hero from another.
+The current set is five motion languages on one token contract: Lagoon, Strike, Orrery, Rally, and Array. Fieldnote, Programme, Triplicate, and Quarry stay in the catalogue as the earlier set.
 
-- `#themes` — the four themes
+- `#themes` — the five themes
+- `#themes/editor` — live editor, guarded colors, preset restore
+- `#themes/animations` — the owned motion primitives
 - `#themes/builder` — pick components, retint tokens, copy the export
-- `#themes/mix` — Programme, Fieldnote, and Triplicate on one contract
+- `#themes/mix` — the earlier mix demo
 - `#themes/all` — every built section, with a theme filter
 
 Legacy heroes and navbars stay in the catalogue under **Legacy**. They are not the base for new themes. The decision record is [`docs/themes/decision.md`](./docs/themes/decision.md).

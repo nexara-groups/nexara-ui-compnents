@@ -3106,6 +3106,74 @@
         }
       ],
       "usage": "import { TriplicateCta } from '@/themes/triplicate/cta'"
+    },
+    {
+      "name": "theme-kit",
+      "type": "registry:lib",
+      "title": "Bold theme kit",
+      "description": "Lagoon, Strike, Orrery, Rally, and Array. Forms, buttons, overlays, the live editor, and the animation library.",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "@react-three/fiber",
+        "three"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/bold.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/color.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/level.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/button.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/fields.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/overlays.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/stage.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/editor.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/shots.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/show/rings.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/animations/library.tsx",
+          "type": "registry:lib"
+        }
+      ],
+      "usage": "import { ThemeStage } from \"@/themes/kit/stage\"\nimport { ThemeEditor } from \"@/themes/kit/editor\""
     }
   ]
 }

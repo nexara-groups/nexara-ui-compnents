@@ -2,7 +2,7 @@
 
 /** Shared token contract. Every theme fills the same fields so a foreign component can retint. */
 
-export const THEME_IDS = ['fieldnote', 'programme', 'triplicate', 'quarry'] as const
+export const THEME_IDS = ['fieldnote', 'programme', 'triplicate', 'quarry', 'lagoon', 'strike', 'orrery', 'rally', 'array'] as const
 export type ThemeId = (typeof THEME_IDS)[number]
 
 export const THEME_SLOTS = [
@@ -37,7 +37,13 @@ export type ThemeColors = {
   ply: string
   /** Clip, staple, or other hardware. */
   hardware: string
+  success?: string
+  warn?: string
+  danger?: string
 }
+
+export type MotionPersonality = 'liquid' | 'editorial' | 'cinematic' | 'tactile' | 'technical'
+export type MotionIntensity = 'off' | 'subtle' | 'rich'
 
 export type ThemeMotion = {
   id: string
@@ -64,6 +70,9 @@ export type ThemeDefinition = {
   texture: string
   icon: 'technical' | 'stencil' | 'ballpoint'
   motion: ThemeMotion
+  personality?: MotionPersonality
+  /** Inclusive radius slider limits, in px. */
+  radiusClamp?: [number, number]
 }
 
 export type ThemeSelection = Record<ThemeSlot, ThemeId>
@@ -96,6 +105,9 @@ export function themeToStyle(theme: ThemeDefinition, scheme: ThemeScheme): Recor
     '--nx-plate': c.plate,
     '--nx-ply': c.ply,
     '--nx-hardware': c.hardware,
+    '--nx-success': c.success ?? c.mark,
+    '--nx-warn': c.warn ?? c.mark,
+    '--nx-danger': c.danger ?? c.mark,
     '--nx-radius': theme.radius,
     '--nx-measure': theme.measure,
     '--nx-shadow': theme.shadow,

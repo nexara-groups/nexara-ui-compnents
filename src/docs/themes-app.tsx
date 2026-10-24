@@ -1,6 +1,9 @@
 'use client'
 
-import { exportTheme, THEME_SLOTS, type ThemeColors, type ThemeDefinition, type ThemeId, type ThemeScheme, type ThemeSelection, type ThemeSlot } from '@/themes/contract.ts'
+import { AnimationLibrary } from '@/themes/animations/library.tsx'
+import { exportTheme, THEME_IDS, THEME_SLOTS, type ThemeColors, type ThemeDefinition, type ThemeId, type ThemeScheme, type ThemeSelection, type ThemeSlot } from '@/themes/contract.ts'
+import { ThemeEditor } from '@/themes/kit/editor.tsx'
+import { ThemeStage } from '@/themes/kit/stage.tsx'
 import { themeDocs } from '@/themes/meta.ts'
 import { MixPage, mixSelection, slotThemes, ThemeBlock, ThemeCompose } from '@/themes/pages.tsx'
 import { ThemeProvider } from '@/themes/provider.tsx'
@@ -11,18 +14,25 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react'
 type Route =
   | { page: 'overview' }
   | { page: 'builder' }
+  | { page: 'editor' }
+  | { page: 'animations' }
   | { page: 'mix' }
   | { page: 'all' }
+  | { page: 'kit'; theme: ThemeId }
   | { page: 'theme'; theme: ThemeId; slot?: ThemeSlot }
 
 function parseRoute(hash: string): Route {
   const [, a, b] = hash.replace(/^#/, '').split('/')
   if (a === 'builder') return { page: 'builder' }
+  if (a === 'editor') return { page: 'editor' }
+  if (a === 'animations') return { page: 'animations' }
   if (a === 'mix') return { page: 'mix' }
   if (a === 'all') return { page: 'all' }
-  if (a === 'fieldnote' || a === 'programme' || a === 'triplicate' || a === 'quarry') {
+  if (a && (THEME_IDS as readonly string[]).includes(a)) {
+    const theme = a as ThemeId
+    if (b === 'kit') return { page: 'kit', theme }
     const slot = THEME_SLOTS.find((item) => item === b)
-    return { page: 'theme', theme: a, slot }
+    return { page: 'theme', theme, slot }
   }
   return { page: 'overview' }
 }
@@ -41,6 +51,8 @@ const nav = [
   { href: '#themes', label: 'Overview' },
   { href: '#themes/all', label: 'All components' },
   { href: '#themes/builder', label: 'Theme builder' },
+  { href: '#themes/editor', label: 'Live editor' },
+  { href: '#themes/animations', label: 'Animations' },
   { href: '#themes/mix', label: 'Mix demo' },
 ]
 
@@ -91,6 +103,13 @@ export function ThemesApp() {
                       Full page
                     </a>
                   </li>
+                  {theme.personality ? (
+                    <li>
+                      <a className="block rounded-xl px-3 py-1.5 text-sm text-zinc-300 no-underline hover:bg-white/5" href={`#themes/${theme.id}/kit`}>
+                        Kit
+                      </a>
+                    </li>
+                  ) : null}
                   {themeDocs
                     .filter((doc) => doc.theme === theme.id)
                     .map((doc) => (
@@ -110,6 +129,9 @@ export function ThemesApp() {
           {route.page === 'all' ? <AllComponents filter={filter} onFilter={setFilter} scheme={scheme} /> : null}
           {route.page === 'mix' ? <MixView scheme={scheme} /> : null}
           {route.page === 'builder' ? <Builder /> : null}
+          {route.page === 'editor' ? <ThemeEditor /> : null}
+          {route.page === 'animations' ? <AnimationLibrary /> : null}
+          {route.page === 'kit' ? <KitView id={route.theme} scheme={scheme} /> : null}
           {route.page === 'theme' ? <ThemeView id={route.theme} slot={route.slot} scheme={scheme} /> : null}
         </main>
       </div>
@@ -140,9 +162,9 @@ function Overview() {
     <article className="space-y-8">
       <header className="max-w-3xl">
         <p className="text-[11px] tracking-[0.2em] text-[#f5c16c] uppercase">Themes</p>
-        <h1 className="mt-2 font-serif text-4xl tracking-tight md:text-5xl">Four design languages. One contract.</h1>
+        <h1 className="mt-2 font-serif text-4xl tracking-tight md:text-5xl">Five motion languages. One contract.</h1>
         <p className="mt-3 text-base leading-7 text-zinc-300">
-          Install a theme, or pick components across themes and retint them in the builder. Heroes and navbars from the previous library stay under Legacy.
+          Lagoon, Strike, Orrery, Rally, and Array each move differently. The live editor retints inside a contrast guard. The earlier beige themes stay in the catalogue as legacy pages.
         </p>
       </header>
       <div className="grid gap-4 md:grid-cols-2">
@@ -176,6 +198,20 @@ function ThemeView({ id, slot, scheme }: { id: ThemeId; slot?: ThemeSlot; scheme
         </Frame>
         <Usage code={doc.usage} />
         <Props rows={doc.props} />
+      </article>
+    )
+  }
+  if (theme.personality) {
+    return (
+      <article className="space-y-6">
+        <header>
+          <p className="text-[11px] tracking-[0.2em] text-[#f5c16c] uppercase">{theme.motion.id}</p>
+          <h1 className="mt-2 font-serif text-4xl">{theme.name}</h1>
+          <p className="mt-3 max-w-2xl text-zinc-300">{theme.mood}</p>
+        </header>
+        <Frame scheme={scheme} theme={theme}>
+          <ThemeStage mode="landing" />
+        </Frame>
       </article>
     )
   }
@@ -255,6 +291,21 @@ function AllComponents({
   )
 }
 
+function KitView({ id, scheme }: { id: ThemeId; scheme: ThemeScheme }) {
+  const theme = themes[id]
+  return (
+    <article className="space-y-6">
+      <header>
+        <h1 className="font-serif text-4xl">{theme.name} kit</h1>
+        <p className="mt-3 max-w-2xl text-zinc-300">Forms, buttons, overlays, and feedback in this theme’s motion. Labels stay still.</p>
+      </header>
+      <Frame scheme={scheme} theme={theme}>
+        <ThemeStage mode="kit" />
+      </Frame>
+    </article>
+  )
+}
+
 function MixView({ scheme }: { scheme: ThemeScheme }) {
   return (
     <article className="space-y-6">
@@ -330,7 +381,7 @@ function Builder() {
             <input
               type="color"
               className="mt-1 h-11 w-full bg-transparent"
-              value={toColorInput(colors[key])}
+              value={toColorInput(colors[key] || '#000000')}
               onChange={(event) => paint(key, event.target.value)}
             />
           </label>

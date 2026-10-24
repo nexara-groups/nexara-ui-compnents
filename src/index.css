@@ -136,8 +136,31 @@ body {
   outline-offset: 2px;
 }
 
+.nx-theme .nx-frame :focus-visible {
+  outline: none;
+}
+
+@keyframes nx-shutter { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes nx-dolly { from { transform: rotateX(8deg) scale(1.06); opacity: 0; } to { transform: rotateX(0) scale(1); opacity: 1; } }
+@keyframes nx-slam { from { transform: scaleX(0.9) scaleY(1.08); } to { transform: scaleX(1) scaleY(1); } }
+@keyframes nx-iris { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes nx-blob { from { transform: translateX(28px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes nx-slide { from { transform: translateX(28px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes nx-scan { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes nx-spin { to { transform: rotate(360deg); } }
+@keyframes nx-drawer { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes nx-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes nx-drift { 50% { transform: translate(14px, -8px); } }
+@keyframes nx-rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
+@keyframes nx-flap { from { transform: rotateX(-90deg); } to { transform: rotateX(0deg); } }
+@keyframes nx-orbit { from { transform: rotateX(68deg) rotateZ(0deg); } to { transform: rotateX(68deg) rotateZ(18deg); } }
+@keyframes nx-quarter { from { transform: rotate(0deg); } to { transform: rotate(90deg); } }
+@keyframes nx-pop { from { opacity: 1; } to { opacity: 0; } }
+
 @media (prefers-reduced-motion: reduce) {
-  .nx-theme .nx-motion {
+  .nx-theme .nx-motion,
+  .nx-theme [role='dialog'],
+  .nx-theme [role='status'] {
     transition: none !important;
     animation: none !important;
   }

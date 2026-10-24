@@ -4,7 +4,7 @@ import { connectCdp, killChrome, launchChrome, sleep } from './cdp.mjs'
 const origin = process.env.THEME_ORIGIN ?? 'http://127.0.0.1:5173'
 const throttle = Number(process.env.THEME_CPU ?? 4)
 const sampleMs = 4000
-const pages = ['fieldnote', 'programme', 'mix']
+const pages = ['fieldnote', 'programme', 'mix', 'lagoon', 'strike', 'orrery', 'rally', 'array', 'animations', 'compare']
 const profile = `/tmp/chrome-theme-perf-${Date.now()}`
 const port = 9445
 const chrome = launchChrome({ profile, port, headless: true })
@@ -50,7 +50,8 @@ try {
   await cdp.send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 800, deviceScaleFactor: 1, mobile: false })
   await cdp.send('Emulation.setCPUThrottlingRate', { rate: throttle })
   for (const id of pages) {
-    await cdp.send('Page.navigate', { url: `${origin}/#themes/shot/${id}/light` })
+    const scheme = ['fieldnote', 'programme', 'mix'].includes(id) ? 'light' : 'dark'
+    await cdp.send('Page.navigate', { url: `${origin}/#themes/shot/${id}/${scheme}` })
     await sleep(1000)
     await cdp.send('Runtime.evaluate', { expression: probe })
     await sleep(sampleMs + 300)

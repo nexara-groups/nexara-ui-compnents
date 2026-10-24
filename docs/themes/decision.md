@@ -1,6 +1,26 @@
 # Theme decision
 
-Recorded 24 October 2026. Five critics scored a shared slate, killed the generic entries, and re-scored a revised set until every critic was at 8 or above on the themes we are keeping.
+## Bold redo, 24 October 2026
+
+The beige Fieldnote, Programme, Triplicate, and Quarry set was rejected as too regular. Those themes stay on disk so the old pages still compile. They are not the set being shipped forward.
+
+Five critics re-scored a new slate until every critic was at 8 or above. The locked themes are Lagoon (liquid), Strike (editorial), Orrery (cinematic), Rally (tactile), and Array (technical). Motion is a different property on each, not one transition with five durations. The research log is `docs/themes/research.md`. Per-item discussions are in `docs/themes/reviews/`.
+
+| Theme | Verb | What moves |
+| --- | --- | --- |
+| Lagoon | Book | Clipped disc, radius 24 to 12, blob behind an opaque plate |
+| Strike | Register | Glyph rotateX, vertical shutter, crimson as a rule |
+| Orrery | Start trial | Shell rotateX, three bronze rings, demand-drawn |
+| Rally | Join | Squash and counter-scaled type, twelve squares once |
+| Array | Call | A 1px rule, iris clip, one-timer scramble |
+
+Art, UX, motion, engineering, and the devil all finished at 8 or above on the themes, the button, the toast, the modal, the form kit, the drawer mark, the date cell, the file field, the editor (including preset restore), and the animation library. Round 1 did not pass and was not built. Shared spotlight, beams, magnetic targets, shimmer, and a spinner stayed out.
+
+Two contrast compromises are part of the lock. Orrery's mark is `#b45309` on both schemes because pale gold failed against the ivory text. Rally's day fill is `#9a3412` with cream text because `#ff5a36` on `#fff1e0` was 2.79:1. Night Rally stays `#ff5a36`.
+
+## Earlier record
+
+The section below is the first panel, which produced the beige themes. It is history, not the current gate.
 
 The library already had heliograph (ember on void), paper, ink, and clinical. Those stay in the catalogue as legacy. None of the new themes is a recolor of them.
 

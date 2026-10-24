@@ -1,5 +1,8 @@
 'use client'
 
+import { array, boldThemes, lagoon, orrery, rally, strike } from '@/themes/bold.ts'
+
+export { boldThemes }
 import type { ThemeDefinition, ThemeId } from '@/themes/contract.ts'
 
 const plex = '"IBM Plex Sans", "Instrument Sans", sans-serif'
@@ -279,6 +282,12 @@ export const themes: Record<ThemeId, ThemeDefinition> = {
   programme,
   triplicate,
   quarry,
+  lagoon,
+  strike,
+  orrery,
+  rally,
+  array,
 }
 
-export const themeList = [fieldnote, programme, triplicate, quarry]
+export const themeList = [lagoon, strike, orrery, rally, array]
+export const legacyThemeList = [fieldnote, programme, triplicate, quarry]
