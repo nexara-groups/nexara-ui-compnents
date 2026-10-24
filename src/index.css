@@ -116,6 +116,33 @@ body {
   --nx-ring: #7dd3fc;
 }
 
+.nx-theme {
+  background: var(--nx-bg);
+  color: var(--nx-fg);
+  font-family: var(--nx-font-body, var(--font-sans));
+}
+
+.nx-theme .nx-mono {
+  font-family: var(--nx-font-mono, var(--font-mono));
+  font-variant-numeric: tabular-nums;
+}
+
+.nx-theme .nx-display {
+  font-family: var(--nx-font-display, var(--font-display));
+}
+
+.nx-theme :focus-visible {
+  outline: 2px solid var(--nx-ring, currentColor);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-theme .nx-motion {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
 [data-nx-theme="clinical"] {
   --nx-bg: #f4f7f6;
   --nx-fg: #14302b;
