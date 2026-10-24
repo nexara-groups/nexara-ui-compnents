@@ -1,6 +1,7 @@
 'use client'
 
 import { useLevel, usePersonality } from '@/themes/kit/level.ts'
+import { usePlayOpen } from '@/themes/kit/motion.ts'
 import { useMenuDialog } from '@/themes/primitives.tsx'
 import { useEffect, useId, useState, type ReactNode } from 'react'
 
@@ -8,6 +9,7 @@ export function Modal({ title, open, onClose, children, contained = false }: { t
   const personality = usePersonality()
   const level = useLevel()
   const { ref, titleId } = useMenuDialog(open, onClose)
+  usePlayOpen(ref, open && personality === 'liquid', null, 16)
   if (!open) return null
   const transform = personality === 'cinematic' ? 'rotateX(0deg) scale(1)' : personality === 'tactile' ? 'scaleX(1) scaleY(1)' : 'none'
   return (
@@ -24,7 +26,7 @@ export function Modal({ title, open, onClose, children, contained = false }: { t
           border: '1px solid var(--nx-line)',
           borderRadius: personality === 'liquid' ? '16px' : 'var(--nx-radius)',
           transform,
-          animation: level === 'off' ? undefined : personality === 'editorial' ? 'nx-shutter 180ms cubic-bezier(0.16, 1, 0.3, 1)' : personality === 'cinematic' ? 'nx-dolly 280ms var(--nx-ease)' : personality === 'tactile' ? 'nx-slam 220ms cubic-bezier(0.34, 1.7, 0.64, 1)' : personality === 'technical' ? 'nx-iris 200ms linear' : 'nx-blob 280ms var(--nx-ease)',
+          animation: level === 'off' ? undefined : personality === 'editorial' ? 'nx-shutter 180ms cubic-bezier(0.16, 1, 0.3, 1)' : personality === 'cinematic' ? 'nx-dolly 280ms var(--nx-ease)' : personality === 'tactile' ? 'nx-slam 220ms cubic-bezier(0.34, 1.7, 0.64, 1)' : personality === 'technical' ? 'nx-iris 200ms linear' : undefined,
         }}
       >
         {personality === 'liquid' ? <span aria-hidden className="mb-3 block h-3 w-3 rounded-full" style={{ background: 'var(--nx-mark)', transform: 'scale(1)' }} /> : null}
@@ -66,10 +68,12 @@ export function Drawer({ title, open, onClose, children }: { title: string; open
   const { ref, titleId } = useMenuDialog(open, onClose)
   const level = useLevel()
   const personality = usePersonality()
+  usePlayOpen(ref, open && personality === 'liquid', null, 0)
   if (!open) return null
   return (
     <div className="fixed inset-0 z-40" style={{ background: 'color-mix(in srgb, var(--nx-fg) 40%, transparent)' }}>
-      <div ref={ref} role="dialog" aria-modal="true" aria-labelledby={titleId} className="absolute inset-y-0 right-0 w-full max-w-sm p-4" style={{ background: 'var(--nx-surface)', color: 'var(--nx-fg)', animation: level === 'off' ? undefined : 'nx-drawer 220ms var(--nx-ease)' }}>
+      <div
+        ref={ref} role="dialog" aria-modal="true" aria-labelledby={titleId} className="absolute inset-y-0 right-0 w-full max-w-sm p-4" style={{ background: 'var(--nx-surface)', color: 'var(--nx-fg)', animation: level === 'off' || personality === 'liquid' ? undefined : 'nx-drawer 220ms var(--nx-ease)' }}>
         <DrawerMark />
         <div className="flex items-center justify-between">
           <h2 id={titleId} className="text-xl">
