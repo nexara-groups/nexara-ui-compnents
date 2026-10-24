@@ -47,7 +47,7 @@ function walkThemeFiles(dir, acc = []) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name)
     if (entry.isDirectory()) walkThemeFiles(full, acc)
-    else if (entry.name.endsWith('.ts') || entry.name.endsWith('.tsx')) acc.push(path.relative(root, full))
+    else if (entry.name.endsWith('.ts') || entry.name.endsWith('.tsx')) acc.push(path.relative(root, full).split(path.sep).join('/'))
   }
   return acc
 }
