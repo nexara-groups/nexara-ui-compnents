@@ -136,6 +136,12 @@ export function DocsApp() {
           </a>
           <div className="flex items-center gap-3 text-sm">
             <a
+              href="#themes"
+              className="rounded-full border border-white/15 px-3 py-1.5 text-[#f6f3ec] hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]"
+            >
+              Themes
+            </a>
+            <a
               href="#flagship"
               className="rounded-full border border-white/15 px-3 py-1.5 text-[#f6f3ec] hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7cff]"
             >
