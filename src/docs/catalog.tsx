@@ -60,7 +60,7 @@ export const catalog: CatalogEntry[] = [
   {
     slug: 'flagship-cinematic-hero',
     name: 'Cinematic Hero',
-    category: 'Flagship',
+    category: 'Legacy',
     description: 'Scroll-driven iris reveal of the Helio instrument. Chapters, bloom, and a contained product still.',
     path: 'src/components/flagship/cinematic-hero.tsx',
     dependencies: flagshipDeps,
@@ -78,7 +78,7 @@ export const catalog: CatalogEntry[] = [
   {
     slug: 'flagship-orbital-hero',
     name: 'Orbital Hero',
-    category: 'Flagship',
+    category: 'Legacy',
     description: 'Contained WebGL heliograph that aims at the cursor. Orbit, beam, and focus modes.',
     path: 'src/components/flagship/orbital-hero.tsx',
     dependencies: [...flagshipDeps, 'three', '@react-three/fiber', '@react-three/drei'],
@@ -95,7 +95,7 @@ export const catalog: CatalogEntry[] = [
   {
     slug: 'flagship-kinetic-hero',
     name: 'Kinetic Hero',
-    category: 'Flagship',
+    category: 'Legacy',
     description: 'Editorial letters with mass. Click to lock, scroll to shear.',
     path: 'src/components/flagship/kinetic-hero.tsx',
     dependencies: flagshipDeps,
@@ -112,7 +112,7 @@ export const catalog: CatalogEntry[] = [
   {
     slug: 'flagship-atelier-nav',
     name: 'Atelier Nav',
-    category: 'Flagship',
+    category: 'Legacy',
     description: 'Morphing mega-menu bar and a full-viewport mobile drawer.',
     path: 'src/components/flagship/atelier-nav.tsx',
     dependencies: flagshipDeps,
@@ -528,7 +528,7 @@ export function Example() {
   {
     slug: 'floating-navbar',
     name: 'Floating Navbar',
-    category: 'Navigation',
+    category: 'Legacy',
     description: 'A pill navigation bar that compacts on scroll and collapses into a menu on small screens.',
     path: 'src/components/ui/floating-navbar.tsx',
     dependencies: motionDeps,
@@ -599,7 +599,7 @@ export function Example() {
   {
     slug: 'hero',
     name: 'Hero',
-    category: 'Library',
+    category: 'Legacy',
     studio: true,
     description: 'Twenty-four first-screen visual languages, filled with product chrome and motion by default. Themeable, original, not a Helio recolor.',
     path: 'src/components/ui/hero.tsx',
@@ -625,7 +625,7 @@ export function Example() {
   {
     slug: 'navbar',
     name: 'Navbar',
-    category: 'Library',
+    category: 'Legacy',
     studio: true,
     description: 'Eighteen navigation languages, each sitting on a sample hero. Original chrome, designed mobile, not a glowing pill rack.',
     path: 'src/components/ui/navbar.tsx',
@@ -761,4 +761,4 @@ export function Example() {
   },
 ]
 
-export const categories = ['Library', 'Flagship', 'Cards', 'Buttons', 'Backgrounds', 'Text', 'Navigation', 'Overlays', 'Sections'] as const
+export const categories = ['Library', 'Flagship', 'Cards', 'Buttons', 'Backgrounds', 'Text', 'Navigation', 'Overlays', 'Sections', 'Legacy'] as const

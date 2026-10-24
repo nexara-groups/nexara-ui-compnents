@@ -42,6 +42,27 @@ for (const file of componentFiles) {
   if (!registered.has(rel)) errors.push(`Unregistered component file: ${rel}`)
 }
 
+function walkThemeFiles(dir, acc = []) {
+  if (!existsSync(dir)) return acc
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name)
+    if (entry.isDirectory()) walkThemeFiles(full, acc)
+    else if (entry.name.endsWith('.ts') || entry.name.endsWith('.tsx')) acc.push(path.relative(root, full).split(path.sep).join('/'))
+  }
+  return acc
+}
+
+for (const rel of walkThemeFiles(path.join(root, 'src/themes'))) {
+  if (!registered.has(rel)) errors.push(`Unregistered theme file: ${rel}`)
+}
+
+for (const item of registry.items ?? []) {
+  if (item.type !== 'registry:theme') continue
+  if (!item.theme || !item.component || !item.variant) {
+    errors.push(`${item.name} needs theme, component, and variant`)
+  }
+}
+
 const flagshipDir = path.join(root, 'src/components/flagship')
 if (existsSync(flagshipDir)) {
   const flagshipFiles = readdirSync(flagshipDir).filter((file) => file.endsWith('.tsx') && file !== 'index.ts')

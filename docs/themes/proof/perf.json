@@ -1,0 +1,86 @@
+{
+  "throttle": 4,
+  "sampleMs": 4000,
+  "rows": [
+    {
+      "page": "fieldnote",
+      "cpuThrottle": 4,
+      "fps": 59,
+      "frames": 254,
+      "longTasks": 1,
+      "maxLongMs": 70
+    },
+    {
+      "page": "programme",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 259,
+      "longTasks": 0,
+      "maxLongMs": 0
+    },
+    {
+      "page": "mix",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 259,
+      "longTasks": 0,
+      "maxLongMs": 0
+    },
+    {
+      "page": "lagoon",
+      "cpuThrottle": 4,
+      "fps": 59.9,
+      "frames": 258,
+      "longTasks": 0,
+      "maxLongMs": 0
+    },
+    {
+      "page": "strike",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 259,
+      "longTasks": 0,
+      "maxLongMs": 0
+    },
+    {
+      "page": "orrery",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 259,
+      "longTasks": 0,
+      "maxLongMs": 0
+    },
+    {
+      "page": "rally",
+      "cpuThrottle": 4,
+      "fps": 59.9,
+      "frames": 258,
+      "longTasks": 0,
+      "maxLongMs": 0
+    },
+    {
+      "page": "array",
+      "cpuThrottle": 4,
+      "fps": 59.9,
+      "frames": 258,
+      "longTasks": 0,
+      "maxLongMs": 0
+    },
+    {
+      "page": "animations",
+      "cpuThrottle": 4,
+      "fps": 60,
+      "frames": 259,
+      "longTasks": 0,
+      "maxLongMs": 0
+    },
+    {
+      "page": "compare",
+      "cpuThrottle": 4,
+      "fps": 60.2,
+      "frames": 259,
+      "longTasks": 0,
+      "maxLongMs": 0
+    }
+  ]
+}

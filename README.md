@@ -42,6 +42,19 @@ Do not rewrite the component from scratch if it already exists here.
 
 Every component also needs `clsx` and `tailwind-merge` through `src/lib/utils.ts`. Each component has at least ten variants, and each variant is a different design, not a recolor or a different hover. The names are on the registry item (`variants[].name`) and on the docs page as `component / variant`, for example `hero / aurora`. Hero visual research is in `docs/library/hero/`. Other research notes are in `docs/research/`. Critique notes are in `docs/reviews/`.
 
+## Themes
+
+The current set is five motion languages on one token contract: Lagoon, Strike, Orrery, Rally, and Array. Fieldnote, Programme, Triplicate, and Quarry stay in the catalogue as the earlier set.
+
+- `#themes` — the five themes
+- `#themes/editor` — live editor, guarded colors, preset restore
+- `#themes/animations` — the owned motion primitives
+- `#themes/builder` — pick components, retint tokens, copy the export
+- `#themes/mix` — the earlier mix demo
+- `#themes/all` — every built section, with a theme filter
+
+Legacy heroes and navbars stay in the catalogue under **Legacy**. They are not the base for new themes. The decision record is [`docs/themes/decision.md`](./docs/themes/decision.md).
+
 ## Flagship (Helio)
 
 Depth-over-breadth work lives under the `flagship` namespace. The assembled site is a fictional night-desk product called Helio.

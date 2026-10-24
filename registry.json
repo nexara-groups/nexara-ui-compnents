@@ -2527,6 +2527,712 @@
           "usage": "<Stats variant=\"plot\" items={figures} />"
         }
       ]
+    },
+    {
+      "name": "theme-contract",
+      "type": "registry:lib",
+      "title": "Theme contract",
+      "description": "Shared CSS-variable contract, motion preset shape, and the four theme definitions.",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "src/themes/contract.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/themes.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "usage": "import { fieldnote } from '@/themes/themes'\nimport { exportTheme } from '@/themes/contract'"
+    },
+    {
+      "name": "theme-provider",
+      "type": "registry:lib",
+      "title": "Theme provider",
+      "description": "ThemeProvider, useTheme, and the motion primitives (tape, tear, score, sheet).",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract"
+      ],
+      "files": [
+        {
+          "path": "src/themes/provider.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/primitives.tsx",
+          "type": "registry:lib"
+        }
+      ],
+      "usage": "import { ThemeProvider } from '@/themes/provider'\n\n<ThemeProvider theme={fieldnote} scheme=\"light\">{children}</ThemeProvider>"
+    },
+    {
+      "name": "theme-pages",
+      "type": "registry:lib",
+      "title": "Theme pages",
+      "description": "Full-page compositions, the mix, and the component map used by the docs.",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract"
+      ],
+      "files": [
+        {
+          "path": "src/themes/pages.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/meta.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "usage": "import { FieldnotePage, MixPage } from '@/themes/pages'"
+    },
+    {
+      "name": "fieldnote-navbar",
+      "type": "registry:theme",
+      "title": "Fieldnote Navbar",
+      "description": "Job index with a phone number and a quote, and a dialog on small screens.",
+      "theme": "fieldnote",
+      "component": "navbar",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/fieldnote/navbar.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { FieldnoteNavbar } from '@/themes/fieldnote/navbar'"
+    },
+    {
+      "name": "fieldnote-hero",
+      "type": "registry:theme",
+      "title": "Fieldnote Hero",
+      "description": "A set headline, a tape flag on the live row, and an optional scroll station.",
+      "theme": "fieldnote",
+      "component": "hero",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/fieldnote/hero.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { FieldnoteHero } from '@/themes/fieldnote/hero'"
+    },
+    {
+      "name": "fieldnote-features",
+      "type": "registry:theme",
+      "title": "Fieldnote Features",
+      "description": "Services as a ruled list. The tape marks the row you are reading.",
+      "theme": "fieldnote",
+      "component": "features",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/fieldnote/features.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { FieldnoteFeatures } from '@/themes/fieldnote/features'"
+    },
+    {
+      "name": "fieldnote-stats",
+      "type": "registry:theme",
+      "title": "Fieldnote Stats",
+      "description": "Still figures. Rules draw. No count-up.",
+      "theme": "fieldnote",
+      "component": "stats",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/fieldnote/stats.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { FieldnoteStats } from '@/themes/fieldnote/stats'"
+    },
+    {
+      "name": "fieldnote-testimonial",
+      "type": "registry:theme",
+      "title": "Fieldnote Testimonial",
+      "description": "One service note on ruled paper.",
+      "theme": "fieldnote",
+      "component": "testimonial",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/fieldnote/testimonial.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { FieldnoteTestimonial } from '@/themes/fieldnote/testimonial'"
+    },
+    {
+      "name": "fieldnote-pricing",
+      "type": "registry:theme",
+      "title": "Fieldnote Pricing",
+      "description": "Plans as rows. The tape commits on click.",
+      "theme": "fieldnote",
+      "component": "pricing",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/fieldnote/pricing.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { FieldnotePricing } from '@/themes/fieldnote/pricing'"
+    },
+    {
+      "name": "fieldnote-cta",
+      "type": "registry:theme",
+      "title": "Fieldnote CTA",
+      "description": "The phone number is the headline.",
+      "theme": "fieldnote",
+      "component": "cta",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/fieldnote/cta.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { FieldnoteCTA } from '@/themes/fieldnote/cta'"
+    },
+    {
+      "name": "fieldnote-footer",
+      "type": "registry:theme",
+      "title": "Fieldnote Footer",
+      "description": "Yard, districts, and licences.",
+      "theme": "fieldnote",
+      "component": "footer",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/fieldnote/footer.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { FieldnoteFooter } from '@/themes/fieldnote/footer'"
+    },
+    {
+      "name": "programme-navbar",
+      "type": "registry:theme",
+      "title": "Programme Navbar",
+      "description": "Masthead with a yellow plate that lags, then snaps. The button stays ink.",
+      "theme": "programme",
+      "component": "navbar",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/programme/navbar.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { ProgrammeNavbar } from '@/themes/programme/navbar'"
+    },
+    {
+      "name": "programme-hero",
+      "type": "registry:theme",
+      "title": "Programme Hero",
+      "description": "Two names, a rolling score, staples, and a perforation.",
+      "theme": "programme",
+      "component": "hero",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/programme/hero.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { ProgrammeHero } from '@/themes/programme/hero'"
+    },
+    {
+      "name": "programme-features",
+      "type": "registry:theme",
+      "title": "Programme Features",
+      "description": "A fixture list with a claret rule.",
+      "theme": "programme",
+      "component": "features",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/programme/features.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { ProgrammeFeatures } from '@/themes/programme/features'"
+    },
+    {
+      "name": "programme-stats",
+      "type": "registry:theme",
+      "title": "Programme Stats",
+      "description": "Season figures in score windows.",
+      "theme": "programme",
+      "component": "stats",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/programme/stats.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { ProgrammeStats } from '@/themes/programme/stats'"
+    },
+    {
+      "name": "programme-testimonial",
+      "type": "registry:theme",
+      "title": "Programme Testimonial",
+      "description": "Two notes from the stand. No stars.",
+      "theme": "programme",
+      "component": "testimonial",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/programme/testimonial.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { ProgrammeTestimonial } from '@/themes/programme/testimonial'"
+    },
+    {
+      "name": "programme-pricing",
+      "type": "registry:theme",
+      "title": "Programme Pricing",
+      "description": "A membership table. Claret marks the row and does not fill the button.",
+      "theme": "programme",
+      "component": "pricing",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/programme/pricing.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { ProgrammePricing } from '@/themes/programme/pricing'"
+    },
+    {
+      "name": "programme-cta",
+      "type": "registry:theme",
+      "title": "Programme CTA",
+      "description": "A four-frame tear, then the register line.",
+      "theme": "programme",
+      "component": "cta",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/programme/cta.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { ProgrammeCTA } from '@/themes/programme/cta'"
+    },
+    {
+      "name": "programme-footer",
+      "type": "registry:theme",
+      "title": "Programme Footer",
+      "description": "Pavilion, training nights, charity number.",
+      "theme": "programme",
+      "component": "footer",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/programme/footer.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { ProgrammeFooter } from '@/themes/programme/footer'"
+    },
+    {
+      "name": "triplicate-cta",
+      "type": "registry:theme",
+      "title": "Triplicate CTA",
+      "description": "The sheet presses, then hard-cuts white, canary, pink. Pink says Filed.",
+      "theme": "triplicate",
+      "component": "cta",
+      "variant": "section",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/triplicate/cta.tsx",
+          "type": "registry:theme"
+        }
+      ],
+      "usage": "import { TriplicateCta } from '@/themes/triplicate/cta'"
+    },
+    {
+      "name": "theme-kit",
+      "type": "registry:lib",
+      "title": "Bold theme kit",
+      "description": "Lagoon, Strike, Orrery, Rally, and Array. Forms, buttons, overlays, the live editor, and the animation library.",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "clsx",
+        "tailwind-merge",
+        "@react-three/fiber",
+        "three"
+      ],
+      "registryDependencies": [
+        "utils",
+        "theme-contract",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/bold.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/color.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/level.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/button.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/fields.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/overlays.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/stage.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/editor.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/shots.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/show/rings.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/animations/library.tsx",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/motion.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/controls.tsx",
+          "type": "registry:lib"
+        }
+      ],
+      "usage": "import { ThemeStage } from \"@/themes/kit/stage\"\nimport { ThemeEditor } from \"@/themes/kit/editor\""
+    },
+    {
+      "name": "lagoon-showcase",
+      "type": "registry:block",
+      "title": "Lagoon showcase: Tidewell Clinic",
+      "description": "Landing page, front-desk dashboard and four-step booking form for a neighbourhood clinic, built on the Lagoon theme's liquid motion.",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "theme-kit",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/lagoon/data.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/lagoon/nav.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/lagoon/art.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/themes/lagoon/parts.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/themes/lagoon/landing.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/themes/lagoon/desk.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/themes/lagoon/book.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/themes/lagoon/showcase.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "usage": "Open #themes/lagoon/landing/dark, #themes/lagoon/desk/dark or #themes/lagoon/book/dark. Render <LagoonShowcase screen=\"landing\" scheme=\"dark\" /> to embed."
     }
   ]
 }

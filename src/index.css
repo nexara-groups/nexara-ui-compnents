@@ -116,6 +116,56 @@ body {
   --nx-ring: #7dd3fc;
 }
 
+.nx-theme {
+  background: var(--nx-bg);
+  color: var(--nx-fg);
+  font-family: var(--nx-font-body, var(--font-sans));
+}
+
+.nx-theme .nx-mono {
+  font-family: var(--nx-font-mono, var(--font-mono));
+  font-variant-numeric: tabular-nums;
+}
+
+.nx-theme .nx-display {
+  font-family: var(--nx-font-display, var(--font-display));
+}
+
+.nx-theme :focus-visible {
+  outline: 2px solid var(--nx-ring, currentColor);
+  outline-offset: 2px;
+}
+
+.nx-theme .nx-frame :focus-visible {
+  outline: none;
+}
+
+@keyframes nx-shutter { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes nx-dolly { from { transform: rotateX(8deg) scale(1.06); opacity: 0; } to { transform: rotateX(0) scale(1); opacity: 1; } }
+@keyframes nx-slam { from { transform: scaleX(0.9) scaleY(1.08); } to { transform: scaleX(1) scaleY(1); } }
+@keyframes nx-iris { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes nx-blob { from { transform: translateX(28px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes nx-slide { from { transform: translateX(28px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes nx-scan { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes nx-spin { to { transform: rotate(360deg); } }
+@keyframes nx-drawer { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes nx-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes nx-drift { 50% { transform: translate(14px, -8px); } }
+@keyframes nx-rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
+@keyframes nx-flap { from { transform: rotateX(-90deg); } to { transform: rotateX(0deg); } }
+@keyframes nx-orbit { from { transform: rotateX(68deg) rotateZ(0deg); } to { transform: rotateX(68deg) rotateZ(18deg); } }
+@keyframes nx-quarter { from { transform: rotate(0deg); } to { transform: rotate(90deg); } }
+@keyframes nx-pop { from { opacity: 1; } to { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-theme .nx-motion,
+  .nx-theme [role='dialog'],
+  .nx-theme [role='status'] {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
 [data-nx-theme="clinical"] {
   --nx-bg: #f4f7f6;
   --nx-fg: #14302b;
@@ -128,3 +178,13 @@ body {
   --nx-cool: #0f766e;
   --nx-ring: #0f766e;
 }
+
+@keyframes nx-liquid-spin {
+  0% { transform: rotate(0deg); border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%; }
+  50% { transform: rotate(180deg); border-radius: 58% 42% 45% 55% / 40% 60% 40% 60%; }
+  100% { transform: rotate(360deg); border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%; }
+}
+@keyframes nx-breathe { from { opacity: 0.55; border-radius: 22px; } to { opacity: 1; border-radius: 12px; } }
+@keyframes nx-float-a { 50% { transform: translate(18px, -14px) scale(1.04); } }
+@keyframes nx-float-b { 50% { transform: translate(-16px, 12px) scale(0.97); } }
+@keyframes nx-pulse-ring { from { transform: scale(1); opacity: 0.7; } to { transform: scale(2.6); opacity: 0; } }
