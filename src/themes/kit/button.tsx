@@ -119,18 +119,20 @@ export function NxButton({
 
 function BusyMark({ personality }: { personality: string }) {
   const level = useLevel()
-  if (level === 'off') return <span className="sr-only"> Loading</span>
-  if (personality === 'editorial') return <span className="sr-only"> Loading</span>
-  if (personality === 'technical') {
-    return <span aria-hidden className="ml-2 h-px w-8 origin-left" style={{ background: 'var(--nx-mark)', transform: 'scaleX(1)', animation: level === 'rich' ? 'nx-scan 700ms linear infinite' : undefined }} />
-  }
-  if (personality === 'cinematic') {
-    return <span aria-hidden className="ml-2 inline-block h-3 w-3 rounded-full border border-current" style={{ animation: 'nx-spin 900ms linear infinite' }} />
-  }
-  if (personality === 'liquid') {
-    return <span aria-hidden className="ml-2 inline-block h-2 w-2 rounded-full" style={{ background: 'var(--nx-mark)' }} />
-  }
-  return <span aria-hidden className="ml-2 inline-block h-2 w-2" style={{ background: 'var(--nx-hardware)' }} />
+  const motion = level !== 'off'
+  return (
+    <span className="ml-2 inline-flex items-center">
+      <span className="sr-only">Loading</span>
+      {personality === 'technical' ? (
+        <span aria-hidden className="nx-motion h-px w-8 origin-left" style={{ background: 'var(--nx-mark)', transform: 'scaleX(1)', animation: motion && level === 'rich' ? 'nx-scan 700ms linear infinite' : undefined }} />
+      ) : null}
+      {personality === 'cinematic' ? (
+        <span aria-hidden className="nx-motion inline-block h-3 w-3 rounded-full border border-current" style={{ animation: motion ? 'nx-spin 900ms linear infinite' : undefined }} />
+      ) : null}
+      {personality === 'liquid' ? <span aria-hidden className="inline-block h-2 w-2 rounded-full" style={{ background: 'var(--nx-mark)' }} /> : null}
+      {personality === 'tactile' ? <span aria-hidden className="inline-block h-2 w-2" style={{ background: 'var(--nx-hardware)' }} /> : null}
+    </span>
+  )
 }
 
 function Confetti() {
@@ -157,6 +159,38 @@ export function IconButton({ label, children, ...props }: ButtonHTMLAttributes<H
   return (
     <NxButton aria-label={label} className="px-0" {...props}>
       <span aria-hidden>{children}</span>
+    </NxButton>
+  )
+}
+
+export function SplitButton({ label, items, onPrimary }: { label: string; items: string[]; onPrimary?: () => void }) {
+  const [open, setOpen] = useState(false)
+  const menuId = useId()
+  return (
+    <div role="group" aria-label={label} className="relative inline-flex">
+      <NxButton onClick={onPrimary}>{label}</NxButton>
+      <NxButton aria-label={`${label} menu`} aria-haspopup="menu" aria-expanded={open} aria-controls={menuId} onClick={() => setOpen((value) => !value)}>
+        Menu
+      </NxButton>
+      {open ? (
+        <ul id={menuId} role="menu" className="absolute top-full left-0 z-10 mt-1 min-w-44" style={{ background: 'var(--nx-surface)', border: '1px solid var(--nx-line)' }}>
+          {items.map((item) => (
+            <li key={item} role="none">
+              <button type="button" role="menuitem" className="min-h-11 w-full px-3 text-left" onClick={() => setOpen(false)}>
+                {item}
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  )
+}
+
+export function Fab({ label, onClick }: { label: string; onClick?: () => void }) {
+  return (
+    <NxButton aria-label={label} onClick={onClick} className="min-h-11 min-w-11 px-0">
+      <span aria-hidden>+</span>
     </NxButton>
   )
 }

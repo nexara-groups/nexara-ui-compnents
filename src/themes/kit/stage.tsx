@@ -1,9 +1,10 @@
 'use client'
 
-import { NxButton } from '@/themes/kit/button.tsx'
+import { Fab, NxButton, SplitButton } from '@/themes/kit/button.tsx'
 import {
   CheckField,
   ColorField,
+  ComboField,
   DateField,
   DateRangeField,
   DateTimeField,
@@ -23,7 +24,7 @@ import {
   TextField,
   TimeField,
 } from '@/themes/kit/fields.tsx'
-import { Alert, Banner, Drawer, EmptyState, MenuButton, Modal, NotFound, Popover, ProgressBar, ToastStack, Tooltip } from '@/themes/kit/overlays.tsx'
+import { Alert, Banner, CommandDialog, ContextMenu, Drawer, EmptyState, MenuButton, Modal, NotFound, Popover, ProgressBar, ToastStack, Tooltip } from '@/themes/kit/overlays.tsx'
 import { usePersonality } from '@/themes/kit/level.ts'
 import { OrreryRings } from '@/themes/show/rings.tsx'
 import { ThemeProvider } from '@/themes/provider.tsx'
@@ -45,20 +46,33 @@ export function ThemeStage({ mode }: { mode: 'landing' | 'dashboard' | 'form' | 
   const [toast, setToast] = useState<string | null>(null)
   const [modal, setModal] = useState(false)
   const [drawer, setDrawer] = useState(false)
+  const [command, setCommand] = useState(false)
+  const [enrolled, setEnrolled] = useState(false)
   const dismiss = useCallback(() => setToast(null), [])
+  const closeCommand = useCallback(() => setCommand(false), [])
+  const showLanding = mode === 'landing' || mode === 'kit'
+  function enrol(message: string) {
+    if (personality === 'tactile') setEnrolled(true)
+    setModal(false)
+    setToast(message)
+  }
 
   return (
     <div data-theme-stage={personality}>
       <Banner>The desk is open. {verb} stays in the first row.</Banner>
-      {mode === 'landing' || mode === 'kit' ? <Landing verb={verb} onAct={() => setModal(true)} /> : null}
+      {showLanding ? <Landing verb={verb} enrolled={enrolled} onAct={() => setModal(true)} /> : null}
       {mode === 'dashboard' ? <Dashboard /> : null}
-      {mode === 'form' || mode === 'kit' ? <FormScreen verb={verb} onToast={() => setToast(`${verb} is filed.`)} /> : null}
+      {mode === 'form' || mode === 'kit' ? <FormScreen verb={verb} burst={!showLanding && enrolled} onToast={() => enrol(`${verb} is filed.`)} /> : null}
       {mode === 'kit' ? (
         <div className="flex flex-wrap gap-3 px-4 py-6">
           <NxButton onClick={() => setModal(true)}>{verb}</NxButton>
           <NxButton tone="quiet" onClick={() => setDrawer(true)}>Notes</NxButton>
           <NxButton busy>Saving</NxButton>
           <MenuButton label="More" items={['Duplicate', 'Archive']} />
+          <SplitButton label="File" items={['Save a copy', 'Export']} />
+          <Fab label="New filing" onClick={() => setToast('New filing.')} />
+          <ContextMenu label="Desk" items={['Duplicate', 'Archive', 'Copy link']} />
+          <NxButton onClick={() => setCommand(true)}>Command</NxButton>
           <Popover label="Hours">Weekdays, 08:00 to 18:00.</Popover>
           <Tooltip label="Status" tip="Visible without hovering." />
           <NxButton onClick={() => setToast('Saved. The sheet did not move the words.')}>Notify</NxButton>
@@ -68,9 +82,10 @@ export function ThemeStage({ mode }: { mode: 'landing' | 'dashboard' | 'form' | 
       <Modal title={verb} open={modal} onClose={() => setModal(false)}>
         <p>Confirm {verb.toLowerCase()}. The title stays still.</p>
         <div className="mt-4">
-          <NxButton onClick={() => { setModal(false); setToast(`${verb} confirmed.`) }}>{verb}</NxButton>
+          <NxButton onClick={() => enrol(`${verb} confirmed.`)}>{verb}</NxButton>
         </div>
       </Modal>
+      <CommandDialog open={command} onClose={closeCommand} />
       <Drawer title="Notes" open={drawer} onClose={() => setDrawer(false)}>
         <p>The drawer keeps the first control immediate.</p>
       </Drawer>
@@ -79,7 +94,7 @@ export function ThemeStage({ mode }: { mode: 'landing' | 'dashboard' | 'form' | 
   )
 }
 
-function Landing({ verb, onAct }: { verb: string; onAct: () => void }) {
+function Landing({ verb, enrolled, onAct }: { verb: string; enrolled: boolean; onAct: () => void }) {
   const personality = usePersonality()
   return (
     <section className="relative overflow-hidden px-4 py-12 md:px-8">
@@ -91,7 +106,7 @@ function Landing({ verb, onAct }: { verb: string; onAct: () => void }) {
         <h1 className="nx-display text-5xl leading-none md:text-7xl">{headline(personality)}</h1>
         <p className="mt-4 max-w-xl text-lg" style={{ color: 'var(--nx-muted)' }}>{lede(personality)}</p>
         <div className="mt-6">
-          <NxButton onClick={onAct} burst={personality === 'tactile'}>{verb}</NxButton>
+          <NxButton onClick={onAct} burst={personality === 'tactile' && enrolled}>{verb}</NxButton>
         </div>
       </div>
       {personality === 'editorial' ? <Marquee /> : null}
@@ -157,12 +172,13 @@ function Dashboard() {
   )
 }
 
-export function FormScreen({ verb, onToast }: { verb: string; onToast: () => void }) {
+export function FormScreen({ verb, onToast, burst = false }: { verb: string; onToast: () => void; burst?: boolean }) {
   const [name, setName] = useState('Ada Marsh')
   const [note, setNote] = useState('North round')
   const [secret, setSecret] = useState('tide-42')
   const [query, setQuery] = useState('')
   const [team, setTeam] = useState('Under 12')
+  const [clinic, setClinic] = useState('North clinic')
   const [kits, setKits] = useState<string[]>(['Home'])
   const [agree, setAgree] = useState(true)
   const [plan, setPlan] = useState('Weekday')
@@ -197,6 +213,7 @@ export function FormScreen({ verb, onToast }: { verb: string; onToast: () => voi
       <PasswordField label="Password" value={secret} onChange={setSecret} />
       <SearchField label="Search the desk" value={query} onChange={setQuery} onSubmit={onToast} />
       <SelectField label="Group" value={team} onChange={setTeam} options={['Under 10', 'Under 12', 'Under 14']} />
+      <ComboField label="Clinic" value={clinic} onChange={setClinic} options={['North', 'North clinic', 'South clinic', 'Saturday group']} />
       <MultiSelect label="Kit" values={kits} onChange={setKits} options={['Home', 'Away', 'Keep']} />
       <CheckField label="I can make Thursday" checked={agree} onChange={setAgree} />
       <RadioField label="Plan" name="plan" value={plan} current={plan} onChange={setPlan} options={['Weekday', 'Saturday']} />
@@ -212,7 +229,7 @@ export function FormScreen({ verb, onToast }: { verb: string; onToast: () => voi
       <ColorField label="Swatch" value={color} onChange={setColor} />
       <RatingField label="Visit" value={rating} onChange={setRating} />
       <TagField label="Tags" tags={tags} onChange={setTags} />
-      <NxButton type="submit">{verb}</NxButton>
+      <NxButton type="submit" burst={burst}>{verb}</NxButton>
     </form>
   )
 }

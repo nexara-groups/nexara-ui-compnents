@@ -1,8 +1,9 @@
 'use client'
 
+import { filterOptions, stepCursor } from '@/themes/kit/keys.ts'
 import { useLevel, usePersonality } from '@/themes/kit/level.ts'
 import { useMenuDialog } from '@/themes/primitives.tsx'
-import { useEffect, useId, useState, type ReactNode } from 'react'
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
 
 export function Modal({ title, open, onClose, children, contained = false }: { title: string; open: boolean; onClose: () => void; children: ReactNode; contained?: boolean }) {
   const personality = usePersonality()
@@ -111,6 +112,159 @@ export function Tooltip({ label, tip }: { label: string; tip: string }) {
       {label}
       {open ? <span id={id} role="tooltip" className="ml-2 text-xs" style={{ color: 'var(--nx-muted)' }}>{tip}</span> : null}
     </button>
+  )
+}
+
+const commands = ['Book a visit', 'Register a team', 'Start trial', 'Join the group', 'Call the desk', 'Open notes']
+
+export function CommandDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const listId = useId()
+  const [query, setQuery] = useState('')
+  const [cursor, setCursor] = useState(0)
+  const [wasOpen, setWasOpen] = useState(open)
+  if (open !== wasOpen) {
+    setWasOpen(open)
+    if (open) {
+      setQuery('')
+      setCursor(0)
+    }
+  }
+  const { ref, titleId } = useMenuDialog(open, onClose)
+  const matches = filterOptions(commands, query)
+  const index = matches.length === 0 ? 0 : Math.min(cursor, matches.length - 1)
+
+  if (!open) return null
+  return (
+    <div className="fixed inset-0 z-40 flex items-start justify-center p-4 sm:items-center" style={{ background: 'color-mix(in srgb, var(--nx-fg) 40%, transparent)' }}>
+      <div ref={ref} role="dialog" aria-modal="true" aria-labelledby={titleId} className="w-full max-w-md p-4" style={{ background: 'var(--nx-surface)', color: 'var(--nx-fg)', border: '1px solid var(--nx-line)' }}>
+        <h2 id={titleId} className="text-xl">Command search</h2>
+        <input
+          className="mt-3 min-h-11 w-full px-3"
+          style={{ border: '1px solid var(--nx-line)', background: 'var(--nx-bg)', color: 'var(--nx-fg)' }}
+          role="combobox"
+          aria-label="Command search"
+          aria-expanded="true"
+          aria-controls={listId}
+          aria-autocomplete="list"
+          aria-activedescendant={matches[index] ? `${listId}-opt-${index}` : undefined}
+          value={query}
+          onChange={(event) => {
+            setQuery(event.target.value)
+            setCursor(0)
+          }}
+          onKeyDown={(event) => {
+            const step = stepCursor(index, matches.length, event.key)
+            if (step === null) return
+            event.preventDefault()
+            if (step === 'close') onClose()
+            else if (step === 'pick') {
+              if (matches[index]) onClose()
+            } else setCursor(step)
+          }}
+        />
+        <ul id={listId} role="listbox" aria-label="Commands" className="mt-2">
+          {matches.map((item, itemIndex) => (
+            <li
+              key={item}
+              id={`${listId}-opt-${itemIndex}`}
+              role="option"
+              aria-selected={itemIndex === index}
+              className="min-h-11 px-3 py-2"
+              style={{ background: itemIndex === index ? 'var(--nx-line)' : 'transparent' }}
+              onMouseDown={(event) => {
+                event.preventDefault()
+                onClose()
+              }}
+            >
+              {item}
+            </li>
+          ))}
+          {matches.length === 0 ? <li className="min-h-11 px-3 py-2">No matches</li> : null}
+        </ul>
+        <button type="button" className="mt-3 min-h-11 px-3" onClick={onClose}>Close</button>
+      </div>
+    </div>
+  )
+}
+
+export function ContextMenu({ label, items }: { label: string; items: string[] }) {
+  const [open, setOpen] = useState(false)
+  const [cursor, setCursor] = useState(0)
+  const id = useId()
+  const trigger = useRef<HTMLButtonElement>(null)
+  const itemRefs = useRef<Array<HTMLButtonElement | null>>([])
+
+  useEffect(() => {
+    if (open) itemRefs.current[cursor]?.focus()
+  }, [open, cursor])
+
+  return (
+    <div
+      className="relative"
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false)
+      }}
+      onContextMenu={(event) => {
+        event.preventDefault()
+        setCursor(0)
+        setOpen(true)
+      }}
+      onKeyDown={(event) => {
+        const menuKey = event.key === 'ContextMenu' || (event.key === 'F10' && event.shiftKey)
+        if (!open && (menuKey || event.key === 'ArrowDown')) {
+          event.preventDefault()
+          setCursor(0)
+          setOpen(true)
+          return
+        }
+        if (!open) return
+        if (event.key === 'ArrowDown') {
+          event.preventDefault()
+          setCursor((value) => (value + 1) % items.length)
+        } else if (event.key === 'ArrowUp') {
+          event.preventDefault()
+          setCursor((value) => (value - 1 + items.length) % items.length)
+        } else if (event.key === 'Home') {
+          event.preventDefault()
+          setCursor(0)
+        } else if (event.key === 'End') {
+          event.preventDefault()
+          setCursor(items.length - 1)
+        } else if (event.key === 'Escape' || menuKey) {
+          event.preventDefault()
+          setOpen(false)
+          trigger.current?.focus()
+        }
+      }}
+    >
+      <button ref={trigger} type="button" className="min-h-11 px-3" style={{ border: '1px solid var(--nx-line)' }} aria-haspopup="menu" aria-expanded={open} aria-controls={id}>
+        {label}
+      </button>
+      {open ? (
+        <ul id={id} role="menu" className="absolute z-10 mt-1 min-w-44" style={{ background: 'var(--nx-surface)', border: '1px solid var(--nx-line)' }}>
+          {items.map((item, itemIndex) => (
+            <li key={item} role="none">
+              <button
+                ref={(node) => {
+                  itemRefs.current[itemIndex] = node
+                }}
+                type="button"
+                role="menuitem"
+                tabIndex={itemIndex === cursor ? 0 : -1}
+                className="min-h-11 w-full px-3 text-left"
+                style={{ background: itemIndex === cursor ? 'var(--nx-line)' : 'transparent' }}
+                onClick={() => {
+                  setOpen(false)
+                  trigger.current?.focus()
+                }}
+              >
+                {item}
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
   )
 }
 

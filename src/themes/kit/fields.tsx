@@ -1,7 +1,8 @@
 'use client'
 
+import { filterOptions, stepCalendar, stepCursor } from '@/themes/kit/keys.ts'
 import { useLevel, usePersonality } from '@/themes/kit/level.ts'
-import { useId, useState, type CSSProperties, type ReactNode } from 'react'
+import { useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 
 function Frame({ children, hot }: { children: ReactNode; hot: boolean }) {
   const personality = usePersonality()
@@ -194,6 +195,80 @@ export function SelectField({ label, value, onChange, options }: { label: string
   )
 }
 
+export function ComboField({ label, value, onChange, options }: { label: string; value: string; onChange: (value: string) => void; options: string[] }) {
+  const id = useId()
+  const listId = `${id}-list`
+  const [open, setOpen] = useState(false)
+  const [query, setQuery] = useState(value)
+  const [cursor, setCursor] = useState(0)
+  const matches = filterOptions(options, query)
+  const index = matches.length === 0 ? 0 : Math.min(cursor, matches.length - 1)
+  const active = open && matches[index] ? `${id}-opt-${index}` : undefined
+
+  function pick(next: string) {
+    onChange(next)
+    setQuery(next)
+    setOpen(false)
+  }
+
+  return (
+    <div className="text-sm">
+      <label className="mb-1 block" htmlFor={id}>{label}</label>
+      <input
+        id={id}
+        className={fieldClass}
+        style={{ borderRadius: 'var(--nx-radius)', border: '1px solid var(--nx-line)', background: 'var(--nx-surface)', color: 'var(--nx-fg)' }}
+        role="combobox"
+        aria-expanded={open}
+        aria-controls={listId}
+        aria-autocomplete="list"
+        aria-activedescendant={active}
+        value={query}
+        onChange={(event) => {
+          setQuery(event.target.value)
+          setCursor(0)
+          setOpen(true)
+        }}
+        onFocus={() => setOpen(true)}
+        onBlur={() => setOpen(false)}
+        onKeyDown={(event) => {
+          if (!open && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
+            event.preventDefault()
+            setOpen(true)
+            return
+          }
+          const step = stepCursor(index, matches.length, event.key)
+          if (step === null) return
+          event.preventDefault()
+          if (step === 'close') setOpen(false)
+          else if (step === 'pick') {
+            const next = matches[index]
+            if (next) pick(next)
+          } else setCursor(step)
+        }}
+      />
+      {open ? (
+        <ul id={listId} role="listbox" aria-label={label} className="mt-1" style={{ border: '1px solid var(--nx-line)', background: 'var(--nx-surface)' }}>
+          {matches.map((option, optionIndex) => (
+            <li key={option} id={`${id}-opt-${optionIndex}`} role="option" aria-selected={option === value} style={{ background: optionIndex === index ? 'var(--nx-line)' : 'transparent' }}>
+              <span
+                className="block min-h-11 px-3 py-2"
+                onMouseDown={(event) => {
+                  event.preventDefault()
+                  pick(option)
+                }}
+              >
+                {option}
+              </span>
+            </li>
+          ))}
+          {matches.length === 0 ? <li className="min-h-11 px-3 py-2">No matches</li> : null}
+        </ul>
+      ) : null}
+    </div>
+  )
+}
+
 export function MultiSelect({ label, values, onChange, options }: { label: string; values: string[]; onChange: (values: string[]) => void; options: string[] }) {
   return (
     <fieldset className="text-sm">
@@ -282,14 +357,52 @@ function monthGrid(year: number, month: number) {
 
 export function DateField({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) {
   const { first, days } = monthGrid(2026, 9)
+  const selected = Number(value) || 1
+  const [cursor, setCursor] = useState(selected)
+  const cursorRef = useRef(selected)
+  const [tracked, setTracked] = useState(selected)
+  if (tracked !== selected) {
+    setTracked(selected)
+    setCursor(selected)
+  }
+  useLayoutEffect(() => {
+    cursorRef.current = selected
+  }, [selected])
   return (
     <fieldset className="text-sm">
       <legend className="mb-1">{label}, October 2026{value ? `, day ${value}` : ''}</legend>
-      <div className="grid grid-cols-7 gap-1" role="grid">
+      <div
+        className="grid grid-cols-7 gap-1"
+        role="grid"
+        aria-label={`${label} calendar`}
+        onKeyDown={(event) => {
+          const step = stepCalendar(cursorRef.current, days, first, event.key)
+          if (step === null) return
+          event.preventDefault()
+          if (step === 'blur') {
+            if (document.activeElement instanceof HTMLElement) document.activeElement.blur()
+            return
+          }
+          cursorRef.current = step
+          setCursor(step)
+          event.currentTarget.querySelector<HTMLButtonElement>(`[data-day="${step}"]`)?.focus()
+        }}
+      >
         {Array.from({ length: first }, (_, index) => <span key={`e-${index}`} />)}
         {Array.from({ length: days }, (_, index) => {
           const day = String(index + 1)
-          return <DayButton key={day} day={day} on={value === day} onPick={() => onChange(day)} />
+          return (
+            <DayButton
+              key={day}
+              day={day}
+              on={value === day}
+              tabIndex={Number(day) === cursor ? 0 : -1}
+              onPick={() => {
+                setCursor(Number(day))
+                onChange(day)
+              }}
+            />
+          )
         })}
       </div>
     </fieldset>
@@ -333,15 +446,41 @@ export function DateRangeField({ label, start, end, onStart, onEnd }: { label: s
 export function FileField({ label, name, onName }: { label: string; name: string; onName: (name: string) => void }) {
   const id = useId()
   const [hot, setHot] = useState(false)
+  function take(file: File | undefined) {
+    onName(file?.name ?? '')
+  }
   return (
     <div className="text-sm">
       <span className="mb-1 block" id={`${id}-label`}>{label}</span>
       <Frame hot={hot}>
-        <div className="flex items-center justify-between gap-3 px-3" style={{ minHeight: 44 }}>
-          <span>{name || 'No file yet'}</span>
-          <label htmlFor={id} className="inline-flex min-h-11 cursor-pointer items-center px-3" style={{ background: 'var(--nx-accent)', color: 'var(--nx-accent-fg)', borderRadius: 'var(--nx-radius)' }}>
-            Choose
-            <input id={id} className="sr-only" type="file" aria-labelledby={`${id}-label`} onFocus={() => setHot(true)} onBlur={() => setHot(false)} onChange={(event) => onName(event.target.files?.[0]?.name ?? '')} />
+        <div
+          className="flex items-center justify-between gap-3 px-3"
+          style={{ minHeight: 44 }}
+          onDragOver={(event) => {
+            event.preventDefault()
+            setHot(true)
+          }}
+          onDragLeave={() => setHot(false)}
+          onDrop={(event) => {
+            event.preventDefault()
+            setHot(false)
+            take(event.dataTransfer.files?.[0])
+          }}
+        >
+          <span id={`${id}-file`}>{name || 'Drop a file, or choose one'}</span>
+          <label className="relative inline-flex min-h-11 min-w-11 cursor-pointer items-center px-3" style={{ minHeight: 44, background: 'var(--nx-accent)', color: 'var(--nx-accent-fg)', borderRadius: 'var(--nx-radius)' }}>
+            <span aria-hidden>Choose</span>
+            <input
+              id={id}
+              className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+              style={{ minHeight: 44 }}
+              type="file"
+              aria-label={label}
+              aria-describedby={`${id}-file`}
+              onFocus={() => setHot(true)}
+              onBlur={() => setHot(false)}
+              onChange={(event) => take(event.target.files?.[0])}
+            />
           </label>
         </div>
       </Frame>
@@ -349,7 +488,7 @@ export function FileField({ label, name, onName }: { label: string; name: string
   )
 }
 
-function DayButton({ day, on, onPick }: { day: string; on: boolean; onPick: () => void }) {
+function DayButton({ day, on, tabIndex, onPick }: { day: string; on: boolean; tabIndex: number; onPick: () => void }) {
   const personality = usePersonality()
   const shell: CSSProperties = { background: 'transparent', color: 'inherit', borderRadius: 'var(--nx-radius)' }
   if (on && personality === 'liquid') {
@@ -366,7 +505,7 @@ function DayButton({ day, on, onPick }: { day: string; on: boolean; onPick: () =
   }
   const squash = on && personality === 'tactile'
   return (
-    <button type="button" className="min-h-11" aria-pressed={on} style={{ ...shell, transform: squash ? 'scaleX(1.08) scaleY(0.92)' : undefined }} onClick={onPick}>
+    <button type="button" data-day={day} tabIndex={tabIndex} className="min-h-11" aria-pressed={on} aria-selected={on} style={{ ...shell, transform: squash ? 'scaleX(1.08) scaleY(0.92)' : undefined }} onClick={onPick}>
       <span style={{ display: 'inline-block', transform: squash ? 'scaleX(0.926) scaleY(1.087)' : undefined }}>{day}</span>
     </button>
   )

@@ -16,6 +16,49 @@ export function contrast(a: string, b: string) {
   return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05)
 }
 
+function clamp01(value: number) {
+  return Math.min(1, Math.max(0, value))
+}
+
+export function hexToHsv(hex: string) {
+  const n = Number.parseInt(hex.slice(1), 16)
+  const r = ((n >> 16) & 255) / 255
+  const g = ((n >> 8) & 255) / 255
+  const b = (n & 255) / 255
+  const max = Math.max(r, g, b)
+  const min = Math.min(r, g, b)
+  const delta = max - min
+  let h = 0
+  if (delta !== 0) {
+    if (max === r) h = ((g - b) / delta) % 6
+    else if (max === g) h = (b - r) / delta + 2
+    else h = (r - g) / delta + 4
+    h *= 60
+    if (h < 0) h += 360
+  }
+  return { h, s: max === 0 ? 0 : delta / max, v: max }
+}
+
+export function hsvToHex(h: number, s: number, v: number) {
+  const hue = ((h % 360) + 360) % 360
+  const sat = clamp01(s)
+  const val = clamp01(v)
+  const c = val * sat
+  const x = c * (1 - Math.abs(((hue / 60) % 2) - 1))
+  const m = val - c
+  let r = 0
+  let g = 0
+  let b = 0
+  if (hue < 60) [r, g, b] = [c, x, 0]
+  else if (hue < 120) [r, g, b] = [x, c, 0]
+  else if (hue < 180) [r, g, b] = [0, c, x]
+  else if (hue < 240) [r, g, b] = [0, x, c]
+  else if (hue < 300) [r, g, b] = [x, 0, c]
+  else [r, g, b] = [c, 0, x]
+  const channelHex = (value: number) => Math.round((value + m) * 255).toString(16).padStart(2, '0')
+  return `#${channelHex(r)}${channelHex(g)}${channelHex(b)}`
+}
+
 export type GuardedColors = {
   bg: string
   fg: string

@@ -1,11 +1,11 @@
 'use client'
 
-import { guardColors, type GuardedColors } from '@/themes/color.ts'
+import { guardColors, hexToHsv, hsvToHex, type GuardedColors } from '@/themes/color.ts'
 import { themeToStyle, type MotionIntensity, type ThemeDefinition, type ThemeScheme } from '@/themes/contract.ts'
 import { ThemeStage } from '@/themes/kit/stage.tsx'
 import { ThemeProvider } from '@/themes/provider.tsx'
 import { boldThemes } from '@/themes/bold.ts'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useId, useMemo, useState, type PointerEvent } from 'react'
 
 const pairs = ['lagoon', 'strike', 'orrery', 'rally', 'array'] as const
 type Preview = 'landing' | 'dashboard' | 'form'
@@ -83,6 +83,7 @@ export function ThemeEditor() {
     const result = guardColors(next, colors)
     setColors(result.colors)
     setReason(result.reason)
+    return result.reason === null
   }
 
   function savePreset() {
@@ -133,9 +134,7 @@ export function ThemeEditor() {
           </select>
         </label>
         {(Object.keys(colors) as (keyof GuardedColors)[]).map((key) => (
-          <label key={key} className="text-sm">{key}
-            <input className="mt-1 h-11 w-full" type="color" value={colors[key]} onChange={(event) => paint(key, event.target.value)} />
-          </label>
+          <GuardedColor key={key} name={key} value={colors[key]} onChange={(value) => paint(key, value)} />
         ))}
         <label className="text-sm">Radius {theme.radius}
           <input className="mt-1 w-full" type="range" min={base.radiusClamp?.[0] ?? 0} max={base.radiusClamp?.[1] ?? 24} value={radius} onChange={(event) => setRadius(clampRadius(base, Number(event.target.value)))} />
@@ -171,6 +170,103 @@ export function ThemeEditor() {
           <ThemeStage mode={preview === 'form' ? 'form' : preview} />
         </ThemeProvider>
       </div>
+    </div>
+  )
+}
+
+function GuardedColor({ name, value, onChange }: { name: string; value: string; onChange: (value: string) => boolean }) {
+  const id = useId()
+  const hsv = hexToHsv(value)
+  const [hex, setHex] = useState(value)
+  const [seen, setSeen] = useState(value)
+  if (seen !== value) {
+    setSeen(value)
+    setHex(value)
+  }
+
+  function commitHsv(h: number, s: number, v: number) {
+    onChange(hsvToHex(h, s, v))
+  }
+
+  function point(event: PointerEvent<HTMLDivElement>) {
+    const rect = event.currentTarget.getBoundingClientRect()
+    if (rect.width === 0 || rect.height === 0) return
+    const s = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width))
+    const v = Math.min(1, Math.max(0, 1 - (event.clientY - rect.top) / rect.height))
+    commitHsv(hsv.h, s, v)
+  }
+
+  return (
+    <div className="text-sm">
+      <span className="mb-1 block" id={`${id}-name`}>{name}</span>
+      <div
+        role="slider"
+        tabIndex={0}
+        aria-label={`${name} square`}
+        aria-describedby={`${id}-square`}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={Math.round(hsv.v * 100)}
+        aria-valuetext={`saturation ${Math.round(hsv.s * 100)}, brightness ${Math.round(hsv.v * 100)}`}
+        className="relative mt-1 h-28 w-full touch-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        style={{
+          backgroundColor: `hsl(${hsv.h} 100% 50%)`,
+          backgroundImage: 'linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, transparent)',
+        }}
+        onPointerDown={(event) => {
+          event.currentTarget.setPointerCapture(event.pointerId)
+          point(event)
+        }}
+        onPointerMove={(event) => {
+          if (event.currentTarget.hasPointerCapture(event.pointerId)) point(event)
+        }}
+        onKeyDown={(event) => {
+          const step = event.shiftKey ? 0.1 : 0.04
+          if (event.key === 'ArrowLeft') commitHsv(hsv.h, hsv.s - step, hsv.v)
+          else if (event.key === 'ArrowRight') commitHsv(hsv.h, hsv.s + step, hsv.v)
+          else if (event.key === 'ArrowDown') commitHsv(hsv.h, hsv.s, hsv.v - step)
+          else if (event.key === 'ArrowUp') commitHsv(hsv.h, hsv.s, hsv.v + step)
+          else return
+          event.preventDefault()
+        }}
+      >
+        <span
+          aria-hidden
+          className="absolute h-3 w-3"
+          style={{
+            left: `${hsv.s * 100}%`,
+            top: `${(1 - hsv.v) * 100}%`,
+            transform: 'translate(-50%, -50%)',
+            border: '2px solid #fff',
+            outline: '1px solid #111',
+            borderRadius: 999,
+          }}
+        />
+      </div>
+      <span id={`${id}-square`} className="sr-only">Left and right change saturation. Up and down change brightness.</span>
+      <input
+        className="mt-2 h-11 w-full"
+        type="range"
+        min={0}
+        max={360}
+        step={1}
+        aria-label={`${name} hue`}
+        value={Math.round(hsv.h)}
+        onChange={(event) => commitHsv(Number(event.target.value), hsv.s, hsv.v)}
+      />
+      <input
+        className="mt-2 h-11 w-full border border-white/20 bg-transparent px-2"
+        style={{ color: 'inherit' }}
+        aria-label={`${name} hex`}
+        spellCheck={false}
+        value={hex}
+        onChange={(event) => {
+          const next = event.target.value
+          setHex(next)
+          if (!/^#[0-9a-fA-F]{6}$/.test(next)) return
+          if (!onChange(next.toLowerCase())) setHex(value)
+        }}
+      />
     </div>
   )
 }
