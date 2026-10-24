@@ -103,6 +103,19 @@ export function ThemesApp() {
                       Full page
                     </a>
                   </li>
+                  {theme.id === 'lagoon'
+                    ? [
+                        ['landing', 'Showcase: landing'],
+                        ['desk', 'Showcase: dashboard'],
+                        ['book', 'Showcase: booking form'],
+                      ].map(([screen, label]) => (
+                        <li key={screen}>
+                          <a className="block rounded-xl px-3 py-1.5 text-sm text-teal-200 no-underline hover:bg-white/5" href={`#themes/lagoon/${screen}/dark`}>
+                            {label}
+                          </a>
+                        </li>
+                      ))
+                    : null}
                   {theme.personality ? (
                     <li>
                       <a className="block rounded-xl px-3 py-1.5 text-sm text-zinc-300 no-underline hover:bg-white/5" href={`#themes/${theme.id}/kit`}>

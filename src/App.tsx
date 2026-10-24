@@ -5,6 +5,8 @@ import { ThemesApp } from '@/docs/themes-app.tsx'
 import { FlagshipDashboardPage } from '@/flagship/dashboard-page.tsx'
 import { FlagshipLanding } from '@/flagship/landing.tsx'
 import { BoldShot } from '@/themes/kit/shots.tsx'
+import { parseLagoonRoute } from '@/themes/lagoon/nav.ts'
+import { LagoonShowcase } from '@/themes/lagoon/showcase.tsx'
 import { ThemeShot } from '@/themes/pages.tsx'
 import { useEffect, useState } from 'react'
 
@@ -39,6 +41,8 @@ export default function App() {
     if (bold) return <BoldShot id={id} scheme={scheme} mode={mode} />
     return <ThemeShot id={id} scheme={scheme} />
   }
+  const lagoonRoute = parseLagoonRoute(hash)
+  if (lagoonRoute) return <LagoonShowcase screen={lagoonRoute.screen} scheme={lagoonRoute.scheme} />
   if (hash === '' || hash === 'themes' || hash.startsWith('themes/')) {
     return <ThemesApp />
   }

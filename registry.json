@@ -3171,9 +3171,68 @@
         {
           "path": "src/themes/animations/library.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/motion.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/kit/controls.tsx",
+          "type": "registry:lib"
         }
       ],
       "usage": "import { ThemeStage } from \"@/themes/kit/stage\"\nimport { ThemeEditor } from \"@/themes/kit/editor\""
+    },
+    {
+      "name": "lagoon-showcase",
+      "type": "registry:block",
+      "title": "Lagoon showcase: Tidewell Clinic",
+      "description": "Landing page, front-desk dashboard and four-step booking form for a neighbourhood clinic, built on the Lagoon theme's liquid motion.",
+      "categories": [
+        "Themes"
+      ],
+      "dependencies": [
+        "framer-motion"
+      ],
+      "registryDependencies": [
+        "theme-kit",
+        "theme-provider"
+      ],
+      "files": [
+        {
+          "path": "src/themes/lagoon/data.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/lagoon/nav.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/themes/lagoon/art.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/themes/lagoon/parts.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/themes/lagoon/landing.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/themes/lagoon/desk.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/themes/lagoon/book.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "src/themes/lagoon/showcase.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "usage": "Open #themes/lagoon/landing/dark, #themes/lagoon/desk/dark or #themes/lagoon/book/dark. Render <LagoonShowcase screen=\"landing\" scheme=\"dark\" /> to embed."
     }
   ]
 }
